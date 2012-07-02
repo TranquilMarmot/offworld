@@ -27,6 +27,8 @@ public class Render3D {
 	private static final String VERTEX_SHADER = "game/shaders/main.vert";
 	private static final String FRAGMENT_SHADER = "game/shaders/main.frag";
 	
+	private int vertexLocationPosition, vertexNormalPosition, vertexTexCoordPosition;
+	
 	public GLSLProgram program;
 	
 	public static Matrix4f projection, modelview;
@@ -41,10 +43,12 @@ public class Render3D {
 		this.context = context;
 		assets = context.getAssets();
 		initShaders();
+		getPositionsFromShader();
 		
 		float aspect = (float)GLRenderer.windowWidth / (float)GLRenderer.windowHeight;
 		
 		projection = MatrixHelper.perspective(fov, aspect, 1.0f, drawDistance);
+		modelview = new Matrix4f();
 	}
 	
     private void initShaders(){
@@ -61,8 +65,14 @@ public class Render3D {
         program = new GLSLProgram();
         program.addShader(vert);
         program.addShader(frag);
-        program.link();
-        program.use();
+        if(!program.link())
+        	System.err.println("Error linking program! " + program.log());
+    }
+    
+    private void getPositionsFromShader(){
+    	vertexLocationPosition = GLES20.glGetAttribLocation(getProgramHandle(), "VertexLocation");
+    	vertexNormalPosition = GLES20.glGetAttribLocation(getProgramHandle(), "VertexNormal");
+    	vertexTexCoordPosition = GLES20.glGetAttribLocation(getProgramHandle(), "VertexTexCoord");
     }
     
     public int getProgramHandle(){
@@ -81,5 +91,17 @@ public class Render3D {
     
     public void renderScene(){
     	setUp3DRender();
+    }
+    
+    public int getVertexLocationPosition(){
+    	return vertexLocationPosition;
+    }
+    
+    public int getVertexNormalPosition(){
+    	return vertexNormalPosition;
+    }
+    
+    public int getVertexTexCoordPosition(){
+    	return vertexTexCoordPosition;
     }
 }
