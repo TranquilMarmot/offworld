@@ -1,30 +1,21 @@
 package com.bitwaffle.offworld.mguts.graphics.render;
 
-import java.io.IOException;
 import java.util.Random;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import org.lwjgl.util.vector.Matrix4f;
-
-import com.bitwaffle.offworld.mguts.graphics.glsl.GLSLProgram;
-import com.bitwaffle.offworld.mguts.graphics.glsl.GLSLShader;
-import com.bitwaffle.offworld.mguts.graphics.glsl.ShaderTypes;
-import com.bitwaffle.offworld.Triangle;
-
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+
+import com.bitwaffle.offworld.Triangle;
 
 public class GLRenderer implements GLSurfaceView.Renderer {
 	
 float r = 0, g = 0, b = 0;
 	
-	@SuppressWarnings("unused")
 	private Context context;
-	private AssetManager assets;
 	
 	public static Render3D render3D;
 	
@@ -36,7 +27,6 @@ float r = 0, g = 0, b = 0;
 	public GLRenderer(Context context){
 		super();
 		this.context = context;
-		assets = context.getAssets();
 	}
 
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
@@ -49,11 +39,9 @@ float r = 0, g = 0, b = 0;
     }
 
     public void onDrawFrame(GL10 unused) {
-    	
-        // Redraw background color
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
         
-        program.use();
+        render3D.renderScene();
         
         triangle.draw();
     	

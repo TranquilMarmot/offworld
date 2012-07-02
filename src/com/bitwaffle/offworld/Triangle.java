@@ -6,7 +6,6 @@ import java.nio.FloatBuffer;
 
 import android.opengl.GLES20;
 
-import com.bitwaffle.offworld.mguts.graphics.SurfaceView;
 import com.bitwaffle.offworld.mguts.graphics.render.GLRenderer;
 
 public class Triangle {

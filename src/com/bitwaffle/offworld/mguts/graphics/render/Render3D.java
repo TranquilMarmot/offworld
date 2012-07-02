@@ -7,6 +7,7 @@ import org.lwjgl.util.vector.Vector3f;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.opengl.GLES20;
 
 import com.bitwaffle.offworld.mguts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.offworld.mguts.graphics.glsl.GLSLShader;
@@ -66,5 +67,19 @@ public class Render3D {
     
     public int getProgramHandle(){
     	return program.getHandle();
+    }
+    
+    private void setUp3DRender(){
+    	program.use();
+    	//useDefaultMaterial();
+    	
+    	GLES20.glDisable(GLES20.GL_BLEND);
+    	GLES20.glEnable(GLES20.GL_DEPTH_TEST);
+    	
+    	modelview.setIdentity();
+    }
+    
+    public void renderScene(){
+    	setUp3DRender();
     }
 }
