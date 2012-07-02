@@ -1,0 +1,9 @@
+# ignore any compiled classes
+*.class
+
+# eclipse project files
+.classpath
+.project
+
+# binaries
+bin/*
