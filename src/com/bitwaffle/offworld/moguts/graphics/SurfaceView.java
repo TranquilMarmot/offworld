@@ -1,6 +1,6 @@
-package com.bitwaffle.offworld.mguts.graphics;
+package com.bitwaffle.offworld.moguts.graphics;
 
-import com.bitwaffle.offworld.mguts.graphics.render.GLRenderer;
+import com.bitwaffle.offworld.moguts.graphics.render.GLRenderer;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;

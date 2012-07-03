@@ -1,18 +1,16 @@
-package com.bitwaffle.offworld.mguts.graphics.model;
+package com.bitwaffle.offworld.moguts.graphics.model;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-import javax.vecmath.Point2f;
-import javax.vecmath.Vector3f;
-
 import org.lwjgl.util.vector.Quaternion;
+import org.lwjgl.util.vector.Vector2f;
+import org.lwjgl.util.vector.Vector3f;
 
-import com.bitwaffle.spaceguts.util.QuaternionHelper;
-import com.bitwaffle.spaceout.resources.Textures;
+import com.bitwaffle.offworld.moguts.util.QuaternionHelper;
 
 
 /**
@@ -37,6 +35,7 @@ import com.bitwaffle.spaceout.resources.Textures;
  *
  */
 public class ModelLoader {
+	/*
 	public static Model loadObjFile(String directory, Textures texture){
 		return loadObjFile(directory, new Vector3f(1.0f, 1.0f, 1.0f), new Vector3f(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), texture);
 	}
@@ -56,6 +55,7 @@ public class ModelLoader {
 	public static Model loadObjFile(String directory, float scale, Quaternion rotation, Textures texture){
 		return loadObjFile(directory, new Vector3f(scale, scale, scale), new Vector3f(0.0f, 0.0f, 0.0f), rotation, texture);
 	}
+	*/
 	
 	/**
 	 * Get a model from an obj file
@@ -66,10 +66,11 @@ public class ModelLoader {
 	 * @param texture The texture from {@link Textures} to use for the model
 	 * @return A model loaded from the file
 	 */
-	public static Model loadObjFile(String directory, Vector3f scale, Vector3f offset, Quaternion rotation, Textures texture){
+	public static Model loadObjFile(FileInputStream objIn, FileInputStream mtlIn, Vector3f scale, Vector3f offset, Quaternion rotation/*, Textures texture*/){
 		// our model
 		Model model = null;
 		
+		/*
 		// find out the name of the directory
 		int lastSlash = 0;
 		char[] chars = directory.toCharArray();
@@ -82,13 +83,14 @@ public class ModelLoader {
 		
 		// get the name of the directory
 		String name = directory.substring(lastSlash);
+		*/
 		
 		// get a list of materials
-		MaterialList materials = null;
+		MaterialList materials = loadMaterialList(mtlIn);
 		
 		try{
 			// open the .obj file
-			BufferedReader reader = new BufferedReader(new FileReader(directory + name + ".obj"));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(objIn));
 			
 			// current line
 			String line;
@@ -103,6 +105,7 @@ public class ModelLoader {
 				String lineType = toker.nextToken();
 				
 				// load material library
+				/*
 				if(lineType.equals("mtllib")){
 					try{
 						materials = loadMaterialList(directory + "/" + toker.nextToken());
@@ -110,6 +113,7 @@ public class ModelLoader {
 						materials = loadMaterialList(directory + name + ".mtl");
 					}
 				}
+				*/
 				// object name
 				if (lineType.equals("o")) {
 					//System.out.println("Loading " + toker.nextToken());
@@ -145,7 +149,7 @@ public class ModelLoader {
 					float u = Float.parseFloat(toker.nextToken());
 					float v = Float.parseFloat(toker.nextToken());
 
-					builder.addTextureCoords(new Point2f(u, v));
+					builder.addTextureCoords(new Vector2f(u, v));
 				}
 				
 				// new material
@@ -154,8 +158,10 @@ public class ModelLoader {
 					//if(builder.isMakingModelPart())
 					//	builder.endModelPart();
 					
+					/*
 					if(materials == null)
 						materials = loadMaterialList(directory + name + ".mtl");
+					*/
 					
 					String mat = toker.nextToken();
 					builder.startModelPart(materials.getMaterial(mat));
@@ -187,8 +193,9 @@ public class ModelLoader {
 				}
 			}
 			
-			model = builder.makeModel(texture);
+			model = builder.makeModel(/*texture*/);
 			
+			reader.close();
 		} catch(IOException e){
 			e.printStackTrace();
 		}
@@ -201,11 +208,11 @@ public class ModelLoader {
 	 * @param .mtl file to load MaterialList from
 	 * @return List of materials from .mtl file
 	 */
-	private static MaterialList loadMaterialList(String file) throws FileNotFoundException{
+	private static MaterialList loadMaterialList(FileInputStream in){
 		// material list
 		MaterialList list = new MaterialList();
 		try{
-			BufferedReader reader = new BufferedReader(new FileReader(file));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(in), 8);
 			
 			// current line
 			String line;
@@ -261,8 +268,7 @@ public class ModelLoader {
 					list.addMaterial(name, mat);
 				}
 			}
-		} catch(FileNotFoundException e){
-			throw e;
+			reader.close();
 		} catch(IOException e){
 			e.printStackTrace();
 		}

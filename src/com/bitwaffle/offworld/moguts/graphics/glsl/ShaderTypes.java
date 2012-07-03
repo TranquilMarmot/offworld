@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.mguts.graphics.glsl;
+package com.bitwaffle.offworld.moguts.graphics.glsl;
 
 import android.opengl.GLES20;
 

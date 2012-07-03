@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.mguts.util;
+package com.bitwaffle.offworld.moguts.util;
 
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
@@ -76,6 +76,32 @@ public class MatrixHelper {
 		
 		result.translate(new Vector3f(-eye.x, -eye.y, -eye.z));
 		
+		return result;
+	}
+	
+	public static Matrix4f frustum(float left, float right, float bottom, float top, float zNear, float zFar){
+		Matrix4f result = new Matrix4f();
+		
+		result.m00 = (2.0f * zNear) / (right - left);
+		result.m01 = 0.0f;
+		result.m02 = (right + left) / (right - left);
+		result.m02 = 0.0f;
+		
+		result.m10 = 0.0f;
+		result.m11 = (2.0f * zNear) / (top - bottom);
+		result.m12 = (top + bottom) / (top - bottom);
+		result.m13 = 0.0f;
+		
+		result.m20 = 0.0f;
+		result.m21 = 0.0f;
+		result.m22 = -((zFar + zNear) / (zFar - zNear));
+		result.m23 = -((2 * zFar * zNear) / (zFar - zNear));
+		
+		result.m30 = 0.0f;
+		result.m31 = 0.0f;
+		result.m32 = -1.0f;
+		result.m33 = 0.0f;
+
 		return result;
 	}
 }

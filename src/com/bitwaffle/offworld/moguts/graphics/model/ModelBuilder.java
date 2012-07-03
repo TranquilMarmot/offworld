@@ -1,13 +1,14 @@
-package com.bitwaffle.offworld.mguts.graphics.model;
+package com.bitwaffle.offworld.moguts.graphics.model;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 
+import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
-import com.bitwaffle.offworld.mguts.graphics.render.GLRenderer;
+import com.bitwaffle.offworld.moguts.graphics.render.GLRenderer;
 
 import android.opengl.GLES20;
 
@@ -27,7 +28,7 @@ public class ModelBuilder {
 	private ArrayList<Vector3f> normals;
 
 	/** the texture coordinates of the model */
-	private ArrayList<float[]> textureCoords;
+	private ArrayList<Vector2f> textureCoords;
 
 	/** which vertices to call */
 	private ArrayList<int[]> vertexIndices;
@@ -68,9 +69,8 @@ public class ModelBuilder {
 		normals = new ArrayList<Vector3f>();
 		normals.add(new Vector3f(0.0f, 0.0f, 0.0f));
 
-		textureCoords = new ArrayList<float[]>();
-		float[] offset = { 0.0f, 0.0f };
-		textureCoords.add(offset);
+		textureCoords = new ArrayList<Vector2f>();
+		textureCoords.add(new Vector2f(0.0f, 0.0f));
 
 		// these just store which vertices to grab, don't need to add a blank
 		// element to them
@@ -205,7 +205,7 @@ public class ModelBuilder {
 	 * Add texture coordinates to the model being built. Only 2D texture coordinates are supported right now.
 	 * @param point The texture coordinates to add
 	 */
-	public void addTextureCoords(float[] point) {
+	public void addTextureCoords(Vector2f point) {
 		textureCoords.add(point);
 	}
 
@@ -276,9 +276,9 @@ public class ModelBuilder {
 			normBuffer.put(firstNorm.x);
 			normBuffer.put(firstNorm.y);
 			normBuffer.put(firstNorm.z);
-			float[] firstTex = textureCoords.get(triTex[0]);
-			texBuffer.put(firstTex[0]);
-			texBuffer.put(1 - firstTex[1]);
+			Vector2f firstTex = textureCoords.get(triTex[0]);
+			texBuffer.put(firstTex.x);
+			texBuffer.put(1 - firstTex.y);
 			
 			Vector3f secondVert = vertices.get(triVerts[1]);
 			vertBuffer.put(secondVert.x);
@@ -288,9 +288,9 @@ public class ModelBuilder {
 			normBuffer.put(secondNorm.x);
 			normBuffer.put(secondNorm.y);
 			normBuffer.put(secondNorm.z);
-			float[] secondTex = textureCoords.get(triTex[1]);
-			texBuffer.put(secondTex[0]);
-			texBuffer.put(1 - secondTex[1]);
+			Vector2f secondTex = textureCoords.get(triTex[1]);
+			texBuffer.put(secondTex.x);
+			texBuffer.put(1 - secondTex.y);
 			
 			
 			Vector3f thirdVert = vertices.get(triVerts[2]);
@@ -301,9 +301,9 @@ public class ModelBuilder {
 			normBuffer.put(thirdNorm.x);
 			normBuffer.put(thirdNorm.y);
 			normBuffer.put(thirdNorm.z);
-			float[] thirdTex = textureCoords.get(triTex[2]);
-			texBuffer.put(thirdTex[0]);
-			texBuffer.put(1 - thirdTex[1]);
+			Vector2f thirdTex = textureCoords.get(triTex[2]);
+			texBuffer.put(thirdTex.x);
+			texBuffer.put(1 - thirdTex.y);
 		}
 		// be kind, please rewind()!
 		vertBuffer.rewind();

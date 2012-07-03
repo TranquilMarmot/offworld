@@ -1,8 +1,8 @@
-package com.bitwaffle.offworld.mguts.graphics;
+package com.bitwaffle.offworld.moguts.graphics.copy;
 
 import org.lwjgl.util.vector.Quaternion;
 
-import com.bitwaffle.offworld.mguts.entity.Entity;
+import com.bitwaffle.offworld.moguts.entity.Entity;
 
 public class Camera extends Entity {
 

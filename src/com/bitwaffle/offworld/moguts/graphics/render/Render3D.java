@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.mguts.graphics.render;
+package com.bitwaffle.offworld.moguts.graphics.render;
 
 import java.io.IOException;
 
@@ -9,10 +9,11 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.opengl.GLES20;
 
-import com.bitwaffle.offworld.mguts.graphics.glsl.GLSLProgram;
-import com.bitwaffle.offworld.mguts.graphics.glsl.GLSLShader;
-import com.bitwaffle.offworld.mguts.graphics.glsl.ShaderTypes;
-import com.bitwaffle.offworld.mguts.util.MatrixHelper;
+import com.bitwaffle.offworld.moguts.graphics.glsl.GLSLProgram;
+import com.bitwaffle.offworld.moguts.graphics.glsl.GLSLShader;
+import com.bitwaffle.offworld.moguts.graphics.glsl.ShaderTypes;
+import com.bitwaffle.offworld.moguts.graphics.model.Material;
+import com.bitwaffle.offworld.moguts.util.MatrixHelper;
 
 public class Render3D {
 	/** default diffuse color */
@@ -36,6 +37,7 @@ public class Render3D {
 	public static float fov = 45.0f;
 	public static float drawDistance = 1000.0f;
 	
+	@SuppressWarnings("unused")
 	private Context context;
 	private AssetManager assets;
 	
@@ -44,6 +46,8 @@ public class Render3D {
 		assets = context.getAssets();
 		initShaders();
 		getPositionsFromShader();
+		
+		System.out.printf("location: %f normal: %f tex: %f\n", vertexLocationPosition, vertexNormalPosition, vertexTexCoordPosition);
 		
 		float aspect = (float)GLRenderer.windowWidth / (float)GLRenderer.windowHeight;
 		
@@ -104,4 +108,25 @@ public class Render3D {
     public int getVertexTexCoordPosition(){
     	return vertexTexCoordPosition;
     }
+    
+	/**
+	 * Sets the current material being used for rendering
+	 * @param mat Material to use
+	 */
+	public void setCurrentMaterial(Material mat){
+		program.setUniform("Material.Kd" , mat.getKd());
+		program.setUniform("Material.Ka", mat.getKa());
+		program.setUniform("Material.Ks", mat.getKs());
+		program.setUniform("Material.Shininess", mat.getShininess());
+	}
+	
+	/**
+	 * Set the current material to the default material
+	 */
+	public void useDefaultMaterial(){
+		program.setUniform("Material.Kd" , DEFAULT_KD);
+		program.setUniform("Material.Ka", DEFAULT_KA);
+		program.setUniform("Material.Ks", DEFAULT_KS);
+		program.setUniform("Material.Shininess", DEFAULT_SHINY);
+	}
 }

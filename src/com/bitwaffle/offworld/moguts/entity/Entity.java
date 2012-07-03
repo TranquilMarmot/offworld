@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.mguts.entity;
+package com.bitwaffle.offworld.moguts.entity;
 
 import org.lwjgl.util.vector.Vector2f;
 

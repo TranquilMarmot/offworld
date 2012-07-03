@@ -3,10 +3,11 @@ package com.bitwaffle.offworld;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+import java.util.Random;
 
 import android.opengl.GLES20;
 
-import com.bitwaffle.offworld.mguts.graphics.render.GLRenderer;
+import com.bitwaffle.offworld.moguts.graphics.render.GLRenderer;
 
 public class Triangle {
     private FloatBuffer vertexBuffer;
@@ -16,10 +17,12 @@ public class Triangle {
     // number of coordinates per vertex in this array
     static final int COORDS_PER_VERTEX = 3;
     static float triangleCoords[] = { // in counterclockwise order:
-         0.0f,  0.622008459f, 0.0f,   // top
-        -0.5f, -0.311004243f, 0.0f,   // bottom left
-         0.5f, -0.311004243f, 0.0f    // bottom right
-    };
+        0.0f,  0.622008459f, 0.0f,   // top
+       -0.5f, -0.311004243f, 0.0f,   // bottom left
+        0.5f, -0.311004243f, 0.0f    // bottom right
+   };
+    
+    float r, g, b;
 
     // Set color with red, green, blue and alpha (opacity) values
     float color[] = { 0.63671875f, 0.76953125f, 0.22265625f, 1.0f };
@@ -39,13 +42,10 @@ public class Triangle {
         // set the buffer to read the first coordinate
         vertexBuffer.position(0);
         
-        mProgram = GLRenderer.render3D.getProgramHandle();
+        mProgram = GLRenderer.render2D.getProgramHandle();
     }
     
     public void draw() {
-        // Add program to OpenGL ES environment
-        GLES20.glUseProgram(mProgram);
-
         // get handle to vertex shader's vPosition member
         mPositionHandle = GLES20.glGetAttribLocation(mProgram, "vPosition");
 
@@ -60,6 +60,14 @@ public class Triangle {
         // get handle to fragment shader's vColor member
         mColorHandle = GLES20.glGetUniformLocation(mProgram, "vColor");
 
+        Random rand = new Random();
+        r = rand.nextFloat();
+        g = rand.nextFloat();
+        b = rand.nextFloat();
+        color[0] = r;
+        color[1] = g;
+        color[2] = b;
+        
         // Set color for drawing the triangle
         GLES20.glUniform4fv(mColorHandle, 1, color, 0);
 

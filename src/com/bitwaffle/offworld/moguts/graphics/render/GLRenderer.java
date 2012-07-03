@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.mguts.graphics.render;
+package com.bitwaffle.offworld.moguts.graphics.render;
 
 import java.util.Random;
 
@@ -9,8 +9,6 @@ import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 
-import com.bitwaffle.offworld.Triangle;
-
 public class GLRenderer implements GLSurfaceView.Renderer {
 	
 float r = 0, g = 0, b = 0;
@@ -19,10 +17,9 @@ float r = 0, g = 0, b = 0;
 	
 	public static Render3D render3D;
 	
+	public static Render2D render2D;
+	
 	public static int windowWidth, windowHeight;
-	
-	
-	private Triangle triangle;
 	
 	public GLRenderer(Context context){
 		super();
@@ -33,17 +30,16 @@ float r = 0, g = 0, b = 0;
         // Set the background frame color FIXME change it back to black
         GLES20.glClearColor(0.5f, 1.0f, 0.5f, 1.0f);
         
-        render3D = new Render3D(context);
-        
-        triangle = new Triangle();
+        //render3D = new Render3D(context);
+        render2D = new Render2D(context);
     }
-
+    
     public void onDrawFrame(GL10 unused) {
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
+        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         
-        render3D.renderScene();
+        //render3D.renderScene();
         
-        triangle.draw();
+        render2D.renderScene();
     	
     	Random rand = new Random(System.currentTimeMillis());
     	r += rand.nextFloat() / 100.0f;

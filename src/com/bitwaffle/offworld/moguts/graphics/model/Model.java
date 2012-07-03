@@ -1,10 +1,10 @@
-package com.bitwaffle.offworld.mguts.graphics.model;
+package com.bitwaffle.offworld.moguts.graphics.model;
 
 import java.util.ArrayList;
 
 import android.opengl.GLES20;
 
-import com.bitwaffle.offworld.mguts.graphics.render.Render3D;
+import com.bitwaffle.offworld.moguts.graphics.render.GLRenderer;
 
 /**
  * This class defines a 3D model. A model is a set of vertices to draw, what texture to use when drawing them,
@@ -14,7 +14,7 @@ import com.bitwaffle.offworld.mguts.graphics.render.Render3D;
  */
 public class Model {
 	/** Handle corresponding to the model's vertex array */
-	private int vaoHandle;
+	//private int vaoHandle;
 	
 	
 	private int vertexLocationHandle, vertexNormalHandle, vertexTexCoordHandle;
@@ -66,7 +66,7 @@ public class Model {
 		
 		// loop through each part, set its material and draw
 		for(ModelPart p : parts){
-			Render3D.setCurrentMaterial(p.getMaterial());
+			GLRenderer.render3D.setCurrentMaterial(p.getMaterial());
 			p.draw();
 		}
 		
