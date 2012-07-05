@@ -1,17 +1,21 @@
 package com.bitwaffle.offworld.moguts.entity;
 
-import org.lwjgl.util.vector.Vector2f;
+import com.badlogic.gdx.math.Vector2;
 
 public class Entity {
-	private Vector2f location;
+	private Vector2 location;
 	
 	public Entity(){
-		location = new Vector2f();
+		location = new Vector2();
 	}
 	
-	public Entity(Vector2f location){
+	public Entity(Vector2 location){
 		this.location = location;
 	}
 	
-	public Vector2f getLocation(){ return location; }
+	public void setLocation(Vector2 newLocation){
+		location.set(newLocation);
+	}
+	
+	public Vector2 getLocation(){ return location; }
 }

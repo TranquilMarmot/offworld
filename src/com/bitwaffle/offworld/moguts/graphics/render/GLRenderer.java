@@ -5,6 +5,8 @@ import java.util.Random;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import com.bitwaffle.offworld.moguts.physics.Physics;
+
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -19,6 +21,8 @@ float r = 0, g = 0, b = 0;
 	
 	public static Render2D render2D;
 	
+	public static Physics physics;
+	
 	public static int windowWidth, windowHeight;
 	
 	public GLRenderer(Context context){
@@ -32,6 +36,7 @@ float r = 0, g = 0, b = 0;
         
         //render3D = new Render3D(context);
         render2D = new Render2D(context);
+        physics = new Physics();
     }
     
     public void onDrawFrame(GL10 unused) {
@@ -56,6 +61,7 @@ float r = 0, g = 0, b = 0;
     		b = rand.nextFloat();
     	GLES20.glClearColor(r, g, b, 1.0f);
     	
+    	physics.update();	
     }
 
     public void onSurfaceChanged(GL10 unused, int width, int height) {

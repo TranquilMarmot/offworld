@@ -1,11 +1,13 @@
 package com.bitwaffle.offworld.moguts.graphics.render;
 
 import java.io.IOException;
+import java.util.Random;
 
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.opengl.Matrix;
 
+import com.bitwaffle.offworld.Quad;
 import com.bitwaffle.offworld.Triangle;
 import com.bitwaffle.offworld.moguts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.offworld.moguts.graphics.glsl.GLSLShader;
@@ -16,8 +18,9 @@ public class Render2D {
 	private static final String FRAGMENT_SHADER = "game/shaders/main.frag";
 
 	public GLSLProgram program;
+	//private 
 	
-	float[] mv, proj;
+	float[] modelview, projection;
 
 	public static float fov = 45.0f;
 	public static float drawDistance = 1000.0f;
@@ -27,7 +30,8 @@ public class Render2D {
 	private AssetManager assets;
 
 	// FIXME temp
-	private Triangle triangle;
+	//private Triangle triangle;
+	private Quad quad;
 	
 	private float oldAspect;
 
@@ -43,10 +47,10 @@ public class Render2D {
 		//projection = MatrixHelper.frustum(-oldAspect, oldAspect, -1.0f, 1.0f, 3.0f, 7.0f);
 		//modelview = new Matrix4f();
 		
-		proj = new float[16];
-		mv = new float[16];
-		Matrix.frustumM(proj, 0, -oldAspect, oldAspect, -1, 1, 3, 7);
-		Matrix.setLookAtM(mv, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+		projection = new float[16];
+		modelview = new float[16];
+		Matrix.frustumM(projection, 0, -oldAspect, oldAspect, -1, 1, 3, 7);
+		Matrix.setLookAtM(modelview, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
 	}
 
 	private void initShaders() {
@@ -72,6 +76,18 @@ public class Render2D {
 	public int getProgramHandle() {
 		return program.getHandle();
 	}
+	
+	/*
+	public int getVertexPositionHandle(){
+		
+	}
+	
+	public int getColorUniformHandle(){
+		
+	}
+	*/
+	
+	float ang1 = 0.0f, ang2 = 0.0f, ang3 = 0.0f, ang4 = 0.0f;
 
 	public void renderScene() {
 		float aspect = (float) GLRenderer.windowWidth
@@ -79,18 +95,51 @@ public class Render2D {
 		
 		if(aspect != oldAspect){
 			oldAspect = aspect;
-			 Matrix.frustumM(proj, 0, -aspect, aspect, -1, 1, 3, 7);
+			 Matrix.frustumM(projection, 0, -aspect, aspect, -1, 1, 3, 7);
 		}
 		
-		Matrix.rotateM(mv, 0, 2, 1.0f, 0.0f, 0.0f);
+		Matrix.rotateM(modelview, 0, 2, 1.0f, 0.0f, 0.0f);
 		
-		program.setUniformMatrix4f("ModelView", mv);
-		program.setUniformMatrix4f("Projection", proj);
+		program.setUniformMatrix4f("ModelView", modelview);
+		program.setUniformMatrix4f("Projection", projection);
 		
 		// FIXME temp
-		if(triangle == null)
-			triangle = new Triangle();
+		//if(triangle == null)
+		//	triangle = new Triangle();
+		if(quad == null)
+			quad = new Quad();
+		
 		program.use();
-		triangle.draw();
+		
+		Random r = new Random();
+		
+		float[] oldmv = modelview.clone();
+		Matrix.rotateM(modelview, 0, ang1, r.nextFloat(), r.nextFloat(), r.nextFloat());
+		ang1++;
+		program.setUniformMatrix4f("ModelView", modelview);
+		quad.draw();
+		
+		modelview = oldmv.clone();
+		Matrix.rotateM(modelview, 0, ang2, r.nextFloat(), r.nextFloat(), r.nextFloat());
+		ang2++;
+		program.setUniformMatrix4f("ModelView", modelview);
+		quad.draw();
+		
+		modelview = oldmv.clone();
+		Matrix.rotateM(modelview, 0, ang3, r.nextFloat(), r.nextFloat(), r.nextFloat());
+		ang3--;
+		program.setUniformMatrix4f("ModelView", modelview);
+		quad.draw();
+		
+		modelview = oldmv.clone();
+		Matrix.rotateM(modelview, 0, ang4, r.nextFloat(), r.nextFloat(), r.nextFloat());
+		ang4--;
+		program.setUniformMatrix4f("ModelView", modelview);
+		quad.draw();
+		
+		modelview = oldmv.clone();
+		
+		//triangle.draw();
+		
 	}
 }
