@@ -38,14 +38,14 @@ public class Render2D {
 		assets = context.getAssets();
 		initShaders();
 
-		oldAspect = (float) GLRenderer.windowWidth
-				/ (float) GLRenderer.windowHeight;
+		oldAspect = GLRenderer.aspect;
 		
 		projection = new float[16];
 		modelview = new float[16];
 		oldModelview = new float[16];
-		Matrix.frustumM(projection, 0, -oldAspect, oldAspect, -1, 1, 3, 7);
+		//Matrix.frustumM(projection, 0, -oldAspect, oldAspect, -1, 1, 3, 7);
 		//Matrix.setLookAtM(modelview, 0, 0, 0, -4, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+		Matrix.setIdentityM(projection, 0);
 		Matrix.setIdentityM(modelview, 0);
 		program.setUniformMatrix4f("Projection", projection);
 		program.setUniformMatrix4f("ModelView", modelview);
@@ -85,18 +85,20 @@ public class Render2D {
 	}
 	*/
 	
-	float ang1 = 0.0f, ang2 = 0.0f, ang3 = 0.0f, ang4 = 0.0f;
+	float camZ = -1.0f;
 
 	public void renderScene() {
-		GLRenderer.render2D.program.setUniform("vColor", 0.0f, 1.0f, 0.0f, 1.0f);
+		//GLRenderer.render2D.program.setUniform("vColor", 0.0f, 1.0f, 0.0f, 1.0f);
 		
 		if(oldAspect != GLRenderer.aspect){
 			oldAspect = GLRenderer.aspect;
 			Matrix.frustumM(projection, 0, -oldAspect, oldAspect, -1, 1, 3, 7);
+			//Matrix.frustumM(projection, 0, -oldAspect, oldAspect, -1, 1, 1, 2);
 		}
 		
-		program.setUniformMatrix4f("ModelView", modelview);
 		program.setUniformMatrix4f("Projection", projection);
+		program.setUniformMatrix4f("ModelView", modelview);
+		
 		
 		program.use();
 		
@@ -112,7 +114,7 @@ public class Render2D {
 			Vector2 loc = ent.getLocation();
 			
 			
-			Matrix.translateM(modelview, 0, -loc.x, -loc.y, -5.0f);
+			Matrix.translateM(modelview, 0, loc.x, loc.y, camZ);
 			
 			program.setUniformMatrix4f("ModelView", modelview);
 			
@@ -120,6 +122,8 @@ public class Render2D {
 			
 			modelview = oldModelview.clone();
 		}
+		
+		//camZ -= 0.05;
 	}
 	
 	public static void printMatrix(float[] mat){

@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld;
+package com.bitwaffle.offworld.moguts.graphics.shapes;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -20,7 +20,7 @@ public class Quad {
 		0.5f, -0.5f, 0.0f // top right
 	};
 	*/
-	/*
+	
 	private static float[] coords = {
 		-0.5f, 0.5f, 0.0f,
 		0.5f, 0.5f, 0.0f,
@@ -29,7 +29,7 @@ public class Quad {
 		-0.5f, 0.5f, 0.0f,
 		-0.5f, -0.5f, 0.0f,
 		0.5f, -0.5f, 0.0f
-	};*/
+	};
 	
 	
 	private int positionHandle;
@@ -40,6 +40,7 @@ public class Quad {
 		width /= 2.0f;
 		height /= 2.0f;
 		
+		/*
 		float[] coords = {
 				-width, height, 0.0f,
 				width, height, 0.0f,
@@ -48,7 +49,7 @@ public class Quad {
 				-width, height, 0.0f,
 				-width, -height, 0.0f,
 				width, -height, 0.0f
-		};
+		};*/
 		
 		// 4 bytes per float!
 		ByteBuffer bb = ByteBuffer.allocateDirect(coords.length * 4);
