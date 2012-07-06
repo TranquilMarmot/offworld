@@ -1,17 +1,19 @@
 package com.bitwaffle.offworld.moguts.graphics.render;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Random;
 
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.opengl.Matrix;
 
-import com.bitwaffle.offworld.Quad;
-import com.bitwaffle.offworld.Triangle;
+import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.offworld.moguts.entity.Entity;
 import com.bitwaffle.offworld.moguts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.offworld.moguts.graphics.glsl.GLSLShader;
 import com.bitwaffle.offworld.moguts.graphics.glsl.ShaderTypes;
+import com.bitwaffle.offworld.moguts.physics.Physics;
 
 public class Render2D {
 	private static final String VERTEX_SHADER = "game/shaders/main.vert";
@@ -20,7 +22,7 @@ public class Render2D {
 	public GLSLProgram program;
 	//private 
 	
-	float[] modelview, projection;
+	float[] modelview, projection, oldModelview;
 
 	public static float fov = 45.0f;
 	public static float drawDistance = 1000.0f;
@@ -28,10 +30,6 @@ public class Render2D {
 	@SuppressWarnings("unused")
 	private Context context;
 	private AssetManager assets;
-
-	// FIXME temp
-	//private Triangle triangle;
-	private Quad quad;
 	
 	private float oldAspect;
 
@@ -42,15 +40,15 @@ public class Render2D {
 
 		oldAspect = (float) GLRenderer.windowWidth
 				/ (float) GLRenderer.windowHeight;
-
-		//projection = MatrixHelper.perspective(fov, oldAspect, 1.0f, drawDistance);
-		//projection = MatrixHelper.frustum(-oldAspect, oldAspect, -1.0f, 1.0f, 3.0f, 7.0f);
-		//modelview = new Matrix4f();
 		
 		projection = new float[16];
 		modelview = new float[16];
+		oldModelview = new float[16];
 		Matrix.frustumM(projection, 0, -oldAspect, oldAspect, -1, 1, 3, 7);
-		Matrix.setLookAtM(modelview, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+		//Matrix.setLookAtM(modelview, 0, 0, 0, -4, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+		Matrix.setIdentityM(modelview, 0);
+		program.setUniformMatrix4f("Projection", projection);
+		program.setUniformMatrix4f("ModelView", modelview);
 	}
 
 	private void initShaders() {
@@ -90,56 +88,43 @@ public class Render2D {
 	float ang1 = 0.0f, ang2 = 0.0f, ang3 = 0.0f, ang4 = 0.0f;
 
 	public void renderScene() {
-		float aspect = (float) GLRenderer.windowWidth
-				/ (float) GLRenderer.windowHeight;
+		GLRenderer.render2D.program.setUniform("vColor", 0.0f, 1.0f, 0.0f, 1.0f);
 		
-		if(aspect != oldAspect){
-			oldAspect = aspect;
-			 Matrix.frustumM(projection, 0, -aspect, aspect, -1, 1, 3, 7);
+		if(oldAspect != GLRenderer.aspect){
+			oldAspect = GLRenderer.aspect;
+			Matrix.frustumM(projection, 0, -oldAspect, oldAspect, -1, 1, 3, 7);
 		}
-		
-		Matrix.rotateM(modelview, 0, 2, 1.0f, 0.0f, 0.0f);
 		
 		program.setUniformMatrix4f("ModelView", modelview);
 		program.setUniformMatrix4f("Projection", projection);
 		
-		// FIXME temp
-		//if(triangle == null)
-		//	triangle = new Triangle();
-		if(quad == null)
-			quad = new Quad();
-		
 		program.use();
 		
 		Random r = new Random();
-		
-		float[] oldmv = modelview.clone();
-		Matrix.rotateM(modelview, 0, ang1, r.nextFloat(), r.nextFloat(), r.nextFloat());
-		ang1++;
-		program.setUniformMatrix4f("ModelView", modelview);
-		quad.draw();
-		
-		modelview = oldmv.clone();
-		Matrix.rotateM(modelview, 0, ang2, r.nextFloat(), r.nextFloat(), r.nextFloat());
-		ang2++;
-		program.setUniformMatrix4f("ModelView", modelview);
-		quad.draw();
-		
-		modelview = oldmv.clone();
-		Matrix.rotateM(modelview, 0, ang3, r.nextFloat(), r.nextFloat(), r.nextFloat());
-		ang3--;
-		program.setUniformMatrix4f("ModelView", modelview);
-		quad.draw();
-		
-		modelview = oldmv.clone();
-		Matrix.rotateM(modelview, 0, ang4, r.nextFloat(), r.nextFloat(), r.nextFloat());
-		ang4--;
-		program.setUniformMatrix4f("ModelView", modelview);
-		quad.draw();
-		
-		modelview = oldmv.clone();
-		
-		//triangle.draw();
-		
+		Iterator<Entity> it = Physics.entities.getIterator();
+		while(it.hasNext()){
+			GLRenderer.render2D.program.setUniform("vColor", r.nextFloat(), r.nextFloat(), r.nextFloat(), 1.0f);
+			
+			oldModelview = modelview.clone();
+			
+			Entity ent = it.next();
+			
+			Vector2 loc = ent.getLocation();
+			
+			
+			Matrix.translateM(modelview, 0, -loc.x, -loc.y, -5.0f);
+			
+			program.setUniformMatrix4f("ModelView", modelview);
+			
+			ent.render();
+			
+			modelview = oldModelview.clone();
+		}
+	}
+	
+	public static void printMatrix(float[] mat){
+		System.out.printf("%f %f %f %f\n%f %f %f %f\n %f %f %f %f\n %f %f %f %f\n",
+				mat[0], mat[1], mat[2], mat[3], mat[4], mat[5], mat[6], mat[7], mat[8], 
+				mat[9], mat[10], mat[11], mat[12], mat[13], mat[14], mat[15]);
 	}
 }

@@ -3,10 +3,12 @@ package com.bitwaffle.offworld.moguts.entity;
 import com.badlogic.gdx.math.Vector2;
 
 public class Entity {
-	private Vector2 location;
+	protected Vector2 location;
+	protected float angle;
 	
 	public Entity(){
 		location = new Vector2();
+		angle = 0.0f;
 	}
 	
 	public Entity(Vector2 location){
@@ -18,4 +20,7 @@ public class Entity {
 	}
 	
 	public Vector2 getLocation(){ return location; }
+	
+	public void update() { }
+	public void render() { }
 }

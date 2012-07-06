@@ -26,10 +26,8 @@ public class Entities {
 		while(!toRemove.isEmpty())
 			entities.remove(toRemove.pop());
 		
-		while(!toAdd.isEmpty()){
-			Entity top = toAdd.pop();
-			entities.add(top);
-		}
+		while(!toAdd.isEmpty())
+			entities.add(toAdd.pop());
 	}
 	
 	public Iterator<Entity> getIterator(){

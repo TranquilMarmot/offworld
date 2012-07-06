@@ -37,7 +37,7 @@ public class GLSLProgram {
 		handle = GLES20.glCreateProgram();
 		
 		if(handle == 0)
-			System.out.println("Error creating shader program!");
+			System.err.println("Error creating shader program!");
 		
 		linked = false;
 		
@@ -243,9 +243,6 @@ public class GLSLProgram {
 		
 		for(String attrib : getAttribList())
 			attribMap.put(attrib, this.getAttribLocation(attrib));
-		
-		for(String s : attribMap.keySet())
-			System.out.println("attrib: " + s + " " + attribMap.get(s));
 	}
 	
 	/**
