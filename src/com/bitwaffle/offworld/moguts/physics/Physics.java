@@ -3,14 +3,12 @@ package com.bitwaffle.offworld.moguts.physics;
 import java.util.Iterator;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.GdxNativesLoader;
 import com.bitwaffle.offworld.moguts.entity.BoxEntity;
-import com.bitwaffle.offworld.moguts.entity.DynamicEntity;
 import com.bitwaffle.offworld.moguts.entity.Entities;
 import com.bitwaffle.offworld.moguts.entity.Entity;
 
@@ -38,18 +36,18 @@ public class Physics {
 	
 	private void temp(){
 		BodyDef groundBodyDef = new BodyDef();
-		groundBodyDef.position.set(0.0f, -10.0f);
+		groundBodyDef.position.set(0.0f, -5.0f);
 		
 		PolygonShape groundBox = new PolygonShape();
-		groundBox.setAsBox(50.0f, 10.0f);
+		groundBox.setAsBox(25.0f, 10.0f);
 		
-		BoxEntity ground = new BoxEntity(groundBodyDef, 50.0f, 10.0f, groundBox, 0.0f);
+		BoxEntity ground = new BoxEntity(groundBodyDef, 50.0f, 10.0f, groundBox, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
 		entities.addEntity(ground);
 		
 		
 		BodyDef boxDef = new BodyDef();
 		boxDef.type = BodyDef.BodyType.DynamicBody;
-		boxDef.position.set(0.0f, 4.0f);
+		boxDef.position.set(0.0f, 100.0f);
 		
 		PolygonShape boxShape = new PolygonShape();
 		boxShape.setAsBox(1.0f, 1.0f);
@@ -58,8 +56,9 @@ public class Physics {
 		boxFixture.shape = boxShape;
 		boxFixture.density = 1.0f;
 		boxFixture.friction = 0.3f;
+		boxFixture.restitution = 10.0f;
 		
-		BoxEntity box = new BoxEntity(boxDef, 1.0f, 1.0f, boxFixture);
+		BoxEntity box = new BoxEntity(boxDef, 1.0f, 1.0f, boxFixture, new float[]{1.0f, 0.0f, 0.0f, 1.0f});
 		entities.addEntity(box);
 		
 		entities.update();

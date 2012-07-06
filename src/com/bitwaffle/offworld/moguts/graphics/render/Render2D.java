@@ -44,9 +44,9 @@ public class Render2D {
 		modelview = new float[16];
 		oldModelview = new float[16];
 		//Matrix.frustumM(projection, 0, -oldAspect, oldAspect, -1, 1, 3, 7);
-		//Matrix.setLookAtM(modelview, 0, 0, 0, -4, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
-		Matrix.setIdentityM(projection, 0);
-		Matrix.setIdentityM(modelview, 0);
+		//Matrix.setLookAtM(modelview, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+		//Matrix.setIdentityM(projection, 0);
+		//Matrix.setIdentityM(modelview, 0);
 		program.setUniformMatrix4f("Projection", projection);
 		program.setUniformMatrix4f("ModelView", modelview);
 	}
@@ -85,27 +85,35 @@ public class Render2D {
 	}
 	*/
 	
-	float camZ = -1.0f;
+	float camZ = 1.0f, mvAng = 0.0f;
 
 	public void renderScene() {
 		//GLRenderer.render2D.program.setUniform("vColor", 0.0f, 1.0f, 0.0f, 1.0f);
 		
+		
 		if(oldAspect != GLRenderer.aspect){
 			oldAspect = GLRenderer.aspect;
-			Matrix.frustumM(projection, 0, -oldAspect, oldAspect, -1, 1, 3, 7);
+			Matrix.frustumM(projection, 0, -GLRenderer.aspect, GLRenderer.aspect, 1, -1, 1, 10);
 			//Matrix.frustumM(projection, 0, -oldAspect, oldAspect, -1, 1, 1, 2);
 		}
+		
+		//Matrix.frustumM(projection, 0, -oldAspect, oldAspect, -1, 1, 3, 7);
+		Matrix.setLookAtM(modelview, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
 		
 		program.setUniformMatrix4f("Projection", projection);
 		program.setUniformMatrix4f("ModelView", modelview);
 		
+		//Matrix.rotateM(modelview, 0, mvAng, 1.0f, 0.0f, 0.0f);
+		//mvAng += 0.005;
 		
 		program.use();
 		
-		Random r = new Random();
+		//Matrix.setIdentityM(modelview, 0);
+		
+		//Random r = new Random();
 		Iterator<Entity> it = Physics.entities.getIterator();
 		while(it.hasNext()){
-			GLRenderer.render2D.program.setUniform("vColor", r.nextFloat(), r.nextFloat(), r.nextFloat(), 1.0f);
+			//GLRenderer.render2D.program.setUniform("vColor", r.nextFloat(), r.nextFloat(), r.nextFloat(), 1.0f);
 			
 			oldModelview = modelview.clone();
 			
@@ -113,8 +121,9 @@ public class Render2D {
 			
 			Vector2 loc = ent.getLocation();
 			
-			
+			Matrix.rotateM(modelview, 0, mvAng, 1.0f, 0.0f, 0.0f);
 			Matrix.translateM(modelview, 0, loc.x, loc.y, camZ);
+			//Matrix.translateM(modelview, 0, 0.0f, loc.y, 0.0f);
 			
 			program.setUniformMatrix4f("ModelView", modelview);
 			
@@ -122,7 +131,7 @@ public class Render2D {
 			
 			modelview = oldModelview.clone();
 		}
-		
+		//mvAng+=0.05f;
 		//camZ -= 0.05;
 	}
 	
