@@ -1,6 +1,7 @@
 package com.bitwaffle.offworld.moguts.physics;
 
 import java.util.Iterator;
+import java.util.Random;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -41,7 +42,7 @@ public class Physics {
 		PolygonShape groundBox = new PolygonShape();
 		groundBox.setAsBox(25.0f, 1.0f);
 		
-		BoxEntity ground = new BoxEntity(groundBodyDef, 25.0f, 1.0f, groundBox, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
+		BoxEntity ground = new BoxEntity(groundBodyDef, 50.0f, 2.0f, groundBox, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
 		entities.addEntity(ground);
 		
 		
@@ -56,12 +57,37 @@ public class Physics {
 		boxFixture.shape = boxShape;
 		boxFixture.density = 1.0f;
 		boxFixture.friction = 0.3f;
-		boxFixture.restitution = 0.39999f;
+		boxFixture.restitution = 0.4f;
 		
-		BoxEntity box = new BoxEntity(boxDef, 1.0f, 1.0f, boxFixture, new float[]{1.0f, 0.0f, 0.0f, 1.0f});
+		BoxEntity box = new BoxEntity(boxDef, 2.0f, 2.0f, boxFixture, new float[]{1.0f, 0.0f, 0.0f, 1.0f});
 		entities.addEntity(box);
 		
+		for(int i = 0 ; i < 30; i ++)
+			makeRandomBox();
+		
 		entities.update();
+	}
+	
+	public void makeRandomBox(){
+		Random randy = new Random();
+		float boxX = randy.nextFloat() * 15.0f;
+		float boxY = randy.nextFloat() * 15.0f;
+		
+		BodyDef boxDef = new BodyDef();
+		boxDef.type = BodyDef.BodyType.DynamicBody;
+		boxDef.position.set(boxX, boxY);
+		
+		PolygonShape boxShape = new PolygonShape();
+		boxShape.setAsBox(1.0f, 1.0f);
+		
+		FixtureDef boxFixture = new FixtureDef();
+		boxFixture.shape = boxShape;
+		boxFixture.density = 1.0f;
+		boxFixture.friction = 0.3f;
+		boxFixture.restitution = 0.4f;
+		
+		BoxEntity box = new BoxEntity(boxDef, 2.0f, 2.0f, boxFixture, new float[]{1.0f, 0.0f, 0.0f, 1.0f});
+		entities.addEntity(box);
 	}
 	
 	public void update(){

@@ -2,14 +2,15 @@ package com.bitwaffle.offworld.moguts.graphics.render;
 
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.Random;
 
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.opengl.Matrix;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.offworld.moguts.entity.Entities;
 import com.bitwaffle.offworld.moguts.entity.Entity;
+import com.bitwaffle.offworld.moguts.graphics.Camera;
 import com.bitwaffle.offworld.moguts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.offworld.moguts.graphics.glsl.GLSLShader;
 import com.bitwaffle.offworld.moguts.graphics.glsl.ShaderTypes;
@@ -20,37 +21,25 @@ public class Render2D {
 	private static final String FRAGMENT_SHADER = "game/shaders/main.frag";
 
 	public GLSLProgram program;
+	
+	public Camera camera;
 	//private 
 	
-	float[] modelview, projection, oldModelview;
-
-	public static float fov = 45.0f;
-	public static float drawDistance = 1000.0f;
+	float[] modelview, projection;
 
 	@SuppressWarnings("unused")
 	private Context context;
 	private AssetManager assets;
-	
-	private float oldAspect;
 
 	public Render2D(Context context) {
 		this.context = context;
 		assets = context.getAssets();
 		initShaders();
-
-		oldAspect = GLRenderer.aspect;
 		
 		projection = new float[16];
 		modelview = new float[16];
-		oldModelview = new float[16];
-		//Matrix.frustumM(projection, 0, -oldAspect, oldAspect, -1, 1, 3, 7);
-		//Matrix.setLookAtM(modelview, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
-		//Matrix.setIdentityM(projection, 0);
-		//Matrix.setIdentityM(modelview, 0);
-		Matrix.setIdentityM(modelview, 0);
-		Matrix.setIdentityM(projection, 0);
-		program.setUniformMatrix4f("Projection", projection);
-		program.setUniformMatrix4f("ModelView", modelview);
+		
+		camera = new Camera(new Vector2(10.0f, 5.0f), 0.05f);
 	}
 
 	private void initShaders() {
@@ -72,64 +61,43 @@ public class Render2D {
 		if (!program.link())
 			System.err.println("Error linking program! " + program.log());
 	}
-
-	public int getProgramHandle() {
-		return program.getHandle();
-	}
 	
-	/*
-	public int getVertexPositionHandle(){
-		
-	}
-	
-	public int getColorUniformHandle(){
-		
-	}
-	*/
-	
-	float camX = 0.0f, camY = 0.0f, camZ = 0.0f;
+	float camX = 10.0f, camY = 5.0f, camZ = 0.0f;
 
 	public void renderScene() {
 		program.use();
 		
+		setUpProjectionMatrix();
+		
+		renderEntities(Physics.entities);
+	}
+	
+	private void setUpProjectionMatrix(){
 		Matrix.setIdentityM(projection, 0);
-		
-		float halfWidth = (float) GLRenderer.windowWidth / 2.0f;
-		float halfHeight = (float) GLRenderer.windowHeight / 2.0f;
-		//Matrix.orthoM(projection, 0, -halfWidth, halfWidth, halfHeight, -halfHeight, -1, 1);
-		
-		//Matrix.orthoM(projection, 0, 0, GLRenderer.windowWidth, GLRenderer.windowHeight, 0, -1, 1);
-		
-		//if(oldAspect != GLRenderer.aspect){
-		//	oldAspect = GLRenderer.aspect;
-			//Matrix.frustumM(projection, 0, -GLRenderer.aspect, GLRenderer.aspect, 1, -1, 1, 10);
-			//Matrix.frustumM(projection, 0, -oldAspect, oldAspect, -1, 1, 1, 2);
-		//}
-			
-		Matrix.scaleM(projection, 0, 0.5f, 0.5f, 1.0f);
+		Matrix.orthoM(projection, 0, 0, GLRenderer.aspect, 0, 1, -1, 1);
+		Matrix.scaleM(projection, 0, camera.getZoom(), camera.getZoom(), 1.0f);
 		
 		program.setUniformMatrix4f("Projection", projection);
+	}
+	
+	private void renderEntities(Entities entities){
+		Vector2 cam = camera.getLocation();
 		
 		Iterator<Entity> it = Physics.entities.getIterator();
 		while(it.hasNext()){
 			Entity ent = it.next();
 			
 			Vector2 loc = ent.getLocation();
+			float angle = (float)Math.toDegrees((double)ent.getAngle());
 			
 			Matrix.setIdentityM(modelview, 0);
-			Matrix.translateM(modelview, 0, loc.x + camX, loc.y + camY, camZ);
+			Matrix.translateM(modelview, 0, loc.x + cam.x, loc.y + cam.y, 0.0f);
+			Matrix.rotateM(modelview, 0, angle, 0.0f, 0.0f, 1.0f);
 			
 			program.setUniformMatrix4f("ModelView", modelview);
 			
 			ent.render();
-			
-			//Matrix.setIdentityM(modelview, 0);
-			
-			//modelview = oldModelview.clone();
 		}
-		//mvAng+=0.05f;
-		//camZ -= 0.005;
-		//camY -= 0.05;
 	}
 	
 	public static void printMatrix(float[] mat){

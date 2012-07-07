@@ -1,20 +1,37 @@
 package com.bitwaffle.offworld.moguts.graphics;
 
-import org.lwjgl.util.vector.Quaternion;
-
+import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.offworld.moguts.entity.Entity;
 
 public class Camera extends Entity {
-
-	private Quaternion rotation;
 	
+	private float zoom;
 	public Camera(){
 		super();
-		rotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
+		zoom = 1.0f;
+	}
+
+	public Camera(Vector2 location) {
+		super();
+		this.setLocation(location);
 	}
 	
-	public Quaternion getRotation(){
-		return rotation;
+	public Camera(float zoom){
+		super();
+		this.setZoom(zoom);
 	}
 	
+	public Camera(Vector2 location, float zoom){
+		super();
+		this.setLocation(location);
+		this.setZoom(zoom);
+	}
+	
+	public float getZoom(){
+		return zoom;
+	}
+	
+	public void setZoom(float zoom){
+		this.zoom = zoom;
+	}
 }

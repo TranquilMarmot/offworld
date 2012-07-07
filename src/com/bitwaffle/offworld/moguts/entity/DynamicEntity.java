@@ -15,6 +15,8 @@ public class DynamicEntity extends Entity{
 		
 		body = Physics.world.createBody(bodyDef);
 		body.createFixture(fixtureDef);
+		
+		body.setAngularVelocity(10.0f);
 	}
 	
 	public DynamicEntity(BodyDef bodyDef, PolygonShape shape, float density){
@@ -35,6 +37,12 @@ public class DynamicEntity extends Entity{
 	public void setLocation(Vector2 newLocation){
 		this.location.set(newLocation);
 		this.body.setTransform(location, this.angle);
+	}
+	
+	@Override
+	public void setAngle(float newAngle){
+		this.angle = newAngle;
+		this.body.setTransform(this.location, newAngle);
 	}
 	
 	@Override

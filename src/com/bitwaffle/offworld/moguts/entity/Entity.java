@@ -19,7 +19,12 @@ public class Entity {
 		location.set(newLocation);
 	}
 	
+	public void setAngle(float newAngle){
+		this.angle = newAngle;
+	}
+	
 	public Vector2 getLocation(){ return location; }
+	public float getAngle(){ return angle; }
 	
 	public void update() { }
 	public void render() { }

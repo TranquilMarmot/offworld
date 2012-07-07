@@ -42,7 +42,7 @@ public class Triangle {
         // set the buffer to read the first coordinate
         vertexBuffer.position(0);
         
-        mProgram = GLRenderer.render2D.getProgramHandle();
+      //  mProgram = GLRenderer.render2D.getProgramHandle();
     }
     
     public void draw() {
