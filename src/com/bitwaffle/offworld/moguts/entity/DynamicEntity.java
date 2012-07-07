@@ -28,7 +28,7 @@ public class DynamicEntity extends Entity{
 	public void update(){
 		this.location.set(body.getPosition());
 		this.angle = body.getAngle();
-		//System.out.println("ENTITY LOC: " + location.x + " " + location.y + " " + angle);
+		System.out.println("ENTITY LOC: " + location.x + " " + location.y + " " + angle);
 	}
 	
 	@Override

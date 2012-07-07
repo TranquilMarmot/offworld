@@ -21,6 +21,7 @@ public class Quad {
 	};
 	*/
 	
+	/*
 	private static float[] coords = {
 		-0.5f, 0.5f, 0.0f,
 		0.5f, 0.5f, 0.0f,
@@ -30,6 +31,7 @@ public class Quad {
 		-0.5f, -0.5f, 0.0f,
 		0.5f, -0.5f, 0.0f
 	};
+	*/
 	
 	
 	private int positionHandle;
@@ -37,19 +39,22 @@ public class Quad {
 	public Quad(float width, float height){
 		// FIXME this should really just scale the matrix to it's width/height, not change the actual coords!
 		
-		width /= 2.0f;
-		height /= 2.0f;
+		//width /= 2.0f;
+		//height /= 2.0f;
 		
-		/*
+		float halfWidth = width / 2.0f;
+		float halfHeight = height / 2.0f;
+		
+		
 		float[] coords = {
-				-width, height, 0.0f,
-				width, height, 0.0f,
-				width, -height, 0.0f,
+				-halfWidth, halfHeight, 0.0f,
+				halfWidth, halfHeight, 0.0f,
+				halfWidth, -halfHeight, 0.0f,
 				
-				-width, height, 0.0f,
-				-width, -height, 0.0f,
-				width, -height, 0.0f
-		};*/
+				-halfWidth, halfHeight, 0.0f,
+				-halfWidth, -halfHeight, 0.0f,
+				halfWidth, -halfHeight, 0.0f
+		};
 		
 		// 4 bytes per float!
 		ByteBuffer bb = ByteBuffer.allocateDirect(coords.length * 4);

@@ -47,6 +47,8 @@ public class Render2D {
 		//Matrix.setLookAtM(modelview, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
 		//Matrix.setIdentityM(projection, 0);
 		//Matrix.setIdentityM(modelview, 0);
+		Matrix.setIdentityM(modelview, 0);
+		Matrix.setIdentityM(projection, 0);
 		program.setUniformMatrix4f("Projection", projection);
 		program.setUniformMatrix4f("ModelView", modelview);
 	}
@@ -85,54 +87,49 @@ public class Render2D {
 	}
 	*/
 	
-	float camZ = 1.0f, mvAng = 0.0f;
+	float camX = 0.0f, camY = 0.0f, camZ = 0.0f;
 
 	public void renderScene() {
-		//GLRenderer.render2D.program.setUniform("vColor", 0.0f, 1.0f, 0.0f, 1.0f);
-		
-		
-		if(oldAspect != GLRenderer.aspect){
-			oldAspect = GLRenderer.aspect;
-			Matrix.frustumM(projection, 0, -GLRenderer.aspect, GLRenderer.aspect, 1, -1, 1, 10);
-			//Matrix.frustumM(projection, 0, -oldAspect, oldAspect, -1, 1, 1, 2);
-		}
-		
-		//Matrix.frustumM(projection, 0, -oldAspect, oldAspect, -1, 1, 3, 7);
-		Matrix.setLookAtM(modelview, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
-		
-		program.setUniformMatrix4f("Projection", projection);
-		program.setUniformMatrix4f("ModelView", modelview);
-		
-		//Matrix.rotateM(modelview, 0, mvAng, 1.0f, 0.0f, 0.0f);
-		//mvAng += 0.005;
-		
 		program.use();
 		
-		//Matrix.setIdentityM(modelview, 0);
+		Matrix.setIdentityM(projection, 0);
 		
-		//Random r = new Random();
+		float halfWidth = (float) GLRenderer.windowWidth / 2.0f;
+		float halfHeight = (float) GLRenderer.windowHeight / 2.0f;
+		//Matrix.orthoM(projection, 0, -halfWidth, halfWidth, halfHeight, -halfHeight, -1, 1);
+		
+		//Matrix.orthoM(projection, 0, 0, GLRenderer.windowWidth, GLRenderer.windowHeight, 0, -1, 1);
+		
+		//if(oldAspect != GLRenderer.aspect){
+		//	oldAspect = GLRenderer.aspect;
+			//Matrix.frustumM(projection, 0, -GLRenderer.aspect, GLRenderer.aspect, 1, -1, 1, 10);
+			//Matrix.frustumM(projection, 0, -oldAspect, oldAspect, -1, 1, 1, 2);
+		//}
+			
+		Matrix.scaleM(projection, 0, 0.5f, 0.5f, 1.0f);
+		
+		program.setUniformMatrix4f("Projection", projection);
+		
 		Iterator<Entity> it = Physics.entities.getIterator();
 		while(it.hasNext()){
-			//GLRenderer.render2D.program.setUniform("vColor", r.nextFloat(), r.nextFloat(), r.nextFloat(), 1.0f);
-			
-			oldModelview = modelview.clone();
-			
 			Entity ent = it.next();
 			
 			Vector2 loc = ent.getLocation();
 			
-			Matrix.rotateM(modelview, 0, mvAng, 1.0f, 0.0f, 0.0f);
-			Matrix.translateM(modelview, 0, loc.x, loc.y, camZ);
-			//Matrix.translateM(modelview, 0, 0.0f, loc.y, 0.0f);
+			Matrix.setIdentityM(modelview, 0);
+			Matrix.translateM(modelview, 0, loc.x + camX, loc.y + camY, camZ);
 			
 			program.setUniformMatrix4f("ModelView", modelview);
 			
 			ent.render();
 			
-			modelview = oldModelview.clone();
+			//Matrix.setIdentityM(modelview, 0);
+			
+			//modelview = oldModelview.clone();
 		}
 		//mvAng+=0.05f;
-		//camZ -= 0.05;
+		//camZ -= 0.005;
+		//camY -= 0.05;
 	}
 	
 	public static void printMatrix(float[] mat){
