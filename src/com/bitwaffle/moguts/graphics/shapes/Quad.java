@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.moguts.graphics.shapes;
+package com.bitwaffle.moguts.graphics.shapes;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -6,7 +6,7 @@ import java.nio.FloatBuffer;
 
 import android.opengl.GLES20;
 
-import com.bitwaffle.offworld.moguts.graphics.render.GLRenderer;
+import com.bitwaffle.moguts.graphics.render.GLRenderer;
 
 public class Quad {
 	private FloatBuffer vertBuffer;
@@ -42,18 +42,18 @@ public class Quad {
 		//width /= 2.0f;
 		//height /= 2.0f;
 		
-		float halfWidth = width / 2.0f;
-		float halfHeight = height / 2.0f;
+		//float width = width / 2.0f;
+		//float height = height / 2.0f;
 		
 		
 		float[] coords = {
-				-halfWidth, halfHeight, 0.0f,
-				halfWidth, halfHeight, 0.0f,
-				halfWidth, -halfHeight, 0.0f,
+				-width, height, 0.0f,
+				width, height, 0.0f,
+				width, -height, 0.0f,
 				
-				-halfWidth, halfHeight, 0.0f,
-				-halfWidth, -halfHeight, 0.0f,
-				halfWidth, -halfHeight, 0.0f
+				-width, height, 0.0f,
+				-width, -height, 0.0f,
+				width, -height, 0.0f
 		};
 		
 		// 4 bytes per float!

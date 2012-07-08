@@ -1,22 +1,20 @@
-package com.bitwaffle.offworld.moguts.entity;
+package com.bitwaffle.moguts.entities;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.bitwaffle.offworld.moguts.physics.Physics;
+import com.bitwaffle.moguts.physics.Physics;
 
 public class DynamicEntity extends Entity{
-	private Body body;
+	public Body body;
 	
 	public DynamicEntity(BodyDef bodyDef, FixtureDef fixtureDef){
 		super();
 		
 		body = Physics.world.createBody(bodyDef);
 		body.createFixture(fixtureDef);
-		
-		body.setAngularVelocity(10.0f);
 	}
 	
 	public DynamicEntity(BodyDef bodyDef, PolygonShape shape, float density){

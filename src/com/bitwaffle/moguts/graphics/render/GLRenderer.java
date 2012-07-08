@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.moguts.graphics.render;
+package com.bitwaffle.moguts.graphics.render;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -7,7 +7,7 @@ import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 
-import com.bitwaffle.offworld.moguts.physics.Physics;
+import com.bitwaffle.moguts.physics.Physics;
 
 /**
  * Implementation of the GLSurfaceView.renderer class.

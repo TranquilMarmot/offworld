@@ -1,10 +1,10 @@
-package com.bitwaffle.offworld.moguts.graphics.model;
+package com.bitwaffle.moguts.graphics.model;
 
 import java.util.ArrayList;
 
 import android.opengl.GLES20;
 
-import com.bitwaffle.offworld.moguts.graphics.render.GLRenderer;
+import com.bitwaffle.moguts.graphics.render.GLRenderer;
 
 /**
  * This class defines a 3D model. A model is a set of vertices to draw, what texture to use when drawing them,

@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.moguts.graphics.render;
+package com.bitwaffle.moguts.graphics.render;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -6,15 +6,16 @@ import java.util.Iterator;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.opengl.Matrix;
+import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.offworld.moguts.entity.Entities;
-import com.bitwaffle.offworld.moguts.entity.Entity;
-import com.bitwaffle.offworld.moguts.graphics.Camera;
-import com.bitwaffle.offworld.moguts.graphics.glsl.GLSLProgram;
-import com.bitwaffle.offworld.moguts.graphics.glsl.GLSLShader;
-import com.bitwaffle.offworld.moguts.graphics.glsl.ShaderTypes;
-import com.bitwaffle.offworld.moguts.physics.Physics;
+import com.bitwaffle.moguts.entities.Entities;
+import com.bitwaffle.moguts.entities.Entity;
+import com.bitwaffle.moguts.graphics.Camera;
+import com.bitwaffle.moguts.graphics.glsl.GLSLProgram;
+import com.bitwaffle.moguts.graphics.glsl.GLSLShader;
+import com.bitwaffle.moguts.graphics.glsl.ShaderTypes;
+import com.bitwaffle.moguts.physics.Physics;
 
 /**
  * This class handles all 2D rendering
@@ -41,7 +42,11 @@ public class Render2D {
 	/** Used for loading assets */
 	private AssetManager assets;
 	
+	/** Used to know when to change the projection matrix */
 	private float oldAspect, oldZoom;
+	
+	private long oldTime, counter;
+	private int frameCount = 0;
 
 	/**
 	 * Create a new 2D renderer
@@ -56,7 +61,7 @@ public class Render2D {
 		projection = new float[16];
 		modelview = new float[16];
 		
-		camera = new Camera(new Vector2(10.0f, 5.0f), 0.05f);
+		camera = new Camera(new Vector2(233.0f, 70.0f), 0.004f);
 		
 		oldAspect = GLRenderer.aspect;
 		oldZoom = camera.getZoom();
@@ -89,6 +94,7 @@ public class Render2D {
 	 * Renders the 2D scene
 	 */
 	public void renderScene() {
+		oldTime = System.currentTimeMillis();
 		program.use();
 		
 		if(GLRenderer.aspect != oldAspect || oldZoom != camera.getZoom()){
@@ -98,6 +104,17 @@ public class Render2D {
 		}
 		
 		renderEntities(Physics.entities.getIterator());
+		
+		long elapsedTime = System.currentTimeMillis() - oldTime;
+		counter += elapsedTime;
+		frameCount++;
+		if(counter >= 500.0){
+			Log.d("Render2D", "FPS: " + frameCount);
+			frameCount = 0;
+			counter -= 500.0;
+		}
+		
+		//Log.d("Render2D", "Time elapsed: " + elapsedTime * 0.001);
 	}
 	
 	/**
@@ -138,17 +155,23 @@ public class Render2D {
 		}
 	}
 	
+	/**
+	 * Convert radians to degrees- with floats!
+	 * (AKA Why the hell does everything in java.lang.math use doubles?)
+	 * @param radians
+	 * @return
+	 */
 	public static float toDegrees(float radians){
 		return radians * 180.0f / 3.14159265f;
 	}
 	
 
 	/**
-	 * Returns a string with a semi-readable matrix
-	 * @param mat Matrix to format string with
+	 * Returns a string with a readable matrix
+	 * @param mat 4x4 matrix to format string with
 	 * @return Formatted string representing given matrix
 	 */
-	public static String printMatrix(float[] mat){
+	public static String matrixToString(float[] mat){
 		return String.format("%f %f %f %f\n%f %f %f %f\n %f %f %f %f\n %f %f %f %f\n",
 				mat[0], mat[1], mat[2], mat[3], mat[4], mat[5], mat[6], mat[7], mat[8], 
 				mat[9], mat[10], mat[11], mat[12], mat[13], mat[14], mat[15]);

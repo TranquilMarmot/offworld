@@ -1,13 +1,14 @@
-package com.bitwaffle.offworld.moguts.graphics;
+package com.bitwaffle.moguts.graphics;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.offworld.moguts.graphics.render.GLRenderer;
+import com.bitwaffle.moguts.graphics.render.GLRenderer;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 
 public class SurfaceView extends GLSurfaceView {
+	/** What's going to be doing all the rendering */
 	public static GLRenderer renderer;
 	private float mPreviousX, mPreviousY;
 	
@@ -41,11 +42,10 @@ public class SurfaceView extends GLSurfaceView {
                 float dy = y - mPreviousY;
                 
                 Vector2 camLoc = GLRenderer.render2D.camera.getLocation();
-                camLoc.x += dx / 75.0f;
-                camLoc.y -= dy / 75.0f;
+                camLoc.x += dx / 10.0f;
+                camLoc.y -= dy / 10.0f;
+                System.out.println("new cam loc: " + camLoc.x + " " + camLoc.y);
                 GLRenderer.render2D.camera.setLocation(camLoc);
-                
-                //requestRender();
         }
 
         mPreviousX = x;

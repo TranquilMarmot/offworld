@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.moguts.graphics.glsl;
+package com.bitwaffle.moguts.graphics.glsl;
 
 import java.io.BufferedReader;
 import java.io.IOException;

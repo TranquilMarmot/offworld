@@ -6,7 +6,7 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Window;
 
-import com.bitwaffle.offworld.moguts.graphics.SurfaceView;
+import com.bitwaffle.moguts.graphics.SurfaceView;
 
 public class MainActivity extends Activity {
 	public static MainActivity main;

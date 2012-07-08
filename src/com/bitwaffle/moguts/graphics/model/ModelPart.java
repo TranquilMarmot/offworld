@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.moguts.graphics.model;
+package com.bitwaffle.moguts.graphics.model;
 
 import javax.microedition.khronos.opengles.GL11;
 

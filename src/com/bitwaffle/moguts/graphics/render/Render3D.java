@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.moguts.graphics.render;
+package com.bitwaffle.moguts.graphics.render;
 
 import java.io.IOException;
 
@@ -9,11 +9,10 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.opengl.GLES20;
 
-import com.bitwaffle.offworld.moguts.graphics.glsl.GLSLProgram;
-import com.bitwaffle.offworld.moguts.graphics.glsl.GLSLShader;
-import com.bitwaffle.offworld.moguts.graphics.glsl.ShaderTypes;
-import com.bitwaffle.offworld.moguts.graphics.model.Material;
-//import com.bitwaffle.offworld.moguts.util.MatrixHelper;
+import com.bitwaffle.moguts.graphics.glsl.GLSLProgram;
+import com.bitwaffle.moguts.graphics.glsl.GLSLShader;
+import com.bitwaffle.moguts.graphics.glsl.ShaderTypes;
+import com.bitwaffle.moguts.graphics.model.Material;
 
 public class Render3D {
 	/** default diffuse color */

@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.moguts.entity;
+package com.bitwaffle.moguts.entities;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,15 +22,20 @@ public class Entities {
 		toRemove.add(ent);
 	}
 	
+	public Iterator<Entity> getIterator(){
+		return entities.iterator();
+	}
+	
 	public void update(){
 		while(!toRemove.isEmpty())
 			entities.remove(toRemove.pop());
 		
 		while(!toAdd.isEmpty())
 			entities.add(toAdd.pop());
-	}
-	
-	public Iterator<Entity> getIterator(){
-		return entities.iterator();
+		
+		Iterator<Entity> it = getIterator();
+		
+		while(it.hasNext())
+			it.next().update();
 	}
 }

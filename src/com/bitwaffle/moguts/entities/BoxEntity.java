@@ -1,10 +1,10 @@
-package com.bitwaffle.offworld.moguts.entity;
+package com.bitwaffle.moguts.entities;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.bitwaffle.offworld.moguts.graphics.render.GLRenderer;
-import com.bitwaffle.offworld.moguts.graphics.shapes.Quad;
+import com.bitwaffle.moguts.graphics.render.GLRenderer;
+import com.bitwaffle.moguts.graphics.shapes.Quad;
 
 public class BoxEntity extends DynamicEntity {
 	private Quad quad;

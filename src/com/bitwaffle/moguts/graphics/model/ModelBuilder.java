@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.moguts.graphics.model;
+package com.bitwaffle.moguts.graphics.model;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
-import com.bitwaffle.offworld.moguts.graphics.render.GLRenderer;
+import com.bitwaffle.moguts.graphics.render.GLRenderer;
 
 import android.opengl.GLES20;
 

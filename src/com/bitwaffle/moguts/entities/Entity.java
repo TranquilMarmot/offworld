@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.moguts.entity;
+package com.bitwaffle.moguts.entities;
 
 import com.badlogic.gdx.math.Vector2;
 

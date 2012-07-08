@@ -1,11 +1,18 @@
-package com.bitwaffle.offworld.moguts.graphics;
+package com.bitwaffle.moguts.graphics;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.offworld.moguts.entity.Entity;
+import com.bitwaffle.moguts.entities.Entity;
 
+// TODO Make camera's angle work so things can be rotated
+/**
+ * Describes how a scene should be rendered
+ * 
+ * @author TranquilMarmot
+ */
 public class Camera extends Entity {
-	
+	/** Current zoom level of camera (smaller it is, the smaller everything will be rendered) */
 	private float zoom;
+	
 	public Camera(){
 		super();
 		zoom = 1.0f;

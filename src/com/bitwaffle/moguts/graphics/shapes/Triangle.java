@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.moguts.graphics.shapes;
+package com.bitwaffle.moguts.graphics.shapes;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

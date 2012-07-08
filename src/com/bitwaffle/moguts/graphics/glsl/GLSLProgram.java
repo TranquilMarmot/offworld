@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.moguts.graphics.glsl;
+package com.bitwaffle.moguts.graphics.glsl;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;

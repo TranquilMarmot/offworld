@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.moguts.graphics.model;
+package com.bitwaffle.moguts.graphics.model;
 
 import org.lwjgl.util.vector.Vector3f;
 
