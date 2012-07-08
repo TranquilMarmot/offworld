@@ -45,7 +45,7 @@ public class SurfaceView extends GLSurfaceView {
                 camLoc.y -= dy / 75.0f;
                 GLRenderer.render2D.camera.setLocation(camLoc);
                 
-                requestRender();
+                //requestRender();
         }
 
         mPreviousX = x;

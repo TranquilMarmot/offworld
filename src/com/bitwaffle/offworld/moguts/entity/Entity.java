@@ -2,8 +2,17 @@ package com.bitwaffle.offworld.moguts.entity;
 
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * Base Entity class. Every frame, each Entity that is in an Entities list has its <code>update()</code>
+ * method called before having its <code>render()</code> method called.
+ * 
+ * @author TranquilMarmot
+ */
 public class Entity {
+	/** Current location of entity */
 	protected Vector2 location;
+	
+	/** Current rotation of entities (in radians) */
 	protected float angle;
 	
 	public Entity(){

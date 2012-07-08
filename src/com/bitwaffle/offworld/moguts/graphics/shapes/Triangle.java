@@ -7,8 +7,6 @@ import java.util.Random;
 
 import android.opengl.GLES20;
 
-import com.bitwaffle.offworld.moguts.graphics.render.GLRenderer;
-
 public class Triangle {
     private FloatBuffer vertexBuffer;
     

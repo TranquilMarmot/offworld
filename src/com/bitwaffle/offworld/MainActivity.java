@@ -31,10 +31,10 @@ public class MainActivity extends Activity {
     @Override
     /**
      * Android (for some fucking reason) starts everything over when the orientation of the screen is changed,
-     * so android:configChanges="keyboardHidden|orientation" had to be added to the application manifest so
-     * that keyboard/orientation events go through this rather than starting the whole fucking application over.
-     * I guess the Bundle passed to onCreate() is supposed to save state stuff, but that isn't very helpful
-     * for a fucking video game.
+     * so <code>android:configChanges="keyboardHidden|orientation"</code> had to be added to the application manifest so
+     * that keyboard/orientation events go through this rather than starting the whole application over.
+     * I guess the <code>Bundle</code> passed to <code>onCreate()</code> is supposed to save state stuff, but that isn't very helpful
+     * for a vidya game.
      */
     public void onConfigurationChanged(Configuration newConfig) {
     	super.onConfigurationChanged(newConfig);

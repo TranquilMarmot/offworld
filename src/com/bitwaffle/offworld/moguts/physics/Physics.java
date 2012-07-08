@@ -20,7 +20,7 @@ public class Physics {
 	Vector2 gravity = new Vector2(0.0f, -9.8f);
 	boolean doSleep = true;
 	
-	final float timeStep = 1.0f / 60.0f;
+	final float timeStep = 1.0f / 30.0f;
 	final int velocityIterations = 6, positionIterations = 2;
 	
 	public Physics(){
@@ -62,7 +62,7 @@ public class Physics {
 		BoxEntity box = new BoxEntity(boxDef, 2.0f, 2.0f, boxFixture, new float[]{1.0f, 0.0f, 0.0f, 1.0f});
 		entities.addEntity(box);
 		
-		for(int i = 0 ; i < 30; i ++)
+		for(int i = 0 ; i < 150; i ++)
 			makeRandomBox();
 		
 		entities.update();
@@ -71,7 +71,7 @@ public class Physics {
 	public void makeRandomBox(){
 		Random randy = new Random();
 		float boxX = randy.nextFloat() * 15.0f;
-		float boxY = randy.nextFloat() * 15.0f;
+		float boxY = randy.nextFloat() * 25.0f;
 		
 		BodyDef boxDef = new BodyDef();
 		boxDef.type = BodyDef.BodyType.DynamicBody;

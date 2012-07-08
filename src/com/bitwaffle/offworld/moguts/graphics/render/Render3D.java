@@ -13,7 +13,7 @@ import com.bitwaffle.offworld.moguts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.offworld.moguts.graphics.glsl.GLSLShader;
 import com.bitwaffle.offworld.moguts.graphics.glsl.ShaderTypes;
 import com.bitwaffle.offworld.moguts.graphics.model.Material;
-import com.bitwaffle.offworld.moguts.util.MatrixHelper;
+//import com.bitwaffle.offworld.moguts.util.MatrixHelper;
 
 public class Render3D {
 	/** default diffuse color */
@@ -49,9 +49,9 @@ public class Render3D {
 		
 		System.out.printf("location: %f normal: %f tex: %f\n", vertexLocationPosition, vertexNormalPosition, vertexTexCoordPosition);
 		
-		float aspect = (float)GLRenderer.windowWidth / (float)GLRenderer.windowHeight;
+		//float aspect = (float)GLRenderer.windowWidth / (float)GLRenderer.windowHeight;
 		
-		projection = MatrixHelper.perspective(fov, aspect, 1.0f, drawDistance);
+		//projection = MatrixHelper.perspective(fov, aspect, 1.0f, drawDistance);
 		modelview = new Matrix4f();
 	}
 	

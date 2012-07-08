@@ -10,7 +10,7 @@ import org.lwjgl.util.vector.Quaternion;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
-import com.bitwaffle.offworld.moguts.util.QuaternionHelper;
+//import com.bitwaffle.offworld.moguts.util.QuaternionHelper;
 
 
 /**
@@ -139,8 +139,8 @@ public class ModelLoader {
 					float y = Float.parseFloat(toker.nextToken());
 					float z = Float.parseFloat(toker.nextToken());
 					
-					org.lwjgl.util.vector.Vector3f rotated = QuaternionHelper.rotateVectorByQuaternion(new org.lwjgl.util.vector.Vector3f(x, y, z), rotation);
-
+					//org.lwjgl.util.vector.Vector3f rotated = QuaternionHelper.rotateVectorByQuaternion(new org.lwjgl.util.vector.Vector3f(x, y, z), rotation);
+					org.lwjgl.util.vector.Vector3f rotated = new org.lwjgl.util.vector.Vector3f(x, y, z);
 					builder.addNormal(new Vector3f(rotated.x, rotated.y, rotated.z));
 				}
 
