@@ -11,7 +11,6 @@ import android.opengl.GLES20;
 
 import com.bitwaffle.moguts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.moguts.graphics.glsl.GLSLShader;
-import com.bitwaffle.moguts.graphics.glsl.ShaderTypes;
 import com.bitwaffle.moguts.graphics.model.Material;
 
 public class Render3D {
@@ -55,8 +54,8 @@ public class Render3D {
 	}
 	
     private void initShaders(){
-        GLSLShader vert = new GLSLShader(ShaderTypes.VERTEX);
-        GLSLShader frag = new GLSLShader(ShaderTypes.FRAGMENT);
+        GLSLShader vert = new GLSLShader(GLSLShader.ShaderTypes.VERTEX);
+        GLSLShader frag = new GLSLShader(GLSLShader.ShaderTypes.FRAGMENT);
         try {
 			if(!vert.compileShaderFromStream(assets.open(VERTEX_SHADER)))
 				System.err.println("Error compiling vertex shader! Result: " + vert.log());

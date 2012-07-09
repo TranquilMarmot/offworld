@@ -5,10 +5,13 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Base Entity class. Every frame, each Entity that is in an Entities list has its <code>update()</code>
  * method called before having its <code>render()</code> method called.
+ * Anything that is in the physics world is a {@link DynamicEntity}, anything that's just rendered and
+ * doesn't interact (i.e. a background) is just an Entity.
  * 
  * @author TranquilMarmot
+ * @see DynamicEntity
  */
-public class Entity {
+public abstract class Entity {
 	/** Current location of entity */
 	protected Vector2 location;
 	
@@ -35,6 +38,7 @@ public class Entity {
 	public Vector2 getLocation(){ return location; }
 	public float getAngle(){ return angle; }
 	
-	public void update(float timeStep) { }
-	public void render() { }
+	public abstract void update(float timeStep);
+	public abstract void render();
+	public abstract void cleanup();
 }

@@ -7,9 +7,20 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.moguts.physics.Physics;
 
+/**
+ * An {@link Entity} that can interact with the {@link Physics} world.
+ * 
+ * @author TranquilMarmot
+ */
 public class DynamicEntity extends Entity{
+	/** Body that's in the Physics world */
 	public Body body;
 	
+	/**
+	 * Create a new DynmicEntity and add it to the physics world
+	 * @param bodyDef Body definition
+	 * @param fixtureDef Fixture definition
+	 */
 	public DynamicEntity(BodyDef bodyDef, FixtureDef fixtureDef){
 		super();
 		
@@ -17,6 +28,12 @@ public class DynamicEntity extends Entity{
 		body.createFixture(fixtureDef);
 	}
 	
+	/**
+	 * Create a new DynamicEntity and add it to the physics world
+	 * @param bodyDef Body definition
+	 * @param shape Shape of entity
+	 * @param density Density of entity
+	 */
 	public DynamicEntity(BodyDef bodyDef, PolygonShape shape, float density){
 		super();
 		
@@ -42,9 +59,12 @@ public class DynamicEntity extends Entity{
 		this.angle = newAngle;
 		this.body.setTransform(this.location, newAngle);
 	}
-	
+
 	@Override
-	public void render(){
-		
+	public void render() {}
+
+	@Override
+	public void cleanup() {
+		Physics.world.destroyBody(body);
 	}
 }

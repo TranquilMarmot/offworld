@@ -13,7 +13,6 @@ import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.moguts.graphics.glsl.GLSLShader;
-import com.bitwaffle.moguts.graphics.glsl.ShaderTypes;
 import com.bitwaffle.moguts.physics.Physics;
 
 /**
@@ -67,8 +66,8 @@ public class Render2D {
 	 * Initializes the vertex and fragment shaders and then links them to the program
 	 */
 	private void initShaders() {
-		GLSLShader vert = new GLSLShader(ShaderTypes.VERTEX);
-		GLSLShader frag = new GLSLShader(ShaderTypes.FRAGMENT);
+		GLSLShader vert = new GLSLShader(GLSLShader.ShaderTypes.VERTEX);
+		GLSLShader frag = new GLSLShader(GLSLShader.ShaderTypes.FRAGMENT);
 		try {
 			if (!vert.compileShaderFromStream(assets.open(VERTEX_SHADER)))
 				System.err.println("Error compiling vertex shader! Result: "
@@ -108,6 +107,7 @@ public class Render2D {
 		Matrix.setIdentityM(projection, 0);
 		Matrix.orthoM(projection, 0, 0, GLRenderer.aspect, 0, 1, -1, 1);
 		Matrix.scaleM(projection, 0, camera.getZoom(), camera.getZoom(), 1.0f);
+		Matrix.rotateM(projection, 0, camera.getAngle(), 0.0f, 0.0f, 1.0f);
 		
 		program.setUniformMatrix4f("Projection", projection);
 	}

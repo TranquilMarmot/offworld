@@ -8,6 +8,12 @@ import android.view.Window;
 
 import com.bitwaffle.moguts.graphics.SurfaceView;
 
+/**
+ * public static void main(String[] args)!!!
+ * (ugh that's so ingrained in my brain)
+ * 
+ * @author TranquilMarmot
+ */
 public class MainActivity extends Activity {
     private static GLSurfaceView mGLView;
 

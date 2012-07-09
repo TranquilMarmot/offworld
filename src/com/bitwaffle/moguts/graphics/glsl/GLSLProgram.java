@@ -11,6 +11,11 @@ import org.lwjgl.util.vector.Vector4f;
 
 import android.opengl.GLES20;
 
+/**
+ * A convenience class for handling shader programs
+ * 
+ * @author TranquilMarmot
+ */
 public class GLSLProgram {
 	/** Handle for the program */
 	private int handle;

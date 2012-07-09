@@ -35,10 +35,14 @@ public class TouchHandler {
 	/** If two fingers are being used, how far apart they are */
 	private float previousSpacing;
 	
-	public final float MIN_ZOOM_SPACING = 20.0f;
+	/** How far apart fingers have to be before pinch zooming happens */
+	public final float MIN_ZOOM_SPACING = 10.0f;
 	
-	public final float ZOOM_SENSITIVITY = 500000.0f;
-	public final float DRAG_SENSITIVITY = 20.0f;
+	/** How sensitive zoom is- the higher the value, the less sensitive */
+	public final float ZOOM_SENSITIVITY = 700000.0f;
+	
+	/** How sensitive dragging is- the higher the value, the less sensitive */
+	public final float DRAG_SENSITIVITY = 2.0f;
 	
 	/**
 	 * Create a new touch handler
@@ -95,11 +99,12 @@ public class TouchHandler {
 		float spacing = spacing(e);
 		
 		// TODO check for button presses here
+		System.out.println("X: " + x + " Y: " + y + " W: " + GLRenderer.windowWidth + " H: " + GLRenderer.windowHeight);
 		
 		// if only one pointer is down, we're in drag mode
 		if(pointerCount == 1)
 			currentMode = Modes.DRAG;
-		// else if two pointers are down, we're in zoom mode
+		// else if two or more pointers are down, we're in zoom mode
 		else if(pointerCount >= 2)
 			currentMode = Modes.ZOOM;
 		

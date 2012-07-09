@@ -29,7 +29,7 @@ public class Physics {
 	/** Whether or not to sleep TODO look into what this means */
 	boolean doSleep = true;
 	
-	/** How much to step the simulation each update */
+	/* How much to step the simulation each update */
 	//final float timeStep = 1.0f / 30.0f;
 	
 	/** How many iterations to do for calculations */
@@ -44,7 +44,6 @@ public class Physics {
 		
 		// initialize the world
 		world = new World(gravity, doSleep);
-		
 		entities = new Entities();
 		
 		temp();
@@ -103,7 +102,7 @@ public class Physics {
 		BoxEntity ground4 = new BoxEntity(groundBodyDef4, 100.0f, 1.0f, groundBox4, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
 		entities.addEntity(ground4);
 		
-		for(int i = 0 ; i < 175; i ++)
+		for(int i = 0 ; i < 150; i ++)
 			makeRandomBox();
 		
 		entities.update(1.0f / 30.0f);

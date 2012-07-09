@@ -7,10 +7,37 @@ import java.io.InputStreamReader;
 
 import android.opengl.GLES20;
 
+/**
+ * Convenience class for handling shaders
+ * 
+ * @author TranquilMarmot
+ */
 public class GLSLShader {
+	public enum ShaderTypes {
+		VERTEX(GLES20.GL_VERTEX_SHADER),
+		FRAGMENT(GLES20.GL_FRAGMENT_SHADER);
+
+		private int glInt;
+		private ShaderTypes(int glInt){
+			this.glInt = glInt;
+		}
+		
+		public int getGLInt(){
+			return glInt;
+		}
+	}
+	
+	/** Handle for shader */
 	private int handle;
+	
+	/** String that will contain any errors */
 	private String logString;
 	
+	/**
+	 * Create a new shader
+	 * @param type Type of shader
+	 * @see ShaderTypes
+	 */
 	public GLSLShader(ShaderTypes type){
 		handle = GLES20.glCreateShader(type.getGLInt());
 		
@@ -19,6 +46,11 @@ public class GLSLShader {
 		}
 	}
 	
+	/**
+	 * Compiles a shader from an InputStream
+	 * @param stream Stream to compile from (should be a plaintext file)
+	 * @return Whether or not the shader compiled successfully
+	 */
 	public boolean compileShaderFromStream(InputStream stream){
 		try{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stream), 8);
@@ -36,6 +68,11 @@ public class GLSLShader {
 		}
 	}
 	
+	/**
+	 * Compile a shader from a String
+	 * @param source String containing source code for shader
+	 * @return Whether or not the shader compiled correctly
+	 */
 	public boolean compileShaderFromString(String source){
 		GLES20.glShaderSource(handle, source);
 		GLES20.glCompileShader(handle);
@@ -45,6 +82,13 @@ public class GLSLShader {
 		return logString.equals("Success.\n");
 	}
 	
+	/**
+	 * @return String containing any errors
+	 */
 	public String log() { return logString; }
+	
+	/**
+	 * @return Handle for shader
+	 */
 	public int getHandle() { return handle; }
 }
