@@ -1,4 +1,4 @@
-package com.bitwaffle.moguts;
+package com.bitwaffle.moguts.screen;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.graphics.render.GLRenderer;
@@ -99,7 +99,7 @@ public class TouchHandler {
 		float spacing = spacing(e);
 		
 		// TODO check for button presses here
-		System.out.println("X: " + x + " Y: " + y + " W: " + GLRenderer.windowWidth + " H: " + GLRenderer.windowHeight);
+		//System.out.println("X: " + x + " Y: " + y + " W: " + GLRenderer.windowWidth + " H: " + GLRenderer.windowHeight);
 		
 		// if only one pointer is down, we're in drag mode
 		if(pointerCount == 1)

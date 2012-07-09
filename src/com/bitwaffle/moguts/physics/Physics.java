@@ -102,7 +102,7 @@ public class Physics {
 		BoxEntity ground4 = new BoxEntity(groundBodyDef4, 100.0f, 1.0f, groundBox4, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
 		entities.addEntity(ground4);
 		
-		for(int i = 0 ; i < 150; i ++)
+		for(int i = 0 ; i < 125; i ++)
 			makeRandomBox();
 		
 		entities.update(1.0f / 30.0f);
@@ -118,7 +118,9 @@ public class Physics {
 		float boxY = randy.nextFloat() * 100.0f - 25.0f;
 		if(boxY < 1.0f) boxY = 1.0f;
 		float sizeX = randy.nextFloat() * 10.0f;
+		if(sizeX < 1.0f) sizeX = 1.0f;
 		float sizeY = randy.nextFloat() * 10.0f;
+		if(sizeY < 1.0f) sizeY = 1.0f;
 		float r = randy.nextFloat();
 		float g = randy.nextFloat();
 		float b = randy.nextFloat();
@@ -135,11 +137,17 @@ public class Physics {
 		boxFixture.shape = boxShape;
 		boxFixture.density = 1.0f;
 		boxFixture.friction = 0.3f;
-		boxFixture.restitution = 0.4f;
+		boxFixture.restitution = randy.nextFloat();
 		
 		BoxEntity box = new BoxEntity(boxDef, sizeX, sizeY, boxFixture, new float[]{r, g, b, 1.0f});
 		entities.addEntity(box);
 		
 		box.body.setAngularVelocity(randy.nextFloat() * 200.0f);
+		
+		float linX = randy.nextFloat() * 100.0f;
+		float linY = randy.nextFloat() * 100.0f;
+		if(randy.nextBoolean()) linX *= -1.0f;
+		if(randy.nextBoolean()) linY *= -1.0f;
+		box.body.setLinearVelocity(linX, linY);
 	}
 }

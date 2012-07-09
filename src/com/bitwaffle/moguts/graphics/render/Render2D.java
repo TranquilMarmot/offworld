@@ -25,6 +25,9 @@ public class Render2D {
 	private static final String VERTEX_SHADER = "game/shaders/main.vert";
 	/** Fragment shader to load on init */
 	private static final String FRAGMENT_SHADER = "game/shaders/main.frag";
+	
+	/** Initial values for camera */
+	private static final float DEFAULT_CAMX = 245.0f, DEFAULT_CAMY = 75.0f, DEFAULT_CAMZ = 0.004f;
 
 	/** The program to use for 2D rendering */
 	public GLSLProgram program;
@@ -56,7 +59,7 @@ public class Render2D {
 		projection = new float[16];
 		modelview = new float[16];
 		
-		camera = new Camera(new Vector2(233.0f, 70.0f), 0.003f);
+		camera = new Camera(new Vector2(DEFAULT_CAMX, DEFAULT_CAMY), DEFAULT_CAMZ);
 		
 		oldAspect = GLRenderer.aspect;
 		oldZoom = camera.getZoom();

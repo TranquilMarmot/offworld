@@ -1,10 +1,9 @@
-package com.bitwaffle.moguts.graphics;
+package com.bitwaffle.moguts.screen;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 
-import com.bitwaffle.moguts.TouchHandler;
 import com.bitwaffle.moguts.graphics.render.GLRenderer;
 
 /**
