@@ -2,8 +2,6 @@ package com.bitwaffle.moguts.physics;
 
 import java.util.Random;
 
-import android.util.Log;
-
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -32,12 +30,10 @@ public class Physics {
 	boolean doSleep = true;
 	
 	/** How much to step the simulation each update */
-	final float timeStep = 1.0f / 30.0f;
+	//final float timeStep = 1.0f / 30.0f;
 	
 	/** How many iterations to do for calculations */
 	final int velocityIterations = 5, positionIterations = 2;
-	
-	private long oldTime;
 	
 	/**
 	 * Initialized physics
@@ -57,14 +53,10 @@ public class Physics {
 	/**
 	 * Steps the physics simlation and updates every entity's location
 	 */
-	public void update(){
-		oldTime = System.currentTimeMillis();
+	public void update(float timeStep){
 		world.step(timeStep, velocityIterations, positionIterations);
 		
-		entities.update();
-		
-		long elapsedTime = System.currentTimeMillis() - oldTime;
-		Log.d("Physics", "Time elapsed: " + elapsedTime * 0.001);
+		entities.update(timeStep);
 	}
 	
 	/**
@@ -111,10 +103,10 @@ public class Physics {
 		BoxEntity ground4 = new BoxEntity(groundBodyDef4, 100.0f, 1.0f, groundBox4, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
 		entities.addEntity(ground4);
 		
-		for(int i = 0 ; i < 125; i ++)
+		for(int i = 0 ; i < 175; i ++)
 			makeRandomBox();
 		
-		entities.update();
+		entities.update(1.0f / 30.0f);
 	}
 	
 	/**

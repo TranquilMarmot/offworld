@@ -35,6 +35,6 @@ public class Entity {
 	public Vector2 getLocation(){ return location; }
 	public float getAngle(){ return angle; }
 	
-	public void update() { }
+	public void update(float timeStep) { }
 	public void render() { }
 }

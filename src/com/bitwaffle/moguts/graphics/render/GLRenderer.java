@@ -6,6 +6,7 @@ import javax.microedition.khronos.opengles.GL10;
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.util.Log;
 
 import com.bitwaffle.moguts.physics.Physics;
 
@@ -33,11 +34,26 @@ public class GLRenderer implements GLSurfaceView.Renderer {
 	/** Physics world */
 	public static Physics physics;
 	
+	/** 
+	 * If currentFPS is greater than this, then physics
+	 * is ticked with <code>1 / currentFPS</code>. If currentFPS is below
+	 * this, then physics gets ticked with <code>1 / MIN_TIMESTEP_FPS</code>
+	 */
+	private static final int MIN_TIMESTEP_FPS = 30;
+	
 	/** Current height and width of the window */
 	public static volatile int windowWidth, windowHeight;
 	
 	/** Current aspect ratio (windowWidth / windowHeight) */
 	public static volatile float aspect;
+	
+	/** Current frames per second (at the moment, counts rendering and physics) */
+	public static int currentFPS = 30;
+	
+	/** Used to count up to a second for FPS */
+	private long counter;
+	/** Used to count frames for FPS */
+	private int frameCount = 0;
 	
 	/**
 	 * Create a new renderer instance
@@ -63,6 +79,8 @@ public class GLRenderer implements GLSurfaceView.Renderer {
      * Draws a frame and steps the physics sim
      */
     public void onDrawFrame(GL10 unused) {
+    	long timeBeforeLoop = System.currentTimeMillis();
+    	
     	// clear the screen
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
         
@@ -71,8 +89,30 @@ public class GLRenderer implements GLSurfaceView.Renderer {
         // render 2D scene
         render2D.renderScene();
 
-        // step physics sim TODO make this have a variable timestep? (look up an article "fixing your timestep")
-    	physics.update();	
+        /*
+         * Step the physics sim
+         * (see comment above MIN_TIMESTEP_FPS for more info)
+         */
+        if(currentFPS > MIN_TIMESTEP_FPS)
+        	physics.update(1.0f / currentFPS);
+        else
+        	physics.update(1.0f / MIN_TIMESTEP_FPS);
+    	
+    	updateFPS(timeBeforeLoop);
+    }
+    
+    private void updateFPS(long timeBeforeLoop){
+    	long elapsedTime = System.currentTimeMillis() - timeBeforeLoop;
+    	counter += elapsedTime;
+    	frameCount++;
+    	
+    	// if the counter is above 1000, it means a second has passed
+    	if(counter >= 1000.0){
+    		Log.v("FPS", "" + frameCount);
+    		currentFPS = frameCount;
+    		frameCount = 0;
+    		counter -= 1000.0;
+    	}
     }
 
     /**

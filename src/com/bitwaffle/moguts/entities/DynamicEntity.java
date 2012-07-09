@@ -21,11 +21,12 @@ public class DynamicEntity extends Entity{
 		super();
 		
 		body = Physics.world.createBody(bodyDef);
+		body.setUserData(this);
 		body.createFixture(shape, density);
 	}
 	
 	@Override
-	public void update(){
+	public void update(float timeStep){
 		this.location.set(body.getPosition());
 		this.angle = body.getAngle();
 	}

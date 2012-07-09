@@ -6,7 +6,6 @@ import java.util.Iterator;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.opengl.Matrix;
-import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.entities.Entities;
@@ -44,9 +43,6 @@ public class Render2D {
 	
 	/** Used to know when to change the projection matrix */
 	private float oldAspect, oldZoom;
-	
-	private long oldTime, counter;
-	private int frameCount = 0;
 
 	/**
 	 * Create a new 2D renderer
@@ -94,7 +90,6 @@ public class Render2D {
 	 * Renders the 2D scene
 	 */
 	public void renderScene() {
-		oldTime = System.currentTimeMillis();
 		program.use();
 		
 		if(GLRenderer.aspect != oldAspect || oldZoom != camera.getZoom()){
@@ -104,15 +99,6 @@ public class Render2D {
 		}
 		
 		renderEntities(Physics.entities.getIterator());
-		
-		long elapsedTime = System.currentTimeMillis() - oldTime;
-		counter += elapsedTime;
-		frameCount++;
-		if(counter >= 500.0){
-			Log.d("Render2D", "FPS: " + frameCount);
-			frameCount = 0;
-			counter -= 500.0;
-		}
 	}
 	
 	/**

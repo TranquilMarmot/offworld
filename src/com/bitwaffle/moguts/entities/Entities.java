@@ -26,7 +26,7 @@ public class Entities {
 		return entities.iterator();
 	}
 	
-	public void update(){
+	public void update(float timeStep){
 		while(!toRemove.isEmpty())
 			entities.remove(toRemove.pop());
 		
@@ -36,6 +36,6 @@ public class Entities {
 		Iterator<Entity> it = getIterator();
 		
 		while(it.hasNext())
-			it.next().update();
+			it.next().update(timeStep);
 	}
 }
