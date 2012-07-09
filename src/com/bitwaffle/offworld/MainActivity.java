@@ -9,7 +9,6 @@ import android.view.Window;
 import com.bitwaffle.moguts.graphics.SurfaceView;
 
 public class MainActivity extends Activity {
-	public static MainActivity main;
     private static GLSurfaceView mGLView;
 
     @Override
@@ -30,7 +29,7 @@ public class MainActivity extends Activity {
     
     @Override
     /**
-     * Android (for some fucking reason) starts everything over when the orientation of the screen is changed,
+     * Android starts everything over when the orientation of the screen is changed,
      * so <code>android:configChanges="keyboardHidden|orientation"</code> had to be added to the application manifest so
      * that keyboard/orientation events go through this rather than starting the whole application over.
      * I guess the <code>Bundle</code> passed to <code>onCreate()</code> is supposed to save state stuff, but that isn't very helpful

@@ -1,16 +1,31 @@
 package com.bitwaffle.moguts.graphics;
 
-import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.moguts.graphics.render.GLRenderer;
-
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 
+import com.bitwaffle.moguts.TouchHandler;
+import com.bitwaffle.moguts.graphics.render.GLRenderer;
+
+/**
+ * Implementation of android.opengl.GLSurfaceView.
+ * Handles initializing the GLRenderer and the TouchHandler
+ * (all touch events go through here)
+ * 
+ * @author TranquilMarmot
+ */
 public class SurfaceView extends GLSurfaceView {
-	/** What's going to be doing all the rendering */
+	/** 
+	 * Handles all the rendering (NOTE: GLRenderer
+	 * contains static instances of Render2D and Render3D,
+	 * which should be referenced whenever doing graphics stuff.
+	 * It's also got a static instance of Physics which should be
+	 * used when interacting with the physics world) 
+	 */
 	public static GLRenderer renderer;
-	private float mPreviousX, mPreviousY;
+	
+	/** Handles any touch events */
+	public static TouchHandler touchHandler;
 	
     public SurfaceView(Context context){
         super(context);
@@ -21,35 +36,15 @@ public class SurfaceView extends GLSurfaceView {
         // Render the view only when there is a change in the drawing data
         //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
         
+        touchHandler = new TouchHandler();
+        
         renderer = new GLRenderer(context);
-
-        // Set the Renderer for drawing on the GLSurfaceView
         setRenderer(renderer);  
   }
     
     @Override
     public boolean onTouchEvent(MotionEvent e) {
-        // MotionEvent reports input details from the touch screen
-        // and other input controls. In this case, you are only
-        // interested in events where the touch position changed.
-
-        float x = e.getX();
-        float y = e.getY();
-
-        switch (e.getAction()) {
-            case MotionEvent.ACTION_MOVE:
-                float dx = x - mPreviousX;
-                float dy = y - mPreviousY;
-                
-                Vector2 camLoc = GLRenderer.render2D.camera.getLocation();
-                camLoc.x += dx / 10.0f;
-                camLoc.y -= dy / 10.0f;
-                System.out.println("new cam loc: " + camLoc.x + " " + camLoc.y);
-                GLRenderer.render2D.camera.setLocation(camLoc);
-        }
-
-        mPreviousX = x;
-        mPreviousY = y;
-        return true;
+    	// simply send the event to the touch handler
+    	return touchHandler.touchEvent(e);
     }
 }

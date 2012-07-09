@@ -11,7 +11,12 @@ import com.bitwaffle.moguts.physics.Physics;
 
 /**
  * Implementation of the GLSurfaceView.renderer class.
- * This class handles calling the rendering methods, as well as stepping the physics sim (for now)
+ * This class handles calling the rendering methods,
+ * as well as stepping the physics sim (for now).
+ * This class has static instances of Render2D and Render3D,
+ * which should be referenced whenever doing graphics things.
+ * This class also has a static instance of Physics, which
+ * should be used whenever interacting with the physics world.
  * 
  * @author TranquilMarmot
  */
