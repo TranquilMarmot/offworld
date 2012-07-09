@@ -32,10 +32,10 @@ public class Physics {
 	boolean doSleep = true;
 	
 	/** How much to step the simulation each update */
-	final float timeStep = 1.0f / 60.0f;
+	final float timeStep = 1.0f / 30.0f;
 	
 	/** How many iterations to do for calculations */
-	final int velocityIterations = 6, positionIterations = 2;
+	final int velocityIterations = 5, positionIterations = 2;
 	
 	private long oldTime;
 	
@@ -111,7 +111,7 @@ public class Physics {
 		BoxEntity ground4 = new BoxEntity(groundBodyDef4, 100.0f, 1.0f, groundBox4, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
 		entities.addEntity(ground4);
 		
-		for(int i = 0 ; i < 75; i ++)
+		for(int i = 0 ; i < 125; i ++)
 			makeRandomBox();
 		
 		entities.update();
@@ -122,9 +122,9 @@ public class Physics {
 	 */
 	public void makeRandomBox(){
 		Random randy = new Random();
-		float boxX = randy.nextFloat() * 75.0f;
+		float boxX = randy.nextFloat() * 125.0f - 50.0f;
 		if(boxX < 1.0f) boxX = 1.0f;
-		float boxY = randy.nextFloat() * 75.0f;
+		float boxY = randy.nextFloat() * 100.0f - 25.0f;
 		if(boxY < 1.0f) boxY = 1.0f;
 		float sizeX = randy.nextFloat() * 10.0f;
 		float sizeY = randy.nextFloat() * 10.0f;
@@ -149,6 +149,6 @@ public class Physics {
 		BoxEntity box = new BoxEntity(boxDef, sizeX, sizeY, boxFixture, new float[]{r, g, b, 1.0f});
 		entities.addEntity(box);
 		
-		box.body.setAngularVelocity(randy.nextFloat() * 160.0f);
+		box.body.setAngularVelocity(randy.nextFloat() * 200.0f);
 	}
 }

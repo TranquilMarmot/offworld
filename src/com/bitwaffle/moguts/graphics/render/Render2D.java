@@ -61,7 +61,7 @@ public class Render2D {
 		projection = new float[16];
 		modelview = new float[16];
 		
-		camera = new Camera(new Vector2(233.0f, 70.0f), 0.004f);
+		camera = new Camera(new Vector2(233.0f, 70.0f), 0.003f);
 		
 		oldAspect = GLRenderer.aspect;
 		oldZoom = camera.getZoom();
@@ -113,8 +113,6 @@ public class Render2D {
 			frameCount = 0;
 			counter -= 500.0;
 		}
-		
-		//Log.d("Render2D", "Time elapsed: " + elapsedTime * 0.001);
 	}
 	
 	/**
