@@ -1,7 +1,10 @@
 package com.bitwaffle.moguts.screen;
 
+import java.util.Iterator;
+
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.graphics.render.GLRenderer;
+import com.bitwaffle.moguts.gui.button.Button;
 
 import android.util.FloatMath;
 import android.view.MotionEvent;
@@ -98,8 +101,8 @@ public class TouchHandler {
 		float y = e.getY();
 		float spacing = spacing(e);
 		
-		// TODO check for button presses here
 		//System.out.println("X: " + x + " Y: " + y + " W: " + GLRenderer.windowWidth + " H: " + GLRenderer.windowHeight);
+		checkForButtonPresses(x, y);
 		
 		// if only one pointer is down, we're in drag mode
 		if(pointerCount == 1)
@@ -128,6 +131,26 @@ public class TouchHandler {
 		previousSpacing = spacing;
 		
 		return true;
+	}
+	
+	/**
+	 * Check if any buttons have been pressed
+	 * @param x X coordinate of press event
+	 * @param y Y coordinate of press event
+	 * @return Whether or not a button was pressed
+	 */
+	private boolean checkForButtonPresses(float x, float y){
+		Iterator<Button> it = GLRenderer.render2D.gui.getIterator();
+		
+		while(it.hasNext()){
+			Button b = it.next();
+			
+			// FIXME this will only trigger a pressed event for the first button that gets pressed- is this practical?
+			if(b.checkForPress(x, y))
+				return true;
+		}
+		
+		return false;
 	}
 	
 	/**

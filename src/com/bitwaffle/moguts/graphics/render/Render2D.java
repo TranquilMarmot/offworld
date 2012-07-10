@@ -13,6 +13,7 @@ import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.moguts.graphics.glsl.GLSLShader;
+import com.bitwaffle.moguts.gui.GUI;
 import com.bitwaffle.moguts.physics.Physics;
 
 /**
@@ -45,6 +46,9 @@ public class Render2D {
 	
 	/** Used to know when to change the projection matrix */
 	private float oldAspect, oldZoom;
+	
+	/** The graphical user interface */
+	public GUI gui;
 
 	/**
 	 * Create a new 2D renderer
@@ -63,6 +67,8 @@ public class Render2D {
 		
 		oldAspect = GLRenderer.aspect;
 		oldZoom = camera.getZoom();
+		
+		gui = new GUI();
 	}
 
 	/**
@@ -109,7 +115,7 @@ public class Render2D {
 	private void setUpProjectionMatrix(){
 		Matrix.setIdentityM(projection, 0);
 		Matrix.orthoM(projection, 0, 0, GLRenderer.aspect, 0, 1, -1, 1);
-		Matrix.scaleM(projection, 0, camera.getZoom(), camera.getZoom(), 1.0f);
+		//Matrix.scaleM(projection, 0, camera.getZoom(), camera.getZoom(), 1.0f);
 		Matrix.rotateM(projection, 0, camera.getAngle(), 0.0f, 0.0f, 1.0f);
 		
 		program.setUniformMatrix4f("Projection", projection);
@@ -134,6 +140,7 @@ public class Render2D {
 			
 			// mainpulate the modelview matrix to draw the entity (zooming is done by scaling the projection matrix)
 			Matrix.setIdentityM(modelview, 0);
+			Matrix.scaleM(modelview, 0, camera.getZoom(), camera.getZoom(), 1.0f);
 			Matrix.translateM(modelview, 0, loc.x + cam.x, loc.y + cam.y, 0.0f);
 			Matrix.rotateM(modelview, 0, angle, 0.0f, 0.0f, 1.0f);
 			program.setUniformMatrix4f("ModelView", modelview);
