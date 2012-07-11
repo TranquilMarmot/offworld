@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import android.opengl.GLES20;
 
-import com.bitwaffle.moguts.graphics.render.GLRenderer;
+import com.bitwaffle.moguts.graphics.render.Game;
 
 /**
  * This class defines a 3D model. A model is a set of vertices to draw, what texture to use when drawing them,
@@ -66,7 +66,7 @@ public class Model {
 		
 		// loop through each part, set its material and draw
 		for(ModelPart p : parts){
-			GLRenderer.render3D.setCurrentMaterial(p.getMaterial());
+			Game.render3D.setCurrentMaterial(p.getMaterial());
 			p.draw();
 		}
 		

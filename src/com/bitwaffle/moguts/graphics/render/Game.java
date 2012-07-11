@@ -21,7 +21,7 @@ import com.bitwaffle.moguts.physics.Physics;
  * 
  * @author TranquilMarmot
  */
-public class GLRenderer implements GLSurfaceView.Renderer {
+public class Game implements GLSurfaceView.Renderer {
 	/** Context for loading resources */
 	private Context context;
 	
@@ -39,7 +39,7 @@ public class GLRenderer implements GLSurfaceView.Renderer {
 	 * is ticked with <code>1 / currentFPS</code>. If currentFPS is below
 	 * this, then physics gets ticked with <code>1 / MIN_TIMESTEP_FPS</code>
 	 */
-	private static final int MIN_TIMESTEP_FPS = 30;
+	private static final int MIN_TIMESTEP_FPS = 30, MAX_TIMESTEP_FPS = 60;
 	
 	/** Current height and width of the window */
 	public static volatile int windowWidth, windowHeight;
@@ -59,7 +59,7 @@ public class GLRenderer implements GLSurfaceView.Renderer {
 	 * Create a new renderer instance
 	 * @param context Context to use for laoding resources
 	 */
-	public GLRenderer(Context context){
+	public Game(Context context){
 		super();
 		this.context = context;
 	}
@@ -73,6 +73,7 @@ public class GLRenderer implements GLSurfaceView.Renderer {
         //render3D = new Render3D(context);
         render2D = new Render2D(context);
         physics = new Physics();
+        physics.temp();
     }
     
     /**
@@ -93,10 +94,12 @@ public class GLRenderer implements GLSurfaceView.Renderer {
          * Step the physics sim
          * (see comment above MIN_TIMESTEP_FPS for more info)
          */
-        if(currentFPS > MIN_TIMESTEP_FPS)
-        	physics.update(1.0f / currentFPS);
-        else
+        if(currentFPS < MIN_TIMESTEP_FPS)
         	physics.update(1.0f / MIN_TIMESTEP_FPS);
+        else if(currentFPS > MAX_TIMESTEP_FPS)
+        	physics.update(1.0f / MIN_TIMESTEP_FPS);
+        else
+        	physics.update(1.0f / currentFPS);
     	
     	updateFPS(timeBeforeLoop);
     }

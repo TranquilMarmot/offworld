@@ -10,10 +10,10 @@ import com.bitwaffle.moguts.gui.GUIObject;
  */
 public abstract class Button extends GUIObject{
 	/** Whether or not the button is active/visible (can only be pressed if both are true) */
-	private boolean active, visible;
+	protected boolean isActive, isVisible;
 	
 	/** Whether or not the button is being held down */
-	private boolean isDown;
+	protected boolean isDown, wasDown;
 	
 	
 	/**
@@ -23,8 +23,8 @@ public abstract class Button extends GUIObject{
 	 */
 	public Button(float x, float y) {
 		super(x, y);
-		active = true;
-		visible = true;
+		isActive = true;
+		isVisible = true;
 	}
 
 	/** What to do when the button is pressed */
@@ -38,13 +38,17 @@ public abstract class Button extends GUIObject{
 	 */
 	public abstract boolean checkForPress(float x, float y);
 	
-	public boolean isActive(){ return active; }
-	public void deactivate(){ active = false; }
-	public void activate(){ active = true; }
+	public abstract void press();
 	
-	public boolean isVisible(){ return visible; }
-	public void hide(){ visible = false; }
-	public void show(){ visible = true; }
+	public abstract void release();
+	
+	public boolean isActive(){ return isActive; }
+	public void deactivate(){ isActive = false; }
+	public void activate(){ isActive = true; }
+	
+	public boolean isVisible(){ return isVisible; }
+	public void hide(){ isVisible = false; }
+	public void show(){ isVisible = true; }
 	
 	public boolean isDown(){ return isDown;}
 }

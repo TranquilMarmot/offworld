@@ -3,7 +3,7 @@ package com.bitwaffle.moguts.entities;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.bitwaffle.moguts.graphics.render.GLRenderer;
+import com.bitwaffle.moguts.graphics.render.Game;
 import com.bitwaffle.moguts.graphics.shapes.Quad;
 
 /**
@@ -51,7 +51,7 @@ public class BoxEntity extends DynamicEntity {
 	 * Set the color and render!
 	 */
 	public void render(){
-		GLRenderer.render2D.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
+		Game.render2D.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
 		quad.draw();
 	}
 }

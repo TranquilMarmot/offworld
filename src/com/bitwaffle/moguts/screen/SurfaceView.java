@@ -4,7 +4,7 @@ import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 
-import com.bitwaffle.moguts.graphics.render.GLRenderer;
+import com.bitwaffle.moguts.graphics.render.Game;
 
 /**
  * Implementation of android.opengl.GLSurfaceView.
@@ -21,7 +21,7 @@ public class SurfaceView extends GLSurfaceView {
 	 * It's also got a static instance of Physics which should be
 	 * used when interacting with the physics world) 
 	 */
-	public static GLRenderer renderer;
+	public static Game renderer;
 	
 	/** Handles any touch events */
 	public static TouchHandler touchHandler;
@@ -37,7 +37,7 @@ public class SurfaceView extends GLSurfaceView {
         
         touchHandler = new TouchHandler();
         
-        renderer = new GLRenderer(context);
+        renderer = new Game(context);
         setRenderer(renderer);  
   }
     

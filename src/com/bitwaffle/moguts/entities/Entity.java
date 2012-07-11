@@ -15,7 +15,7 @@ public abstract class Entity {
 	/** Current location of entity */
 	protected Vector2 location;
 	
-	/** Current rotation of entities (in radians) */
+	/** Current rotation of entity (in radians) */
 	protected float angle;
 	
 	public Entity(){

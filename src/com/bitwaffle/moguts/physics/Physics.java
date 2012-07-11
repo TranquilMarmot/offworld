@@ -18,16 +18,16 @@ import com.bitwaffle.moguts.entities.Entities;
  */
 public class Physics {
 	/** World that everything is in */
-	public static World world;
+	public World world;
 	
 	/** Entities in the world */
-	public static Entities entities;
+	public Entities entities;
 	
 	/** Gravity for the world */
 	private Vector2 gravity = new Vector2(0.0f, -9.8f);
 	
 	/** Whether or not to sleep TODO look into what this means */
-	boolean doSleep = true;
+	boolean doSleep = false;
 	
 	/* How much to step the simulation each update */
 	//final float timeStep = 1.0f / 30.0f;
@@ -45,7 +45,12 @@ public class Physics {
 		// initialize the world
 		world = new World(gravity, doSleep);
 		entities = new Entities();
-		
+	}
+	
+	public void restartWorld(){
+		world.dispose();
+		world = new World(gravity, doSleep);
+		entities.clear();
 		temp();
 	}
 	
@@ -61,7 +66,7 @@ public class Physics {
 	/**
 	 *  FIXME this initialization method is only temporary until some sort of save file gets implemented
 	 */
-	private void temp(){
+	public void temp(){
 		// bottom
 		BodyDef groundBodyDef = new BodyDef();
 		groundBodyDef.position.set(0.0f, -50.0f);
@@ -70,7 +75,7 @@ public class Physics {
 		groundBox.setAsBox(100.0f, 1.0f);
 		
 		BoxEntity ground = new BoxEntity(groundBodyDef, 100.0f, 1.0f, groundBox, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
-		entities.addEntity(ground);
+		entities.addDynamicEntity(ground);
 		
 		// right
 		BodyDef groundBodyDef2 = new BodyDef();
@@ -80,7 +85,7 @@ public class Physics {
 		groundBox2.setAsBox(1.0f, 100.0f);
 		
 		BoxEntity ground2 = new BoxEntity(groundBodyDef2, 1.0f, 100.0f, groundBox2, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
-		entities.addEntity(ground2);
+		entities.addDynamicEntity(ground2);
 		
 		// left
 		BodyDef groundBodyDef3 = new BodyDef();
@@ -90,7 +95,7 @@ public class Physics {
 		groundBox3.setAsBox(1.0f, 100.0f);
 		
 		BoxEntity ground3 = new BoxEntity(groundBodyDef3, 1.0f, 100.0f, groundBox3, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
-		entities.addEntity(ground3);
+		entities.addDynamicEntity(ground3);
 		
 		// top
 		BodyDef groundBodyDef4 = new BodyDef();
@@ -100,9 +105,9 @@ public class Physics {
 		groundBox4.setAsBox(100.0f, 1.0f);
 		
 		BoxEntity ground4 = new BoxEntity(groundBodyDef4, 100.0f, 1.0f, groundBox4, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
-		entities.addEntity(ground4);
+		entities.addDynamicEntity(ground4);
 		
-		for(int i = 0 ; i < 125; i ++)
+		for(int i = 0 ; i < 75; i ++)
 			makeRandomBox();
 		
 		entities.update(1.0f / 30.0f);
@@ -137,12 +142,12 @@ public class Physics {
 		boxFixture.shape = boxShape;
 		boxFixture.density = 1.0f;
 		boxFixture.friction = 0.3f;
-		boxFixture.restitution = randy.nextFloat();
+		boxFixture.restitution = 0.3f;
 		
 		BoxEntity box = new BoxEntity(boxDef, sizeX, sizeY, boxFixture, new float[]{r, g, b, 1.0f});
-		entities.addEntity(box);
+		entities.addDynamicEntity(box);
 		
-		box.body.setAngularVelocity(randy.nextFloat() * 200.0f);
+		box.body.setAngularVelocity(randy.nextFloat() * 50.0f);
 		
 		float linX = randy.nextFloat() * 100.0f;
 		float linY = randy.nextFloat() * 100.0f;

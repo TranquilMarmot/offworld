@@ -3,9 +3,10 @@ package com.bitwaffle.moguts.screen;
 import java.util.Iterator;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.moguts.graphics.render.GLRenderer;
+import com.bitwaffle.moguts.graphics.render.Game;
 import com.bitwaffle.moguts.gui.button.Button;
 
+import android.opengl.Matrix;
 import android.util.FloatMath;
 import android.view.MotionEvent;
 
@@ -46,6 +47,8 @@ public class TouchHandler {
 	
 	/** How sensitive dragging is- the higher the value, the less sensitive */
 	public final float DRAG_SENSITIVITY = 2.0f;
+	
+	private Button buttonDown;
 	
 	/**
 	 * Create a new touch handler
@@ -112,6 +115,12 @@ public class TouchHandler {
 			currentMode = Modes.ZOOM;
 		
 		switch(e.getAction()){
+		case MotionEvent.ACTION_UP:
+			if(buttonDown != null){
+				buttonDown.release();
+				buttonDown = null;
+			}
+			break;
 		case MotionEvent.ACTION_MOVE:
 			switch(currentMode){
 			case DRAG:
@@ -140,17 +149,54 @@ public class TouchHandler {
 	 * @return Whether or not a button was pressed
 	 */
 	private boolean checkForButtonPresses(float x, float y){
-		Iterator<Button> it = GLRenderer.render2D.gui.getIterator();
+		Iterator<Button> it = Game.render2D.gui.getIterator();
 		
 		while(it.hasNext()){
 			Button b = it.next();
 			
-			// FIXME this will only trigger a pressed event for the first button that gets pressed- is this practical?
-			if(b.checkForPress(x, y))
+			// FIXME this will only trigger a pressed event for the first button that gets pressed- is that practical?
+			if(b.checkForPress(x, y)){
+				buttonDown = b;
+				b.press();
 				return true;
+			}
 		}
 		
 		return false;
+	}
+	
+	public Vector2 toScreenSpace(float touchX, float touchY){
+		Vector2 pos = new Vector2(0.0f, 0.0f);
+		
+		float screenW = Game.windowWidth;
+		float screenH = Game.windowHeight;
+		
+		float[] invertedMatrix, transformMatrix, normalizedInPoint, outPoint;
+		invertedMatrix = new float[16];
+		transformMatrix = new float[16];
+		normalizedInPoint = new float[4];
+		outPoint = new float[4];
+		
+		float oglTouchY = screenH - touchY;
+		
+		normalizedInPoint[0] = touchX * 2.0f / screenW - 1.0f;
+		normalizedInPoint[1] = oglTouchY * 2.0f / screenH - 1.0f;
+		normalizedInPoint[2] = -1.0f;
+		normalizedInPoint[3] = 1.0f;
+		
+		Matrix.multiplyMM(transformMatrix, 0, Game.render2D.currenProjection(), 0, Game.render2D.currentModelview(), 0);
+		Matrix.invertM(invertedMatrix, 0, transformMatrix, 0);
+		
+		Matrix.multiplyMV(outPoint, 0, invertedMatrix, 0, normalizedInPoint, 0);
+		
+		if(outPoint[3] == 0.0f)
+			System.out.println("Divide by zero err!");
+		
+		pos.set(outPoint[0] / outPoint[3], outPoint[1] / outPoint[3]);
+		
+		//System.out.println(pos.x + " " + pos.y);
+		
+		return pos;
 	}
 	
 	/**
@@ -162,10 +208,10 @@ public class TouchHandler {
 		float dx = x - previousX;
         float dy = y - previousY;
         
-        Vector2 camLoc = GLRenderer.render2D.camera.getLocation();
+        Vector2 camLoc = Game.render2D.camera.getLocation();
         camLoc.x += dx / DRAG_SENSITIVITY;
         camLoc.y -= dy / DRAG_SENSITIVITY;
-        GLRenderer.render2D.camera.setLocation(camLoc);
+        Game.render2D.camera.setLocation(camLoc);
 	}
 	
 	/**
@@ -173,13 +219,13 @@ public class TouchHandler {
 	 * @param spacing How far apart the two fingers are
 	 */
 	private void zoomEvent(float spacing){
-		float zoom = GLRenderer.render2D.camera.getZoom();
+		float zoom = Game.render2D.camera.getZoom();
 		
 		if(spacing < previousSpacing - (MIN_ZOOM_SPACING / 2.0f))
 			zoom -= spacing / ZOOM_SENSITIVITY;
 		else if(spacing > previousSpacing + (MIN_ZOOM_SPACING / 2.0f))
 			zoom += spacing / ZOOM_SENSITIVITY;
 		
-		GLRenderer.render2D.camera.setZoom(zoom);
+		Game.render2D.camera.setZoom(zoom);
 	}
 }

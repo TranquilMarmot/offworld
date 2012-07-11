@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
+import com.bitwaffle.moguts.graphics.render.Game;
 import com.bitwaffle.moguts.gui.button.Button;
+import com.bitwaffle.moguts.gui.button.RectangleButton;
 
 public class GUI {
 	private ArrayList<Button> buttons;
@@ -14,6 +16,8 @@ public class GUI {
 		buttons = new ArrayList<Button>();
 		buttonsToAdd = new Stack<Button>();
 		buttonsToRemove = new Stack<Button>();
+		
+		temp();
 	}
 	
 	public Iterator<Button> getIterator(){
@@ -42,5 +46,21 @@ public class GUI {
 		
 		while(it.hasNext())
 			it.next().update();
+	}
+	
+	/* FIXME TEMP CODE */
+	private void temp(){
+		RectangleButton butt = new RectangleButton(50.0f, Game.windowHeight - 50.0f, 50.0f, 50.0f){
+			@Override
+			public void actionPerformed(){
+				Game.physics.makeRandomBox();
+			}
+			
+			@Override
+			public void update(){
+				this.y = Game.windowHeight - 50.0f;
+			}
+		};
+		this.addButton(butt);
 	}
 }

@@ -1,8 +1,6 @@
 package com.bitwaffle.moguts.entities;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Stack;
 
 /**
  * Keeps track of every Entity and DynamicEntity,
@@ -13,43 +11,56 @@ import java.util.Stack;
  * @see DynamicEntity
  */
 public class Entities {
-	/** List of entities */
-	private ArrayList<Entity> entities;
-	
-	/** Used to add/remove entities to avoid ConcurrentModificationException */
-	private Stack<Entity> toAdd, toRemove;
+	private EntityList<Entity> passiveEntities;
+	private EntityList<DynamicEntity> dynamicEntities;
 	
 	/**
 	 * Initialize entity lists
 	 */
 	public Entities(){
-		entities = new ArrayList<Entity>();
-		toAdd = new Stack<Entity>();
-		toRemove = new Stack<Entity>();
+		passiveEntities = new EntityList<Entity>();
+		dynamicEntities = new EntityList<DynamicEntity>();
 	}
 	
 	/**
 	 * Add an Entity to the list
 	 * @param ent Entity to add
 	 */
-	public void addEntity(Entity ent){
-		toAdd.add(ent);
+	public void addPassiveEntity(Entity ent){
+		passiveEntities.add(ent);
+	}
+	
+	public void addDynamicEntity(DynamicEntity ent){
+		dynamicEntities.add(ent);
 	}
 	
 	/**
 	 * Remove an Entity from the list
 	 * @param ent
 	 */
-	public void removeEntity(Entity ent){
-		toRemove.add(ent);
+	public void removePassiveEntity(Entity ent){
+		passiveEntities.remove(ent);
+	}
+	
+	public void removeDynamicEntity(DynamicEntity ent){
+		dynamicEntities.remove(ent);
 	}
 	
 	/**
 	 * Get an iterator to go through every entity
 	 * @return Iterator of list of entities
 	 */
-	public Iterator<Entity> getIterator(){
-		return entities.iterator();
+	public Iterator<Entity> getPassiveEntityIterator(){
+		return passiveEntities.getIterator();
+	}
+	
+	public Iterator<DynamicEntity> getDynamicEntityIterator(){
+		return dynamicEntities.getIterator();
+	}
+	
+	public void clear(){
+		passiveEntities.clear();
+		dynamicEntities.clear();
 	}
 	
 	/**
@@ -57,18 +68,7 @@ public class Entities {
 	 * @param timeStep How much time has passed since last update
 	 */
 	public void update(float timeStep){
-		while(!toRemove.isEmpty()){
-			Entity ent = toRemove.pop();
-			ent.cleanup();
-			entities.remove(ent);
-		}
-		
-		while(!toAdd.isEmpty())
-			entities.add(toAdd.pop());
-		
-		Iterator<Entity> it = getIterator();
-		
-		while(it.hasNext())
-			it.next().update(timeStep);
+		passiveEntities.update(timeStep);
+		dynamicEntities.update(timeStep);
 	}
 }

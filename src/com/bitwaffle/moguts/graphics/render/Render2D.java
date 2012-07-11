@@ -14,7 +14,7 @@ import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.moguts.graphics.glsl.GLSLShader;
 import com.bitwaffle.moguts.gui.GUI;
-import com.bitwaffle.moguts.physics.Physics;
+import com.bitwaffle.moguts.gui.button.Button;
 
 /**
  * This class handles all 2D rendering
@@ -44,9 +44,6 @@ public class Render2D {
 	/** Used for loading assets */
 	private AssetManager assets;
 	
-	/** Used to know when to change the projection matrix */
-	private float oldAspect, oldZoom;
-	
 	/** The graphical user interface */
 	public GUI gui;
 
@@ -64,11 +61,6 @@ public class Render2D {
 		modelview = new float[16];
 		
 		camera = new Camera(new Vector2(DEFAULT_CAMX, DEFAULT_CAMY), DEFAULT_CAMZ);
-		
-		oldAspect = GLRenderer.aspect;
-		oldZoom = camera.getZoom();
-		
-		gui = new GUI();
 	}
 
 	/**
@@ -98,15 +90,19 @@ public class Render2D {
 	 * Renders the 2D scene
 	 */
 	public void renderScene() {
+		//FIXME wtf?!
+		if(gui == null)
+			gui = new GUI();
+		gui.update();
+		
 		program.use();
 		
-		if(GLRenderer.aspect != oldAspect || oldZoom != camera.getZoom()){
-			oldAspect = GLRenderer.aspect;
-			oldZoom = camera.getZoom();
-			setUpProjectionMatrix();
-		}
+		setUpProjectionMatrix();
+		renderEntities(Game.physics.entities.getPassiveEntityIterator());
+		renderEntities(Game.physics.entities.getDynamicEntityIterator());
 		
-		renderEntities(Physics.entities.getIterator());
+		setUpProjectionGUI();
+		renderGUI(gui);
 	}
 	
 	/**
@@ -114,7 +110,7 @@ public class Render2D {
 	 */
 	private void setUpProjectionMatrix(){
 		Matrix.setIdentityM(projection, 0);
-		Matrix.orthoM(projection, 0, 0, GLRenderer.aspect, 0, 1, -1, 1);
+		Matrix.orthoM(projection, 0, 0, Game.aspect, 0, 1, -1, 1);
 		//Matrix.scaleM(projection, 0, camera.getZoom(), camera.getZoom(), 1.0f);
 		Matrix.rotateM(projection, 0, camera.getAngle(), 0.0f, 0.0f, 1.0f);
 		
@@ -126,12 +122,12 @@ public class Render2D {
 	 * @param entities Entity list to render
 	 * @see Entities
 	 */
-	private void renderEntities(Iterator<Entity> it){
+	private void renderEntities(Iterator<?> it){
 		Vector2 cam = camera.getLocation();
 		
 		// iterate through every entity
 		while(it.hasNext()){
-			Entity ent = it.next();
+			Entity ent = (Entity) it.next();
 			
 			// figure out the location and the angle of what we're rendering
 			Vector2 loc = ent.getLocation();
@@ -147,6 +143,35 @@ public class Render2D {
 			
 			ent.render();
 		}
+	}
+	
+	private void setUpProjectionGUI(){
+		Matrix.setIdentityM(projection, 0);
+		Matrix.orthoM(projection, 0, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
+		
+		program.setUniformMatrix4f("Projection", projection);
+	}
+	
+	private void renderGUI(GUI gui){
+		Iterator<Button> it = gui.getIterator();
+		
+		while(it.hasNext()){
+			Button butt = it.next();
+			
+			Matrix.setIdentityM(modelview, 0);
+			Matrix.translateM(modelview, 0, butt.x, butt.y, 0.0f);
+			program.setUniformMatrix4f("ModelView", modelview);
+			
+			butt.draw();
+		}
+	}
+	
+	public float[] currentModelview(){
+		return modelview;
+	}
+	
+	public float[] currenProjection(){
+		return projection;
 	}
 	
 	/**

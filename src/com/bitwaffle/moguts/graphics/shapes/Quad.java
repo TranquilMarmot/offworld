@@ -6,7 +6,7 @@ import java.nio.FloatBuffer;
 
 import android.opengl.GLES20;
 
-import com.bitwaffle.moguts.graphics.render.GLRenderer;
+import com.bitwaffle.moguts.graphics.render.Game;
 
 public class Quad {
 	private FloatBuffer vertBuffer;
@@ -64,7 +64,7 @@ public class Quad {
 		vertBuffer.put(coords);
 		vertBuffer.rewind();
 		
-		positionHandle = GLRenderer.render2D.program.getAttribLocation("vPosition");
+		positionHandle = Game.render2D.program.getAttribLocation("vPosition");
 	}
 	
 	public void draw(){
