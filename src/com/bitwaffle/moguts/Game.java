@@ -1,4 +1,4 @@
-package com.bitwaffle.moguts.graphics.render;
+package com.bitwaffle.moguts;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -8,6 +8,9 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.util.Log;
 
+import com.bitwaffle.moguts.entities.Player;
+import com.bitwaffle.moguts.graphics.render.Render2D;
+import com.bitwaffle.moguts.graphics.render.Render3D;
 import com.bitwaffle.moguts.physics.Physics;
 
 /**
@@ -33,6 +36,8 @@ public class Game implements GLSurfaceView.Renderer {
 	
 	/** Physics world */
 	public static Physics physics;
+	
+	public static Player player;
 	
 	/** 
 	 * If currentFPS is greater than this, then physics
@@ -73,7 +78,7 @@ public class Game implements GLSurfaceView.Renderer {
         //render3D = new Render3D(context);
         render2D = new Render2D(context);
         physics = new Physics();
-        physics.temp();
+        physics.temp2();
     }
     
     /**

@@ -6,7 +6,7 @@ import java.nio.FloatBuffer;
 
 import android.opengl.GLES20;
 
-import com.bitwaffle.moguts.graphics.render.Game;
+import com.bitwaffle.moguts.Game;
 
 public class Quad {
 	private FloatBuffer vertBuffer;

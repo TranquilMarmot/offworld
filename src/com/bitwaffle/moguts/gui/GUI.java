@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
-import com.bitwaffle.moguts.graphics.render.Game;
+import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.gui.button.Button;
 import com.bitwaffle.moguts.gui.button.RectangleButton;
 
@@ -50,17 +50,50 @@ public class GUI {
 	
 	/* FIXME TEMP CODE */
 	private void temp(){
-		RectangleButton butt = new RectangleButton(50.0f, Game.windowHeight - 50.0f, 50.0f, 50.0f){
+		RectangleButton leftButt = new RectangleButton(40.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
 			@Override
 			public void actionPerformed(){
-				Game.physics.makeRandomBox();
+				//Game.physics.makeRandomBox();
+				//Game.player.body.applyForceToCenter(1.0f, 0.0f);
+				Game.player.body.setLinearVelocity(0.0f, 0.0f);
 			}
 			
 			@Override
 			public void update(){
-				this.y = Game.windowHeight - 50.0f;
+				if(this.isDown)
+					//Game.player.body.applyForceToCenter(-100.0f, 0.0f);
+					Game.player.body.setLinearVelocity(-10.0f, 0.0f);
+				
+				
+				this.y = Game.windowHeight - 40.0f;
 			}
 		};
-		this.addButton(butt);
+		this.addButton(leftButt);
+		
+		/* -------------- */
+		
+		RectangleButton rightButt = new RectangleButton(150.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
+			@Override
+			public void actionPerformed(){
+				//Game.physics.makeRandomBox();
+				//Game.player.body.applyForceToCenter(1.0f, 0.0f);
+				Game.player.body.setLinearVelocity(0.0f, 0.0f);
+			}
+			
+			@Override
+			public void update(){
+				if(this.isDown){
+					//Game.player.body.applyForceToCenter(100.0f, 0.0f);
+					Game.player.body.setLinearVelocity(10.0f, 0.0f);
+				}
+				
+				this.y = Game.windowHeight - 40.0f;
+			}
+		};
+		this.addButton(rightButt);
+		
+		
+		
+		
 	}
 }

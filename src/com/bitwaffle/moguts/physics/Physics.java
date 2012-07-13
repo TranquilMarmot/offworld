@@ -8,8 +8,10 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.GdxNativesLoader;
+import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.entities.BoxEntity;
 import com.bitwaffle.moguts.entities.Entities;
+import com.bitwaffle.moguts.entities.Player;
 
 /**
  * Handles all physics workings
@@ -61,6 +63,39 @@ public class Physics {
 		world.step(timeStep, velocityIterations, positionIterations);
 		
 		entities.update(timeStep);
+	}
+	
+	public void temp2(){
+		// bottom
+		BodyDef groundBodyDef = new BodyDef();
+		groundBodyDef.position.set(0.0f, -50.0f);
+		
+		PolygonShape groundBox = new PolygonShape();
+		groundBox.setAsBox(100.0f, 1.0f);
+		
+		BoxEntity ground = new BoxEntity(groundBodyDef, 100.0f, 1.0f, groundBox, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
+		entities.addDynamicEntity(ground);
+		
+		
+		BodyDef playerBodyDef = new BodyDef();
+		playerBodyDef.type = BodyDef.BodyType.DynamicBody;
+		playerBodyDef.position.set(0.0f, -25.0f);
+		
+		PolygonShape boxShape = new PolygonShape();
+		boxShape.setAsBox(5.0f, 5.0f);
+		
+		FixtureDef playerFixture = new FixtureDef();
+		playerFixture.shape = boxShape;
+		playerFixture.density = 1.0f;
+		playerFixture.friction = 0.3f;
+		playerFixture.restitution = 0.3f;
+		
+		Game.player = new Player(playerBodyDef, 5.0f, 5.0f, playerFixture);
+		//BoxEntity box = new BoxEntity(playerBodyDef, 1.0f, 1.0f, playerFixture, new float[]{r, g, b, 1.0f});
+		entities.addDynamicEntity(Game.player);
+		
+		for(int i = 0; i < 15; i++)
+			makeRandomBox();
 	}
 	
 	/**
@@ -147,7 +182,7 @@ public class Physics {
 		BoxEntity box = new BoxEntity(boxDef, sizeX, sizeY, boxFixture, new float[]{r, g, b, 1.0f});
 		entities.addDynamicEntity(box);
 		
-		box.body.setAngularVelocity(randy.nextFloat() * 50.0f);
+		box.body.setAngularVelocity(randy.nextFloat() * 1.0f);
 		
 		float linX = randy.nextFloat() * 100.0f;
 		float linY = randy.nextFloat() * 100.0f;

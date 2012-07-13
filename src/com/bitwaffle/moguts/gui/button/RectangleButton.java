@@ -2,7 +2,7 @@ package com.bitwaffle.moguts.gui.button;
 
 import android.util.Log;
 
-import com.bitwaffle.moguts.graphics.render.Game;
+import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.graphics.shapes.Quad;
 
 public class RectangleButton extends Button {

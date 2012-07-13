@@ -3,7 +3,7 @@ package com.bitwaffle.moguts.entities;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.bitwaffle.moguts.graphics.render.Game;
+import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.graphics.shapes.Quad;
 
 /**

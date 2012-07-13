@@ -8,6 +8,7 @@ import android.content.res.AssetManager;
 import android.opengl.Matrix;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.entities.Entities;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.graphics.Camera;

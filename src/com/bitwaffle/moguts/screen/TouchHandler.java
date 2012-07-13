@@ -3,7 +3,7 @@ package com.bitwaffle.moguts.screen;
 import java.util.Iterator;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.moguts.graphics.render.Game;
+import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.gui.button.Button;
 
 import android.opengl.Matrix;
@@ -96,42 +96,42 @@ public class TouchHandler {
 	 * @return ???
 	 */
 	public boolean touchEvent(MotionEvent e){
-		// TODO On the droid this only gives 1 or 2, test it on other devices
-		int pointerCount = e.getPointerCount();
-		
 		// get new values
 		float x = e.getX();
 		float y = e.getY();
 		float spacing = spacing(e);
 		
-		//System.out.println("X: " + x + " Y: " + y + " W: " + GLRenderer.windowWidth + " H: " + GLRenderer.windowHeight);
-		checkForButtonPresses(x, y);
+		int action = e.getAction();
 		
-		// if only one pointer is down, we're in drag mode
-		if(pointerCount == 1)
-			currentMode = Modes.DRAG;
-		// else if two or more pointers are down, we're in zoom mode
-		else if(pointerCount >= 2)
-			currentMode = Modes.ZOOM;
-		
-		switch(e.getAction()){
-		case MotionEvent.ACTION_UP:
+		if(action == MotionEvent.ACTION_UP){
 			if(buttonDown != null){
 				buttonDown.release();
 				buttonDown = null;
 			}
-			break;
-		case MotionEvent.ACTION_MOVE:
-			switch(currentMode){
-			case DRAG:
-				dragEvent(x, y);
-				break;
-			case ZOOM:
-				if(spacing > MIN_ZOOM_SPACING)
-					zoomEvent(spacing);
+		} else if(!checkForButtonPresses(x, y)){
+			// TODO On the droid this only gives 1 or 2, test it on other devices
+			int pointerCount = e.getPointerCount();
+			
+			// if only one pointer is down, we're in drag mode
+			if(pointerCount == 1)
+				currentMode = Modes.DRAG;
+			// else if two or more pointers are down, we're in zoom mode
+			else if(pointerCount >= 2)
+				currentMode = Modes.ZOOM;
+			
+			switch(action){
+			case MotionEvent.ACTION_MOVE:
+				switch(currentMode){
+				case DRAG:
+					dragEvent(x, y);
+					break;
+				case ZOOM:
+					if(spacing > MIN_ZOOM_SPACING)
+						zoomEvent(spacing);
+					break;
+				}
 				break;
 			}
-			break;
 		}
 		
 		// set previous values for next touch event
