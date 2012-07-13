@@ -71,9 +71,9 @@ public class Physics {
 		groundBodyDef.position.set(0.0f, -50.0f);
 		
 		PolygonShape groundBox = new PolygonShape();
-		groundBox.setAsBox(100.0f, 1.0f);
+		groundBox.setAsBox(1000.0f, 1.0f);
 		
-		BoxEntity ground = new BoxEntity(groundBodyDef, 100.0f, 1.0f, groundBox, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
+		BoxEntity ground = new BoxEntity(groundBodyDef, 1000.0f, 1.0f, groundBox, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
 		entities.addDynamicEntity(ground);
 		
 		
@@ -82,7 +82,7 @@ public class Physics {
 		playerBodyDef.position.set(0.0f, -25.0f);
 		
 		PolygonShape boxShape = new PolygonShape();
-		boxShape.setAsBox(5.0f, 5.0f);
+		boxShape.setAsBox(10.0f, 10.0f);
 		
 		FixtureDef playerFixture = new FixtureDef();
 		playerFixture.shape = boxShape;
@@ -90,11 +90,11 @@ public class Physics {
 		playerFixture.friction = 0.3f;
 		playerFixture.restitution = 0.3f;
 		
-		Game.player = new Player(playerBodyDef, 5.0f, 5.0f, playerFixture);
+		Game.player = new Player(playerBodyDef, 10.0f, 10.0f, playerFixture);
 		//BoxEntity box = new BoxEntity(playerBodyDef, 1.0f, 1.0f, playerFixture, new float[]{r, g, b, 1.0f});
 		entities.addDynamicEntity(Game.player);
 		
-		for(int i = 0; i < 15; i++)
+		for(int i = 0; i < 35; i++)
 			makeRandomBox();
 	}
 	

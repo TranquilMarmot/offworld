@@ -16,7 +16,7 @@ public class BoxEntity extends DynamicEntity {
 	private Quad quad;
 	
 	/** Color to draw entity in (4 floats, between 0.0 and 1.0) */
-	private float[] color;
+	protected float[] color;
 	
 	/**
 	 * Create a new, box-shaped DynamicEntity
