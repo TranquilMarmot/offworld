@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
+import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.gui.button.Button;
 import com.bitwaffle.moguts.gui.button.RectangleButton;
@@ -55,14 +56,19 @@ public class GUI {
 			public void actionPerformed(){
 				//Game.physics.makeRandomBox();
 				//Game.player.body.applyForceToCenter(1.0f, 0.0f);
-				Game.player.body.setLinearVelocity(0.0f, 0.0f);
+				Vector2 linVec = Game.player.body.getLinearVelocity();
+				linVec.x += 10.0f;
+				Game.player.body.setLinearVelocity(linVec);
 			}
 			
 			@Override
 			public void update(){
-				if(this.isDown)
+				if(this.isDown){
 					//Game.player.body.applyForceToCenter(-100.0f, 0.0f);
-					Game.player.body.setLinearVelocity(-10.0f, 0.0f);
+					Vector2 linVec = Game.player.body.getLinearVelocity();
+					linVec.x -= 5.0f;
+					Game.player.body.setLinearVelocity(linVec);
+				}
 				
 				
 				this.y = Game.windowHeight - 40.0f;
@@ -77,14 +83,18 @@ public class GUI {
 			public void actionPerformed(){
 				//Game.physics.makeRandomBox();
 				//Game.player.body.applyForceToCenter(1.0f, 0.0f);
-				Game.player.body.setLinearVelocity(0.0f, 0.0f);
+				Vector2 linVec = Game.player.body.getLinearVelocity();
+				linVec.x -= 10.0f;
+				Game.player.body.setLinearVelocity(linVec);
 			}
 			
 			@Override
 			public void update(){
 				if(this.isDown){
-					//Game.player.body.applyForceToCenter(100.0f, 0.0f);
-					Game.player.body.setLinearVelocity(10.0f, 0.0f);
+					//Game.player.body.applyForceToCenter(-100.0f, 0.0f);
+					Vector2 linVec = Game.player.body.getLinearVelocity();
+					linVec.x += 5.0f;
+					Game.player.body.setLinearVelocity(linVec);
 				}
 				
 				this.y = Game.windowHeight - 40.0f;
@@ -93,7 +103,28 @@ public class GUI {
 		this.addButton(rightButt);
 		
 		
+		/* -------------------- */
 		
+		
+		RectangleButton jumpButt = new RectangleButton(Game.windowWidth - 40.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
+			@Override
+			public void actionPerformed(){
+				//Game.physics.makeRandomBox();
+				//Game.player.body.applyForceToCenter(1.0f, 0.0f);
+				//Game.player.body.setLinearVelocity(0.0f, 0.0f);
+				//Game.player.body.applyForceToCenter(0.0f, 1500.0f);
+				Vector2 linVec = Game.player.body.getLinearVelocity();
+				linVec.y += 10.0f;
+				Game.player.body.setLinearVelocity(linVec);
+			}
+			
+			@Override
+			public void update(){
+				this.y = Game.windowHeight - 40.0f;
+				this.x = Game.windowWidth - 40.0f;
+			}
+		};
+		this.addButton(jumpButt);
 		
 	}
 }
