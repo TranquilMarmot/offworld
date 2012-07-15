@@ -80,8 +80,9 @@ public class RectangleButton extends Button {
 	}
 
 	@Override
-	public void press() {
+	public void press(int pointer) {
 		// TODO Auto-generated method stub
+		this.pointer = pointer;
 		isDown = true;
 	}
 

@@ -24,5 +24,9 @@ public class Player extends BoxEntity {
 		this.color[1] = r.nextFloat();
 		this.color[2] = r.nextFloat();
 	}
+	
+	public void jump(){
+		
+	}
 
 }
