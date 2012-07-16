@@ -1,5 +1,6 @@
 package com.bitwaffle.moguts.gui.button;
 
+import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.gui.GUIObject;
 
 /**
@@ -10,13 +11,10 @@ import com.bitwaffle.moguts.gui.GUIObject;
  */
 public abstract class Button extends GUIObject{
 	/** Whether or not the button is active/visible (can only be pressed if both are true) */
-	protected boolean isActive, isVisible;
+	private boolean isActive, isVisible;
 	
 	/** Whether or not the button is being held down */
-	protected boolean isDown, wasDown;
-	
-	protected int pointerId;
-	
+	private boolean isDown;
 	
 	/**
 	 * Create a new button
@@ -27,23 +25,50 @@ public abstract class Button extends GUIObject{
 		super(x, y);
 		isActive = true;
 		isVisible = true;
-		pointerId = -1;
 	}
-
-	/** What to do when the button is pressed */
-	public abstract void actionPerformed();
 	
 	/**
-	 * Check if a button has been pressed
-	 * @param x
-	 * @param y
-	 * @return
+	 * Check if a point lies within a button.
+	 * This needs to be overriden by any implementing class to reflect the shape of the button.
+	 * @param x X value of point, in screen coordinates
+	 * @param y Y value of point, in screen coordinates
+	 * @return Whether or not the button contains the point
 	 */
 	public abstract boolean contains(float x, float y);
 	
-	public abstract void press();
+	/**
+	 * Check if a point lies within a button
+	 * @param point Point to check for
+	 * @return Whether or not the given point lies within the button
+	 */
+	public boolean contains(Vector2 point){
+		return this.contains(point.x, point.y);
+	}
 	
-	public abstract void release();
+	/**
+	 * Press the button! This sets isDown to true.
+	 * When overriding this, MAKE SURE TO CALL super.press()!!!
+	 */
+	public void press(){
+		this.isDown = true;
+	}
+	
+	/**
+	 * Release the button! This sets isDown to false.
+	 * In general, this will be overriden with an action to perform when the button gets released.
+	 * When overriding this, MAKE SURE TO CALL super.release()!!!
+	 */
+	public void release(){
+		this.isDown = false;
+	}
+	
+	/**
+	 * By default, this does nothing (so sliding off of a button is considered cancelling its press)
+	 * This is easy to override and make it call the release() method, however (or give it its own functionality)
+	 */
+	public void slideRelease(){
+		this.isDown = false;
+	}
 	
 	public boolean isActive(){ return isActive; }
 	public void deactivate(){ isActive = false; }
@@ -54,5 +79,4 @@ public abstract class Button extends GUIObject{
 	public void show(){ isVisible = true; }
 	
 	public boolean isDown(){ return isDown;}
-	public int getPointerId() { return pointerId; }
 }

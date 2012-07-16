@@ -4,6 +4,7 @@
 # eclipse project files
 .classpath
 .project
+.settings
 
 # binaries
 bin/*

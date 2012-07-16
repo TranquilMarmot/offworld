@@ -5,6 +5,11 @@ import java.util.Random;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
+/**
+ * Player class
+ * 
+ * @author TranquilMarmot
+ */
 public class Player extends BoxEntity {
 	private static float[] defaultColor = { 0.0f, 1.0f, 0.0f, 1.0f };
 	
@@ -23,10 +28,13 @@ public class Player extends BoxEntity {
 		this.color[0] = r.nextFloat();
 		this.color[1] = r.nextFloat();
 		this.color[2] = r.nextFloat();
+		
+		// don't want out player rotating all willy nilly now, do we?
+		this.setAngle(0.0f);
 	}
 	
 	public void jump(){
-		
+		// TODO this
 	}
 
 }

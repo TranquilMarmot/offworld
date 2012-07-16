@@ -37,6 +37,7 @@ public class Game implements GLSurfaceView.Renderer {
 	/** Physics world */
 	public static Physics physics;
 	
+	/** The player */
 	public static Player player;
 	
 	/** 
@@ -44,7 +45,7 @@ public class Game implements GLSurfaceView.Renderer {
 	 * is ticked with <code>1 / currentFPS</code>. If currentFPS is below
 	 * this, then physics gets ticked with <code>1 / MIN_TIMESTEP_FPS</code>
 	 */
-	private static final int MIN_TIMESTEP_FPS = 30, MAX_TIMESTEP_FPS = 60;
+	//private static final int MIN_TIMESTEP_FPS = 30, MAX_TIMESTEP_FPS = 60;
 	
 	/** Current height and width of the window */
 	public static volatile int windowWidth, windowHeight;
@@ -87,6 +88,18 @@ public class Game implements GLSurfaceView.Renderer {
     public void onDrawFrame(GL10 unused) {
     	long timeBeforeLoop = System.currentTimeMillis();
     	
+        /*
+         * Step the physics sim
+         * (see comment above MIN_TIMESTEP_FPS for more info)
+         */
+        // FIXME this timestep makes me a sad panda!
+       // if(currentFPS < MIN_TIMESTEP_FPS)
+        //	physics.update(1.0f / MIN_TIMESTEP_FPS);
+       // else if(currentFPS > MAX_TIMESTEP_FPS)
+        //	physics.update(1.0f / MAX_TIMESTEP_FPS);
+       // else
+        	physics.update(1.0f / 60.0f);
+    	
     	// clear the screen
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
         
@@ -94,21 +107,14 @@ public class Game implements GLSurfaceView.Renderer {
         
         // render 2D scene
         render2D.renderScene();
-
-        /*
-         * Step the physics sim
-         * (see comment above MIN_TIMESTEP_FPS for more info)
-         */
-        if(currentFPS < MIN_TIMESTEP_FPS)
-        	physics.update(1.0f / MIN_TIMESTEP_FPS);
-        else if(currentFPS > MAX_TIMESTEP_FPS)
-        	physics.update(1.0f / MIN_TIMESTEP_FPS);
-        else
-        	physics.update(1.0f / currentFPS);
     	
     	updateFPS(timeBeforeLoop);
     }
     
+    /**
+     * Update the FPS counter
+     * @param timeBeforeLoop Time in milliseconds before doing everything
+     */
     private void updateFPS(long timeBeforeLoop){
     	long elapsedTime = System.currentTimeMillis() - timeBeforeLoop;
     	counter += elapsedTime;

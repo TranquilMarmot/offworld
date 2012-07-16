@@ -14,8 +14,12 @@ public class Camera extends Entity {
 	/** Current zoom level of camera (smaller it is, the smaller everything will be rendered) */
 	private float zoom;
 	
+	/** Current camera mode */
 	private Modes currentMode = Modes.FOLLOW;
 	
+	/**
+	 * Different camera modes
+	 */
 	public static enum Modes{
 		FOLLOW(0),
 		FREE(1);
@@ -83,7 +87,7 @@ public class Camera extends Entity {
 		switch(currentMode){
 		case FOLLOW:
 			Vector2 playerLoc = Game.player.getLocation();
-			// FIXME make this work more betterer
+			// FIXME make this work more betterer (probably base it on screen size/zoom?)
 			this.location.set(-playerLoc.x + 275.0f, -playerLoc.y + 115.0f);
 			break;
 		case FREE:

@@ -26,7 +26,7 @@ public class Physics {
 	public Entities entities;
 	
 	/** Gravity for the world */
-	private Vector2 gravity = new Vector2(0.0f, -9.8f);
+	private Vector2 gravity = new Vector2(0.0f, -10.0f);
 	
 	/** Whether or not to sleep TODO look into what this means */
 	boolean doSleep = false;
@@ -49,6 +49,7 @@ public class Physics {
 		entities = new Entities();
 	}
 	
+	// FIXME this don't work
 	public void restartWorld(){
 		world.dispose();
 		world = new World(gravity, doSleep);
@@ -65,6 +66,9 @@ public class Physics {
 		entities.update(timeStep);
 	}
 	
+	/**
+	 *  FIXME this initialization method is only temporary until some sort of save file gets implemented
+	 */
 	public void temp2(){
 		// bottom
 		BodyDef groundBodyDef = new BodyDef();
@@ -76,7 +80,7 @@ public class Physics {
 		BoxEntity ground = new BoxEntity(groundBodyDef, 1000.0f, 1.0f, groundBox, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
 		entities.addDynamicEntity(ground);
 		
-		
+		// player
 		BodyDef playerBodyDef = new BodyDef();
 		playerBodyDef.type = BodyDef.BodyType.DynamicBody;
 		playerBodyDef.position.set(0.0f, -25.0f);
@@ -86,15 +90,14 @@ public class Physics {
 		
 		FixtureDef playerFixture = new FixtureDef();
 		playerFixture.shape = boxShape;
-		playerFixture.density = 1.0f;
+		playerFixture.density = 5.0f;
 		playerFixture.friction = 0.3f;
-		playerFixture.restitution = 0.3f;
+		playerFixture.restitution = 0.0f;
 		
 		Game.player = new Player(playerBodyDef, 10.0f, 10.0f, playerFixture);
-		//BoxEntity box = new BoxEntity(playerBodyDef, 1.0f, 1.0f, playerFixture, new float[]{r, g, b, 1.0f});
 		entities.addDynamicEntity(Game.player);
 		
-		for(int i = 0; i < 35; i++)
+		for(int i = 0; i < 50; i++)
 			makeRandomBox();
 	}
 	
