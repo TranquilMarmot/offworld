@@ -98,6 +98,7 @@ public class Render2D {
 		
 		program.use();
 		
+		camera.update(0.0f);
 		setUpProjectionMatrix();
 		renderEntities(Game.physics.entities.getPassiveEntityIterator());
 		renderEntities(Game.physics.entities.getDynamicEntityIterator());

@@ -27,24 +27,7 @@ public class RectangleButton extends Button {
 	}
 
 	@Override
-	public boolean checkForPress(float touchX, float touchY) {
-		//boolean pressed = r.contains(touchX, touchY);
-		boolean pressed = this.contains(touchX, touchY);
-		
-		//Log.d("Button", "Attempted press at: " + x + " " + y + (pressed ? " success!" : " fail"));
-		
-		/*
-		if(pressed){
-			isDown = true;
-			wasDown = true;
-		} else{
-			isDown = false;
-		}*/
-		
-		return pressed;
-	}
-	
-	private boolean contains(float touchX, float touchY){
+	public boolean contains(float touchX, float touchY) {
 		return
 				touchY > this.y - this.height &&  // top
 				touchY < this.y + this.height && // bottom
@@ -80,9 +63,9 @@ public class RectangleButton extends Button {
 	}
 
 	@Override
-	public void press(int pointer) {
+	public void press() {
 		// TODO Auto-generated method stub
-		this.pointer = pointer;
+		//this.pointerId = pointerId;
 		isDown = true;
 	}
 

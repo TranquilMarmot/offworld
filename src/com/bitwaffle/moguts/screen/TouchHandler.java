@@ -39,6 +39,8 @@ public class TouchHandler {
 	/** If two fingers are being used, how far apart they are */
 	private float previousSpacing;
 	
+	private int previousPointerCount = 0;
+	
 	/** How far apart fingers have to be before pinch zooming happens */
 	public final float MIN_ZOOM_SPACING = 10.0f;
 	
@@ -99,106 +101,68 @@ public class TouchHandler {
 	}
 	
 	public boolean touchEvent(MotionEvent e){
+		// TODO make it un-press when there's two pointers
+		// TODO make it un-press when the button is slid off of (maybe add a method so that a button can have a finger slid off without taking any action, i.e. a "releaseCancel" or something)
+		// TODO add a camera toggle button in the top left to allow panning/zooming camera (then keep it there while still following player)
 		int pointerCount = e.getPointerCount();
 		int action = e.getAction();
+		int index = e.getActionIndex();
+		int masked = e.getActionMasked();
 		
-		for(int currentPointer = 0; currentPointer < pointerCount; currentPointer++){
-			float x = e.getX(currentPointer);
-			float y = e.getY(currentPointer);
+		//float x = e.getX(index);
+		//float y = e.getY(index);
+		
+		
+		//for(int i = 0; i < pointerCount; i++){
+			float x = e.getX(0);
+			float y = e.getY(0);
 			
-			if(buttonsDown[0] != null && buttonsDown[0].getPointer() != currentPointer){
-				if(action == MotionEvent.ACTION_UP){
-					buttonsDown[0].release();
-					buttonsDown[0] = null;
-				} else if(action == MotionEvent.ACTION_MOVE){
-					if(!buttonsDown[0].checkForPress(x, y)){
+			if(pointerCount != previousPointerCount){
+				float x2 = e.getX(1);
+				float y2 = e.getY(1);
+				if(pointerCount > previousPointerCount){
+					checkForButtonPresses(x2, y2);
+				} else if(pointerCount < previousPointerCount){
+					if(buttonsDown[0] != null && buttonsDown[0].isDown() && buttonsDown[0].contains(x2, y2)){
 						buttonsDown[0].release();
 						buttonsDown[0] = null;
 					}
-				}
-			}
-		}
-		
-		return true;
-	}
-	
-	public boolean touchEventFucked(MotionEvent e){
-		int action = e.getAction();
-		int pointerCount = e.getPointerCount();
-		float watX = e.getX();
-		float watY = e.getY();
-		
-		for(int currentPointer = 0; currentPointer < pointerCount; currentPointer++){
-			float x = e.getX(currentPointer);
-			float y = e.getY(currentPointer);
-			
-			System.out.println("currentPointer " + currentPointer + " action " + action + " x " + x + " y " + y + " watx " + watX + " watY " + watY);
-			
-			if(buttonsDown[0] != null && buttonsDown[0].getPointer() != currentPointer){
-				if(action == MotionEvent.ACTION_UP){
-					buttonsDown[0].release();
-					buttonsDown[0] = null;
-				} else if(action == MotionEvent.ACTION_MOVE){
-					if(!buttonsDown[0].checkForPress(x, y)){
-						buttonsDown[0].release();
-						buttonsDown[0] = null;
-					}
-				}
-			}
-			
-			if(buttonsDown[1] != null && buttonsDown[1].getPointer() != currentPointer){
-				if(action == MotionEvent.ACTION_UP){
-					buttonsDown[1].release();
-					buttonsDown[1] = null;
-				} else if(action == MotionEvent.ACTION_MOVE){
-					if(!buttonsDown[1].checkForPress(x, y)){
+					if(buttonsDown[1] != null && buttonsDown[1].isDown() && buttonsDown[1].contains(x2, y2)){
 						buttonsDown[1].release();
 						buttonsDown[1] = null;
 					}
 				}
 			}
 			
-			if(!checkForButtonPresses(currentPointer, x, y)){
-				System.out.println("no presses");
-				if(pointerCount >= 2)
-					currentMode = Modes.ZOOM;
-				else
-					currentMode = Modes.DRAG;
-				
-				switch(action){
-				case MotionEvent.ACTION_MOVE:
-					switch(currentMode){
-					case DRAG:
-						dragEvent(x, y);
-						break;
-					case ZOOM:
-						float spacing = spacing(e);
-						if(spacing > MIN_ZOOM_SPACING){
-							zoomEvent(spacing);
-							previousSpacing = spacing;
-						}
-						break;
-					}
+			int pointerId = e.getPointerId(0);
+			
+			if(action == MotionEvent.ACTION_DOWN){
+				checkForButtonPresses(x, y);
+			} else if(action == MotionEvent.ACTION_UP){
+				if(buttonsDown[0] != null && buttonsDown[0].isDown()){
+					buttonsDown[0].release();
+					buttonsDown[0] = null;
 				}
-			} else{
-				System.out.println("presses");
+				else if(buttonsDown[1] != null && buttonsDown[1].isDown()){
+					buttonsDown[1].release();
+					buttonsDown[1] = null;
+				}
+			} else if(action == MotionEvent.ACTION_MOVE /*&& i == 1*/){
+				if(pointerCount == 1){
+					
+				} else if(pointerCount >= 2){
+					
+				}
+				//System.out.println("Pointer " + index + " ???|action " + action + "|count " + pointerCount);
 			}
-		}
-		
-		previousX = watX;
-		previousY = watY;
+		//
+		previousPointerCount = pointerCount;
 		
 		return true;
 	}
-
 	
-	/**
-	 * Check if any buttons have been pressed
-	 * @param x X coordinate of press event
-	 * @param y Y coordinate of press event
-	 * @return Whether or not a button was pressed
-	 */
-	private boolean checkForButtonPresses(int pointer, float x, float y){
+
+	private boolean checkForButtonPresses(float x, float y){
 		// TODO this should really check every pointer that's down to see if it's on a button (maybe have a list of buttons that are down?)
 		Iterator<Button> it = Game.render2D.gui.getIterator();
 		
@@ -208,14 +172,14 @@ public class TouchHandler {
 			Button b = it.next();
 			
 			// FIXME this will only trigger a pressed event for the first button that gets pressed- is that practical?
-			if(b.checkForPress(x, y)){
+			if(b.contains(x, y)){
 				if(buttonsDown[0] == null && buttonsDown[1] != b){
 					buttonsDown[0] = b;
-					b.press(pointer);
+					b.press();
 					pressed = true;
 				} else if(buttonsDown[1] == null && buttonsDown[0] != b){
 					buttonsDown[1] = b;
-					b.press(pointer);
+					b.press();
 					pressed = true;
 				}
 			}
@@ -223,7 +187,7 @@ public class TouchHandler {
 		
 		return pressed;
 	}
-	
+
 	public Vector2 toScreenSpace(float touchX, float touchY){
 		Vector2 pos = new Vector2(0.0f, 0.0f);
 		

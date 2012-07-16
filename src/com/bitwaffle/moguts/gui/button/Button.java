@@ -15,7 +15,7 @@ public abstract class Button extends GUIObject{
 	/** Whether or not the button is being held down */
 	protected boolean isDown, wasDown;
 	
-	protected int pointer;
+	protected int pointerId;
 	
 	
 	/**
@@ -27,7 +27,7 @@ public abstract class Button extends GUIObject{
 		super(x, y);
 		isActive = true;
 		isVisible = true;
-		pointer = -1;
+		pointerId = -1;
 	}
 
 	/** What to do when the button is pressed */
@@ -39,9 +39,9 @@ public abstract class Button extends GUIObject{
 	 * @param y
 	 * @return
 	 */
-	public abstract boolean checkForPress(float x, float y);
+	public abstract boolean contains(float x, float y);
 	
-	public abstract void press(int pointer);
+	public abstract void press();
 	
 	public abstract void release();
 	
@@ -54,5 +54,5 @@ public abstract class Button extends GUIObject{
 	public void show(){ isVisible = true; }
 	
 	public boolean isDown(){ return isDown;}
-	public int getPointer() { return pointer; }
+	public int getPointerId() { return pointerId; }
 }

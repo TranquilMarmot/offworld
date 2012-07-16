@@ -1,6 +1,7 @@
 package com.bitwaffle.moguts.graphics;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.entities.Entity;
 
 // TODO Make camera's angle work so things can be rotated
@@ -66,7 +67,12 @@ public class Camera extends Entity {
 	}
 
 	@Override
-	public void update(float timeStep) {}
+	public void update(float timeStep) {
+		Vector2 playerLoc = Game.player.getLocation();
+		
+		// FIXME make this work more better
+		this.location.set(-playerLoc.x + 275.0f, -playerLoc.y + 115.0f);
+	}
 	@Override
 	public void render() {}
 	@Override
