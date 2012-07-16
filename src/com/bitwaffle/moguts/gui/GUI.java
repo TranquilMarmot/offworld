@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
-import android.view.MotionEvent;
-
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.Game;
+import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.gui.button.Button;
 import com.bitwaffle.moguts.gui.button.RectangleButton;
-import com.bitwaffle.moguts.screen.TouchHandler.Modes;
 
 public class GUI {
 	private ArrayList<Button> buttons;
@@ -52,7 +50,7 @@ public class GUI {
 			it.next().update();
 	}
 	
-	/* FIXME TEMP CODE */
+	/* FIXME TEMP CODE maybe serialize GUI elements? */
 	private void temp(){
 		RectangleButton leftButt = new RectangleButton(40.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
 			@Override
@@ -117,6 +115,21 @@ public class GUI {
 			}
 		};
 		this.addButton(jumpButt);
+		
+		/* -------------------- */
+		
+		
+		RectangleButton camButt = new RectangleButton(20.0f, 20.0f, 20.0f, 20.0f){
+			@Override
+			public void actionPerformed(){
+				Camera.Modes mode = Game.render2D.camera.currentMode();
+				if(mode == Camera.Modes.FOLLOW)
+					Game.render2D.camera.setMode(Camera.Modes.FREE);
+				else
+					Game.render2D.camera.setMode(Camera.Modes.FOLLOW);
+			}
+		};
+		this.addButton(camButt);
 		
 	}
 }
