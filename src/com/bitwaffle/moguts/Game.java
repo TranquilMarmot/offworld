@@ -6,8 +6,11 @@ import javax.microedition.khronos.opengles.GL10;
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.os.SystemClock;
+import android.os.Vibrator;
 import android.util.Log;
 
+import com.bitwaffle.moguts.device.Vibration;
 import com.bitwaffle.moguts.entities.Player;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.graphics.render.Render3D;
@@ -45,7 +48,7 @@ public class Game implements GLSurfaceView.Renderer {
 	 * is ticked with <code>1 / currentFPS</code>. If currentFPS is below
 	 * this, then physics gets ticked with <code>1 / MIN_TIMESTEP_FPS</code>
 	 */
-	//private static final int MIN_TIMESTEP_FPS = 30, MAX_TIMESTEP_FPS = 60;
+	private static final int MIN_TIMESTEP_FPS = 45, MAX_TIMESTEP_FPS = 60;
 	
 	/** Current height and width of the window */
 	public static volatile int windowWidth, windowHeight;
@@ -61,6 +64,8 @@ public class Game implements GLSurfaceView.Renderer {
 	/** Used to count frames for FPS */
 	private int frameCount = 0;
 	
+	public static Vibration vibration;
+	
 	/**
 	 * Create a new renderer instance
 	 * @param context Context to use for laoding resources
@@ -68,6 +73,7 @@ public class Game implements GLSurfaceView.Renderer {
 	public Game(Context context){
 		super();
 		this.context = context;
+		vibration = new Vibration(context);
 	}
 
 	/**
@@ -86,19 +92,19 @@ public class Game implements GLSurfaceView.Renderer {
      * Draws a frame and steps the physics sim
      */
     public void onDrawFrame(GL10 unused) {
-    	long timeBeforeLoop = System.currentTimeMillis();
+    	long timeBeforeLoop = SystemClock.elapsedRealtime();
     	
         /*
          * Step the physics sim
          * (see comment above MIN_TIMESTEP_FPS for more info)
          */
         // FIXME this timestep makes me a sad panda!
-       // if(currentFPS < MIN_TIMESTEP_FPS)
-        //	physics.update(1.0f / MIN_TIMESTEP_FPS);
-       // else if(currentFPS > MAX_TIMESTEP_FPS)
-        //	physics.update(1.0f / MAX_TIMESTEP_FPS);
-       // else
-        	physics.update(1.0f / 60.0f);
+        if(currentFPS < MIN_TIMESTEP_FPS)
+        	physics.update(1.0f / MIN_TIMESTEP_FPS);
+        else if(currentFPS > MAX_TIMESTEP_FPS)
+        	physics.update(1.0f / MAX_TIMESTEP_FPS);
+        else
+        	physics.update(1.0f / currentFPS);
     	
     	// clear the screen
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
@@ -107,7 +113,7 @@ public class Game implements GLSurfaceView.Renderer {
         
         // render 2D scene
         render2D.renderScene();
-    	
+        
     	updateFPS(timeBeforeLoop);
     }
     
@@ -116,7 +122,7 @@ public class Game implements GLSurfaceView.Renderer {
      * @param timeBeforeLoop Time in milliseconds before doing everything
      */
     private void updateFPS(long timeBeforeLoop){
-    	long elapsedTime = System.currentTimeMillis() - timeBeforeLoop;
+    	long elapsedTime = SystemClock.elapsedRealtime() - timeBeforeLoop;
     	counter += elapsedTime;
     	frameCount++;
     	
@@ -139,4 +145,6 @@ public class Game implements GLSurfaceView.Renderer {
     	aspect = (float) width /  (float) height;
         GLES20.glViewport(0, 0, width, height);
     }
+    
+
 }

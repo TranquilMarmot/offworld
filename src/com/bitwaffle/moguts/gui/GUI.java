@@ -16,7 +16,9 @@ import com.bitwaffle.moguts.gui.button.RectangleButton;
  * @author TranquilMarmot
  */
 public class GUI {
+	/** List of buttons */
 	private ArrayList<Button> buttons;
+	/** Used to avoid ConcurrentModificationExceptions */
 	private Stack<Button> buttonsToAdd, buttonsToRemove;
 	
 	public GUI(){
@@ -76,6 +78,12 @@ public class GUI {
 				
 				this.y = Game.windowHeight - 40.0f;
 			}
+			
+			@Override
+			public void press(){
+				super.press();
+				Game.vibration.vibrate(25);
+			}
 		};
 		this.addButton(leftButt);
 		
@@ -100,6 +108,12 @@ public class GUI {
 				
 				this.y = Game.windowHeight - 40.0f;
 			}
+			
+			@Override
+			public void press(){
+				super.press();
+				Game.vibration.vibrate(25);
+			}
 		};
 		this.addButton(rightButt);
 		
@@ -111,6 +125,7 @@ public class GUI {
 			@Override
 			public void release(){
 				super.release();
+				Game.vibration.vibrate(25);
 				Vector2 linVec = Game.player.body.getLinearVelocity();
 				linVec.y += 10.0f;
 				Game.player.body.setLinearVelocity(linVec);
@@ -130,6 +145,7 @@ public class GUI {
 		RectangleButton camButt = new RectangleButton(20.0f, 20.0f, 20.0f, 20.0f){
 			@Override
 			public void release(){
+				Game.vibration.vibrate(25);
 				super.release();
 				Camera.Modes mode = Game.render2D.camera.currentMode();
 				if(mode == Camera.Modes.FOLLOW)

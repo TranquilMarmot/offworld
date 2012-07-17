@@ -6,7 +6,7 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Window;
 
-import com.bitwaffle.moguts.screen.SurfaceView;
+import com.bitwaffle.moguts.device.SurfaceView;
 
 /**
  * public static void main(String[] args)!!!

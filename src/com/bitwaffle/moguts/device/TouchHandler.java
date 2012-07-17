@@ -1,4 +1,4 @@
-package com.bitwaffle.moguts.screen;
+package com.bitwaffle.moguts.device;
 
 import java.util.Iterator;
 

@@ -35,7 +35,7 @@ public class Physics {
 	//final float timeStep = 1.0f / 30.0f;
 	
 	/** How many iterations to do for calculations */
-	final int velocityIterations = 5, positionIterations = 2;
+	final int velocityIterations = 6, positionIterations = 2;
 	
 	/**
 	 * Initialized physics
