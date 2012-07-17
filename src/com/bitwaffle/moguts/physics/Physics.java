@@ -2,6 +2,9 @@ package com.bitwaffle.moguts.physics;
 
 import java.util.Random;
 
+import android.os.SystemClock;
+import android.util.FloatMath;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -31,11 +34,21 @@ public class Physics {
 	/** Whether or not to sleep TODO look into what this means */
 	boolean doSleep = false;
 	
-	/* How much to step the simulation each update */
-	//final float timeStep = 1.0f / 30.0f;
-	
 	/** How many iterations to do for calculations */
 	final int velocityIterations = 6, positionIterations = 2;
+	
+	/** How much to step the world each time (Box2D prefers 1/60) */
+	private final float FIXED_TIMESTEP = 1.0f / 60.0f;
+	
+	/** Maximum number of allowed steps per frame */
+	private final int MAX_STEPS = 5;
+	
+	/** Used to know how much time has passed */
+	private float timeStepAccum = 0;
+	
+	/** Used to know how much time has passed */
+	private long previousTime;
+	
 	
 	/**
 	 * Initialized physics
@@ -47,6 +60,9 @@ public class Physics {
 		// initialize the world
 		world = new World(gravity, doSleep);
 		entities = new Entities();
+		
+		
+		previousTime = SystemClock.elapsedRealtime();
 	}
 	
 	// FIXME this don't work
@@ -61,9 +77,30 @@ public class Physics {
 	 * Steps the physics simlation and updates every entity's location
 	 */
 	public void update(float timeStep){
-		world.step(timeStep, velocityIterations, positionIterations);
+		// get the current time
+		long currentTime = SystemClock.elapsedRealtime();
+
+		// subtract and convert to seconds 
+		float deltaTime = (currentTime - previousTime) / 1000.0f;
 		
-		entities.update(timeStep);
+		// set previousTime for next iteration
+		previousTime = currentTime;
+		
+		// add the change in time to the accumulator, then find out how many steps we need to do
+		timeStepAccum += deltaTime;
+		float steps = FloatMath.floor(timeStepAccum / FIXED_TIMESTEP);
+		
+		// only touch the accumulator if necessary
+		if(steps > 0)
+			timeStepAccum -= steps * FIXED_TIMESTEP;
+		
+		// clamp steps and iterator however many times
+		for(int i = 0; i < Math.min(steps, MAX_STEPS); i++){
+			world.step(FIXED_TIMESTEP, velocityIterations, positionIterations);
+			entities.update(FIXED_TIMESTEP);
+		}
+		
+		world.clearForces();
 	}
 	
 	/**
