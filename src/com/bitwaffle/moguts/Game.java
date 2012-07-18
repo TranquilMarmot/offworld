@@ -7,7 +7,6 @@ import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.os.SystemClock;
-import android.os.Vibrator;
 import android.util.Log;
 
 import com.bitwaffle.moguts.device.Vibration;

@@ -13,7 +13,7 @@ public class Vibration {
 	private Vibrator vib;
 	
 	/** Whether or not vibration is enabled */
-	private boolean vibrationEnabled = false;
+	private boolean vibrationEnabled = true;
 	
 	/**
 	 * Create a new Vibration handler

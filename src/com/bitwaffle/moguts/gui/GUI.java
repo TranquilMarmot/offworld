@@ -155,6 +155,5 @@ public class GUI {
 			}
 		};
 		this.addButton(camButt);
-		
 	}
 }
