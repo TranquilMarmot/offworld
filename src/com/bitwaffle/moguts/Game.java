@@ -12,7 +12,6 @@ import android.util.Log;
 import com.bitwaffle.moguts.device.Vibration;
 import com.bitwaffle.moguts.entities.Player;
 import com.bitwaffle.moguts.graphics.render.Render2D;
-import com.bitwaffle.moguts.graphics.render.Render3D;
 import com.bitwaffle.moguts.physics.Physics;
 
 /**
@@ -31,7 +30,7 @@ public class Game implements GLSurfaceView.Renderer {
 	private Context context;
 	
 	/** 3D Renderer */
-	public static Render3D render3D;
+	//public static Render3D render3D;
 	
 	/** 2D Renderer*/
 	public static Render2D render2D;

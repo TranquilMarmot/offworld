@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
-import com.bitwaffle.moguts.Game;
-
 import android.opengl.GLES20;
 
 /**
@@ -321,17 +319,17 @@ public class ModelBuilder {
 		GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, vboHandles.get(0));
 		GLES20.glBufferData(GLES20.GL_ARRAY_BUFFER, vertBuffer.capacity(), vertBuffer, GLES20.GL_STATIC_DRAW);
 		// FIXME should this be null?!
-		GLES20.glVertexAttribPointer(Game.render3D.getVertexLocationPosition(), 3, GLES20.GL_FLOAT, false, 0, null);
+		//GLES20.glVertexAttribPointer(Game.render3D.getVertexLocationPosition(), 3, GLES20.GL_FLOAT, false, 0, null);
 		//GLES20.glEnableVertexAttribArray(0);
 		
 		GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, vboHandles.get(1));
 		GLES20.glBufferData(GLES20.GL_ARRAY_BUFFER, normBuffer.capacity(), normBuffer, GLES20.GL_STATIC_DRAW);
-		GLES20.glVertexAttribPointer(Game.render3D.getVertexNormalPosition(), 3, GLES20.GL_FLOAT, false, 0, null); // FIXME null?!
+		//GLES20.glVertexAttribPointer(Game.render3D.getVertexNormalPosition(), 3, GLES20.GL_FLOAT, false, 0, null); // FIXME null?!
 		//GLES20.glEnableVertexAttribArray(1);
 		
 		GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, vboHandles.get(2));
 		GLES20.glBufferData(GLES20.GL_ARRAY_BUFFER, texBuffer.capacity(), texBuffer, GLES20.GL_STATIC_DRAW);
-		GLES20.glVertexAttribPointer(Game.render3D.getVertexTexCoordPosition(), 2, GLES20.GL_FLOAT, false, 0, null); //FIXME Null?!
+		//GLES20.glVertexAttribPointer(Game.render3D.getVertexTexCoordPosition(), 2, GLES20.GL_FLOAT, false, 0, null); //FIXME Null?!
 		//GLES20.glEnableVertexAttribArray(2);
 		
 		//GLES20.glBindVertexArray(0);

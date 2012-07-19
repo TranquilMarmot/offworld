@@ -92,8 +92,11 @@ public class TouchHandler {
 		float y0 = e.getY(0);
 
 		// x and y values of second pointer (will be 0 if no second pointer)
-		float x1 = e.getX(1);
-		float y1 = e.getY(1);
+		float x1 = 0.0f, y1 = 0.0f;
+		try{
+			x1 = e.getX(1);
+			y1 = e.getY(1);
+		} catch(IllegalArgumentException pointerIndexOutOfRange){}
 
 		// how far apart the two pointer are
 		float spacing = spacing(x0, y0, x1, y1);

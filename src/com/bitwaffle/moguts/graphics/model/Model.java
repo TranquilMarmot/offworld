@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import android.opengl.GLES20;
 
-import com.bitwaffle.moguts.Game;
-
 /**
  * This class defines a 3D model. A model is a set of vertices to draw, what texture to use when drawing them,
  * and a collision shape to use with JBullet
@@ -66,7 +64,7 @@ public class Model {
 		
 		// loop through each part, set its material and draw
 		for(ModelPart p : parts){
-			Game.render3D.setCurrentMaterial(p.getMaterial());
+			//Game.render3D.setCurrentMaterial(p.getMaterial());
 			p.draw();
 		}
 		
