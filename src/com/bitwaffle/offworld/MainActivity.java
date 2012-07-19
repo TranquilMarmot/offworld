@@ -1,7 +1,6 @@
 package com.bitwaffle.offworld;
 
 import android.app.Activity;
-import android.content.res.Configuration;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Window;
@@ -18,6 +17,13 @@ public class MainActivity extends Activity {
     private static GLSurfaceView mGLView;
 
     @Override
+    /**
+     * What to do when the activity is created
+     * NOTE:
+     * Since this app is pure OpenGL, this is the only activity.
+     * Whenever the screen's orientation gets changed, this gets called
+     * so be careful with any initialization caused by creating the SurfaceView.
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
@@ -31,17 +37,5 @@ public class MainActivity extends Activity {
         // as the ContentView for this Activity.
         mGLView = new SurfaceView(this);
         setContentView(mGLView);
-    }
-    
-    @Override
-    /**
-     * Android starts everything over when the orientation of the screen is changed,
-     * so <code>android:configChanges="keyboardHidden|orientation"</code> had to be added to the application manifest so
-     * that keyboard/orientation events go through this rather than starting the whole application over.
-     * I guess the <code>Bundle</code> passed to <code>onCreate()</code> is supposed to save state stuff, but that isn't very helpful
-     * for a vidya game.
-     */
-    public void onConfigurationChanged(Configuration newConfig) {
-    	super.onConfigurationChanged(newConfig);
     }
 }

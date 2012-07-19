@@ -81,9 +81,17 @@ public class Game implements GLSurfaceView.Renderer {
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
         //render3D = new Render3D(context);
+        
         render2D = new Render2D(context);
-        physics = new Physics();
-        physics.temp2();
+        
+        /*
+         * Only initialize physics engine if it doesn't exist yet
+         * Whenever the screen's orientation is called
+         */
+        if(physics == null){
+        	physics = new Physics();
+        	physics.temp2();
+        }
     }
     
     /**
@@ -138,6 +146,7 @@ public class Game implements GLSurfaceView.Renderer {
      * Also resizes the GL viewport
      */
     public void onSurfaceChanged(GL10 unused, int width, int height) {
+    	System.out.println("onSurafecChanged");
     	windowHeight = height;
     	windowWidth = width;
     	aspect = (float) width /  (float) height;
