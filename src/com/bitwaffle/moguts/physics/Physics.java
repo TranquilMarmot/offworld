@@ -76,7 +76,7 @@ public class Physics {
 	/**
 	 * Steps the physics simlation and updates every entity's location
 	 */
-	public void update(float timeStep){
+	public void update(){
 		// get the current time
 		long currentTime = SystemClock.elapsedRealtime();
 
@@ -120,7 +120,7 @@ public class Physics {
 		// player
 		BodyDef playerBodyDef = new BodyDef();
 		playerBodyDef.type = BodyDef.BodyType.DynamicBody;
-		playerBodyDef.position.set(0.0f, -25.0f);
+		playerBodyDef.position.set(0.0f, 75.0f);
 		
 		PolygonShape boxShape = new PolygonShape();
 		boxShape.setAsBox(10.0f, 10.0f);
@@ -134,7 +134,7 @@ public class Physics {
 		Game.player = new Player(playerBodyDef, 10.0f, 10.0f, playerFixture);
 		entities.addDynamicEntity(Game.player);
 		
-		for(int i = 0; i < 75; i++)
+		for(int i = 0; i < 175; i++)
 			makeRandomBox();
 	}
 	
@@ -193,13 +193,13 @@ public class Physics {
 	 */
 	public void makeRandomBox(){
 		Random randy = new Random();
-		float boxX = randy.nextFloat() * 125.0f - 50.0f;
+		float boxX = randy.nextFloat() * 500.0f - 50.0f;
 		if(boxX < 1.0f) boxX = 1.0f;
-		float boxY = randy.nextFloat() * 100.0f - 25.0f;
+		float boxY = randy.nextFloat() * 300.0f - 25.0f;
 		if(boxY < 1.0f) boxY = 1.0f;
-		float sizeX = randy.nextFloat() * 10.0f;
+		float sizeX = randy.nextFloat() * 15.0f;
 		if(sizeX < 1.0f) sizeX = 1.0f;
-		float sizeY = randy.nextFloat() * 10.0f;
+		float sizeY = randy.nextFloat() * 15.0f;
 		if(sizeY < 1.0f) sizeY = 1.0f;
 		float r = randy.nextFloat();
 		float g = randy.nextFloat();

@@ -46,7 +46,7 @@ public class Game implements GLSurfaceView.Renderer {
 	 * is ticked with <code>1 / currentFPS</code>. If currentFPS is below
 	 * this, then physics gets ticked with <code>1 / MIN_TIMESTEP_FPS</code>
 	 */
-	private static final int MIN_TIMESTEP_FPS = 45, MAX_TIMESTEP_FPS = 60;
+	//private static final int MIN_TIMESTEP_FPS = 45, MAX_TIMESTEP_FPS = 60;
 	
 	/** Current height and width of the window */
 	public static volatile int windowWidth, windowHeight;
@@ -55,13 +55,13 @@ public class Game implements GLSurfaceView.Renderer {
 	public static volatile float aspect;
 	
 	/** Current frames per second (at the moment, counts rendering and physics) */
-	public static int currentFPS = 30;
-	
+	public static volatile int currentFPS = 30;
 	/** Used to count up to a second for FPS */
 	private long counter;
 	/** Used to count frames for FPS */
 	private int frameCount = 0;
 	
+	/** Buzz buzz*/
 	public static Vibration vibration;
 	
 	/**
@@ -86,7 +86,8 @@ public class Game implements GLSurfaceView.Renderer {
         
         /*
          * Only initialize physics engine if it doesn't exist yet
-         * Whenever the screen's orientation is called
+         * Whenever the screen's orientation is called, the WHOLE application
+         * starts over- so physics can get re-initialized if we aren't careful.
          */
         if(physics == null){
         	physics = new Physics();
@@ -104,13 +105,7 @@ public class Game implements GLSurfaceView.Renderer {
          * Step the physics sim
          * (see comment above MIN_TIMESTEP_FPS for more info)
          */
-        // FIXME this timestep makes me a sad panda!
-        if(currentFPS < MIN_TIMESTEP_FPS)
-        	physics.update(1.0f / MIN_TIMESTEP_FPS);
-        else if(currentFPS > MAX_TIMESTEP_FPS)
-        	physics.update(1.0f / MAX_TIMESTEP_FPS);
-        else
-        	physics.update(1.0f / currentFPS);
+        physics.update();
     	
     	// clear the screen
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);

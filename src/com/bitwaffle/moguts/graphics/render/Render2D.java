@@ -16,6 +16,7 @@ import com.bitwaffle.moguts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.moguts.graphics.glsl.GLSLShader;
 import com.bitwaffle.moguts.gui.GUI;
 import com.bitwaffle.moguts.gui.button.Button;
+import com.bitwaffle.moguts.resources.Textures;
 
 /**
  * This class handles all 2D rendering
@@ -57,6 +58,7 @@ public class Render2D {
 		assets = context.getAssets();
 		
 		initShaders();
+		Textures.initTextures(assets);
 		
 		projection = new float[16];
 		modelview = new float[16];

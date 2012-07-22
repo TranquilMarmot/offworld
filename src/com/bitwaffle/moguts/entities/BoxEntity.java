@@ -1,10 +1,13 @@
 package com.bitwaffle.moguts.entities;
 
+import android.opengl.GLES20;
+
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.graphics.shapes.Quad;
+import com.bitwaffle.moguts.resources.Textures;
 
 /**
  * A DynamicEntity... that's a box!
@@ -51,6 +54,7 @@ public class BoxEntity extends DynamicEntity {
 	 * Set the color and render!
 	 */
 	public void render(){
+		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, Textures.boxTex);
 		Game.render2D.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
 		quad.draw();
 	}

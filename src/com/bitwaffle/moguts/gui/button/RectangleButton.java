@@ -1,7 +1,10 @@
 package com.bitwaffle.moguts.gui.button;
 
+import android.opengl.GLES20;
+
 import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.graphics.shapes.Quad;
+import com.bitwaffle.moguts.resources.Textures;
 
 /**
  * A box-shaped button
@@ -55,6 +58,7 @@ public class RectangleButton extends Button {
 		else
 			Game.render2D.program.setUniform("vColor", disabled[0], disabled[1], disabled[2], disabled[3]);
 		
+		//GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, Textures.arrowTex);
 		q.draw();
 	}
 

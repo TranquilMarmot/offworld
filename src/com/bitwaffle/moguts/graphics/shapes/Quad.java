@@ -9,7 +9,7 @@ import android.opengl.GLES20;
 import com.bitwaffle.moguts.Game;
 
 public class Quad {
-	private FloatBuffer vertBuffer;
+	private FloatBuffer vertBuffer, texBuffer;
 	
 	static final int COORDS_PER_VERTEX = 3;
 	/*
@@ -33,8 +33,18 @@ public class Quad {
 	};
 	*/
 	
+	private static float[] texCoords = {
+		0.0f, 0.0f,
+		1.0f, 0.0f,
+		1.0f, 1.0f,
+		
+		0.0f, 0.0f,
+		0.0f, 1.0f,
+		1.0f, 1.0f
+	};
 	
-	private int positionHandle;
+	
+	private int positionHandle, texCoordHandle;
 	
 	public Quad(float width, float height){
 		// FIXME this should really just scale the matrix to it's width/height, not change the actual coords!
@@ -65,19 +75,25 @@ public class Quad {
 		vertBuffer.rewind();
 		
 		positionHandle = Game.render2D.program.getAttribLocation("vPosition");
+		
+		ByteBuffer bb2 = ByteBuffer.allocateDirect(texCoords.length * 4);
+		bb2.order(ByteOrder.nativeOrder());
+		
+		texBuffer = bb2.asFloatBuffer();
+		texBuffer.put(texCoords);
+		texBuffer.rewind();
+		
+		texCoordHandle = Game.render2D.program.getAttribLocation("vTexCoord");
 	}
 	
 	public void draw(){
 		GLES20.glEnableVertexAttribArray(positionHandle);
+		GLES20.glEnableVertexAttribArray(texCoordHandle);
 		
         GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX,
                 GLES20.GL_FLOAT, false,
                 0, vertBuffer);
-        
-        //Random randy = new Random();
-        //float[] color = { randy.nextFloat(), randy.nextFloat(), randy.nextFloat(), 1.0f };
-        
-       // GLRenderer.render2D.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
+        GLES20.glVertexAttribPointer(texCoordHandle, 2, GLES20.GL_FLOAT, false, 0, texBuffer);
         
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);
 	}
