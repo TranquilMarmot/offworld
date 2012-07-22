@@ -146,7 +146,6 @@ public class Game implements GLSurfaceView.Renderer {
      * Also resizes the GL viewport
      */
     public void onSurfaceChanged(GL10 unused, int width, int height) {
-    	System.out.println("onSurafecChanged");
     	windowHeight = height;
     	windowWidth = width;
     	aspect = (float) width /  (float) height;

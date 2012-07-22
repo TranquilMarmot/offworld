@@ -29,7 +29,7 @@ public class Physics {
 	public Entities entities;
 	
 	/** Gravity for the world */
-	private Vector2 gravity = new Vector2(0.0f, -10.0f);
+	private Vector2 gravity = new Vector2(0.0f, -39.2f);
 	
 	/** Whether or not to sleep TODO look into what this means */
 	boolean doSleep = false;
@@ -94,7 +94,7 @@ public class Physics {
 		if(steps > 0)
 			timeStepAccum -= steps * FIXED_TIMESTEP;
 		
-		// clamp steps and iterator however many times
+		// clamp steps and iterate however many times
 		for(int i = 0; i < Math.min(steps, MAX_STEPS); i++){
 			world.step(FIXED_TIMESTEP, velocityIterations, positionIterations);
 			entities.update(FIXED_TIMESTEP);
@@ -127,14 +127,14 @@ public class Physics {
 		
 		FixtureDef playerFixture = new FixtureDef();
 		playerFixture.shape = boxShape;
-		playerFixture.density = 5.0f;
+		playerFixture.density = 1.0f;
 		playerFixture.friction = 0.3f;
 		playerFixture.restitution = 0.0f;
 		
 		Game.player = new Player(playerBodyDef, 10.0f, 10.0f, playerFixture);
 		entities.addDynamicEntity(Game.player);
 		
-		for(int i = 0; i < 50; i++)
+		for(int i = 0; i < 75; i++)
 			makeRandomBox();
 	}
 	

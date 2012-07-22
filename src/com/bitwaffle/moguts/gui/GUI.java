@@ -72,7 +72,7 @@ public class GUI {
 			public void update(){
 				if(this.isDown()){
 					Vector2 linVec = Game.player.body.getLinearVelocity();
-					linVec.x -= 5.0f;
+					linVec.x -= 3.0f;
 					Game.player.body.setLinearVelocity(linVec);
 				}
 				
@@ -102,7 +102,7 @@ public class GUI {
 			public void update(){
 				if(this.isDown()){
 					Vector2 linVec = Game.player.body.getLinearVelocity();
-					linVec.x += 5.0f;
+					linVec.x += 3.0f;
 					Game.player.body.setLinearVelocity(linVec);
 				}
 				
@@ -126,9 +126,13 @@ public class GUI {
 			public void release(){
 				super.release();
 				Game.vibration.vibrate(25);
+			
+				// TODO make it so you can only jump when hitting the ground
 				Vector2 linVec = Game.player.body.getLinearVelocity();
-				linVec.y += 10.0f;
-				Game.player.body.setLinearVelocity(linVec);
+				if(linVec.y <= 5.0f && linVec.y >= -5.0f){
+					linVec.y += 50.0f;
+					Game.player.body.setLinearVelocity(linVec);
+				}
 			}
 			
 			@Override
@@ -155,5 +159,24 @@ public class GUI {
 			}
 		};
 		this.addButton(camButt);
+		
+		/* -------------------- */
+		
+		
+		RectangleButton boxButt = new RectangleButton(Game.windowWidth - 20.0f, 20.0f, 20.0f, 20.0f){
+			@Override
+			public void release(){
+				Game.vibration.vibrate(25);
+				super.release();
+				// FIXME still breaks game (maybe do a stack-queue thing?)
+				Game.physics.makeRandomBox();
+			}
+			
+			@Override
+			public void update(){
+				this.x = Game.windowWidth - 20.0f;
+			}
+		};
+		this.addButton(boxButt);
 	}
 }
