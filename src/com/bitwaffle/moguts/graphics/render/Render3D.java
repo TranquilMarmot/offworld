@@ -2,8 +2,8 @@ package com.bitwaffle.moguts.graphics.render;
 
 import java.io.IOException;
 
-import org.lwjgl.util.vector.Matrix4f;
-import org.lwjgl.util.vector.Vector3f;
+//import org.lwjgl.util.vector.Matrix4f;
+//import org.lwjgl.util.vector.Vector3f;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -15,11 +15,11 @@ import com.bitwaffle.moguts.graphics.model.Material;
 
 public class Render3D {
 	/** default diffuse color */
-	private static final Vector3f DEFAULT_KD = new Vector3f(0.5f, 0.5f, 0.5f);
+	//private static final Vector3f DEFAULT_KD = new Vector3f(0.5f, 0.5f, 0.5f);
 	/** default ambient color */
-	private static final Vector3f DEFAULT_KA = new Vector3f(0.5f, 0.5f, 0.5f);
+	//private static final Vector3f DEFAULT_KA = new Vector3f(0.5f, 0.5f, 0.5f);
 	/** default specular color */
-	private static final Vector3f DEFAULT_KS = new Vector3f(0.8f, 0.8f, 0.8f);
+	//private static final Vector3f DEFAULT_KS = new Vector3f(0.8f, 0.8f, 0.8f);
 	/** default shiny factor */
 	private static final float DEFAULT_SHINY = 50.0f;
 	
@@ -30,7 +30,7 @@ public class Render3D {
 	
 	public GLSLProgram program;
 	
-	public static Matrix4f projection, modelview;
+	//public static Matrix4f projection, modelview;
 	
 	public static float fov = 45.0f;
 	public static float drawDistance = 1000.0f;
@@ -50,7 +50,7 @@ public class Render3D {
 		//float aspect = (float)GLRenderer.windowWidth / (float)GLRenderer.windowHeight;
 		
 		//projection = MatrixHelper.perspective(fov, aspect, 1.0f, drawDistance);
-		modelview = new Matrix4f();
+		//modelview = new Matrix4f();
 	}
 	
     private void initShaders(){
@@ -88,7 +88,7 @@ public class Render3D {
     	GLES20.glDisable(GLES20.GL_BLEND);
     	GLES20.glEnable(GLES20.GL_DEPTH_TEST);
     	
-    	modelview.setIdentity();
+    	//modelview.setIdentity();
     }
     
     public void renderScene(){
@@ -112,9 +112,9 @@ public class Render3D {
 	 * @param mat Material to use
 	 */
 	public void setCurrentMaterial(Material mat){
-		program.setUniform("Material.Kd" , mat.getKd());
-		program.setUniform("Material.Ka", mat.getKa());
-		program.setUniform("Material.Ks", mat.getKs());
+		//program.setUniform("Material.Kd" , mat.getKd());
+		//program.setUniform("Material.Ka", mat.getKa());
+		//program.setUniform("Material.Ks", mat.getKs());
 		program.setUniform("Material.Shininess", mat.getShininess());
 	}
 	
@@ -122,9 +122,9 @@ public class Render3D {
 	 * Set the current material to the default material
 	 */
 	public void useDefaultMaterial(){
-		program.setUniform("Material.Kd" , DEFAULT_KD);
-		program.setUniform("Material.Ka", DEFAULT_KA);
-		program.setUniform("Material.Ks", DEFAULT_KS);
+		//program.setUniform("Material.Kd" , DEFAULT_KD);
+		//program.setUniform("Material.Ka", DEFAULT_KA);
+		//program.setUniform("Material.Ks", DEFAULT_KS);
 		program.setUniform("Material.Shininess", DEFAULT_SHINY);
 	}
 }

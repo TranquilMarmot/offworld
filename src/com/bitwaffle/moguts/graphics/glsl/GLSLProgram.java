@@ -1,13 +1,6 @@
 package com.bitwaffle.moguts.graphics.glsl;
 
-import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
 import java.util.HashMap;
-
-import org.lwjgl.util.vector.Matrix3f;
-import org.lwjgl.util.vector.Matrix4f;
-import org.lwjgl.util.vector.Vector3f;
-import org.lwjgl.util.vector.Vector4f;
 
 import android.opengl.GLES20;
 
@@ -27,7 +20,7 @@ public class GLSLProgram {
 	private String logString;
 	
 	/** Buffers for sending matrices to OpenGL (creating a new buffer each time leaks memory) */
-	private FloatBuffer matrix4fBuffer, matrix3fBuffer;
+	//private FloatBuffer matrix4fBuffer, matrix3fBuffer;
 	
 	/** Maps every uniform/attribute to it's location in the shader */
 	private HashMap<String, Integer> uniformMap, attribMap;
@@ -46,8 +39,8 @@ public class GLSLProgram {
 		
 		linked = false;
 		
-		matrix4fBuffer = ByteBuffer.allocateDirect(16 * 4).asFloatBuffer();
-		matrix3fBuffer = ByteBuffer.allocateDirect(9 * 4).asFloatBuffer();
+		//matrix4fBuffer = ByteBuffer.allocateDirect(16 * 4).asFloatBuffer();
+		//matrix3fBuffer = ByteBuffer.allocateDirect(9 * 4).asFloatBuffer();
 	}
 	
 	/**
@@ -271,10 +264,12 @@ public class GLSLProgram {
 	 * @param name Name of uniform to set
 	 * @param v
 	 */
+	/*
 	public void setUniform(String name, Vector3f v){
 		this.setUniform(name, v.x, v.y, v.z);
 		
 	}
+	*/
 	
 	/**
 	 * Set a 4f uniform
@@ -298,15 +293,18 @@ public class GLSLProgram {
 	 * @param name Name of uniform to set
 	 * @param v
 	 */
+	/*
 	public void setUniform(String name, Vector4f v){
 		this.setUniform(name, v.x, v.y, v.z, v.w);
 	}
+	*/
 	
 	/**
 	 * Set a uniform Matrix4f
 	 * @param name Name of uniform to set
 	 * @param m
 	 */
+	/*
 	public void setUniform(String name, Matrix4f m){
 		int loc = getUniformLocation(name);
 		if(loc >= 0){
@@ -318,12 +316,14 @@ public class GLSLProgram {
 			System.out.println("Uniform variable " + name + " not found!");
 		}
 	}
+	*/
 	
 	/**
 	 * Set a uniform Matrix3f
 	 * @param name Name of uniform to set
 	 * @param m
 	 */
+	/*
 	public void setUniform(String name, Matrix3f m){
 		int loc = getUniformLocation(name);
 		if(loc >= 0){
@@ -335,6 +335,7 @@ public class GLSLProgram {
 			System.out.println("Uniform variable " + name + " not found!");
 		}
 	}
+	*/
 	
 	/**
 	 * Set a uniform matrix from an array

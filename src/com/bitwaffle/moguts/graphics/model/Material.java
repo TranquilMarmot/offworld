@@ -1,6 +1,6 @@
 package com.bitwaffle.moguts.graphics.model;
 
-import org.lwjgl.util.vector.Vector3f;
+//import org.lwjgl.util.vector.Vector3f;
 
 /**
  * Describes a material to use with the Phong reflection model
@@ -9,7 +9,7 @@ import org.lwjgl.util.vector.Vector3f;
  */
 public class Material {
 	/** Ambient, diffuse, and specular colors (all between 0.0 and 1.0) */
-	private Vector3f Ka, Kd, Ks;
+	//private Vector3f Ka, Kd, Ks;
 	/** Shininess of the material */
 	private float Shininess;
 	
@@ -19,6 +19,7 @@ public class Material {
 	 * @param Ks Specular color
 	 * @param Shininess How shiny material is 
 	 */
+	/*
 	public Material(Vector3f Ka, Vector3f Kd, Vector3f Ks, float Shininess){
 		this.Ka = Ka;
 		this.Kd= Kd;
@@ -29,5 +30,6 @@ public class Material {
 	public Vector3f getKa(){ return Ka; }
 	public Vector3f getKs(){ return Ks; }
 	public Vector3f getKd(){ return Kd; }
+	*/
 	public float getShininess(){ return Shininess; }
 }

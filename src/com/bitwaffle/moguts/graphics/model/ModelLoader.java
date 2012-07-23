@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-import org.lwjgl.util.vector.Quaternion;
-import org.lwjgl.util.vector.Vector2f;
-import org.lwjgl.util.vector.Vector3f;
+//import org.lwjgl.util.vector.Quaternion;
+//import org.lwjgl.util.vector.Vector2f;
+//import org.lwjgl.util.vector.Vector3f;
 
 //import com.bitwaffle.offworld.moguts.util.QuaternionHelper;
 
@@ -66,7 +66,7 @@ public class ModelLoader {
 	 * @param texture The texture from {@link Textures} to use for the model
 	 * @return A model loaded from the file
 	 */
-	public static Model loadObjFile(FileInputStream objIn, FileInputStream mtlIn, Vector3f scale, Vector3f offset, Quaternion rotation/*, Textures texture*/){
+	public static Model loadObjFile(FileInputStream objIn, FileInputStream mtlIn/*, Vector3f scale, Vector3f offset, Quaternion rotation, Textures texture*/){
 		// our model
 		Model model = null;
 		
@@ -122,34 +122,34 @@ public class ModelLoader {
 				// vertex
 				if (lineType.equals("v")) {
 					// grab the coordinates
-					float x = (Float.parseFloat(toker.nextToken()) + offset.x) * scale.x;
-					float y = (Float.parseFloat(toker.nextToken()) + offset.y) * scale.y;
-					float z = (Float.parseFloat(toker.nextToken()) + offset.z) * scale.z;
+					//float x = (Float.parseFloat(toker.nextToken()) + offset.x) * scale.x;
+					//float y = (Float.parseFloat(toker.nextToken()) + offset.y) * scale.y;
+					//float z = (Float.parseFloat(toker.nextToken()) + offset.z) * scale.z;
 					
 					//org.lwjgl.util.vector.Vector3f rotated = QuaternionHelper.rotateVectorByQuaternion(new org.lwjgl.util.vector.Vector3f(x, y, z), rotation);
 
 					//builder.addVertex(new Vector3f(rotated.x, rotated.y, rotated.z));
-					builder.addVertex(new Vector3f(x, y, z));
+					//builder.addVertex(new Vector3f(x, y, z));
 				}
 
 				// normal
 				if (lineType.equals("vn")) {
 					// grab the coordinates
-					float x = Float.parseFloat(toker.nextToken());
-					float y = Float.parseFloat(toker.nextToken());
-					float z = Float.parseFloat(toker.nextToken());
+					//loat x = Float.parseFloat(toker.nextToken());
+					//float y = Float.parseFloat(toker.nextToken());
+					//float z = Float.parseFloat(toker.nextToken());
 					
 					//org.lwjgl.util.vector.Vector3f rotated = QuaternionHelper.rotateVectorByQuaternion(new org.lwjgl.util.vector.Vector3f(x, y, z), rotation);
-					org.lwjgl.util.vector.Vector3f rotated = new org.lwjgl.util.vector.Vector3f(x, y, z);
-					builder.addNormal(new Vector3f(rotated.x, rotated.y, rotated.z));
+					//org.lwjgl.util.vector.Vector3f rotated = new org.lwjgl.util.vector.Vector3f(x, y, z);
+					//builder.addNormal(new Vector3f(rotated.x, rotated.y, rotated.z));
 				}
 
 				// texture coord
 				if (line.startsWith("vt")) {
-					float u = Float.parseFloat(toker.nextToken());
-					float v = Float.parseFloat(toker.nextToken());
+					//float u = Float.parseFloat(toker.nextToken());
+					//float v = Float.parseFloat(toker.nextToken());
 
-					builder.addTextureCoords(new Vector2f(u, v));
+					//builder.addTextureCoords(new Vector2f(u, v));
 				}
 				
 				// new material
@@ -218,11 +218,11 @@ public class ModelLoader {
 			String line;
 			
 			// name of the material (important!)
-			String name = "NULL";
+			//String name = "NULL";
 			// vectors for ambient, diffuse, specular
-			org.lwjgl.util.vector.Vector3f Ka = null, Kd = null, Ks = null;
+			//org.lwjgl.util.vector.Vector3f Ka = null, Kd = null, Ks = null;
 			// shininess
-			float Shininess = -1.0f;
+			//float Shininess = -1.0f;
 			
 			// whether or not we're loading a material right now
 			boolean loadingMaterial = false;
@@ -233,11 +233,11 @@ public class ModelLoader {
 			while((line = reader.readLine()) != null){
 				// new material
 				if(line.startsWith("newmtl")){
-					name = line.substring(line.indexOf("newmtl") + 7, line.length());
-					Ka = null;
-					Kd = null;
-					Ks = null;
-					Shininess = -1.0f;
+					//name = line.substring(line.indexOf("newmtl") + 7, line.length());
+					//Ka = null;
+					//Kd = null;
+					//Ks = null;
+					//Shininess = -1.0f;
 					
 					loadingMaterial = true;
 				}
@@ -247,25 +247,25 @@ public class ModelLoader {
 					if(line.startsWith("Ns")){
 						StringTokenizer toker = new StringTokenizer(line, " ");
 						toker.nextToken();
-						Shininess = Float.parseFloat(toker.nextToken());
+						//Shininess = Float.parseFloat(toker.nextToken());
 					} else if(line.startsWith("Ka")){
-						Ka = getColor(line);
+						//Ka = getColor(line);
 					} else if(line.startsWith("Kd")){
-						Kd = getColor(line);
+						//Kd = getColor(line);
 					} else if(line.startsWith("Ks")){
-						Ks = getColor(line);
+						//Ks = getColor(line);
 					}
 					
 					// if we have all the necessary variables, we're done loading this material and it can be added to the list
-					if(Shininess != -1.0f && Ka != null && Ks != null && Kd != null){
-						materialLoaded = true;
-					}
+					//if(Shininess != -1.0f && Ka != null && Ks != null && Kd != null){
+					//	materialLoaded = true;
+					//}
 				}
 				
 				// add material to list if it's loaded
 				if(materialLoaded){
-					Material mat = new Material(Ka, Kd, Ks, Shininess);
-					list.addMaterial(name, mat);
+					//Material mat = new Material(Ka, Kd, Ks, Shininess);
+					//list.addMaterial(name, mat);
 				}
 			}
 			reader.close();
@@ -281,6 +281,7 @@ public class ModelLoader {
 	 * @param line Line to get color from
 	 * @return Color from string
 	 */
+	/*
 	private static org.lwjgl.util.vector.Vector3f getColor(String line){
 		StringTokenizer toker = new StringTokenizer(line, " " );
 		toker.nextToken();
@@ -289,4 +290,5 @@ public class ModelLoader {
 		float z = Float.parseFloat(toker.nextToken());
 		return new org.lwjgl.util.vector.Vector3f(x, y, z);
 	}
+	*/
 }

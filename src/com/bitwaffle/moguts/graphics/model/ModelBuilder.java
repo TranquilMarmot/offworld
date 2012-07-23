@@ -5,8 +5,8 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 
-import org.lwjgl.util.vector.Vector2f;
-import org.lwjgl.util.vector.Vector3f;
+//import org.lwjgl.util.vector.Vector2f;
+//import org.lwjgl.util.vector.Vector3f;
 
 import android.opengl.GLES20;
 
@@ -20,13 +20,13 @@ import android.opengl.GLES20;
  */
 public class ModelBuilder {
 	/** the vertices of the model */
-	private ArrayList<Vector3f> vertices;
+	//private ArrayList<Vector3f> vertices;
 
 	/** the normals of the model */
-	private ArrayList<Vector3f> normals;
+	//private ArrayList<Vector3f> normals;
 
 	/** the texture coordinates of the model */
-	private ArrayList<Vector2f> textureCoords;
+	//private ArrayList<Vector2f> textureCoords;
 
 	/** which vertices to call */
 	private ArrayList<int[]> vertexIndices;
@@ -61,14 +61,14 @@ public class ModelBuilder {
 		 * We have to add a blank element to the beginning of each list, as the obj
 		 * file starts referencing elements at 1, but ArrayLists start at 0
 		 */
-		vertices = new ArrayList<Vector3f>();
-		vertices.add(new Vector3f(0.0f, 0.0f, 0.0f));
+		//vertices = new ArrayList<Vector3f>();
+		//vertices.add(new Vector3f(0.0f, 0.0f, 0.0f));
 
-		normals = new ArrayList<Vector3f>();
-		normals.add(new Vector3f(0.0f, 0.0f, 0.0f));
+		//normals = new ArrayList<Vector3f>();
+		//normals.add(new Vector3f(0.0f, 0.0f, 0.0f));
 
-		textureCoords = new ArrayList<Vector2f>();
-		textureCoords.add(new Vector2f(0.0f, 0.0f));
+		//textureCoords = new ArrayList<Vector2f>();
+		//textureCoords.add(new Vector2f(0.0f, 0.0f));
 
 		// these just store which vertices to grab, don't need to add a blank
 		// element to them
@@ -86,6 +86,7 @@ public class ModelBuilder {
 	 * @param vertex
 	 *            The vertex to add
 	 */
+	/*
 	public void addVertex(Vector3f vertex) {
 		// check for max and min values
 		if(vertex.x > maxX)
@@ -106,6 +107,7 @@ public class ModelBuilder {
 		
 		vertices.add(vertex);
 	}
+	*/
 
 	/**
 	 * Add vertex indices to the model being built. Automatically splits quads
@@ -164,9 +166,9 @@ public class ModelBuilder {
 	 * @param vertex
 	 *            The vertex to add
 	 */
-	public void addNormal(Vector3f vertex) {
-		normals.add(vertex);
-	}
+	//public void addNormal(Vector3f vertex) {
+	//	normals.add(vertex);
+	//}
 
 	/**
 	 * Add normal indices to the model being built. Automatically splits quads
@@ -203,9 +205,9 @@ public class ModelBuilder {
 	 * Add texture coordinates to the model being built. Only 2D texture coordinates are supported right now.
 	 * @param point The texture coordinates to add
 	 */
-	public void addTextureCoords(Vector2f point) {
-		textureCoords.add(point);
-	}
+	///public void addTextureCoords(Vector2f point) {
+	//	textureCoords.add(point);
+	//}
 
 	/**
 	 * Add texture coordinate indices to the model being built. Automatically splits quads
@@ -262,10 +264,11 @@ public class ModelBuilder {
 		FloatBuffer normBuffer = ByteBuffer.allocateDirect(normalIndices.size() * 9).asFloatBuffer();
 		FloatBuffer texBuffer = ByteBuffer.allocateDirect(textureIndices.size() * 6).asFloatBuffer();
 		for(int i = 0; i < vertexIndices.size(); i++){
-			int[] triVerts = vertexIndices.get(i); 
-			int[] triNorms = normalIndices.get(i);
-			int[] triTex = textureIndices.get(i);
+			//int[] triVerts = vertexIndices.get(i); 
+			//int[] triNorms = normalIndices.get(i);
+			//int[] triTex = textureIndices.get(i);
 			
+			/*
 			Vector3f firstVert = vertices.get(triVerts[0]);
 			vertBuffer.put(firstVert.x);
 			vertBuffer.put(firstVert.y);
@@ -302,6 +305,7 @@ public class ModelBuilder {
 			Vector2f thirdTex = textureCoords.get(triTex[2]);
 			texBuffer.put(thirdTex.x);
 			texBuffer.put(1 - thirdTex.y);
+			*/
 		}
 		// be kind, please rewind()!
 		vertBuffer.rewind();
