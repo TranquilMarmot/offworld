@@ -1,5 +1,8 @@
 package com.bitwaffle.moguts;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -15,7 +18,6 @@ import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.physics.Physics;
 
 /**
- * Implementation of the GLSurfaceView.renderer class.
  * This class handles calling the rendering methods,
  * as well as stepping the physics sim (for now).
  * This class has static instances of Render2D and Render3D,
@@ -27,12 +29,9 @@ import com.bitwaffle.moguts.physics.Physics;
  */
 public class Game implements GLSurfaceView.Renderer {
 	/** Context for loading resources */
-	private Context context;
+	private static Context context;
 	
-	/** 3D Renderer */
-	//public static Render3D render3D;
-	
-	/** 2D Renderer*/
+	/** 2D Renderer */
 	private Render2D render2D;
 	
 	/** Physics world */
@@ -41,20 +40,13 @@ public class Game implements GLSurfaceView.Renderer {
 	/** The player */
 	public static Player player;
 	
-	/** 
-	 * If currentFPS is greater than this, then physics
-	 * is ticked with <code>1 / currentFPS</code>. If currentFPS is below
-	 * this, then physics gets ticked with <code>1 / MIN_TIMESTEP_FPS</code>
-	 */
-	//private static final int MIN_TIMESTEP_FPS = 45, MAX_TIMESTEP_FPS = 60;
-	
 	/** Current height and width of the window */
 	public static volatile int windowWidth, windowHeight;
 	
 	/** Current aspect ratio (windowWidth / windowHeight) */
 	public static volatile float aspect;
 	
-	/** Current frames per second (at the moment, counts rendering and physics) */
+	/** Current frames per second (at the moment, counts rendering and physics updates per second) */
 	public static volatile int currentFPS = 30;
 	/** Used to count up to a second for FPS */
 	private long counter;
@@ -70,7 +62,7 @@ public class Game implements GLSurfaceView.Renderer {
 	 */
 	public Game(Context context){
 		super();
-		this.context = context;
+		Game.context = context;
 		vibration = new Vibration(context);
 	}
 
@@ -80,9 +72,7 @@ public class Game implements GLSurfaceView.Renderer {
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
-        //render3D = new Render3D(context);
-        
-        render2D = new Render2D(context);
+        render2D = new Render2D();
         
         /*
          * Only initialize physics engine if it doesn't exist yet
@@ -109,8 +99,6 @@ public class Game implements GLSurfaceView.Renderer {
     	
     	// clear the screen
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
-        
-        //render3D.renderScene();
         
         // render 2D scene
         render2D.renderScene();
@@ -147,5 +135,18 @@ public class Game implements GLSurfaceView.Renderer {
         GLES20.glViewport(0, 0, width, height);
     }
     
+    /**
+     * Open an asset
+     * @param fileLoc Location of asset to open inside of 'assets' folder
+     * @return InputStream of given asset
+     * @throws IOException When asset isn't found
+     */
+    public static InputStream openAsset(String fileLoc) throws IOException{
+    	try {
+			return context.getAssets().open(fileLoc);
+		} catch (IOException e) {
+			throw e;
+		}
+    }
 
 }

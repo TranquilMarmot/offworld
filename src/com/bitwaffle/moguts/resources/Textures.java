@@ -3,12 +3,13 @@ package com.bitwaffle.moguts.resources;
 import java.io.IOException;
 import java.io.InputStream;
 
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 import android.util.Log;
+
+import com.bitwaffle.moguts.Game;
 
 public class Textures {
 	// TODO make this an enum or something (maybe do XML asset lists?)
@@ -18,7 +19,6 @@ public class Textures {
 	public static int upArrowTex = 0;
 	public static int cameraTex = 0;
 	
-	// FIXME all textures are loaded upside-down!
 	public static int loadTexture(InputStream in) {
 		// loading texture
 		Bitmap bitmap = BitmapFactory.decodeStream(in);
@@ -44,13 +44,13 @@ public class Textures {
 	
 	
 	// FIXME temp
-	public static void initTextures(AssetManager assets){
+	public static void initTextures(){
 		try {
-			boxTex = loadTexture(assets.open("game/textures/box.png"));
-			leftArrowTex = loadTexture(assets.open("game/textures/leftarrow.png"));
-			rightArrowTex = loadTexture(assets.open("game/textures/rightarrow.png"));
-			upArrowTex = loadTexture(assets.open("game/textures/uparrow.png"));
-			cameraTex = loadTexture(assets.open("game/textures/camera.png"));
+			boxTex = loadTexture(Game.openAsset("game/textures/box.png"));
+			leftArrowTex = loadTexture(Game.openAsset("game/textures/leftarrow.png"));
+			rightArrowTex = loadTexture(Game.openAsset("game/textures/rightarrow.png"));
+			upArrowTex = loadTexture(Game.openAsset("game/textures/uparrow.png"));
+			cameraTex = loadTexture(Game.openAsset("game/textures/camera.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -3,8 +3,6 @@ package com.bitwaffle.moguts.graphics.render;
 import java.io.IOException;
 import java.util.Iterator;
 
-import android.content.Context;
-import android.content.res.AssetManager;
 import android.opengl.Matrix;
 
 import com.badlogic.gdx.math.Vector2;
@@ -41,27 +39,20 @@ public class Render2D {
 	
 	/** The modelview and projection matrices*/
 	public float[] modelview, projection;
-
-	@SuppressWarnings("unused")
-	private Context context;
-	/** Used for loading assets */
-	private AssetManager assets;
 	
 	/** The graphical user interface */
 	public static GUI gui;
 	
+	/** Used for ALL quad rendering! Whenever something needs to be drawn, this quad's draw() method should be called */
 	public Quad quad;
 
 	/**
 	 * Create a new 2D renderer
 	 * @param context Context for things being rendered
 	 */
-	public Render2D(Context context) {
-		this.context = context;
-		assets = context.getAssets();
-		
+	public Render2D() {
 		initShaders();
-		Textures.initTextures(assets);
+		Textures.initTextures();
 		
 		projection = new float[16];
 		modelview = new float[16];
@@ -69,6 +60,8 @@ public class Render2D {
 		camera = new Camera(new Vector2(DEFAULT_CAMX, DEFAULT_CAMY), DEFAULT_CAMZ);
 		
 		quad = new Quad(this);
+		
+		gui = new GUI();
 	}
 
 	/**
@@ -78,10 +71,10 @@ public class Render2D {
 		GLSLShader vert = new GLSLShader(GLSLShader.ShaderTypes.VERTEX);
 		GLSLShader frag = new GLSLShader(GLSLShader.ShaderTypes.FRAGMENT);
 		try {
-			if (!vert.compileShaderFromStream(assets.open(VERTEX_SHADER)))
+			if (!vert.compileShaderFromStream(Game.openAsset(VERTEX_SHADER)))
 				System.err.println("Error compiling vertex shader! Result: "
 						+ vert.log());
-			if (!frag.compileShaderFromStream(assets.open(FRAGMENT_SHADER)))
+			if (!frag.compileShaderFromStream(Game.openAsset(FRAGMENT_SHADER)))
 				System.err.println("Error compiling vertex shader! Result: "
 						+ frag.log());
 		} catch (IOException e) {
@@ -98,14 +91,12 @@ public class Render2D {
 	 * Renders the 2D scene
 	 */
 	public void renderScene() {
-		//FIXME wtf?!
-		if(gui == null)
-			gui = new GUI();
 		gui.update();
 		
 		program.use();
 		
-		camera.update(0.0f);
+		camera.update(1.0f/60.0f);
+		// FIXME this doesn't need to be called every frame... does it?
 		setUpProjectionMatrix();
 		renderEntities(Game.physics.entities.getPassiveEntityIterator());
 		renderEntities(Game.physics.entities.getDynamicEntityIterator());
@@ -161,6 +152,10 @@ public class Render2D {
 		program.setUniformMatrix4f("Projection", projection);
 	}
 	
+	/**
+	 * Renders the given GUI
+	 * @param gui GUI to render
+	 */
 	private void renderGUI(GUI gui){
 		Iterator<Button> it = gui.getIterator();
 		
@@ -175,10 +170,16 @@ public class Render2D {
 		}
 	}
 	
+	/**
+	 * @return Current modelview matrix
+	 */
 	public float[] currentModelview(){
 		return modelview;
 	}
 	
+	/**
+	 * @return Current projection matrix
+	 */
 	public float[] currenProjection(){
 		return projection;
 	}
