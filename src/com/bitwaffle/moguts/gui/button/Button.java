@@ -51,7 +51,10 @@ public abstract class Button extends GUIObject{
 	 */
 	public void press(){
 		this.isDown = true;
+		onPress();
 	}
+	
+	protected abstract void onPress();
 	
 	/**
 	 * Release the button! This sets isDown to false.
@@ -60,7 +63,10 @@ public abstract class Button extends GUIObject{
 	 */
 	public void release(){
 		this.isDown = false;
+		onRelease();
 	}
+	
+	protected abstract void onRelease();
 	
 	/**
 	 * By default, this does nothing (so sliding off of a button is considered cancelling its press)
@@ -68,7 +74,10 @@ public abstract class Button extends GUIObject{
 	 */
 	public void slideRelease(){
 		this.isDown = false;
+		onSlideRelease();
 	}
+	
+	protected abstract void onSlideRelease();
 	
 	public boolean isActive(){ return isActive; }
 	public void deactivate(){ isActive = false; }

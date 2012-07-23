@@ -7,7 +7,7 @@ import com.bitwaffle.moguts.graphics.render.Render2D;
  * 
  * @author TranquilMarmot
  */
-public class RectangleButton extends Button {
+public abstract class RectangleButton extends Button {
 	//Quad q;
 	
 	/** width and height of button */
@@ -63,4 +63,13 @@ public class RectangleButton extends Button {
 	public void cleanup() {
 		
 	}
+
+	@Override
+	protected abstract void onRelease();
+
+	@Override
+	protected abstract void onSlideRelease();
+	
+	@Override
+	protected abstract void onPress();
 }

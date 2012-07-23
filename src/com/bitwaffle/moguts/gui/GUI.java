@@ -65,12 +65,14 @@ public class GUI {
 	private void temp(){
 		RectangleButton leftButt = new RectangleButton(40.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
 			@Override
-			public void release(){
-				super.release();
+			public void onRelease(){
 				Vector2 linVec = Game.player.body.getLinearVelocity();
 				linVec.x += 10.0f;
 				Game.player.body.setLinearVelocity(linVec);
 			}
+			
+			@Override
+			public void onSlideRelease(){}
 			
 			@Override
 			public void update(){
@@ -84,8 +86,7 @@ public class GUI {
 			}
 			
 			@Override
-			public void press(){
-				super.press();
+			public void onPress(){
 				Game.vibration.vibrate(25);
 			}
 			
@@ -101,12 +102,14 @@ public class GUI {
 		
 		RectangleButton rightButt = new RectangleButton(150.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
 			@Override
-			public void release(){
-				super.release();
+			public void onRelease(){
 				Vector2 linVec = Game.player.body.getLinearVelocity();
 				linVec.x -= 10.0f;
 				Game.player.body.setLinearVelocity(linVec);
 			}
+			
+			@Override
+			public void onSlideRelease(){}
 			
 			@Override
 			public void update(){
@@ -120,8 +123,7 @@ public class GUI {
 			}
 			
 			@Override
-			public void press(){
-				super.press();
+			public void onPress(){
 				Game.vibration.vibrate(25);
 			}
 			
@@ -139,8 +141,7 @@ public class GUI {
 		
 		RectangleButton jumpButt = new RectangleButton(Game.windowWidth - 40.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
 			@Override
-			public void release(){
-				super.release();
+			protected void onRelease(){
 				Game.vibration.vibrate(25);
 			
 				// TODO make it so you can only jump when hitting the ground
@@ -150,6 +151,12 @@ public class GUI {
 					Game.player.body.setLinearVelocity(linVec);
 				}
 			}
+			
+			@Override
+			protected void onSlideRelease(){};
+			
+			@Override
+			protected void onPress(){};
 			
 			@Override
 			public void update(){
@@ -170,15 +177,20 @@ public class GUI {
 		
 		RectangleButton camButt = new RectangleButton(20.0f, 20.0f, 20.0f, 20.0f){
 			@Override
-			public void release(){
+			protected void onRelease(){
 				Game.vibration.vibrate(25);
-				super.release();
 				Camera.Modes mode = Render2D.camera.currentMode();
 				if(mode == Camera.Modes.FOLLOW)
 					Render2D.camera.setMode(Camera.Modes.FREE);
 				else
 					Render2D.camera.setMode(Camera.Modes.FOLLOW);
 			}
+			
+			@Override
+			protected void onSlideRelease(){};
+			
+			@Override
+			protected void onPress(){};
 			
 			@Override
 			public void draw(Render2D renderer){
@@ -193,12 +205,17 @@ public class GUI {
 		
 		RectangleButton boxButt = new RectangleButton(Game.windowWidth - 20.0f, 20.0f, 20.0f, 20.0f){
 			@Override
-			public void release(){
+			protected void onRelease(){
 				Game.vibration.vibrate(25);
-				super.release();
 				// FIXME still breaks game (maybe do a stack-queue thing?)
 				Game.physics.makeRandomBox();
 			}
+			
+			@Override
+			protected void onSlideRelease(){};
+			
+			@Override
+			protected void onPress(){};
 			
 			@Override
 			public void update(){
