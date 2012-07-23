@@ -9,6 +9,7 @@ import android.opengl.GLES20;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.graphics.Camera;
+import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.gui.button.Button;
 import com.bitwaffle.moguts.gui.button.RectangleButton;
 import com.bitwaffle.moguts.resources.Textures;
@@ -89,9 +90,9 @@ public class GUI {
 			}
 			
 			@Override
-			public void draw(){
+			public void draw(Render2D renderer){
 				GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, Textures.leftArrowTex);
-				super.draw();
+				super.draw(renderer);
 			}
 		};
 		this.addButton(leftButt);
@@ -125,9 +126,9 @@ public class GUI {
 			}
 			
 			@Override
-			public void draw(){
+			public void draw(Render2D renderer){
 				GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, Textures.rightArrowTex);
-				super.draw();
+				super.draw(renderer);
 			}
 		};
 		this.addButton(rightButt);
@@ -157,9 +158,9 @@ public class GUI {
 			}
 			
 			@Override
-			public void draw(){
+			public void draw(Render2D renderer){
 				GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, Textures.upArrowTex);
-				super.draw();
+				super.draw(renderer);
 			}
 		};
 		this.addButton(jumpButt);
@@ -172,17 +173,17 @@ public class GUI {
 			public void release(){
 				Game.vibration.vibrate(25);
 				super.release();
-				Camera.Modes mode = Game.render2D.camera.currentMode();
+				Camera.Modes mode = Render2D.camera.currentMode();
 				if(mode == Camera.Modes.FOLLOW)
-					Game.render2D.camera.setMode(Camera.Modes.FREE);
+					Render2D.camera.setMode(Camera.Modes.FREE);
 				else
-					Game.render2D.camera.setMode(Camera.Modes.FOLLOW);
+					Render2D.camera.setMode(Camera.Modes.FOLLOW);
 			}
 			
 			@Override
-			public void draw(){
+			public void draw(Render2D renderer){
 				GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, Textures.cameraTex);
-				super.draw();
+				super.draw(renderer);
 			}
 		};
 		this.addButton(camButt);

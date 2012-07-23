@@ -2,14 +2,15 @@ package com.bitwaffle.moguts.device;
 
 import java.util.Iterator;
 
-import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.moguts.Game;
-import com.bitwaffle.moguts.graphics.Camera;
-import com.bitwaffle.moguts.gui.button.Button;
-
 import android.opengl.Matrix;
 import android.util.FloatMath;
 import android.view.MotionEvent;
+
+import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.moguts.Game;
+import com.bitwaffle.moguts.graphics.Camera;
+import com.bitwaffle.moguts.graphics.render.Render2D;
+import com.bitwaffle.moguts.gui.button.Button;
 
 /**
  * Handles any touch events (which are generated in {@link SurfaceView} and then
@@ -143,7 +144,7 @@ public class TouchHandler {
 			if (pointerCount == 1) {
 				// if there's only 1 pointer and it's not on a button, we're in drag mode
 				if (buttonsDown[0] == null && buttonsDown[1] == null) {
-					if (Game.render2D.camera.currentMode() == Camera.Modes.FREE)
+					if (Render2D.camera.currentMode() == Camera.Modes.FREE)
 						dragEvent(x0, y0);
 				// else check if the pointer slid off a button
 				} else if (buttonsDown[0] != null) {
@@ -200,7 +201,7 @@ public class TouchHandler {
 	 * @return Whether or not a button was pressed
 	 */
 	private boolean checkForButtonPresses(float x, float y) {
-		Iterator<Button> it = Game.render2D.gui.getIterator();
+		Iterator<Button> it = Render2D.gui.getIterator();
 
 		boolean pressed = false;
 
@@ -235,10 +236,10 @@ public class TouchHandler {
 		float dx = x - previousX;
 		float dy = y - previousY;
 
-		Vector2 camLoc = Game.render2D.camera.getLocation();
+		Vector2 camLoc = Render2D.camera.getLocation();
 		camLoc.x += dx / DRAG_SENSITIVITY;
 		camLoc.y -= dy / DRAG_SENSITIVITY;
-		Game.render2D.camera.setLocation(camLoc);
+		Render2D.camera.setLocation(camLoc);
 	}
 
 	/**
@@ -248,14 +249,14 @@ public class TouchHandler {
 	 *            How far apart the two fingers are
 	 */
 	private void zoomEvent(float spacing) {
-		float zoom = Game.render2D.camera.getZoom();
+		float zoom = Render2D.camera.getZoom();
 
 		if (spacing < previousSpacing - (MIN_ZOOM_SPACING / 2.0f))
 			zoom -= spacing / ZOOM_SENSITIVITY;
 		else if (spacing > previousSpacing + (MIN_ZOOM_SPACING / 2.0f))
 			zoom += spacing / ZOOM_SENSITIVITY;
 
-		Game.render2D.camera.setZoom(zoom);
+		Render2D.camera.setZoom(zoom);
 	}
 
 	// TODO test this!
@@ -278,8 +279,8 @@ public class TouchHandler {
 		normalizedInPoint[2] = -1.0f;
 		normalizedInPoint[3] = 1.0f;
 
-		Matrix.multiplyMM(transformMatrix, 0, Game.render2D.currenProjection(),
-				0, Game.render2D.currentModelview(), 0);
+		//Matrix.multiplyMM(transformMatrix, 0, Game.render2D.currenProjection(),
+		//		0, Game.render2D.currentModelview(), 0);
 		Matrix.invertM(invertedMatrix, 0, transformMatrix, 0);
 
 		Matrix.multiplyMV(outPoint, 0, invertedMatrix, 0, normalizedInPoint, 0);

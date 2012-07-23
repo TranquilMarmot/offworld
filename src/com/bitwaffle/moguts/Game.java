@@ -33,7 +33,7 @@ public class Game implements GLSurfaceView.Renderer {
 	//public static Render3D render3D;
 	
 	/** 2D Renderer*/
-	public static Render2D render2D;
+	private Render2D render2D;
 	
 	/** Physics world */
 	public static Physics physics;

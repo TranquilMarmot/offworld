@@ -1,6 +1,7 @@
 package com.bitwaffle.moguts.entities;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.moguts.graphics.render.Render2D;
 
 /**
  * Base Entity class. Every frame, each Entity that is in an Entities list has its <code>update()</code>
@@ -39,6 +40,6 @@ public abstract class Entity {
 	public float getAngle(){ return angle; }
 	
 	public abstract void update(float timeStep);
-	public abstract void render();
+	public abstract void render(Render2D renderer);
 	public abstract void cleanup();
 }

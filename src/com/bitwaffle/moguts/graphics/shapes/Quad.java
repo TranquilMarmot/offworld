@@ -5,23 +5,29 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 import android.opengl.GLES20;
+import android.opengl.Matrix;
 
-import com.bitwaffle.moguts.Game;
+import com.bitwaffle.moguts.graphics.render.Render2D;
 
+/**
+ * When initialized, this creates a single quad and sends all the appropriate data to OpenGL.
+ * There should really only be instance of this at a time, owned by the {@link Render2D} renderer
+ * that it's given in its constructor.
+ * 
+ * This single instance's draw method should just be called repeatedly.
+ * 
+ * @author TranquilMarmot
+ */
 public class Quad {
+	/** Buffers to hold data */
 	private FloatBuffer vertBuffer, texBuffer;
 	
-	static final int COORDS_PER_VERTEX = 3;
-	/*
-	private static float[] coords = {
-		0.5f, 0.5f, 0.0f, // top right
-		-0.5f, 0.5f, 0.0f, // top left
-		-0.5f, -0.5f, 0.0f, // bottom left
-		0.5f, -0.5f, 0.0f // top right
-	};
-	*/
+	/** Info on coordinate */
+	private static final int COORDS_PER_VERTEX = 3, COORDS_PER_TEXCOORD = 2;
 	
-	/*
+	/**
+	 * Position coordinates
+	 */
 	private static float[] coords = {
 		-0.5f, 0.5f, 0.0f,
 		0.5f, 0.5f, 0.0f,
@@ -31,70 +37,73 @@ public class Quad {
 		-0.5f, -0.5f, 0.0f,
 		0.5f, -0.5f, 0.0f
 	};
-	*/
 	
+	/**
+	 * Texture coordinates
+	 */
 	private static float[] texCoords = {
-		0.0f, 0.0f,
-		1.0f, 0.0f,
-		1.0f, 1.0f,
-		
-		0.0f, 0.0f,
 		0.0f, 1.0f,
-		1.0f, 1.0f
+		1.0f, 1.0f,
+		1.0f, 0.0f,
+		
+		0.0f, 1.0f,
+		0.0f, 0.0f,
+		1.0f, 0.0f
 	};
 	
-	
+	/** Handles to send data to when drawing */
 	private int positionHandle, texCoordHandle;
 	
-	public Quad(float width, float height){
-		// FIXME this should really just scale the matrix to it's width/height, not change the actual coords!
+	/**
+	 * Create a new quad (there should only be one at a time)
+	 * @param renderer What will be rendering this quad
+	 */
+	public Quad(Render2D renderer){		
+		// create vertex buffer (4 bytes per float)
+		ByteBuffer vertbb = ByteBuffer.allocateDirect(coords.length * 4);
+		vertbb.order(ByteOrder.nativeOrder());
 		
-		//width /= 2.0f;
-		//height /= 2.0f;
-		
-		//float width = width / 2.0f;
-		//float height = height / 2.0f;
-		
-		
-		float[] coords = {
-				-width, height, 0.0f,
-				width, height, 0.0f,
-				width, -height, 0.0f,
-				
-				-width, height, 0.0f,
-				-width, -height, 0.0f,
-				width, -height, 0.0f
-		};
-		
-		// 4 bytes per float!
-		ByteBuffer bb = ByteBuffer.allocateDirect(coords.length * 4);
-		bb.order(ByteOrder.nativeOrder());
-		
-		vertBuffer = bb.asFloatBuffer();
+		vertBuffer = vertbb.asFloatBuffer();
 		vertBuffer.put(coords);
 		vertBuffer.rewind();
 		
-		positionHandle = Game.render2D.program.getAttribLocation("vPosition");
+		positionHandle = renderer.program.getAttribLocation("vPosition");
 		
-		ByteBuffer bb2 = ByteBuffer.allocateDirect(texCoords.length * 4);
-		bb2.order(ByteOrder.nativeOrder());
+		// create texture buffer (4 bytes per float)
+		ByteBuffer texbb = ByteBuffer.allocateDirect(texCoords.length * 4);
+		texbb.order(ByteOrder.nativeOrder());
 		
-		texBuffer = bb2.asFloatBuffer();
+		texBuffer = texbb.asFloatBuffer();
 		texBuffer.put(texCoords);
 		texBuffer.rewind();
 		
-		texCoordHandle = Game.render2D.program.getAttribLocation("vTexCoord");
+		texCoordHandle = renderer.program.getAttribLocation("vTexCoord");
 	}
 	
-	public void draw(){
+	/**
+	 * Draw the quad
+	 * @param renderer Renderer to use to draw quad (need to know to scale matrices)
+	 * @param width Width of quad, from center
+	 * @param height Height of quad, from center
+	 */
+	public void draw(Render2D renderer, float width, float height){
+		// send position info
 		GLES20.glEnableVertexAttribArray(positionHandle);
-		GLES20.glEnableVertexAttribArray(texCoordHandle);
-		
-        GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX,
-                GLES20.GL_FLOAT, false,
-                0, vertBuffer);
-        GLES20.glVertexAttribPointer(texCoordHandle, 2, GLES20.GL_FLOAT, false, 0, texBuffer);
+        GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false, 0, vertBuffer);
         
+        // send texture coordinate info
+        GLES20.glEnableVertexAttribArray(texCoordHandle);
+        GLES20.glVertexAttribPointer(texCoordHandle, COORDS_PER_TEXCOORD, GLES20.GL_FLOAT, false, 0, texBuffer);
+        
+        // scale matrix to match width/height
+        Matrix.scaleM(renderer.modelview, 0, width * 2.0f, height * 2.0f, 1.0f);
+        renderer.program.setUniformMatrix4f("ModelView", renderer.modelview);
+
+        // actually draw the quad
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);
+        
+        // re-scale the matrix
+        Matrix.scaleM(renderer.modelview, 0, width * -2.0f, height * -2.0f, 1.0f);
+        renderer.program.setUniformMatrix4f("ModelView", renderer.modelview);
 	}
 }

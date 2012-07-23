@@ -14,6 +14,7 @@ import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.moguts.graphics.glsl.GLSLShader;
+import com.bitwaffle.moguts.graphics.shapes.Quad;
 import com.bitwaffle.moguts.gui.GUI;
 import com.bitwaffle.moguts.gui.button.Button;
 import com.bitwaffle.moguts.resources.Textures;
@@ -36,10 +37,10 @@ public class Render2D {
 	public GLSLProgram program;
 	
 	/** Camera for describing how the scene should be looked at */
-	public Camera camera;
+	public static Camera camera;
 	
 	/** The modelview and projection matrices*/
-	float[] modelview, projection;
+	public float[] modelview, projection;
 
 	@SuppressWarnings("unused")
 	private Context context;
@@ -47,7 +48,9 @@ public class Render2D {
 	private AssetManager assets;
 	
 	/** The graphical user interface */
-	public GUI gui;
+	public static GUI gui;
+	
+	public Quad quad;
 
 	/**
 	 * Create a new 2D renderer
@@ -64,6 +67,8 @@ public class Render2D {
 		modelview = new float[16];
 		
 		camera = new Camera(new Vector2(DEFAULT_CAMX, DEFAULT_CAMY), DEFAULT_CAMZ);
+		
+		quad = new Quad(this);
 	}
 
 	/**
@@ -145,7 +150,7 @@ public class Render2D {
 			Matrix.rotateM(modelview, 0, angle, 0.0f, 0.0f, 1.0f);
 			program.setUniformMatrix4f("ModelView", modelview);
 			
-			ent.render();
+			ent.render(this);
 		}
 	}
 	
@@ -166,7 +171,7 @@ public class Render2D {
 			Matrix.translateM(modelview, 0, butt.x, butt.y, 0.0f);
 			program.setUniformMatrix4f("ModelView", modelview);
 			
-			butt.draw();
+			butt.draw(this);
 		}
 	}
 	

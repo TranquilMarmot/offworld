@@ -3,6 +3,7 @@ package com.bitwaffle.moguts.graphics;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.entities.Entity;
+import com.bitwaffle.moguts.graphics.render.Render2D;
 
 // TODO Make camera's angle work so things can be rotated
 /**
@@ -104,7 +105,7 @@ public class Camera extends Entity {
 	}
 	
 	@Override
-	public void render() {}
+	public void render(Render2D renderer) {}
 	@Override
 	public void cleanup() {}
 }

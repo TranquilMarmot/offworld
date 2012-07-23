@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.moguts.Game;
+import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.physics.Physics;
 
 /**
@@ -63,7 +64,7 @@ public class DynamicEntity extends Entity{
 	}
 
 	@Override
-	public void render() {}
+	public void render(Render2D renderer) {}
 
 	@Override
 	public void cleanup() {

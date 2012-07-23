@@ -1,5 +1,7 @@
 package com.bitwaffle.moguts.gui;
 
+import com.bitwaffle.moguts.graphics.render.Render2D;
+
 /**
  * Everything that the GUI uses should extend this class.
  * @author TranquilMarmot
@@ -30,7 +32,7 @@ public abstract class GUIObject {
     /**
      * Draws the object.
      */
-    public abstract void draw();
+    public abstract void draw(Render2D renderer);
     
     /**
      * Get rid of any resources the object may have allocated

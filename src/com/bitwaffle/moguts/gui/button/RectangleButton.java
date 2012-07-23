@@ -1,10 +1,6 @@
 package com.bitwaffle.moguts.gui.button;
 
-import android.opengl.GLES20;
-
-import com.bitwaffle.moguts.Game;
-import com.bitwaffle.moguts.graphics.shapes.Quad;
-import com.bitwaffle.moguts.resources.Textures;
+import com.bitwaffle.moguts.graphics.render.Render2D;
 
 /**
  * A box-shaped button
@@ -12,7 +8,7 @@ import com.bitwaffle.moguts.resources.Textures;
  * @author TranquilMarmot
  */
 public class RectangleButton extends Button {
-	Quad q;
+	//Quad q;
 	
 	/** width and height of button */
 	private float width, height;
@@ -31,7 +27,7 @@ public class RectangleButton extends Button {
 	 */
 	public RectangleButton(float x, float y, float width, float height) {
 		super(x, y);
-		q = new Quad(width, height);
+		//q = new Quad(width, height);
 		this.height = height;
 		this.width = width;
 	}
@@ -50,16 +46,17 @@ public class RectangleButton extends Button {
 	}
 
 	@Override
-	public void draw() {
+	public void draw(Render2D renderer) {
 		if(this.isDown())
-			Game.render2D.program.setUniform("vColor", down[0], down[1], down[2], down[3]);
+			renderer.program.setUniform("vColor", down[0], down[1], down[2], down[3]);
 		else if(this.isActive())
-			Game.render2D.program.setUniform("vColor", active[0], active[1], active[2], active[3]);
+			renderer.program.setUniform("vColor", active[0], active[1], active[2], active[3]);
 		else
-			Game.render2D.program.setUniform("vColor", disabled[0], disabled[1], disabled[2], disabled[3]);
+			renderer.program.setUniform("vColor", disabled[0], disabled[1], disabled[2], disabled[3]);
 		
 		//GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, Textures.arrowTex);
-		q.draw();
+		renderer.quad.draw(renderer, this.width, this.height);
+		//q.draw(renderer);
 	}
 
 	@Override
