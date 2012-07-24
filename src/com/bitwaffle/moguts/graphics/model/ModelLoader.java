@@ -63,7 +63,7 @@ public class ModelLoader {
 	 * @param scale Scale to load the model in at
 	 * @param offset Location offset to give each vertex being loaded
 	 * @param rotation Rotation offset to give each vertex being loaded
-	 * @param texture The texture from {@link Textures} to use for the model
+	 * @param texture The texture from {@link TextureManager} to use for the model
 	 * @return A model loaded from the file
 	 */
 	public static Model loadObjFile(FileInputStream objIn, FileInputStream mtlIn/*, Vector3f scale, Vector3f offset, Quaternion rotation, Textures texture*/){

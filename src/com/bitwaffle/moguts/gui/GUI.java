@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
-import android.opengl.GLES20;
-
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.gui.button.Button;
 import com.bitwaffle.moguts.gui.button.RectangleButton;
-import com.bitwaffle.moguts.resources.Textures;
 
 /**
  * Handles all GUI elements
@@ -92,7 +89,7 @@ public class GUI {
 			
 			@Override
 			public void draw(Render2D renderer){
-				GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, Textures.leftArrowTex);
+				Game.resources.textures.bindTexture("leftarrow");
 				super.draw(renderer);
 			}
 		};
@@ -129,7 +126,7 @@ public class GUI {
 			
 			@Override
 			public void draw(Render2D renderer){
-				GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, Textures.rightArrowTex);
+				Game.resources.textures.bindTexture("rightarrow");
 				super.draw(renderer);
 			}
 		};
@@ -166,7 +163,7 @@ public class GUI {
 			
 			@Override
 			public void draw(Render2D renderer){
-				GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, Textures.upArrowTex);
+				Game.resources.textures.bindTexture("uparrow");
 				super.draw(renderer);
 			}
 		};
@@ -194,7 +191,7 @@ public class GUI {
 			
 			@Override
 			public void draw(Render2D renderer){
-				GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, Textures.cameraTex);
+				Game.resources.textures.bindTexture("camera");
 				super.draw(renderer);
 			}
 		};

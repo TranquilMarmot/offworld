@@ -15,7 +15,6 @@ import com.bitwaffle.moguts.graphics.glsl.GLSLShader;
 import com.bitwaffle.moguts.graphics.shapes.Quad;
 import com.bitwaffle.moguts.gui.GUI;
 import com.bitwaffle.moguts.gui.button.Button;
-import com.bitwaffle.moguts.resources.Textures;
 
 /**
  * This class handles all 2D rendering
@@ -24,9 +23,9 @@ import com.bitwaffle.moguts.resources.Textures;
  */
 public class Render2D {
 	/** Vertex shader to load on init */
-	private static final String VERTEX_SHADER = "game/shaders/main.vert";
+	private static final String VERTEX_SHADER = "shaders/main.vert";
 	/** Fragment shader to load on init */
-	private static final String FRAGMENT_SHADER = "game/shaders/main.frag";
+	private static final String FRAGMENT_SHADER = "shaders/main.frag";
 	
 	/** Initial values for camera */
 	private static final float DEFAULT_CAMX = 245.0f, DEFAULT_CAMY = 75.0f, DEFAULT_CAMZ = 0.004f;
@@ -52,7 +51,7 @@ public class Render2D {
 	 */
 	public Render2D() {
 		initShaders();
-		Textures.initTextures();
+		//Textures.initTextures();
 		
 		projection = new float[16];
 		modelview = new float[16];
@@ -71,10 +70,10 @@ public class Render2D {
 		GLSLShader vert = new GLSLShader(GLSLShader.ShaderTypes.VERTEX);
 		GLSLShader frag = new GLSLShader(GLSLShader.ShaderTypes.FRAGMENT);
 		try {
-			if (!vert.compileShaderFromStream(Game.openAsset(VERTEX_SHADER)))
+			if (!vert.compileShaderFromStream(Game.resources.openAsset(VERTEX_SHADER)))
 				System.err.println("Error compiling vertex shader! Result: "
 						+ vert.log());
-			if (!frag.compileShaderFromStream(Game.openAsset(FRAGMENT_SHADER)))
+			if (!frag.compileShaderFromStream(Game.resources.openAsset(FRAGMENT_SHADER)))
 				System.err.println("Error compiling vertex shader! Result: "
 						+ frag.log());
 		} catch (IOException e) {

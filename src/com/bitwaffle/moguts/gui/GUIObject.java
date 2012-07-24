@@ -10,7 +10,7 @@ public abstract class GUIObject {
     /** whether or not the object is visible */
     public boolean isVisible;
     
-    /** top left of the object */
+    /** middle of the object */
     public float x, y;
     
     /**
@@ -25,12 +25,12 @@ public abstract class GUIObject {
     }
     
     /**
-     * Updates this object. Should set the <code>mouseOver</code> variable depending on whether or not the mouse is over the object.
+     * Updates this object
      */
     public abstract void update();
     
     /**
-     * Draws the object.
+     * Draws the object
      */
     public abstract void draw(Render2D renderer);
     

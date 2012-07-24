@@ -1,8 +1,5 @@
 package com.bitwaffle.moguts;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -16,6 +13,7 @@ import com.bitwaffle.moguts.device.Vibration;
 import com.bitwaffle.moguts.entities.Player;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.physics.Physics;
+import com.bitwaffle.moguts.resources.Resources;
 
 /**
  * This class handles calling the rendering methods,
@@ -28,8 +26,8 @@ import com.bitwaffle.moguts.physics.Physics;
  * @author TranquilMarmot
  */
 public class Game implements GLSurfaceView.Renderer {
-	/** Context for loading resources */
-	private static Context context;
+	/** Resource manager */
+	public static Resources resources;
 	
 	/** 2D Renderer */
 	private Render2D render2D;
@@ -62,7 +60,7 @@ public class Game implements GLSurfaceView.Renderer {
 	 */
 	public Game(Context context){
 		super();
-		Game.context = context;
+		resources = new Resources(context.getAssets());
 		vibration = new Vibration(context);
 	}
 
@@ -70,6 +68,8 @@ public class Game implements GLSurfaceView.Renderer {
 	 * Initializes everything
 	 */
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
+		resources.init();
+		
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
         render2D = new Render2D();
@@ -91,10 +91,8 @@ public class Game implements GLSurfaceView.Renderer {
     public void onDrawFrame(GL10 unused) {
     	long timeBeforeLoop = SystemClock.elapsedRealtime();
     	
-        /*
-         * Step the physics sim
-         * (see comment above MIN_TIMESTEP_FPS for more info)
-         */
+
+    	// Step the physics sim
         physics.update();
     	
     	// clear the screen
@@ -134,19 +132,4 @@ public class Game implements GLSurfaceView.Renderer {
     	aspect = (float) width /  (float) height;
         GLES20.glViewport(0, 0, width, height);
     }
-    
-    /**
-     * Open an asset
-     * @param fileLoc Location of asset to open inside of 'assets' folder
-     * @return InputStream of given asset
-     * @throws IOException When asset isn't found
-     */
-    public static InputStream openAsset(String fileLoc) throws IOException{
-    	try {
-			return context.getAssets().open(fileLoc);
-		} catch (IOException e) {
-			throw e;
-		}
-    }
-
 }
