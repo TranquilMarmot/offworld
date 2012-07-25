@@ -1,5 +1,7 @@
 package com.bitwaffle.moguts.entities;
 
+import android.util.Log;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -18,6 +20,13 @@ public abstract class DynamicEntity extends Entity{
 	/** Body that's in the Physics world */
 	public Body body;
 	
+	// these are all used for initialization
+	private BodyDef bodyDef;
+	private FixtureDef fixtureDef;
+	private PolygonShape polyShape;
+	private float density;
+	private boolean isInitialized = false;
+	
 	/**
 	 * Create a new DynmicEntity and add it to the physics world
 	 * @param bodyDef Body definition
@@ -26,9 +35,8 @@ public abstract class DynamicEntity extends Entity{
 	public DynamicEntity(BodyDef bodyDef, FixtureDef fixtureDef){
 		super();
 		
-		body = Game.physics.world.createBody(bodyDef);
-		body.createFixture(fixtureDef);
-		body.setUserData(this);
+		this.bodyDef = bodyDef;
+		this.fixtureDef = fixtureDef;
 	}
 	
 	/**
@@ -40,15 +48,46 @@ public abstract class DynamicEntity extends Entity{
 	public DynamicEntity(BodyDef bodyDef, PolygonShape shape, float density){
 		super();
 		
-		body = Game.physics.world.createBody(bodyDef);
-		body.createFixture(shape, density);
-		body.setUserData(this);
+		this.bodyDef = bodyDef;
+		this.polyShape = shape;
+		this.density = density;
+	}
+	
+	/**
+	 * Initialize this DynamicEntity and add it to the Physics world
+	 */
+	public void init(){
+		if(!this.isInitialized){
+			body = Game.physics.world.createBody(bodyDef);
+			body.setUserData(this);
+			
+			if(fixtureDef != null){
+				body.createFixture(fixtureDef);
+				fixtureDef = null;
+			} else if(polyShape != null){
+				body.createFixture(polyShape, density);
+				polyShape = null;
+			} else{
+				Log.wtf("ohshit", "DynamicEntity not given enough parameters to initialize physics info!");
+			}
+			
+			isInitialized = true;
+		}
+	}
+	
+	/**
+	 * @return Whether or not this DynamicEntity has been added to the Physics world yet
+	 */
+	public boolean isInitialized(){
+		return this.isInitialized;
 	}
 	
 	@Override
 	public void update(float timeStep){
-		this.location.set(body.getPosition());
-		this.angle = body.getAngle();
+		if(this.isInitialized){
+			this.location.set(body.getPosition());
+			this.angle = body.getAngle();
+		}
 	}
 	
 	@Override

@@ -82,7 +82,7 @@ public class Render2D {
 			
 			InputStream fragmentStream = Game.resources.openAsset(FRAGMENT_SHADER);
 			if (!frag.compileShaderFromStream(fragmentStream))
-				Log.e(LOGTAG, "Error compiling vertex shader! Result: "
+				Log.e(LOGTAG, "Error compiling fragment shader! Result: "
 						+ frag.log());
 			fragmentStream.close();
 		} catch (IOException e) {
@@ -106,8 +106,8 @@ public class Render2D {
 		camera.update(1.0f/60.0f);
 		// FIXME this doesn't need to be called every frame... does it?
 		setUpProjectionMatrix();
-		renderEntities(Game.physics.entities.getPassiveEntityIterator());
-		renderEntities(Game.physics.entities.getDynamicEntityIterator());
+		renderEntities(Game.physics.getPassiveEntityIterator());
+		renderEntities(Game.physics.getDynamicEntityIterator());
 		
 		setUpProjectionGUI();
 		renderGUI(gui);
@@ -166,7 +166,7 @@ public class Render2D {
 	 * @param gui GUI to render
 	 */
 	private void renderGUI(GUI gui){
-		Iterator<Button> it = gui.getIterator();
+		Iterator<Button> it = gui.getButtonIterator();
 		
 		while(it.hasNext()){
 			Button butt = it.next();

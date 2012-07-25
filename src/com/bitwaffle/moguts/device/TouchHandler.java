@@ -198,7 +198,13 @@ public class TouchHandler {
 	 * @return Whether or not a button was pressed
 	 */
 	private boolean checkForButtonPresses(float x, float y) {
-		Iterator<Button> it = Render2D.gui.getIterator();
+		Iterator<Button> it;
+		// put this in a try/catch block in case GUI doesn't exist yet
+		try{
+			it = Render2D.gui.getButtonIterator();
+		} catch(NullPointerException e){
+			return false;
+		}
 
 		boolean pressed = false;
 

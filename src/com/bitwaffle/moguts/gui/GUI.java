@@ -32,7 +32,7 @@ public class GUI {
 		temp();
 	}
 	
-	public Iterator<Button> getIterator(){
+	public Iterator<Button> getButtonIterator(){
 		return buttons.iterator();
 	}
 	
@@ -54,7 +54,7 @@ public class GUI {
 		while(!buttonsToAdd.isEmpty())
 			buttons.add(buttonsToAdd.pop());
 		
-		Iterator<Button> it = getIterator();
+		Iterator<Button> it = getButtonIterator();
 		
 		while(it.hasNext())
 			it.next().update();
@@ -205,7 +205,7 @@ public class GUI {
 		/* -------------------- */
 		
 		
-		RectangleButton boxButt = new RectangleButton(Game.windowWidth - 20.0f, 20.0f, 20.0f, 20.0f){
+		RectangleButton boxButt = new RectangleButton(Game.windowWidth - 40.0f, 40.0f, 40.0f, 40.0f){
 			@Override
 			protected void onRelease(){
 				Game.vibration.vibrate(25);
@@ -221,7 +221,7 @@ public class GUI {
 			
 			@Override
 			public void update(){
-				this.x = Game.windowWidth - 20.0f;
+				this.x = Game.windowWidth - 40.0f;
 			}
 		};
 		this.addButton(boxButt);

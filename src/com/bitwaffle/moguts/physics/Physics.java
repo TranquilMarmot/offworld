@@ -1,6 +1,8 @@
 package com.bitwaffle.moguts.physics;
 
+import java.util.Iterator;
 import java.util.Random;
+import java.util.Stack;
 
 import android.os.SystemClock;
 import android.util.FloatMath;
@@ -13,7 +15,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.GdxNativesLoader;
 import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.entities.BoxEntity;
+import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.entities.Entities;
+import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.entities.Player;
 
 /**
@@ -26,7 +30,7 @@ public class Physics {
 	public World world;
 	
 	/** Entities in the world */
-	public Entities entities;
+	private Entities entities;
 	
 	/** Gravity for the world */
 	private Vector2 gravity = new Vector2(0.0f, -39.2f);
@@ -49,6 +53,17 @@ public class Physics {
 	/** Used to know how much time has passed */
 	private long previousTime;
 	
+	/**
+	 * Sometimes, DynamicEntities can get added in the middle of a physics tick.
+	 * When the entity is added to the physics world, this can cause the game to crash
+	 * without a stack trace (since the crash is in the C++ native code)
+	 * So, each DynamicEntity has an init() method that adds it to the physics world.
+	 * Any time a DynamicEntity is added (via the addEntity() method in this class)
+	 * it gets added to this stack, then at the beginning of every update() the stack
+	 * gets empties and whatever was on it has its init() method called.
+	 */
+	private Stack<DynamicEntity> toInitialize;
+	
 	
 	/**
 	 * Initialized physics
@@ -60,7 +75,7 @@ public class Physics {
 		// initialize the world
 		world = new World(gravity, doSleep);
 		entities = new Entities();
-		
+		toInitialize = new Stack<DynamicEntity>();
 		
 		previousTime = SystemClock.elapsedRealtime();
 	}
@@ -74,11 +89,15 @@ public class Physics {
 	}
 	
 	/**
-	 * Steps the physics simlation and updates every entity's location
+	 * Steps the physics simulation and updates every entity's location
 	 */
 	public void update(){
 		// get the current time
 		long currentTime = SystemClock.elapsedRealtime();
+		
+		// initialize any entities that need intialization
+		while(!toInitialize.isEmpty())
+			toInitialize.pop().init();
 
 		// subtract and convert to seconds 
 		float deltaTime = (currentTime - previousTime) / 1000.0f;
@@ -115,7 +134,7 @@ public class Physics {
 		groundBox.setAsBox(1000.0f, 1.0f);
 		
 		BoxEntity ground = new BoxEntity(groundBodyDef, 1000.0f, 1.0f, groundBox, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
-		entities.addDynamicEntity(ground);
+		this.addEntity(ground);
 		
 		// player
 		BodyDef playerBodyDef = new BodyDef();
@@ -132,7 +151,7 @@ public class Physics {
 		playerFixture.restitution = 0.0f;
 		
 		Game.player = new Player(playerBodyDef, 10.0f, 10.0f, playerFixture);
-		entities.addDynamicEntity(Game.player);
+		this.addEntity(Game.player);
 		
 		for(int i = 0; i < 175; i++)
 			makeRandomBox();
@@ -150,7 +169,7 @@ public class Physics {
 		groundBox.setAsBox(100.0f, 1.0f);
 		
 		BoxEntity ground = new BoxEntity(groundBodyDef, 100.0f, 1.0f, groundBox, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
-		entities.addDynamicEntity(ground);
+		this.addEntity(ground);
 		
 		// right
 		BodyDef groundBodyDef2 = new BodyDef();
@@ -160,7 +179,7 @@ public class Physics {
 		groundBox2.setAsBox(1.0f, 100.0f);
 		
 		BoxEntity ground2 = new BoxEntity(groundBodyDef2, 1.0f, 100.0f, groundBox2, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
-		entities.addDynamicEntity(ground2);
+		this.addEntity(ground2);
 		
 		// left
 		BodyDef groundBodyDef3 = new BodyDef();
@@ -170,7 +189,7 @@ public class Physics {
 		groundBox3.setAsBox(1.0f, 100.0f);
 		
 		BoxEntity ground3 = new BoxEntity(groundBodyDef3, 1.0f, 100.0f, groundBox3, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
-		entities.addDynamicEntity(ground3);
+		this.addEntity(ground3);
 		
 		// top
 		BodyDef groundBodyDef4 = new BodyDef();
@@ -180,7 +199,7 @@ public class Physics {
 		groundBox4.setAsBox(100.0f, 1.0f);
 		
 		BoxEntity ground4 = new BoxEntity(groundBodyDef4, 100.0f, 1.0f, groundBox4, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
-		entities.addDynamicEntity(ground4);
+		this.addEntity(ground4);
 		
 		for(int i = 0 ; i < 75; i ++)
 			makeRandomBox();
@@ -219,15 +238,53 @@ public class Physics {
 		boxFixture.friction = 0.3f;
 		boxFixture.restitution = 0.3f;
 		
-		BoxEntity box = new BoxEntity(boxDef, sizeX, sizeY, boxFixture, new float[]{r, g, b, 1.0f});
-		entities.addDynamicEntity(box);
-		
-		box.body.setAngularVelocity(randy.nextFloat() * 1.0f);
-		
-		float linX = randy.nextFloat() * 100.0f;
-		float linY = randy.nextFloat() * 100.0f;
-		if(randy.nextBoolean()) linX *= -1.0f;
-		if(randy.nextBoolean()) linY *= -1.0f;
-		box.body.setLinearVelocity(linX, linY);
+		BoxEntity box = new BoxEntity(boxDef, sizeX, sizeY, boxFixture, new float[]{r, g, b, 1.0f}){
+			@Override
+			public void init(){
+				super.init();
+				
+				Random randy = new Random();
+				this.body.setAngularVelocity(randy.nextFloat() * 1.0f);
+				
+				float linX = randy.nextFloat() * 100.0f;
+				float linY = randy.nextFloat() * 100.0f;
+				if(randy.nextBoolean()) linX *= -1.0f;
+				if(randy.nextBoolean()) linY *= -1.0f;
+				this.body.setLinearVelocity(linX, linY);
+			}
+		};
+		this.addEntity(box);
+	}
+	
+	/**
+	 * Add a DynamicEntity to the Physics world
+	 * @param ent Entity to add
+	 */
+	public void addEntity(DynamicEntity ent){
+		entities.addDynamicEntity(ent);
+		toInitialize.push(ent);
+	}
+	
+	/**
+	 * Add a passive Entity to the Entities list
+	 * @param ent Entity to add
+	 */
+	// FIXME should this method be somewhere else? Passive entities are pretty much unrelated to the physics world
+	public void addEntity(Entity ent){
+		entities.addPassiveEntity(ent);
+	}
+	
+	/**
+	 * @return An iterator of every passive Entity
+	 */
+	public Iterator<Entity> getPassiveEntityIterator(){
+		return entities.getPassiveEntityIterator();
+	}
+	
+	/**
+	 * @return An iterator of every DynamicEntity
+	 */
+	public Iterator<DynamicEntity> getDynamicEntityIterator(){
+		return entities.getDynamicEntityIterator();
 	}
 }
