@@ -17,6 +17,8 @@ import com.bitwaffle.moguts.gui.button.RectangleButton;
  * @author TranquilMarmot
  */
 public class GUI {
+	// FIXME use an EntityList for this? Maybe rename EntityList :P
+	// TODO buttons are seperate at the moment because they get checked on every touch event, probably also need a non-pressable UI list
 	/** List of buttons */
 	private ArrayList<Button> buttons;
 	/** Used to avoid ConcurrentModificationExceptions */
@@ -188,6 +190,9 @@ public class GUI {
 			
 			@Override
 			protected void onPress(){};
+			
+			@Override
+			public void update(){};
 			
 			@Override
 			public void draw(Render2D renderer){

@@ -89,14 +89,14 @@ public class Game implements GLSurfaceView.Renderer {
      * Draws a frame and steps the physics sim
      */
     public void onDrawFrame(GL10 unused) {
+    	// used for FPS counting
     	long timeBeforeLoop = SystemClock.elapsedRealtime();
-    	
 
     	// Step the physics sim
         physics.update();
     	
     	// clear the screen
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
+        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT /*| GLES20.GL_DEPTH_BUFFER_BIT*/);
         
         // render 2D scene
         render2D.renderScene();

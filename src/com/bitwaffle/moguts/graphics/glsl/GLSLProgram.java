@@ -19,9 +19,6 @@ public class GLSLProgram {
 	/** Contains any error info if any methods return false */
 	private String logString;
 	
-	/** Buffers for sending matrices to OpenGL (creating a new buffer each time leaks memory) */
-	//private FloatBuffer matrix4fBuffer, matrix3fBuffer;
-	
 	/** Maps every uniform/attribute to it's location in the shader */
 	private HashMap<String, Integer> uniformMap, attribMap;
 	
@@ -38,9 +35,6 @@ public class GLSLProgram {
 			System.err.println("Error creating shader program!");
 		
 		linked = false;
-		
-		//matrix4fBuffer = ByteBuffer.allocateDirect(16 * 4).asFloatBuffer();
-		//matrix3fBuffer = ByteBuffer.allocateDirect(9 * 4).asFloatBuffer();
 	}
 	
 	/**
@@ -260,18 +254,6 @@ public class GLSLProgram {
 	}
 	
 	/**
-	 * Set a uniform from a vector
-	 * @param name Name of uniform to set
-	 * @param v
-	 */
-	/*
-	public void setUniform(String name, Vector3f v){
-		this.setUniform(name, v.x, v.y, v.z);
-		
-	}
-	*/
-	
-	/**
 	 * Set a 4f uniform
 	 * @param name Name of uniform to set
 	 * @param x
@@ -287,55 +269,6 @@ public class GLSLProgram {
 			System.out.println("Uniform variable " + name + " not found!");
 		}
 	}
-	
-	/**
-	 * Set a uniform from a Vector4f
-	 * @param name Name of uniform to set
-	 * @param v
-	 */
-	/*
-	public void setUniform(String name, Vector4f v){
-		this.setUniform(name, v.x, v.y, v.z, v.w);
-	}
-	*/
-	
-	/**
-	 * Set a uniform Matrix4f
-	 * @param name Name of uniform to set
-	 * @param m
-	 */
-	/*
-	public void setUniform(String name, Matrix4f m){
-		int loc = getUniformLocation(name);
-		if(loc >= 0){
-			matrix4fBuffer.clear();
-			m.store(matrix4fBuffer);
-			matrix4fBuffer.rewind();
-			GLES20.glUniformMatrix4fv(loc, 1, false, matrix4fBuffer);
-		} else{
-			System.out.println("Uniform variable " + name + " not found!");
-		}
-	}
-	*/
-	
-	/**
-	 * Set a uniform Matrix3f
-	 * @param name Name of uniform to set
-	 * @param m
-	 */
-	/*
-	public void setUniform(String name, Matrix3f m){
-		int loc = getUniformLocation(name);
-		if(loc >= 0){
-			matrix3fBuffer.clear();
-			m.store(matrix3fBuffer);
-			matrix3fBuffer.rewind();
-			GLES20.glUniformMatrix3fv(loc, 1, false, matrix3fBuffer);
-		} else{
-			System.out.println("Uniform variable " + name + " not found!");
-		}
-	}
-	*/
 	
 	/**
 	 * Set a uniform matrix from an array

@@ -45,40 +45,34 @@ public abstract class Button extends GUIObject{
 		return this.contains(point.x, point.y);
 	}
 	
-	/**
-	 * Press the button! This sets isDown to true.
-	 * When overriding this, MAKE SURE TO CALL super.press()!!!
-	 */
+	/** Press the button! This sets isDown to true. */
 	public void press(){
 		this.isDown = true;
 		onPress();
 	}
 	
+	/** What to do when the button is pushed down (generally, change color/image) */
 	protected abstract void onPress();
 	
-	/**
-	 * Release the button! This sets isDown to false.
-	 * In general, this will be overriden with an action to perform when the button gets released.
-	 * When overriding this, MAKE SURE TO CALL super.release()!!!
-	 */
+	/** Release the button! This sets isDown to false. */
 	public void release(){
 		this.isDown = false;
 		onRelease();
 	}
 	
+	/** What to do when the button is released after being pressed (generally, take some sort of action) */
 	protected abstract void onRelease();
 	
-	/**
-	 * By default, this does nothing (so sliding off of a button is considered cancelling its press)
-	 * This is easy to override and make it call the release() method, however (or give it its own functionality)
-	 */
+	/** Called instead of release() when a button is pressed but then the pointer slides off of it */
 	public void slideRelease(){
 		this.isDown = false;
 		onSlideRelease();
 	}
 	
+	/** What to do when a finger pressed the button down, but then slid off of it, rather than just releasing (generally, nothing) */
 	protected abstract void onSlideRelease();
 	
+	// FIXME these are pretty much useless unless they get honored by press() and release()
 	public boolean isActive(){ return isActive; }
 	public void deactivate(){ isActive = false; }
 	public void activate(){ isActive = true; }

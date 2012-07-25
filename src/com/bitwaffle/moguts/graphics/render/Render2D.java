@@ -1,9 +1,11 @@
 package com.bitwaffle.moguts.graphics.render;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Iterator;
 
 import android.opengl.Matrix;
+import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.Game;
@@ -22,6 +24,9 @@ import com.bitwaffle.moguts.gui.button.Button;
  * @author TranquilMarmot
  */
 public class Render2D {
+	/** Tag to use when logging */
+	private static final String LOGTAG = "Render2D";
+	
 	/** Vertex shader to load on init */
 	private static final String VERTEX_SHADER = "shaders/main.vert";
 	/** Fragment shader to load on init */
@@ -29,12 +34,12 @@ public class Render2D {
 	
 	/** Initial values for camera */
 	private static final float DEFAULT_CAMX = 245.0f, DEFAULT_CAMY = 75.0f, DEFAULT_CAMZ = 0.004f;
-
-	/** The program to use for 2D rendering */
-	public GLSLProgram program;
 	
 	/** Camera for describing how the scene should be looked at */
 	public static Camera camera;
+	
+	/** The program to use for 2D rendering */
+	public GLSLProgram program;
 	
 	/** The modelview and projection matrices*/
 	public float[] modelview, projection;
@@ -51,7 +56,6 @@ public class Render2D {
 	 */
 	public Render2D() {
 		initShaders();
-		//Textures.initTextures();
 		
 		projection = new float[16];
 		modelview = new float[16];
@@ -70,12 +74,17 @@ public class Render2D {
 		GLSLShader vert = new GLSLShader(GLSLShader.ShaderTypes.VERTEX);
 		GLSLShader frag = new GLSLShader(GLSLShader.ShaderTypes.FRAGMENT);
 		try {
-			if (!vert.compileShaderFromStream(Game.resources.openAsset(VERTEX_SHADER)))
-				System.err.println("Error compiling vertex shader! Result: "
+			InputStream vertexStream = Game.resources.openAsset(VERTEX_SHADER);
+			if (!vert.compileShaderFromStream(vertexStream))
+				Log.e(LOGTAG, "Error compiling vertex shader! Result: "
 						+ vert.log());
-			if (!frag.compileShaderFromStream(Game.resources.openAsset(FRAGMENT_SHADER)))
-				System.err.println("Error compiling vertex shader! Result: "
+			vertexStream.close();
+			
+			InputStream fragmentStream = Game.resources.openAsset(FRAGMENT_SHADER);
+			if (!frag.compileShaderFromStream(fragmentStream))
+				Log.e(LOGTAG, "Error compiling vertex shader! Result: "
 						+ frag.log());
+			fragmentStream.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -83,7 +92,7 @@ public class Render2D {
 		program.addShader(vert);
 		program.addShader(frag);
 		if (!program.link())
-			System.err.println("Error linking program! " + program.log());
+			Log.e(LOGTAG, "Error linking program! " + program.log());
 	}
 
 	/**
@@ -110,7 +119,6 @@ public class Render2D {
 	private void setUpProjectionMatrix(){
 		Matrix.setIdentityM(projection, 0);
 		Matrix.orthoM(projection, 0, 0, Game.aspect, 0, 1, -1, 1);
-		//Matrix.scaleM(projection, 0, camera.getZoom(), camera.getZoom(), 1.0f);
 		Matrix.rotateM(projection, 0, camera.getAngle(), 0.0f, 0.0f, 1.0f);
 		
 		program.setUniformMatrix4f("Projection", projection);
@@ -130,10 +138,9 @@ public class Render2D {
 			
 			// figure out the location and the angle of what we're rendering
 			Vector2 loc = ent.getLocation();
-			//float angle = (float)Math.toDegrees((double)ent.getAngle());
 			float angle = toDegrees(ent.getAngle());
 			
-			// mainpulate the modelview matrix to draw the entity (zooming is done by scaling the projection matrix)
+			// mainpulate the modelview matrix to draw the entity
 			Matrix.setIdentityM(modelview, 0);
 			Matrix.scaleM(modelview, 0, camera.getZoom(), camera.getZoom(), 1.0f);
 			Matrix.translateM(modelview, 0, loc.x + cam.x, loc.y + cam.y, 0.0f);
@@ -144,6 +151,9 @@ public class Render2D {
 		}
 	}
 	
+	/**
+	 * Sets up the projection matrix for drawing the GUI
+	 */
 	private void setUpProjectionGUI(){
 		Matrix.setIdentityM(projection, 0);
 		Matrix.orthoM(projection, 0, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);

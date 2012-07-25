@@ -28,7 +28,7 @@ import com.bitwaffle.moguts.Game;
  * @author TranquilMarmot
  */
 public class TextureManager {
-	/** Hashes texture names to their int handles */
+	/** Hashes texture names to their int GL handles */
 	private HashMap<String, Integer> textures;
 	
 	/**
@@ -36,6 +36,7 @@ public class TextureManager {
 	 */
 	public TextureManager(){
 		textures = new HashMap<String, Integer>();
+		// TODO this should be done on a per-room (level?) basis
 		try {
 			parseXML(Game.resources.openAsset("resourcelists/textures.xml"));
 		} catch (IOException e) {
@@ -98,42 +99,28 @@ public class TextureManager {
 	private void parseXML(InputStream file){
 		NodeList nodes = null;
 		
-		// create a new DocumentBuilderFactory to read the XML file
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-
-		// The document builder
 		DocumentBuilder db;
-		// The actual document
 		Document doc;
+		// initialize the DocumentBuilder and parse the file to get the NodeList
 		try {
-			// create a new document builder from the factory
 			db = dbf.newDocumentBuilder();
-			// tell the document builder to parse the file
 			doc = db.parse(file);
-			// create an element from the document
 			Element docEle = doc.getDocumentElement();
-			// grab all the other nodes
 			nodes = docEle.getChildNodes();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
         
-		/*
-		 * Grab the resources
-		 */
+		// grab all the resources
 		if (nodes != null && nodes.getLength() > 0) {
-			// loop through all the nodes
 			for (int i = 0; i < nodes.getLength(); i++) {
-				if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
-					// grab the element
-					Element ele = (Element) nodes.item(i);
-
-					// get the entity
-					loadTexture(ele);
-				}
+				// we want to skip anything that's not an element node
+				if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE)
+					loadTexture((Element) nodes.item(i));
 			}
 		} else {
-			Log.e("XML", "Error in XMLParser! Either there was nothing in the given file or the parser simply just didn't want to work");
+			Log.e("XML", "Error parsing XML in TextureManager! Either there was nothing in the given file or the parser simply just didn't want to work");
 		}
 	}
 	
@@ -163,7 +150,6 @@ public class TextureManager {
 		
 		try {
 			InputStream in = Game.resources.openAsset(path);
-			System.out.println(name + " " + path);
 			textures.put(name, initTexture(in, minFilter, magFilter));
 			in.close();
 		} catch (IOException e) {

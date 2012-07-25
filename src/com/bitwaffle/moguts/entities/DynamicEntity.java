@@ -14,7 +14,7 @@ import com.bitwaffle.moguts.physics.Physics;
  * 
  * @author TranquilMarmot
  */
-public class DynamicEntity extends Entity{
+public abstract class DynamicEntity extends Entity{
 	/** Body that's in the Physics world */
 	public Body body;
 	
@@ -64,10 +64,11 @@ public class DynamicEntity extends Entity{
 	}
 
 	@Override
-	public void render(Render2D renderer) {}
+	public abstract void render(Render2D renderer);
 
 	@Override
 	public void cleanup() {
 		Game.physics.world.destroyBody(body);
+		body = null;
 	}
 }

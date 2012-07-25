@@ -8,8 +8,6 @@ import com.bitwaffle.moguts.graphics.render.Render2D;
  * @author TranquilMarmot
  */
 public abstract class RectangleButton extends Button {
-	//Quad q;
-	
 	/** width and height of button */
 	private float width, height;
 	
@@ -27,7 +25,6 @@ public abstract class RectangleButton extends Button {
 	 */
 	public RectangleButton(float x, float y, float width, float height) {
 		super(x, y);
-		//q = new Quad(width, height);
 		this.height = height;
 		this.width = width;
 	}
@@ -39,10 +36,6 @@ public abstract class RectangleButton extends Button {
 				touchY < this.y + this.height && // bottom
 				touchX > this.x - this.width && // left
 				touchX < this.x + this.width;  // right
-	}
-
-	@Override
-	public void update() {
 	}
 
 	@Override
@@ -60,9 +53,10 @@ public abstract class RectangleButton extends Button {
 	}
 
 	@Override
-	public void cleanup() {
-		
-	}
+	public void cleanup() {}
+
+	@Override
+	public abstract void update();
 
 	@Override
 	protected abstract void onRelease();

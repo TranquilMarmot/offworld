@@ -26,7 +26,7 @@ public class Quad {
 	private static final int COORDS_PER_VERTEX = 3, COORDS_PER_TEXCOORD = 2;
 	
 	/**
-	 * Position coordinates
+	 * Position coordinates (quad is scaled when drawn)
 	 */
 	private static float[] coords = {
 		-0.5f, 0.5f, 0.0f,
@@ -87,11 +87,11 @@ public class Quad {
 	 * @param height Height of quad, from center
 	 */
 	public void draw(Render2D renderer, float width, float height){
-		// send position info
+		// set position info
 		GLES20.glEnableVertexAttribArray(positionHandle);
         GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false, 0, vertBuffer);
         
-        // send texture coordinate info
+        // set texture coordinate info
         GLES20.glEnableVertexAttribArray(texCoordHandle);
         GLES20.glVertexAttribPointer(texCoordHandle, COORDS_PER_TEXCOORD, GLES20.GL_FLOAT, false, 0, texBuffer);
         
@@ -101,9 +101,5 @@ public class Quad {
 
         // actually draw the quad
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);
-        
-        // re-scale the matrix
-        Matrix.scaleM(renderer.modelview, 0, width * -2.0f, height * -2.0f, 1.0f);
-        renderer.program.setUniformMatrix4f("ModelView", renderer.modelview);
 	}
 }

@@ -93,16 +93,12 @@ public class TouchHandler {
 		float y0 = e.getY(0);
 
 		// x and y values of second pointer (will be 0 if no second pointer)
-		float x1 = 0.0f, y1 = 0.0f;
-		try{
-			x1 = e.getX(1);
-			y1 = e.getY(1);
-		} catch(IllegalArgumentException pointerIndexOutOfRange){}
+		float x1 = (pointerCount >= 2) ? e.getX(1) : 0.0f;
+		float y1 = (pointerCount >= 2) ? e.getY(1) : 0.0f;
 
 		// how far apart the two pointer are
 		float spacing = spacing(x0, y0, x1, y1);
 
-		// FIXME this switch statement is pretty unsightly D:
 		switch (action) {
 		// first pointer is put down
 		case MotionEvent.ACTION_DOWN:
@@ -133,7 +129,8 @@ public class TouchHandler {
 			if (buttonsDown[0] != null && buttonsDown[0].isDown()) {
 				buttonsDown[0].release();
 				buttonsDown[0] = null;
-			} else if (buttonsDown[1] != null && buttonsDown[1].isDown()) {
+			} 
+			if (buttonsDown[1] != null && buttonsDown[1].isDown()) {
 				buttonsDown[1].release();
 				buttonsDown[1] = null;
 			}
@@ -142,25 +139,25 @@ public class TouchHandler {
 		// some sort of movement (pretty much the default touch event)
 		case MotionEvent.ACTION_MOVE:
 			if (pointerCount == 1) {
-				// if there's only 1 pointer and it's not on a button, we're in drag mode
+				// if there's only 1 pointer and it's not on a button, we're dragging the screen
 				if (buttonsDown[0] == null && buttonsDown[1] == null) {
 					if (Render2D.camera.currentMode() == Camera.Modes.FREE)
 						dragEvent(x0, y0);
 				// else check if the pointer slid off a button
-				} else if (buttonsDown[0] != null) {
-					if (!buttonsDown[0].contains(x0, y0)) {
-						buttonsDown[0].slideRelease();
-						buttonsDown[0] = null;
+				} else{
+					if (buttonsDown[0] != null && !buttonsDown[0].contains(x0, y0)) {
+							buttonsDown[0].slideRelease();
+							buttonsDown[0] = null;
 					}
-				} else if (buttonsDown[1] != null) {
-					if (!buttonsDown[1].contains(x0, y0)) {
-						buttonsDown[1].slideRelease();
-						buttonsDown[1] = null;
+					if (buttonsDown[1] != null && !buttonsDown[1].contains(x0, y0)){
+							buttonsDown[1].slideRelease();
+							buttonsDown[1] = null;
 					}
 				}
 			} else if (pointerCount == 2) {
 				// if there's two pointers and neither are on a button, we're zooming
 				if (buttonsDown[0] == null && buttonsDown[1] == null) {
+					// note that zoom is done regardless of camera mode
 					zoomEvent(spacing);
 				} else {
 					// else we check if either finger slid off of a button

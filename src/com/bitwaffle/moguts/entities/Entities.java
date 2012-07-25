@@ -47,17 +47,24 @@ public class Entities {
 	}
 	
 	/**
-	 * Get an iterator to go through every entity
-	 * @return Iterator of list of entities
+	 * Get an iterator to go through every passive entity
+	 * @return Iterator of list of passive entities
 	 */
 	public Iterator<Entity> getPassiveEntityIterator(){
 		return passiveEntities.getIterator();
 	}
 	
+	/**
+	 * Get an iterator to go through every dynamic entity
+	 * @return Iterator of list of dynamic entities
+	 */
 	public Iterator<DynamicEntity> getDynamicEntityIterator(){
 		return dynamicEntities.getIterator();
 	}
 	
+	/**
+	 * Get rid of all Entities
+	 */
 	public void clear(){
 		passiveEntities.clear();
 		dynamicEntities.clear();

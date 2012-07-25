@@ -26,6 +26,7 @@ public class BoxEntity extends DynamicEntity {
 	 * @param fixtureDef Position/material information about the box
 	 * @param color What color the box is
 	 */
+	// FIXME is this initializer even necessary? Everything could be handled with the other one
 	public BoxEntity(BodyDef bodyDef, float width, float height, FixtureDef fixtureDef, float[] color){
 		super(bodyDef, fixtureDef);
 		this.width = width;
@@ -43,6 +44,7 @@ public class BoxEntity extends DynamicEntity {
 	 * @param color What color the box is
 	 */
 	public BoxEntity(BodyDef bodyDef, float width, float height, PolygonShape shape, float density, float[] color){
+		// TODO make it so that the box shape is automagically created (the way it works right now SUCKS!)
 		super(bodyDef, shape, density);
 		this.width = width;
 		this.height = height;

@@ -28,5 +28,4 @@
 		<minFilter>GL_NEAREST</minFilter>
 		<magFilter>GL_LINEAR</magFilter>
 	</texture>
-
 </resources>

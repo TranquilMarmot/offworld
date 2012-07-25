@@ -13,18 +13,14 @@ import android.opengl.GLES20;
  * @author TranquilMarmot
  */
 public class GLSLShader {
+	/** All the different types of shaders */
 	public enum ShaderTypes {
 		VERTEX(GLES20.GL_VERTEX_SHADER),
 		FRAGMENT(GLES20.GL_FRAGMENT_SHADER);
 
 		private int glInt;
-		private ShaderTypes(int glInt){
-			this.glInt = glInt;
-		}
-		
-		public int getGLInt(){
-			return glInt;
-		}
+		private ShaderTypes(int glInt){ this.glInt = glInt; }
+		public int getGLInt(){ return glInt; }
 	}
 	
 	/** Handle for shader */

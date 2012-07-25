@@ -14,6 +14,10 @@ import com.bitwaffle.moguts.device.SurfaceView;
  * @author TranquilMarmot
  */
 public class MainActivity extends Activity {
+	/**
+	 * This is VERY important! It holds on to the 'Game' object that
+	 * takes care of all the physics, rendering, etc. etc.
+	 */
     private static GLSurfaceView mGLView;
 
     @Override
@@ -28,13 +32,16 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // TODO make this an option somewhere
+        // TODO make this an option somewhere- does it even make a difference on newer versions of Android?
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
         //        WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-        
-        
-        // Create a GLSurfaceView instance and set it
-        // as the ContentView for this Activity.
+
+        /*
+         * Create a SurfaceView instance and set it as
+         * the ContentView for this Activity.
+         * NOTE: This SurfaceView holds on to the Game object
+         * and handles pretty much EVERYTHING in the game
+         */
         mGLView = new SurfaceView(this);
         setContentView(mGLView);
     }

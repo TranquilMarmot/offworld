@@ -30,15 +30,12 @@ public class SurfaceView extends GLSurfaceView {
         super(context);
         
         // Create an OpenGL ES 2.0 context
-        setEGLContextClientVersion(2);
-        
-        // Render the view only when there is a change in the drawing data
-        //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+        this.setEGLContextClientVersion(2);
         
         touchHandler = new TouchHandler();
         
         renderer = new Game(context);
-        setRenderer(renderer);  
+        this.setRenderer(renderer);  
   }
     
     @Override
