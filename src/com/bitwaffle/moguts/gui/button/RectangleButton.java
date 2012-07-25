@@ -11,10 +11,10 @@ public abstract class RectangleButton extends Button {
 	/** width and height of button */
 	private float width, height;
 	
-	// FIXME these are temporary (should be images!)
-	private float[] active = { 0.0f, 1.0f, 0.0f, 1.0f };
-	private float[] disabled = { 0.3f, 0.3f, 0.3f, 1.0f };
-	private float[] down = { 0.0f, 0.0f, 1.0f, 1.0f };
+	// FIXME these are temporary-ish
+	protected float[] active = { 0.0f, 1.0f, 0.0f, 1.0f };
+	protected float[] disabled = { 0.3f, 0.3f, 0.3f, 1.0f };
+	protected float[] down = { 0.0f, 0.0f, 1.0f, 1.0f };
 	
 	/**
 	 * Create a new rectangular button

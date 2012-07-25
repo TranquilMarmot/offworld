@@ -222,6 +222,10 @@ public class GUI {
 			@Override
 			public void update(){
 				this.x = Game.windowWidth - 40.0f;
+				this.active[0] = 0.75f;
+				this.active[1] = 0.75f;
+				this.active[2] = 0.75f;
+				
 			}
 		};
 		this.addButton(boxButt);

@@ -29,7 +29,7 @@ public class TouchHandler {
 	public final float MIN_ZOOM_SPACING = 10.0f;
 
 	/** How sensitive zoom is- the higher the value, the less sensitive */
-	public final float ZOOM_SENSITIVITY = 7000000.0f;
+	public final float ZOOM_SENSITIVITY = 6005000.0f;
 
 	/** How sensitive dragging is- the higher the value, the less sensitive */
 	public final float DRAG_SENSITIVITY = 2.0f;
