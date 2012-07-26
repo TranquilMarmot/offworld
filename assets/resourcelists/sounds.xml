@@ -1,0 +1,6 @@
+<resources>
+	<sound name="test">
+		<path>sounds/test.wav</path>
+		<priority>1</priority>
+	</sound>
+</resources>

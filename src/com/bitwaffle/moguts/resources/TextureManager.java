@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -19,6 +15,7 @@ import android.opengl.GLUtils;
 import android.util.Log;
 
 import com.bitwaffle.moguts.Game;
+import com.bitwaffle.moguts.util.XMLHelper;
 
 /**
  * Manages initializing and loading textures, and keeps
@@ -97,8 +94,9 @@ public class TextureManager {
 	 * @param file InputStream from resource list
 	 */
 	private void parseXML(InputStream file){
-		NodeList nodes = null;
+		NodeList nodes = XMLHelper.getNodeList(file);
 		
+		/*
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db;
 		Document doc;
@@ -111,6 +109,7 @@ public class TextureManager {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		*/
         
 		// grab all the resources
 		if (nodes != null && nodes.getLength() > 0) {
@@ -130,19 +129,19 @@ public class TextureManager {
 	 */
 	private void loadTexture(Element ele){
 		String name = ele.getAttribute("name");
-		String path = getString(ele, "path");
+		String path = XMLHelper.getString(ele, "path");
 		
 		// TODO make sure this doesn't crash when there's no specified filters
 		
 		int minFilter = GLES20.GL_NEAREST;
-		String minFilterString = getString(ele, "minFilter");
+		String minFilterString = XMLHelper.getString(ele, "minFilter");
 		if(minFilterString.equals("GL_LINEAR"))
 			minFilter = GLES20.GL_LINEAR;
 		else if(minFilterString.equals("GL_NEAREST"))
 			minFilter = GLES20.GL_NEAREST;
 		
 		int magFilter = GLES20.GL_NEAREST;
-		String magFilterString = getString(ele, "minFilter");
+		String magFilterString = XMLHelper.getString(ele, "magFilter");
 		if(magFilterString.equals("GL_LINEAR"))
 			magFilter = GLES20.GL_LINEAR;
 		else if(magFilterString.equals("GL_NEAREST"))
@@ -155,19 +154,5 @@ public class TextureManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	/**
-	 * Get a string value from an element
-	 * @param ele Element to get value from
-	 * @param tagName Name of value to get
-	 * @return Value of tagName in ele, null if tagName doesn't exist in ele
-	 */
-	private static String getString(Element ele, String tagName) {
-		NodeList nl = ele.getElementsByTagName(tagName);
-		if (nl != null && nl.getLength() > 0)
-			return nl.item(0).getFirstChild().getNodeValue();
-
-        return null;
 	}
 }

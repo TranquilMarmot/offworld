@@ -3,6 +3,7 @@ package com.bitwaffle.moguts.resources;
 import java.io.IOException;
 import java.io.InputStream;
 
+import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 
 /**
@@ -18,6 +19,9 @@ public class Resources {
 	/** Texture manager */
 	public TextureManager textures;
 	
+	/** Sound manager */
+	public SoundManager sounds;
+	
 	/**
 	 * Create a new resource manager
 	 * @param assetMan Asset manager to get assets from
@@ -31,6 +35,7 @@ public class Resources {
 	 */
 	public void init(){
 		textures = new TextureManager();
+		sounds = new SoundManager();
 	}
 	
     /**
@@ -45,5 +50,13 @@ public class Resources {
 		} catch (IOException e) {
 			throw e;
 		}
+    }
+    
+    public AssetFileDescriptor openAssetFD(String fileLoc) throws IOException{
+    	try{
+    		return assMan.openFd(fileLoc);
+    	} catch (IOException e){
+    		throw e;
+    	}
     }
 }
