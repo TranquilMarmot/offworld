@@ -247,8 +247,8 @@ public class Physics {
 				Random randy = new Random();
 				this.body.setAngularVelocity(randy.nextFloat() * 1.0f);
 				
-				float linX = randy.nextFloat() * 100.0f;
-				float linY = randy.nextFloat() * 100.0f;
+				float linX = randy.nextFloat() * 1.0f;
+				float linY = randy.nextFloat() * 1.0f;
 				if(randy.nextBoolean()) linX *= -1.0f;
 				if(randy.nextBoolean()) linY *= -1.0f;
 				this.body.setLinearVelocity(linX, linY);
