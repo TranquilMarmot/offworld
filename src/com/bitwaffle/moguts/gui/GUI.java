@@ -66,7 +66,7 @@ public class GUI {
 			@Override
 			public void onRelease(){
 				Vector2 linVec = Game.player.body.getLinearVelocity();
-				linVec.x += 10.0f;
+				linVec.x += 3.0f;
 				Game.player.body.setLinearVelocity(linVec);
 			}
 			
@@ -77,7 +77,7 @@ public class GUI {
 			public void update(){
 				if(this.isDown()){
 					Vector2 linVec = Game.player.body.getLinearVelocity();
-					linVec.x -= 3.0f;
+					linVec.x -= 1.0f;
 					Game.player.body.setLinearVelocity(linVec);
 				}
 				
@@ -103,7 +103,7 @@ public class GUI {
 			@Override
 			public void onRelease(){
 				Vector2 linVec = Game.player.body.getLinearVelocity();
-				linVec.x += 10.0f;
+				linVec.x += 3.0f;
 				Game.player.body.setLinearVelocity(linVec);
 			}
 			
@@ -114,7 +114,7 @@ public class GUI {
 			public void update(){
 				if(this.isDown()){
 					Vector2 linVec = Game.player.body.getLinearVelocity();
-					linVec.x -= 3.0f;
+					linVec.x -= 1.0f;
 					Game.player.body.setLinearVelocity(linVec);
 				}
 				
@@ -141,7 +141,7 @@ public class GUI {
 			@Override
 			public void onRelease(){
 				Vector2 linVec = Game.player.body.getLinearVelocity();
-				linVec.x -= 10.0f;
+				linVec.x -= 3.0f;
 				Game.player.body.setLinearVelocity(linVec);
 			}
 			
@@ -152,7 +152,7 @@ public class GUI {
 			public void update(){
 				if(this.isDown()){
 					Vector2 linVec = Game.player.body.getLinearVelocity();
-					linVec.x += 3.0f;
+					linVec.x += 1.0f;
 					Game.player.body.setLinearVelocity(linVec);
 				}
 				
@@ -179,7 +179,7 @@ public class GUI {
 			@Override
 			public void onRelease(){
 				Vector2 linVec = Game.player.body.getLinearVelocity();
-				linVec.x -= 10.0f;
+				linVec.x -= 3.0f;
 				Game.player.body.setLinearVelocity(linVec);
 			}
 			
@@ -190,7 +190,7 @@ public class GUI {
 			public void update(){
 				if(this.isDown()){
 					Vector2 linVec = Game.player.body.getLinearVelocity();
-					linVec.x += 3.0f;
+					linVec.x += 1.0f;
 					Game.player.body.setLinearVelocity(linVec);
 				}
 				

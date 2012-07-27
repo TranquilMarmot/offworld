@@ -45,7 +45,7 @@ public class Player extends BoxEntity {
 			Game.vibration.vibrate(25);
 			Game.resources.sounds.play("jump");
 			
-			linVec.y += 45.0f;
+			linVec.y += 7.5f;
 			body.setLinearVelocity(linVec);
 				
 			this.canJump = false;

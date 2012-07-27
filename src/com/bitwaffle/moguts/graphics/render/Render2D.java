@@ -33,7 +33,7 @@ public class Render2D {
 	private static final String FRAGMENT_SHADER = "shaders/main.frag";
 	
 	/** Initial values for camera */
-	private static final float DEFAULT_CAMX = 245.0f, DEFAULT_CAMY = 75.0f, DEFAULT_CAMZ = 0.004f;
+	private static final float DEFAULT_CAMX = 245.0f, DEFAULT_CAMY = 75.0f, DEFAULT_CAMZ = 0.03f;
 	
 	/** Camera for describing how the scene should be looked at */
 	public static Camera camera;

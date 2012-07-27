@@ -33,7 +33,7 @@ public class Physics {
 	private Entities entities;
 	
 	/** Gravity for the world */
-	private Vector2 gravity = new Vector2(0.0f, -39.2f);
+	private Vector2 gravity = new Vector2(0.0f, -9.8f/*-39.2f*/);
 	
 	/** Whether or not to sleep TODO look into what this means */
 	boolean doSleep = false;
@@ -140,10 +140,10 @@ public class Physics {
 		// player
 		BodyDef playerBodyDef = new BodyDef();
 		playerBodyDef.type = BodyDef.BodyType.DynamicBody;
-		playerBodyDef.position.set(0.0f, 75.0f);
+		playerBodyDef.position.set(0.0f, 5.0f);
 		
 		PolygonShape boxShape = new PolygonShape();
-		boxShape.setAsBox(10.0f, 10.0f);
+		boxShape.setAsBox(1.0f, 1.5f);
 		
 		FixtureDef playerFixture = new FixtureDef();
 		playerFixture.shape = boxShape;
@@ -151,7 +151,7 @@ public class Physics {
 		playerFixture.friction = 0.3f;
 		playerFixture.restitution = 0.0f;
 		
-		Game.player = new Player(playerBodyDef, 10.0f, 10.0f, playerFixture);
+		Game.player = new Player(playerBodyDef, 1.0f, 1.5f, playerFixture);
 		this.addEntity(Game.player);
 		
 		for(int i = 0; i < 175; i++)
@@ -213,13 +213,13 @@ public class Physics {
 	 */
 	public void makeRandomBox(){
 		Random randy = new Random();
-		float boxX = randy.nextFloat() * 500.0f - 50.0f;
+		float boxX = randy.nextFloat() * 30.0f - 50.0f;
 		if(boxX < 1.0f) boxX = 1.0f;
-		float boxY = randy.nextFloat() * 300.0f - 25.0f;
+		float boxY = randy.nextFloat() * 30.0f - 25.0f;
 		if(boxY < 1.0f) boxY = 1.0f;
-		float sizeX = randy.nextFloat() * 15.0f;
+		float sizeX = randy.nextFloat() * 1.5f;
 		if(sizeX < 1.0f) sizeX = 1.0f;
-		float sizeY = randy.nextFloat() * 15.0f;
+		float sizeY = randy.nextFloat() * 1.5f;
 		if(sizeY < 1.0f) sizeY = 1.0f;
 		float r = randy.nextFloat();
 		float g = randy.nextFloat();

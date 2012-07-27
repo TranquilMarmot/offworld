@@ -259,6 +259,7 @@ public class TouchHandler {
 		else if (spacing > previousSpacing + (MIN_ZOOM_SPACING / 2.0f))
 			zoom += spacing / ZOOM_SENSITIVITY;
 
+		System.out.println(zoom);
 		Render2D.camera.setZoom(zoom);
 	}
 

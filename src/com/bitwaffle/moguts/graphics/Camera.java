@@ -89,7 +89,7 @@ public class Camera extends Entity {
 		case FOLLOW:
 			Vector2 playerLoc = Game.player.getLocation();
 			// FIXME make this work more betterer (probably base it on screen size/zoom?)
-			this.location.set(-playerLoc.x + 275.0f, -playerLoc.y + 115.0f);
+			this.location.set(-playerLoc.x + 27.0f, -playerLoc.y + 11.0f);
 			break;
 		case FREE:
 			// do nothing (events handles by TouchHandler)
