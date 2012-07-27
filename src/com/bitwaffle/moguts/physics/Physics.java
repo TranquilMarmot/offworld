@@ -74,6 +74,7 @@ public class Physics {
 		
 		// initialize the world
 		world = new World(gravity, doSleep);
+		world.setContactListener(new ContactHandler());
 		entities = new Entities();
 		toInitialize = new Stack<DynamicEntity>();
 		

@@ -141,14 +141,7 @@ public class GUI {
 		RectangleButton jumpButt = new RectangleButton(Game.windowWidth - 40.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
 			@Override
 			protected void onRelease(){
-				Game.vibration.vibrate(25);
-			
-				// TODO make it so you can only jump when hitting the ground
-				Vector2 linVec = Game.player.body.getLinearVelocity();
-				if(linVec.y <= 5.0f && linVec.y >= -5.0f){
-					linVec.y += 50.0f;
-					Game.player.body.setLinearVelocity(linVec);
-				}
+				Game.player.jump();
 			}
 			
 			@Override
@@ -209,8 +202,8 @@ public class GUI {
 			@Override
 			protected void onRelease(){
 				Game.vibration.vibrate(25);
-				// FIXME still breaks game (maybe do a stack-queue thing?)
 				Game.physics.makeRandomBox();
+				Game.resources.sounds.play("test");
 			}
 			
 			@Override
@@ -225,7 +218,6 @@ public class GUI {
 				this.active[0] = 0.75f;
 				this.active[1] = 0.75f;
 				this.active[2] = 0.75f;
-				
 			}
 		};
 		this.addButton(boxButt);

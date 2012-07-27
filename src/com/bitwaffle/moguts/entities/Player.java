@@ -2,8 +2,10 @@ package com.bitwaffle.moguts.entities;
 
 import java.util.Random;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.bitwaffle.moguts.Game;
 
 /**
  * Player class
@@ -15,11 +17,15 @@ public class Player extends BoxEntity {
 	
 	private Random r;
 	
+	private boolean canJump;
+	
 	public Player(BodyDef bodyDef, float width, float height,
 			FixtureDef fixtureDef) {
 		super(bodyDef, width, height, fixtureDef, defaultColor);
 		
 		r = new Random();
+		
+		canJump = false;
 	}
 	
 	@Override
@@ -34,7 +40,23 @@ public class Player extends BoxEntity {
 	}
 	
 	public void jump(){
-		// TODO this
+		Vector2 linVec = body.getLinearVelocity();
+		if(this.canJump && linVec.y <= 7.5f && linVec.y >= -7.5f){
+			Game.vibration.vibrate(25);
+			Game.resources.sounds.play("jump");
+			
+			linVec.y += 45.0f;
+			body.setLinearVelocity(linVec);
+				
+			this.canJump = false;
+		}
 	}
-
+	
+	public boolean canJump(){
+		return canJump;
+	}
+	
+	public void setCanJump(boolean nowCanJump){
+		this.canJump = nowCanJump;
+	}
 }

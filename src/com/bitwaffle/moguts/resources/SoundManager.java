@@ -66,21 +66,6 @@ public class SoundManager {
 	private void parseXML(InputStream file){
 		NodeList nodes = XMLHelper.getNodeList(file);
 		
-		/*
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		DocumentBuilder db;
-		Document doc;
-		// initialize the DocumentBuilder and parse the file to get the NodeList
-		try {
-			db = dbf.newDocumentBuilder();
-			doc = db.parse(file);
-			Element docEle = doc.getDocumentElement();
-			nodes = docEle.getChildNodes();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		*/
-        
 		// grab all the resources
 		if (nodes != null && nodes.getLength() > 0) {
 			for (int i = 0; i < nodes.getLength(); i++) {
