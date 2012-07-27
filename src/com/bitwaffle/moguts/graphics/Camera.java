@@ -15,6 +15,8 @@ public class Camera extends Entity {
 	/** Current zoom level of camera (smaller it is, the smaller everything will be rendered) */
 	private float zoom;
 	
+	private static final float MIN_ZOOM = 0.008F, MAX_ZOOM = 0.08F;
+	
 	/** Current camera mode */
 	private Modes currentMode = Modes.FOLLOW;
 	
@@ -80,19 +82,32 @@ public class Camera extends Entity {
 	 * @param zoom New zoom level
 	 */
 	public void setZoom(float zoom){
-		this.zoom = zoom;
+		if(zoom > MAX_ZOOM)
+			this.zoom = MAX_ZOOM;
+		else if(zoom < MIN_ZOOM)
+			this.zoom = MIN_ZOOM;
+		else{
+			this.zoom = zoom;
+			followPlayer();
+		}
 	}
 
 	@Override
 	public void update(float timeStep) {
 		switch(currentMode){
 		case FOLLOW:
-			Vector2 playerLoc = Game.player.getLocation();
-			// FIXME make this work more betterer (probably base it on screen size/zoom?)
-			this.location.set(-playerLoc.x + 27.0f, -playerLoc.y + 11.0f);
+			followPlayer();
 			break;
 		case FREE:
 			// do nothing (events handles by TouchHandler)
+		}
+	}
+	
+	private void followPlayer(){
+		if(Game.player != null){
+			Vector2 playerLoc = Game.player.getLocation();
+			//FIXME make this work more betterer (probably base it on screen size/zoom?)
+			this.location.set(-playerLoc.x + (0.7f / zoom), -playerLoc.y + (0.5f / zoom));
 		}
 	}
 	

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
-import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.render.Render2D;
@@ -63,23 +62,13 @@ public class GUI {
 	/* FIXME TEMP CODE maybe serialize GUI elements? */
 	private void tempInit(){
 		RectangleButton leftLeftButt = new RectangleButton(40.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
-			@Override
-			public void onRelease(){
-				Vector2 linVec = Game.player.body.getLinearVelocity();
-				linVec.x += 1.0f;
-				Game.player.body.setLinearVelocity(linVec);
-			}
-			
-			@Override
+			public void onRelease(){}
 			public void onSlideRelease(){}
 			
 			@Override
 			public void update(){
-				if(this.isDown()){
-					Vector2 linVec = Game.player.body.getLinearVelocity();
-					linVec.x -= 1.0f;
-					Game.player.body.setLinearVelocity(linVec);
-				}
+				if(this.isDown())
+					Game.player.goLeft();
 				
 				this.y = Game.windowHeight - 40.0f;
 			}
@@ -100,23 +89,13 @@ public class GUI {
 		/* -------------- */
 		
 		RectangleButton rightLeftButt = new RectangleButton(Game.windowWidth - 150.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
-			@Override
-			public void onRelease(){
-				Vector2 linVec = Game.player.body.getLinearVelocity();
-				linVec.x += 3.0f;
-				Game.player.body.setLinearVelocity(linVec);
-			}
-			
-			@Override
+			public void onRelease(){}
 			public void onSlideRelease(){}
 			
 			@Override
 			public void update(){
-				if(this.isDown()){
-					Vector2 linVec = Game.player.body.getLinearVelocity();
-					linVec.x -= 1.0f;
-					Game.player.body.setLinearVelocity(linVec);
-				}
+				if(this.isDown())
+					Game.player.goLeft();
 				
 				this.y = Game.windowHeight - 40.0f;
 				this.x = Game.windowWidth - 150.0f;
@@ -138,23 +117,13 @@ public class GUI {
 		/* ----------- */
 		
 		RectangleButton leftRightButt = new RectangleButton(150.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
-			@Override
-			public void onRelease(){
-				Vector2 linVec = Game.player.body.getLinearVelocity();
-				linVec.x -= 3.0f;
-				Game.player.body.setLinearVelocity(linVec);
-			}
-			
-			@Override
+			public void onRelease(){}
 			public void onSlideRelease(){}
 			
 			@Override
 			public void update(){
-				if(this.isDown()){
-					Vector2 linVec = Game.player.body.getLinearVelocity();
-					linVec.x += 1.0f;
-					Game.player.body.setLinearVelocity(linVec);
-				}
+				if(this.isDown())
+					Game.player.goRight();
 				
 				this.y = Game.windowHeight - 40.0f;
 			}
@@ -176,23 +145,13 @@ public class GUI {
 		/* -------------------- */
 		
 		RectangleButton rightRightButt = new RectangleButton(Game.windowWidth - 40.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
-			@Override
-			public void onRelease(){
-				Vector2 linVec = Game.player.body.getLinearVelocity();
-				linVec.x -= 3.0f;
-				Game.player.body.setLinearVelocity(linVec);
-			}
-			
-			@Override
+			public void onRelease(){}
 			public void onSlideRelease(){}
 			
 			@Override
 			public void update(){
-				if(this.isDown()){
-					Vector2 linVec = Game.player.body.getLinearVelocity();
-					linVec.x += 1.0f;
-					Game.player.body.setLinearVelocity(linVec);
-				}
+				if(this.isDown())
+					Game.player.goRight();
 				
 				this.x = Game.windowWidth - 40.0f;
 				this.y = Game.windowHeight - 40.0f;
@@ -215,16 +174,13 @@ public class GUI {
 		
 		
 		RectangleButton rightJumpButt = new RectangleButton(Game.windowWidth - 40.0f, Game.windowHeight - 150.0f, 40.0f, 40.0f){
-			@Override
-			protected void onRelease(){
-				Game.player.jump();
-			}
-			
-			@Override
+			protected void onRelease(){ }
 			protected void onSlideRelease(){};
 			
 			@Override
-			protected void onPress(){};
+			protected void onPress(){
+				Game.player.jump();
+			};
 			
 			@Override
 			public void update(){
@@ -243,16 +199,13 @@ public class GUI {
 		/* -------------------- */
 		
 		RectangleButton leftJumpButt = new RectangleButton(40.0f, Game.windowHeight - 150.0f, 40.0f, 40.0f){
-			@Override
-			protected void onRelease(){
-				Game.player.jump();
-			}
-			
-			@Override
+			protected void onRelease(){}
 			protected void onSlideRelease(){};
 			
 			@Override
-			protected void onPress(){};
+			protected void onPress(){
+				Game.player.jump();
+			};
 			
 			@Override
 			public void update(){
@@ -281,13 +234,8 @@ public class GUI {
 					Render2D.camera.setMode(Camera.Modes.FOLLOW);
 			}
 			
-			@Override
 			protected void onSlideRelease(){};
-			
-			@Override
 			protected void onPress(){};
-			
-			@Override
 			public void update(){};
 			
 			@Override
@@ -309,10 +257,7 @@ public class GUI {
 				Game.resources.sounds.play("test");
 			}
 			
-			@Override
 			protected void onSlideRelease(){};
-			
-			@Override
 			protected void onPress(){};
 			
 			@Override

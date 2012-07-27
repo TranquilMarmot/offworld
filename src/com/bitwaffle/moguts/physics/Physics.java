@@ -140,7 +140,7 @@ public class Physics {
 		// player
 		BodyDef playerBodyDef = new BodyDef();
 		playerBodyDef.type = BodyDef.BodyType.DynamicBody;
-		playerBodyDef.position.set(0.0f, 5.0f);
+		playerBodyDef.position.set(0.0f, -15.0f);
 		
 		PolygonShape boxShape = new PolygonShape();
 		boxShape.setAsBox(1.0f, 1.5f);
@@ -213,9 +213,9 @@ public class Physics {
 	 */
 	public void makeRandomBox(){
 		Random randy = new Random();
-		float boxX = randy.nextFloat() * 30.0f - 50.0f;
+		float boxX = randy.nextFloat() * 50.0f - 50.0f;
 		if(boxX < 1.0f) boxX = 1.0f;
-		float boxY = randy.nextFloat() * 30.0f - 25.0f;
+		float boxY = randy.nextFloat() * 50.0f - 25.0f;
 		if(boxY < 1.0f) boxY = 1.0f;
 		float sizeX = randy.nextFloat() * 1.5f;
 		if(sizeX < 1.0f) sizeX = 1.0f;

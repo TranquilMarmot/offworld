@@ -29,10 +29,10 @@ public class TouchHandler {
 	public final float MIN_ZOOM_SPACING = 10.0f;
 
 	/** How sensitive zoom is- the higher the value, the less sensitive */
-	public final float ZOOM_SENSITIVITY = 6005000.0f;
+	public final float ZOOM_SENSITIVITY = 600500.0f;
 
 	/** How sensitive dragging is- the higher the value, the less sensitive */
-	public final float DRAG_SENSITIVITY = 2.0f;
+	public final float DRAG_SENSITIVITY = 15.0f;
 
 	/** See comment for checkForButtonPresses() */
 	private Button[] buttonsDown;
@@ -159,6 +159,10 @@ public class TouchHandler {
 				if (buttonsDown[0] == null && buttonsDown[1] == null) {
 					// note that zoom is done regardless of camera mode
 					zoomEvent(spacing);
+					x0 = previousX;
+					y0 = previousY;
+					x1 = previousX;
+					y1 = previousY;
 				} else {
 					// else we check if either finger slid off of a button
 					if (buttonsDown[0] != null) {

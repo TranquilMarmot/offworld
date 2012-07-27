@@ -19,6 +19,8 @@ public class Player extends BoxEntity {
 	
 	private boolean canJump;
 	
+	private float maxVelocityX = 15.0f;
+	
 	public Player(BodyDef bodyDef, float width, float height,
 			FixtureDef fixtureDef) {
 		super(bodyDef, width, height, fixtureDef, defaultColor);
@@ -37,6 +39,22 @@ public class Player extends BoxEntity {
 		
 		// don't want out player rotating all willy nilly now, do we?
 		this.setAngle(0.0f);
+	}
+	
+	public void goLeft(){
+			Vector2 linVec = body.getLinearVelocity();
+			if(linVec.x > -maxVelocityX) {
+				linVec.x -= 0.5f;
+				body.setLinearVelocity(linVec);
+			}
+	}
+	
+	public void goRight(){
+		Vector2 linVec = body.getLinearVelocity();
+		if(linVec.x < maxVelocityX) {
+			linVec.x += 0.5f;
+			body.setLinearVelocity(linVec);
+		}
 	}
 	
 	public void jump(){
