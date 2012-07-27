@@ -29,7 +29,7 @@ public class GUI {
 		buttonsToAdd = new Stack<Button>();
 		buttonsToRemove = new Stack<Button>();
 		
-		temp();
+		tempInit();
 	}
 	
 	public Iterator<Button> getButtonIterator(){
@@ -61,8 +61,8 @@ public class GUI {
 	}
 	
 	/* FIXME TEMP CODE maybe serialize GUI elements? */
-	private void temp(){
-		RectangleButton leftButt = new RectangleButton(40.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
+	private void tempInit(){
+		RectangleButton leftLeftButt = new RectangleButton(40.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
 			@Override
 			public void onRelease(){
 				Vector2 linVec = Game.player.body.getLinearVelocity();
@@ -95,11 +95,49 @@ public class GUI {
 				super.draw(renderer);
 			}
 		};
-		this.addButton(leftButt);
+		this.addButton(leftLeftButt);
 		
 		/* -------------- */
 		
-		RectangleButton rightButt = new RectangleButton(150.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
+		RectangleButton rightLeftButt = new RectangleButton(Game.windowWidth - 150.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
+			@Override
+			public void onRelease(){
+				Vector2 linVec = Game.player.body.getLinearVelocity();
+				linVec.x += 10.0f;
+				Game.player.body.setLinearVelocity(linVec);
+			}
+			
+			@Override
+			public void onSlideRelease(){}
+			
+			@Override
+			public void update(){
+				if(this.isDown()){
+					Vector2 linVec = Game.player.body.getLinearVelocity();
+					linVec.x -= 3.0f;
+					Game.player.body.setLinearVelocity(linVec);
+				}
+				
+				this.y = Game.windowHeight - 40.0f;
+				this.x = Game.windowWidth - 150.0f;
+			}
+			
+			@Override
+			public void onPress(){
+				Game.vibration.vibrate(25);
+			}
+			
+			@Override
+			public void draw(Render2D renderer){
+				Game.resources.textures.bindTexture("leftarrow");
+				super.draw(renderer);
+			}
+		};
+		this.addButton(rightLeftButt);
+		
+		/* ----------- */
+		
+		RectangleButton leftRightButt = new RectangleButton(150.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
 			@Override
 			public void onRelease(){
 				Vector2 linVec = Game.player.body.getLinearVelocity();
@@ -132,13 +170,51 @@ public class GUI {
 				super.draw(renderer);
 			}
 		};
-		this.addButton(rightButt);
+		this.addButton(leftRightButt);
 		
 		
 		/* -------------------- */
 		
+		RectangleButton rightRightButt = new RectangleButton(Game.windowWidth - 40.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
+			@Override
+			public void onRelease(){
+				Vector2 linVec = Game.player.body.getLinearVelocity();
+				linVec.x -= 10.0f;
+				Game.player.body.setLinearVelocity(linVec);
+			}
+			
+			@Override
+			public void onSlideRelease(){}
+			
+			@Override
+			public void update(){
+				if(this.isDown()){
+					Vector2 linVec = Game.player.body.getLinearVelocity();
+					linVec.x += 3.0f;
+					Game.player.body.setLinearVelocity(linVec);
+				}
+				
+				this.x = Game.windowWidth - 40.0f;
+				this.y = Game.windowHeight - 40.0f;
+			}
+			
+			@Override
+			public void onPress(){
+				Game.vibration.vibrate(25);
+			}
+			
+			@Override
+			public void draw(Render2D renderer){
+				Game.resources.textures.bindTexture("rightarrow");
+				super.draw(renderer);
+			}
+		};
+		this.addButton(rightRightButt);
 		
-		RectangleButton jumpButt = new RectangleButton(Game.windowWidth - 40.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
+		/* ----------------- */
+		
+		
+		RectangleButton rightJumpButt = new RectangleButton(Game.windowWidth - 40.0f, Game.windowHeight - 150.0f, 40.0f, 40.0f){
 			@Override
 			protected void onRelease(){
 				Game.player.jump();
@@ -152,7 +228,7 @@ public class GUI {
 			
 			@Override
 			public void update(){
-				this.y = Game.windowHeight - 40.0f;
+				this.y = Game.windowHeight - 150.0f;
 				this.x = Game.windowWidth - 40.0f;
 			}
 			
@@ -162,7 +238,34 @@ public class GUI {
 				super.draw(renderer);
 			}
 		};
-		this.addButton(jumpButt);
+		this.addButton(rightJumpButt);
+		
+		/* -------------------- */
+		
+		RectangleButton leftJumpButt = new RectangleButton(40.0f, Game.windowHeight - 150.0f, 40.0f, 40.0f){
+			@Override
+			protected void onRelease(){
+				Game.player.jump();
+			}
+			
+			@Override
+			protected void onSlideRelease(){};
+			
+			@Override
+			protected void onPress(){};
+			
+			@Override
+			public void update(){
+				this.y = Game.windowHeight - 150.0f;
+			}
+			
+			@Override
+			public void draw(Render2D renderer){
+				Game.resources.textures.bindTexture("uparrow");
+				super.draw(renderer);
+			}
+		};
+		this.addButton(leftJumpButt);
 		
 		/* -------------------- */
 		
