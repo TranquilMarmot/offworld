@@ -28,4 +28,41 @@
 		<minFilter>GL_NEAREST</minFilter>
 		<magFilter>GL_LINEAR</magFilter>
 	</texture>
+	
+	<animation name="playerwalk">
+	    <path>textures/playerwalk.png</path>
+	    <minFilter>GL_NEAREST</minFilter>
+		<magFilter>GL_LINEAR</magFilter>
+		
+		<frame n="0">
+		    <xOffset>0</xOffset>
+		    <yOffset>0</yOffset>
+		    <width>19</width>
+		    <height>44</height>
+		</frame>
+		<frame n="1">
+		    <xOffset>19</xOffset>
+		    <yOffset>0</yOffset>
+		    <width>19</width>
+		    <height>44</height>
+		</frame>
+		<frame n="2">
+		    <xOffset>38</xOffset>
+		    <yOffset>0</yOffset>
+		    <width>26</width>
+		    <height>44</height>
+		</frame>
+		<frame n="3">
+		    <xOffset>64</xOffset>
+		    <yOffset>0</yOffset>
+		    <width>26</width>
+		    <height>44</height>
+		</frame>
+		<frame n="4">
+		    <xOffset>142</xOffset>
+		    <yOffset>0</yOffset>
+		    <width>26</width>
+		    <height>44</height>
+		</frame>
+	</animation>
 </resources>

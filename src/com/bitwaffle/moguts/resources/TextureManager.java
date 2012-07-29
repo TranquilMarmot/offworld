@@ -90,6 +90,38 @@ public class TextureManager {
 	}
 	
 	/**
+	 * Initialize a sub-texture
+	 * 
+	 * @param in InputStream from texture's file
+	 * @param minFilter What to use for GL_TEXTURE_MIN_FILTER
+	 * @param magFilter What to use for GL_TEXTURE_MAG_FILTER
+	 * @return Handle for newly created texture
+	 */
+	private int initSubTexture(InputStream in, int minFilter, int magFilter, int xOffset, int yOffset){
+		// loading texture
+		Bitmap bitmap = BitmapFactory.decodeStream(in);
+		
+		int[] handles = new int[1];
+		
+		GLES20.glGenTextures(1, handles, 0);
+		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, handles[0]);
+		
+		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, minFilter);
+		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, magFilter);
+		
+
+		bitmap.
+		
+		int error = GLES20.glGetError();
+		if(error != GLES20.GL_NO_ERROR)
+			Log.e("Render2D", "Error loading texture! " + GLES20.glGetString(error));
+		
+		bitmap.recycle();
+		
+		return handles[0];
+	}
+	
+	/**
 	 * Parses an XML resource list
 	 * @param file InputStream from resource list
 	 */
