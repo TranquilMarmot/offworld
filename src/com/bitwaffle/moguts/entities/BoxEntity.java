@@ -16,7 +16,9 @@ public class BoxEntity extends DynamicEntity {
 	protected float[] color;
 	
 	/** Width and height of box (from center) */
-	private float width, height;
+	protected float width;
+
+	protected float height;
 	
 	/**
 	 * Create a new, box-shaped DynamicEntity

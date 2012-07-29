@@ -6,6 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.moguts.Game;
+import com.bitwaffle.moguts.graphics.Animation;
+import com.bitwaffle.moguts.graphics.render.Render2D;
 
 /**
  * Player class
@@ -21,6 +23,8 @@ public class Player extends BoxEntity {
 	
 	private float maxVelocityX = 15.0f;
 	
+	private Animation animation;
+	
 	public Player(BodyDef bodyDef, float width, float height,
 			FixtureDef fixtureDef) {
 		super(bodyDef, width, height, fixtureDef, defaultColor);
@@ -28,6 +32,12 @@ public class Player extends BoxEntity {
 		r = new Random();
 		
 		canJump = false;
+	}
+	
+	@Override
+	public void init(){
+		super.init();
+		animation = Game.resources.textures.getAnimation("playerwalk");
 	}
 	
 	@Override
@@ -39,6 +49,8 @@ public class Player extends BoxEntity {
 		
 		// don't want out player rotating all willy nilly now, do we?
 		this.setAngle(0.0f);
+		
+		animation.updateAnimation(timeStep);
 	}
 	
 	public void goLeft(){
@@ -76,5 +88,12 @@ public class Player extends BoxEntity {
 	
 	public void setCanJump(boolean nowCanJump){
 		this.canJump = nowCanJump;
+	}
+	
+	@Override
+	public void render(Render2D renderer){
+		animation.bindCurrentFrame();
+		renderer.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
+		renderer.quad.draw(renderer, this.width, this.height);
 	}
 }

@@ -47,4 +47,12 @@ public class XMLHelper {
 
         return null;
 	}
+	
+	public static int getInt(Element ele, String tagName){
+		return Integer.parseInt(getString(ele, tagName));
+	}
+	
+	public static float getFloat(Element ele, String tagName){
+		return Float.parseFloat(getString(ele, tagName));
+	}
 }
