@@ -52,6 +52,12 @@ public class Resources {
 		}
     }
     
+    /**
+     * Open an asset's file descriptor
+     * @param fileLoc Location of asset to open inside of 'assets' folder
+     * @return File descriptor of asset
+     * @throws IOException When asset isn't found
+     */
     public AssetFileDescriptor openAssetFD(String fileLoc) throws IOException{
     	try{
     		return assMan.openFd(fileLoc);

@@ -58,13 +58,13 @@ public class Quad {
 	 * @param renderer What will be rendering this quad
 	 */
 	public Quad(Render2D renderer){
-		vertBuffer = BufferUtils.getFloatBuffer(coords.length * 4);
+		vertBuffer = BufferUtils.getFloatBuffer(coords.length);
 		vertBuffer.put(coords);
 		vertBuffer.rewind();
 		
 		positionHandle = renderer.program.getAttribLocation("vPosition");
 
-		texBuffer = BufferUtils.getFloatBuffer(texCoords.length * 4);
+		texBuffer = BufferUtils.getFloatBuffer(texCoords.length);
 		texBuffer.put(texCoords);
 		texBuffer.rewind();
 		
@@ -72,12 +72,24 @@ public class Quad {
 	}
 	
 	/**
-	 * Draw the quad
+	 * Draw a quad
 	 * @param renderer Renderer to use to draw quad (need to know to scale matrices)
 	 * @param width Width of quad, from center
 	 * @param height Height of quad, from center
 	 */
 	public void draw(Render2D renderer, float width, float height){
+		draw(renderer, width, height, false, false);
+	}
+	
+	/**
+	 * Draw a quad, with optional flipping
+	 * @param renderer Renderer to use to draw quad (need to know to scale matrices)
+	 * @param width Width of quad, from center
+	 * @param height Height of quad, from center
+	 * @param flipHorizontal Whether or not to flip the image horizontally
+	 * @param flipVertical Whether or not to flip the image vertically
+	 */
+	public void draw(Render2D renderer, float width, float height, boolean flipHorizontal, boolean flipVertical){
 		// set position info
 		GLES20.glEnableVertexAttribArray(positionHandle);
         GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false, 0, vertBuffer);
@@ -86,11 +98,20 @@ public class Quad {
         GLES20.glEnableVertexAttribArray(texCoordHandle);
         GLES20.glVertexAttribPointer(texCoordHandle, COORDS_PER_TEXCOORD, GLES20.GL_FLOAT, false, 0, texBuffer);
         
-        // scale matrix to match width/height
+        // scale matrix to match width/height and flip if needed
         Matrix.scaleM(renderer.modelview, 0, width * 2.0f, height * 2.0f, 1.0f);
+        if(flipHorizontal)
+        	Matrix.rotateM(renderer.modelview, 0, 180, 0.0f, 1.0f, 0.0f);
+        if(flipVertical)
+        	Matrix.rotateM(renderer.modelview, 0, 180, 0.0f, 0.0f, 1.0f);
         renderer.program.setUniformMatrix4f("ModelView", renderer.modelview);
 
         // actually draw the quad
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);
+        
+        // don't forget to disable the attrib arrays!
+        GLES20.glDisableVertexAttribArray(positionHandle);
+        GLES20.glDisableVertexAttribArray(texCoordHandle);
+        
 	}
 }

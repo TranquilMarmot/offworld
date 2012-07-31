@@ -79,7 +79,24 @@ public class Animation {
 	 * @param height Height of entity
 	 */
 	public void renderCurrentFrame(Render2D renderer, float width, float height){
+		/*
+		 * For some reason, calling Bitmap.createBitmap with a sub-image
+		 * will flip the image both verticall and horizontally
+		 * so we compensate for it here.
+		 */
+		renderCurrentFrame(renderer, width, height, false, false);
+	}
+	
+	/**
+	 * Draw the current frame of this animation, with optional flipping
+	 * @param renderer Renderer to use for drawing
+	 * @param width Width of entity
+	 * @param height Height of entity
+	 */
+	public void renderCurrentFrame(Render2D renderer, float width, float height, boolean flipHorizontal, boolean flipVertical){
 		this.bindCurrentFrame();
-		renderer.quad.draw(renderer, width, height);
+		
+		// Bitmap.createBitmap with a subimage flips it, so we pass flipped booleans
+		renderer.quad.draw(renderer, width, height, !flipHorizontal, !flipVertical);
 	}
 }

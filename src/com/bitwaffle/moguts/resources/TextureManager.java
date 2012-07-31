@@ -204,13 +204,7 @@ public class TextureManager {
 				float length = XMLHelper.getFloat(frameEle, "length");
 				
 				initSubTexture(bitmap, handles[index], minFilter, magFilter, xOffset, yOffset, width, height);
-				frames[index] = 
-					new Frame(
-						handles[index],
-						length,
-						width, 
-						height
-					);
+				frames[index] = new Frame(handles[index], length, width, height);
 			}
 			
 			bitmap.recycle();
@@ -238,6 +232,7 @@ public class TextureManager {
 		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, minFilter);
 		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, magFilter);
 		
+		// FIXME subBitmap is upside down and backwards?! (compensated for when animation is drawn right now)
 		Bitmap subBitmap = Bitmap.createBitmap(bitmap, xOffset, yOffset, width, height);
 		GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, subBitmap, 0);
 		
