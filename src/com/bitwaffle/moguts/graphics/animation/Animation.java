@@ -1,4 +1,4 @@
-package com.bitwaffle.moguts.graphics;
+package com.bitwaffle.moguts.graphics.animation;
 
 import android.opengl.GLES20;
 
@@ -17,6 +17,12 @@ public class Animation {
 		currentFrame = frames[0];
 	}
 	
+	public Animation(Animation other){
+		this.frames = other.frames;
+		this.numFrames = other.numFrames;
+		
+	}
+	
 	public void putFrame(Frame frame){
 		frames[frame.getIndex()] = frame;
 		if(currentFrame == null)
@@ -29,10 +35,11 @@ public class Animation {
 		if(timeOnFrame >= currentFrame.getTime()){
 			currentFrameIndex++;
 			// FIXME use >?
-			if(currentFrameIndex == numFrames){
+			if(currentFrameIndex == numFrames)
 				currentFrameIndex = 0;
-			}
+			
 			currentFrame = frames[currentFrameIndex];
+			timeOnFrame = 0.0f;
 		}
 	}
 	

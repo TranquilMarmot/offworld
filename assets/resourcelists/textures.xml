@@ -32,41 +32,41 @@
 	<animation name="playerwalk" frames="5">
 	    <path>textures/playerwalk.png</path>
 	    <minFilter>GL_NEAREST</minFilter>
-		<magFilter>GL_LINEAR</magFilter>
+		<magFilter>GL_NEAREST</magFilter>
 		
 		<frame index="0">
 		    <xOffset>0</xOffset>
 		    <yOffset>0</yOffset>
-		    <width>19</width>
-		    <height>44</height>
+		    <width>16</width>
+		    <height>32</height>
 		    <time>0.1f</time>
 		</frame>
 		<frame index="1">
 		    <xOffset>19</xOffset>
 		    <yOffset>0</yOffset>
-		    <width>19</width>
-		    <height>44</height>
+		    <width>16</width>
+		    <height>32</height>
 		     <time>0.1f</time>
 		</frame>
 		<frame index="2">
 		    <xOffset>38</xOffset>
 		    <yOffset>0</yOffset>
-		    <width>26</width>
-		    <height>44</height>
+		    <width>16</width>
+		    <height>32</height>
 		     <time>0.1f</time>
 		</frame>
 		<frame index="3">
 		    <xOffset>64</xOffset>
 		    <yOffset>0</yOffset>
-		    <width>26</width>
-		    <height>44</height>
+		    <width>16</width>
+		    <height>32</height>
 		     <time>0.1f</time>
 		</frame>
 		<frame index="4">
 		    <xOffset>142</xOffset>
 		    <yOffset>0</yOffset>
-		    <width>26</width>
-		    <height>44</height>
+		    <width>16</width>
+		    <height>32</height>
 		     <time>0.1f</time>
 		</frame>
 	</animation>

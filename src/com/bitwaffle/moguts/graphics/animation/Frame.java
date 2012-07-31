@@ -1,4 +1,4 @@
-package com.bitwaffle.moguts.graphics;
+package com.bitwaffle.moguts.graphics.animation;
 
 public class Frame {
 	private int index, handle, width, height;

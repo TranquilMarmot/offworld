@@ -1,13 +1,12 @@
 package com.bitwaffle.moguts.graphics.shapes;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 
 import com.bitwaffle.moguts.graphics.render.Render2D;
+import com.bitwaffle.moguts.util.BufferUtils;
 
 /**
  * When initialized, this creates a single quad and sends all the appropriate data to OpenGL.
@@ -58,22 +57,14 @@ public class Quad {
 	 * Create a new quad (there should only be one at a time)
 	 * @param renderer What will be rendering this quad
 	 */
-	public Quad(Render2D renderer){		
-		// create vertex buffer (4 bytes per float)
-		ByteBuffer vertbb = ByteBuffer.allocateDirect(coords.length * 4);
-		vertbb.order(ByteOrder.nativeOrder());
-		
-		vertBuffer = vertbb.asFloatBuffer();
+	public Quad(Render2D renderer){
+		vertBuffer = BufferUtils.getFloatBuffer(coords.length * 4);
 		vertBuffer.put(coords);
 		vertBuffer.rewind();
 		
 		positionHandle = renderer.program.getAttribLocation("vPosition");
-		
-		// create texture buffer (4 bytes per float)
-		ByteBuffer texbb = ByteBuffer.allocateDirect(texCoords.length * 4);
-		texbb.order(ByteOrder.nativeOrder());
-		
-		texBuffer = texbb.asFloatBuffer();
+
+		texBuffer = BufferUtils.getFloatBuffer(texCoords.length * 4);
 		texBuffer.put(texCoords);
 		texBuffer.rewind();
 		

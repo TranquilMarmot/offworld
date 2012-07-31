@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.moguts.Game;
-import com.bitwaffle.moguts.graphics.Animation;
+import com.bitwaffle.moguts.graphics.animation.Animation;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 
 /**
