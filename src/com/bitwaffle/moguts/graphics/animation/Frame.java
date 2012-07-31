@@ -1,23 +1,18 @@
 package com.bitwaffle.moguts.graphics.animation;
 
 public class Frame {
-	private int index, handle, width, height;
-	private float time;
+	private int handle, width, height;
+	private float length;
 	
-	public Frame(int index, int handle, float time, int width, int height){
-		this.index = index;
+	public Frame(int handle, float length, int width, int height){
 		this.handle = handle;
-		this.time = time;
+		this.length = length;
 		this.width = width;
 		this.height = height;
 	}
 	
-	public float getTime(){
-		return time;
-	}
-	
-	public int getIndex(){
-		return index;
+	public float getLength(){
+		return length;
 	}
 	
 	public int getHandle(){

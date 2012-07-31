@@ -64,9 +64,20 @@ public class TextureManager {
 		return textures.get(textureName);
 	}
 	
+	/**
+	 * Get an instance of an animation
+	 * Whatever class is handling the animation needs
+	 * to update and bind its current frame on draw.
+	 * This way, multiple instance of the same animation
+	 * can be going and be on different frames.
+	 * @param animationName Name of animation (from XML resource file)
+	 * @return Instance of animation
+	 */
 	public Animation getAnimation(String animationName){
-		return animations.get(animationName);
+		return new Animation(animations.get(animationName));
 	}
+	
+	/* From here on down, it's all XML loading stuff */
 	
 	/**
 	 * Parses an XML resource list
@@ -157,44 +168,43 @@ public class TextureManager {
 	private void loadAnimation(Element ele){
 		String name = ele.getAttribute("name");
 		String path = XMLHelper.getString(ele, "path");
-		int frames = Integer.parseInt(ele.getAttribute("frames"));
+		int numFrames = Integer.parseInt(ele.getAttribute("frames"));
 		int minFilter = getFilter(ele, "minFilter");
 		int magFilter = getFilter(ele, "magFilter");
 		
-		Animation animation = new Animation(frames);
+		Frame[] frames = new Frame[numFrames];
 		
 		try{
 			Bitmap bitmap = BitmapFactory.decodeStream(Game.resources.openAsset(path));
 			
-			int[] handles = new int[frames];
-			GLES20.glGenTextures(frames, handles, 0);
+			int[] handles = new int[numFrames];
+			GLES20.glGenTextures(numFrames, handles, 0);
 			
 			NodeList frameNodes = ele.getElementsByTagName("frame");
 			
 			for(int i = 0; i < frameNodes.getLength(); i++){
 				Element frameEle = (Element) frameNodes.item(i);
-				int index = Integer.parseInt(frameEle.getAttribute("index"));
+				int index = Integer.parseInt(frameEle.getAttribute("number"));
 				int xOffset = XMLHelper.getInt(frameEle, "xOffset");
 				int yOffset = XMLHelper.getInt(frameEle, "yOffset");
 				int width = XMLHelper.getInt(frameEle, "width");
 				int height = XMLHelper.getInt(frameEle, "height");
-				float time = XMLHelper.getFloat(frameEle, "time");
+				float length = XMLHelper.getFloat(frameEle, "length");
 				initSubTexture(bitmap, handles[index], minFilter, magFilter, xOffset, yOffset, width, height);
-				animation.putFrame(
-						new Frame(
-								index,
-								handles[index],
-								time,
-								width, 
-								height
-						));
+				frames[index] = 
+					new Frame(
+						handles[index],
+						length,
+						width, 
+						height
+					);
 			}
 			
 			bitmap.recycle();
 		} catch(IOException e){
 			e.printStackTrace();
 		}
-		animations.put(name, animation);
+		animations.put(name, new Animation(frames));
 		
 	}
 	

@@ -4,38 +4,29 @@ import android.opengl.GLES20;
 
 public class Animation {
 	private Frame[] frames;
-	private int numFrames;
 	
 	private Frame currentFrame;
 	private int currentFrameIndex;
 	private float timeOnFrame;
 	
-	public Animation(int numFrames){
-		this.numFrames = numFrames;
-		frames = new Frame[numFrames];
+	public Animation(Frame[] frames){
+		this.frames = frames;
 		timeOnFrame = 0.0f;
 		currentFrame = frames[0];
 	}
 	
 	public Animation(Animation other){
 		this.frames = other.frames;
-		this.numFrames = other.numFrames;
-		
-	}
-	
-	public void putFrame(Frame frame){
-		frames[frame.getIndex()] = frame;
-		if(currentFrame == null)
-			currentFrame = frame;
+		timeOnFrame = 0.0f;
+		currentFrame = frames[0];
 	}
 	
 	public void updateAnimation(float timeStep){
 		timeOnFrame += timeStep;
 		
-		if(timeOnFrame >= currentFrame.getTime()){
+		if(timeOnFrame >= currentFrame.getLength()){
 			currentFrameIndex++;
-			// FIXME use >?
-			if(currentFrameIndex == numFrames)
+			if(currentFrameIndex == frames.length)
 				currentFrameIndex = 0;
 			
 			currentFrame = frames[currentFrameIndex];
