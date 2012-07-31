@@ -92,8 +92,7 @@ public class Player extends BoxEntity {
 	
 	@Override
 	public void render(Render2D renderer){
-		animation.bindCurrentFrame();
 		renderer.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
-		renderer.quad.draw(renderer, this.width, this.height);
+		animation.renderCurrentFrame(renderer, this.width, this.height);
 	}
 }

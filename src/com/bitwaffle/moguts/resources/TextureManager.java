@@ -77,7 +77,7 @@ public class TextureManager {
 		return new Animation(animations.get(animationName));
 	}
 	
-	/* From here on down, it's all XML loading stuff */
+	/* ---- From here on down, it's all XML loading stuff ---- */
 	
 	/**
 	 * Parses an XML resource list
@@ -103,6 +103,12 @@ public class TextureManager {
 		}
 	}
 	
+	/**
+	 * Get a GL filter mode from an XML element
+	 * @param ele Element to get filter from
+	 * @param filterType "magFilter" or "minFilter"
+	 * @return Filter from element from filterType
+	 */
 	private int getFilter(Element ele, String filterType){
 		// TODO make sure this doesn't crash when there's no specified filters
 		int filter = GLES20.GL_NEAREST;
@@ -165,6 +171,10 @@ public class TextureManager {
 		return handles[0];
 	}
 	
+	/**
+	 * Load an animation from an XML element
+	 * @param ele Element containing animation info
+	 */
 	private void loadAnimation(Element ele){
 		String name = ele.getAttribute("name");
 		String path = XMLHelper.getString(ele, "path");
@@ -177,11 +187,13 @@ public class TextureManager {
 		try{
 			Bitmap bitmap = BitmapFactory.decodeStream(Game.resources.openAsset(path));
 			
+			// generate a handle for every frame
 			int[] handles = new int[numFrames];
 			GLES20.glGenTextures(numFrames, handles, 0);
 			
 			NodeList frameNodes = ele.getElementsByTagName("frame");
 			
+			// grab data for each frame
 			for(int i = 0; i < frameNodes.getLength(); i++){
 				Element frameEle = (Element) frameNodes.item(i);
 				int index = Integer.parseInt(frameEle.getAttribute("number"));
@@ -190,6 +202,7 @@ public class TextureManager {
 				int width = XMLHelper.getInt(frameEle, "width");
 				int height = XMLHelper.getInt(frameEle, "height");
 				float length = XMLHelper.getFloat(frameEle, "length");
+				
 				initSubTexture(bitmap, handles[index], minFilter, magFilter, xOffset, yOffset, width, height);
 				frames[index] = 
 					new Frame(
@@ -214,10 +227,10 @@ public class TextureManager {
 	 * @param handle GL handle of texture to initialize
 	 * @param minFilter What to use for GL_TEXTURE_MIN_FILTER
 	 * @param magFilter What to use for GL_TEXTURE_MAG_FILTER
-	 * @param xOffset Top-left 
-	 * @param yOffset
-	 * @param width
-	 * @param height
+	 * @param xOffset Column of top-left pixel of sub-texture 
+	 * @param yOffset Row of top-left pixel of sub-texture
+	 * @param width How many columns sub-texture is
+	 * @param height How many rows sub-texture is
 	 */
 	private void initSubTexture(Bitmap bitmap, int handle, int minFilter, int magFilter, int xOffset, int yOffset, int width, int height){
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, handle);
