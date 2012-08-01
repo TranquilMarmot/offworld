@@ -3,8 +3,8 @@ package com.bitwaffle.moguts.entities;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.graphics.render.Render2D;
+import com.bitwaffle.offworld.Game;
 
 /**
  * A DynamicEntity... that's a box!
@@ -28,7 +28,6 @@ public class BoxEntity extends DynamicEntity {
 	 * @param fixtureDef Position/material information about the box
 	 * @param color What color the box is
 	 */
-	// FIXME is this initializer even necessary? Everything could be handled with the other one
 	public BoxEntity(BodyDef bodyDef, float width, float height, FixtureDef fixtureDef, float[] color){
 		super(bodyDef, fixtureDef);
 		this.width = width;
@@ -41,16 +40,20 @@ public class BoxEntity extends DynamicEntity {
 	 * @param bodyDef Describes the body of the box
 	 * @param width Width (for rendering)
 	 * @param height Height (for rendering)
-	 * @param shape What shape the box is
 	 * @param density How dense the box is
 	 * @param color What color the box is
 	 */
-	public BoxEntity(BodyDef bodyDef, float width, float height, PolygonShape shape, float density, float[] color){
-		// TODO make it so that the box shape is automagically created (the way it works right now SUCKS!)
-		super(bodyDef, shape, density);
+	public BoxEntity(BodyDef bodyDef, float width, float height, float density, float[] color){
+		super(bodyDef, getBoxShape(width, height), density);
 		this.width = width;
 		this.height = height;
 		this.color = color;
+	}
+	
+	private static PolygonShape getBoxShape(float width, float height){
+		PolygonShape box = new PolygonShape();
+		box.setAsBox(width, height);
+		return box;
 	}
 	
 	/**

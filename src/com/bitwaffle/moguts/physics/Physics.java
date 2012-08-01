@@ -13,12 +13,12 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.GdxNativesLoader;
-import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.entities.BoxEntity;
 import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.entities.Entities;
 import com.bitwaffle.moguts.entities.Entity;
-import com.bitwaffle.moguts.entities.Player;
+import com.bitwaffle.offworld.Game;
+import com.bitwaffle.offworld.entities.Player;
 
 /**
  * Handles all physics workings
@@ -131,10 +131,7 @@ public class Physics {
 		BodyDef groundBodyDef = new BodyDef();
 		groundBodyDef.position.set(0.0f, -50.0f);
 		
-		PolygonShape groundBox = new PolygonShape();
-		groundBox.setAsBox(1000.0f, 1.0f);
-		
-		BoxEntity ground = new BoxEntity(groundBodyDef, 1000.0f, 1.0f, groundBox, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
+		BoxEntity ground = new BoxEntity(groundBodyDef, 1000.0f, 1.0f, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
 		this.addEntity(ground);
 		
 		// player
@@ -166,40 +163,28 @@ public class Physics {
 		BodyDef groundBodyDef = new BodyDef();
 		groundBodyDef.position.set(0.0f, -50.0f);
 		
-		PolygonShape groundBox = new PolygonShape();
-		groundBox.setAsBox(100.0f, 1.0f);
-		
-		BoxEntity ground = new BoxEntity(groundBodyDef, 100.0f, 1.0f, groundBox, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
+		BoxEntity ground = new BoxEntity(groundBodyDef, 100.0f, 1.0f, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
 		this.addEntity(ground);
 		
 		// right
 		BodyDef groundBodyDef2 = new BodyDef();
 		groundBodyDef2.position.set(100.0f, 50.0f);
 		
-		PolygonShape groundBox2 = new PolygonShape();
-		groundBox2.setAsBox(1.0f, 100.0f);
-		
-		BoxEntity ground2 = new BoxEntity(groundBodyDef2, 1.0f, 100.0f, groundBox2, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
+		BoxEntity ground2 = new BoxEntity(groundBodyDef2, 1.0f, 100.0f, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
 		this.addEntity(ground2);
 		
 		// left
 		BodyDef groundBodyDef3 = new BodyDef();
 		groundBodyDef3.position.set(-100.0f, 50.0f);
 		
-		PolygonShape groundBox3 = new PolygonShape();
-		groundBox3.setAsBox(1.0f, 100.0f);
-		
-		BoxEntity ground3 = new BoxEntity(groundBodyDef3, 1.0f, 100.0f, groundBox3, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
+		BoxEntity ground3 = new BoxEntity(groundBodyDef3, 1.0f, 100.0f, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
 		this.addEntity(ground3);
 		
 		// top
 		BodyDef groundBodyDef4 = new BodyDef();
 		groundBodyDef4.position.set(0.0f, 150.0f);
 		
-		PolygonShape groundBox4 = new PolygonShape();
-		groundBox4.setAsBox(100.0f, 1.0f);
-		
-		BoxEntity ground4 = new BoxEntity(groundBodyDef4, 100.0f, 1.0f, groundBox4, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
+		BoxEntity ground4 = new BoxEntity(groundBodyDef4, 100.0f, 1.0f, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
 		this.addEntity(ground4);
 		
 		for(int i = 0 ; i < 75; i ++)

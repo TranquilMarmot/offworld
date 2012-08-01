@@ -8,7 +8,6 @@ import android.opengl.Matrix;
 import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.entities.Entities;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.graphics.Camera;
@@ -17,6 +16,7 @@ import com.bitwaffle.moguts.graphics.glsl.GLSLShader;
 import com.bitwaffle.moguts.graphics.shapes.Quad;
 import com.bitwaffle.moguts.gui.GUI;
 import com.bitwaffle.moguts.gui.button.Button;
+import com.bitwaffle.offworld.Game;
 
 /**
  * This class handles all 2D rendering

@@ -1,9 +1,9 @@
 package com.bitwaffle.moguts.graphics;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.graphics.render.Render2D;
+import com.bitwaffle.offworld.Game;
 
 // TODO Make camera's angle work so things can be rotated
 /**

@@ -1,4 +1,4 @@
-package com.bitwaffle.moguts;
+package com.bitwaffle.offworld;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -10,10 +10,10 @@ import android.os.SystemClock;
 import android.util.Log;
 
 import com.bitwaffle.moguts.device.Vibration;
-import com.bitwaffle.moguts.entities.Player;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.physics.Physics;
 import com.bitwaffle.moguts.resources.Resources;
+import com.bitwaffle.offworld.entities.Player;
 
 /**
  * This class handles calling the rendering methods,

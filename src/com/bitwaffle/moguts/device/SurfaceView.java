@@ -4,7 +4,7 @@ import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 
-import com.bitwaffle.moguts.Game;
+import com.bitwaffle.offworld.Game;
 
 /**
  * Implementation of android.opengl.GLSurfaceView.

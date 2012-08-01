@@ -15,11 +15,11 @@ import android.opengl.GLES20;
 import android.opengl.GLUtils;
 import android.util.Log;
 
-import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.graphics.animation.Animation;
 import com.bitwaffle.moguts.graphics.animation.Frame;
 import com.bitwaffle.moguts.util.BufferUtils;
 import com.bitwaffle.moguts.util.XMLHelper;
+import com.bitwaffle.offworld.Game;
 
 /**
  * Manages initializing and loading textures, and keeps

@@ -7,10 +7,10 @@ import android.util.FloatMath;
 import android.view.MotionEvent;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.gui.button.Button;
+import com.bitwaffle.offworld.Game;
 
 /**
  * Handles any touch events (which are generated in {@link SurfaceView} and then
