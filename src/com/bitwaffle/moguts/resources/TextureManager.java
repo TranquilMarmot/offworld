@@ -2,6 +2,7 @@ package com.bitwaffle.moguts.resources;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.FloatBuffer;
 import java.util.HashMap;
 
 import org.w3c.dom.Element;
@@ -17,6 +18,7 @@ import android.util.Log;
 import com.bitwaffle.moguts.Game;
 import com.bitwaffle.moguts.graphics.animation.Animation;
 import com.bitwaffle.moguts.graphics.animation.Frame;
+import com.bitwaffle.moguts.util.BufferUtils;
 import com.bitwaffle.moguts.util.XMLHelper;
 
 /**
@@ -152,6 +154,14 @@ public class TextureManager {
 		// loading texture
 		Bitmap bitmap = BitmapFactory.decodeStream(in);
 		
+		int handle = initTexture(bitmap, minFilter, magFilter);
+		
+		bitmap.recycle();
+		
+		return handle;
+	}
+	
+	private int initTexture(Bitmap bitmap, int minFilter, int magFilter){
 		int[] handles = new int[1];
 		
 		GLES20.glGenTextures(1, handles, 0);
@@ -166,15 +176,9 @@ public class TextureManager {
 		if(error != GLES20.GL_NO_ERROR)
 			Log.e("Render2D", "Error loading texture! " + GLES20.glGetString(error));
 		
-		bitmap.recycle();
-		
 		return handles[0];
 	}
 	
-	/**
-	 * Load an animation from an XML element
-	 * @param ele Element containing animation info
-	 */
 	private void loadAnimation(Element ele){
 		String name = ele.getAttribute("name");
 		String path = XMLHelper.getString(ele, "path");
@@ -186,11 +190,6 @@ public class TextureManager {
 		
 		try{
 			Bitmap bitmap = BitmapFactory.decodeStream(Game.resources.openAsset(path));
-			
-			// generate a handle for every frame
-			int[] handles = new int[numFrames];
-			GLES20.glGenTextures(numFrames, handles, 0);
-			
 			NodeList frameNodes = ele.getElementsByTagName("frame");
 			
 			// grab data for each frame
@@ -203,42 +202,41 @@ public class TextureManager {
 				int height = XMLHelper.getInt(frameEle, "height");
 				float length = XMLHelper.getFloat(frameEle, "length");
 				
-				initSubTexture(bitmap, handles[index], minFilter, magFilter, xOffset, yOffset, width, height);
-				frames[index] = new Frame(handles[index], length, width, height);
+				frames[index] = initFrame(length, bitmap, xOffset, yOffset, width, height);
 			}
 			
+			int sheetHandle = initTexture(bitmap, minFilter, magFilter);
+			animations.put(name, new Animation(sheetHandle, frames));
 			bitmap.recycle();
 		} catch(IOException e){
 			e.printStackTrace();
 		}
-		animations.put(name, new Animation(frames));
 		
 	}
 	
-	/**
-	 * Initialize a sub-texture
-	 * @param bitmap Bitmap to grab texture from
-	 * @param handle GL handle of texture to initialize
-	 * @param minFilter What to use for GL_TEXTURE_MIN_FILTER
-	 * @param magFilter What to use for GL_TEXTURE_MAG_FILTER
-	 * @param xOffset Column of top-left pixel of sub-texture 
-	 * @param yOffset Row of top-left pixel of sub-texture
-	 * @param width How many columns sub-texture is
-	 * @param height How many rows sub-texture is
-	 */
-	private void initSubTexture(Bitmap bitmap, int handle, int minFilter, int magFilter, int xOffset, int yOffset, int width, int height){
-		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, handle);
+	private Frame initFrame(float length, Bitmap source, int xOffset, int yOffset, int width, int height){
 		
-		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, minFilter);
-		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, magFilter);
+		float texX = (float)xOffset / (float)source.getWidth();
+		float texY = (float)yOffset / (float)source.getHeight();
+		float texWidth = (float)width / (float)source.getWidth();
+		float texHeight = (float)height / (float)source.getHeight();
 		
-		// FIXME subBitmap is upside down and backwards?! (compensated for when animation is drawn right now)
-		Bitmap subBitmap = Bitmap.createBitmap(bitmap, xOffset, yOffset, width, height);
-		GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, subBitmap, 0);
+		float[] texCoords = {
+				texX, texY,
+				texX + texWidth, texY,
+				texX + texWidth, texY + texHeight,
+				
+				texX + texWidth, texY + texHeight,
+				texX, texY + texHeight,
+				texX, texY
+		};
 		
-		int error = GLES20.glGetError();
-		if(error != GLES20.GL_NO_ERROR)
-			Log.e("Render2D", "Error loading texture! " + GLES20.glGetString(error));
+		FloatBuffer buff = BufferUtils.getFloatBuffer(texCoords.length);
+		buff.put(texCoords);
+		buff.rewind();
+		
+		System.out.println(texX + " " + texY + " " + texWidth + " " + texHeight);
+		
+		return new Frame(length, buff);
 	}
-	
 }

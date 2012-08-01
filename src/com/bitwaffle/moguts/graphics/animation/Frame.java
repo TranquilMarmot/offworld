@@ -1,32 +1,28 @@
 package com.bitwaffle.moguts.graphics.animation;
 
+import java.nio.FloatBuffer;
+
 /**
  * A frame in an {@link Animation}
  * 
  * @author TranquilMarmot
  */
 public class Frame {
-	/** Handle for this frame's texture */
-	private int handle;
-	
-	/** Width and height, in pixels */
-	private int width, height;
+	/** Contains the sprite's location in the sprite sheet */
+	private FloatBuffer texCoordBuff;
 	
 	/** How long to stay on this frame */
 	private float length;
 	
+
 	/**
-	 * Create a new frame
-	 * @param handle Handle of texture for frame
-	 * @param length How long to stay on the frame
-	 * @param width Width of frame, in pixels
-	 * @param height Height of frame, in pixels
+	 * Create a new frame in an animation
+	 * @param length How long to stay on this frame for
+	 * @param texCoordBuff Texture coordinates for frame in animation sprite sheet
 	 */
-	public Frame(int handle, float length, int width, int height){
-		this.handle = handle;
+	public Frame(float length, FloatBuffer texCoordBuff){
 		this.length = length;
-		this.width = width;
-		this.height = height;
+		this.texCoordBuff = texCoordBuff;
 	}
 	
 	/**
@@ -35,17 +31,7 @@ public class Frame {
 	public float getLength(){ return length; }
 	
 	/**
-	 * @return Handle for this frame's texture
+	 * @return FloatBuffer to use when drawing quad
 	 */
-	public int getHandle(){ return handle; }
-	
-	/**
-	 * @return Width of this frame, in pixels
-	 */
-	public int getWidth(){ return width; }
-	
-	/**
-	 * @return Height of this frame, in pixels
-	 */
-	public int getHeight(){ return height; }
+	public FloatBuffer getTexCoordBuffer(){ return texCoordBuff; }
 }

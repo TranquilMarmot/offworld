@@ -154,7 +154,7 @@ public class Physics {
 		Game.player = new Player(playerBodyDef, 1.0f, 1.5f, playerFixture);
 		this.addEntity(Game.player);
 		
-		for(int i = 0; i < 175; i++)
+		for(int i = 0; i < 75; i++)
 			makeRandomBox();
 	}
 	
@@ -213,7 +213,7 @@ public class Physics {
 	 */
 	public void makeRandomBox(){
 		Random randy = new Random();
-		float boxX = randy.nextFloat() * 50.0f - 50.0f;
+		float boxX = randy.nextFloat() * 100.0f - 50.0f;
 		if(boxX < 1.0f) boxX = 1.0f;
 		float boxY = randy.nextFloat() * 50.0f - 25.0f;
 		if(boxY < 1.0f) boxY = 1.0f;

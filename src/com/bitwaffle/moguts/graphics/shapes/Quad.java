@@ -19,7 +19,7 @@ import com.bitwaffle.moguts.util.BufferUtils;
  */
 public class Quad {
 	/** Buffers to hold data */
-	private FloatBuffer vertBuffer, texBuffer;
+	private FloatBuffer vertBuffer, defaultTexBuffer;
 	
 	/** Info on coordinate */
 	private static final int COORDS_PER_VERTEX = 3, COORDS_PER_TEXCOORD = 2;
@@ -27,6 +27,7 @@ public class Quad {
 	/**
 	 * Position coordinates (quad is scaled when drawn)
 	 */
+	/*
 	private static float[] coords = {
 		-0.5f, 0.5f, 0.0f,
 		0.5f, 0.5f, 0.0f,
@@ -36,11 +37,23 @@ public class Quad {
 		-0.5f, -0.5f, 0.0f,
 		0.5f, -0.5f, 0.0f
 	};
+	*/
+	
+	private static float[] coords = {
+		-0.5f, -0.5f, 0.0f,
+		0.5f, -0.5f, 0.0f,
+		0.5f, 0.5f, 0.0f,
+		
+		0.5f, 0.5f, 0.0f,
+		-0.5f, 0.5f, 0.0f,
+		-0.5f, -0.5f, 0.0f
+	};
 	
 	/**
 	 * Texture coordinates
 	 */
-	private static float[] texCoords = {
+	/*
+	private static float[] defaultTexCoords = {
 		0.0f, 1.0f,
 		1.0f, 1.0f,
 		1.0f, 0.0f,
@@ -48,6 +61,17 @@ public class Quad {
 		0.0f, 1.0f,
 		0.0f, 0.0f,
 		1.0f, 0.0f
+	};
+	*/
+	
+	private static float[] defaultTexCoords = {
+		0.0f, 0.0f,
+		1.0f, 0.0f,
+		1.0f, 1.0f,
+		
+		1.0f, 1.0f,
+		0.0f, 1.0f,
+		0.0f, 0.0f
 	};
 	
 	/** Handles to send data to when drawing */
@@ -64,9 +88,9 @@ public class Quad {
 		
 		positionHandle = renderer.program.getAttribLocation("vPosition");
 
-		texBuffer = BufferUtils.getFloatBuffer(texCoords.length);
-		texBuffer.put(texCoords);
-		texBuffer.rewind();
+		defaultTexBuffer = BufferUtils.getFloatBuffer(defaultTexCoords.length);
+		defaultTexBuffer.put(defaultTexCoords);
+		defaultTexBuffer.rewind();
 		
 		texCoordHandle = renderer.program.getAttribLocation("vTexCoord");
 	}
@@ -90,13 +114,26 @@ public class Quad {
 	 * @param flipVertical Whether or not to flip the image vertically
 	 */
 	public void draw(Render2D renderer, float width, float height, boolean flipHorizontal, boolean flipVertical){
+		this.draw(renderer, width, height, flipHorizontal, flipVertical, defaultTexBuffer);
+        
+	}
+	
+	/**
+	 * Draw a quad, with optional flipping
+	 * @param renderer Renderer to use to draw quad (need to know to scale matrices)
+	 * @param width Width of quad, from center
+	 * @param height Height of quad, from center
+	 * @param flipHorizontal Whether or not to flip the image horizontally
+	 * @param flipVertical Whether or not to flip the image vertically
+	 */
+	public void draw(Render2D renderer, float width, float height, boolean flipHorizontal, boolean flipVertical, FloatBuffer texCoords){
 		// set position info
 		GLES20.glEnableVertexAttribArray(positionHandle);
         GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false, 0, vertBuffer);
         
         // set texture coordinate info
         GLES20.glEnableVertexAttribArray(texCoordHandle);
-        GLES20.glVertexAttribPointer(texCoordHandle, COORDS_PER_TEXCOORD, GLES20.GL_FLOAT, false, 0, texBuffer);
+        GLES20.glVertexAttribPointer(texCoordHandle, COORDS_PER_TEXCOORD, GLES20.GL_FLOAT, false, 0, texCoords);
         
         // scale matrix to match width/height and flip if needed
         Matrix.scaleM(renderer.modelview, 0, width * 2.0f, height * 2.0f, 1.0f);
@@ -112,6 +149,5 @@ public class Quad {
         // don't forget to disable the attrib arrays!
         GLES20.glDisableVertexAttribArray(positionHandle);
         GLES20.glDisableVertexAttribArray(texCoordHandle);
-        
 	}
 }

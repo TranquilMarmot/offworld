@@ -11,6 +11,9 @@ import android.opengl.GLES20;
  * @see Frame
  */
 public class Animation {
+	/** Handle for the sprite sheet to use for this animation */
+	private int sheetHandle;
+	
 	/** Array of every frame of the animation */
 	private Frame[] frames;
 	
@@ -27,10 +30,11 @@ public class Animation {
 	 * should be used
 	 * @param frames All of the frames of the animation
 	 */
-	public Animation(Frame[] frames){
+	public Animation(int sheetHandle, Frame[] frames){
 		this.frames = frames;
 		timeOnFrame = 0.0f;
 		currentFrame = 0;
+		this.sheetHandle = sheetHandle;
 	}
 	
 	/**
@@ -46,6 +50,7 @@ public class Animation {
 		this.frames = other.frames;
 		timeOnFrame = 0.0f;
 		currentFrame = 0;
+		this.sheetHandle = other.sheetHandle;
 	}
 	
 	/**
@@ -66,13 +71,6 @@ public class Animation {
 	}
 	
 	/**
-	 * Binds the current frame for drawing
-	 */
-	private void bindCurrentFrame(){
-		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, frames[currentFrame].getHandle());
-	}
-	
-	/**
 	 * Draw the current frame of this animation
 	 * @param renderer Renderer to use for drawing
 	 * @param width Width of entity
@@ -81,7 +79,7 @@ public class Animation {
 	public void renderCurrentFrame(Render2D renderer, float width, float height){
 		/*
 		 * For some reason, calling Bitmap.createBitmap with a sub-image
-		 * will flip the image both verticall and horizontally
+		 * will flip the image both vertically and horizontally
 		 * so we compensate for it here.
 		 */
 		renderCurrentFrame(renderer, width, height, false, false);
@@ -94,9 +92,9 @@ public class Animation {
 	 * @param height Height of entity
 	 */
 	public void renderCurrentFrame(Render2D renderer, float width, float height, boolean flipHorizontal, boolean flipVertical){
-		this.bindCurrentFrame();
+		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, sheetHandle);
 		
 		// Bitmap.createBitmap with a subimage flips it, so we pass flipped booleans
-		renderer.quad.draw(renderer, width, height, !flipHorizontal, !flipVertical);
+		renderer.quad.draw(renderer, width, height, !flipHorizontal, !flipVertical, frames[currentFrame].getTexCoordBuffer());
 	}
 }

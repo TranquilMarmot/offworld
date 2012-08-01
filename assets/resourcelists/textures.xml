@@ -29,7 +29,7 @@
 		<magFilter>GL_LINEAR</magFilter>
 	</texture>
 	
-	<animation name="playerwalk" frames="5">
+	<animation name="playerwalk" frames="2">
 	    <path>textures/playerwalk.png</path>
 	    <minFilter>GL_NEAREST</minFilter>
 		<magFilter>GL_NEAREST</magFilter>
@@ -37,37 +37,16 @@
 		<frame number="0">
 		    <xOffset>0</xOffset>
 		    <yOffset>0</yOffset>
-		    <width>16</width>
-		    <height>32</height>
-		    <length>0.1f</length>
+		    <width>26</width>
+		    <height>44</height>
+		    <length>0.5f</length>
 		</frame>
 		<frame number="1">
-		    <xOffset>19</xOffset>
+		    <xOffset>26</xOffset>
 		    <yOffset>0</yOffset>
-		    <width>16</width>
-		    <height>32</height>
-		    <length>0.1f</length>
-		</frame>
-		<frame number="2">
-		    <xOffset>38</xOffset>
-		    <yOffset>0</yOffset>
-		    <width>16</width>
-		    <height>32</height>
-		    <length>0.1f</length>
-		</frame>
-		<frame number="3">
-		    <xOffset>64</xOffset>
-		    <yOffset>0</yOffset>
-		    <width>16</width>
-		    <height>32</height>
-		    <length>0.1f</length>
-		</frame>
-		<frame number="4">
-		    <xOffset>142</xOffset>
-		    <yOffset>0</yOffset>
-		    <width>16</width>
-		    <height>32</height>
-		    <length>0.1f</length>
+		    <width>26</width>
+		    <height>44</height>
+		    <length>0.5f</length>
 		</frame>
 	</animation>
 </resources>

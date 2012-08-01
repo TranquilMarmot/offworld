@@ -65,7 +65,9 @@ public class Player extends BoxEntity {
 		// don't want out player rotating all willy nilly now, do we?
 		this.setAngle(0.0f);
 		
-		animation.updateAnimation(timeStep);
+		Vector2 linVec = body.getLinearVelocity();
+		if(linVec.x > 0.5f || linVec.x < -0.5f)
+			animation.updateAnimation(timeStep);
 	}
 	
 	/**
@@ -74,12 +76,12 @@ public class Player extends BoxEntity {
 	 * i.e. when a button is being held down
 	 */
 	public void goLeft(){
-			Vector2 linVec = body.getLinearVelocity();
-			if(linVec.x > -maxVelocityX) {
-				linVec.x -= 0.5f;
-				body.setLinearVelocity(linVec);
-				facingRight = false;
-			}
+		Vector2 linVec = body.getLinearVelocity();
+		if(linVec.x > -maxVelocityX) {
+			linVec.x -= 0.5f;
+			body.setLinearVelocity(linVec);
+			facingRight = false;
+		}
 	}
 	
 	/**
