@@ -177,6 +177,9 @@ public class Render2D {
 			
 			butt.draw(this);
 		}
+		
+		// draw FPS counter TODO move this somewhere else!
+		Game.resources.font.drawString("FPS: " + Game.currentFPS, this, 80, 20, 0.15f);
 	}
 	
 	/**

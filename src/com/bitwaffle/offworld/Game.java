@@ -7,7 +7,6 @@ import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.os.SystemClock;
-import android.util.Log;
 
 import com.bitwaffle.moguts.device.Vibration;
 import com.bitwaffle.moguts.graphics.render.Render2D;
@@ -115,7 +114,6 @@ public class Game implements GLSurfaceView.Renderer {
     	
     	// if the counter is above 1000, it means a second has passed
     	if(counter >= 1000.0){
-    		Log.v("FPS", "" + frameCount);
     		currentFPS = frameCount;
     		frameCount = 0;
     		counter -= 1000.0;

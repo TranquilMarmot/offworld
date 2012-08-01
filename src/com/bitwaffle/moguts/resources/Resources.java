@@ -3,6 +3,8 @@ package com.bitwaffle.moguts.resources;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.bitwaffle.moguts.graphics.font.BitmapFont;
+
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 
@@ -22,6 +24,8 @@ public class Resources {
 	/** Sound manager */
 	public SoundManager sounds;
 	
+	public BitmapFont font;
+	
 	/**
 	 * Create a new resource manager
 	 * @param assetMan Asset manager to get assets from
@@ -36,6 +40,7 @@ public class Resources {
 	public void init(){
 		textures = new TextureManager();
 		sounds = new SoundManager();
+		font = new BitmapFont("font.bmp", 128, 128);
 	}
 	
     /**

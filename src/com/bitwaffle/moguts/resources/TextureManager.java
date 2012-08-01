@@ -144,13 +144,12 @@ public class TextureManager {
 	
 	/**
 	 * Initialize a texture
-	 * 
 	 * @param in InputStream from texture's file
 	 * @param minFilter What to use for GL_TEXTURE_MIN_FILTER
 	 * @param magFilter What to use for GL_TEXTURE_MAG_FILTER
 	 * @return Handle for newly created texture
 	 */
-	private int initTexture(InputStream in, int minFilter, int magFilter){
+	public static int initTexture(InputStream in, int minFilter, int magFilter){
 		// loading texture
 		Bitmap bitmap = BitmapFactory.decodeStream(in);
 		
@@ -161,7 +160,14 @@ public class TextureManager {
 		return handle;
 	}
 	
-	private int initTexture(Bitmap bitmap, int minFilter, int magFilter){
+	/**
+	 * Initialize a texture
+	 * @param bitmap Bitmap to send to OpenGL
+	 * @param minFilter What to use for GL_TEXTURE_MIN_FILTER
+	 * @param magFilter What to use for GL_TEXTURE_MAG_FILTER
+	 * @return Handle for newly created texture
+	 */
+	public static int initTexture(Bitmap bitmap, int minFilter, int magFilter){
 		int[] handles = new int[1];
 		
 		GLES20.glGenTextures(1, handles, 0);
@@ -179,6 +185,10 @@ public class TextureManager {
 		return handles[0];
 	}
 	
+	/**
+	 * Load an animation from an XML element
+	 * @param ele Element to load animation from
+	 */
 	private void loadAnimation(Element ele){
 		String name = ele.getAttribute("name");
 		String path = XMLHelper.getString(ele, "path");
@@ -189,7 +199,8 @@ public class TextureManager {
 		Frame[] frames = new Frame[numFrames];
 		
 		try{
-			Bitmap bitmap = BitmapFactory.decodeStream(Game.resources.openAsset(path));
+			InputStream in = Game.resources.openAsset(path);
+			Bitmap bitmap = BitmapFactory.decodeStream(in);
 			NodeList frameNodes = ele.getElementsByTagName("frame");
 			
 			// grab data for each frame
@@ -205,22 +216,35 @@ public class TextureManager {
 				frames[index] = initFrame(length, bitmap, xOffset, yOffset, width, height);
 			}
 			
+			// intialize the sheet's texture image
 			int sheetHandle = initTexture(bitmap, minFilter, magFilter);
 			animations.put(name, new Animation(sheetHandle, frames));
 			bitmap.recycle();
+			in.close();
 		} catch(IOException e){
 			e.printStackTrace();
 		}
 		
 	}
 	
+	/**
+	 * Initialize a frame of an animation
+	 * @param length How long to stay on the frame
+	 * @param source Bitmap that contains the frame
+	 * @param xOffset Row of top left pixel in frmae
+	 * @param yOffset Column of top left pixel in frame
+	 * @param width Number of pixels wide the frame is
+	 * @param height Number of pixels tall the frame is
+	 * @return Initialized frame
+	 */
 	private Frame initFrame(float length, Bitmap source, int xOffset, int yOffset, int width, int height){
-		
+		// find texture coordinates
 		float texX = (float)xOffset / (float)source.getWidth();
 		float texY = (float)yOffset / (float)source.getHeight();
 		float texWidth = (float)width / (float)source.getWidth();
 		float texHeight = (float)height / (float)source.getHeight();
 		
+		// create texture coordinate array and fill a buffer (texture coordinates are used when rendering quad)
 		float[] texCoords = {
 				texX, texY,
 				texX + texWidth, texY,
@@ -230,12 +254,9 @@ public class TextureManager {
 				texX, texY + texHeight,
 				texX, texY
 		};
-		
 		FloatBuffer buff = BufferUtils.getFloatBuffer(texCoords.length);
 		buff.put(texCoords);
 		buff.rewind();
-		
-		System.out.println(texX + " " + texY + " " + texWidth + " " + texHeight);
 		
 		return new Frame(length, buff);
 	}
