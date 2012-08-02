@@ -17,11 +17,18 @@ import com.bitwaffle.offworld.Game;
 /**
  * Pack my box with five dozen liquor jugs!
  * 
+ * Note that this only proplerly works with monospace fonts!
+ * You can try others, but they ain't gonna work right.
+ * In the font texture, the first character should be ' ',
+ * followed by '!' and the rest of the ASCII character set
+ * (when printing, each character is mapped to its ASCII value)
+ * 
+ * 
  * @author TranquilMarmot
  */
 public class BitmapFont {
 	/** 
-	 * ASCII value of chars[0], so that the index in chars can be calculated
+	 * ASCII value of chars[0], so that the index in chars can be calculated.
 	 * Since the first 31 values in ASCII are pretty much useless to us (look it up)
 	 * we simply skip them. 
 	 */
@@ -30,7 +37,7 @@ public class BitmapFont {
 	/** Handle for the texture for this font */
 	private int texHandle;
 	
-	/** Array of every character for this font */
+	/** Array of every characters for this font */
 	FontChar[] chars;
 	
 	/** How big each cell is */
@@ -44,6 +51,7 @@ public class BitmapFont {
 	 * @param imagePath Path to image in assets folder
 	 * @param cellWidth Width of each cell
 	 * @param cellHeight Height of each cell
+	 * @param glyphWidth Width of each glyph
 	 */
 	public BitmapFont(String imagePath, int cellWidth, int cellHeight, int glyphWidth){
 		this.cellWidth = cellWidth;
@@ -127,6 +135,7 @@ public class BitmapFont {
 	 * @param scale Scale to draw text at
 	 */
 	public void drawString(String text, Render2D renderer, int x, int y, float scale){
+		// draw white text by default
 		this.drawString(text, renderer, x, y, scale, new float[]{1.0f, 1.0f, 1.0f, 1.0f});
 	}
 	
