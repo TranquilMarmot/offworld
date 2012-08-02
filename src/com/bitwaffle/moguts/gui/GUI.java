@@ -16,7 +16,7 @@ import com.bitwaffle.offworld.Game;
  * @author TranquilMarmot
  */
 public class GUI {
-	// FIXME use an EntityList for this? Maybe rename EntityList :P
+	// FIXME use an EntityList for this? Maybe rename EntityList :P (or just make GUIObject extend entity?)
 	// TODO buttons are seperate at the moment because they get checked on every touch event, probably also need a non-pressable UI list
 	/** List of buttons */
 	private ArrayList<Button> buttons;

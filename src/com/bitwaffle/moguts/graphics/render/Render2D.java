@@ -97,26 +97,27 @@ public class Render2D {
 
 	/**
 	 * Renders the 2D scene
+	 * and updates the GUI and camera
 	 */
 	public void renderScene() {
 		gui.update();
 		
 		program.use();
 		
-		camera.update(1.0f/60.0f);
-		// FIXME this doesn't need to be called every frame... does it?
-		setUpProjectionMatrix();
+		camera.update(1.0f / Game.currentFPS);
+		setUpProjectionWorldCoords();
 		renderEntities(Game.physics.getPassiveEntityIterator());
 		renderEntities(Game.physics.getDynamicEntityIterator());
 		
-		setUpProjectionGUI();
+		setUpProjectionScreenCoords();
 		renderGUI(gui);
 	}
 	
 	/**
 	 * Sets up the projection matrix with an orthographic projection
+	 * for drawing things in world coordinates
 	 */
-	private void setUpProjectionMatrix(){
+	private void setUpProjectionWorldCoords(){
 		Matrix.setIdentityM(projection, 0);
 		Matrix.orthoM(projection, 0, 0, Game.aspect, 0, 1, -1, 1);
 		Matrix.rotateM(projection, 0, camera.getAngle(), 0.0f, 0.0f, 1.0f);
@@ -152,9 +153,10 @@ public class Render2D {
 	}
 	
 	/**
-	 * Sets up the projection matrix for drawing the GUI
+	 * Sets up the projection matrix for drawing
+	 * things in screen coordinates
 	 */
-	private void setUpProjectionGUI(){
+	private void setUpProjectionScreenCoords(){
 		Matrix.setIdentityM(projection, 0);
 		Matrix.orthoM(projection, 0, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
 		

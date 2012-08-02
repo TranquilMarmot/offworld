@@ -5,7 +5,9 @@ import java.nio.FloatBuffer;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 
 /**
- * Character in a font
+ * A character in a font
+ * Each character keeps track of it's own texture
+ * coordinates within the font texture.
  * 
  * @author TranquilMarmot
  */
