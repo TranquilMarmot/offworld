@@ -78,4 +78,8 @@ public class Entities {
 		passiveEntities.update(timeStep);
 		dynamicEntities.update(timeStep);
 	}
+	
+	public int numEntities(){
+		return dynamicEntities.size();
+	}
 }

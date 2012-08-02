@@ -179,7 +179,7 @@ public class Render2D {
 		}
 		
 		// draw FPS counter TODO move this somewhere else!
-		Game.resources.font.drawString("FPS: " + Game.currentFPS, this, 80, 20, 0.15f);
+		Game.resources.font.drawString("FPS: " + Game.currentFPS + "\nEnts: " + Game.physics.numDynamicEntities(), this, 80, 20, 0.15f);
 	}
 	
 	/**

@@ -36,15 +36,19 @@ public class BitmapFont {
 	/** How big each cell is */
 	int cellWidth, cellHeight;
 	
+	/** How wide each glyph actually is */
+	int glyphWidth;
+	
 	/**
 	 * Create a new font
 	 * @param imagePath Path to image in assets folder
 	 * @param cellWidth Width of each cell
 	 * @param cellHeight Height of each cell
 	 */
-	public BitmapFont(String imagePath, int cellWidth, int cellHeight){
+	public BitmapFont(String imagePath, int cellWidth, int cellHeight, int glyphWidth){
 		this.cellWidth = cellWidth;
 		this.cellHeight = cellHeight;
+		this.glyphWidth = glyphWidth;
 		try{
 			// intialize texture
 			InputStream in = Game.resources.openAsset(imagePath);
@@ -171,7 +175,7 @@ public class BitmapFont {
 			chars[index].draw(renderer, cellWidth, cellHeight);
 			
 			// advance to next char
-			xOffset += cellWidth;
+			xOffset += cellWidth - glyphWidth;
 		}
 	}
 }

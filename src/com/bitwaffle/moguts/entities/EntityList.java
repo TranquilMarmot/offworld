@@ -48,4 +48,8 @@ public class EntityList<T extends Entity> {
 		while(it.hasNext())
 			it.next().update(timeStep);
 	}
+	
+	public int size(){
+		return entities.size();
+	}
 }

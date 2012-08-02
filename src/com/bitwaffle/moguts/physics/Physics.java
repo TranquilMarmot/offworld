@@ -273,4 +273,8 @@ public class Physics {
 	public Iterator<DynamicEntity> getDynamicEntityIterator(){
 		return entities.getDynamicEntityIterator();
 	}
+	
+	public int numDynamicEntities(){
+		return entities.numEntities();
+	}
 }
