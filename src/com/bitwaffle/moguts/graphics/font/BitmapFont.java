@@ -3,6 +3,7 @@ package com.bitwaffle.moguts.graphics.font;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.FloatBuffer;
+import java.util.StringTokenizer;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -43,8 +44,8 @@ public class BitmapFont {
 	/** How big each cell is */
 	int cellWidth, cellHeight;
 	
-	/** How wide each glyph actually is */
-	int glyphWidth;
+	/** How wide each glyph actually is and how much space to put between each glyph */
+	int glyphWidth, glyphSpacing;
 	
 	/**
 	 * Create a new font
@@ -53,10 +54,11 @@ public class BitmapFont {
 	 * @param cellHeight Height of each cell
 	 * @param glyphWidth Width of each glyph
 	 */
-	public BitmapFont(String imagePath, int cellWidth, int cellHeight, int glyphWidth){
+	public BitmapFont(String imagePath, int cellWidth, int cellHeight, int glyphWidth, int glyphSpacing){
 		this.cellWidth = cellWidth;
 		this.cellHeight = cellHeight;
 		this.glyphWidth = glyphWidth;
+		this.glyphSpacing = glyphSpacing;
 		try{
 			// intialize texture
 			InputStream in = Game.resources.openAsset(imagePath);
@@ -122,7 +124,7 @@ public class BitmapFont {
 	 * @param x X location of text
 	 * @param y Y location of text
 	 */
-	public void drawString(String text, Render2D renderer, int x, int y){
+	public void drawString(String text, Render2D renderer, float x, float y){
 		this.drawString(text, renderer, x, y, 1.0f);
 	}
 	
@@ -134,7 +136,7 @@ public class BitmapFont {
 	 * @param y Y location of text
 	 * @param scale Scale to draw text at
 	 */
-	public void drawString(String text, Render2D renderer, int x, int y, float scale){
+	public void drawString(String text, Render2D renderer, float x, float y, float scale){
 		// draw white text by default
 		this.drawString(text, renderer, x, y, scale, new float[]{1.0f, 1.0f, 1.0f, 1.0f});
 	}
@@ -148,13 +150,13 @@ public class BitmapFont {
 	 * @param scale Scale to draw text at
 	 * @param color Color to draw font in- must have at least 4 elements, between 0 and 1
 	 */
-	public void drawString(String text, Render2D renderer, int x, int y, float scale, float[] color){
+	public void drawString(String text, Render2D renderer, float x, float y, float scale, float[] color){
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texHandle);
 		renderer.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
 		
 		// compensate for scale FIXME is this the right way to do this?
-		x /= scale;
-		y /= scale;
+		//x /= scale;
+		//y /= scale;
 		
 		// this gets advanced with every character drawn, reset to 0 on newlines
 		int xOffset = 0;
@@ -176,15 +178,43 @@ public class BitmapFont {
 			
 			// scale and move the modelview to get to the char's location
 			Matrix.setIdentityM(renderer.modelview, 0);
+			
+			Matrix.translateM(renderer.modelview, 0, x + xOffset, y + (cellHeight * scale * lineNum), 0.0f);
 			Matrix.scaleM(renderer.modelview, 0, scale, scale, 1.0f);
-			Matrix.translateM(renderer.modelview, 0, x + xOffset, y + (cellHeight * lineNum), 0.0f);
 			renderer.program.setUniformMatrix4f("ModelView", renderer.modelview);
 			
 			// draw character
 			chars[index].draw(renderer, cellWidth, cellHeight);
 			
 			// advance to next char
-			xOffset += cellWidth - glyphWidth;
+			xOffset += (glyphWidth + glyphSpacing) * scale;
 		}
+	}
+	
+	public float stringWidth(String string){
+		return stringWidth(string, 1.0f);
+	}
+	
+	public float stringWidth(String string, float scale){
+		// at the end of the longest line, that's where I will always be
+		float longestLine = 0;
+		
+		StringTokenizer toker = new StringTokenizer(string, "\n");
+		
+		while(toker.hasMoreTokens()){
+			String line = toker.nextToken();
+			float lineSize = (line.length() - 1) * (glyphWidth + glyphSpacing);
+			if(lineSize > longestLine)
+				longestLine = lineSize;
+		}
+		
+		
+		return longestLine * scale;
+	}
+	
+	public float stringHeight(String string, float scale){
+		int numLines = new StringTokenizer(string, "\n").countTokens() - 1;
+		
+		return numLines * cellHeight * scale;
 	}
 }

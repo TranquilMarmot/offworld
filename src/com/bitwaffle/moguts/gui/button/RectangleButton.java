@@ -39,7 +39,7 @@ public abstract class RectangleButton extends Button {
 	}
 
 	@Override
-	public void draw(Render2D renderer) {
+	public void draw(Render2D renderer, boolean flipHorizontal, boolean flipVertical) {
 		if(this.isDown())
 			renderer.program.setUniform("vColor", down[0], down[1], down[2], down[3]);
 		else if(this.isActive())
@@ -47,9 +47,7 @@ public abstract class RectangleButton extends Button {
 		else
 			renderer.program.setUniform("vColor", disabled[0], disabled[1], disabled[2], disabled[3]);
 		
-		//GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, Textures.arrowTex);
-		renderer.quad.draw(renderer, this.width, this.height);
-		//q.draw(renderer);
+		renderer.quad.draw(renderer, this.width, this.height, flipHorizontal, flipVertical);
 	}
 
 	@Override

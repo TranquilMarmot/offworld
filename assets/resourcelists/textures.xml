@@ -1,4 +1,10 @@
 <resources>
+    <texture name="blank">
+        <path>textures/blank.png</path>
+        <minFilter>GL_NEAREST</minFilter>
+        <magFilter>GL_NEAREST</magFilter>
+    </texture>
+    
 	<texture name="box">
 		<path>textures/box.png</path>
 		<minFilter>GL_NEAREST</minFilter>

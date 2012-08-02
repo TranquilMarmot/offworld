@@ -77,11 +77,13 @@ public class Player extends BoxEntity {
 	 * i.e. when a button is being held down
 	 */
 	public void goLeft(){
-		Vector2 linVec = body.getLinearVelocity();
-		if(linVec.x > -maxVelocityX) {
-			linVec.x -= 0.5f;
-			body.setLinearVelocity(linVec);
-			facingRight = false;
+		if(!Game.paused){
+			Vector2 linVec = body.getLinearVelocity();
+			if(linVec.x > -maxVelocityX) {
+				linVec.x -= 0.5f;
+				body.setLinearVelocity(linVec);
+				facingRight = false;
+			}
 		}
 	}
 	
@@ -91,11 +93,13 @@ public class Player extends BoxEntity {
 	 * i.e. when a button is being held down
 	 */
 	public void goRight(){
-		Vector2 linVec = body.getLinearVelocity();
-		if(linVec.x < maxVelocityX) {
-			linVec.x += 0.5f;
-			body.setLinearVelocity(linVec);
-			facingRight = true;
+		if(!Game.paused){
+			Vector2 linVec = body.getLinearVelocity();
+			if(linVec.x < maxVelocityX) {
+				linVec.x += 0.5f;
+				body.setLinearVelocity(linVec);
+				facingRight = true;
+			}
 		}
 	}
 	
@@ -103,15 +107,17 @@ public class Player extends BoxEntity {
 	 * Make the player jump
 	 */
 	public void jump(){
-		Vector2 linVec = body.getLinearVelocity();
-		if(this.canJump && linVec.y <= 7.5f && linVec.y >= -7.5f){
-			Game.vibration.vibrate(25);
-			Game.resources.sounds.play("jump");
-			
-			linVec.y += 7.5f;
-			body.setLinearVelocity(linVec);
+		if(!Game.paused){
+			Vector2 linVec = body.getLinearVelocity();
+			if(this.canJump && linVec.y <= 7.5f && linVec.y >= -7.5f){
+				Game.vibration.vibrate(25);
+				Game.resources.sounds.play("jump");
 				
-			this.canJump = false;
+				linVec.y += 7.5f;
+				body.setLinearVelocity(linVec);
+					
+				this.canJump = false;
+			}
 		}
 	}
 	

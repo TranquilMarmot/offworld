@@ -24,6 +24,7 @@ public class Resources {
 	/** Sound manager */
 	public SoundManager sounds;
 	
+	/** Grumpy wizards make toxic brew for the evil Queen and Jack */
 	public BitmapFont font;
 	
 	/**
@@ -40,7 +41,7 @@ public class Resources {
 	public void init(){
 		textures = new TextureManager();
 		sounds = new SoundManager();
-		font = new BitmapFont("font.bmp", 128, 128, 31);
+		font = new BitmapFont("font.bmp", 128, 128, 31, 31);
 	}
 	
     /**

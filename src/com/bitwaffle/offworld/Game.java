@@ -37,6 +37,9 @@ public class Game implements GLSurfaceView.Renderer {
 	/** The player */
 	public static Player player;
 	
+	/** Whether or not the game is paused */
+	public static volatile boolean paused = false;
+	
 	/** Current height and width of the window */
 	public static volatile int windowWidth, windowHeight;
 	
@@ -44,7 +47,7 @@ public class Game implements GLSurfaceView.Renderer {
 	public static volatile float aspect;
 	
 	/** Current frames per second (at the moment, counts rendering and physics updates per second) */
-	public static volatile int currentFPS = 30;
+	public static volatile int currentFPS = 60;
 	/** Used to count up to a second for FPS */
 	private long counter;
 	/** Used to count frames for FPS */
@@ -92,7 +95,8 @@ public class Game implements GLSurfaceView.Renderer {
     	long timeBeforeLoop = SystemClock.elapsedRealtime();
 
     	// Step the physics sim
-        physics.update();
+    	if(!paused)
+    		physics.update();
     	
     	// clear the screen
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT /*| GLES20.GL_DEPTH_BUFFER_BIT*/);

@@ -135,8 +135,8 @@ public class GUI {
 			
 			@Override
 			public void draw(Render2D renderer){
-				Game.resources.textures.bindTexture("rightarrow");
-				super.draw(renderer);
+				Game.resources.textures.bindTexture("leftarrow");
+				super.draw(renderer, true, false);
 			}
 		};
 		this.addButton(leftRightButt);
@@ -164,8 +164,8 @@ public class GUI {
 			
 			@Override
 			public void draw(Render2D renderer){
-				Game.resources.textures.bindTexture("rightarrow");
-				super.draw(renderer);
+				Game.resources.textures.bindTexture("leftarrow");
+				super.draw(renderer, true, false);
 			}
 		};
 		this.addButton(rightRightButt);
@@ -267,7 +267,50 @@ public class GUI {
 				this.active[1] = 0.75f;
 				this.active[2] = 0.75f;
 			}
+			
+			@Override
+			public void draw(Render2D renderer){
+				Game.resources.textures.bindTexture("box");
+				super.draw(renderer);
+			}
 		};
 		this.addButton(boxButt);
+		
+		/* --------------------------- */
+		
+		RectangleButton pauseButt = new RectangleButton(Game.windowWidth / 2, Game.windowHeight - 20, 35.0f, 20.0f){
+			public void update() {
+				this.x = Game.windowWidth / 2;
+				this.y = Game.windowHeight - 20;
+			}
+
+			@Override
+			protected void onRelease() {
+				Game.paused = !Game.paused;
+			}
+
+			@Override
+			protected void onSlideRelease() {}
+
+			@Override
+			protected void onPress() {}
+			
+			@Override
+			public void draw(Render2D renderer){
+				Game.resources.textures.bindTexture("blank");
+				super.draw(renderer);
+				
+				if(Game.paused){
+					String pauseString = "Hello. This is a message to let you know that\nthe game is paused. Have a nice day.";
+					float scale = 0.3f;
+					float stringWidth = Game.resources.font.stringWidth(pauseString, scale);
+					float stringHeight = Game.resources.font.stringHeight(pauseString, scale);
+					float textX = ((float)Game.windowWidth / 2.0f) - (stringWidth / 2.0f);
+					float textY = ((float)Game.windowHeight / 2.0f) - (stringHeight / 2.0f);
+					Game.resources.font.drawString(pauseString, renderer, textX, textY, scale);
+				}
+			}
+		};
+		this.addButton(pauseButt);
 	}
 }
