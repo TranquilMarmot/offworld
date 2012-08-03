@@ -19,7 +19,6 @@ import com.bitwaffle.moguts.entities.Entities;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.entities.Player;
-import com.bitwaffle.offworld.entities.passive.StaticBackground;
 
 /**
  * Handles all physics workings
@@ -128,7 +127,7 @@ public class Physics {
 	 *  FIXME this initialization method is only temporary until some sort of save file gets implemented
 	 */
 	public void temp2(){
-		this.addEntity(new StaticBackground(0.0f, 0.0f, 256.0f, 150.0f));
+		//this.addEntity(new StaticBackground(0.0f, 0.0f, 1280.0f, 736.0f));
 		
 		// bottom
 		BodyDef groundBodyDef = new BodyDef();

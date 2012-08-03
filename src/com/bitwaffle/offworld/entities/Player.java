@@ -67,8 +67,11 @@ public class Player extends BoxEntity {
 		this.setAngle(0.0f);
 		
 		Vector2 linVec = body.getLinearVelocity();
-		if(linVec.x > 0.5f || linVec.x < -0.5f)
-			animation.updateAnimation(timeStep);
+		if(linVec.x > 0.5f || linVec.x < -0.5f){
+			// FIXME should this be defined in the XML?
+			float animationStep = timeStep * Math.abs(linVec.x / 15.0f);
+			animation.updateAnimation(animationStep);
+		}
 	}
 	
 	/**

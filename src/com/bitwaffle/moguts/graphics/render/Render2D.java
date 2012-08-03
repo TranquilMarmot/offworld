@@ -17,6 +17,7 @@ import com.bitwaffle.moguts.graphics.shapes.Quad;
 import com.bitwaffle.moguts.gui.GUI;
 import com.bitwaffle.moguts.gui.button.Button;
 import com.bitwaffle.offworld.Game;
+import com.bitwaffle.offworld.entities.passive.StaticBackground;
 
 /**
  * This class handles all 2D rendering
@@ -49,6 +50,9 @@ public class Render2D {
 	
 	/** Used for ALL quad rendering! Whenever something needs to be drawn, this quad's draw() method should be called */
 	public Quad quad;
+	
+	/** Background image */
+	private StaticBackground background;
 
 	/**
 	 * Create a new 2D renderer
@@ -65,6 +69,9 @@ public class Render2D {
 		quad = new Quad(this);
 		
 		gui = new GUI();
+		
+		// FIXME this is terrible, simply terrible
+		background = new StaticBackground(-4.0f, -2.0f, 17.328f, 9.9636f);
 	}
 
 	/**
@@ -104,7 +111,10 @@ public class Render2D {
 		
 		program.use();
 		
-		camera.update(1.0f / Game.currentFPS);
+		setUpProjectionScreenCoords();
+		background.render(this);
+		background.update(1.0f / Game.currentFPS);
+		
 		setUpProjectionWorldCoords();
 		renderEntities(Game.physics.getPassiveEntityIterator());
 		renderEntities(Game.physics.getDynamicEntityIterator());

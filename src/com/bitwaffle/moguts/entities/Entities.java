@@ -2,6 +2,8 @@ package com.bitwaffle.moguts.entities;
 
 import java.util.Iterator;
 
+import com.bitwaffle.moguts.graphics.render.Render2D;
+
 /**
  * Keeps track of every Entity and DynamicEntity,
  * mostly used to render everything
@@ -75,6 +77,8 @@ public class Entities {
 	 * @param timeStep How much time has passed since last update
 	 */
 	public void update(float timeStep){
+		if(Render2D.camera != null)
+			Render2D.camera.update(timeStep);
 		passiveEntities.update(timeStep);
 		dynamicEntities.update(timeStep);
 	}

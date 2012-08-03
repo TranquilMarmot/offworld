@@ -1,6 +1,7 @@
 package com.bitwaffle.offworld;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Window;
@@ -31,6 +32,7 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         // TODO make this an option somewhere- does it even make a difference on newer versions of Android?
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
