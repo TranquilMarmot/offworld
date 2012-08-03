@@ -17,12 +17,6 @@
 		<magFilter>GL_LINEAR</magFilter>
 	</texture>
 
-	<texture name="rightarrow">
-		<path>textures/rightarrow.png</path>
-		<minFilter>GL_NEAREST</minFilter>
-		<magFilter>GL_LINEAR</magFilter>
-	</texture>
-
 	<texture name="uparrow">
 		<path>textures/uparrow.png</path>
 		<minFilter>GL_NEAREST</minFilter>
@@ -32,6 +26,12 @@
 	<texture name="camera">
 		<path>textures/camera.png</path>
 		<minFilter>GL_NEAREST</minFilter>
+		<magFilter>GL_LINEAR</magFilter>
+	</texture>
+	
+	<texture name="background">
+	    <path>textures/background.png</path>
+	    <minFilter>GL_NEAREST</minFilter>
 		<magFilter>GL_LINEAR</magFilter>
 	</texture>
 	
