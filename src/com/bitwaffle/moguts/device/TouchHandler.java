@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.gui.button.Button;
@@ -37,6 +38,8 @@ public class TouchHandler {
 
 	/** See comment for checkForButtonPresses() */
 	private Button[] buttonsDown;
+	
+	private DynamicEntity grabbed;
 
 	/**
 	 * Create a new touch handler
@@ -76,6 +79,14 @@ public class TouchHandler {
 		float y = event.getY(0) + event.getY(1);
 		point.set(x / 2, y / 2);
 	}
+	
+	public boolean touchMeBabyBoodooboodoo(MotionEvent e){
+		
+		
+		
+		
+		return true;
+	}
 
 	/**
 	 * Take care of any touch events
@@ -92,9 +103,6 @@ public class TouchHandler {
 		// x and y values of first pointer
 		float x0 = e.getX(0);
 		float y0 = e.getY(0);
-		
-		Vector2 pos = toScreenSpace(x0, y0);
-		System.out.println(pos.x + " " + pos.y + "|" + Game.player.getLocation().x + " " + Game.player.getLocation().y);
 
 		// x and y values of second pointer (will be 0 if no second pointer)
 		float x1 = (pointerCount >= 2) ? e.getX(1) : 0.0f;
@@ -106,6 +114,14 @@ public class TouchHandler {
 		switch (action) {
 		// first pointer is put down
 		case MotionEvent.ACTION_DOWN:
+			if(!checkForButtonPresses(x0, y0)){
+				Vector2 origin = toScreenSpace(x0, y0);
+				grabbed = Game.physics.checkForEntityAt(origin.x, origin.y, 0.5f, 0.5f);
+			}
+			break;
+			
+		// first pointer is put down
+		case MotionEvent.ACTION_POINTER_1_DOWN:
 			checkForButtonPresses(x0, y0);
 			break;
 
@@ -138,6 +154,7 @@ public class TouchHandler {
 				buttonsDown[1].release();
 				buttonsDown[1] = null;
 			}
+			grabbed = null;
 			break;
 
 		// some sort of movement (pretty much the default touch event)
@@ -145,7 +162,12 @@ public class TouchHandler {
 			if (pointerCount == 1) {
 				// if there's only 1 pointer and it's not on a button, we're dragging the screen
 				if (buttonsDown[0] == null && buttonsDown[1] == null) {
-					if (Render2D.camera.currentMode() == Camera.Modes.FREE)
+					// fling anything that might be grabbed
+					if(grabbed != null){
+						float dx = x0 - previousX;
+						float dy = y0 - previousY;
+						grabbed.body.applyForceToCenter(dx * 50.0f, dy * -50.0f);
+					} else if (Render2D.camera.currentMode() == Camera.Modes.FREE)
 						dragEvent(x0, y0);
 				// else check if the pointer slid off a button
 				} else{

@@ -9,6 +9,7 @@ import android.util.FloatMath;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -33,7 +34,7 @@ public class Physics {
 	private Entities entities;
 	
 	/** Gravity for the world */
-	private Vector2 gravity = new Vector2(0.0f, -9.8f/*-39.2f*/);
+	private Vector2 gravity = new Vector2(0.0f, -9.8f);
 	
 	/** Whether or not to sleep TODO look into what this means */
 	boolean doSleep = false;
@@ -86,7 +87,6 @@ public class Physics {
 		world.dispose();
 		world = new World(gravity, doSleep);
 		entities.clear();
-		temp();
 	}
 	
 	/**
@@ -153,44 +153,6 @@ public class Physics {
 		
 		for(int i = 0; i < 75; i++)
 			makeRandomBox();
-	}
-	
-	/**
-	 *  FIXME this initialization method is only temporary until some sort of save file gets implemented
-	 */
-	public void temp(){
-		// bottom
-		BodyDef groundBodyDef = new BodyDef();
-		groundBodyDef.position.set(0.0f, -50.0f);
-		
-		BoxEntity ground = new BoxEntity(groundBodyDef, 100.0f, 1.0f, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
-		this.addEntity(ground);
-		
-		// right
-		BodyDef groundBodyDef2 = new BodyDef();
-		groundBodyDef2.position.set(100.0f, 50.0f);
-		
-		BoxEntity ground2 = new BoxEntity(groundBodyDef2, 1.0f, 100.0f, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
-		this.addEntity(ground2);
-		
-		// left
-		BodyDef groundBodyDef3 = new BodyDef();
-		groundBodyDef3.position.set(-100.0f, 50.0f);
-		
-		BoxEntity ground3 = new BoxEntity(groundBodyDef3, 1.0f, 100.0f, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
-		this.addEntity(ground3);
-		
-		// top
-		BodyDef groundBodyDef4 = new BodyDef();
-		groundBodyDef4.position.set(0.0f, 150.0f);
-		
-		BoxEntity ground4 = new BoxEntity(groundBodyDef4, 100.0f, 1.0f, 0.0f, new float[]{0.0f, 1.0f, 0.0f, 1.0f});
-		this.addEntity(ground4);
-		
-		for(int i = 0 ; i < 75; i ++)
-			makeRandomBox();
-		
-		entities.update(1.0f / 30.0f);
 	}
 	
 	/**
@@ -280,5 +242,30 @@ public class Physics {
 	 */
 	public int numDynamicEntities(){
 		return entities.numEntities();
+	}
+	
+	/**
+	 * Get a dynamic entity from a fixture
+	 * @param fixture Fixture to get entity from
+	 * @return DynamicEntity from fixture
+	 */
+	public static DynamicEntity getDynamicEntity(Fixture fixture){
+		return (DynamicEntity)fixture.getBody().getUserData();
+	}
+	
+	/**
+	 * Query the world's AABB for the first entity found in the given bounding box
+	 * @param x Center X for query box
+	 * @param y Center Y for query box
+	 * @param queryWidth Width of query box
+	 * @param queryHeight Height of query box
+	 * @return First dynamic entity found in query box, null if none found
+	 */
+	public DynamicEntity checkForEntityAt(float x, float y, float queryWidth, float queryHeight){
+		GrabCallback callback = new GrabCallback();
+		
+		world.QueryAABB(callback, x - queryWidth, y - queryHeight, x + queryWidth, y + queryHeight);
+		
+		return callback.getGrabbedEntity();
 	}
 }
