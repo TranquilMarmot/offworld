@@ -9,7 +9,7 @@ import com.bitwaffle.moguts.graphics.render.Render2D;
  */
 public abstract class RectangleButton extends Button {
 	/** width and height of button */
-	private float width, height;
+	protected float width, height;
 	
 	// FIXME these are temporary-ish
 	protected float[] active = { 0.0f, 1.0f, 0.0f, 1.0f };

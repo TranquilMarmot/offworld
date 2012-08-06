@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Window;
 
 import com.bitwaffle.moguts.device.SurfaceView;
@@ -37,6 +38,11 @@ public class MainActivity extends Activity {
         // TODO make this an option somewhere- does it even make a difference on newer versions of Android?
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
         //        WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+        
+        // initialize window width/height variables
+        Display display = getWindowManager().getDefaultDisplay();
+        Game.windowWidth = display.getWidth();
+        Game.windowHeight = display.getHeight();
 
         /*
          * Create a SurfaceView instance and set it as

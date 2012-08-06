@@ -70,8 +70,7 @@ public class Render2D {
 		
 		gui = new GUI();
 		
-		// FIXME this is terrible, simply terrible
-		background = new StaticBackground(-4.0f, -2.0f, 17.328f, 9.9636f);
+		background = new StaticBackground();
 	}
 
 	/**
