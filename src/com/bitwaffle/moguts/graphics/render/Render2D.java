@@ -140,7 +140,7 @@ public class Render2D {
 	 * @param entities Entity list to render
 	 * @see Entities
 	 */
-	private void renderEntities(Iterator<?> it){
+	private void renderEntities(Iterator<? extends Entity> it){
 		Vector2 cam = camera.getLocation();
 		
 		// iterate through every entity

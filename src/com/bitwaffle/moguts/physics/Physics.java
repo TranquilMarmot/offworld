@@ -60,7 +60,7 @@ public class Physics {
 	 * So, each DynamicEntity has an init() method that adds it to the physics world.
 	 * Any time a DynamicEntity is added (via the addEntity() method in this class)
 	 * it gets added to this stack, then at the beginning of every update() the stack
-	 * gets empties and whatever was on it has its init() method called.
+	 * gets emptied and whatever was on it has its init() method called.
 	 */
 	private Stack<DynamicEntity> toInitialize;
 	
@@ -120,15 +120,13 @@ public class Physics {
 			entities.update(FIXED_TIMESTEP);
 		}
 		
-		world.clearForces();
+		world.clearForces(); // FIXME is this necessary?
 	}
 	
 	/**
 	 *  FIXME this initialization method is only temporary until some sort of save file gets implemented
 	 */
 	public void temp2(){
-		//this.addEntity(new StaticBackground(0.0f, 0.0f, 1280.0f, 736.0f));
-		
 		// bottom
 		BodyDef groundBodyDef = new BodyDef();
 		groundBodyDef.position.set(0.0f, -50.0f);
@@ -228,6 +226,7 @@ public class Physics {
 		
 		BoxEntity box = new BoxEntity(boxDef, sizeX, sizeY, boxFixture, new float[]{r, g, b, 1.0f}){
 			@Override
+			// give it a random spin and speed on init
 			public void init(){
 				super.init();
 				
@@ -276,6 +275,9 @@ public class Physics {
 		return entities.getDynamicEntityIterator();
 	}
 	
+	/**
+	 * @return Current number of dynamic entities
+	 */
 	public int numDynamicEntities(){
 		return entities.numEntities();
 	}

@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import android.opengl.Matrix;
 import android.util.FloatMath;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.badlogic.gdx.math.Vector2;
@@ -91,6 +92,9 @@ public class TouchHandler {
 		// x and y values of first pointer
 		float x0 = e.getX(0);
 		float y0 = e.getY(0);
+		
+		Vector2 pos = toScreenSpace(x0, y0);
+		System.out.println(pos.x + " " + pos.y + "|" + Game.player.getLocation().x + " " + Game.player.getLocation().y);
 
 		// x and y values of second pointer (will be 0 if no second pointer)
 		float x1 = (pointerCount >= 2) ? e.getX(1) : 0.0f;
@@ -202,33 +206,31 @@ public class TouchHandler {
 	 * @return Whether or not a button was pressed
 	 */
 	private boolean checkForButtonPresses(float x, float y) {
-		Iterator<Button> it;
-		// put this in a try/catch block in case GUI doesn't exist yet
-		try{
-			it = Render2D.gui.getButtonIterator();
-		} catch(NullPointerException e){
+		if(Render2D.gui == null)
 			return false;
-		}
-
-		boolean pressed = false;
-
-		while (it.hasNext()) {
-			Button b = it.next();
-
-			if (b.contains(x, y)) {
-				if (buttonsDown[0] == null && buttonsDown[1] != b) {
-					buttonsDown[0] = b;
-					b.press();
-					pressed = true;
-				} else if (buttonsDown[1] == null && buttonsDown[0] != b) {
-					buttonsDown[1] = b;
-					b.press();
-					pressed = true;
+		else{
+			Iterator<Button> it = Render2D.gui.getButtonIterator();
+		
+			boolean pressed = false;
+	
+			while (it.hasNext()) {
+				Button b = it.next();
+	
+				if (b.contains(x, y)) {
+					if (buttonsDown[0] == null && buttonsDown[1] != b) {
+						buttonsDown[0] = b;
+						b.press();
+						pressed = true;
+					} else if (buttonsDown[1] == null && buttonsDown[0] != b) {
+						buttonsDown[1] = b;
+						b.press();
+						pressed = true;
+					}
 				}
 			}
+	
+			return pressed;
 		}
-
-		return pressed;
 	}
 
 	/**
@@ -266,39 +268,55 @@ public class TouchHandler {
 		Render2D.camera.setZoom(zoom);
 	}
 
-	// TODO test this!
+
+	/**
+	 * Convert a screen-space vector to a world-space vector
+	 * @param touchX X of screen space vector 
+	 * @param touchY Y of screen space vector
+	 * @return Screen-space coordinate translated to world-space
+	 */
 	public Vector2 toScreenSpace(float touchX, float touchY) {
-		Vector2 pos = new Vector2(0.0f, 0.0f);
+		float[] 
+			// projection matrix
+			projection = new float[16],
+			// modelview matrix
+			modelview = new float[16],
+			// used to multiply projection * modelview
+			modelviewProjection = new float[16],
+			// screen-space touch point, normalized
+			normalizedInPoint = new float[4],
+			// resulting world-space point
+			outPoint = new float[4];
+		
+		// create the projection matrix (mimics Render2D's "setUpProjectionWorldCoords" method)
+		Matrix.setIdentityM(projection, 0);
+		Matrix.orthoM(projection, 0, 0, Game.aspect, 0, 1, -1, 1);
+		Matrix.rotateM(projection, 0, Render2D.camera.getAngle(), 0.0f, 0.0f, 1.0f);
+		
+		// create the view matrix (essentially, an identity matrix scaled and translated to the camera's position)
+		Matrix.setIdentityM(modelview, 0);
+		Matrix.scaleM(modelview, 0, Render2D.camera.getZoom(), Render2D.camera.getZoom(), 1.0f);
+		Matrix.translateM(modelview, 0, Render2D.camera.getLocation().x, Render2D.camera.getLocation().y, 0.0f);
+		
+		// multiply modelview and projection and invert (basically, GLUUnproject)
+		Matrix.multiplyMM(modelviewProjection, 0, projection, 0, modelview, 0);
+		Matrix.invertM(modelviewProjection, 0, modelviewProjection, 0);
 
-		float screenW = Game.windowWidth;
-		float screenH = Game.windowHeight;
-
-		float[] invertedMatrix, transformMatrix, normalizedInPoint, outPoint;
-		invertedMatrix = new float[16];
-		transformMatrix = new float[16];
-		normalizedInPoint = new float[4];
-		outPoint = new float[4];
-
-		float oglTouchY = screenH - touchY;
-
-		normalizedInPoint[0] = touchX * 2.0f / screenW - 1.0f;
-		normalizedInPoint[1] = oglTouchY * 2.0f / screenH - 1.0f;
-		normalizedInPoint[2] = -1.0f;
+		// compensate for Y 0 being on the bottom in OpenGL (touch point 0 is on the top)
+		float oglTouchY = Game.windowHeight - touchY;
+		// create our normalized vector
+		normalizedInPoint[0] = ((touchX * 2.0f) / Game.windowWidth) - 1.0f;
+		normalizedInPoint[1] = ((oglTouchY * 2.0f) / Game.windowHeight) - 1.0f;
+		normalizedInPoint[2] = 0.0f;
 		normalizedInPoint[3] = 1.0f;
-
-		//Matrix.multiplyMM(transformMatrix, 0, Game.render2D.currenProjection(),
-		//		0, Game.render2D.currentModelview(), 0);
-		Matrix.invertM(invertedMatrix, 0, transformMatrix, 0);
-
-		Matrix.multiplyMV(outPoint, 0, invertedMatrix, 0, normalizedInPoint, 0);
+		
+		// multiply out inPoint by our inverted modelview-projection matrix
+		Matrix.multiplyMV(outPoint, 0, modelviewProjection, 0, normalizedInPoint, 0);
 
 		if (outPoint[3] == 0.0f)
-			System.out.println("Divide by zero err!");
+			Log.e("Render2D", "Divide by zero error in screen space to world space conversion!");
 
-		pos.set(outPoint[0] / outPoint[3], outPoint[1] / outPoint[3]);
-
-		// System.out.println(pos.x + " " + pos.y);
-
-		return pos;
+		// some sort of magic or something
+		return new Vector2(outPoint[0] / outPoint[3], outPoint[1] / outPoint[3]);
 	}
 }
