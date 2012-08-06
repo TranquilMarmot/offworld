@@ -15,10 +15,10 @@ import com.bitwaffle.offworld.Game;
  */
 public class SurfaceView extends GLSurfaceView {
 	/** 
-	 * Handles all the rendering (NOTE: GLRenderer
-	 * contains static instances of Render2D and Render3D,
+	 * Handles all the rendering (NOTE: {@link Game}
+	 * contains static instances of {@link Render2D} and Render3D,
 	 * which should be referenced whenever doing graphics stuff.
-	 * It's also got a static instance of Physics which should be
+	 * It's also got a static instance of {@link Physics} which should be
 	 * used when interacting with the physics world) 
 	 */
 	public static Game renderer;

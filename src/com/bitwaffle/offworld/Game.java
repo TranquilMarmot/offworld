@@ -46,15 +46,15 @@ public class Game implements GLSurfaceView.Renderer {
 	/** Current aspect ratio (windowWidth / windowHeight) */
 	public static volatile float aspect;
 	
+	/** Buzz buzz*/
+	public static Vibration vibration;
+	
 	/** Current frames per second (at the moment, counts rendering and physics updates per second) */
 	public static volatile int currentFPS = 60;
 	/** Used to count up to a second for FPS */
 	private long counter;
 	/** Used to count frames for FPS */
 	private int frameCount = 0;
-	
-	/** Buzz buzz*/
-	public static Vibration vibration;
 	
 	/**
 	 * Create a new renderer instance

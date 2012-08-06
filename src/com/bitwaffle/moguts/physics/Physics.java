@@ -255,17 +255,15 @@ public class Physics {
 	
 	/**
 	 * Query the world's AABB for the first entity found in the given bounding box
-	 * @param x Center X for query box
-	 * @param y Center Y for query box
+	 * @param origin Center of query box
 	 * @param queryWidth Width of query box
 	 * @param queryHeight Height of query box
 	 * @return First dynamic entity found in query box, null if none found
 	 */
-	public DynamicEntity checkForEntityAt(float x, float y, float queryWidth, float queryHeight){
+	public DynamicEntity checkForEntityAt(Vector2 origin, float queryWidth, float queryHeight){
 		GrabCallback callback = new GrabCallback();
-		
-		world.QueryAABB(callback, x - queryWidth, y - queryHeight, x + queryWidth, y + queryHeight);
-		
+		world.QueryAABB(callback, origin.x - queryWidth, origin.y - queryHeight,
+		                          origin.x + queryWidth, origin.y + queryHeight);
 		return callback.getGrabbedEntity();
 	}
 }

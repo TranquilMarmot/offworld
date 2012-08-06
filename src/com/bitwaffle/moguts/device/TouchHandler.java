@@ -31,15 +31,16 @@ public class TouchHandler {
 	public final float MIN_ZOOM_SPACING = 10.0f;
 
 	/** How sensitive zoom is- the higher the value, the less sensitive */
-	public final float ZOOM_SENSITIVITY = 600500.0f;
+	public final float ZOOM_SENSITIVITY = 200000.0f;
 
-	/** How sensitive dragging is- the higher the value, the less sensitive */
+	/** How sensitive camera dragging is- the higher the value, the less sensitive */
 	public final float DRAG_SENSITIVITY = 15.0f;
 
 	/** See comment for checkForButtonPresses() */
 	private Button[] buttonsDown;
 	
-	private DynamicEntity grabbed;
+	/** Currently grabbed entity */
+	private DynamicEntity grabbed; // TODO move this somewhere else
 
 	/**
 	 * Create a new touch handler
@@ -79,14 +80,6 @@ public class TouchHandler {
 		float y = event.getY(0) + event.getY(1);
 		point.set(x / 2, y / 2);
 	}
-	
-	public boolean touchMeBabyBoodooboodoo(MotionEvent e){
-		
-		
-		
-		
-		return true;
-	}
 
 	/**
 	 * Take care of any touch events
@@ -112,15 +105,14 @@ public class TouchHandler {
 		float spacing = spacing(x0, y0, x1, y1);
 
 		switch (action) {
-		// first pointer is put down
+		// initial pointer is put down
 		case MotionEvent.ACTION_DOWN:
-			if(!checkForButtonPresses(x0, y0)){
-				Vector2 origin = toScreenSpace(x0, y0);
-				grabbed = Game.physics.checkForEntityAt(origin.x, origin.y, 0.5f, 0.5f);
-			}
+			// check for button presses and grab an entity if there aren't any
+			if(!checkForButtonPresses(x0, y0))
+				grabbed = Game.physics.checkForEntityAt(toScreenSpace(x0, y0), 0.5f, 0.5f);
 			break;
 			
-		// first pointer is put down
+		// first pointer is put down (mostly used when pointer 2 is kept down and pointer 1 goes up then down again)
 		case MotionEvent.ACTION_POINTER_1_DOWN:
 			checkForButtonPresses(x0, y0);
 			break;
@@ -160,15 +152,9 @@ public class TouchHandler {
 		// some sort of movement (pretty much the default touch event)
 		case MotionEvent.ACTION_MOVE:
 			if (pointerCount == 1) {
-				// if there's only 1 pointer and it's not on a button, we're dragging the screen
+				// if there's only 1 pointer and it's not on a button, we're dragging
 				if (buttonsDown[0] == null && buttonsDown[1] == null) {
-					// fling anything that might be grabbed
-					if(grabbed != null){
-						float dx = x0 - previousX;
-						float dy = y0 - previousY;
-						grabbed.body.applyForceToCenter(dx * 50.0f, dy * -50.0f);
-					} else if (Render2D.camera.currentMode() == Camera.Modes.FREE)
-						dragEvent(x0, y0);
+					dragEvent(x0, y0);
 				// else check if the pointer slid off a button
 				} else{
 					if (buttonsDown[0] != null && !buttonsDown[0].contains(x0, y0)) {
@@ -198,7 +184,6 @@ public class TouchHandler {
 							buttonsDown[0] = null;
 						}
 					}
-
 					if (buttonsDown[1] != null) {
 						if (!buttonsDown[1].contains(x0, y0)
 						 && !buttonsDown[1].contains(x1, y1)) {
@@ -267,14 +252,18 @@ public class TouchHandler {
 		float dx = x - previousX;
 		float dy = y - previousY;
 
-		Vector2 camLoc = Render2D.camera.getLocation();
-		camLoc.x += dx / DRAG_SENSITIVITY;
-		camLoc.y -= dy / DRAG_SENSITIVITY;
-		Render2D.camera.setLocation(camLoc);
+		if(grabbed != null){
+			grabbed.body.applyForceToCenter(dx * 50.0f, dy * -50.0f);
+		} else if(Render2D.camera.currentMode() == Camera.Modes.FREE){
+			Vector2 camLoc = Render2D.camera.getLocation();
+			camLoc.x += dx / DRAG_SENSITIVITY;
+			camLoc.y -= dy / DRAG_SENSITIVITY;
+			Render2D.camera.setLocation(camLoc);
+		}
 	}
 
 	/**
-	 * Zoom in or out (two finger pinch zoom)
+	 * Zoom in or out (two finger pinch)
 	 * 
 	 * @param spacing
 	 *            How far apart the two fingers are
@@ -301,10 +290,10 @@ public class TouchHandler {
 		float[] 
 			// projection matrix
 			projection = new float[16],
-			// modelview matrix
-			modelview = new float[16],
-			// used to multiply projection * modelview
-			modelviewProjection = new float[16],
+			// view matrix (no 'model' since we're not looking at anything specific)
+			view = new float[16],
+			// used to multiply projection * view
+			compoundMatrix = new float[16],
 			// screen-space touch point, normalized
 			normalizedInPoint = new float[4],
 			// resulting world-space point
@@ -316,24 +305,24 @@ public class TouchHandler {
 		Matrix.rotateM(projection, 0, Render2D.camera.getAngle(), 0.0f, 0.0f, 1.0f);
 		
 		// create the view matrix (essentially, an identity matrix scaled and translated to the camera's position)
-		Matrix.setIdentityM(modelview, 0);
-		Matrix.scaleM(modelview, 0, Render2D.camera.getZoom(), Render2D.camera.getZoom(), 1.0f);
-		Matrix.translateM(modelview, 0, Render2D.camera.getLocation().x, Render2D.camera.getLocation().y, 0.0f);
+		Matrix.setIdentityM(view, 0);
+		Matrix.scaleM(view, 0, Render2D.camera.getZoom(), Render2D.camera.getZoom(), 1.0f);
+		Matrix.translateM(view, 0, Render2D.camera.getLocation().x, Render2D.camera.getLocation().y, 0.0f);
 		
-		// multiply modelview and projection and invert (basically, GLUUnproject)
-		Matrix.multiplyMM(modelviewProjection, 0, projection, 0, modelview, 0);
-		Matrix.invertM(modelviewProjection, 0, modelviewProjection, 0);
+		// multiply view and projection and invert (basically, GLUUnproject)
+		Matrix.multiplyMM(compoundMatrix, 0, projection, 0, view, 0);
+		Matrix.invertM(compoundMatrix, 0, compoundMatrix, 0);
 
 		// compensate for Y 0 being on the bottom in OpenGL (touch point 0 is on the top)
 		float oglTouchY = Game.windowHeight - touchY;
 		// create our normalized vector
 		normalizedInPoint[0] = ((touchX * 2.0f) / Game.windowWidth) - 1.0f;
 		normalizedInPoint[1] = ((oglTouchY * 2.0f) / Game.windowHeight) - 1.0f;
-		normalizedInPoint[2] = 0.0f;
+		normalizedInPoint[2] = 0.0f; // because everything is drawn at 0 (between -1 and 1)
 		normalizedInPoint[3] = 1.0f;
 		
-		// multiply out inPoint by our inverted modelview-projection matrix
-		Matrix.multiplyMV(outPoint, 0, modelviewProjection, 0, normalizedInPoint, 0);
+		// multiply normalized point by our inverted view-projection matrix
+		Matrix.multiplyMV(outPoint, 0, compoundMatrix, 0, normalizedInPoint, 0);
 
 		if (outPoint[3] == 0.0f)
 			Log.e("Render2D", "Divide by zero error in screen space to world space conversion!");
