@@ -109,19 +109,21 @@ public class TouchHandler {
 		case MotionEvent.ACTION_DOWN:
 			// check for button presses and grab an entity if there aren't any
 			if(!checkForButtonPresses(x0, y0)){
-				grabbed = Game.physics.checkForEntityAt(toWorldSpace(x0, y0), 0.5f, 0.5f);
+				//grabbed = Game.physics.checkForEntityAt(toWorldSpace(x0, y0), 0.5f, 0.5f);
 				Game.player.shoot(toWorldSpace(x0, y0));
 			}
 			break;
 			
-		// first pointer is put down (mostly used when pointer 2 is kept down and pointer 1 goes up then down again)
+		// first pointer is put down (happens when pointer 2 is kept down and pointer 1 goes up then down again)
 		case MotionEvent.ACTION_POINTER_1_DOWN:
-			checkForButtonPresses(x0, y0);
+			if(!checkForButtonPresses(x0, y0))
+				Game.player.shoot(toWorldSpace(x0, y0));
 			break;
 
 		// second pointer is put down
 		case MotionEvent.ACTION_POINTER_2_DOWN:
-			checkForButtonPresses(x1, y1);
+			if(!checkForButtonPresses(x1, y1))
+				Game.player.shoot(toWorldSpace(x1, y1));
 			break;
 
 		// second pointer released
@@ -168,6 +170,7 @@ public class TouchHandler {
 							buttonsDown[1] = null;
 					}
 				}
+				checkForButtonPresses(x0, y0);
 			} else if (pointerCount == 2) {
 				// if there's two pointers and neither are on a button, we're zooming
 				if (buttonsDown[0] == null && buttonsDown[1] == null) {
@@ -193,6 +196,8 @@ public class TouchHandler {
 							buttonsDown[1] = null;
 						}
 					}
+					checkForButtonPresses(x0, y0);
+					checkForButtonPresses(x1, y1);
 				}
 			}
 		}
@@ -218,10 +223,10 @@ public class TouchHandler {
 		if(Render2D.gui == null)
 			return false;
 		else{
-			Iterator<Button> it = Render2D.gui.getButtonIterator();
-		
 			boolean pressed = false;
-	
+			
+			// check every button for presses
+			Iterator<Button> it = Render2D.gui.getButtonIterator();
 			while (it.hasNext()) {
 				Button b = it.next();
 	

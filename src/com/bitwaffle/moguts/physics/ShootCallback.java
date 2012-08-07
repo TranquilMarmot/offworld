@@ -17,7 +17,7 @@ public class ShootCallback implements RayCastCallback{
 		if(ent instanceof Health)
 			((Health)ent).hurt(10);
 		
-		return 0;
+		return fraction;
 	}
 
 }
