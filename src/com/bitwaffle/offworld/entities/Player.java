@@ -4,11 +4,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.moguts.entities.BoxEntity;
+import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.graphics.animation.Animation;
 import com.bitwaffle.moguts.graphics.render.Render2D;
-import com.bitwaffle.moguts.physics.ShootCallback;
+import com.bitwaffle.moguts.physics.ClosestHitCallback;
 import com.bitwaffle.moguts.util.MathHelper;
 import com.bitwaffle.offworld.Game;
+import com.bitwaffle.offworld.interfaces.Health;
 
 /**
  * Player class
@@ -140,16 +142,31 @@ public class Player extends BoxEntity {
 		this.canJump = nowCanJump;
 	}
 	
+	/**
+	 * Pew pew!
+	 * @param target World-space vector to shoot towards
+	 */
 	public void shoot(Vector2 target){
+		// TODO implement some sort of weapon class (maybe an interface with a 'shootAt' method)
 		float angle = MathHelper.angle(this.location, target);
-		
+
 		Vector2 dist = new Vector2(25.0f, 0.0f);
 		dist.rotate(angle);
 		
 		Vector2 add = new Vector2(this.location.x + dist.x, this.location.y + dist.y);
 		
-		ShootCallback shootman = new ShootCallback();
+		ClosestHitCallback shootman = new ClosestHitCallback(this.location);
 		Game.physics.world.rayCast(shootman, this.location, add);
+		
+		DynamicEntity hit = shootman.getClosestHit();
+		if(hit != null){
+			Vector2 normal = shootman.normalOnClosest();
+			Vector2 point = shootman.pointOnClosest();
+			hit.body.applyForce(new Vector2(normal.x * -2500.0f, normal.y * -2500.0f), point);
+			
+			if(hit instanceof Health)
+				((Health)hit).hurt(10);
+		}
 	}
 	
 	@Override

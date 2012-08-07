@@ -10,17 +10,17 @@ import com.bitwaffle.offworld.interfaces.Health;
  * 
  * @author TranquilMarmot
  */
-public class KillableBox extends BoxEntity implements Health{
+public class DestroyableBox extends BoxEntity implements Health{
 	private int health;
 
-	public KillableBox(BodyDef bodyDef, float width, float height,
+	public DestroyableBox(BodyDef bodyDef, float width, float height,
 			float density, float[] color) {
 		super(bodyDef, width, height, density, color);
 		health = 100;
 	}
 
 	
-	public KillableBox(BodyDef bodyDef, float width, float height,
+	public DestroyableBox(BodyDef bodyDef, float width, float height,
 			FixtureDef fixtureDef, float[] color) {
 		super(bodyDef, width, height, fixtureDef, color);
 		health = 100;

@@ -20,7 +20,7 @@ import com.bitwaffle.moguts.entities.Entities;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.entities.Player;
-import com.bitwaffle.offworld.entities.dynamic.KillableBox;
+import com.bitwaffle.offworld.entities.dynamic.DestroyableBox;
 
 /**
  * Handles all physics workings
@@ -187,7 +187,7 @@ public class Physics {
 		boxFixture.friction = 0.3f;
 		boxFixture.restitution = 0.3f;
 		
-		KillableBox box = new KillableBox(boxDef, sizeX, sizeY, boxFixture, new float[]{r, g, b, 1.0f}){
+		DestroyableBox box = new DestroyableBox(boxDef, sizeX, sizeY, boxFixture, new float[]{r, g, b, 1.0f}){
 			@Override
 			// give it a random spin and speed on init
 			public void init(){
