@@ -108,8 +108,10 @@ public class TouchHandler {
 		// initial pointer is put down
 		case MotionEvent.ACTION_DOWN:
 			// check for button presses and grab an entity if there aren't any
-			if(!checkForButtonPresses(x0, y0))
-				grabbed = Game.physics.checkForEntityAt(toScreenSpace(x0, y0), 0.5f, 0.5f);
+			if(!checkForButtonPresses(x0, y0)){
+				grabbed = Game.physics.checkForEntityAt(toWorldSpace(x0, y0), 0.5f, 0.5f);
+				Game.player.shoot(toWorldSpace(x0, y0));
+			}
 			break;
 			
 		// first pointer is put down (mostly used when pointer 2 is kept down and pointer 1 goes up then down again)
@@ -252,7 +254,7 @@ public class TouchHandler {
 		float dx = x - previousX;
 		float dy = y - previousY;
 
-		if(grabbed != null){
+		if(grabbed != null && grabbed.body != null){
 			grabbed.body.applyForceToCenter(dx * 50.0f, dy * -50.0f);
 		} else if(Render2D.camera.currentMode() == Camera.Modes.FREE){
 			Vector2 camLoc = Render2D.camera.getLocation();
@@ -286,7 +288,7 @@ public class TouchHandler {
 	 * @param touchY Y of screen space vector
 	 * @return Screen-space coordinate translated to world-space
 	 */
-	public Vector2 toScreenSpace(float touchX, float touchY) {
+	public Vector2 toWorldSpace(float touchX, float touchY) {
 		float[] 
 			// projection matrix
 			projection = new float[16],

@@ -19,6 +19,9 @@ public abstract class Entity {
 	/** Current rotation of entity (in radians) */
 	protected float angle;
 	
+	/** If this gets set to true, the entity is removed ASAP */
+	public boolean removeFlag = false;
+	
 	public Entity(){
 		location = new Vector2();
 		angle = 0.0f;

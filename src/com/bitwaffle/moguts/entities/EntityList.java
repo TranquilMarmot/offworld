@@ -45,8 +45,13 @@ public class EntityList<T extends Entity> {
 		
 		Iterator<T> it = getIterator();
 		
-		while(it.hasNext())
-			it.next().update(timeStep);
+		while(it.hasNext()){
+			T ent = it.next();
+			if(ent.removeFlag)
+				toRemove.add(ent);
+			else
+				ent.update(timeStep);
+		}
 	}
 	
 	public int size(){

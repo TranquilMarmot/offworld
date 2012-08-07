@@ -6,6 +6,8 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.moguts.entities.BoxEntity;
 import com.bitwaffle.moguts.graphics.animation.Animation;
 import com.bitwaffle.moguts.graphics.render.Render2D;
+import com.bitwaffle.moguts.physics.ShootCallback;
+import com.bitwaffle.moguts.util.MathHelper;
 import com.bitwaffle.offworld.Game;
 
 /**
@@ -136,6 +138,18 @@ public class Player extends BoxEntity {
 	 */
 	public void setCanJump(boolean nowCanJump){
 		this.canJump = nowCanJump;
+	}
+	
+	public void shoot(Vector2 target){
+		float angle = MathHelper.angle(this.location, target);
+		
+		Vector2 dist = new Vector2(25.0f, 0.0f);
+		dist.rotate(angle);
+		
+		Vector2 add = new Vector2(this.location.x + dist.x, this.location.y + dist.y);
+		
+		ShootCallback shootman = new ShootCallback();
+		Game.physics.world.rayCast(shootman, this.location, add);
 	}
 	
 	@Override

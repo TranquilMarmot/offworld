@@ -16,6 +16,7 @@ import com.bitwaffle.moguts.graphics.glsl.GLSLShader;
 import com.bitwaffle.moguts.graphics.shapes.Quad;
 import com.bitwaffle.moguts.gui.GUI;
 import com.bitwaffle.moguts.gui.button.Button;
+import com.bitwaffle.moguts.util.MathHelper;
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.entities.passive.StaticBackground;
 
@@ -148,7 +149,7 @@ public class Render2D {
 			
 			// figure out the location and the angle of what we're rendering
 			Vector2 loc = ent.getLocation();
-			float angle = toDegrees(ent.getAngle());
+			float angle = MathHelper.toDegrees(ent.getAngle());
 			
 			// mainpulate the modelview matrix to draw the entity
 			Matrix.setIdentityM(modelview, 0);
@@ -205,16 +206,6 @@ public class Render2D {
 	 */
 	public float[] currenProjection(){
 		return projection;
-	}
-	
-	/**
-	 * Convert radians to degrees- with floats!
-	 * (AKA Why the hell does everything in java.lang.math use doubles?)
-	 * @param radians
-	 * @return
-	 */
-	public static float toDegrees(float radians){
-		return radians * 180.0f / 3.14159265f;
 	}
 	
 
