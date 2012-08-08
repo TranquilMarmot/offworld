@@ -21,7 +21,7 @@ public class ClosestHitCallback implements RayCastCallback{
 	/** Pointer to closest hit */
 	private DynamicEntity closest;
 	
-	/** Info about hit */
+	/** Details about hit */
 	private Vector2 normalOnClosest, pointOnClosest;
 	
 	/**
@@ -53,6 +53,7 @@ public class ClosestHitCallback implements RayCastCallback{
 			normalOnClosest.set(normal);
 		}
 		
+		// returning 1 here continues on to the next hit in the ray cast
 		return 1;
 	}
 	
@@ -67,11 +68,13 @@ public class ClosestHitCallback implements RayCastCallback{
 	
 	/**
 	 * Reset the callback to be used again
+	 * NOTE: This must be called anytime this
+	 * callback gets re-used!!!
 	 * @param newOrigin New origin location
 	 */
 	public void reset(Vector2 newOrigin){
 		this.origin.set(newOrigin);
-		closestDist = Float.MAX_VALUE;
 		closest = null;
+		closestDist = Float.MAX_VALUE;
 	}
 }

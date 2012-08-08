@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.physics.callbacks.ClosestHitCallback;
+import com.bitwaffle.moguts.util.MathHelper;
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.Health;
@@ -23,6 +24,9 @@ public class Pistol implements Firearm {
 	/** Force this pistol exerts on whatever it hits (makes things move away) */
 	private float force;
 	
+	/** How far the pistol can shoot */
+	private float range;
+	
 	/** Callback used for handling hits */
 	private ClosestHitCallback callback;
 	
@@ -31,21 +35,31 @@ public class Pistol implements Firearm {
 	 * @param owner Owner of this pistol (where the shots come from)
 	 * @param damage How much damage this does when hitting stuff that implements the Health interface
 	 * @param force How much force this pistol exerts on stuff it hits
+	 * @param range How far the pistol can shoot
 	 */
-	public Pistol(Entity owner, int damage, float force){
-		// TODO should probably also include an 'offset' Vector2 to represent gun's actual location
+	public Pistol(Entity owner, int damage, float force, float range){
+		// TODO should probably also include an 'offset' Vector2 to represent the gun's actual location
 		this.owner = owner;
 		this.damage = damage;
 		this.force = force;
+		this.range = range;
 		callback = new ClosestHitCallback(owner.getLocation());
 	}
 
-	
+	/**
+	 * Shoot, man!
+	 * @param target Location to shoot at
+	 */
 	public void shootAt(Vector2 target) {
+		// find the difference between the pistol's range and the distance to the given target
+		float diff = range - target.dst(owner.getLocation());
+		// create a difference vector and rotate it accordingly
+		Vector2 clamps = new Vector2(diff, 0.0f);
+		clamps.rotate(MathHelper.angle(owner.getLocation(), target));
+		
+		// perform raycast to clamped target
 		callback.reset(owner.getLocation());
-		
-		Game.physics.world.rayCast(callback, owner.getLocation(), target);
-		
+		Game.physics.world.rayCast(callback, owner.getLocation(), new Vector2(target.x + clamps.x, target.y + clamps.y));
 		DynamicEntity hit = callback.getClosestHit();
 		if(hit != null){
 			Vector2 normal = callback.normalOnClosest();
@@ -56,5 +70,4 @@ public class Pistol implements Firearm {
 				((Health)hit).hurt(this.damage);
 		}
 	}
-
 }

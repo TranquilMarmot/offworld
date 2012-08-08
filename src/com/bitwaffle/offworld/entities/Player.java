@@ -6,7 +6,6 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.moguts.entities.BoxEntity;
 import com.bitwaffle.moguts.graphics.animation.Animation;
 import com.bitwaffle.moguts.graphics.render.Render2D;
-import com.bitwaffle.moguts.util.MathHelper;
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.weapons.Pistol;
 
@@ -55,7 +54,7 @@ public class Player extends BoxEntity {
 		
 		canJump = false;
 		
-		pistol = new Pistol(this, 20, 2000.0f);
+		pistol = new Pistol(this, 20, 2000.0f, 25.0f);
 	}
 	
 	@Override
@@ -148,15 +147,7 @@ public class Player extends BoxEntity {
 	 * @param target World-space vector to shoot towards
 	 */
 	public void shoot(Vector2 target){
-		// TODO clamp the target value to a specific distance away ('range' of weapon)
-		float angle = MathHelper.angle(this.location, target);
-
-		Vector2 dist = new Vector2(25.0f, 0.0f);
-		dist.rotate(angle);
-		
-		Vector2 newTarget = new Vector2(this.location.x + dist.x, this.location.y + dist.y);
-		
-		pistol.shootAt(newTarget);
+		pistol.shootAt(target);
 	}
 	
 	@Override
