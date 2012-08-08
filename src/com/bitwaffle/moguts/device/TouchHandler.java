@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.gui.button.Button;
@@ -38,9 +37,6 @@ public class TouchHandler {
 
 	/** See comment for checkForButtonPresses() */
 	private Button[] buttonsDown;
-	
-	/** Currently grabbed entity */
-	private DynamicEntity grabbed; // TODO move this somewhere else
 
 	/**
 	 * Create a new touch handler
@@ -150,7 +146,6 @@ public class TouchHandler {
 				buttonsDown[1].release();
 				buttonsDown[1] = null;
 			}
-			grabbed = null;
 			break;
 
 		// some sort of movement (pretty much the default touch event)
@@ -228,6 +223,10 @@ public class TouchHandler {
 			// check every button for presses
 			Iterator<Button> it = Render2D.gui.getButtonIterator();
 			while (it.hasNext()) {
+				// break if two buttons are being pressed
+				if(buttonsDown[0] != null && buttonsDown[1] != null)
+					break;
+				
 				Button b = it.next();
 	
 				if (b.contains(x, y)) {
@@ -256,12 +255,10 @@ public class TouchHandler {
 	 *            Y of new location of finger
 	 */
 	private void dragEvent(float x, float y) {
-		float dx = x - previousX;
-		float dy = y - previousY;
-
-		if(grabbed != null && grabbed.body != null){
-			grabbed.body.applyForceToCenter(dx * 50.0f, dy * -50.0f);
-		} else if(Render2D.camera.currentMode() == Camera.Modes.FREE){
+		if(Render2D.camera.currentMode() == Camera.Modes.FREE){
+			float dx = x - previousX;
+			float dy = y - previousY;
+			
 			Vector2 camLoc = Render2D.camera.getLocation();
 			camLoc.x += dx / DRAG_SENSITIVITY;
 			camLoc.y -= dy / DRAG_SENSITIVITY;
@@ -289,11 +286,11 @@ public class TouchHandler {
 
 	/**
 	 * Convert a screen-space vector to a world-space vector
-	 * @param touchX X of screen space vector 
-	 * @param touchY Y of screen space vector
+	 * @param screenX X of screen space vector 
+	 * @param screenY Y of screen space vector
 	 * @return Screen-space coordinate translated to world-space
 	 */
-	public Vector2 toWorldSpace(float touchX, float touchY) {
+	public Vector2 toWorldSpace(float screenX, float screenY) {
 		float[] 
 			// projection matrix
 			projection = new float[16],
@@ -321,9 +318,9 @@ public class TouchHandler {
 		Matrix.invertM(compoundMatrix, 0, compoundMatrix, 0);
 
 		// compensate for Y 0 being on the bottom in OpenGL (touch point 0 is on the top)
-		float oglTouchY = Game.windowHeight - touchY;
+		float oglTouchY = Game.windowHeight - screenY;
 		// create our normalized vector
-		normalizedInPoint[0] = ((touchX * 2.0f) / Game.windowWidth) - 1.0f;
+		normalizedInPoint[0] = ((screenX * 2.0f) / Game.windowWidth) - 1.0f;
 		normalizedInPoint[1] = ((oglTouchY * 2.0f) / Game.windowHeight) - 1.0f;
 		normalizedInPoint[2] = 0.0f; // because everything is drawn at 0 (between -1 and 1)
 		normalizedInPoint[3] = 1.0f;
