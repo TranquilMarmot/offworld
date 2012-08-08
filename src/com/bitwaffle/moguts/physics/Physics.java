@@ -18,6 +18,7 @@ import com.bitwaffle.moguts.entities.BoxEntity;
 import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.entities.Entities;
 import com.bitwaffle.moguts.entities.Entity;
+import com.bitwaffle.moguts.physics.callbacks.GrabCallback;
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.entities.Player;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableBox;

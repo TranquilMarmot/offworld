@@ -1,9 +1,10 @@
-package com.bitwaffle.moguts.physics;
+package com.bitwaffle.moguts.physics.callbacks;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.bitwaffle.moguts.entities.DynamicEntity;
+import com.bitwaffle.moguts.physics.Physics;
 
 /**
  * A callback to get the closest hit from a ray trace
@@ -18,7 +19,7 @@ public class ClosestHitCallback implements RayCastCallback{
 	private float closestDist;
 	
 	/** Pointer to closest hit */
-	private DynamicEntity closestEnt;
+	private DynamicEntity closest;
 	
 	/** Info about hit */
 	private Vector2 normalOnClosest, pointOnClosest;
@@ -47,7 +48,7 @@ public class ClosestHitCallback implements RayCastCallback{
 		float dist = fixture.getBody().getPosition().dst(origin);
 		if(dist <= closestDist){
 			closestDist = dist;
-			closestEnt = Physics.getDynamicEntity(fixture);
+			closest = Physics.getDynamicEntity(fixture);
 			pointOnClosest.set(point);
 			normalOnClosest.set(normal);
 		}
@@ -56,11 +57,21 @@ public class ClosestHitCallback implements RayCastCallback{
 	}
 	
 	/** @return The closest DynamicEntity to the origin of the ray cast */
-	public DynamicEntity getClosestHit(){ return closestEnt; }
+	public DynamicEntity getClosestHit(){ return closest; }
 	
 	/** @return Normal of hit on closest entity */
 	public Vector2 normalOnClosest(){ return normalOnClosest; }
 	
 	/** @return Point of hit on closest entity */
 	public Vector2 pointOnClosest(){ return pointOnClosest; }
+	
+	/**
+	 * Reset the callback to be used again
+	 * @param newOrigin New origin location
+	 */
+	public void reset(Vector2 newOrigin){
+		this.origin.set(newOrigin);
+		closestDist = Float.MAX_VALUE;
+		closest = null;
+	}
 }

@@ -1,8 +1,9 @@
-package com.bitwaffle.moguts.physics;
+package com.bitwaffle.moguts.physics.callbacks;
 
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.QueryCallback;
 import com.bitwaffle.moguts.entities.DynamicEntity;
+import com.bitwaffle.moguts.physics.Physics;
 
 /**
  * A QueryCallback for grabbing the first entity
