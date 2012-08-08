@@ -41,7 +41,7 @@ public class Resources {
 	public void init(){
 		textures = new TextureManager();
 		sounds = new SoundManager();
-		font = new BitmapFont("font.bmp", 128, 128, 31, 31);
+		font = new BitmapFont("font.png", 128, 128, 31, 31);
 	}
 	
     /**

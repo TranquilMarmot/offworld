@@ -107,7 +107,7 @@ public class Camera extends Entity {
 		if(Game.player != null){
 			Vector2 playerLoc = Game.player.getLocation();
 			//FIXME make this work more betterer (probably base it on screen size/zoom?)
-			this.location.set(-playerLoc.x + (0.7f / zoom), -playerLoc.y + (0.5f / zoom));
+			this.location.set(-playerLoc.x + (0.7f / zoom), -playerLoc.y + (0.35f / zoom));
 		}
 	}
 	
