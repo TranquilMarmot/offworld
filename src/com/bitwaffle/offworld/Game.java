@@ -62,7 +62,7 @@ public class Game implements GLSurfaceView.Renderer {
 	 */
 	public Game(Context context){
 		super();
-		resources = new Resources(context.getAssets());
+		resources = new Resources(context);
 		vibration = new Vibration(context);
 	}
 
