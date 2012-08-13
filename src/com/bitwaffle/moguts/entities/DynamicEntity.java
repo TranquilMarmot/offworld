@@ -1,12 +1,14 @@
 package com.bitwaffle.moguts.entities;
 
+import java.util.ArrayList;
+
 import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.Shape;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.physics.Physics;
 import com.bitwaffle.offworld.Game;
@@ -22,8 +24,9 @@ public abstract class DynamicEntity extends Entity{
 	
 	// these are all used for initialization TODO there's gotta be a better way to do this
 	private BodyDef bodyDef;
-	private FixtureDef fixtureDef;
-	private PolygonShape polyShape;
+	//private FixtureDef fixtureDef;
+	private ArrayList<FixtureDef> fixtureDefs;
+	private Shape shape;
 	private float density;
 	private boolean isInitialized = false;
 	
@@ -36,7 +39,16 @@ public abstract class DynamicEntity extends Entity{
 		super();
 		
 		this.bodyDef = bodyDef;
-		this.fixtureDef = fixtureDef;
+		fixtureDefs = new ArrayList<FixtureDef>();
+		fixtureDefs.add(fixtureDef);
+		//this.fixtureDef = fixtureDef;
+	}
+	
+	public DynamicEntity(BodyDef bodyDef, ArrayList<FixtureDef> fixtureDefs){
+		super();
+		
+		this.bodyDef = bodyDef;
+		this.fixtureDefs = fixtureDefs;
 	}
 	
 	/**
@@ -45,11 +57,11 @@ public abstract class DynamicEntity extends Entity{
 	 * @param shape Shape of entity
 	 * @param density Density of entity
 	 */
-	public DynamicEntity(BodyDef bodyDef, PolygonShape shape, float density){
+	public DynamicEntity(BodyDef bodyDef, Shape shape, float density){
 		super();
 		
 		this.bodyDef = bodyDef;
-		this.polyShape = shape;
+		this.shape = shape;
 		this.density = density;
 	}
 	
@@ -72,14 +84,17 @@ public abstract class DynamicEntity extends Entity{
 			body = Game.physics.world.createBody(bodyDef);
 			body.setUserData(this);
 			
-			if(fixtureDef != null){
-				body.createFixture(fixtureDef);
-				fixtureDef.shape.dispose();
-				fixtureDef = null;
-			} else if(polyShape != null){
-				body.createFixture(polyShape, density);
-				polyShape.dispose();
-				polyShape = null;
+			if(fixtureDefs != null){
+				for(FixtureDef def : fixtureDefs){
+					body.createFixture(def);
+					def.shape.dispose();
+				}
+				fixtureDefs.clear();
+				fixtureDefs = null;
+			} else if(shape != null){
+				body.createFixture(shape, density);
+				shape.dispose();
+				shape = null;
 			} else{
 				Log.wtf("ohshit", "DynamicEntity not given enough parameters to initialize physics info!");
 			}
