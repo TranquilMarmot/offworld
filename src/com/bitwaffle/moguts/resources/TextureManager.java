@@ -3,6 +3,7 @@ package com.bitwaffle.moguts.resources;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import java.util.HashMap;
 
 import org.w3c.dom.Element;
@@ -170,7 +171,7 @@ public class TextureManager {
 	public static int initTexture(Bitmap bitmap, int minFilter, int magFilter){
 		int[] handles = new int[1];
 		
-		GLES20.glGenTextures(1, handles, 0);
+		GLES20.glGenTextures(1, handles, 0);		
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, handles[0]);
 		
 		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, minFilter);
@@ -180,7 +181,7 @@ public class TextureManager {
 		
 		int error = GLES20.glGetError();
 		if(error != GLES20.GL_NO_ERROR)
-			Log.e("Render2D", "Error loading texture! " + GLES20.glGetString(error));
+			Log.e("Render2D", "Error loading texture! (error number " + error + " string: "+ GLES20.glGetString(error) + ")");
 		
 		return handles[0];
 	}

@@ -60,7 +60,7 @@ public class Player extends BoxEntity {
 	@Override
 	public void init(){
 		super.init();
-		animation = Game.resources.textures.getAnimation("playerwalk");
+		animation = Game.resources.textures.getAnimation("playerlegs");
 	}
 	
 	@Override
