@@ -8,6 +8,7 @@ import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
 public class FixtureDefSerializer extends Serializer<FixtureDef>{
+	private static ShapeSerializer shapeSerializer = new ShapeSerializer();
 
 	@Override
 	public FixtureDef read(Kryo kryo, Input input, Class<FixtureDef> type) {
@@ -17,7 +18,7 @@ public class FixtureDefSerializer extends Serializer<FixtureDef>{
 		def.friction = input.readFloat();
 		def.isSensor = input.readBoolean();
 		def.restitution = input.readFloat();
-		def.shape = kryo.readObject(input, Shape.class);
+		def.shape = kryo.readObject(input, Shape.class, shapeSerializer);
 		
 		return def;
 	}
@@ -28,7 +29,7 @@ public class FixtureDefSerializer extends Serializer<FixtureDef>{
 		output.writeFloat(fixt.friction);
 		output.writeBoolean(fixt.isSensor);
 		output.writeFloat(fixt.restitution);
-		kryo.writeObject(output, fixt.shape);
+		kryo.writeObject(output, fixt.shape, shapeSerializer);
 	}
 
 }

@@ -58,12 +58,9 @@ public class SaveGameSerializer {
 					Log.e("Save", "Failed to create save file! " + e.getMessage());
 				}
 			}
-			System.out.println(toWrite.exists() + " " + toWrite.getAbsolutePath());
-			FileOutputStream os = new FileOutputStream(toWrite);
+			FileOutputStream out = new FileOutputStream(toWrite);
 			
-			
-			//Output output = new Output(Game.resources.openFileOutput(file, Context.MODE_WORLD_READABLE));
-			Output output = new Output(os);
+			Output output = new Output(out);
 			
 			Iterator<DynamicEntity> it = entities.getDynamicEntityIterator();
 			
@@ -84,7 +81,7 @@ public class SaveGameSerializer {
 				}
 			}
 			output.close();
-			os.close();
+			out.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -98,19 +95,17 @@ public class SaveGameSerializer {
 		try{			
 			File folder = new File(Environment.getExternalStorageDirectory(), "/Android/data/com.bitwaffle.offworld/cache/");
 			File toRead = new File(folder, "save.save");
-			FileInputStream is = new FileInputStream(toRead);
+			FileInputStream in = new FileInputStream(toRead);
 		
-			//Input input = new Input(Game.resources.openFileInput(file));
-			Input input = new Input(is);
+			Input input = new Input(in);
 			Object object = kryo.readClassAndObject(input);
 			
 			while(object != null){
-				System.out.println(object.getClass().getName());
 				object = kryo.readClassAndObject(input);
 			}
 			
 			input.close();
-			is.close();
+			in.close();
 		} catch(FileNotFoundException e){
 			e.printStackTrace();
 		} catch (IOException e) {

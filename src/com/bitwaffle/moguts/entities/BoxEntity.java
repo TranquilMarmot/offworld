@@ -25,6 +25,7 @@ public class BoxEntity extends DynamicEntity implements KryoSerializable{
 		super();
 		this.width = 0.0f;
 		this.height = 0.0f;
+		color = new float[]{0.0f, 0.0f, 0.0f, 1.0f};
 	}
 	
 	/**

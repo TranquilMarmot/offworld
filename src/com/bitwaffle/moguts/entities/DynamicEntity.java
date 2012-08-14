@@ -150,9 +150,10 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 		BodyDef bodyDef = kryo.readObject(input, BodyDef.class);
 		
 		int numFixtures = input.readInt() - 1;
-		ArrayList<FixtureDef> fixtureDefs = new ArrayList<FixtureDef>();
+		ArrayList<FixtureDef> fixtureDefs = new ArrayList<FixtureDef>(numFixtures);
 		for(int i = 0; i < numFixtures; i++){
-			fixtureDefs.add(kryo.readObject(input, FixtureDef.class));
+			FixtureDef fixDef = kryo.readObject(input, FixtureDef.class);
+			fixtureDefs.add(fixDef);
 		}
 		
 		this.bodyDef = bodyDef;
@@ -167,8 +168,11 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 		kryo.writeObject(output, PhysicsHelper.getBodyDef(body));
 		
 		ArrayList<Fixture> fixtures = body.getFixtureList();
+		kryo.writeObject(output, PhysicsHelper.getFixtureDef(fixtures.get(0)));
+		
 		output.writeInt(fixtures.size());
-		for(Fixture f : fixtures)
+		for(Fixture f : fixtures){
 			kryo.writeObject(output, PhysicsHelper.getFixtureDef(f));
+		}
 	}
 }

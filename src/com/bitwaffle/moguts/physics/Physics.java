@@ -61,7 +61,7 @@ public class Physics {
 	private Stack<DynamicEntity> toInitialize;
 	
 	// FIXME temp
-	//private SaveGameSerializer serial;
+	private SaveGameSerializer serial;
 	
 	
 	/**
@@ -180,14 +180,14 @@ public class Physics {
 	}
 	
 	public void serialize(String file){
-		//if(serial == null)
-			SaveGameSerializer serial = new SaveGameSerializer();
+		if(serial == null)
+			serial = new SaveGameSerializer();
 		serial.writeEntitiesToFile(file, entities);
 	}
 	
 	public void deserialize(String file){
-		//if(serial == null)
-		SaveGameSerializer serial = new SaveGameSerializer();
+		if(serial == null)
+			serial = new SaveGameSerializer();
 		serial.readEntitiesFromFile(file, this);
 	}
 }

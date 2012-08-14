@@ -107,7 +107,7 @@ public class ShapeSerializer extends Serializer<Shape>{
 			Vector2 vert = new Vector2();
 			for(int i = 0; i < vertCount; i++){
 				poly.getVertex(i, vert);
-				kryo.writeObject(output, vert);
+				kryo.writeObject(output, new Vector2(vert.x, vert.y));
 			}
 		
 		// edge
@@ -118,11 +118,11 @@ public class ShapeSerializer extends Serializer<Shape>{
 			
 			// write first vertex
 			edge.getVertex1(vert);
-			kryo.writeObject(output, vert);
+			kryo.writeObject(output, new Vector2(vert.x, vert.y));
 			
 			// write second vertex
 			edge.getVertex2(vert);
-			kryo.writeObject(output, vert);
+			kryo.writeObject(output, new Vector2(vert.x, vert.y));
 			
 		// circle
 		} else if(shapeType == Shape.Type.Circle){
@@ -143,7 +143,7 @@ public class ShapeSerializer extends Serializer<Shape>{
 			Vector2 vert = new Vector2();
 			for(int i = 0; i < vertCount; i++){
 				chain.getVertex(i, vert);
-				kryo.writeObject(output, vert);
+				kryo.writeObject(output, new Vector2(vert.x, vert.y));
 			}
 		}
 		
