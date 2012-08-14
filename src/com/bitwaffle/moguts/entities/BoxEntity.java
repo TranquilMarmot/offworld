@@ -4,6 +4,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.moguts.graphics.render.Render2D;
+import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
 import com.bitwaffle.offworld.Game;
 
 /**
@@ -13,12 +14,10 @@ import com.bitwaffle.offworld.Game;
  */
 public class BoxEntity extends DynamicEntity {
 	/** Color to draw entity in (4 floats, between 0.0 and 1.0) */
-	protected float[] color;
+	public float[] color;
 	
 	/** Width and height of box (from center) */
-	protected float width;
-
-	protected float height;
+	protected float width, height;
 	
 	/**
 	 * Create a new, box-shaped DynamicEntity
@@ -55,6 +54,9 @@ public class BoxEntity extends DynamicEntity {
 		box.setAsBox(width, height);
 		return box;
 	}
+	
+	public float getWidth(){ return width; }
+	public float getHeight(){ return height; }
 	
 	/**
 	 * Set the color and render!
