@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.bitwaffle.moguts.entities.DynamicEntity;
-import com.bitwaffle.moguts.physics.Physics;
+import com.bitwaffle.moguts.util.PhysicsHelper;
 
 /**
  * A callback to get the closest hit from a ray trace
@@ -48,7 +48,7 @@ public class ClosestHitCallback implements RayCastCallback{
 		float dist = fixture.getBody().getPosition().dst(origin);
 		if(dist <= closestDist){
 			closestDist = dist;
-			closest = Physics.getDynamicEntity(fixture);
+			closest = PhysicsHelper.getDynamicEntity(fixture);
 			pointOnClosest.set(point);
 			normalOnClosest.set(normal);
 		}

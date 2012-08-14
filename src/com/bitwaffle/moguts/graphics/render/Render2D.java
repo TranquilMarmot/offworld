@@ -13,12 +13,12 @@ import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.moguts.graphics.glsl.GLSLShader;
+import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
 import com.bitwaffle.moguts.graphics.shapes.Quad;
 import com.bitwaffle.moguts.gui.GUI;
 import com.bitwaffle.moguts.gui.button.Button;
 import com.bitwaffle.moguts.util.MathHelper;
 import com.bitwaffle.offworld.Game;
-import com.bitwaffle.offworld.entities.passive.StaticBackground;
 
 /**
  * This class handles all 2D rendering
@@ -51,9 +51,6 @@ public class Render2D {
 	
 	/** Used for ALL quad rendering! Whenever something needs to be drawn, this quad's draw() method should be called */
 	public Quad quad;
-	
-	/** Background image */
-	private StaticBackground background;
 
 	/**
 	 * Create a new 2D renderer
@@ -70,8 +67,6 @@ public class Render2D {
 		quad = new Quad(this);
 		
 		gui = new GUI();
-		
-		background = new StaticBackground();
 	}
 
 	/**
@@ -112,8 +107,7 @@ public class Render2D {
 		program.use();
 		
 		setUpProjectionScreenCoords();
-		background.render(this);
-		background.update(1.0f / Game.currentFPS);
+		Renderers.BACKGROUND.render(this, null);
 		
 		setUpProjectionWorldCoords();
 		renderEntities(Game.physics.getPassiveEntityIterator());
@@ -147,18 +141,21 @@ public class Render2D {
 		while(it.hasNext()){
 			Entity ent = (Entity) it.next();
 			
-			// figure out the location and the angle of what we're rendering
-			Vector2 loc = ent.getLocation();
-			float angle = MathHelper.toDegrees(ent.getAngle());
-			
-			// mainpulate the modelview matrix to draw the entity
-			Matrix.setIdentityM(modelview, 0);
-			Matrix.scaleM(modelview, 0, camera.getZoom(), camera.getZoom(), 1.0f);
-			Matrix.translateM(modelview, 0, loc.x + cam.x, loc.y + cam.y, 0.0f);
-			Matrix.rotateM(modelview, 0, angle, 0.0f, 0.0f, 1.0f);
-			program.setUniformMatrix4f("ModelView", modelview);
-			
-			ent.render(this);
+			if(ent != null){
+				// figure out the location and the angle of what we're rendering
+				Vector2 loc = ent.getLocation();
+				float angle = MathHelper.toDegrees(ent.getAngle());
+				
+				// mainpulate the modelview matrix to draw the entity
+				Matrix.setIdentityM(modelview, 0);
+				Matrix.scaleM(modelview, 0, camera.getZoom(), camera.getZoom(), 1.0f);
+				Matrix.translateM(modelview, 0, loc.x + cam.x, loc.y + cam.y, 0.0f);
+				Matrix.rotateM(modelview, 0, angle, 0.0f, 0.0f, 1.0f);
+				program.setUniformMatrix4f("ModelView", modelview);
+				
+				if(ent.renderer != null)
+					ent.renderer.render(this, ent);
+			}
 		}
 	}
 	

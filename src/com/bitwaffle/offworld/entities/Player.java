@@ -5,16 +5,20 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.moguts.entities.BoxEntity;
 import com.bitwaffle.moguts.graphics.animation.Animation;
-import com.bitwaffle.moguts.graphics.render.Render2D;
+import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.weapons.Pistol;
+import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.KryoSerializable;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
 
 /**
  * Player class
  * 
  * @author TranquilMarmot
  */
-public class Player extends BoxEntity {
+public class Player extends BoxEntity implements KryoSerializable{
 	// FIXME these are temp
 	private static float[] defaultColor = { 1.0f, 1.0f, 1.0f, 1.0f };
 	private boolean facingRight = false;
@@ -37,7 +41,7 @@ public class Player extends BoxEntity {
 	private float maxVelocityX = 15.0f;
 	
 	/** Animation for player */
-	private Animation animation;
+	public Animation animation;
 	
 	/**
 	 * Create a new Player instance
@@ -46,13 +50,13 @@ public class Player extends BoxEntity {
 	 * @param height Height of player
 	 * @param fixtureDef Definition for player's fixture
 	 */
-	public Player(BodyDef bodyDef, float width, float height,
+	public Player(Renderers renderer, BodyDef bodyDef, float width, float height,
 			FixtureDef fixtureDef) {
-		super(bodyDef, width, height, fixtureDef, defaultColor);
+		super(renderer, bodyDef, width, height, fixtureDef, defaultColor);
 		
 		this.color = defaultColor;
 		
-		canJump = false;
+		canJump = true;
 		
 		pistol = new Pistol(this, 20, 2000.0f, 25.0f);
 	}
@@ -60,15 +64,16 @@ public class Player extends BoxEntity {
 	@Override
 	public void init(){
 		super.init();
-		animation = Game.resources.textures.getAnimation("playerlegs");
+		
+		// don't want out player rotating all willy nilly now, do we?
+		this.body.setFixedRotation(true);
+		
+		animation = Game.resources.textures.getAnimation("playerwalk");
 	}
 	
 	@Override
 	public void update(float timeStep){
 		super.update(timeStep);
-		
-		// don't want out player rotating all willy nilly now, do we?
-		this.setAngle(0.0f);
 		
 		Vector2 linVec = body.getLinearVelocity();
 		if(linVec.x > 0.5f || linVec.x < -0.5f){
@@ -142,6 +147,10 @@ public class Player extends BoxEntity {
 		this.canJump = nowCanJump;
 	}
 	
+	public boolean isFacingRight(){
+		return facingRight;
+	}
+	
 	/**
 	 * Pew pew!
 	 * @param target World-space vector to shoot towards
@@ -151,8 +160,12 @@ public class Player extends BoxEntity {
 	}
 	
 	@Override
-	public void render(Render2D renderer){
-		renderer.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
-		animation.renderCurrentFrame(renderer, this.width, this.height, facingRight, false);
+	public void write(Kryo kryo, Output output){
+		super.write(kryo, output);
+	}
+	
+	public void read(Kryo kryo, Input input){
+		super.read(kryo, input);
+		Game.player = this;
 	}
 }

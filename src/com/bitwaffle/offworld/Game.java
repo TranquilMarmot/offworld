@@ -12,6 +12,7 @@ import com.bitwaffle.moguts.device.Vibration;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.physics.Physics;
 import com.bitwaffle.moguts.resources.Resources;
+import com.bitwaffle.moguts.util.PhysicsHelper;
 import com.bitwaffle.offworld.entities.Player;
 
 /**
@@ -83,7 +84,7 @@ public class Game implements GLSurfaceView.Renderer {
          */
         if(physics == null){
         	physics = new Physics();
-        	physics.temp2();
+        	PhysicsHelper.temp(physics);
         }
     }
     

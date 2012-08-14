@@ -2,7 +2,6 @@ package com.bitwaffle.moguts.graphics;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.entities.Entity;
-import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.offworld.Game;
 
 // TODO Make camera's angle work so things can be rotated
@@ -37,7 +36,7 @@ public class Camera extends Entity {
 	 * Create a new camera
 	 */
 	public Camera(){
-		super();
+		super(null);
 		zoom = 1.0f;
 	}
 
@@ -46,7 +45,7 @@ public class Camera extends Entity {
 	 * @param location Initial location to create camera at
 	 */
 	public Camera(Vector2 location) {
-		super();
+		super(null);
 		this.setLocation(location);
 	}
 	
@@ -55,7 +54,7 @@ public class Camera extends Entity {
 	 * @param zoom Initial zoom to put camera at
 	 */
 	public Camera(float zoom){
-		super();
+		super(null);
 		this.setZoom(zoom);
 	}
 	
@@ -65,7 +64,7 @@ public class Camera extends Entity {
 	 * @param zoom Initial zoom to put camera at
 	 */
 	public Camera(Vector2 location, float zoom){
-		super();
+		super(null);
 		this.setLocation(location);
 		this.setZoom(zoom);
 	}
@@ -119,8 +118,6 @@ public class Camera extends Entity {
 		return currentMode;
 	}
 	
-	@Override
-	public void render(Render2D renderer) {}
 	@Override
 	public void cleanup() {}
 }

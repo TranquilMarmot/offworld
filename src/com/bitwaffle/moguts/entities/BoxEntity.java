@@ -3,21 +3,29 @@ package com.bitwaffle.moguts.entities;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
-import com.bitwaffle.offworld.Game;
+import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.KryoSerializable;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
 
 /**
  * A DynamicEntity... that's a box!
  * 
  * @author TranquilMarmot
  */
-public class BoxEntity extends DynamicEntity {
+public class BoxEntity extends DynamicEntity implements KryoSerializable{
 	/** Color to draw entity in (4 floats, between 0.0 and 1.0) */
 	public float[] color;
 	
 	/** Width and height of box (from center) */
 	protected float width, height;
+	
+	public BoxEntity(){
+		super();
+		this.width = 0.0f;
+		this.height = 0.0f;
+	}
 	
 	/**
 	 * Create a new, box-shaped DynamicEntity
@@ -27,8 +35,8 @@ public class BoxEntity extends DynamicEntity {
 	 * @param fixtureDef Position/material information about the box
 	 * @param color What color the box is
 	 */
-	public BoxEntity(BodyDef bodyDef, float width, float height, FixtureDef fixtureDef, float[] color){
-		super(bodyDef, fixtureDef);
+	public BoxEntity(Renderers renderer, BodyDef bodyDef, float width, float height, FixtureDef fixtureDef, float[] color){
+		super(renderer, bodyDef, fixtureDef);
 		this.width = width;
 		this.height = height;
 		this.color = color;
@@ -42,8 +50,8 @@ public class BoxEntity extends DynamicEntity {
 	 * @param density How dense the box is
 	 * @param color What color the box is
 	 */
-	public BoxEntity(BodyDef bodyDef, float width, float height, float density, float[] color){
-		super(bodyDef, getBoxShape(width, height), density);
+	public BoxEntity(Renderers renderer, BodyDef bodyDef, float width, float height, float density, float[] color){
+		super(renderer, bodyDef, getBoxShape(width, height), density);
 		this.width = width;
 		this.height = height;
 		this.color = color;
@@ -58,12 +66,27 @@ public class BoxEntity extends DynamicEntity {
 	public float getWidth(){ return width; }
 	public float getHeight(){ return height; }
 	
-	/**
-	 * Set the color and render!
-	 */
-	public void render(Render2D renderer){
-		Game.resources.textures.bindTexture("box");
-		renderer.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
-		renderer.quad.draw(renderer, this.width, this.height);
+	@Override
+	public void write(Kryo kryo, Output output){
+		super.write(kryo, output);
+		
+		output.writeFloat(width);
+		output.writeFloat(height);
+		
+		output.writeFloat(color[0]);
+		output.writeFloat(color[1]);
+		output.writeFloat(color[2]);
+	}
+	
+	@Override
+	public void read(Kryo kryo, Input input){
+		super.read(kryo, input);
+		
+		this.width = input.readFloat();
+		this.height = input.readFloat();
+		
+		color[0] = input.readFloat();
+		color[1] = input.readFloat();
+		color[2] = input.readFloat();
 	}
 }

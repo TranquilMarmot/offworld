@@ -47,10 +47,13 @@ public class EntityList<T extends Entity> {
 		
 		while(it.hasNext()){
 			T ent = it.next();
-			if(ent.removeFlag)
-				toRemove.add(ent);
-			else
-				ent.update(timeStep);
+			
+			if(ent != null){
+				if(ent.removeFlag)
+					toRemove.add(ent);
+				else
+					ent.update(timeStep);
+			}
 		}
 	}
 	

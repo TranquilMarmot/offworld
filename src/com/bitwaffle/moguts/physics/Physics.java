@@ -1,27 +1,20 @@
 package com.bitwaffle.moguts.physics;
 
 import java.util.Iterator;
-import java.util.Random;
 import java.util.Stack;
 
 import android.os.SystemClock;
 import android.util.FloatMath;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.GdxNativesLoader;
-import com.bitwaffle.moguts.entities.BoxEntity;
 import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.entities.Entities;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.physics.callbacks.GrabCallback;
-import com.bitwaffle.offworld.Game;
-import com.bitwaffle.offworld.entities.Player;
-import com.bitwaffle.offworld.entities.dynamic.DestroyableBox;
+import com.bitwaffle.moguts.serialization.SaveGameSerializer;
+import com.bitwaffle.moguts.util.PhysicsHelper;
 
 /**
  * Handles all physics workings
@@ -67,6 +60,9 @@ public class Physics {
 	 */
 	private Stack<DynamicEntity> toInitialize;
 	
+	// FIXME temp
+	//private SaveGameSerializer serial;
+	
 	
 	/**
 	 * Initialized physics
@@ -84,11 +80,12 @@ public class Physics {
 		previousTime = SystemClock.elapsedRealtime();
 	}
 	
-	// FIXME this don't work
+	// FIXME this don't work (do it?)
 	public void restartWorld(){
 		world.dispose();
 		world = new World(gravity, doSleep);
 		entities.clear();
+		PhysicsHelper.temp(this);
 	}
 	
 	/**
@@ -123,88 +120,6 @@ public class Physics {
 		}
 		
 		world.clearForces(); // FIXME is this necessary?
-	}
-	
-	/**
-	 *  FIXME this initialization method is only temporary until some sort of save file gets implemented
-	 */
-	public void temp2(){
-		// bottom
-		BodyDef groundBodyDef = new BodyDef();
-		groundBodyDef.position.set(0.0f, -50.0f);
-		
-		BoxEntity ground = new BoxEntity(groundBodyDef, 1000.0f, 1.0f, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
-		this.addEntity(ground);
-		
-		// player
-		BodyDef playerBodyDef = new BodyDef();
-		playerBodyDef.type = BodyDef.BodyType.DynamicBody;
-		playerBodyDef.position.set(0.0f, -15.0f);
-		
-		PolygonShape boxShape = new PolygonShape();
-		boxShape.setAsBox(1.0f, 1.5f);
-		
-		FixtureDef playerFixture = new FixtureDef();
-		playerFixture.shape = boxShape;
-		playerFixture.density = 1.0f;
-		playerFixture.friction = 0.3f;
-		playerFixture.restitution = 0.0f;
-		
-		Game.player = new Player(playerBodyDef, 1.0f, 1.5f, playerFixture);
-		this.addEntity(Game.player);
-		
-		for(int i = 0; i < 75; i++)
-			makeRandomBox();
-	}
-	
-	/**
-	 * Makes random boxes
-	 */
-	public void makeRandomBox(){
-		Random randy = new Random();
-		float boxX = randy.nextFloat() * 100.0f - 50.0f;
-		if(boxX < 1.0f) boxX = 1.0f;
-		float boxY = randy.nextFloat() * 50.0f - 25.0f;
-		if(boxY < 1.0f) boxY = 1.0f;
-		float sizeX = randy.nextFloat() * 1.5f;
-		if(sizeX < 1.0f) sizeX = 1.0f;
-		float sizeY = randy.nextFloat() * 1.5f;
-		if(sizeY < 1.0f) sizeY = 1.0f;
-		float r = randy.nextFloat();
-		float g = randy.nextFloat();
-		float b = randy.nextFloat();
-		
-		
-		BodyDef boxDef = new BodyDef();
-		boxDef.type = BodyDef.BodyType.DynamicBody;
-		boxDef.position.set(boxX, boxY);
-		
-		PolygonShape boxShape = new PolygonShape();
-		boxShape.setAsBox(sizeX, sizeY);
-		
-		FixtureDef boxFixture = new FixtureDef();
-		boxFixture.shape = boxShape;
-		boxFixture.density = 1.0f;
-		boxFixture.friction = 0.3f;
-		boxFixture.restitution = 0.3f;
-		
-		DestroyableBox box = new DestroyableBox(boxDef, sizeX, sizeY, boxFixture, new float[]{r, g, b, 1.0f}){
-			@Override
-			// give it a random spin and speed on init
-			public void init(){
-				super.init();
-				
-				Random randy = new Random();
-				this.body.setAngularVelocity(randy.nextFloat() * 1.0f);
-				
-				float linX = randy.nextFloat() * 1.0f;
-				float linY = randy.nextFloat() * 1.0f;
-				if(randy.nextBoolean()) linX *= -1.0f;
-				if(randy.nextBoolean()) linY *= -1.0f;
-				this.body.setLinearVelocity(linX, linY);
-			}
-		};
-		this.addEntity(box);
 	}
 	
 	/**
@@ -251,15 +166,6 @@ public class Physics {
 	}
 	
 	/**
-	 * Get a dynamic entity from a fixture
-	 * @param fixture Fixture to get entity from
-	 * @return DynamicEntity from fixture
-	 */
-	public static DynamicEntity getDynamicEntity(Fixture fixture){
-		return (DynamicEntity)fixture.getBody().getUserData();
-	}
-	
-	/**
 	 * Query the world's AABB for the first entity found in the given bounding box
 	 * @param origin Center of query box
 	 * @param queryWidth Width of query box
@@ -271,5 +177,17 @@ public class Physics {
 		world.QueryAABB(callback, origin.x - queryWidth, origin.y - queryHeight,
 		                          origin.x + queryWidth, origin.y + queryHeight);
 		return callback.getGrabbedEntity();
+	}
+	
+	public void serialize(String file){
+		//if(serial == null)
+			SaveGameSerializer serial = new SaveGameSerializer();
+		serial.writeEntitiesToFile(file, entities);
+	}
+	
+	public void deserialize(String file){
+		//if(serial == null)
+		SaveGameSerializer serial = new SaveGameSerializer();
+		serial.readEntitiesFromFile(file, this);
 	}
 }

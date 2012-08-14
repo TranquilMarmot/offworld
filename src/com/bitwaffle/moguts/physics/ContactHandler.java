@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.bitwaffle.moguts.entities.DynamicEntity;
+import com.bitwaffle.moguts.util.PhysicsHelper;
 import com.bitwaffle.offworld.entities.Player;
 
 /**
@@ -14,8 +15,8 @@ import com.bitwaffle.offworld.entities.Player;
  */
 public class ContactHandler implements ContactListener{
 	public void beginContact(Contact contact) {
-		DynamicEntity entA = Physics.getDynamicEntity(contact.getFixtureA());
-		DynamicEntity entB = Physics.getDynamicEntity(contact.getFixtureB());
+		DynamicEntity entA = PhysicsHelper.getDynamicEntity(contact.getFixtureA());
+		DynamicEntity entB = PhysicsHelper.getDynamicEntity(contact.getFixtureB());
 		
 		if(entA instanceof Player)
 			((Player) entA).setCanJump(true);

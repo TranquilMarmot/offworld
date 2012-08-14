@@ -3,6 +3,7 @@ package com.bitwaffle.moguts.gui;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.gui.button.RectangleButton;
+import com.bitwaffle.moguts.util.PhysicsHelper;
 import com.bitwaffle.offworld.Game;
 
 /**
@@ -247,7 +248,7 @@ public class ButtonFactory {
 			@Override
 			protected void onRelease(){
 				Game.vibration.vibrate(25);
-				Game.physics.makeRandomBox();
+				PhysicsHelper.makeRandomBox(Game.physics);
 				Game.resources.sounds.play("test");
 			}
 			
@@ -283,7 +284,10 @@ public class ButtonFactory {
 
 			@Override
 			protected void onRelease() {
-				Game.paused = !Game.paused;
+				//Game.paused = !Game.paused;
+				//Game.physics.restartWorld();
+				Game.physics.serialize("save.save");
+				Game.physics.deserialize("save.save");
 			}
 
 			@Override
