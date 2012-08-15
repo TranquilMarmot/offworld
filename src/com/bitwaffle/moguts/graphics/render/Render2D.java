@@ -15,7 +15,6 @@ import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.moguts.graphics.glsl.GLSLShader;
 import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
-import com.bitwaffle.moguts.graphics.shapes.Quad;
 import com.bitwaffle.moguts.gui.GUI;
 import com.bitwaffle.moguts.gui.button.Button;
 import com.bitwaffle.moguts.util.MathHelper;

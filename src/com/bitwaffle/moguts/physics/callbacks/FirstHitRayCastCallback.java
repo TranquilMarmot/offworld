@@ -19,7 +19,7 @@ public class FirstHitRayCastCallback implements RayCastCallback{
 			float fraction) {
 		hit = PhysicsHelper.getDynamicEntity(fixture);
 		
-		// returning 0  here terminates the callback
+		// returning 0 here terminates the callback
 		return 0;
 	}
 	

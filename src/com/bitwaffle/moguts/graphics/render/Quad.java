@@ -1,11 +1,10 @@
-package com.bitwaffle.moguts.graphics.shapes;
+package com.bitwaffle.moguts.graphics.render;
 
 import java.nio.FloatBuffer;
 
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 
-import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.util.BufferUtils;
 
 /**
@@ -27,18 +26,6 @@ public class Quad {
 	/**
 	 * Position coordinates (quad is scaled when drawn)
 	 */
-	/*
-	private static float[] coords = {
-		-0.5f, 0.5f, 0.0f,
-		0.5f, 0.5f, 0.0f,
-		0.5f, -0.5f, 0.0f,
-		
-		-0.5f, 0.5f, 0.0f,
-		-0.5f, -0.5f, 0.0f,
-		0.5f, -0.5f, 0.0f
-	};
-	*/
-	
 	private static float[] coords = {
 		-0.5f, -0.5f, 0.0f,
 		0.5f, -0.5f, 0.0f,
@@ -52,18 +39,6 @@ public class Quad {
 	/**
 	 * Texture coordinates
 	 */
-	/*
-	private static float[] defaultTexCoords = {
-		0.0f, 1.0f,
-		1.0f, 1.0f,
-		1.0f, 0.0f,
-		
-		0.0f, 1.0f,
-		0.0f, 0.0f,
-		1.0f, 0.0f
-	};
-	*/
-	
 	private static float[] defaultTexCoords = {
 		0.0f, 0.0f,
 		1.0f, 0.0f,

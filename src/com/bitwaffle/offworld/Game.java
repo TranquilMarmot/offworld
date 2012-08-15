@@ -80,7 +80,7 @@ public class Game implements GLSurfaceView.Renderer {
         /*
          * Only initialize physics engine if it doesn't exist yet
          * Whenever the screen's orientation is called, the WHOLE application
-         * starts over- so physics can get re-initialized if we aren't careful.
+         * starts over- so physics can get re-initialized if we're not careful.
          */
         if(physics == null){
         	physics = new Physics();

@@ -68,7 +68,7 @@ public class ClosestHitRayCastCallback implements RayCastCallback{
 	
 	/**
 	 * Reset the callback to be used again
-	 * NOTE: This must be called anytime this
+	 * NOTE: This must be called every time this
 	 * callback gets re-used!!!
 	 * @param newOrigin New origin location
 	 */

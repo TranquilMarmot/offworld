@@ -17,7 +17,17 @@ import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.entities.Player;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableBox;
 
+/**
+ * Helper methods for Physics stuff
+ * 
+ * @author TranquilMarmot
+ */
 public class PhysicsHelper {
+	/**
+	 * Get a FixtureDef from a Fixture
+	 * @param fixt Fixture to get def from
+	 * @return FixtureDef representing Fixture
+	 */
 	public static FixtureDef getFixtureDef(Fixture fixt){
 		FixtureDef def = new FixtureDef();
 		
@@ -35,6 +45,11 @@ public class PhysicsHelper {
 		return def;
 	}
 	
+	/**
+	 * Get a BodyDef from a Body
+	 * @param bod Body to get def from
+	 * @return BodyDef representing body
+	 */
 	public static BodyDef getBodyDef(Body bod){
 		BodyDef def = new BodyDef();
 		
@@ -65,7 +80,7 @@ public class PhysicsHelper {
 	}
 	
 	/**
-	 * Makes random boxes
+	 * Make random boxes
 	 */
 	public static void makeRandomBox(Physics physics){
 		Random randy = new Random();
@@ -115,7 +130,7 @@ public class PhysicsHelper {
 	}
 	
 	/**
-	 *  FIXME this initialization method is only temporary until some sort of save file gets implemented
+	 *  FIXME this initialization method is only temporary
 	 */
 	public static void temp(Physics physics){
 		// bottom

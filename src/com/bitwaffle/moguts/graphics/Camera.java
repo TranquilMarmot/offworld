@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.offworld.Game;
 
-// TODO Make camera's angle work so things can be rotated
 /**
  * Describes how a scene should be rendered
  * 

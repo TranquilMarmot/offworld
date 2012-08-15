@@ -36,7 +36,7 @@ public abstract class GUIObject {
     /**
      * Draws the object
      */
-    public abstract void draw(Render2D renderer, boolean flipHorizonatl, boolean flipVertical);
+    public abstract void draw(Render2D renderer, boolean flipHorizontal, boolean flipVertical);
     
     /**
      * Get rid of any resources the object may have allocated

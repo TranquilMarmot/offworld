@@ -12,6 +12,8 @@ import com.esotericsoftware.kryo.io.Output;
 
 /**
  * Die, box, die!
+ * This is basically just a BoxEntity that implements Health, and so
+ * has a health int.
  * 
  * @author TranquilMarmot
  */

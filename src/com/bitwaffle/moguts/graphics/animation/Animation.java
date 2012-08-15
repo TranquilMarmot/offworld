@@ -77,11 +77,6 @@ public class Animation {
 	 * @param height Height of entity
 	 */
 	public void renderCurrentFrame(Render2D renderer, float width, float height){
-		/*
-		 * For some reason, calling Bitmap.createBitmap with a sub-image
-		 * will flip the image both vertically and horizontally
-		 * so we compensate for it here.
-		 */
 		renderCurrentFrame(renderer, width, height, false, false);
 	}
 	
@@ -94,7 +89,7 @@ public class Animation {
 	public void renderCurrentFrame(Render2D renderer, float width, float height, boolean flipHorizontal, boolean flipVertical){
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, sheetHandle);
 		
-		// Bitmap.createBitmap with a subimage flips it, so we pass flipped booleans
+		// for some reason the image always get flipped, so we pass flipped booleans
 		renderer.quad.draw(renderer, width, height, !flipHorizontal, !flipVertical, frames[currentFrame].getTexCoordBuffer());
 	}
 }

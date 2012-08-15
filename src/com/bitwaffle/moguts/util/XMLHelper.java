@@ -48,10 +48,22 @@ public class XMLHelper {
         return null;
 	}
 	
+	/**
+	 * Get an integer from an element
+	 * @param ele Element to get integer from
+	 * @param tagName Name of integer to get
+	 * @return Integer from ele
+	 */
 	public static int getInt(Element ele, String tagName){
 		return Integer.parseInt(getString(ele, tagName));
 	}
 	
+	/**
+	 * Get a float from an element
+	 * @param ele Element to get float from
+	 * @param tagName Name of float to get
+	 * @return Float from ele
+	 */
 	public static float getFloat(Element ele, String tagName){
 		return Float.parseFloat(getString(ele, tagName));
 	}
