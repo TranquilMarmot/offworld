@@ -2,6 +2,7 @@ package com.bitwaffle.moguts.graphics.render;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 import android.opengl.Matrix;
@@ -139,7 +140,12 @@ public class Render2D {
 		
 		// iterate through every entity
 		while(it.hasNext()){
-			Entity ent = (Entity) it.next();
+			Entity ent;
+			try{
+				ent = (Entity) it.next();
+			} catch(ConcurrentModificationException e){
+				break;
+			}
 			
 			if(ent != null){
 				// figure out the location and the angle of what we're rendering

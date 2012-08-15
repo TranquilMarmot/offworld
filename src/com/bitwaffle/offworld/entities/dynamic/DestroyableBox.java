@@ -57,12 +57,14 @@ public class DestroyableBox extends BoxEntity implements Health, KryoSerializabl
 	public void read(Kryo kryo, Input input){
 		super.read(kryo, input);
 		
+		// read health
 		this.health = input.readInt();
 	}
 	
 	public void write(Kryo kryo, Output output){
 		super.write(kryo, output);
 		
+		// write health
 		output.writeInt(this.health);
 	}
 

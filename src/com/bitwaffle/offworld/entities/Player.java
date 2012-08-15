@@ -8,10 +8,7 @@ import com.bitwaffle.moguts.graphics.animation.Animation;
 import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.weapons.Pistol;
-import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
-import com.esotericsoftware.kryo.io.Input;
-import com.esotericsoftware.kryo.io.Output;
 
 /**
  * Player class
@@ -166,15 +163,5 @@ public class Player extends BoxEntity implements KryoSerializable{
 	 */
 	public void shoot(Vector2 target){
 		pistol.shootAt(target);
-	}
-	
-	@Override
-	public void write(Kryo kryo, Output output){
-		super.write(kryo, output);
-	}
-	
-	public void read(Kryo kryo, Input input){
-		super.read(kryo, input);
-		Game.player = this;
 	}
 }

@@ -19,13 +19,15 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.moguts.entities.BoxEntity;
 import com.bitwaffle.moguts.entities.DynamicEntity;
-import com.bitwaffle.moguts.entities.Entities;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.physics.Physics;
-import com.bitwaffle.moguts.serialization.shapes.ChainShapeSerializer;
-import com.bitwaffle.moguts.serialization.shapes.CircleShapeSerializer;
-import com.bitwaffle.moguts.serialization.shapes.EdgeShapeSerializer;
-import com.bitwaffle.moguts.serialization.shapes.PolygonShapeSerializer;
+import com.bitwaffle.moguts.serialization.serializers.BodyDefSerializer;
+import com.bitwaffle.moguts.serialization.serializers.FixtureDefSerializer;
+import com.bitwaffle.moguts.serialization.serializers.Vector2Serializer;
+import com.bitwaffle.moguts.serialization.serializers.shapes.ChainShapeSerializer;
+import com.bitwaffle.moguts.serialization.serializers.shapes.CircleShapeSerializer;
+import com.bitwaffle.moguts.serialization.serializers.shapes.EdgeShapeSerializer;
+import com.bitwaffle.moguts.serialization.serializers.shapes.PolygonShapeSerializer;
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.entities.Player;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableBox;
@@ -34,17 +36,26 @@ import com.esotericsoftware.kryo.Registration;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-public class SaveGameSerializer {
+/**
+ * Handles serializing Entities to a save file
+ * 
+ * @author TranquilMarmot
+ */
+public class GameSaver {
+	/** Where saves are kept */
 	public static final String SAVE_DIRECTORY = "/Android/data/com.bitwaffle.offworld/cache/";
+	
+	/** Kryo instance */
 	Kryo kryo;
 	
-	public SaveGameSerializer(){
+	/**
+	 * Create a new SaveGameSerializer
+	 */
+	public GameSaver(){
 		kryo = new Kryo();
 		
-		// Box2D classes
-		// TODO serialize each shape class?
+		/* Box2D classes */
 		kryo.register(Vector2.class, new Vector2Serializer());
-		//kryo.register(Shape.class, new ShapeSerializer());
 		
 		kryo.register(PolygonShape.class, new PolygonShapeSerializer());
 		kryo.register(CircleShape.class, new CircleShapeSerializer());
@@ -54,7 +65,7 @@ public class SaveGameSerializer {
 		kryo.register(FixtureDef.class, new FixtureDefSerializer());
 		kryo.register(BodyDef.class, new BodyDefSerializer());
 		
-		// Entities
+		/* Entities */
 		kryo.register(Entity.class);
 		kryo.register(DynamicEntity.class);
 		kryo.register(Player.class);
@@ -62,13 +73,11 @@ public class SaveGameSerializer {
 		kryo.register(DestroyableBox.class);
 	}
 	
-	public void writeEntitiesToFile(String file, Entities entities){
+	public void saveGame(String file, Physics physics){
 		try {
-			String state = Environment.getExternalStorageState();
-			System.out.println(state.equals(Environment.MEDIA_MOUNTED));
-			
+			// check if file exists and create it if it doesn't
 			File folder = new File(Environment.getExternalStorageDirectory(), SAVE_DIRECTORY);
-			File toWrite = new File(folder, "save.save");
+			File toWrite = new File(folder, file);
 			if(!toWrite.exists()){
 				try {
 					if(!folder.mkdirs())
@@ -82,9 +91,17 @@ public class SaveGameSerializer {
 			
 			Output output = new Output(out);
 			
-			output.writeInt(entities.numDynamicEntities());
+			// write number of entitites
+			output.writeInt(physics.numDynamicEntities());
 			
-			Iterator<DynamicEntity> it = entities.getDynamicEntityIterator();
+			/*
+			 * Iterate through every entity and write them all;
+			 * each entity has its class written then itself, because
+			 * sometimes the class will by anonymouse (i.e. if the entity
+			 * was created inside of a seperate class from itself and
+			 * had a method overridden)
+			 */
+			Iterator<DynamicEntity> it = physics.getDynamicEntityIterator();
 			while(it.hasNext()){
 				DynamicEntity ent = it.next();
 				if(ent instanceof Player) {
@@ -110,24 +127,31 @@ public class SaveGameSerializer {
 		}
 	}
 	
-	public Entities readEntitiesFromFile(String file, Physics physics){
-		Game.physics.restartWorld();
-		Entities ents = new Entities();
+	@SuppressWarnings("unchecked")
+	public void loadGame(String file, Physics physics){
+		// restart the physics world
+		physics.restartWorld();
 		
-		try{			
+		try{
+			// open save file
 			File folder = new File(Environment.getExternalStorageDirectory(), SAVE_DIRECTORY);
-			File toRead = new File(folder, "save.save");
+			File toRead = new File(folder, file);
 			FileInputStream in = new FileInputStream(toRead);
 		
 			Input input = new Input(in);
 			
+			// read number of entities
 			int numEntities = input.readInt();
 			
-			System.out.println(numEntities);
-			
+			// read in each entity
 			for(int i = 0; i < numEntities; i++){
+				// check which class we're reading
 				Registration reg = kryo.readClass(input);
-				@SuppressWarnings("unchecked")
+				/*
+				 * read in entity
+				 * DynamicEntity's read method handles adding 
+				 * the entity being read to the physics world
+				 */
 				Object object = kryo.readObject(input, reg.getType());
 				if(reg.getType().equals(Player.class))
 					Game.player = (Player)object;
@@ -140,7 +164,5 @@ public class SaveGameSerializer {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		return ents;
 	}
 }

@@ -71,9 +71,11 @@ public class BoxEntity extends DynamicEntity implements KryoSerializable{
 	public void write(Kryo kryo, Output output){
 		super.write(kryo, output);
 		
+		// write out width/height
 		output.writeFloat(width);
 		output.writeFloat(height);
 		
+		// write out color
 		output.writeFloat(color[0]);
 		output.writeFloat(color[1]);
 		output.writeFloat(color[2]);
@@ -83,9 +85,11 @@ public class BoxEntity extends DynamicEntity implements KryoSerializable{
 	public void read(Kryo kryo, Input input){
 		super.read(kryo, input);
 		
+		// read in width/height
 		this.width = input.readFloat();
 		this.height = input.readFloat();
 		
+		// read in color
 		color[0] = input.readFloat();
 		color[1] = input.readFloat();
 		color[2] = input.readFloat();

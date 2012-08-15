@@ -1,4 +1,4 @@
-package com.bitwaffle.moguts.serialization;
+package com.bitwaffle.moguts.serialization.serializers;
 
 import com.badlogic.gdx.math.Vector2;
 import com.esotericsoftware.kryo.Kryo;
@@ -6,6 +6,11 @@ import com.esotericsoftware.kryo.Serializer;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
+/**
+ * Serializes a Vector2
+ * 
+ * @author TranquilMarmot
+ */
 public class Vector2Serializer extends Serializer<Vector2>{
 
 	@Override
@@ -15,6 +20,7 @@ public class Vector2Serializer extends Serializer<Vector2>{
 
 	@Override
 	public void write(Kryo kryo, Output output, Vector2 vec) {
+		// this one's nice and easy :3
 		output.writeFloat(vec.x);
 		output.writeFloat(vec.y);
 	}

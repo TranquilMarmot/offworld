@@ -13,7 +13,6 @@ import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.entities.Entities;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.physics.callbacks.GrabCallback;
-import com.bitwaffle.moguts.serialization.SaveGameSerializer;
 
 /**
  * Handles all physics workings
@@ -58,9 +57,6 @@ public class Physics {
 	 * gets emptied and whatever was on it has its init() method called.
 	 */
 	private Stack<DynamicEntity> toInitialize;
-	
-	// FIXME temp
-	private SaveGameSerializer serial;
 	
 	
 	/**
@@ -176,17 +172,5 @@ public class Physics {
 		world.QueryAABB(callback, origin.x - queryWidth, origin.y - queryHeight,
 		                          origin.x + queryWidth, origin.y + queryHeight);
 		return callback.getGrabbedEntity();
-	}
-	
-	public void serialize(String file){
-		if(serial == null)
-			serial = new SaveGameSerializer();
-		serial.writeEntitiesToFile(file, entities);
-	}
-	
-	public void deserialize(String file){
-		if(serial == null)
-			serial = new SaveGameSerializer();
-		serial.readEntitiesFromFile(file, this);
 	}
 }

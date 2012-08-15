@@ -3,6 +3,7 @@ package com.bitwaffle.moguts.gui;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.gui.button.RectangleButton;
+import com.bitwaffle.moguts.serialization.GameSaver;
 import com.bitwaffle.moguts.util.PhysicsHelper;
 import com.bitwaffle.offworld.Game;
 
@@ -286,8 +287,9 @@ public class ButtonFactory {
 			protected void onRelease() {
 				//Game.paused = !Game.paused;
 				//Game.physics.restartWorld();
-				Game.physics.serialize("save.save");
-				Game.physics.deserialize("save.save");
+				GameSaver saver = new GameSaver();
+				saver.saveGame("save.ofw", Game.physics);
+				saver.loadGame("save.ofw", Game.physics);
 			}
 
 			@Override
