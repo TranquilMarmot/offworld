@@ -83,7 +83,7 @@ public class Entities {
 		dynamicEntities.update(timeStep);
 	}
 	
-	public int numEntities(){
+	public int numDynamicEntities(){
 		return dynamicEntities.size();
 	}
 }

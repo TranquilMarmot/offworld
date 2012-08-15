@@ -162,7 +162,7 @@ public class Physics {
 	 * @return Current number of dynamic entities
 	 */
 	public int numDynamicEntities(){
-		return entities.numEntities();
+		return entities.numDynamicEntities();
 	}
 	
 	/**

@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
 import com.bitwaffle.moguts.physics.Physics;
+import com.bitwaffle.moguts.serialization.FixtureDefSerializer;
 import com.bitwaffle.moguts.util.PhysicsHelper;
 import com.bitwaffle.offworld.Game;
 import com.esotericsoftware.kryo.Kryo;
@@ -149,10 +150,12 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 		
 		BodyDef bodyDef = kryo.readObject(input, BodyDef.class);
 		
-		int numFixtures = input.readInt() - 1;
+		System.out.println(bodyDef.active + " " + bodyDef.linearVelocity + " " + bodyDef.position);
+		
+		int numFixtures = input.readInt();
 		ArrayList<FixtureDef> fixtureDefs = new ArrayList<FixtureDef>(numFixtures);
-		for(int i = 0; i < numFixtures; i++){
-			FixtureDef fixDef = kryo.readObject(input, FixtureDef.class);
+		for(int i = 0; i < numFixtures - 1; i++){
+			FixtureDef fixDef = kryo.readObject(input, FixtureDef.class, new FixtureDefSerializer());
 			fixtureDefs.add(fixDef);
 		}
 		
@@ -168,7 +171,6 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 		kryo.writeObject(output, PhysicsHelper.getBodyDef(body));
 		
 		ArrayList<Fixture> fixtures = body.getFixtureList();
-		kryo.writeObject(output, PhysicsHelper.getFixtureDef(fixtures.get(0)));
 		
 		output.writeInt(fixtures.size());
 		for(Fixture f : fixtures){

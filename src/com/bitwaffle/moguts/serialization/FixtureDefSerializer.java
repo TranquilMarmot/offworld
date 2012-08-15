@@ -12,6 +12,7 @@ public class FixtureDefSerializer extends Serializer<FixtureDef>{
 
 	@Override
 	public FixtureDef read(Kryo kryo, Input input, Class<FixtureDef> type) {
+		System.out.println("in here");
 		FixtureDef def = new FixtureDef();
 		
 		def.density = input.readFloat();

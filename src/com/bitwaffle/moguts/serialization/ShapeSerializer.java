@@ -36,7 +36,7 @@ public class ShapeSerializer extends Serializer<Shape>{
 			
 			// read in every vertex
 			Vector2[] vecs = new Vector2[vertCount];
-			for(int i = 0; i < vertCount; i++)
+			for(int i = 0; i < vertCount - 1; i++)
 				vecs[i] = kryo.readObject(input, Vector2.class);
 			poly.set(vecs);
 			
@@ -75,7 +75,7 @@ public class ShapeSerializer extends Serializer<Shape>{
 			
 			// read in each vertex
 			Vector2[] verts = new Vector2[vertCount];
-			for(int i = 0; i < vertCount; i++)
+			for(int i = 0; i < vertCount - 1; i++)
 				verts[i] = kryo.readObject(input, Vector2.class);
 			chain.createChain(verts);
 			// TODO chain also has a createLoop method, look into that (wouldn't it be the same as a polygon?)
@@ -146,7 +146,6 @@ public class ShapeSerializer extends Serializer<Shape>{
 				kryo.writeObject(output, new Vector2(vert.x, vert.y));
 			}
 		}
-		
 	}
 
 }

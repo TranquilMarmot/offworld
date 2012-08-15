@@ -75,7 +75,7 @@ public class GLSLShader {
 		
 		logString = GLES20.glGetShaderInfoLog(handle);
 		
-		return logString.equals("") || logString.equals("Success.\n");
+		return logString.equals("") || logString.equals("Success.\n") || logString.contains("0 errors");
 	}
 	
 	/**

@@ -27,12 +27,14 @@ import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
 public class SaveGameSerializer {
+	public static final String SAVE_DIRECTORY = "/Android/data/com.bitwaffle.offworld/cache/";
 	Kryo kryo;
 	
 	public SaveGameSerializer(){
 		kryo = new Kryo();
 		
 		// Box2D classes
+		// TODO serialize each shape class?
 		kryo.register(Vector2.class, new Vector2Serializer());
 		kryo.register(Shape.class, new ShapeSerializer());
 		kryo.register(FixtureDef.class, new FixtureDefSerializer());
@@ -48,7 +50,10 @@ public class SaveGameSerializer {
 	
 	public void writeEntitiesToFile(String file, Entities entities){
 		try {
-			File folder = new File(Environment.getExternalStorageDirectory(), "/Android/data/com.bitwaffle.offworld/cache/");
+			String state = Environment.getExternalStorageState();
+			System.out.println(state.equals(Environment.MEDIA_MOUNTED));
+			
+			File folder = new File(Environment.getExternalStorageDirectory(), SAVE_DIRECTORY);
 			File toWrite = new File(folder, "save.save");
 			if(!toWrite.exists()){
 				try {
@@ -95,7 +100,7 @@ public class SaveGameSerializer {
 		Entities ents = new Entities();
 		
 		try{			
-			File folder = new File(Environment.getExternalStorageDirectory(), "/Android/data/com.bitwaffle.offworld/cache/");
+			File folder = new File(Environment.getExternalStorageDirectory(), SAVE_DIRECTORY);
 			File toRead = new File(folder, "save.save");
 			FileInputStream in = new FileInputStream(toRead);
 		
