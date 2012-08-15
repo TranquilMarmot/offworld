@@ -43,7 +43,7 @@ import com.esotericsoftware.kryo.io.Output;
  */
 public class GameSaver {
 	/** Where saves are kept */
-	public static final String SAVE_DIRECTORY = "/Android/data/com.bitwaffle.offworld/cache/";
+	public static final String SAVE_DIRECTORY = "/Android/data/com.bitwaffle.offworld/saves/";
 	
 	/** What to send to logs to */
 	public static final String LOGTAG = "Save";
@@ -148,6 +148,7 @@ public class GameSaver {
 	
 	@SuppressWarnings("unchecked")
 	public void loadGame(String file, Physics physics){
+		Game.paused = true;
 		// clear the physics world
 		physics.restart();
 		
@@ -184,5 +185,6 @@ public class GameSaver {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		Game.paused = false;
 	}
 }

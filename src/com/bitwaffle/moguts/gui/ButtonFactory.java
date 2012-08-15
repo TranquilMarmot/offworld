@@ -288,7 +288,7 @@ public class ButtonFactory {
 				//Game.paused = !Game.paused;
 				//Game.physics.restartWorld();
 				GameSaver saver = new GameSaver();
-				saver.saveGame("save.ofw", Game.physics);
+				//saver.saveGame("save.ofw", Game.physics);
 				saver.loadGame("save.ofw", Game.physics);
 			}
 

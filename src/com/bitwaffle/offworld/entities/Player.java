@@ -45,6 +45,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 		canJump = true;
 		pistol = new Pistol(this, 20, 2000.0f, 25.0f);
 		this.color = defaultColor;
+		animation = Game.resources.textures.getAnimation("playerwalk");
 	}
 	
 	/**
@@ -63,6 +64,8 @@ public class Player extends BoxEntity implements KryoSerializable{
 		canJump = true;
 		
 		pistol = new Pistol(this, 20, 2000.0f, 25.0f);
+		
+		animation = Game.resources.textures.getAnimation("playerwalk");
 	}
 	
 	@Override
@@ -71,8 +74,6 @@ public class Player extends BoxEntity implements KryoSerializable{
 		
 		// don't want out player rotating all willy nilly now, do we?
 		this.body.setFixedRotation(true);
-		
-		animation = Game.resources.textures.getAnimation("playerwalk");
 	}
 	
 	@Override
