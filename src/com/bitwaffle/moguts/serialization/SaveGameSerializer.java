@@ -12,13 +12,21 @@ import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.ChainShape;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.Shape;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.moguts.entities.BoxEntity;
 import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.entities.Entities;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.physics.Physics;
+import com.bitwaffle.moguts.serialization.shapes.ChainShapeSerializer;
+import com.bitwaffle.moguts.serialization.shapes.CircleShapeSerializer;
+import com.bitwaffle.moguts.serialization.shapes.EdgeShapeSerializer;
+import com.bitwaffle.moguts.serialization.shapes.PolygonShapeSerializer;
+import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.entities.Player;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableBox;
 import com.esotericsoftware.kryo.Kryo;
@@ -36,7 +44,13 @@ public class SaveGameSerializer {
 		// Box2D classes
 		// TODO serialize each shape class?
 		kryo.register(Vector2.class, new Vector2Serializer());
-		kryo.register(Shape.class, new ShapeSerializer());
+		//kryo.register(Shape.class, new ShapeSerializer());
+		
+		kryo.register(PolygonShape.class, new PolygonShapeSerializer());
+		kryo.register(CircleShape.class, new CircleShapeSerializer());
+		kryo.register(EdgeShape.class, new EdgeShapeSerializer());
+		kryo.register(ChainShape.class, new ChainShapeSerializer());
+		
 		kryo.register(FixtureDef.class, new FixtureDefSerializer());
 		kryo.register(BodyDef.class, new BodyDefSerializer());
 		
@@ -97,6 +111,7 @@ public class SaveGameSerializer {
 	}
 	
 	public Entities readEntitiesFromFile(String file, Physics physics){
+		Game.physics.restartWorld();
 		Entities ents = new Entities();
 		
 		try{			
@@ -112,16 +127,11 @@ public class SaveGameSerializer {
 			
 			for(int i = 0; i < numEntities; i++){
 				Registration reg = kryo.readClass(input);
-				System.out.println(i + " " + reg.getType().getName());
+				@SuppressWarnings("unchecked")
 				Object object = kryo.readObject(input, reg.getType());
+				if(reg.getType().equals(Player.class))
+					Game.player = (Player)object;
 			}
-				
-			/*
-			Object object = kryo.readClassAndObject(input);
-			
-			while(object != null){
-				object = kryo.readClassAndObject(input);
-			}*/
 			
 			input.close();
 			in.close();

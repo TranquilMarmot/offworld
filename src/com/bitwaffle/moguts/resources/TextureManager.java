@@ -3,7 +3,6 @@ package com.bitwaffle.moguts.resources;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
 import java.util.HashMap;
 
 import org.w3c.dom.Element;

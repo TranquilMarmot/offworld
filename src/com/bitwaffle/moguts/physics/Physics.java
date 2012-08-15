@@ -14,7 +14,6 @@ import com.bitwaffle.moguts.entities.Entities;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.physics.callbacks.GrabCallback;
 import com.bitwaffle.moguts.serialization.SaveGameSerializer;
-import com.bitwaffle.moguts.util.PhysicsHelper;
 
 /**
  * Handles all physics workings
@@ -85,7 +84,7 @@ public class Physics {
 		world.dispose();
 		world = new World(gravity, doSleep);
 		entities.clear();
-		PhysicsHelper.temp(this);
+		//PhysicsHelper.temp(this);
 	}
 	
 	/**

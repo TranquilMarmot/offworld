@@ -24,6 +24,7 @@ public class BodyDefSerializer extends Serializer<BodyDef>{
 		def.linearDamping = input.readFloat();
 		def.linearVelocity.set(kryo.readObject(input, Vector2.class));
 		def.position.set(kryo.readObject(input, Vector2.class));
+		def.type = BodyDef.BodyType.values()[input.readInt()];
 		
 		return def;
 	}

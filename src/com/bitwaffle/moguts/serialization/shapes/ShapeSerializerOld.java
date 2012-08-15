@@ -1,4 +1,4 @@
-package com.bitwaffle.moguts.serialization;
+package com.bitwaffle.moguts.serialization.shapes;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ChainShape;
@@ -16,10 +16,11 @@ import com.esotericsoftware.kryo.io.Output;
  * 
  * @author TranquilMarmot
  */
-public class ShapeSerializer extends Serializer<Shape>{
+public class ShapeSerializerOld extends Serializer<Shape>{
 
 	@Override
 	public Shape read(Kryo kryo, Input input, Class<Shape> type) {
+		System.out.println("read shape");
 		// figure out the type of shape we're looking at
 		Shape.Type shapeType = Shape.Type.values()[input.readInt()];
 		
@@ -36,8 +37,10 @@ public class ShapeSerializer extends Serializer<Shape>{
 			
 			// read in every vertex
 			Vector2[] vecs = new Vector2[vertCount];
-			for(int i = 0; i < vertCount - 1; i++)
+			for(int i = 0; i < vertCount - 1; i++){
 				vecs[i] = kryo.readObject(input, Vector2.class);
+				System.out.println("read vertex " + vecs[i]);
+			}
 			poly.set(vecs);
 			
 			return poly;

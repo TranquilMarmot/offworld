@@ -43,6 +43,13 @@ public class Player extends BoxEntity implements KryoSerializable{
 	/** Animation for player */
 	public Animation animation;
 	
+	public Player(){
+		super();
+		canJump = true;
+		pistol = new Pistol(this, 20, 2000.0f, 25.0f);
+		this.color = defaultColor;
+	}
+	
 	/**
 	 * Create a new Player instance
 	 * @param bodyDef Definition of player's body
@@ -75,11 +82,13 @@ public class Player extends BoxEntity implements KryoSerializable{
 	public void update(float timeStep){
 		super.update(timeStep);
 		
-		Vector2 linVec = body.getLinearVelocity();
-		if(linVec.x > 0.5f || linVec.x < -0.5f){
-			// FIXME should this be defined in the XML?
-			float animationStep = timeStep * Math.abs(linVec.x / 15.0f);
-			animation.updateAnimation(animationStep);
+		if(body != null){
+			Vector2 linVec = body.getLinearVelocity();
+			if(linVec.x > 0.5f || linVec.x < -0.5f){
+				// FIXME should this be defined in the XML?
+				float animationStep = timeStep * Math.abs(linVec.x / 15.0f);
+				animation.updateAnimation(animationStep);
+			}
 		}
 	}
 	
