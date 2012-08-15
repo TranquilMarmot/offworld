@@ -22,6 +22,7 @@ import com.bitwaffle.moguts.physics.Physics;
 import com.bitwaffle.offworld.entities.Player;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableBox;
 import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.Registration;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
@@ -62,8 +63,9 @@ public class SaveGameSerializer {
 			
 			Output output = new Output(out);
 			
-			Iterator<DynamicEntity> it = entities.getDynamicEntityIterator();
+			output.writeInt(entities.numDynamicEntities());
 			
+			Iterator<DynamicEntity> it = entities.getDynamicEntityIterator();
 			while(it.hasNext()){
 				DynamicEntity ent = it.next();
 				if(ent instanceof Player) {
@@ -98,11 +100,23 @@ public class SaveGameSerializer {
 			FileInputStream in = new FileInputStream(toRead);
 		
 			Input input = new Input(in);
+			
+			int numEntities = input.readInt();
+			
+			System.out.println(numEntities);
+			
+			for(int i = 0; i < numEntities; i++){
+				Registration reg = kryo.readClass(input);
+				System.out.println(i + " " + reg.getType().getName());
+				Object object = kryo.readObject(input, reg.getType());
+			}
+				
+			/*
 			Object object = kryo.readClassAndObject(input);
 			
 			while(object != null){
 				object = kryo.readClassAndObject(input);
-			}
+			}*/
 			
 			input.close();
 			in.close();
