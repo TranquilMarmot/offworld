@@ -75,14 +75,6 @@ public class Physics {
 		previousTime = SystemClock.elapsedRealtime();
 	}
 	
-	// FIXME this don't work (do it?)
-	public void restartWorld(){
-		world.dispose();
-		world = new World(gravity, doSleep);
-		entities.clear();
-		//PhysicsHelper.temp(this);
-	}
-	
 	/**
 	 * Steps the physics simulation and updates every entity's location
 	 */
@@ -118,6 +110,17 @@ public class Physics {
 	}
 	
 	/**
+	 * Completely clears the physics world, getting rid of EVERYTHING
+	 * Use with caution! Can easily cause ConcurrentModificationExceptions
+	 * if something is using an iterator from this physics class.
+	 */
+	public void restart(){
+		world.dispose();
+		world = new World(gravity, doSleep);
+		entities.clear();
+	}
+	
+	/**
 	 * Add a DynamicEntity to the Physics world
 	 * @param ent Entity to add
 	 */
@@ -134,7 +137,6 @@ public class Physics {
 	 * Add a passive Entity to the Entities list
 	 * @param ent Entity to add
 	 */
-	// FIXME should this method be somewhere else? Passive entities are pretty much unrelated to the physics world
 	public void addEntity(Entity ent){
 		entities.addPassiveEntity(ent);
 	}

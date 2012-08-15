@@ -163,8 +163,6 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 		
 		this.bodyDef = bodyDef;
 		this.fixtureDefs = fixtureDefs;
-		
-		Game.physics.addEntity(this);
 	}
 
 	public void write(Kryo kryo, Output output) {

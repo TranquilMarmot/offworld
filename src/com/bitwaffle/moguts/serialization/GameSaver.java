@@ -45,6 +45,9 @@ public class GameSaver {
 	/** Where saves are kept */
 	public static final String SAVE_DIRECTORY = "/Android/data/com.bitwaffle.offworld/cache/";
 	
+	/** What to send to logs to */
+	public static final String LOGTAG = "Save";
+	
 	/** Kryo instance */
 	Kryo kryo;
 	
@@ -54,7 +57,7 @@ public class GameSaver {
 	public GameSaver(){
 		kryo = new Kryo();
 		
-		/* Box2D classes */
+		/*--- Box2D classes ---*/
 		kryo.register(Vector2.class, new Vector2Serializer());
 		
 		kryo.register(PolygonShape.class, new PolygonShapeSerializer());
@@ -65,7 +68,7 @@ public class GameSaver {
 		kryo.register(FixtureDef.class, new FixtureDefSerializer());
 		kryo.register(BodyDef.class, new BodyDefSerializer());
 		
-		/* Entities */
+		/*--- Entities ---*/
 		kryo.register(Entity.class);
 		kryo.register(DynamicEntity.class);
 		kryo.register(Player.class);
@@ -81,42 +84,24 @@ public class GameSaver {
 			if(!toWrite.exists()){
 				try {
 					if(!folder.mkdirs())
-						Log.e("Save", "Failed to create directories for save file!");
+						Log.e(LOGTAG, "Failed to create directories for save file!");
 					toWrite.createNewFile();
 				} catch (IOException e) {
-					Log.e("Save", "Failed to create save file! " + e.getMessage());
+					Log.e(LOGTAG, "Failed to create save file! " + e.getMessage());
 				}
 			}
 			FileOutputStream out = new FileOutputStream(toWrite);
 			
 			Output output = new Output(out);
 			
-			// write number of entitites
+			// write number of dynamic entitites
 			output.writeInt(physics.numDynamicEntities());
 			
-			/*
-			 * Iterate through every entity and write them all;
-			 * each entity has its class written then itself, because
-			 * sometimes the class will by anonymouse (i.e. if the entity
-			 * was created inside of a seperate class from itself and
-			 * had a method overridden)
-			 */
+			// iterate through every dynamic entity and write them all;
 			Iterator<DynamicEntity> it = physics.getDynamicEntityIterator();
 			while(it.hasNext()){
 				DynamicEntity ent = it.next();
-				if(ent instanceof Player) {
-					kryo.writeClass(output, Player.class);
-					kryo.writeObject(output, (Player)ent);
-				} else if(ent instanceof DestroyableBox){
-					kryo.writeClass(output, DestroyableBox.class);
-					kryo.writeObject(output, (DestroyableBox)ent);
-				} else if(ent instanceof BoxEntity) {
-					kryo.writeClass(output, BoxEntity.class);
-					kryo.writeObject(output, (BoxEntity)ent);
-				} else {
-					kryo.writeClass(output, DynamicEntity.class);
-					kryo.writeObject(output, (DynamicEntity)ent);
-				}
+				writeDynamicEntity(kryo, output, ent);
 			}
 			output.close();
 			out.close();
@@ -127,10 +112,44 @@ public class GameSaver {
 		}
 	}
 	
+	/**
+	 * Writes a DynamicEntity to an instance of Kryo
+	 * Each entity has its class written then itself
+	 * because sometimes the class will by anonymouse 
+	 * (i.e. if the entity was created inside of a separate
+	 * class from itself and had a method overridden)
+	 * @param kryo Kryo instance
+	 * @param output Stream to output to
+	 * @param ent Entity to write
+	 */
+	private void writeDynamicEntity(Kryo kryo, Output output, DynamicEntity ent){
+		/*
+		 * Whenever a new class of DynamicEntity is coded that needs to be serialized,
+		 * it MUST be added to this if/else statement, otherwise it will be written/read
+		 * as a DynamicEntity (which may be fine, in some cases)
+		 * Generally, put the deepest classes first (classes that implement classes
+		 * that implement classes etc) so that they will be caught and written/read
+		 * correctly.
+		 */
+		if(ent instanceof Player) {
+			kryo.writeClass(output, Player.class);
+			kryo.writeObject(output, (Player)ent);
+		} else if(ent instanceof DestroyableBox){
+			kryo.writeClass(output, DestroyableBox.class);
+			kryo.writeObject(output, (DestroyableBox)ent);
+		} else if(ent instanceof BoxEntity) {
+			kryo.writeClass(output, BoxEntity.class);
+			kryo.writeObject(output, (BoxEntity)ent);
+		} else {
+			kryo.writeClass(output, DynamicEntity.class);
+			kryo.writeObject(output, (DynamicEntity)ent);
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	public void loadGame(String file, Physics physics){
-		// restart the physics world
-		physics.restartWorld();
+		// clear the physics world
+		physics.restart();
 		
 		try{
 			// open save file
@@ -141,20 +160,21 @@ public class GameSaver {
 			Input input = new Input(in);
 			
 			// read number of entities
-			int numEntities = input.readInt();
+			int numDynamicEntities = input.readInt();
 			
 			// read in each entity
-			for(int i = 0; i < numEntities; i++){
+			for(int i = 0; i < numDynamicEntities; i++){
 				// check which class we're reading
 				Registration reg = kryo.readClass(input);
-				/*
-				 * read in entity
-				 * DynamicEntity's read method handles adding 
-				 * the entity being read to the physics world
-				 */
 				Object object = kryo.readObject(input, reg.getType());
+				
+				// check if we've hit the player
 				if(reg.getType().equals(Player.class))
 					Game.player = (Player)object;
+				
+				// add entity to physics world if it's dynamic
+				if(object instanceof DynamicEntity)
+					physics.addEntity((DynamicEntity)object);
 			}
 			
 			input.close();
