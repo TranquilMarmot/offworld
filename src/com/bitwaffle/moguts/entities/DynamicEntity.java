@@ -10,10 +10,10 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
+import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
 import com.bitwaffle.moguts.physics.Physics;
 import com.bitwaffle.moguts.util.PhysicsHelper;
-import com.bitwaffle.offworld.Game;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
@@ -28,7 +28,7 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 	/** Body that's in the Physics world */
 	public Body body;
 	
-	// these are all used for initialization TODO there's gotta be a better way to do this
+	// these are all used for initialization
 	private BodyDef bodyDef;
 	private ArrayList<FixtureDef> fixtureDefs;
 	private Shape shape;
@@ -86,10 +86,11 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 	
 	/**
 	 * Initialize this DynamicEntity and add it to the Physics world
+	 * @param world Physics world to put this Entity into
 	 */
-	public void init(){
+	public void init(World world){
 		if(!this.isInitialized){
-			body = Game.physics.world.createBody(bodyDef);
+			body = world.createBody(bodyDef);
 			body.setUserData(this);
 			
 			if(fixtureDefs != null){
@@ -140,7 +141,7 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 
 	@Override
 	public void cleanup() {
-		Game.physics.world.destroyBody(body);
+		this.body.getWorld().destroyBody(body);
 		body = null;
 	}
 

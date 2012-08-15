@@ -1,11 +1,11 @@
 package com.bitwaffle.offworld.weapons;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.entities.Entity;
-import com.bitwaffle.moguts.physics.callbacks.ClosestHitCallback;
+import com.bitwaffle.moguts.physics.callbacks.ClosestHitRayCastCallback;
 import com.bitwaffle.moguts.util.MathHelper;
-import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.Health;
 
@@ -28,7 +28,7 @@ public class Pistol implements Firearm {
 	private float range;
 	
 	/** Callback used for handling hits */
-	private ClosestHitCallback callback;
+	private ClosestHitRayCastCallback callback;
 	
 	/**
 	 * Create a new pistol
@@ -43,14 +43,14 @@ public class Pistol implements Firearm {
 		this.damage = damage;
 		this.force = force;
 		this.range = range;
-		callback = new ClosestHitCallback(owner.getLocation());
+		callback = new ClosestHitRayCastCallback(owner.getLocation());
 	}
 
 	/**
 	 * Shoot, man!
 	 * @param target Location to shoot at
 	 */
-	public void shootAt(Vector2 target) {
+	public void shootAt(World world, Vector2 target) {
 		// find the difference between the pistol's range and the distance to the given target
 		float diff = range - target.dst(owner.getLocation());
 		// create a difference vector and rotate it accordingly
@@ -59,7 +59,7 @@ public class Pistol implements Firearm {
 		
 		// perform raycast to clamped target
 		callback.reset(owner.getLocation());
-		Game.physics.world.rayCast(callback, owner.getLocation(), new Vector2(target.x + clamps.x, target.y + clamps.y));
+		world.rayCast(callback, owner.getLocation(), new Vector2(target.x + clamps.x, target.y + clamps.y));
 		DynamicEntity hit = callback.getClosestHit();
 		if(hit != null){
 			Vector2 normal = callback.normalOnClosest();

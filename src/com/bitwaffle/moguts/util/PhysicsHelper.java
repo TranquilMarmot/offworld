@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.moguts.entities.BoxEntity;
 import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
@@ -97,8 +98,8 @@ public class PhysicsHelper {
 		DestroyableBox box = new DestroyableBox(Renderers.BOX, boxDef, sizeX, sizeY, boxFixture, new float[]{r, g, b, 1.0f}){
 			@Override
 			// give it a random spin and speed on init
-			public void init(){
-				super.init();
+			public void init(World world){
+				super.init(world);
 				
 				Random randy = new Random();
 				this.body.setAngularVelocity(randy.nextFloat() * 1.0f);

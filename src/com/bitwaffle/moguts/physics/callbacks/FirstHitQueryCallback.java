@@ -11,21 +11,21 @@ import com.bitwaffle.moguts.util.PhysicsHelper;
  * 
  * @author TranquilMarmot
  */
-public class GrabCallback implements QueryCallback{
-	/** Pointer to grabbed entity */
-	private DynamicEntity grabbed;
+public class FirstHitQueryCallback implements QueryCallback{
+	/** Pointer to first hit */
+	private DynamicEntity hit;
 	
 	public boolean reportFixture(Fixture fixture) {
-		grabbed = PhysicsHelper.getDynamicEntity(fixture);
+		hit = PhysicsHelper.getDynamicEntity(fixture);
 		// returning false here ends the query, so only the first entity gets grabbed
 		return false;
 	}
 	
 	/**
-	 * @return First entity grabbed by this callback, null if no entities found
+	 * @return First entity hit by this callback, null if no entities found
 	 */
-	public DynamicEntity getGrabbedEntity(){
-		return grabbed;
+	public DynamicEntity getHit(){
+		return hit;
 	}
 
 }

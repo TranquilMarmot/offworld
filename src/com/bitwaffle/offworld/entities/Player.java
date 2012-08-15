@@ -3,9 +3,11 @@ package com.bitwaffle.offworld.entities;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.moguts.entities.BoxEntity;
 import com.bitwaffle.moguts.graphics.animation.Animation;
 import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
+import com.bitwaffle.moguts.physics.callbacks.FirstHitQueryCallback;
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.weapons.Pistol;
 import com.esotericsoftware.kryo.KryoSerializable;
@@ -22,14 +24,6 @@ public class Player extends BoxEntity implements KryoSerializable{
 	private Pistol pistol;
 	
 	/** 
-	 * Whether or not the player is able to jump right now
-	 * This becomes false after the player jumps,
-	 * and only becomes true once the player has landed on something
-	 * (to prevent infinite jumping)
-	 */
-	private boolean canJump;
-	
-	/** 
 	 * How fast the player can go on the X axis
 	 * Goes both ways, so going right it can go
 	 * maxVelocityX and going left it can go
@@ -37,12 +31,18 @@ public class Player extends BoxEntity implements KryoSerializable{
 	 */
 	private float maxVelocityX = 15.0f;
 	
+	/** Used to time jumps, so that the player can't jump too often */
+	private float jumpTimer = 0.0f;
+	/** How long the player has to wait in between jumps */
+	private final float JUMP_COOLDOWN = 0.5f;
+	/** How much force the player jumps with */
+	private final float JUMP_FORCE = 7.5f;
+	
 	/** Animation for player */
 	public Animation animation;
 	
 	public Player(){
 		super();
-		canJump = true;
 		pistol = new Pistol(this, 20, 2000.0f, 25.0f);
 		this.color = defaultColor;
 		animation = Game.resources.textures.getAnimation("playerwalk");
@@ -60,17 +60,13 @@ public class Player extends BoxEntity implements KryoSerializable{
 		super(renderer, bodyDef, width, height, fixtureDef, defaultColor);
 		
 		this.color = defaultColor;
-		
-		canJump = true;
-		
 		pistol = new Pistol(this, 20, 2000.0f, 25.0f);
-		
 		animation = Game.resources.textures.getAnimation("playerwalk");
 	}
 	
 	@Override
-	public void init(){
-		super.init();
+	public void init(World world){
+		super.init(world);
 		
 		// don't want out player rotating all willy nilly now, do we?
 		this.body.setFixedRotation(true);
@@ -88,6 +84,9 @@ public class Player extends BoxEntity implements KryoSerializable{
 				animation.updateAnimation(animationStep);
 			}
 		}
+		
+		// add time to jump timer
+		jumpTimer += timeStep;
 	}
 	
 	/**
@@ -126,32 +125,34 @@ public class Player extends BoxEntity implements KryoSerializable{
 	 * Make the player jump
 	 */
 	public void jump(){
-		if(!Game.paused){
-			Vector2 linVec = body.getLinearVelocity();
-			if(this.canJump && linVec.y <= 7.5f && linVec.y >= -7.5f){
-				Game.vibration.vibrate(25);
-				Game.resources.sounds.play("jump");
-				
-				linVec.y += 7.5f;
-				body.setLinearVelocity(linVec);
+		// we can only jump if the game isn't paused and if the timer is done
+		if(!Game.paused && jumpTimer >= JUMP_COOLDOWN){
+			// perform an AABB query underneath the player's feet
+			Vector2 underneath = new Vector2(this.location.x, this.location.y - this.height * 2.0f);
+			FirstHitQueryCallback callback = new FirstHitQueryCallback();
+			this.body.getWorld().QueryAABB(callback, 
+			                             underneath.x - this.width,
+			                             underneath.y - 0.01f,
+			                             underneath.x + this.width,
+			                             underneath.y + 0.01f);
+			
+			// if there's a hit, jump!
+			if(callback.getHit() != null && callback.getHit() != this){
+				Vector2 linVec = body.getLinearVelocity();
+				// can only jump if the current vertical speed is within a certain range
+				if(linVec.y <= JUMP_FORCE && linVec.y >= -JUMP_FORCE){
+					Game.vibration.vibrate(25);
+					Game.resources.sounds.play("jump");
 					
-				this.canJump = false;
+					// add force to current velocity and set it
+					linVec.y += JUMP_FORCE;
+					body.setLinearVelocity(linVec);
+				}
+				
+				// don't forget to reset the timer
+				jumpTimer = 0.0f;
 			}
 		}
-	}
-	
-	/**
-	 * @return Whether or not the player can jump
-	 */
-	public boolean canJump(){
-		return canJump;
-	}
-	
-	/**
-	 * @param nowCanJump Set whether or not the player can jump
-	 */
-	public void setCanJump(boolean nowCanJump){
-		this.canJump = nowCanJump;
 	}
 	
 	public boolean isFacingRight(){
@@ -163,6 +164,6 @@ public class Player extends BoxEntity implements KryoSerializable{
 	 * @param target World-space vector to shoot towards
 	 */
 	public void shoot(Vector2 target){
-		pistol.shootAt(target);
+		pistol.shootAt(body.getWorld(), target);
 	}
 }

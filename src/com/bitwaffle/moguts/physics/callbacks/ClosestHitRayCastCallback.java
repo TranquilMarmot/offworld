@@ -11,7 +11,7 @@ import com.bitwaffle.moguts.util.PhysicsHelper;
  * 
  * @author TranquilMarmot
  */
-public class ClosestHitCallback implements RayCastCallback{
+public class ClosestHitRayCastCallback implements RayCastCallback{
 	/** Where the ray cast is coming from */
 	private Vector2 origin;
 	
@@ -28,7 +28,7 @@ public class ClosestHitCallback implements RayCastCallback{
 	 * Create a new ClosestCallback
 	 * @param origin Origin of ray cast
 	 */
-	public ClosestHitCallback(Vector2 origin){
+	public ClosestHitRayCastCallback(Vector2 origin){
 		this.origin = origin;
 		closestDist = Float.MAX_VALUE;
 		/*

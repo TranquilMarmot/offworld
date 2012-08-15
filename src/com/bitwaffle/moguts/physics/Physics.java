@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.GdxNativesLoader;
 import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.entities.Entities;
 import com.bitwaffle.moguts.entities.Entity;
-import com.bitwaffle.moguts.physics.callbacks.GrabCallback;
+import com.bitwaffle.moguts.physics.callbacks.FirstHitQueryCallback;
 
 /**
  * Handles all physics workings
@@ -21,7 +21,7 @@ import com.bitwaffle.moguts.physics.callbacks.GrabCallback;
  */
 public class Physics {
 	/** World that everything is in */
-	public World world;
+	private World world;
 	
 	/** Entities in the world */
 	private Entities entities;
@@ -84,7 +84,7 @@ public class Physics {
 		
 		// initialize any entities that need intialization
 		while(!toInitialize.isEmpty())
-			toInitialize.pop().init();
+			toInitialize.pop().init(world);
 
 		// subtract and convert to seconds 
 		float deltaTime = (currentTime - previousTime) / 1000.0f;
@@ -170,9 +170,9 @@ public class Physics {
 	 * @return First dynamic entity found in query box, null if none found
 	 */
 	public DynamicEntity checkForEntityAt(Vector2 origin, float queryWidth, float queryHeight){
-		GrabCallback callback = new GrabCallback();
+		FirstHitQueryCallback callback = new FirstHitQueryCallback();
 		world.QueryAABB(callback, origin.x - queryWidth, origin.y - queryHeight,
 		                          origin.x + queryWidth, origin.y + queryHeight);
-		return callback.getGrabbedEntity();
+		return callback.getHit();
 	}
 }
