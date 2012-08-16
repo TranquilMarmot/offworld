@@ -4,6 +4,8 @@ import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 
+import com.bitwaffle.moguts.graphics.render.Render2D;
+import com.bitwaffle.moguts.physics.Physics;
 import com.bitwaffle.offworld.Game;
 
 /**

@@ -115,9 +115,9 @@ public class Physics {
 	 * if something is using an iterator from this physics class.
 	 */
 	public void restart(){
+		entities.clear();
 		world.dispose();
 		world = new World(gravity, doSleep);
-		entities.clear();
 	}
 	
 	/**

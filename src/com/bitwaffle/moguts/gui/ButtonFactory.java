@@ -1,5 +1,6 @@
 package com.bitwaffle.moguts.gui;
 
+import com.bitwaffle.moguts.device.UserInput;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.gui.button.RectangleButton;
@@ -278,18 +279,49 @@ public class ButtonFactory {
 	 */
 	private static RectangleButton makePauseButton(){
 		RectangleButton pauseButt = new RectangleButton(Game.windowWidth / 2, Game.windowHeight - 20, 35.0f, 20.0f){
+			// save/load buttons
+			private RectangleButton save, load;
+			// whether or not buttons are up
+			private boolean buttonsUp = false;
+			
 			public void update() {
 				this.x = Game.windowWidth / 2;
 				this.y = Game.windowHeight - 20;
+				
+				// check if button states match game state
+				// (loading a game mucks with Game.paused,
+				// so it screws this up because the button isn't pressed to un-pause)
+				if(!Game.paused && buttonsUp){
+					Render2D.gui.removeButton(save);
+					Render2D.gui.removeButton(load);
+					buttonsUp = false;
+				} else if(Game.paused && !buttonsUp){
+					Render2D.gui.addButton(save);
+					Render2D.gui.addButton(load);
+					buttonsUp = true;
+				}
 			}
 
 			@Override
 			protected void onRelease() {
-				//Game.paused = !Game.paused;
-				//Game.physics.restartWorld();
-				GameSaver saver = new GameSaver();
-				//saver.saveGame("save.ofw", Game.physics);
-				saver.loadGame("save.ofw", Game.physics);
+				Game.paused = !Game.paused;
+				
+				// initialize buttons if necessary (too lazy to override button's constructor)
+				if(save == null)
+					save = makeSaveButton();
+				if(load == null)
+					load = makeLoadButton();
+				
+				// add/remove buttons based on Game's running state
+				if(Game.paused){
+					Render2D.gui.addButton(save);
+					Render2D.gui.addButton(load);
+					buttonsUp = true;
+				} else {
+					Render2D.gui.removeButton(save);
+					Render2D.gui.removeButton(load);
+					buttonsUp = false;
+				}
 			}
 
 			@Override
@@ -316,5 +348,81 @@ public class ButtonFactory {
 			}
 		};
 		return pauseButt;
+	}
+	
+	private static RectangleButton makeSaveButton(){
+		RectangleButton saveButt = new RectangleButton(Game.windowWidth / 2 - 100.0f, Game.windowHeight / 2 + 150.0f, 70.0f, 40.0f){
+
+			@Override
+			public void update() {
+				this.x = Game.windowWidth / 2 - 100.0f;
+				this.y = Game.windowHeight / 2 + 150.0f;
+			}
+
+			@Override
+			protected void onRelease() {
+				// ask the user where to save the file to
+				final GameSaver saver = new GameSaver();
+				UserInput input = new UserInput("Save Game", "Enter save name"){
+					@Override
+					public void parseInput(String input) {
+						saver.saveGame(input + ".ofw", Game.physics);
+					}
+				};
+				input.askForInput();
+			}
+
+			@Override
+			protected void onSlideRelease() {}
+
+			@Override
+			protected void onPress() {}
+			
+			@Override
+			public void draw(Render2D renderer){
+				Game.resources.textures.bindTexture("blank");
+				super.draw(renderer);
+				Game.resources.font.drawString("Save", renderer, x, y + 17.0f, 0.3f);
+			}
+		};
+		return saveButt;
+	}
+	
+	private static RectangleButton makeLoadButton(){
+		RectangleButton loadButt = new RectangleButton(Game.windowWidth / 2 + 100.0f, Game.windowHeight / 2 + 150.0f, 70.0f, 40.0f){
+
+			@Override
+			public void update() {
+				this.x = Game.windowWidth / 2 + 100.0f;
+				this.y = Game.windowHeight / 2 + 150.0f;
+			}
+
+			@Override
+			protected void onRelease() {
+				// ask the user which file to load
+				final GameSaver saver = new GameSaver();
+				UserInput input = new UserInput("Load Game", "Enter save to load"){
+					@Override
+					public void parseInput(String input) {
+						saver.loadGame(input + ".ofw", Game.physics);
+					}
+				};
+				input.askForInput();
+			}
+
+			@Override
+			protected void onSlideRelease() {}
+
+			@Override
+			protected void onPress() {}
+			
+			@Override
+			public void draw(Render2D renderer){
+				Game.resources.textures.bindTexture("blank");
+				super.draw(renderer);
+				Game.resources.font.drawString("Load", renderer, x, y + 17.0f, 0.3f);
+			}
+		};
+		return loadButt;
 	}
 }

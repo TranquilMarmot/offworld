@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import com.bitwaffle.moguts.graphics.font.BitmapFont;
-
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+
+import com.bitwaffle.moguts.graphics.font.BitmapFont;
 
 /**
  * Manages resources for the game. All resources should be acquired through this.
@@ -135,5 +135,9 @@ public class Resources {
     	try{ 
     		return assMan.openFd(fileLoc); 
     	} catch (IOException e){ throw e; }
+    }
+    
+    public Context getContext(){
+    	return context;
     }
 }
