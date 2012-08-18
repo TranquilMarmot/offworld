@@ -1,5 +1,7 @@
 package com.bitwaffle.moguts.gui;
 
+import android.opengl.GLES20;
+
 import com.bitwaffle.moguts.device.TextInput;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.render.Render2D;
@@ -15,6 +17,12 @@ import com.bitwaffle.offworld.Game;
  */
 public class ButtonFactory {
 	// TODO Maybe use XML for GUI stuff like in Spaceout
+	
+	// FIXME temp alpha values for buttons
+	private static final float 
+		ACTIVE_ALPHA = 0.3f,
+		PRESSED_ALPHA = 0.6f;
+			
 	
 	/**
 	 * Make some buttons!
@@ -41,7 +49,7 @@ public class ButtonFactory {
 	 * @return Button to move left on the left side of the screen
 	 */
 	private static RectangleButton makeLeftLeftButton(){
-		RectangleButton leftLeftButt = new RectangleButton(40.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
+		RectangleButton leftLeftButt = new RectangleButton(50.0f, Game.windowHeight - 50.0f, 50.0f, 50.0f){
 			public void onRelease(){}
 			public void onSlideRelease(){}
 			
@@ -50,7 +58,7 @@ public class ButtonFactory {
 				if(this.isDown())
 					Game.player.goLeft();
 				
-				this.y = Game.windowHeight - 40.0f;
+				this.y = Game.windowHeight - 50.0f;
 			}
 			
 			@Override
@@ -60,8 +68,11 @@ public class ButtonFactory {
 			
 			@Override
 			public void draw(Render2D renderer){
-				Game.resources.textures.bindTexture("leftarrow");
-				super.draw(renderer);
+				renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, this.isDown() ? PRESSED_ALPHA : ACTIVE_ALPHA);
+				GLES20.glEnable(GLES20.GL_BLEND);
+				GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_DST_COLOR);
+				Game.resources.textures.getSubImage("leftarrow").draw(renderer.quad, this.width, this.height);
+				GLES20.glDisable(GLES20.GL_BLEND);
 			}
 		};
 		return leftLeftButt;
@@ -71,7 +82,7 @@ public class ButtonFactory {
 	 * @return Button to move left on the right side of the screen
 	 */
 	private static RectangleButton makeRightLeftButton(){
-		RectangleButton rightLeftButt = new RectangleButton(Game.windowWidth - 150.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
+		RectangleButton rightLeftButt = new RectangleButton(Game.windowWidth - 150.0f, Game.windowHeight - 50.0f, 50.0f, 50.0f){
 			public void onRelease(){}
 			public void onSlideRelease(){}
 			
@@ -80,7 +91,7 @@ public class ButtonFactory {
 				if(this.isDown())
 					Game.player.goLeft();
 				
-				this.y = Game.windowHeight - 40.0f;
+				this.y = Game.windowHeight - 50.0f;
 				this.x = Game.windowWidth - 150.0f;
 			}
 			
@@ -91,8 +102,11 @@ public class ButtonFactory {
 			
 			@Override
 			public void draw(Render2D renderer){
-				Game.resources.textures.bindTexture("leftarrow");
-				super.draw(renderer);
+				renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, this.isDown() ? PRESSED_ALPHA : ACTIVE_ALPHA);
+				GLES20.glEnable(GLES20.GL_BLEND);
+				GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_DST_COLOR);
+				Game.resources.textures.getSubImage("rightarrow").draw(renderer.quad, this.width, this.height, true, false);
+				GLES20.glDisable(GLES20.GL_BLEND);
 			}
 		};
 		return rightLeftButt;
@@ -102,7 +116,7 @@ public class ButtonFactory {
 	 * @return Button to move right on the left side of the screen
 	 */
 	private static RectangleButton makeLeftRightButton(){
-		RectangleButton leftRightButt = new RectangleButton(150.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
+		RectangleButton leftRightButt = new RectangleButton(150.0f, Game.windowHeight - 50.0f, 50.0f, 50.0f){
 			public void onRelease(){}
 			public void onSlideRelease(){}
 			
@@ -111,7 +125,7 @@ public class ButtonFactory {
 				if(this.isDown())
 					Game.player.goRight();
 				
-				this.y = Game.windowHeight - 40.0f;
+				this.y = Game.windowHeight - 50.0f;
 			}
 			
 			@Override
@@ -121,8 +135,11 @@ public class ButtonFactory {
 			
 			@Override
 			public void draw(Render2D renderer){
-				Game.resources.textures.bindTexture("leftarrow");
-				super.draw(renderer, true, false);
+				renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, this.isDown() ? PRESSED_ALPHA : ACTIVE_ALPHA);
+				GLES20.glEnable(GLES20.GL_BLEND);
+				GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_DST_COLOR);
+				Game.resources.textures.getSubImage("rightarrow").draw(renderer.quad, this.width, this.height);
+				GLES20.glDisable(GLES20.GL_BLEND);
 			}
 		};
 		return leftRightButt;
@@ -132,7 +149,7 @@ public class ButtonFactory {
 	 * @return Button to move right on the right side of the screen
 	 */
 	private static RectangleButton makeRightRightButton(){
-		RectangleButton rightRightButt = new RectangleButton(Game.windowWidth - 40.0f, Game.windowHeight - 40.0f, 40.0f, 40.0f){
+		RectangleButton rightRightButt = new RectangleButton(Game.windowWidth - 50.0f, Game.windowHeight - 50.0f, 50.0f, 50.0f){
 			public void onRelease(){}
 			public void onSlideRelease(){}
 			
@@ -141,8 +158,8 @@ public class ButtonFactory {
 				if(this.isDown())
 					Game.player.goRight();
 				
-				this.x = Game.windowWidth - 40.0f;
-				this.y = Game.windowHeight - 40.0f;
+				this.x = Game.windowWidth - 50.0f;
+				this.y = Game.windowHeight - 50.0f;
 			}
 			
 			@Override
@@ -152,8 +169,11 @@ public class ButtonFactory {
 			
 			@Override
 			public void draw(Render2D renderer){
-				Game.resources.textures.bindTexture("leftarrow");
-				super.draw(renderer, true, false);
+				renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, this.isDown() ? PRESSED_ALPHA : ACTIVE_ALPHA);
+				GLES20.glEnable(GLES20.GL_BLEND);
+				GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_DST_COLOR);
+				Game.resources.textures.getSubImage("leftarrow").draw(renderer.quad, this.width, this.height, true, false);
+				GLES20.glDisable(GLES20.GL_BLEND);
 			}
 		};
 		return rightRightButt;
@@ -163,7 +183,7 @@ public class ButtonFactory {
 	 * @return Button to jump on the right side of the screen
 	 */
 	private static RectangleButton makeRightJumpButton(){
-		RectangleButton rightJumpButt = new RectangleButton(Game.windowWidth - 40.0f, Game.windowHeight - 150.0f, 40.0f, 40.0f){
+		RectangleButton rightJumpButt = new RectangleButton(Game.windowWidth - 50.0f, Game.windowHeight - 150.0f, 50.0f, 50.0f){
 			protected void onRelease(){ }
 			protected void onSlideRelease(){};
 			
@@ -175,13 +195,16 @@ public class ButtonFactory {
 			@Override
 			public void update(){
 				this.y = Game.windowHeight - 150.0f;
-				this.x = Game.windowWidth - 40.0f;
+				this.x = Game.windowWidth - 50.0f;
 			}
 			
 			@Override
 			public void draw(Render2D renderer){
-				Game.resources.textures.bindTexture("uparrow");
-				super.draw(renderer);
+				renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, this.isDown() ? PRESSED_ALPHA : ACTIVE_ALPHA);
+				GLES20.glEnable(GLES20.GL_BLEND);
+				GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_DST_COLOR);
+				Game.resources.textures.getSubImage("uparrow").draw(renderer.quad, this.width, this.height);
+				GLES20.glDisable(GLES20.GL_BLEND);
 			}
 		};
 		return rightJumpButt;
@@ -191,7 +214,7 @@ public class ButtonFactory {
 	 * @return Button to jump on the left side of the screen
 	 */
 	private static RectangleButton makeLeftJumpButton(){
-		RectangleButton leftJumpButt = new RectangleButton(40.0f, Game.windowHeight - 150.0f, 40.0f, 40.0f){
+		RectangleButton leftJumpButt = new RectangleButton(50.0f, Game.windowHeight - 150.0f, 50.0f, 50.0f){
 			protected void onRelease(){}
 			protected void onSlideRelease(){};
 			
@@ -207,8 +230,11 @@ public class ButtonFactory {
 			
 			@Override
 			public void draw(Render2D renderer){
-				Game.resources.textures.bindTexture("uparrow");
-				super.draw(renderer);
+				renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, this.isDown() ? PRESSED_ALPHA : ACTIVE_ALPHA);
+				GLES20.glEnable(GLES20.GL_BLEND);
+				GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_DST_COLOR);
+				Game.resources.textures.getSubImage("uparrow").draw(renderer.quad, this.width, this.height);
+				GLES20.glDisable(GLES20.GL_BLEND);
 			}
 		};
 		return leftJumpButt;
@@ -218,7 +244,7 @@ public class ButtonFactory {
 	 * @return Button to change camera mode
 	 */
 	private static RectangleButton makeCameraButton(){
-		RectangleButton camButt = new RectangleButton(20.0f, 20.0f, 20.0f, 20.0f){
+		RectangleButton camButt = new RectangleButton(31.0f, 30.0f, 30.0f, 30.0f){
 			@Override
 			protected void onRelease(){
 				Game.vibration.vibrate(25);
@@ -350,6 +376,9 @@ public class ButtonFactory {
 		return pauseButt;
 	}
 	
+	/**
+	 * @return Button to save the game
+	 */
 	private static RectangleButton makeSaveButton(){
 		RectangleButton saveButt = new RectangleButton(Game.windowWidth / 2 - 100.0f, Game.windowHeight / 2 + 150.0f, 70.0f, 40.0f){
 
@@ -388,6 +417,9 @@ public class ButtonFactory {
 		return saveButt;
 	}
 	
+	/**
+	 * @return Button to load a saved game
+	 */
 	private static RectangleButton makeLoadButton(){
 		RectangleButton loadButt = new RectangleButton(Game.windowWidth / 2 + 100.0f, Game.windowHeight / 2 + 150.0f, 70.0f, 40.0f){
 

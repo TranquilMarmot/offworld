@@ -11,18 +11,6 @@
 		<magFilter>GL_LINEAR</magFilter>
 	</texture>
 
-	<texture name="leftarrow">
-		<path>textures/leftarrow.png</path>
-		<minFilter>GL_NEAREST</minFilter>
-		<magFilter>GL_LINEAR</magFilter>
-	</texture>
-
-	<texture name="uparrow">
-		<path>textures/uparrow.png</path>
-		<minFilter>GL_NEAREST</minFilter>
-		<magFilter>GL_LINEAR</magFilter>
-	</texture>
-
 	<texture name="camera">
 		<path>textures/camera.png</path>
 		<minFilter>GL_NEAREST</minFilter>
@@ -33,6 +21,31 @@
 	    <path>textures/background.png</path>
 	    <minFilter>GL_NEAREST</minFilter>
 		<magFilter>GL_LINEAR</magFilter>
+	</texture>
+	
+	<texture name="arrows-full">
+	    <path>textures/arrows.png</path>
+	    
+	    <subImage name="uparrow">
+	        <xOffset>0</xOffset>
+	        <yOffset>0</yOffset>
+	        <width>546</width>
+	        <height>545</height>
+	    </subImage>
+	    
+	    <subImage name="leftarrow">
+	       	<xOffset>738</xOffset>
+	        <yOffset>0</yOffset>
+	        <width>546</width>
+	        <height>546</height>
+	    </subImage>
+	    
+	    <subImage name="rightarrow">
+	       	<xOffset>1503</xOffset>
+	        <yOffset>0</yOffset>
+	        <width>546</width>
+	        <height>546</height>
+	    </subImage>
 	</texture>
 	
 	<texture name="playerbody-full">
