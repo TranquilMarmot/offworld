@@ -121,7 +121,7 @@ public class Quad {
         	Matrix.rotateM(renderer.modelview, 0, 180, 0.0f, 1.0f, 0.0f);
         if(flipVertical)
         	Matrix.rotateM(renderer.modelview, 0, 180, 0.0f, 0.0f, 1.0f);
-        renderer.program.setUniformMatrix4f("ModelView", renderer.modelview);
+        renderer.sendModelViewToShader();
 
         // actually draw the quad
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);

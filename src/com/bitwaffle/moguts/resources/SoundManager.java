@@ -90,7 +90,7 @@ public class SoundManager {
 		try{
 			AssetFileDescriptor afd = Game.resources.openAssetFD(path);
 			soundIDs.put(name, pool.load(afd, priority));
-			afd.close(); // FIXME does this break anything?
+			afd.close();
 		} catch(IOException e){
 			e.printStackTrace();
 		}

@@ -183,7 +183,7 @@ public class BitmapFont {
 			Matrix.setIdentityM(renderer.modelview, 0);
 			Matrix.translateM(renderer.modelview, 0, x + xOffset, y + (cellHeight * scale * lineNum), 0.0f);
 			Matrix.scaleM(renderer.modelview, 0, scale, scale, 1.0f);
-			renderer.program.setUniformMatrix4f("ModelView", renderer.modelview);
+			renderer.sendModelViewToShader();
 			
 			// draw character
 			chars[index].draw(renderer, cellWidth, cellHeight);

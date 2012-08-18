@@ -12,7 +12,7 @@ import com.bitwaffle.offworld.Game;
  * 
  * @author TranquilMarmot
  */
-public abstract class UserInput {
+public abstract class TextInput {
 	/** The dialog box */
 	AlertDialog.Builder alert;
 	
@@ -21,7 +21,7 @@ public abstract class UserInput {
 	 * @param alertTitle Title of dialog box
 	 * @param alertMessage Message in dialog box
 	 */
-	public UserInput(String alertTitle, String alertMessage){
+	public TextInput(String alertTitle, String alertMessage){
     	final EditText input = new EditText(Game.resources.getContext());
     	
     	alert = new AlertDialog.Builder(Game.resources.getContext());

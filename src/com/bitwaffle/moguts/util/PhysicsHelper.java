@@ -133,7 +133,7 @@ public class PhysicsHelper {
 	 *  FIXME this initialization method is only temporary
 	 */
 	public static void temp(Physics physics){
-		// bottom
+		// ground
 		BodyDef groundBodyDef = new BodyDef();
 		groundBodyDef.position.set(0.0f, -50.0f);
 		

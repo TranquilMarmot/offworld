@@ -43,13 +43,13 @@ class PlayerRenderer implements EntityRenderer{
 		/* Render Legs */
 		BufferUtils.deepCopyFloatArray(renderer.modelview, oldMatrix);
 		Matrix.translateM(renderer.modelview, 0, facingRight ? LEGS_X_OFFSET : -LEGS_X_OFFSET, LEGS_Y_OFFSET, 0.0f);
-		renderer.program.setUniformMatrix4f("ModelView", renderer.modelview);
+		renderer.sendModelViewToShader();
 		player.animation.renderCurrentFrame(renderer, 1.0f * SCALE, 0.902f * SCALE, facingRight, false);
 		
 		/* Render body */
 		BufferUtils.deepCopyFloatArray(oldMatrix, renderer.modelview);
 		Matrix.translateM(renderer.modelview, 0, facingRight ? BODY_X_OFFSET : -BODY_X_OFFSET, BODY_Y_OFFSET, 0.0f);
-		renderer.program.setUniformMatrix4f("ModelView", renderer.modelview);
+		renderer.sendModelViewToShader();
 		Game.resources.textures.getSubImage("playerbody").draw(renderer.quad, 0.474f * SCALE, 1.0f * SCALE, !facingRight, true);
 	}
 }

@@ -135,6 +135,39 @@ public class TextureManager {
 	}
 	
 	/**
+	 * Gets the texture coordinates for a sub-image
+	 * @param xOffset Xoffset into source image in pixels
+	 * @param yOffset Y offset into source image in pixels
+	 * @param subImageWidth Width of sub-image
+	 * @param subImageHeight Height of sub-image
+	 * @param sourceWidth Width of source image
+	 * @param sourceHeight Height of source image
+	 * @return FloatBuffer containing texture coordinates to render sub-image with a Quad
+	 */
+	private FloatBuffer getSubImageTexCoords(float xOffset, float yOffset, float subImageWidth, float subImageHeight, float sourceWidth, float sourceHeight){
+		float texX = xOffset / sourceWidth;
+		float texY = yOffset / sourceHeight;
+		float texWidth = subImageWidth / sourceWidth;
+		float texHeight = subImageHeight / sourceHeight;
+		
+		// create texture coordinate array and fill a buffer (texture coordinates are used when rendering quad)
+		float[] texCoords = {
+				texX, texY,
+				texX + texWidth, texY,
+				texX + texWidth, texY + texHeight,
+				
+				texX + texWidth, texY + texHeight,
+				texX, texY + texHeight,
+				texX, texY
+		};
+		FloatBuffer buff = BufferUtils.getFloatBuffer(texCoords.length);
+		buff.put(texCoords);
+		buff.rewind();
+		
+		return buff;
+	}
+	
+	/**
 	 * Load a texture from an XML Element
 	 * @param ele Element to parse
 	 */
@@ -289,38 +322,5 @@ public class TextureManager {
 		);
 		
 		return new Frame(length, buff);
-	}
-	
-	/**
-	 * Gets the texture coordinates for a sub-image
-	 * @param xOffset Xoffset into source image in pixels
-	 * @param yOffset Y offset into source image in pixels
-	 * @param subImageWidth Width of sub-image
-	 * @param subImageHeight Height of sub-image
-	 * @param sourceWidth Width of source image
-	 * @param sourceHeight Height of source image
-	 * @return FloatBuffer containing texture coordinates to render sub-image with a Quad
-	 */
-	private FloatBuffer getSubImageTexCoords(float xOffset, float yOffset, float subImageWidth, float subImageHeight, float sourceWidth, float sourceHeight){
-		float texX = xOffset / sourceWidth;
-		float texY = yOffset / sourceHeight;
-		float texWidth = subImageWidth / sourceWidth;
-		float texHeight = subImageHeight / sourceHeight;
-		
-		// create texture coordinate array and fill a buffer (texture coordinates are used when rendering quad)
-		float[] texCoords = {
-				texX, texY,
-				texX + texWidth, texY,
-				texX + texWidth, texY + texHeight,
-				
-				texX + texWidth, texY + texHeight,
-				texX, texY + texHeight,
-				texX, texY
-		};
-		FloatBuffer buff = BufferUtils.getFloatBuffer(texCoords.length);
-		buff.put(texCoords);
-		buff.rewind();
-		
-		return buff;
 	}
 }

@@ -7,7 +7,14 @@ import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.offworld.Game;
 
-
+/**
+ * Every <@link Entity> has a Renderers assigned to it, which has its
+ * <code>render()</code> method called after the camera modifies the modelview matrix
+ * to be at the location of the entity (that is, anything done to the modelview will modify
+ * it originating at the center of the entity)
+ * 
+ * @author TranquilMarmot
+ */
 public enum Renderers{
 	BOX(new BoxRenderer()),
 	BACKGROUND(new BackgroundRenderer()),
@@ -25,6 +32,11 @@ public enum Renderers{
 
 abstract interface EntityRenderer { public void render(Render2D renderer, Entity ent); }
 
+/**
+ * Used for rendering wooden boxes
+ * 
+ * @author TranquilMarmot
+ */
 class BoxRenderer implements EntityRenderer{
 	public void render(Render2D renderer, Entity ent) {
 		BoxEntity box = (BoxEntity) ent;
@@ -34,13 +46,18 @@ class BoxRenderer implements EntityRenderer{
 	}
 }
 
+/**
+ * Used for rendering the background image
+ * 
+ * @author TranquilMarmot
+ */
 class BackgroundRenderer implements EntityRenderer{
 	public void render(Render2D renderer, Entity ent){
 		// FIXME why the fuck is it so hard to render a background?!
 		float width = Game.windowWidth / 75.0f;
 		float height = Game.windowHeight / 75.0f;
 		Matrix.translateM(renderer.modelview, 0, width - (width / 4.5f), height - (height / 10.0f), 0);
-		renderer.program.setUniformMatrix4f("ModelView", renderer.modelview);
+		renderer.sendModelViewToShader();
 		
 		Game.resources.textures.bindTexture("background");
 		renderer.quad.draw(width, height, false, false);

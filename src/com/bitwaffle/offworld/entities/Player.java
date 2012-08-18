@@ -45,7 +45,6 @@ public class Player extends BoxEntity implements KryoSerializable{
 		super();
 		pistol = new Pistol(this, 20, 2000.0f, 25.0f);
 		this.color = defaultColor;
-		// wat?
 		animation = Game.resources.textures.getAnimation("playerlegs");
 	}
 	
@@ -80,7 +79,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 		if(body != null){
 			Vector2 linVec = body.getLinearVelocity();
 			if(linVec.x > 0.5f || linVec.x < -0.5f){
-				// FIXME should this be defined in the XML?
+				// FIXME should this be defined in the animation's XML?
 				float animationStep = timeStep * Math.abs(linVec.x / 15.0f);
 				animation.updateAnimation(animationStep);
 			}

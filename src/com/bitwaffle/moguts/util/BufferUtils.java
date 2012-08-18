@@ -53,4 +53,15 @@ public class BufferUtils {
 			dst[i] = src[i];
 		}
 	}
+	
+	/**
+	 * Returns a string with a readable matrix
+	 * @param mat 4x4 matrix to format string with
+	 * @return Formatted string representing given matrix
+	 */
+	public static String matrixToString(float[] mat){
+		return String.format("%f %f %f %f\n%f %f %f %f\n %f %f %f %f\n %f %f %f %f\n",
+				mat[0], mat[1], mat[2], mat[3], mat[4], mat[5], mat[6], mat[7], mat[8], 
+				mat[9], mat[10], mat[11], mat[12], mat[13], mat[14], mat[15]);
+	}
 }

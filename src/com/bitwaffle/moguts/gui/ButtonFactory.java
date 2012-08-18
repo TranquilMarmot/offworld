@@ -1,6 +1,6 @@
 package com.bitwaffle.moguts.gui;
 
-import com.bitwaffle.moguts.device.UserInput;
+import com.bitwaffle.moguts.device.TextInput;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.gui.button.RectangleButton;
@@ -363,7 +363,7 @@ public class ButtonFactory {
 			protected void onRelease() {
 				// ask the user where to save the file to
 				final GameSaver saver = new GameSaver();
-				UserInput input = new UserInput("Save Game", "Enter save name"){
+				TextInput input = new TextInput("Save Game", "Enter save name"){
 					@Override
 					public void parseInput(String input) {
 						saver.saveGame(input + ".ofw", Game.physics);
@@ -401,7 +401,7 @@ public class ButtonFactory {
 			protected void onRelease() {
 				// ask the user which file to load
 				final GameSaver saver = new GameSaver();
-				UserInput input = new UserInput("Load Game", "Enter save to load"){
+				TextInput input = new TextInput("Load Game", "Enter save to load"){
 					@Override
 					public void parseInput(String input) {
 						saver.loadGame(input + ".ofw", Game.physics);
