@@ -46,6 +46,13 @@
 	        <width>128</width>
 	        <height>270</height>
 	    </subImage>
+	    
+	    <subImage name="playerarm">
+	        <xOffset>0</xOffset>
+	        <yOffset>391</yOffset>
+	        <width>115</width>
+	        <height>73</height>
+	    </subImage>
 	</texture>
 	
 	<animation name="playerlegs" frames="10">

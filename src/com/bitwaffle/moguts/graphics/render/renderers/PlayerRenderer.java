@@ -24,6 +24,10 @@ class PlayerRenderer implements EntityRenderer{
 		BODY_X_OFFSET = 0.138f,
 		BODY_Y_OFFSET = 0.84F;
 	
+	private final float
+		ARM_X_OFFSET = 0.37f,
+		ARM_Y_OFFSET = 0.35f;
+	
 	/** Scale everything is being drawn at (to fit into bounding box) */
 	private final float SCALE = 0.95f;
 	
@@ -51,5 +55,13 @@ class PlayerRenderer implements EntityRenderer{
 		Matrix.translateM(renderer.modelview, 0, facingRight ? BODY_X_OFFSET : -BODY_X_OFFSET, BODY_Y_OFFSET, 0.0f);
 		renderer.sendModelViewToShader();
 		Game.resources.textures.getSubImage("playerbody").draw(renderer.quad, 0.474f * SCALE, 1.0f * SCALE, !facingRight, true);
+		
+		/* Render arm */
+		BufferUtils.deepCopyFloatArray(oldMatrix, renderer.modelview);
+		Matrix.translateM(renderer.modelview, 0, facingRight ? ARM_X_OFFSET : -ARM_X_OFFSET, ARM_Y_OFFSET, 0.0f);
+		Matrix.rotateM(renderer.modelview, 0, facingRight ? player.armAngle : -player.armAngle, 0.0f, 0.0f, 1.0f);
+		
+		renderer.sendModelViewToShader();
+		Game.resources.textures.getSubImage("playerarm").draw(renderer.quad, 0.5f * SCALE, 0.317f * SCALE, !facingRight, true);
 	}
 }

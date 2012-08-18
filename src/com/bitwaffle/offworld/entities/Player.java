@@ -8,6 +8,7 @@ import com.bitwaffle.moguts.entities.BoxEntity;
 import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
 import com.bitwaffle.moguts.graphics.textures.animation.Animation;
 import com.bitwaffle.moguts.physics.callbacks.FirstHitQueryCallback;
+import com.bitwaffle.moguts.util.MathHelper;
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.weapons.Pistol;
 import com.esotericsoftware.kryo.KryoSerializable;
@@ -38,6 +39,8 @@ public class Player extends BoxEntity implements KryoSerializable{
 	/** How much force the player jumps with */
 	private final float JUMP_FORCE = 7.5f;
 	
+	public float armAngle;
+	
 	/** Animation for player */
 	public Animation animation;
 	
@@ -46,6 +49,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 		pistol = new Pistol(this, 20, 2000.0f, 25.0f);
 		this.color = defaultColor;
 		animation = Game.resources.textures.getAnimation("playerlegs");
+		armAngle = 0.0f;
 	}
 	
 	/**
@@ -62,6 +66,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 		this.color = defaultColor;
 		pistol = new Pistol(this, 20, 2000.0f, 25.0f);
 		animation = Game.resources.textures.getAnimation("playerlegs");
+		armAngle = 0.0f;
 	}
 	
 	@Override
@@ -164,6 +169,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 	 * @param target World-space vector to shoot towards
 	 */
 	public void shoot(Vector2 target){
+		armAngle = MathHelper.angle(this.getLocation(), target);
 		pistol.shootAt(body.getWorld(), target);
 	}
 }
