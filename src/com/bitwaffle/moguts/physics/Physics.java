@@ -105,8 +105,6 @@ public class Physics {
 			world.step(FIXED_TIMESTEP, velocityIterations, positionIterations);
 			entities.update(FIXED_TIMESTEP);
 		}
-		
-		world.clearForces(); // FIXME is this necessary?
 	}
 	
 	/**

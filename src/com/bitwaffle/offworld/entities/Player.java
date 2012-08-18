@@ -11,7 +11,10 @@ import com.bitwaffle.moguts.physics.callbacks.FirstHitQueryCallback;
 import com.bitwaffle.moguts.util.MathHelper;
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.weapons.Pistol;
+import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
 
 /**
  * Player class
@@ -39,7 +42,11 @@ public class Player extends BoxEntity implements KryoSerializable{
 	/** How much force the player jumps with */
 	private final float JUMP_FORCE = 7.5f;
 	
-	public float armAngle;
+	/** What the player is aiming at */
+	private Vector2 target;
+	
+	/** Whether or not the player is shooting */
+	private boolean isShooting;
 	
 	/** Animation for player */
 	public Animation animation;
@@ -49,7 +56,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 		pistol = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
 		this.color = defaultColor;
 		animation = Game.resources.textures.getAnimation("playerlegs");
-		armAngle = 0.0f;
+		target = new Vector2();
 	}
 	
 	/**
@@ -66,7 +73,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 		this.color = defaultColor;
 		pistol = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
 		animation = Game.resources.textures.getAnimation("playerlegs");
-		armAngle = 0.0f;
+		target = new Vector2();
 	}
 	
 	@Override
@@ -81,6 +88,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 	public void update(float timeStep){
 		super.update(timeStep);
 		
+		// update animation
 		if(body != null){
 			Vector2 linVec = body.getLinearVelocity();
 			if(linVec.x > 0.5f || linVec.x < -0.5f){
@@ -90,8 +98,18 @@ public class Player extends BoxEntity implements KryoSerializable{
 			}
 		}
 		
-		if(pistol != null)
+		// update which direction the player is facing
+		if(target.x >= this.location.x)
+			facingRight = true;
+		else
+			facingRight = false;
+		
+		// update and shoot pistol
+		if(pistol != null){
 			pistol.update(timeStep);
+			if(this.isShooting)
+				shoot(target);
+		}
 		
 		// add time to jump timer
 		jumpTimer += timeStep;
@@ -163,26 +181,85 @@ public class Player extends BoxEntity implements KryoSerializable{
 		}
 	}
 	
+	/**
+	 * @return Whether or not the player is moving left
+	 */
 	public boolean isMovingRight(){
 		return movingRight;
 	}
 	
+	/**
+	 * @return Whether or not the player is facing right
+	 */
 	public boolean isFacingRight(){
 		return facingRight;
 	}
 	
-
+	/**
+	 * Start shooting
+	 * @param target Target to start shooting at
+	 */
+	public void beginShooting(Vector2 target){
+		isShooting = true;
+		this.updateTarget(target);
+	}
+	
+	/**
+	 * Stop shooting
+	 */
+	public void endShooting(){
+		isShooting = false;
+	}
+	
+	/**
+	 * @return Whether or not the player is shooting
+	 */
+	public boolean isShooting(){
+		return isShooting;
+	}
+	
+	/**
+	 * Updates where the player is aiming
+	 * @param target New spot to aim at
+	 */
+	public void updateTarget(Vector2 target){
+		this.target.set(target);
+	}
+	
+	/**
+	 * @return Where the player is aiming
+	 */
+	public Vector2 getCurrentTarget(){
+		return target;
+	}
+	
+	/**
+	 * @return The angle from the player to the player's target
+	 */
+	public float getArmAngle(){
+		return MathHelper.angle(this.getLocation(), this.target);
+	}
+	
 	
 	/**
 	 * Pew pew!
 	 * @param target World-space vector to shoot towards
 	 */
-	public void shoot(Vector2 target){
-		armAngle = MathHelper.angle(this.getLocation(), target);
-		if(target.x >= this.location.x)
-			facingRight = true;
-		else
-			facingRight = false;
+	private void shoot(Vector2 target){
 		pistol.shootAt(body.getWorld(), target);
+	}
+	
+	@Override
+	public void write(Kryo kryo, Output output){
+		super.write(kryo, output);
+		
+		kryo.writeObject(output, this.target);
+	}
+	
+	@Override
+	public void read(Kryo kryo, Input input){
+		super.read(kryo, input);
+		
+		this.target.set(kryo.readObject(input, Vector2.class));
 	}
 }

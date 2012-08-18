@@ -104,21 +104,33 @@ public class TouchHandler {
 		case MotionEvent.ACTION_DOWN:
 			// check for button presses and grab an entity if there aren't any
 			if(!checkForButtonPresses(x0, y0)){
-				//grabbed = Game.physics.checkForEntityAt(toWorldSpace(x0, y0), 0.5f, 0.5f);
-				Game.player.shoot(MathHelper.toWorldSpace(x0, y0));
+				Game.player.beginShooting(MathHelper.toWorldSpace(x0, y0));
 			}
 			break;
 			
 		// first pointer is put down (happens when pointer 2 is kept down and pointer 1 goes up then down again)
 		case MotionEvent.ACTION_POINTER_1_DOWN:
-			if(!checkForButtonPresses(x0, y0))
-				Game.player.shoot(MathHelper.toWorldSpace(x0, y0));
+			if(!checkForButtonPresses(x0, y0)){
+				Game.player.beginShooting(MathHelper.toWorldSpace(x0, y0));
+			}
+			break;
+			
+		// first pointer is lifted after two pointers are put down
+		case MotionEvent.ACTION_POINTER_1_UP:
+			if(buttonsDown[0] == null && buttonsDown[1] == null)
+				Game.player.updateTarget(MathHelper.toWorldSpace(x1, y1));
+			else if(buttonsDown[0] != null && buttonsDown[0].contains(x1, y1))
+				Game.player.endShooting();
+			else if(buttonsDown[1] != null && buttonsDown[1].contains(x1, y1))
+				Game.player.endShooting();
+			
 			break;
 
 		// second pointer is put down
 		case MotionEvent.ACTION_POINTER_2_DOWN:
-			if(!checkForButtonPresses(x1, y1))
-				Game.player.shoot(MathHelper.toWorldSpace(x1, y1));
+			if(!checkForButtonPresses(x1, y1)){
+				Game.player.beginShooting(MathHelper.toWorldSpace(x0, y0));
+			}
 			break;
 
 		// second pointer released
@@ -133,6 +145,14 @@ public class TouchHandler {
 				buttonsDown[1].release();
 				buttonsDown[1] = null;
 			}
+			
+			if(buttonsDown[0] == null && buttonsDown[1] == null)
+				Game.player.updateTarget(MathHelper.toWorldSpace(x0, y0));
+			else if(buttonsDown[0] != null && buttonsDown[0].contains(x0, y0))
+				Game.player.endShooting();
+			else if(buttonsDown[1] != null && buttonsDown[1].contains(x0, y0))
+				Game.player.endShooting();
+			
 			break;
 
 		// all pointers are released
@@ -145,6 +165,7 @@ public class TouchHandler {
 				buttonsDown[1].release();
 				buttonsDown[1] = null;
 			}
+			Game.player.endShooting();
 			break;
 
 		// some sort of movement (pretty much the default touch event)
@@ -155,7 +176,7 @@ public class TouchHandler {
 					if(Render2D.camera.currentMode().equals(Camera.Modes.FREE))
 						dragEvent(x0, y0);
 					else
-						Game.player.shoot(MathHelper.toWorldSpace(x0, y0));
+						Game.player.updateTarget(MathHelper.toWorldSpace(x0, y0));
 				// else check if the pointer slid off a button
 				} else{
 					if (buttonsDown[0] != null && !buttonsDown[0].contains(x0, y0)) {
@@ -194,18 +215,18 @@ public class TouchHandler {
 						x1 = previousX;
 						y1 = previousY;
 					}else if(!(checkForButtonPresses(x0, y0) || checkForButtonPresses(x1, y1)))
-						Game.player.shoot(MathHelper.toWorldSpace(x0, y0));
+						Game.player.updateTarget(MathHelper.toWorldSpace(x0, y0));
 				} else {
 					if(buttonsDown[0] != null && buttonsDown[1] == null){
 						if(buttonsDown[0].contains(x0, y0) && !checkForButtonPresses(x1, y1))
-							Game.player.shoot(MathHelper.toWorldSpace(x1, y1));
+							Game.player.updateTarget(MathHelper.toWorldSpace(x1, y1));
 						else if(!checkForButtonPresses(x0, y0))
-							Game.player.shoot(MathHelper.toWorldSpace(x0, y0));
+							Game.player.updateTarget(MathHelper.toWorldSpace(x0, y0));
 					} else if(buttonsDown[0] == null && buttonsDown[1] != null) {
 						if(buttonsDown[1].contains(x0, y0) && !checkForButtonPresses(x1, y1))
-							Game.player.shoot(MathHelper.toWorldSpace(x1, y1));
+							Game.player.updateTarget(MathHelper.toWorldSpace(x1, y1));
 						else if(!checkForButtonPresses(x0, y0))
-							Game.player.shoot(MathHelper.toWorldSpace(x0, y0));
+							Game.player.updateTarget(MathHelper.toWorldSpace(x0, y0));
 					}
 				}
 			}

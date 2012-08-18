@@ -6,6 +6,7 @@ import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.physics.callbacks.ClosestHitRayCastCallback;
 import com.bitwaffle.moguts.util.MathHelper;
+import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.Health;
 
@@ -74,6 +75,9 @@ public class Pistol implements Firearm {
 				Vector2 normal = callback.normalOnClosest();
 				Vector2 point = callback.pointOnClosest();
 				hit.body.applyForce(new Vector2(normal.x * -force, normal.y * -force), point);
+				
+				//FIXME temp
+				Game.resources.sounds.play("test");
 				
 				if(hit instanceof Health)
 					((Health)hit).hurt(this.damage);

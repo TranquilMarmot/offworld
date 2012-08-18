@@ -58,7 +58,7 @@ class PlayerRenderer implements EntityRenderer{
 		/* Render right arm */
 		BufferUtils.deepCopyFloatArray(oldMatrix, renderer.modelview);
 		Matrix.translateM(renderer.modelview, 0, facingRight ? R_ARM_X_OFFSET : -R_ARM_X_OFFSET, R_ARM_Y_OFFSET, 0.0f);
-		Matrix.rotateM(renderer.modelview, 0, player.armAngle, 0.0f, 0.0f, 1.0f);
+		Matrix.rotateM(renderer.modelview, 0, player.getArmAngle(), 0.0f, 0.0f, 1.0f);
 		renderer.sendModelViewToShader();
 		Game.resources.textures.getSubImage("playerarm").draw(renderer.quad, 0.5f * SCALE, 0.317f * SCALE, !facingRight, facingRight);
 		
@@ -71,7 +71,7 @@ class PlayerRenderer implements EntityRenderer{
 		/* Render left arm */
 		BufferUtils.deepCopyFloatArray(oldMatrix, renderer.modelview);
 		Matrix.translateM(renderer.modelview, 0, facingRight ? L_ARM_X_OFFSET : -L_ARM_X_OFFSET, L_ARM_Y_OFFSET, 0.0f);
-		Matrix.rotateM(renderer.modelview, 0, player.armAngle, 0.0f, 0.0f, 1.0f);
+		Matrix.rotateM(renderer.modelview, 0, player.getArmAngle(), 0.0f, 0.0f, 1.0f);
 		renderer.sendModelViewToShader();
 		Game.resources.textures.getSubImage("playerarm").draw(renderer.quad, 0.5f * SCALE, 0.317f * SCALE, !facingRight, facingRight);
 	}
