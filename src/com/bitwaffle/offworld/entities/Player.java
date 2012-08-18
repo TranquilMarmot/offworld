@@ -21,7 +21,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 public class Player extends BoxEntity implements KryoSerializable{
 	// FIXME these are temp
 	private static float[] defaultColor = { 1.0f, 1.0f, 1.0f, 1.0f };
-	private boolean facingRight = false;
+	private boolean movingRight = false, facingRight = false;
 	private Pistol pistol;
 	
 	/** 
@@ -46,7 +46,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 	
 	public Player(){
 		super();
-		pistol = new Pistol(this, 20, 2000.0f, 25.0f);
+		pistol = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
 		this.color = defaultColor;
 		animation = Game.resources.textures.getAnimation("playerlegs");
 		armAngle = 0.0f;
@@ -64,7 +64,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 		super(renderer, bodyDef, width, height, fixtureDef, defaultColor);
 		
 		this.color = defaultColor;
-		pistol = new Pistol(this, 20, 2000.0f, 25.0f);
+		pistol = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
 		animation = Game.resources.textures.getAnimation("playerlegs");
 		armAngle = 0.0f;
 	}
@@ -90,6 +90,9 @@ public class Player extends BoxEntity implements KryoSerializable{
 			}
 		}
 		
+		if(pistol != null)
+			pistol.update(timeStep);
+		
 		// add time to jump timer
 		jumpTimer += timeStep;
 	}
@@ -105,7 +108,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 			if(linVec.x > -maxVelocityX) {
 				linVec.x -= 0.5f;
 				body.setLinearVelocity(linVec);
-				facingRight = false;
+				movingRight = false;
 			}
 		}
 	}
@@ -121,7 +124,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 			if(linVec.x < maxVelocityX) {
 				linVec.x += 0.5f;
 				body.setLinearVelocity(linVec);
-				facingRight = true;
+				movingRight = true;
 			}
 		}
 	}
@@ -160,9 +163,15 @@ public class Player extends BoxEntity implements KryoSerializable{
 		}
 	}
 	
+	public boolean isMovingRight(){
+		return movingRight;
+	}
+	
 	public boolean isFacingRight(){
 		return facingRight;
 	}
+	
+
 	
 	/**
 	 * Pew pew!
@@ -170,6 +179,10 @@ public class Player extends BoxEntity implements KryoSerializable{
 	 */
 	public void shoot(Vector2 target){
 		armAngle = MathHelper.angle(this.getLocation(), target);
+		if(target.x >= this.location.x)
+			facingRight = true;
+		else
+			facingRight = false;
 		pistol.shootAt(body.getWorld(), target);
 	}
 }

@@ -15,4 +15,11 @@ public interface Firearm {
 	 * @param target Target to shoot at in world
 	 */
 	public void shootAt(World world, Vector2 target);
+	
+	/**
+	 * Update this firearm, for example to increment
+	 * a cooldown timer
+	 * @param timeStep Time passed, in seconds
+	 */
+	public void update(float timeStep);
 }

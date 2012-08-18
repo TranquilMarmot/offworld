@@ -30,6 +30,12 @@ public class Pistol implements Firearm {
 	/** Callback used for handling hits */
 	private ClosestHitRayCastCallback callback;
 	
+	/** How fast this pistol can shoot */
+	private float firingRate;
+	
+	/** How long it's been since the last shot, in seconds */
+	private float timeSinceLastShot;
+	
 	/**
 	 * Create a new pistol
 	 * @param owner Owner of this pistol (where the shots come from)
@@ -37,12 +43,14 @@ public class Pistol implements Firearm {
 	 * @param force How much force this pistol exerts on stuff it hits
 	 * @param range How far the pistol can shoot
 	 */
-	public Pistol(Entity owner, int damage, float force, float range){
+	public Pistol(Entity owner, int damage, float force, float range, float firingRate){
 		// TODO should probably also include an 'offset' Vector2 to represent the gun's actual location
 		this.owner = owner;
 		this.damage = damage;
 		this.force = force;
 		this.range = range;
+		this.firingRate = firingRate;
+		timeSinceLastShot = 0.0f;
 		callback = new ClosestHitRayCastCallback(owner.getLocation());
 	}
 
@@ -51,23 +59,31 @@ public class Pistol implements Firearm {
 	 * @param target Location to shoot at
 	 */
 	public void shootAt(World world, Vector2 target) {
-		// find the difference between the pistol's range and the distance to the given target
-		float diff = range - target.dst(owner.getLocation());
-		// create a difference vector and rotate it accordingly
-		Vector2 clamps = new Vector2(diff, 0.0f);
-		clamps.rotate(MathHelper.angle(owner.getLocation(), target));
-		
-		// perform raycast to clamped target
-		callback.reset(owner.getLocation());
-		world.rayCast(callback, owner.getLocation(), new Vector2(target.x + clamps.x, target.y + clamps.y));
-		DynamicEntity hit = callback.getClosestHit();
-		if(hit != null){
-			Vector2 normal = callback.normalOnClosest();
-			Vector2 point = callback.pointOnClosest();
-			hit.body.applyForce(new Vector2(normal.x * -force, normal.y * -force), point);
+		if(timeSinceLastShot >= firingRate){
+			// find the difference between the pistol's range and the distance to the given target
+			float diff = range - target.dst(owner.getLocation());
+			// create a difference vector and rotate it accordingly
+			Vector2 clamps = new Vector2(diff, 0.0f);
+			clamps.rotate(MathHelper.angle(owner.getLocation(), target));
 			
-			if(hit instanceof Health)
-				((Health)hit).hurt(this.damage);
+			// perform raycast to clamped target
+			callback.reset(owner.getLocation());
+			world.rayCast(callback, owner.getLocation(), new Vector2(target.x + clamps.x, target.y + clamps.y));
+			DynamicEntity hit = callback.getClosestHit();
+			if(hit != null){
+				Vector2 normal = callback.normalOnClosest();
+				Vector2 point = callback.pointOnClosest();
+				hit.body.applyForce(new Vector2(normal.x * -force, normal.y * -force), point);
+				
+				if(hit instanceof Health)
+					((Health)hit).hurt(this.damage);
+			}
+			
+			timeSinceLastShot = 0.0f;
 		}
+	}
+	
+	public void update(float timeStep){
+		timeSinceLastShot += timeStep;
 	}
 }

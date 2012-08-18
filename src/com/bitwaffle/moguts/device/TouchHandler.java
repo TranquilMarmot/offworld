@@ -152,7 +152,10 @@ public class TouchHandler {
 			if (pointerCount == 1) {
 				// if there's only 1 pointer and it's not on a button, we're dragging
 				if (buttonsDown[0] == null && buttonsDown[1] == null) {
-					dragEvent(x0, y0);
+					if(Render2D.camera.currentMode().equals(Camera.Modes.FREE))
+						dragEvent(x0, y0);
+					else
+						Game.player.shoot(MathHelper.toWorldSpace(x0, y0));
 				// else check if the pointer slid off a button
 				} else{
 					if (buttonsDown[0] != null && !buttonsDown[0].contains(x0, y0)) {
@@ -166,32 +169,44 @@ public class TouchHandler {
 				}
 				checkForButtonPresses(x0, y0);
 			} else if (pointerCount == 2) {
+				// check if either finger slid off of a button
+				if (buttonsDown[0] != null) {
+					if (!buttonsDown[0].contains(x0, y0)
+					 && !buttonsDown[0].contains(x1, y1)) {
+						buttonsDown[0].slideRelease();
+						buttonsDown[0] = null;
+					}
+				}
+				if (buttonsDown[1] != null) {
+					if (!buttonsDown[1].contains(x0, y0)
+					 && !buttonsDown[1].contains(x1, y1)) {
+						buttonsDown[1].slideRelease();
+						buttonsDown[1] = null;
+					}
+				}
 				// if there's two pointers and neither are on a button, we're zooming
 				if (buttonsDown[0] == null && buttonsDown[1] == null) {
 					// note that zoom is done regardless of camera mode
-					zoomEvent(spacing);
-					x0 = previousX;
-					y0 = previousY;
-					x1 = previousX;
-					y1 = previousY;
+					if(Render2D.camera.currentMode().equals(Camera.Modes.FREE)){
+						zoomEvent(spacing);
+						x0 = previousX;
+						y0 = previousY;
+						x1 = previousX;
+						y1 = previousY;
+					}else if(!(checkForButtonPresses(x0, y0) || checkForButtonPresses(x1, y1)))
+						Game.player.shoot(MathHelper.toWorldSpace(x0, y0));
 				} else {
-					// else we check if either finger slid off of a button
-					if (buttonsDown[0] != null) {
-						if (!buttonsDown[0].contains(x0, y0)
-						 && !buttonsDown[0].contains(x1, y1)) {
-							buttonsDown[0].slideRelease();
-							buttonsDown[0] = null;
-						}
+					if(buttonsDown[0] != null && buttonsDown[1] == null){
+						if(buttonsDown[0].contains(x0, y0) && !checkForButtonPresses(x1, y1))
+							Game.player.shoot(MathHelper.toWorldSpace(x1, y1));
+						else if(!checkForButtonPresses(x0, y0))
+							Game.player.shoot(MathHelper.toWorldSpace(x0, y0));
+					} else if(buttonsDown[0] == null && buttonsDown[1] != null) {
+						if(buttonsDown[1].contains(x0, y0) && !checkForButtonPresses(x1, y1))
+							Game.player.shoot(MathHelper.toWorldSpace(x1, y1));
+						else if(!checkForButtonPresses(x0, y0))
+							Game.player.shoot(MathHelper.toWorldSpace(x0, y0));
 					}
-					if (buttonsDown[1] != null) {
-						if (!buttonsDown[1].contains(x0, y0)
-						 && !buttonsDown[1].contains(x1, y1)) {
-							buttonsDown[1].slideRelease();
-							buttonsDown[1] = null;
-						}
-					}
-					checkForButtonPresses(x0, y0);
-					checkForButtonPresses(x1, y1);
 				}
 			}
 		}
