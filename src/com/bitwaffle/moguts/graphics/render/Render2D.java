@@ -9,6 +9,7 @@ import android.opengl.Matrix;
 import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.moguts.device.SurfaceView;
 import com.bitwaffle.moguts.entities.Entities;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.graphics.Camera;
@@ -63,6 +64,7 @@ public class Render2D {
 		modelview = new float[16];
 		
 		camera = new Camera(new Vector2(DEFAULT_CAMX, DEFAULT_CAMY), DEFAULT_CAMZ);
+		SurfaceView.touchHandler.setCamera(camera);
 		
 		quad = new Quad(this);
 		

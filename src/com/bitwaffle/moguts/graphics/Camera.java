@@ -1,8 +1,8 @@
 package com.bitwaffle.moguts.graphics;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.entities.Entity;
-import com.bitwaffle.offworld.Game;
 
 /**
  * Describes how a scene should be rendered
@@ -13,10 +13,13 @@ public class Camera extends Entity {
 	/** Current zoom level of camera (smaller it is, the smaller everything will be rendered) */
 	private float zoom;
 	
+	/** Minimum and maximum zoom values */
 	private static final float MIN_ZOOM = 0.008F, MAX_ZOOM = 0.08F;
 	
 	/** Current camera mode */
 	private Modes currentMode = Modes.FOLLOW;
+	
+	private DynamicEntity following;
 	
 	/**
 	 * Different camera modes
@@ -86,7 +89,8 @@ public class Camera extends Entity {
 			this.zoom = MIN_ZOOM;
 		else{
 			this.zoom = zoom;
-			followPlayer();
+			if(following != null)
+				followEntity();
 		}
 	}
 
@@ -94,19 +98,22 @@ public class Camera extends Entity {
 	public void update(float timeStep) {
 		switch(currentMode){
 		case FOLLOW:
-			followPlayer();
+			if(following != null)
+				followEntity();
 			break;
 		case FREE:
-			// do nothing (events handles by TouchHandler)
+			// do nothing (events handled by TouchHandler)
 		}
 	}
 	
-	private void followPlayer(){
-		if(Game.player != null){
-			Vector2 playerLoc = Game.player.getLocation();
-			//FIXME make this work more betterer (probably base it on screen size/zoom?)
-			this.location.set(-playerLoc.x + (0.7f / zoom), -playerLoc.y + (0.35f / zoom));
-		}
+	private void followEntity(){
+		Vector2 playerLoc = following.getLocation();
+		//FIXME make this work more betterer (probably base it on screen size/zoom?)
+		this.location.set(-playerLoc.x + (0.7f / zoom), -playerLoc.y + (0.35f / zoom));
+	}
+	
+	public void follow(DynamicEntity entity){
+		this.following = entity;
 	}
 	
 	public void setMode(Modes newMode){

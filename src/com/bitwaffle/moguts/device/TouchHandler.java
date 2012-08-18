@@ -10,7 +10,7 @@ import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.gui.button.Button;
 import com.bitwaffle.moguts.util.MathHelper;
-import com.bitwaffle.offworld.Game;
+import com.bitwaffle.offworld.entities.Player;
 
 /**
  * Handles any touch events (which are generated in {@link SurfaceView} and then
@@ -36,15 +36,39 @@ public class TouchHandler {
 
 	/** See comment for checkForButtonPresses() */
 	private Button[] buttonsDown;
+	
+	/** The player being controlled by this touch handler */
+	private Player player;
+	
+	/** The camera being controlled by this touch handler */
+	private Camera camera;
 
 	/**
 	 * Create a new touch handler
 	 */
-	public TouchHandler() {
+	public TouchHandler(Player player, Camera camera) {
+		this.player = player;
+		this.camera = camera;
 		previousX = 0.0f;
 		previousY = 0.0f;
 		previousSpacing = 0.0f;
 		buttonsDown = new Button[2];
+	}
+	
+	/**
+	 * Set the player being controlled by this touch handler
+	 * @param player New player to control
+	 */
+	public void setPlayer(Player player){
+		this.player = player;
+	}
+	
+	/**
+	 * Set the camera this touch handler is controlling
+	 * @param camera New camera to control
+	 */
+	public void setCamera(Camera camera){
+		this.camera = camera;
 	}
 
 	/**
@@ -102,39 +126,42 @@ public class TouchHandler {
 		switch (action) {
 		// initial pointer is put down
 		case MotionEvent.ACTION_DOWN:
-			// check for button presses and grab an entity if there aren't any
-			if(!checkForButtonPresses(x0, y0)){
-				Game.player.beginShooting(MathHelper.toWorldSpace(x0, y0));
-			}
+			// if there's no button presses, start shooting
+			if(!checkForButtonPresses(x0, y0) && !camera.currentMode().equals(Camera.Modes.FREE))
+				player.beginShooting(MathHelper.toWorldSpace(x0, y0));
 			break;
 			
 		// first pointer is put down (happens when pointer 2 is kept down and pointer 1 goes up then down again)
 		case MotionEvent.ACTION_POINTER_1_DOWN:
-			if(!checkForButtonPresses(x0, y0)){
-				Game.player.beginShooting(MathHelper.toWorldSpace(x0, y0));
-			}
+			// if there's no button presses, start shooting
+			if(!checkForButtonPresses(x0, y0) && !camera.currentMode().equals(Camera.Modes.FREE))
+				player.beginShooting(MathHelper.toWorldSpace(x0, y0));
 			break;
 			
 		// first pointer is lifted after two pointers are put down
 		case MotionEvent.ACTION_POINTER_1_UP:
-			if(buttonsDown[0] == null && buttonsDown[1] == null)
-				Game.player.updateTarget(MathHelper.toWorldSpace(x1, y1));
-			else if(buttonsDown[0] != null && buttonsDown[0].contains(x1, y1))
-				Game.player.endShooting();
-			else if(buttonsDown[1] != null && buttonsDown[1].contains(x1, y1))
-				Game.player.endShooting();
+			// if a button is being pressed with the second pointer,
+			// we stop shooting since we just released the first pointer
+			if(
+			(buttonsDown[0] != null && buttonsDown[0].contains(x1, y1)) ||
+			(buttonsDown[1] != null && buttonsDown[1].contains(x1, y1)))
+				player.endShooting();
+			// else the second finger is down and shooting
+			else
+				player.updateTarget(MathHelper.toWorldSpace(x1, y1));
 			
 			break;
 
 		// second pointer is put down
 		case MotionEvent.ACTION_POINTER_2_DOWN:
-			if(!checkForButtonPresses(x1, y1)){
-				Game.player.beginShooting(MathHelper.toWorldSpace(x0, y0));
-			}
+			// if there's no button presses, start shooting
+			if(!checkForButtonPresses(x1, y1) && !camera.currentMode().equals(Camera.Modes.FREE))
+				player.beginShooting(MathHelper.toWorldSpace(x1, y1));
 			break;
 
 		// second pointer released
 		case MotionEvent.ACTION_POINTER_2_UP:
+			// check for any button releases
 			if (buttonsDown[0] != null && buttonsDown[0].isDown()
 					&& buttonsDown[0].contains(x1, y1)) {
 				buttonsDown[0].release();
@@ -146,17 +173,21 @@ public class TouchHandler {
 				buttonsDown[1] = null;
 			}
 			
-			if(buttonsDown[0] == null && buttonsDown[1] == null)
-				Game.player.updateTarget(MathHelper.toWorldSpace(x0, y0));
-			else if(buttonsDown[0] != null && buttonsDown[0].contains(x0, y0))
-				Game.player.endShooting();
-			else if(buttonsDown[1] != null && buttonsDown[1].contains(x0, y0))
-				Game.player.endShooting();
+			// if a button is being pressed with the first pointer,
+			// we stop shooting since we just released the second pointer
+			if(
+			(buttonsDown[0] != null && buttonsDown[0].contains(x0, y0)) ||
+			(buttonsDown[1] != null && buttonsDown[1].contains(x0, y0)))
+				player.endShooting();
+			// else the first finger is down and shooting
+			else
+				player.updateTarget(MathHelper.toWorldSpace(x0, y0));
 			
 			break;
 
 		// all pointers are released
 		case MotionEvent.ACTION_UP:
+			// release any pressed buttons
 			if (buttonsDown[0] != null && buttonsDown[0].isDown()) {
 				buttonsDown[0].release();
 				buttonsDown[0] = null;
@@ -165,18 +196,20 @@ public class TouchHandler {
 				buttonsDown[1].release();
 				buttonsDown[1] = null;
 			}
-			Game.player.endShooting();
+			// stop shooting
+			player.endShooting();
 			break;
 
 		// some sort of movement (pretty much the default touch event)
 		case MotionEvent.ACTION_MOVE:
 			if (pointerCount == 1) {
-				// if there's only 1 pointer and it's not on a button, we're dragging
+				// if there's only 1 pointer and it's not on a button, we're dragging or aiming
 				if (buttonsDown[0] == null && buttonsDown[1] == null) {
-					if(Render2D.camera.currentMode().equals(Camera.Modes.FREE))
+					if(camera.currentMode().equals(Camera.Modes.FREE)){
 						dragEvent(x0, y0);
-					else
-						Game.player.updateTarget(MathHelper.toWorldSpace(x0, y0));
+						player.endShooting();
+					}else
+						player.updateTarget(MathHelper.toWorldSpace(x0, y0));
 				// else check if the pointer slid off a button
 				} else{
 					if (buttonsDown[0] != null && !buttonsDown[0].contains(x0, y0)) {
@@ -207,26 +240,34 @@ public class TouchHandler {
 				}
 				// if there's two pointers and neither are on a button, we're zooming
 				if (buttonsDown[0] == null && buttonsDown[1] == null) {
-					// note that zoom is done regardless of camera mode
-					if(Render2D.camera.currentMode().equals(Camera.Modes.FREE)){
+					// zoom if the camera is in free mode
+					if(camera.currentMode().equals(Camera.Modes.FREE)){
+						player.endShooting();
 						zoomEvent(spacing);
 						x0 = previousX;
 						y0 = previousY;
 						x1 = previousX;
 						y1 = previousY;
+					// else check if there's any button presses and aim if there aren't
 					}else if(!(checkForButtonPresses(x0, y0) || checkForButtonPresses(x1, y1)))
-						Game.player.updateTarget(MathHelper.toWorldSpace(x0, y0));
+						player.updateTarget(MathHelper.toWorldSpace(x0, y0));
 				} else {
+					// button 0 is down and button 1 isn't
 					if(buttonsDown[0] != null && buttonsDown[1] == null){
+						// first pointer is on button 0, aim with second pointer if no button presses
 						if(buttonsDown[0].contains(x0, y0) && !checkForButtonPresses(x1, y1))
-							Game.player.updateTarget(MathHelper.toWorldSpace(x1, y1));
+							player.updateTarget(MathHelper.toWorldSpace(x1, y1));
+						// check if first pointer hits any buttons, shoot if it didn't
 						else if(!checkForButtonPresses(x0, y0))
-							Game.player.updateTarget(MathHelper.toWorldSpace(x0, y0));
+							player.updateTarget(MathHelper.toWorldSpace(x0, y0));
+					// button 1 is down and button 0 isn't
 					} else if(buttonsDown[0] == null && buttonsDown[1] != null) {
+						// first pointer is on button 1, aim with second pointer if no button presses
 						if(buttonsDown[1].contains(x0, y0) && !checkForButtonPresses(x1, y1))
-							Game.player.updateTarget(MathHelper.toWorldSpace(x1, y1));
+							player.updateTarget(MathHelper.toWorldSpace(x1, y1));
+						// check if first pointer hit any buttons, shoot if it didn't
 						else if(!checkForButtonPresses(x0, y0))
-							Game.player.updateTarget(MathHelper.toWorldSpace(x0, y0));
+							player.updateTarget(MathHelper.toWorldSpace(x0, y0));
 					}
 				}
 			}
@@ -290,14 +331,14 @@ public class TouchHandler {
 	 *            Y of new location of finger
 	 */
 	private void dragEvent(float x, float y) {
-		if(Render2D.camera.currentMode() == Camera.Modes.FREE){
+		if(camera.currentMode() == Camera.Modes.FREE){
 			float dx = x - previousX;
 			float dy = y - previousY;
 			
-			Vector2 camLoc = Render2D.camera.getLocation();
+			Vector2 camLoc = camera.getLocation();
 			camLoc.x += dx / DRAG_SENSITIVITY;
 			camLoc.y -= dy / DRAG_SENSITIVITY;
-			Render2D.camera.setLocation(camLoc);
+			camera.setLocation(camLoc);
 		}
 	}
 
@@ -308,13 +349,13 @@ public class TouchHandler {
 	 *            How far apart the two fingers are
 	 */
 	private void zoomEvent(float spacing) {
-		float zoom = Render2D.camera.getZoom();
+		float zoom = camera.getZoom();
 
 		if (spacing < previousSpacing - (MIN_ZOOM_SPACING / 2.0f))
 			zoom -= spacing / ZOOM_SENSITIVITY;
 		else if (spacing > previousSpacing + (MIN_ZOOM_SPACING / 2.0f))
 			zoom += spacing / ZOOM_SENSITIVITY;
 
-		Render2D.camera.setZoom(zoom);
+		camera.setZoom(zoom);
 	}
 }

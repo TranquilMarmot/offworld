@@ -34,7 +34,7 @@ public class SurfaceView extends GLSurfaceView {
         // Create an OpenGL ES 2.0 context
         this.setEGLContextClientVersion(2);
         
-        touchHandler = new TouchHandler();
+        touchHandler = new TouchHandler(Game.player, Render2D.camera);
         
         renderer = new Game(context);
         this.setRenderer(renderer);  
@@ -43,6 +43,11 @@ public class SurfaceView extends GLSurfaceView {
     @Override
     public boolean onTouchEvent(MotionEvent e) {
     	// simply send the event to the touch handler
-    	return touchHandler.touchEvent(e);
+
+    	try{
+    		return touchHandler.touchEvent(e);
+    	}catch (NullPointerException err){
+    		return false;
+    	}
     }
 }

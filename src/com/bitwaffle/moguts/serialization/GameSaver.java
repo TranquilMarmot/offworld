@@ -17,9 +17,11 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.bitwaffle.moguts.device.SurfaceView;
 import com.bitwaffle.moguts.entities.BoxEntity;
 import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.entities.Entity;
+import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.physics.Physics;
 import com.bitwaffle.moguts.serialization.serializers.BodyDefSerializer;
 import com.bitwaffle.moguts.serialization.serializers.FixtureDefSerializer;
@@ -170,8 +172,11 @@ public class GameSaver {
 				Object object = kryo.readObject(input, reg.getType());
 				
 				// check if we've hit the player
-				if(reg.getType().equals(Player.class))
+				if(reg.getType().equals(Player.class)){
 					Game.player = (Player)object;
+					Render2D.camera.follow(Game.player);
+					SurfaceView.touchHandler.setPlayer(Game.player);
+				}
 				
 				// add entity to physics world if it's dynamic
 				if(object instanceof DynamicEntity)

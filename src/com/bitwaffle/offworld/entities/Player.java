@@ -10,6 +10,7 @@ import com.bitwaffle.moguts.graphics.textures.animation.Animation;
 import com.bitwaffle.moguts.physics.callbacks.FirstHitQueryCallback;
 import com.bitwaffle.moguts.util.MathHelper;
 import com.bitwaffle.offworld.Game;
+import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.weapons.Pistol;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
@@ -25,7 +26,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 	// FIXME these are temp
 	private static float[] defaultColor = { 1.0f, 1.0f, 1.0f, 1.0f };
 	private boolean movingRight = false, facingRight = false;
-	private Pistol pistol;
+	private Firearm firearm;
 	
 	/** 
 	 * How fast the player can go on the X axis
@@ -53,7 +54,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 	
 	public Player(){
 		super();
-		pistol = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
+		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
 		this.color = defaultColor;
 		animation = Game.resources.textures.getAnimation("playerlegs");
 		target = new Vector2();
@@ -71,7 +72,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 		super(renderer, bodyDef, width, height, fixtureDef, defaultColor);
 		
 		this.color = defaultColor;
-		pistol = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
+		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
 		animation = Game.resources.textures.getAnimation("playerlegs");
 		target = new Vector2();
 	}
@@ -105,8 +106,8 @@ public class Player extends BoxEntity implements KryoSerializable{
 			facingRight = false;
 		
 		// update and shoot pistol
-		if(pistol != null){
-			pistol.update(timeStep);
+		if(firearm != null){
+			firearm.update(timeStep);
 			if(this.isShooting)
 				shoot(target);
 		}
@@ -223,7 +224,8 @@ public class Player extends BoxEntity implements KryoSerializable{
 	 * @param target New spot to aim at
 	 */
 	public void updateTarget(Vector2 target){
-		this.target.set(target);
+		if(!Game.paused)
+			this.target.set(target);
 	}
 	
 	/**
@@ -246,7 +248,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 	 * @param target World-space vector to shoot towards
 	 */
 	private void shoot(Vector2 target){
-		pistol.shootAt(body.getWorld(), target);
+		firearm.shootAt(body.getWorld(), target);
 	}
 	
 	@Override

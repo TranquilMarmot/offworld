@@ -9,8 +9,10 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.bitwaffle.moguts.device.SurfaceView;
 import com.bitwaffle.moguts.entities.BoxEntity;
 import com.bitwaffle.moguts.entities.DynamicEntity;
+import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
 import com.bitwaffle.moguts.physics.Physics;
 import com.bitwaffle.offworld.Game;
@@ -156,6 +158,8 @@ public class PhysicsHelper {
 		
 		Game.player = new Player(Renderers.PLAYER, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
 		physics.addEntity(Game.player);
+		Render2D.camera.follow(Game.player);
+		SurfaceView.touchHandler.setPlayer(Game.player);
 		
 		for(int i = 0; i < 75; i++)
 			PhysicsHelper.makeRandomBox(physics);
