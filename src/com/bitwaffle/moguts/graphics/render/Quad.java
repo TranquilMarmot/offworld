@@ -17,6 +17,9 @@ import com.bitwaffle.moguts.util.BufferUtils;
  * @author TranquilMarmot
  */
 public class Quad {
+	/** What will be rendering this quad */
+	private Render2D renderer;
+	
 	/** Buffers to hold data */
 	private FloatBuffer vertBuffer, defaultTexBuffer;
 	
@@ -57,6 +60,8 @@ public class Quad {
 	 * @param renderer What will be rendering this quad
 	 */
 	public Quad(Render2D renderer){
+		this.renderer = renderer;
+		
 		vertBuffer = BufferUtils.getFloatBuffer(coords.length);
 		vertBuffer.put(coords);
 		vertBuffer.rewind();
@@ -76,8 +81,8 @@ public class Quad {
 	 * @param width Width of quad, from center
 	 * @param height Height of quad, from center
 	 */
-	public void draw(Render2D renderer, float width, float height){
-		draw(renderer, width, height, false, false);
+	public void draw(float width, float height){
+		draw(width, height, false, false);
 	}
 	
 	/**
@@ -88,8 +93,8 @@ public class Quad {
 	 * @param flipHorizontal Whether or not to flip the image horizontally
 	 * @param flipVertical Whether or not to flip the image vertically
 	 */
-	public void draw(Render2D renderer, float width, float height, boolean flipHorizontal, boolean flipVertical){
-		this.draw(renderer, width, height, flipHorizontal, flipVertical, defaultTexBuffer);
+	public void draw(float width, float height, boolean flipHorizontal, boolean flipVertical){
+		this.draw(width, height, flipHorizontal, flipVertical, defaultTexBuffer);
         
 	}
 	
@@ -101,7 +106,7 @@ public class Quad {
 	 * @param flipHorizontal Whether or not to flip the image horizontally
 	 * @param flipVertical Whether or not to flip the image vertically
 	 */
-	public void draw(Render2D renderer, float width, float height, boolean flipHorizontal, boolean flipVertical, FloatBuffer texCoords){
+	public void draw(float width, float height, boolean flipHorizontal, boolean flipVertical, FloatBuffer texCoords){
 		// set position info
 		GLES20.glEnableVertexAttribArray(positionHandle);
         GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false, 0, vertBuffer);

@@ -11,7 +11,7 @@ import android.opengl.GLES20;
 import android.opengl.Matrix;
 
 import com.bitwaffle.moguts.graphics.render.Render2D;
-import com.bitwaffle.moguts.resources.TextureManager;
+import com.bitwaffle.moguts.graphics.textures.TextureManager;
 import com.bitwaffle.moguts.util.BufferUtils;
 import com.bitwaffle.offworld.Game;
 

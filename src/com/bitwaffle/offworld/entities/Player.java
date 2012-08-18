@@ -5,8 +5,8 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.moguts.entities.BoxEntity;
-import com.bitwaffle.moguts.graphics.animation.Animation;
 import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
+import com.bitwaffle.moguts.graphics.textures.animation.Animation;
 import com.bitwaffle.moguts.physics.callbacks.FirstHitQueryCallback;
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.weapons.Pistol;
@@ -45,7 +45,8 @@ public class Player extends BoxEntity implements KryoSerializable{
 		super();
 		pistol = new Pistol(this, 20, 2000.0f, 25.0f);
 		this.color = defaultColor;
-		animation = Game.resources.textures.getAnimation("playerwalk");
+		// wat?
+		animation = Game.resources.textures.getAnimation("playerlegs");
 	}
 	
 	/**
@@ -61,7 +62,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 		
 		this.color = defaultColor;
 		pistol = new Pistol(this, 20, 2000.0f, 25.0f);
-		animation = Game.resources.textures.getAnimation("playerwalk");
+		animation = Game.resources.textures.getAnimation("playerlegs");
 	}
 	
 	@Override

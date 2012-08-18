@@ -1,4 +1,4 @@
-package com.bitwaffle.moguts.graphics.glsl;
+package com.bitwaffle.moguts.graphics.render.glsl;
 
 import java.util.HashMap;
 

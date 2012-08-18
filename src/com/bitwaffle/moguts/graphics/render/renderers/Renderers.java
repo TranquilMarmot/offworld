@@ -6,7 +6,6 @@ import com.bitwaffle.moguts.entities.BoxEntity;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.offworld.Game;
-import com.bitwaffle.offworld.entities.Player;
 
 
 public enum Renderers{
@@ -31,15 +30,7 @@ class BoxRenderer implements EntityRenderer{
 		BoxEntity box = (BoxEntity) ent;
 		Game.resources.textures.bindTexture("box");
 		renderer.program.setUniform("vColor", box.color[0], box.color[1], box.color[2], box.color[3]);
-		renderer.quad.draw(renderer, box.getWidth(), box.getHeight());
-	}
-}
-
-class PlayerRenderer implements EntityRenderer{
-	public void render(Render2D renderer, Entity ent){
-		Player player = (Player) ent;
-		renderer.program.setUniform("vColor", player.color[0], player.color[1], player.color[2], player.color[3]);
-		player.animation.renderCurrentFrame(renderer, player.getWidth(), player.getHeight(), player.isFacingRight(), false);
+		renderer.quad.draw(box.getWidth(), box.getHeight());
 	}
 }
 
@@ -52,6 +43,6 @@ class BackgroundRenderer implements EntityRenderer{
 		renderer.program.setUniformMatrix4f("ModelView", renderer.modelview);
 		
 		Game.resources.textures.bindTexture("background");
-		renderer.quad.draw(renderer, width, height, false, false);
+		renderer.quad.draw(width, height, false, false);
 	}
 }

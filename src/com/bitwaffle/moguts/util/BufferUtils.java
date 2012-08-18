@@ -42,4 +42,15 @@ public class BufferUtils {
 		ByteBuffer b = getByteBuffer(size * 4);
 		return b.asIntBuffer();
 	}
+	
+	/**
+	 * Deep-copies one array to another array
+	 * @param src Source array
+	 * @param dst Destination array
+	 */
+	public static void deepCopyFloatArray(float[] src, float[]dst){
+		for(int i = 0; i < src.length; i++){
+			dst[i] = src[i];
+		}
+	}
 }

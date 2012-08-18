@@ -1,4 +1,4 @@
-package com.bitwaffle.moguts.graphics.animation;
+package com.bitwaffle.moguts.graphics.textures.animation;
 
 import com.bitwaffle.moguts.graphics.render.Render2D;
 
@@ -90,6 +90,6 @@ public class Animation {
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, sheetHandle);
 		
 		// for some reason the image always get flipped, so we pass flipped booleans
-		renderer.quad.draw(renderer, width, height, !flipHorizontal, !flipVertical, frames[currentFrame].getTexCoordBuffer());
+		renderer.quad.draw(width, height, !flipHorizontal, !flipVertical, frames[currentFrame].getTexCoordBuffer());
 	}
 }

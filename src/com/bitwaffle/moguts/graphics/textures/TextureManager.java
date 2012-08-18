@@ -1,4 +1,4 @@
-package com.bitwaffle.moguts.resources;
+package com.bitwaffle.moguts.graphics.textures;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,8 +15,8 @@ import android.opengl.GLES20;
 import android.opengl.GLUtils;
 import android.util.Log;
 
-import com.bitwaffle.moguts.graphics.animation.Animation;
-import com.bitwaffle.moguts.graphics.animation.Frame;
+import com.bitwaffle.moguts.graphics.textures.animation.Animation;
+import com.bitwaffle.moguts.graphics.textures.animation.Frame;
 import com.bitwaffle.moguts.util.BufferUtils;
 import com.bitwaffle.moguts.util.XMLHelper;
 import com.bitwaffle.offworld.Game;
@@ -32,6 +32,8 @@ public class TextureManager {
 	/** Hashes texture names to their int GL handles */
 	private HashMap<String, Integer> textures;
 	
+	private HashMap<String, SubImage> subImages;
+	
 	/** Keeps track of animations */
 	private HashMap<String, Animation> animations;
 	
@@ -41,6 +43,7 @@ public class TextureManager {
 	public TextureManager(){
 		textures = new HashMap<String, Integer>();
 		animations = new HashMap<String, Animation>();
+		subImages = new HashMap<String, SubImage>();
 		// TODO this should be done on a per-room (level?) basis
 		try {
 			parseXML(Game.resources.openAsset("resourcelists/textures.xml"));
@@ -55,6 +58,14 @@ public class TextureManager {
 	 */
 	public void bindTexture(String textureName){
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textures.get(textureName));
+	}
+	
+	/**
+	 * @param subImage SubImage to get
+	 * @return SubImage, for to render with
+	 */
+	public SubImage getSubImage(String subImage){
+		return subImages.get(subImage);
 	}
 	
 	/**
@@ -112,12 +123,13 @@ public class TextureManager {
 	 * @return Filter from element from filterType
 	 */
 	private int getFilter(Element ele, String filterType){
-		// TODO make sure this doesn't crash when there's no specified filters
 		int filter = GLES20.GL_NEAREST;
-		String minFilterString = XMLHelper.getString(ele, filterType);
-		if(minFilterString.equals("GL_LINEAR"))
+		String filterString = XMLHelper.getString(ele, filterType);
+		if(filterString == null)
+			return GLES20.GL_LINEAR;
+		else if(filterString.equals("GL_LINEAR"))
 			filter = GLES20.GL_LINEAR;
-		else if(minFilterString.equals("GL_NEAREST"))
+		else if(filterString.equals("GL_NEAREST"))
 			filter = GLES20.GL_NEAREST;
 		return filter;
 	}
@@ -132,11 +144,40 @@ public class TextureManager {
 		
 		int minFilter = getFilter(ele, "minFilter");
 		int magFilter = getFilter(ele, "magFilter");
-		
+
 		try {
 			InputStream in = Game.resources.openAsset(path);
-			textures.put(name, initTexture(in, minFilter, magFilter));
+			Bitmap bitmap = BitmapFactory.decodeStream(in);
 			in.close();
+			int handle = initTexture(bitmap, minFilter, magFilter);
+			textures.put(name, handle);
+			
+			NodeList subImageNodes = ele.getElementsByTagName("subImage");
+			for(int i = 0; i < subImageNodes.getLength(); i++){
+				Element subimg = (Element) subImageNodes.item(i);
+				String subImageName = subimg.getAttribute("name");
+				float xOffset = XMLHelper.getFloat(subimg, "xOffset");
+				float yOffset = XMLHelper.getFloat(subimg, "yOffset");
+				float subImageWidth = XMLHelper.getFloat(subimg, "width");
+				float subImageHeight = XMLHelper.getFloat(subimg, "height");
+
+				subImages.put(
+						subImageName, 
+						new SubImage(
+								handle,
+								getSubImageTexCoords(
+									xOffset,
+									yOffset,
+									subImageWidth,
+									subImageHeight,
+									(float)bitmap.getWidth(),
+									(float)bitmap.getHeight()
+								)
+						)
+				);
+			}
+			
+			bitmap.recycle();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -238,11 +279,33 @@ public class TextureManager {
 	 * @return Initialized frame
 	 */
 	private Frame initFrame(float length, Bitmap source, int xOffset, int yOffset, int width, int height){
-		// find texture coordinates
-		float texX = (float)xOffset / (float)source.getWidth();
-		float texY = (float)yOffset / (float)source.getHeight();
-		float texWidth = (float)width / (float)source.getWidth();
-		float texHeight = (float)height / (float)source.getHeight();
+		FloatBuffer buff = getSubImageTexCoords(
+				(float)xOffset,
+				(float)yOffset,
+				(float)width,
+				(float)height,
+				(float)source.getWidth(),
+				(float)source.getHeight()
+		);
+		
+		return new Frame(length, buff);
+	}
+	
+	/**
+	 * Gets the texture coordinates for a sub-image
+	 * @param xOffset Xoffset into source image in pixels
+	 * @param yOffset Y offset into source image in pixels
+	 * @param subImageWidth Width of sub-image
+	 * @param subImageHeight Height of sub-image
+	 * @param sourceWidth Width of source image
+	 * @param sourceHeight Height of source image
+	 * @return FloatBuffer containing texture coordinates to render sub-image with a Quad
+	 */
+	private FloatBuffer getSubImageTexCoords(float xOffset, float yOffset, float subImageWidth, float subImageHeight, float sourceWidth, float sourceHeight){
+		float texX = xOffset / sourceWidth;
+		float texY = yOffset / sourceHeight;
+		float texWidth = subImageWidth / sourceWidth;
+		float texHeight = subImageHeight / sourceHeight;
 		
 		// create texture coordinate array and fill a buffer (texture coordinates are used when rendering quad)
 		float[] texCoords = {
@@ -258,6 +321,6 @@ public class TextureManager {
 		buff.put(texCoords);
 		buff.rewind();
 		
-		return new Frame(length, buff);
+		return buff;
 	}
 }

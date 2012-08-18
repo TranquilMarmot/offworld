@@ -35,7 +35,20 @@
 		<magFilter>GL_LINEAR</magFilter>
 	</texture>
 	
-	<animation name="playerlegs" frames="7">
+	<texture name="playerbody-full">
+	    <path>textures/player/playerbody.png</path>
+	    <minFilter>GL_LINEAR</minFilter>
+	    <magFilter>GL_LINEAR</magFilter>
+	    
+	    <subImage name="playerbody">
+	        <xOffset>0</xOffset>
+	        <yOffset>0</yOffset>
+	        <width>128</width>
+	        <height>270</height>
+	    </subImage>
+	</texture>
+	
+	<animation name="playerlegs" frames="10">
 	    <path>textures/player/legs.png</path>
 	    <minFilter>GL_NEAREST</minFilter>
 		<magFilter>GL_NEAREST</magFilter>
@@ -43,50 +56,71 @@
 		<frame number="0">
 		    <xOffset>0</xOffset>
 		    <yOffset>0</yOffset>
-		    <width>287</width>
-		    <height>244</height>
+		    <width>266</width>
+		    <height>240</height>
 		    <length>0.1f</length>
 		</frame>
 		<frame number="1">
-		    <xOffset>287</xOffset>
+		    <xOffset>266</xOffset>
 		    <yOffset>0</yOffset>
-		    <width>287</width>
-		    <height>244</height>
+		    <width>266</width>
+		    <height>240</height>
 		    <length>0.1f</length>
 		</frame>
 		<frame number="2">
-		    <xOffset>574</xOffset>
+		    <xOffset>532</xOffset>
 		    <yOffset>0</yOffset>
-		    <width>287</width>
-		    <height>244</height>
+		    <width>266</width>
+		    <height>240</height>
 		    <length>0.1f</length>
 		</frame>
 		<frame number="3">
-		    <xOffset>861</xOffset>
-		    <yOffset>0</yOffset>
-		    <width>287</width>
-		    <height>244</height>
+		    <xOffset>0</xOffset>
+		    <yOffset>240</yOffset>
+		    <width>266</width>
+		    <height>240</height>
 		    <length>0.1f</length>
 		</frame>
 		<frame number="4">
-		    <xOffset>1148</xOffset>
-		    <yOffset>0</yOffset>
-		    <width>287</width>
-		    <height>244</height>
+		    <xOffset>266</xOffset>
+		    <yOffset>240</yOffset>
+		    <width>266</width>
+		    <height>240</height>
 		    <length>0.1f</length>
 		</frame>
 		<frame number="5">
-		    <xOffset>1435</xOffset>
-		    <yOffset>0</yOffset>
-		    <width>287</width>
-		    <height>244</height>
+		    <xOffset>532</xOffset>
+		    <yOffset>240</yOffset>
+		    <width>266</width>
+		    <height>240</height>
 		    <length>0.1f</length>
 		</frame>
 		<frame number="6">
-		    <xOffset>1722</xOffset>
-		    <yOffset>0</yOffset>
-		    <width>287</width>
-		    <height>244</height>
+		    <xOffset>0</xOffset>
+		    <yOffset>480</yOffset>
+		    <width>266</width>
+		    <height>240</height>
+		    <length>0.1f</length>
+		</frame>
+		<frame number="7">
+		    <xOffset>266</xOffset>
+		    <yOffset>480</yOffset>
+		    <width>266</width>
+		    <height>240</height>
+		    <length>0.1f</length>
+		</frame>
+		<frame number="8">
+		    <xOffset>532</xOffset>
+		    <yOffset>480</yOffset>
+		    <width>266</width>
+		    <height>240</height>
+		    <length>0.1f</length>
+		</frame>
+		<frame number="9">
+		    <xOffset>0</xOffset>
+		    <yOffset>720</yOffset>
+		    <width>266</width>
+		    <height>240</height>
 		    <length>0.1f</length>
 		</frame>
 	</animation>

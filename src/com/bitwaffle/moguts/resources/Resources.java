@@ -10,6 +10,7 @@ import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 
 import com.bitwaffle.moguts.graphics.font.BitmapFont;
+import com.bitwaffle.moguts.graphics.textures.TextureManager;
 
 /**
  * Manages resources for the game. All resources should be acquired through this.

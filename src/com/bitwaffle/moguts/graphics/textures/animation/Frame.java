@@ -1,4 +1,4 @@
-package com.bitwaffle.moguts.graphics.animation;
+package com.bitwaffle.moguts.graphics.textures.animation;
 
 import java.nio.FloatBuffer;
 

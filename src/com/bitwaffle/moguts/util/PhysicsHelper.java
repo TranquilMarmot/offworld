@@ -146,7 +146,7 @@ public class PhysicsHelper {
 		playerBodyDef.position.set(0.0f, -15.0f);
 		
 		PolygonShape boxShape = new PolygonShape();
-		boxShape.setAsBox(1.0f, 1.5f);
+		boxShape.setAsBox(0.83062f, 1.8034f);
 		
 		FixtureDef playerFixture = new FixtureDef();
 		playerFixture.shape = boxShape;
@@ -154,7 +154,7 @@ public class PhysicsHelper {
 		playerFixture.friction = 0.3f;
 		playerFixture.restitution = 0.0f;
 		
-		Game.player = new Player(Renderers.PLAYER, playerBodyDef, 1.0f, 1.5f, playerFixture);
+		Game.player = new Player(Renderers.PLAYER, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
 		physics.addEntity(Game.player);
 		
 		for(int i = 0; i < 75; i++)
