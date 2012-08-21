@@ -29,8 +29,8 @@ public class Physics {
 	/** Gravity for the world */
 	private Vector2 gravity = new Vector2(0.0f, -9.8f);
 	
-	/** Whether or not to sleep TODO look into what this means */
-	boolean doSleep = false;
+	/** Whether or not to sleep entities when they don't move for a bit */
+	boolean doSleep = true;
 	
 	/** How many iterations to do for calculations */
 	final int velocityIterations = 6, positionIterations = 2;

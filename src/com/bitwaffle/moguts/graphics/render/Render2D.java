@@ -35,6 +35,8 @@ public class Render2D {
 	/** Fragment shader to load on init */
 	private static final String FRAGMENT_SHADER = "shaders/main.frag";
 	
+	public static boolean drawDebug = true;
+	
 	/** Initial values for camera */
 	private static final float DEFAULT_CAMX = 245.0f, DEFAULT_CAMY = 75.0f, DEFAULT_CAMZ = 0.04f;
 	
@@ -158,10 +160,19 @@ public class Render2D {
 				Matrix.scaleM(modelview, 0, camera.getZoom(), camera.getZoom(), 1.0f);
 				Matrix.translateM(modelview, 0, loc.x + cam.x, loc.y + cam.y, 0.0f);
 				Matrix.rotateM(modelview, 0, angle, 0.0f, 0.0f, 1.0f);
-				program.setUniformMatrix4f("ModelView", modelview);
+				this.sendModelViewToShader();
 				
-				if(ent.renderer != null)
+				if(ent.renderer != null){
 					ent.renderer.render(this, ent);
+					if(drawDebug){
+						Matrix.setIdentityM(modelview, 0);
+						Matrix.scaleM(modelview, 0, camera.getZoom(), camera.getZoom(), 1.0f);
+						Matrix.translateM(modelview, 0, loc.x + cam.x, loc.y + cam.y, 0.0f);
+						Matrix.rotateM(modelview, 0, angle, 0.0f, 0.0f, 1.0f);
+						this.sendModelViewToShader();
+						ent.renderer.renderDebug(this, ent);
+					}
+				}
 			}
 		}
 	}
@@ -195,7 +206,8 @@ public class Render2D {
 		}
 		
 		// draw FPS counter TODO move this somewhere else!
-		Game.resources.font.drawString("FPS: " + Game.currentFPS + "\nEnts: " + Game.physics.numDynamicEntities(), this, 80, 20, 0.15f);
+		float[] debugTextColor = new float[]{ 0.0f, 0.0f, 0.0f, 1.0f };
+		Game.resources.font.drawString("FPS: " + Game.currentFPS + "\nEnts: " + Game.physics.numDynamicEntities(), this, 80, 20, 0.15f, debugTextColor);
 	}
 	
 	/**
