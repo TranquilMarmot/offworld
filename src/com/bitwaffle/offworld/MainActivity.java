@@ -1,6 +1,5 @@
 package com.bitwaffle.offworld;
 
-import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
@@ -8,6 +7,9 @@ import android.view.Display;
 import android.view.Window;
 
 import com.bitwaffle.moguts.device.SurfaceView;
+import com.bitwaffle.moguts.swarm.LoginListener;
+import com.swarmconnect.Swarm;
+import com.swarmconnect.SwarmActivity;
 
 /**
  * public static void main(String[] args)!!!
@@ -15,7 +17,11 @@ import com.bitwaffle.moguts.device.SurfaceView;
  * 
  * @author TranquilMarmot
  */
-public class MainActivity extends Activity {
+public class MainActivity extends SwarmActivity {
+	private static final int SWARM_ID = 1374;
+	private static final String SWARM_KEY = "c853c5b0cc55a0d380366f35e3c7f8b0";
+	
+	
 	/**
 	 * This is VERY important! It holds on to the 'Game' object that
 	 * takes care of all the physics, rendering, etc. etc.
@@ -52,5 +58,8 @@ public class MainActivity extends Activity {
          */
         mGLView = new SurfaceView(this);
         setContentView(mGLView);
+        
+        // intialize swarm
+        Swarm.init(this, SWARM_ID, SWARM_KEY, new LoginListener());
     }
 }
