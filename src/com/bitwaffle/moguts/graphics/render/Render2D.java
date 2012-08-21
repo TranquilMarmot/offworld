@@ -35,7 +35,8 @@ public class Render2D {
 	/** Fragment shader to load on init */
 	private static final String FRAGMENT_SHADER = "shaders/main.frag";
 	
-	public static boolean drawDebug = true;
+	/** Whether or not to call every entity's debug drawing method */
+	public static boolean drawDebug = false;
 	
 	/** Initial values for camera */
 	private static final float DEFAULT_CAMX = 245.0f, DEFAULT_CAMY = 75.0f, DEFAULT_CAMZ = 0.04f;

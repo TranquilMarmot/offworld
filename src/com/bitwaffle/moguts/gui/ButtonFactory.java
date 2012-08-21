@@ -307,7 +307,7 @@ public class ButtonFactory {
 	private static RectangleButton makePauseButton(){
 		RectangleButton pauseButt = new RectangleButton(Game.windowWidth / 2, Game.windowHeight - 20, 35.0f, 20.0f){
 			// save/load buttons
-			private RectangleButton save, load, swarm;
+			private RectangleButton save, load, swarm, debug;
 			// whether or not buttons are up
 			private boolean buttonsUp = false;
 			
@@ -322,11 +322,13 @@ public class ButtonFactory {
 					Render2D.gui.removeButton(save);
 					Render2D.gui.removeButton(load);
 					Render2D.gui.removeButton(swarm);
+					Render2D.gui.removeButton(debug);
 					buttonsUp = false;
 				} else if(Game.paused && !buttonsUp){
 					Render2D.gui.addButton(save);
 					Render2D.gui.addButton(load);
 					Render2D.gui.addButton(swarm);
+					Render2D.gui.addButton(debug);
 					buttonsUp = true;
 				}
 			}
@@ -342,17 +344,21 @@ public class ButtonFactory {
 					load = makeLoadButton();
 				if(swarm == null)
 					swarm = makeSwarmButton();
+				if(debug == null)
+					debug = makeDebugButton();
 				
 				// add/remove buttons based on Game's running state
 				if(Game.paused){
 					Render2D.gui.addButton(save);
 					Render2D.gui.addButton(load);
 					Render2D.gui.addButton(swarm);
+					Render2D.gui.addButton(debug);
 					buttonsUp = true;
 				} else {
 					Render2D.gui.removeButton(save);
 					Render2D.gui.removeButton(load);
 					Render2D.gui.removeButton(swarm);
+					Render2D.gui.removeButton(debug);
 					buttonsUp = false;
 				}
 			}
@@ -496,5 +502,35 @@ public class ButtonFactory {
 			}
 		};
 		return swarmButt;
+	}
+	
+	private static RectangleButton makeDebugButton(){
+		RectangleButton debugButt = new RectangleButton(Game.windowWidth / 2 + 100.0f, Game.windowHeight / 2 + 150.0f, 70.0f, 40.0f){
+
+			@Override
+			public void update() {
+				this.x = Game.windowWidth / 2 + 200.0f;
+				this.y = Game.windowHeight / 2 - 250.0f;
+			}
+
+			@Override
+			protected void onRelease() {
+				Render2D.drawDebug = !Render2D.drawDebug;
+			}
+
+			@Override
+			protected void onSlideRelease() {}
+
+			@Override
+			protected void onPress() {}
+			
+			@Override
+			public void draw(Render2D renderer){
+				Game.resources.textures.bindTexture("blank");
+				super.draw(renderer);
+				Game.resources.font.drawString("Debug", renderer, x, y + 17.0f, 0.3f);
+			}
+		};
+		return debugButt;
 	}
 }
