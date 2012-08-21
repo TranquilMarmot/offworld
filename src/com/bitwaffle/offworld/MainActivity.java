@@ -18,7 +18,9 @@ import com.swarmconnect.SwarmActivity;
  * @author TranquilMarmot
  */
 public class MainActivity extends SwarmActivity {
+	/** ID for swarm */
 	private static final int SWARM_ID = 1374;
+	/** API key for swarm*/
 	private static final String SWARM_KEY = "c853c5b0cc55a0d380366f35e3c7f8b0";
 	
 	
@@ -41,9 +43,9 @@ public class MainActivity extends SwarmActivity {
         
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // TODO make this an option somewhere- does it even make a difference on newer versions of Android?
+        // TODO make this an option somewhere
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
-        //        WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+        //        WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
         // initialize window width/height variables
         Display display = getWindowManager().getDefaultDisplay();
@@ -61,5 +63,10 @@ public class MainActivity extends SwarmActivity {
         
         // intialize swarm
         Swarm.init(this, SWARM_ID, SWARM_KEY, new LoginListener());
+    }
+    
+    @Override
+    public void onBackPressed(){
+    	// TODO make this do the pause menu
     }
 }

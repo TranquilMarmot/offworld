@@ -27,7 +27,7 @@ public class LoginListener implements SwarmLoginListener {
 	/**
 	 * This method is called when the user has successfully logged in.
 	 */
-	public void userLoggedIn(SwarmActiveUser arg0) {
+	public void userLoggedIn(SwarmActiveUser user) {
 		
 	}
 

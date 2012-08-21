@@ -9,6 +9,7 @@ import com.bitwaffle.moguts.gui.button.RectangleButton;
 import com.bitwaffle.moguts.serialization.GameSaver;
 import com.bitwaffle.moguts.util.PhysicsHelper;
 import com.bitwaffle.offworld.Game;
+import com.swarmconnect.Swarm;
 
 /**
  * Temporary class for creating buttons
@@ -306,7 +307,7 @@ public class ButtonFactory {
 	private static RectangleButton makePauseButton(){
 		RectangleButton pauseButt = new RectangleButton(Game.windowWidth / 2, Game.windowHeight - 20, 35.0f, 20.0f){
 			// save/load buttons
-			private RectangleButton save, load;
+			private RectangleButton save, load, swarm;
 			// whether or not buttons are up
 			private boolean buttonsUp = false;
 			
@@ -320,10 +321,12 @@ public class ButtonFactory {
 				if(!Game.paused && buttonsUp){
 					Render2D.gui.removeButton(save);
 					Render2D.gui.removeButton(load);
+					Render2D.gui.removeButton(swarm);
 					buttonsUp = false;
 				} else if(Game.paused && !buttonsUp){
 					Render2D.gui.addButton(save);
 					Render2D.gui.addButton(load);
+					Render2D.gui.addButton(swarm);
 					buttonsUp = true;
 				}
 			}
@@ -337,15 +340,19 @@ public class ButtonFactory {
 					save = makeSaveButton();
 				if(load == null)
 					load = makeLoadButton();
+				if(swarm == null)
+					swarm = makeSwarmButton();
 				
 				// add/remove buttons based on Game's running state
 				if(Game.paused){
 					Render2D.gui.addButton(save);
 					Render2D.gui.addButton(load);
+					Render2D.gui.addButton(swarm);
 					buttonsUp = true;
 				} else {
 					Render2D.gui.removeButton(save);
 					Render2D.gui.removeButton(load);
+					Render2D.gui.removeButton(swarm);
 					buttonsUp = false;
 				}
 			}
@@ -384,7 +391,7 @@ public class ButtonFactory {
 
 			@Override
 			public void update() {
-				this.x = Game.windowWidth / 2 - 100.0f;
+				this.x = Game.windowWidth / 2 - 200.0f;
 				this.y = Game.windowHeight / 2 + 150.0f;
 			}
 
@@ -425,7 +432,7 @@ public class ButtonFactory {
 
 			@Override
 			public void update() {
-				this.x = Game.windowWidth / 2 + 100.0f;
+				this.x = Game.windowWidth / 2 + 0.0f;
 				this.y = Game.windowHeight / 2 + 150.0f;
 			}
 
@@ -456,5 +463,38 @@ public class ButtonFactory {
 			}
 		};
 		return loadButt;
+	}
+	
+	/**
+	 * @return Button to open swarm
+	 */
+	private static RectangleButton makeSwarmButton(){
+		RectangleButton swarmButt = new RectangleButton(Game.windowWidth / 2 + 100.0f, Game.windowHeight / 2 + 150.0f, 70.0f, 40.0f){
+
+			@Override
+			public void update() {
+				this.x = Game.windowWidth / 2 + 200.0f;
+				this.y = Game.windowHeight / 2 + 150.0f;
+			}
+
+			@Override
+			protected void onRelease() {
+				Swarm.showDashboard();
+			}
+
+			@Override
+			protected void onSlideRelease() {}
+
+			@Override
+			protected void onPress() {}
+			
+			@Override
+			public void draw(Render2D renderer){
+				Game.resources.textures.bindTexture("blank");
+				super.draw(renderer);
+				Game.resources.font.drawString("Swarm", renderer, x, y + 17.0f, 0.3f);
+			}
+		};
+		return swarmButt;
 	}
 }
