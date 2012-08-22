@@ -51,7 +51,11 @@ public class GUI {
 		
 		Iterator<Button> it = getButtonIterator();
 		
+		try{
 		while(it.hasNext())
 			it.next().update();
+		} catch(NullPointerException e){
+			System.out.println("guinull");
+		}
 	}
 }

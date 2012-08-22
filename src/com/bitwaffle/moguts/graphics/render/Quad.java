@@ -26,6 +26,9 @@ public class Quad {
 	/** Info on coordinate */
 	private static final int COORDS_PER_VERTEX = 3, COORDS_PER_TEXCOORD = 2;
 	
+	/** Six indices because we've got 2 triangles */
+	private static final int NUM_INDICES = 6;
+	
 	/**
 	 * Position coordinates (quad is scaled when drawn)
 	 */
@@ -65,13 +68,12 @@ public class Quad {
 		vertBuffer = BufferUtils.getFloatBuffer(coords.length);
 		vertBuffer.put(coords);
 		vertBuffer.rewind();
-		
-		positionHandle = renderer.program.getAttribLocation("vPosition");
 
 		defaultTexBuffer = BufferUtils.getFloatBuffer(defaultTexCoords.length);
 		defaultTexBuffer.put(defaultTexCoords);
 		defaultTexBuffer.rewind();
 		
+		positionHandle = renderer.program.getAttribLocation("vPosition");
 		texCoordHandle = renderer.program.getAttribLocation("vTexCoord");
 	}
 	
@@ -124,7 +126,7 @@ public class Quad {
         renderer.sendModelViewToShader();
 
         // actually draw the quad
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, NUM_INDICES);
         
         // don't forget to disable the attrib arrays!
         GLES20.glDisableVertexAttribArray(positionHandle);

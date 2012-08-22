@@ -16,6 +16,7 @@ import com.bitwaffle.offworld.Game;
  */
 public enum Renderers{
 	BOX(new BoxRenderer()),
+	CIRCLE(new CircleRenderer()),
 	BACKGROUND(new BackgroundRenderer()),
 	PLAYER(new PlayerRenderer());
 	

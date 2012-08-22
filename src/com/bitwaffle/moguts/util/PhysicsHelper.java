@@ -18,6 +18,7 @@ import com.bitwaffle.moguts.physics.Physics;
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.entities.Player;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableBox;
+import com.bitwaffle.offworld.entities.dynamic.DestroyableCircle;
 
 /**
  * Helper methods for Physics stuff
@@ -79,6 +80,41 @@ public class PhysicsHelper {
 	 */
 	public static DynamicEntity getDynamicEntity(Fixture fixture){
 		return (DynamicEntity)fixture.getBody().getUserData();
+	}
+	
+	public static void makeRandomCircle(Physics physics){
+		Random randy = new Random();
+		float circX = randy.nextFloat() * 100.0f - 50.0f;
+		if(circX < 1.0f) circX = 1.0f;
+		float circY = randy.nextFloat() * 50.0f - 25.0f;
+		if(circY < 1.0f) circY = 1.0f;
+		float radius = randy.nextFloat() * 1.5f;
+		if(radius < 1.0f) radius = 1.0f;
+		float r = randy.nextFloat();
+		float g = randy.nextFloat();
+		float b = randy.nextFloat();
+		
+		BodyDef circleDef = new BodyDef();
+		circleDef.type = BodyDef.BodyType.DynamicBody;
+		circleDef.position.set(circX, circY);
+		
+		DestroyableCircle circ = new DestroyableCircle(Renderers.CIRCLE, radius, circleDef, 1.0f, new float[]{r, g, b, 1.0f}){
+			@Override
+			public void init(World world){
+				super.init(world);
+				
+				Random randy = new Random();
+				this.body.setAngularVelocity(randy.nextFloat() * 1.0f);
+				
+				float linX = randy.nextFloat() * 1.0f;
+				float linY = randy.nextFloat() * 1.0f;
+				if(randy.nextBoolean()) linX *= -1.0f;
+				if(randy.nextBoolean()) linY *= -1.0f;
+				this.body.setLinearVelocity(linX, linY);
+			}
+		};
+		
+		physics.addEntity(circ);
 	}
 	
 	/**
@@ -161,7 +197,9 @@ public class PhysicsHelper {
 		Render2D.camera.follow(Game.player);
 		SurfaceView.touchHandler.setPlayer(Game.player);
 		
-		for(int i = 0; i < 75; i++)
+		for(int i = 0; i < 35; i++)
 			PhysicsHelper.makeRandomBox(physics);
+		for(int i = 0; i < 35; i++)
+			PhysicsHelper.makeRandomCircle(physics);
 	}
 }

@@ -19,6 +19,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.moguts.device.SurfaceView;
 import com.bitwaffle.moguts.entities.BoxEntity;
+import com.bitwaffle.moguts.entities.CircleEntity;
 import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.graphics.render.Render2D;
@@ -33,6 +34,7 @@ import com.bitwaffle.moguts.serialization.serializers.shapes.PolygonShapeSeriali
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.entities.Player;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableBox;
+import com.bitwaffle.offworld.entities.dynamic.DestroyableCircle;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Registration;
 import com.esotericsoftware.kryo.io.Input;
@@ -75,7 +77,9 @@ public class GameSaver {
 		kryo.register(DynamicEntity.class);
 		kryo.register(Player.class);
 		kryo.register(BoxEntity.class);
+		kryo.register(CircleEntity.class);
 		kryo.register(DestroyableBox.class);
+		kryo.register(DestroyableCircle.class);
 	}
 	
 	public void saveGame(String file, Physics physics){
@@ -142,6 +146,12 @@ public class GameSaver {
 		} else if(ent instanceof BoxEntity) {
 			kryo.writeClass(output, BoxEntity.class);
 			kryo.writeObject(output, (BoxEntity)ent);
+		} else if(ent instanceof DestroyableCircle){
+			kryo.writeClass(output, DestroyableCircle.class);
+			kryo.writeObject(output, (DestroyableCircle)ent);
+		} else if(ent instanceof CircleEntity){
+			kryo.writeClass(output, CircleEntity.class);
+			kryo.writeObject(output, (CircleEntity)ent);
 		} else {
 			kryo.writeClass(output, DynamicEntity.class);
 			kryo.writeObject(output, (DynamicEntity)ent);

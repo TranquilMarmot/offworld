@@ -35,6 +35,9 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 	private float density;
 	private boolean isInitialized = false;
 	
+	/**
+	 * No-args constructor for kryo only!
+	 */
 	public DynamicEntity(){
 		super();
 	}

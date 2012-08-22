@@ -55,6 +55,12 @@ public class Render2D {
 	
 	/** Used for ALL quad rendering! Whenever something needs to be drawn, this quad's draw() method should be called */
 	public Quad quad;
+	
+	/** Used for ALL circle rendering! */
+	public Circle circle;
+	
+	/** How many steps to take when constructing circle's geometry (lower numbers == more vertices) */
+	private static final float CIRCLE_STEP = 15.0f;
 
 	/**
 	 * Create a new 2D renderer
@@ -70,6 +76,7 @@ public class Render2D {
 		SurfaceView.touchHandler.setCamera(camera);
 		
 		quad = new Quad(this);
+		circle = new Circle(this, CIRCLE_STEP);
 		
 		gui = new GUI();
 	}
