@@ -23,7 +23,7 @@ public class SurfaceView extends GLSurfaceView {
 	 * It's also got a static instance of {@link Physics} which should be
 	 * used when interacting with the physics world) 
 	 */
-	public static Game renderer;
+	public static Game game;
 	
 	/** Handles any touch events */
 	public static TouchHandler touchHandler;
@@ -36,14 +36,13 @@ public class SurfaceView extends GLSurfaceView {
         
         touchHandler = new TouchHandler(Game.player, Render2D.camera);
         
-        renderer = new Game(context);
-        this.setRenderer(renderer);  
+        game = new Game(context);
+        this.setRenderer(game);  
   }
     
     @Override
     public boolean onTouchEvent(MotionEvent e) {
     	// simply send the event to the touch handler
-
     	try{
     		return touchHandler.touchEvent(e);
     	}catch (NullPointerException err){

@@ -79,7 +79,6 @@ public class Quad {
 	
 	/**
 	 * Draw a quad
-	 * @param renderer Renderer to use to draw quad (need to know to scale matrices)
 	 * @param width Width of quad, from center
 	 * @param height Height of quad, from center
 	 */
@@ -89,7 +88,6 @@ public class Quad {
 	
 	/**
 	 * Draw a quad, with optional flipping
-	 * @param renderer Renderer to use to draw quad (need to know to scale matrices)
 	 * @param width Width of quad, from center
 	 * @param height Height of quad, from center
 	 * @param flipHorizontal Whether or not to flip the image horizontally
@@ -102,7 +100,6 @@ public class Quad {
 	
 	/**
 	 * Draw a quad, with optional flipping
-	 * @param renderer Renderer to use to draw quad (need to know to scale matrices)
 	 * @param width Width of quad, from center
 	 * @param height Height of quad, from center
 	 * @param flipHorizontal Whether or not to flip the image horizontally

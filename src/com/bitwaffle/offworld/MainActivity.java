@@ -8,6 +8,7 @@ import android.view.Window;
 
 import com.bitwaffle.moguts.device.SurfaceView;
 import com.bitwaffle.moguts.swarm.LoginListener;
+import com.bitwaffle.moguts.swarm.SwarmConsts;
 import com.swarmconnect.Swarm;
 import com.swarmconnect.SwarmActivity;
 
@@ -18,12 +19,6 @@ import com.swarmconnect.SwarmActivity;
  * @author TranquilMarmot
  */
 public class MainActivity extends SwarmActivity {
-	/** ID for swarm */
-	private static final int SWARM_ID = 1374;
-	/** API key for swarm*/
-	private static final String SWARM_KEY = "c853c5b0cc55a0d380366f35e3c7f8b0";
-	
-	
 	/**
 	 * This is VERY important! It holds on to the 'Game' object that
 	 * takes care of all the physics, rendering, etc. etc.
@@ -62,7 +57,7 @@ public class MainActivity extends SwarmActivity {
         setContentView(mGLView);
         
         // intialize swarm
-        Swarm.init(this, SWARM_ID, SWARM_KEY, new LoginListener());
+        Swarm.init(this, SwarmConsts.App.APP_ID, SwarmConsts.App.APP_AUTH, new LoginListener());
     }
     
     @Override

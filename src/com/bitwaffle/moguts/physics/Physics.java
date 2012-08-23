@@ -112,7 +112,7 @@ public class Physics {
 	 * Use with caution! Can easily cause ConcurrentModificationExceptions
 	 * if something is using an iterator from this physics class.
 	 */
-	public void restart(){
+	public void clearWorld(){
 		entities.clear();
 		world.dispose();
 		world = new World(gravity, doSleep);
