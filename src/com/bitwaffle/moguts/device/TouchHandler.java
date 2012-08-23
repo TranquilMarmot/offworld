@@ -2,7 +2,6 @@ package com.bitwaffle.moguts.device;
 
 import java.util.Iterator;
 
-import android.util.FloatMath;
 import android.view.MotionEvent;
 
 import com.badlogic.gdx.math.Vector2;
@@ -72,35 +71,6 @@ public class TouchHandler {
 	}
 
 	/**
-	 * Get how far apart two fingers are
-	 * 
-	 * @param event
-	 *            Touch event
-	 * @return Distance between two fingers
-	 */
-	private float spacing(float x1, float y1, float x2, float y2) {
-		float x = x1 - x2;
-		float y = y1 - y2;
-		return FloatMath.sqrt(x * x + y * y);
-	}
-
-	/**
-	 * Get the midpoint between two fingers
-	 * 
-	 * @param point
-	 *            Point to output midpoint to (avoid creating object to save
-	 *            garbage collector some time)
-	 * @param event
-	 *            Touch event
-	 */
-	@SuppressWarnings("unused")
-	private void midPoint(Vector2 point, MotionEvent event) {
-		float x = event.getX(0) + event.getX(1);
-		float y = event.getY(0) + event.getY(1);
-		point.set(x / 2, y / 2);
-	}
-
-	/**
 	 * Take care of any touch events
 	 * @param e MotionEvent
 	 * @return ???
@@ -121,7 +91,7 @@ public class TouchHandler {
 		float y1 = (pointerCount >= 2) ? e.getY(1) : 0.0f;
 
 		// how far apart the two pointer are
-		float spacing = spacing(x0, y0, x1, y1);
+		float spacing = MathHelper.spacing(x0, y0, x1, y1);
 
 		switch (action) {
 		// initial pointer is put down

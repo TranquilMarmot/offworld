@@ -1,6 +1,7 @@
 package com.bitwaffle.moguts.util;
 
 import android.opengl.Matrix;
+import android.util.FloatMath;
 import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
@@ -28,6 +29,34 @@ public class MathHelper {
 		float dx = b.x - a.x;
 		float dy = b.y - a.y;
 		return (float)(Math.atan2(dy, dx) * 180.0 / Math.PI);
+	}
+	
+	/**
+	 * Get the distance between two points
+	 * @param x0 First point's X value
+	 * @param y0 First point's Y value
+	 * @param x1 Second point's X value
+	 * @param y1 Second point's Y value
+	 * @return Distance between points
+	 */
+	public static float spacing(float x0, float y0, float x1, float y1){
+		float x = x0 - x1;
+		float y = y0 - y1;
+		return FloatMath.sqrt(x * x + y * y);
+	}
+	
+	/**
+	 * Get the midpoint between two points
+	 * @param out Vector to output midpoint to
+	 * @param x0 First point's X value
+	 * @param y0 First point's Y value
+	 * @param x1 Second point's X value
+	 * @param y1 Second point's Y value
+	 */
+	public static void midPoint(Vector2 out, float x0, float y0, float x1, float y1){
+		float x = x0 - x1;
+		float y = y0 - y1;
+		out.set(x / 2.0f, y / 2.0f);
 	}
 	
 	/**

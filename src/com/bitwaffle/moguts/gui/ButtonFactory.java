@@ -397,7 +397,7 @@ public class ButtonFactory {
 
 			@Override
 			public void update() {
-				this.x = Game.windowWidth / 2 - 200.0f;
+				this.x = Game.windowWidth / 2 - 150.0f;
 				this.y = Game.windowHeight / 2 + 150.0f;
 			}
 
@@ -438,7 +438,7 @@ public class ButtonFactory {
 
 			@Override
 			public void update() {
-				this.x = Game.windowWidth / 2 + 0.0f;
+				this.x = Game.windowWidth / 2 + 150.0f;
 				this.y = Game.windowHeight / 2 + 150.0f;
 			}
 
@@ -479,8 +479,8 @@ public class ButtonFactory {
 
 			@Override
 			public void update() {
-				this.x = Game.windowWidth / 2 + 200.0f;
-				this.y = Game.windowHeight / 2 + 150.0f;
+				this.x = Game.windowWidth / 2 - 150.0f;
+				this.y = Game.windowHeight / 2 - 150.0f;
 			}
 
 			@Override
@@ -509,8 +509,8 @@ public class ButtonFactory {
 
 			@Override
 			public void update() {
-				this.x = Game.windowWidth / 2 + 200.0f;
-				this.y = Game.windowHeight / 2 - 250.0f;
+				this.x = Game.windowWidth / 2 + 150.0f;
+				this.y = Game.windowHeight / 2 - 150.0f;
 			}
 
 			@Override
