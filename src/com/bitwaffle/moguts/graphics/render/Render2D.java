@@ -106,7 +106,7 @@ public class Render2D {
 		program.addShader(vert);
 		program.addShader(frag);
 		if (!program.link())
-			Log.e(LOGTAG, "Error linking program! " + program.log());
+			Log.e(LOGTAG, "Error linking program!\n" + program.log());
 	}
 
 	/**

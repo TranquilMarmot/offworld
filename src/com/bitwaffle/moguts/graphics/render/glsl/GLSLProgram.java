@@ -60,8 +60,7 @@ public class GLSLProgram {
 		logString = GLES20.glGetProgramInfoLog(handle);
 		
 		// check for any errors while linking
-		if(!logString.equals("")){
-			System.err.println("Failed to link program! " + logString);
+		if(!(logString.equals("") || logString.contains("Link was successful.\n"))){
 			linked = false;
 		} else
 			linked = true;
