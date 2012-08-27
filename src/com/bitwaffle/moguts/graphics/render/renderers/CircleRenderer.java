@@ -26,8 +26,8 @@ public class CircleRenderer implements EntityRenderer {
 		Game.resources.textures.bindTexture("blank");
 		
 		float[] col = new float[4];
-		col[0] = circ.body.isAwake() ? 0.0f : 1.0f;
-		col[1] = circ.body.isAwake() ? 1.0f : 0.0f;
+		col[0] = (circ.body != null) ? (circ.body.isAwake() ? 0.0f : 1.0f) : 0.0f;
+		col[1] = (circ.body != null) ? (circ.body.isAwake() ? 1.0f : 0.0f) : 0.0f;
 		col[2] = 0.0f;
 		col[3] = 0.2f;
 		

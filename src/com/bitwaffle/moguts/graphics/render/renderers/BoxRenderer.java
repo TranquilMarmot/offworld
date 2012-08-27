@@ -25,8 +25,8 @@ public class BoxRenderer implements EntityRenderer{
 		Game.resources.textures.bindTexture("blank");
 		
 		float[] col = new float[4];
-		col[0] = box.body.isAwake() ? 0.0f : 1.0f;
-		col[1] = box.body.isAwake() ? 1.0f : 0.0f;
+		col[0] = (box.body != null) ? (box.body.isAwake() ? 0.0f : 1.0f) : 0.0f;
+		col[1] =(box.body != null) ? (box.body.isAwake() ? 1.0f : 0.0f) : 0.0f;
 		col[2] = 0.0f;
 		col[3] = 0.2f;
 		

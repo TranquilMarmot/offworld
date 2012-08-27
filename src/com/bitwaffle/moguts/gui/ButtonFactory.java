@@ -5,6 +5,7 @@ import android.opengl.GLES20;
 import com.bitwaffle.moguts.device.TextInput;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.render.Render2D;
+import com.bitwaffle.moguts.gui.button.CircleButton;
 import com.bitwaffle.moguts.gui.button.RectangleButton;
 import com.bitwaffle.moguts.serialization.GameSaver;
 import com.bitwaffle.moguts.util.PhysicsHelper;
@@ -44,6 +45,8 @@ public class ButtonFactory {
 		gui.addButton(makeBoxButton());
 		gui.addButton(makeCameraButton());
 		gui.addButton(makePauseButton());
+		
+		gui.addButton(makeCircleButton());
 	}
 
 	/**
@@ -267,6 +270,39 @@ public class ButtonFactory {
 			}
 		};
 		return camButt;
+	}
+	
+	private static CircleButton makeCircleButton(){
+		CircleButton butt = new CircleButton(Game.windowWidth - 80.0f, 40.0f, 40.0f){
+			@Override
+			public void update(){
+				this.x = Game.windowWidth - 130.0f;
+				this.active[0] = 0.75f;
+				this.active[1] = 0.75f;
+				this.active[2] = 0.75f;
+			}
+
+			@Override
+			protected void onRelease() {
+				Game.vibration.vibrate(25);
+				PhysicsHelper.makeRandomCircle(Game.physics);
+				Game.resources.sounds.play("test");
+			}
+
+			@Override
+			protected void onSlideRelease() {}
+
+			@Override
+			protected void onPress() {}
+			
+			@Override
+			public void draw(Render2D renderer){
+				Game.resources.textures.bindTexture("box");
+				super.draw(renderer);
+			}
+		};
+		
+		return butt;
 	}
 	
 	/**

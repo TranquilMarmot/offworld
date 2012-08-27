@@ -203,14 +203,18 @@ public class Render2D {
 	private void renderGUI(GUI gui){
 		Iterator<Button> it = gui.getButtonIterator();
 		
-		while(it.hasNext()){
-			Button butt = it.next();
-			
-			Matrix.setIdentityM(modelview, 0);
-			Matrix.translateM(modelview, 0, butt.x, butt.y, 0.0f);
-			program.setUniformMatrix4f("ModelView", modelview);
-			
-			butt.draw(this);
+		try{
+			while(it.hasNext()){
+				Button butt = it.next();
+				
+				Matrix.setIdentityM(modelview, 0);
+				Matrix.translateM(modelview, 0, butt.x, butt.y, 0.0f);
+				program.setUniformMatrix4f("ModelView", modelview);
+				
+				butt.draw(this);
+			}
+		} catch(NullPointerException e){
+			Log.v("GUI", "Got null button (ignoring)");
 		}
 		
 		// draw FPS counter TODO move this somewhere else!

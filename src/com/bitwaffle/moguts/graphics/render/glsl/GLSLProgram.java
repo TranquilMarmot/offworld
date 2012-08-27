@@ -75,7 +75,15 @@ public class GLSLProgram {
 	 * Use this program
 	 */
 	public void use(){
-		if(handle <= 0 || !linked)
+		/*
+		 * Checking if the program is linked before using it
+		 * was causing some issues. There's no standard for what gets returned
+		 * by the log when glLinkProgram gets called, so it's impossible to check
+		 * for all cases. As such, it's very difficult to determine whether or not
+		 * the program got linked successfully, so checking for linkage here would
+		 * just made the program not run. 
+		 */
+		if(handle <= 0 /*|| !linked*/)
 			return;
 		GLES20.glUseProgram(handle);
 	}

@@ -93,7 +93,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 		if(body != null){
 			Vector2 linVec = body.getLinearVelocity();
 			if(linVec.x > 0.5f || linVec.x < -0.5f){
-				// FIXME should this be defined in the animation's XML?
+				// FIXME should the animation speed be defined in the animation's XML?
 				float animationStep = timeStep * Math.abs(linVec.x / 15.0f);
 				legsAnimation.updateAnimation(animationStep);
 			}
@@ -155,7 +155,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 		// we can only jump if the game isn't paused and if the timer is done
 		if(!Game.paused && jumpTimer >= JUMP_COOLDOWN){
 			// perform an AABB query underneath the player's feet
-			Vector2 underneath = new Vector2(this.location.x, this.location.y - this.height * 2.0f);
+			Vector2 underneath = new Vector2(this.location.x, this.location.y - this.height * 1.25f);
 			FirstHitQueryCallback callback = new FirstHitQueryCallback();
 			this.body.getWorld().QueryAABB(callback, 
 			                             underneath.x - this.width,
