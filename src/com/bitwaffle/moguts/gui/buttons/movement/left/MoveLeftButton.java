@@ -1,16 +1,16 @@
 package com.bitwaffle.moguts.gui.buttons.movement.left;
 
-import com.bitwaffle.moguts.gui.buttons.ButtonManager;
 import com.bitwaffle.moguts.gui.buttons.RectangleButton;
+import com.bitwaffle.moguts.gui.buttons.movement.MovementButtonManager;
 import com.bitwaffle.offworld.Game;
 
 /**
  * Button to move left
  */
 public class MoveLeftButton extends RectangleButton{
-	protected ButtonManager buttMan;
+	protected MovementButtonManager buttMan;
 	
-	public MoveLeftButton(ButtonManager buttMan, float x, float y, float width, float height) {
+	public MoveLeftButton(MovementButtonManager buttMan, float x, float y, float width, float height) {
 		super(x, y, width, height);
 		this.buttMan = buttMan;
 	}

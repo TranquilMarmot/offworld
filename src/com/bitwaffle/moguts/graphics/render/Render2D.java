@@ -126,7 +126,7 @@ public class Render2D {
 		renderEntities(Game.physics.getDynamicEntityIterator());
 		
 		setUpProjectionScreenCoords();
-		// draw pause text
+		// draw pause text FIXME temp
 		if(Game.isPaused()){
 			String pauseString = "Hello. This is a message to let you know that\nthe game is paused. Have a nice day.";
 			float scale = 0.3f;

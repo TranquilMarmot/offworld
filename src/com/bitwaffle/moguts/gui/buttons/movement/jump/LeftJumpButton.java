@@ -3,14 +3,14 @@ package com.bitwaffle.moguts.gui.buttons.movement.jump;
 import android.opengl.GLES20;
 
 import com.bitwaffle.moguts.graphics.render.Render2D;
-import com.bitwaffle.moguts.gui.buttons.ButtonManager;
+import com.bitwaffle.moguts.gui.buttons.movement.MovementButtonManager;
 import com.bitwaffle.offworld.Game;
 
 /**
  * Button to jump that stays on the left side of the screen
  */
 public class LeftJumpButton extends JumpButton{
-	public LeftJumpButton(ButtonManager buttMan){
+	public LeftJumpButton(MovementButtonManager buttMan){
 		super(buttMan,
 				buttMan.movementButtonWidth(),
 				Game.windowHeight - (buttMan.movementButtonHeight() * 3.0f),

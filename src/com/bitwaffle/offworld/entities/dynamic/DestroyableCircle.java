@@ -1,7 +1,7 @@
 package com.bitwaffle.offworld.entities.dynamic;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.bitwaffle.moguts.entities.CircleEntity;
+import com.bitwaffle.moguts.entities.dynamic.CircleEntity;
 import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
 import com.bitwaffle.offworld.interfaces.Health;
 import com.esotericsoftware.kryo.Kryo;

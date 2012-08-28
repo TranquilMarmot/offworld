@@ -1,6 +1,7 @@
 package com.bitwaffle.moguts.entities;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.moguts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
@@ -17,6 +18,7 @@ import com.esotericsoftware.kryo.io.Output;
  * @see DynamicEntity
  */
 public abstract class Entity implements KryoSerializable{
+	/** Renderer used to draw this entity */
 	public Renderers renderer;
 	
 	/** Current location of entity */
@@ -44,18 +46,38 @@ public abstract class Entity implements KryoSerializable{
 		this.location = location;
 	}
 	
+	/**
+	 * Set an entity's location
+	 * @param newLocation New location for entity
+	 */
 	public void setLocation(Vector2 newLocation){
 		location.set(newLocation);
 	}
 	
+	/**
+	 * Set an entity'a angle
+	 * @param newAngle New angle for entity
+	 */
 	public void setAngle(float newAngle){
 		this.angle = newAngle;
 	}
 	
+	/** @return Current location of entity */
 	public Vector2 getLocation(){ return location; }
+	/** @return Current angle of entity */
 	public float getAngle(){ return angle; }
 	
+	/**
+	 * Updates the entity- this can pretty much do anything and
+	 * is called every frame
+	 * @param timeStep How much time has passed since last update (in seconds)
+	 */
 	public abstract void update(float timeStep);
+	
+	/**
+	 * Clean up any resources this entity may have allocated
+	 * (called right before the entity gets removed)
+	 */
 	public abstract void cleanup();
 	
 	public void read(Kryo kryo, Input input){

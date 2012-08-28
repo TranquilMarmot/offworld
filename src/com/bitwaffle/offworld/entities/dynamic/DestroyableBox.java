@@ -2,7 +2,7 @@ package com.bitwaffle.offworld.entities.dynamic;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.bitwaffle.moguts.entities.BoxEntity;
+import com.bitwaffle.moguts.entities.dynamic.BoxEntity;
 import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
 import com.bitwaffle.offworld.interfaces.Health;
 import com.esotericsoftware.kryo.Kryo;

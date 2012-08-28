@@ -4,7 +4,7 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.bitwaffle.moguts.entities.DynamicEntity;
+import com.bitwaffle.moguts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.moguts.util.PhysicsHelper;
 
 /**

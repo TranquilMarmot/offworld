@@ -2,6 +2,7 @@ package com.bitwaffle.moguts.entities;
 
 import java.util.Iterator;
 
+import com.bitwaffle.moguts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 
 /**

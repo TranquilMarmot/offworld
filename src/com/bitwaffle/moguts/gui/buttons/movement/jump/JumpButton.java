@@ -1,16 +1,16 @@
 package com.bitwaffle.moguts.gui.buttons.movement.jump;
 
-import com.bitwaffle.moguts.gui.buttons.ButtonManager;
 import com.bitwaffle.moguts.gui.buttons.RectangleButton;
+import com.bitwaffle.moguts.gui.buttons.movement.MovementButtonManager;
 import com.bitwaffle.offworld.Game;
 
 /**
  * Button to jump
  */
 public class JumpButton extends RectangleButton{
-	protected ButtonManager buttMan;
+	protected MovementButtonManager buttMan;
 	
-	public JumpButton(ButtonManager buttMan, float x, float y, float width, float height) {
+	public JumpButton(MovementButtonManager buttMan, float x, float y, float width, float height) {
 		super(x, y, width, height);
 		this.buttMan = buttMan;
 	}

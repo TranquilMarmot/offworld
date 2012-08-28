@@ -1,7 +1,6 @@
 package com.bitwaffle.moguts.gui.buttons.pause;
 
 import com.bitwaffle.moguts.graphics.render.Render2D;
-import com.bitwaffle.moguts.gui.buttons.ButtonManager;
 import com.bitwaffle.moguts.gui.buttons.RectangleButton;
 import com.bitwaffle.offworld.Game;
 import com.swarmconnect.Swarm;
@@ -10,8 +9,12 @@ public class SwarmButton extends RectangleButton {
 	// offset of button from center
 	public static float xOffset = -150.0f, yOffset = -150.0f;
 
-	public SwarmButton(ButtonManager buttMan) {
-		super((Game.windowWidth / 2.0f) + xOffset, (Game.windowHeight / 2.0f) + yOffset, buttMan.pauseMenuButtonWidth(), buttMan.pauseMenuButtonHeight());
+	public SwarmButton(PauseButtonManager buttMan) {
+		super(
+				(Game.windowWidth / 2.0f) + xOffset,
+				(Game.windowHeight / 2.0f) + yOffset,
+				buttMan.pauseMenuButtonWidth(),
+				buttMan.pauseMenuButtonHeight());
 	}
 
 	@Override

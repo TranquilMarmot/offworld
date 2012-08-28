@@ -1,4 +1,4 @@
-package com.bitwaffle.moguts.entities;
+package com.bitwaffle.moguts.entities.dynamic;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;

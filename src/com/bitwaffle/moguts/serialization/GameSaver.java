@@ -12,8 +12,8 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.bitwaffle.moguts.device.SurfaceView;
-import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.entities.Entity;
+import com.bitwaffle.moguts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.physics.Physics;
 import com.bitwaffle.offworld.Game;

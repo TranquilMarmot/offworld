@@ -10,7 +10,6 @@ import android.os.SystemClock;
 
 import com.bitwaffle.moguts.device.Vibration;
 import com.bitwaffle.moguts.graphics.render.Render2D;
-import com.bitwaffle.moguts.gui.GUI;
 import com.bitwaffle.moguts.physics.Physics;
 import com.bitwaffle.moguts.resources.Resources;
 import com.bitwaffle.moguts.util.PhysicsHelper;
@@ -139,7 +138,6 @@ public class Game implements GLSurfaceView.Renderer {
     
     public static void togglePause(){
     	paused = !paused;
-    	GUI.buttons.togglePauseMenu();
     }
     
     public static boolean isPaused(){

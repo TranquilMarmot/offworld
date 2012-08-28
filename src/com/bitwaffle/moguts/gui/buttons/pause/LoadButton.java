@@ -2,7 +2,6 @@ package com.bitwaffle.moguts.gui.buttons.pause;
 
 import com.bitwaffle.moguts.device.TextInput;
 import com.bitwaffle.moguts.graphics.render.Render2D;
-import com.bitwaffle.moguts.gui.buttons.ButtonManager;
 import com.bitwaffle.moguts.gui.buttons.RectangleButton;
 import com.bitwaffle.moguts.serialization.GameSaver;
 import com.bitwaffle.offworld.Game;
@@ -11,8 +10,12 @@ public class LoadButton extends RectangleButton {
 	// offset of button from center
 	public static float xOffset = 150.0f, yOffset = 150.0f;
 
-	public LoadButton(ButtonManager buttMan) {
-		super((Game.windowWidth / 2.0f) + xOffset, (Game.windowHeight / 2.0f) + yOffset, buttMan.pauseMenuButtonWidth(), buttMan.pauseMenuButtonHeight());
+	public LoadButton(PauseButtonManager buttMan) {
+		super(
+				(Game.windowWidth / 2.0f) + xOffset,
+				(Game.windowHeight / 2.0f) + yOffset,
+				buttMan.pauseMenuButtonWidth(),
+				buttMan.pauseMenuButtonHeight());
 	}
 
 	@Override
@@ -28,7 +31,7 @@ public class LoadButton extends RectangleButton {
 		TextInput input = new TextInput("Load Game", "Enter save to load"){
 			@Override
 			public void parseInput(String input) {
-				saver.saveGame(input + ".ofw", Game.physics);
+				saver.loadGame(input + ".ofw", Game.physics);
 			}
 		};
 		input.askForInput();

@@ -4,6 +4,9 @@ import java.util.Iterator;
 
 import com.bitwaffle.moguts.gui.buttons.Button;
 import com.bitwaffle.moguts.gui.buttons.ButtonManager;
+import com.bitwaffle.moguts.gui.buttons.movement.MovementButtonManager;
+import com.bitwaffle.moguts.gui.buttons.pause.PauseButtonManager;
+import com.bitwaffle.offworld.Game;
 
 /**
  * Handles all GUI elements
@@ -11,20 +14,36 @@ import com.bitwaffle.moguts.gui.buttons.ButtonManager;
  * @author TranquilMarmot
  */
 public class GUI {
-	// FIXME use an EntityList for this? Maybe rename EntityList :P (or just make GUIObject extend entity?)
-	// TODO button list is separate at the moment because they get checked on every touch event, probably also need a non-pressable UI list
-	public static ButtonManager buttons;
+	/** All of our pause buttons */
+	private PauseButtonManager pauseButtons;
+	/** All of our movement buttons */
+	private MovementButtonManager movementButtons;
+	
+	/** Current button manager (only one that gets rendered/has its buttons checked) */
+	private ButtonManager currentButtonManager;
 	
 	public GUI(){
-		buttons = new ButtonManager();
+		pauseButtons = new PauseButtonManager();
+		movementButtons = new MovementButtonManager();
+		
+		if(Game.isPaused())
+			currentButtonManager = pauseButtons;
+		else
+			currentButtonManager = movementButtons;
 	}
 	
 	public void update(){
-		buttons.update();
+		pauseButtons.update();
+		movementButtons.update();
+		
+		if(Game.isPaused())
+			currentButtonManager = pauseButtons;
+		else
+			currentButtonManager = movementButtons;
 	}
 	
 	public Iterator<Button> getButtonIterator(){
-		return buttons.getButtonIterator();
+		return currentButtonManager.getButtonIterator();
 	}
 	
 	

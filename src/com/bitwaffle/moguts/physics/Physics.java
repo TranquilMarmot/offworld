@@ -9,9 +9,9 @@ import android.util.FloatMath;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.GdxNativesLoader;
-import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.entities.Entities;
 import com.bitwaffle.moguts.entities.Entity;
+import com.bitwaffle.moguts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.moguts.physics.callbacks.FirstHitQueryCallback;
 
 /**

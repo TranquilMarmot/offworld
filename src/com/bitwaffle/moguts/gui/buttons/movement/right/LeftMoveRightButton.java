@@ -3,14 +3,14 @@ package com.bitwaffle.moguts.gui.buttons.movement.right;
 import android.opengl.GLES20;
 
 import com.bitwaffle.moguts.graphics.render.Render2D;
-import com.bitwaffle.moguts.gui.buttons.ButtonManager;
+import com.bitwaffle.moguts.gui.buttons.movement.MovementButtonManager;
 import com.bitwaffle.offworld.Game;
 
 /**
  * Button to move right that stays on the left side of the screen
  */
 public class LeftMoveRightButton extends MoveRightButton{
-	public LeftMoveRightButton(ButtonManager buttMan) {
+	public LeftMoveRightButton(MovementButtonManager buttMan) {
 		super(buttMan,
 				buttMan.movementButtonWidth() * 3.0f,
 				Game.windowHeight - buttMan.movementButtonHeight(),

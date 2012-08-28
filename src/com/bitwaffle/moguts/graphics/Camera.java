@@ -1,8 +1,8 @@
 package com.bitwaffle.moguts.graphics;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.moguts.entities.DynamicEntity;
 import com.bitwaffle.moguts.entities.Entity;
+import com.bitwaffle.moguts.entities.dynamic.DynamicEntity;
 
 /**
  * Describes how a scene should be rendered
