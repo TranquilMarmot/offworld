@@ -10,6 +10,7 @@ import android.os.SystemClock;
 
 import com.bitwaffle.moguts.device.Vibration;
 import com.bitwaffle.moguts.graphics.render.Render2D;
+import com.bitwaffle.moguts.gui.GUI;
 import com.bitwaffle.moguts.physics.Physics;
 import com.bitwaffle.moguts.resources.Resources;
 import com.bitwaffle.moguts.util.PhysicsHelper;
@@ -39,7 +40,7 @@ public class Game implements GLSurfaceView.Renderer {
 	public static Player player;
 	
 	/** Whether or not the game is paused */
-	public static volatile boolean paused = false;
+	private static boolean paused = false;
 	
 	/** Current height and width of the window */
 	public static volatile int windowWidth, windowHeight;
@@ -134,5 +135,14 @@ public class Game implements GLSurfaceView.Renderer {
     	windowWidth = width;
     	aspect = (float) width /  (float) height;
         GLES20.glViewport(0, 0, width, height);
+    }
+    
+    public static void togglePause(){
+    	paused = !paused;
+    	GUI.buttons.togglePauseMenu();
+    }
+    
+    public static boolean isPaused(){
+    	return paused;
     }
 }

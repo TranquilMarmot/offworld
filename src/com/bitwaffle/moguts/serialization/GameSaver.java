@@ -106,7 +106,7 @@ public class GameSaver {
 	
 	@SuppressWarnings("unchecked")
 	public void loadGame(String file, Physics physics){
-		Game.paused = true;
+		//Game.paused = true;
 		// clear the physics world
 		physics.clearWorld();
 		
@@ -150,6 +150,6 @@ public class GameSaver {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Game.paused = false;
+		//Game.paused = false;
 	}
 }

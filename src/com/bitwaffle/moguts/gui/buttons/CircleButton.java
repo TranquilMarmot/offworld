@@ -1,4 +1,4 @@
-package com.bitwaffle.moguts.gui.button;
+package com.bitwaffle.moguts.gui.buttons;
 
 import com.bitwaffle.moguts.graphics.render.Render2D;
 

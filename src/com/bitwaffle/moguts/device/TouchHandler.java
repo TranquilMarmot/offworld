@@ -7,7 +7,7 @@ import android.view.MotionEvent;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.render.Render2D;
-import com.bitwaffle.moguts.gui.button.Button;
+import com.bitwaffle.moguts.gui.buttons.Button;
 import com.bitwaffle.moguts.util.MathHelper;
 import com.bitwaffle.offworld.entities.Player;
 
@@ -275,7 +275,7 @@ public class TouchHandler {
 				
 				Button b = it.next();
 	
-				if (b.contains(x, y)) {
+				if (b.isActive() && b.isVisible() && b.contains(x, y)) {
 					if (buttonsDown[0] == null && buttonsDown[1] != b) {
 						buttonsDown[0] = b;
 						b.press();

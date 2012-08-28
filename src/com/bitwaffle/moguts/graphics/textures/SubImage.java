@@ -35,7 +35,7 @@ public class SubImage {
 	 * @param height Height to draw sub-image as
 	 */
 	public void draw(Quad quad, float width, float height){
-		this.draw(quad, width, height, false, false);
+		this.render(quad, width, height, false, false);
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class SubImage {
 	 * @param flipHorizontal Whether or not the flip the sub-image horizontally
 	 * @param flipVertical Whether or not to flip the sub-image vertically
 	 */
-	public void draw(Quad quad, float width, float height, boolean flipHorizontal, boolean flipVertical){
+	public void render(Quad quad, float width, float height, boolean flipHorizontal, boolean flipVertical){
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, sheetHandle);
 		quad.draw(width, height, flipHorizontal, flipVertical, texCoords);
 	}

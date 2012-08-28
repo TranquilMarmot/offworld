@@ -29,7 +29,7 @@ public abstract class GUIObject {
      */
     public abstract void update();
     
-    public void draw(Render2D renderer){
+    public void render(Render2D renderer){
     	this.draw(renderer, false, false);
     }
     

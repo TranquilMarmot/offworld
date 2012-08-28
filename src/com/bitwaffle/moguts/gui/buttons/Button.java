@@ -1,4 +1,4 @@
-package com.bitwaffle.moguts.gui.button;
+package com.bitwaffle.moguts.gui.buttons;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.gui.GUIObject;
@@ -47,8 +47,10 @@ public abstract class Button extends GUIObject{
 	
 	/** Press the button! This sets isDown to true. */
 	public void press(){
-		this.isDown = true;
-		onPress();
+		if(this.isActive){
+			this.isDown = true;
+			onPress();
+		}
 	}
 	
 	/** What to do when the button is pushed down (generally, change color/image) */
@@ -56,8 +58,10 @@ public abstract class Button extends GUIObject{
 	
 	/** Release the button! This sets isDown to false. */
 	public void release(){
-		this.isDown = false;
-		onRelease();
+		if(this.isActive){
+			this.isDown = false;
+			onRelease();
+		}
 	}
 	
 	/** What to do when the button is released after being pressed (generally, take some sort of action) */
@@ -65,8 +69,10 @@ public abstract class Button extends GUIObject{
 	
 	/** Called instead of release() when a button is pressed but then the pointer slides off of it */
 	public void slideRelease(){
-		this.isDown = false;
-		onSlideRelease();
+		if(this.isActive){
+			this.isDown = false;
+			onSlideRelease();
+		}
 	}
 	
 	/** What to do when a finger pressed the button down, but then slid off of it, rather than just releasing (generally, nothing) */
@@ -78,8 +84,14 @@ public abstract class Button extends GUIObject{
 	public void activate(){ isActive = true; }
 	
 	public boolean isVisible(){ return isVisible; }
-	public void hide(){ isVisible = false; }
-	public void show(){ isVisible = true; }
+	public void hide(){ 
+		isVisible = false;
+		deactivate();
+	}
+	public void show(){
+		isVisible = true;
+		activate();
+	}
 	
 	public boolean isDown(){ return isDown;}
 }

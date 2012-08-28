@@ -122,7 +122,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 	 * i.e. when a button is being held down
 	 */
 	public void goLeft(){
-		if(!Game.paused){
+		if(!Game.isPaused()){
 			Vector2 linVec = body.getLinearVelocity();
 			if(linVec.x > -maxVelocityX) {
 				linVec.x -= 0.5f;
@@ -138,7 +138,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 	 * i.e. when a button is being held down
 	 */
 	public void goRight(){
-		if(!Game.paused){
+		if(!Game.isPaused()){
 			Vector2 linVec = body.getLinearVelocity();
 			if(linVec.x < maxVelocityX) {
 				linVec.x += 0.5f;
@@ -153,7 +153,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 	 */
 	public void jump(){
 		// we can only jump if the game isn't paused and if the timer is done
-		if(!Game.paused && jumpTimer >= JUMP_COOLDOWN){
+		if(!Game.isPaused() && jumpTimer >= JUMP_COOLDOWN){
 			// perform an AABB query underneath the player's feet
 			Vector2 underneath = new Vector2(this.location.x, this.location.y - this.height * 1.25f);
 			FirstHitQueryCallback callback = new FirstHitQueryCallback();
@@ -224,7 +224,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 	 * @param target New spot to aim at
 	 */
 	public void updateTarget(Vector2 target){
-		if(!Game.paused)
+		if(!Game.isPaused())
 			this.target.set(target);
 	}
 	

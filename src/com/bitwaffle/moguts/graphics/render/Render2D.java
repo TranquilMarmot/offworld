@@ -17,7 +17,7 @@ import com.bitwaffle.moguts.graphics.render.glsl.GLSLProgram;
 import com.bitwaffle.moguts.graphics.render.glsl.GLSLShader;
 import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
 import com.bitwaffle.moguts.gui.GUI;
-import com.bitwaffle.moguts.gui.button.Button;
+import com.bitwaffle.moguts.gui.buttons.Button;
 import com.bitwaffle.moguts.util.MathHelper;
 import com.bitwaffle.offworld.Game;
 
@@ -126,6 +126,16 @@ public class Render2D {
 		renderEntities(Game.physics.getDynamicEntityIterator());
 		
 		setUpProjectionScreenCoords();
+		// draw pause text
+		if(Game.isPaused()){
+			String pauseString = "Hello. This is a message to let you know that\nthe game is paused. Have a nice day.";
+			float scale = 0.3f;
+			float stringWidth = Game.resources.font.stringWidth(pauseString, scale);
+			float stringHeight = Game.resources.font.stringHeight(pauseString, scale);
+			float textX = ((float)Game.windowWidth / 2.0f) - (stringWidth / 2.0f);
+			float textY = ((float)Game.windowHeight / 2.0f) - (stringHeight / 2.0f);
+			Game.resources.font.drawString(pauseString, this, textX, textY, scale);
+		}
 		renderGUI(gui);
 	}
 	
@@ -207,11 +217,13 @@ public class Render2D {
 			while(it.hasNext()){
 				Button butt = it.next();
 				
-				Matrix.setIdentityM(modelview, 0);
-				Matrix.translateM(modelview, 0, butt.x, butt.y, 0.0f);
-				program.setUniformMatrix4f("ModelView", modelview);
-				
-				butt.draw(this);
+				if(butt.isVisible()){
+					Matrix.setIdentityM(modelview, 0);
+					Matrix.translateM(modelview, 0, butt.x, butt.y, 0.0f);
+					program.setUniformMatrix4f("ModelView", modelview);
+					
+					butt.render(this);
+				}
 			}
 		} catch(NullPointerException e){
 			Log.v("GUI", "Got null button (ignoring)");
