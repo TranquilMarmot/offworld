@@ -56,7 +56,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 		super();
 		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
 		this.color = defaultColor;
-		legsAnimation = Game.resources.textures.getAnimation("playerlegs");
+		legsAnimation = Game.resources.textures.getAnimation("playerlegs-feet-trunc");
 		target = new Vector2();
 	}
 	
@@ -73,7 +73,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 		
 		this.color = defaultColor;
 		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
-		legsAnimation = Game.resources.textures.getAnimation("playerlegs");
+		legsAnimation = Game.resources.textures.getAnimation("playerlegs-feet-trunc");
 		target = new Vector2();
 	}
 	

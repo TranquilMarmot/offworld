@@ -16,14 +16,14 @@ import com.bitwaffle.offworld.entities.Player;
 class PlayerRenderer extends BoxRenderer{
 	/** Offset of legs (world coordinates) */
 	private final float 
-		FORWARD_LEGS_X_OFFSET = -0.14f,
-		BACKWARD_LEGS_X_OFFSET = -0.23f,
-		LEGS_Y_OFFSET = -0.945f;
+		FORWARD_LEGS_X_OFFSET = -0.11f,
+		BACKWARD_LEGS_X_OFFSET = -0.2f,
+		LEGS_Y_OFFSET = -1.05f;
 	
 	/** Location of body (world coordinates) */
 	private final float
 		BODY_X_OFFSET = 0.138f,
-		BODY_Y_OFFSET = 0.84F;
+		BODY_Y_OFFSET = 0.84f;
 	
 	/** Location of arms */
 	private final float
@@ -71,7 +71,7 @@ class PlayerRenderer extends BoxRenderer{
 		else 
 			Matrix.translateM(renderer.modelview, 0, movingRight ? BACKWARD_LEGS_X_OFFSET : -BACKWARD_LEGS_X_OFFSET, LEGS_Y_OFFSET, 0.0f);
 		renderer.sendModelViewToShader();
-		player.legsAnimation.renderCurrentFrame(renderer, 1.0f * SCALE, 0.902f * SCALE, movingRight, false);
+		player.legsAnimation.renderCurrentFrame(renderer, 1.274f * SCALE, 1.0f * SCALE, movingRight, false);
 		
 		/*-- Render body --*/
 		BufferUtils.deepCopyFloatArray(oldMatrix, renderer.modelview);

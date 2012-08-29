@@ -62,7 +62,6 @@ public class MainActivity extends SwarmActivity {
     
     @Override
     public void onBackPressed(){
-    	// TODO make this do the pause menu
     	Game.togglePause();
     }
 }

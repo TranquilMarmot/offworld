@@ -68,6 +68,178 @@
 	    </subImage>
 	</texture>
 	
+	<animation name="playerlegs-feet-trunc" frames="10">
+	    	   	<path>textures/player/legs-feet-truncated.png</path>
+	    <minFilter>GL_NEAREST</minFilter>
+		<magFilter>GL_NEAREST</magFilter>
+		
+		<frame number="0">
+		    <xOffset>17</xOffset>
+		    <yOffset>19</yOffset>
+		    <width>307</width>
+		    <height>241</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="1">
+		    <xOffset>355</xOffset>
+		    <yOffset>19</yOffset>
+		    <width>307</width>
+		    <height>241</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="2">
+		    <xOffset>716</xOffset>
+		    <yOffset>19</yOffset>
+		    <width>307</width>
+		    <height>241</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="3">
+		    <xOffset>0</xOffset>
+		    <yOffset>398</yOffset>
+		    <width>307</width>
+		    <height>241</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="4">
+		    <xOffset>355</xOffset>
+		    <yOffset>397</yOffset>
+		    <width>307</width>
+		    <height>241</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="5">
+		    <xOffset>715</xOffset>
+		    <yOffset>397</yOffset>
+		    <width>307</width>
+		    <height>241</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="6">
+		    <xOffset>355</xOffset>
+		    <yOffset>19</yOffset>
+		    <width>307</width>
+		    <height>241</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="7">
+		    <xOffset>716</xOffset>
+		    <yOffset>19</yOffset>
+		    <width>307</width>
+		    <height>241</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="8">
+		    <xOffset>0</xOffset>
+		    <yOffset>398</yOffset>
+		    <width>307</width>
+		    <height>241</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="9">
+		    <xOffset>0</xOffset>
+		    <yOffset>737</yOffset>
+		    <width>307</width>
+		    <height>241</height>
+		    <length>0.1f</length>
+		</frame>
+	</animation>
+	
+	<animation name="playerlegs-feet" frames="10">
+	   	<path>textures/player/legs-feet.png</path>
+	    <minFilter>GL_NEAREST</minFilter>
+		<magFilter>GL_NEAREST</magFilter>
+		
+		<frame number="0">
+		    <xOffset>0</xOffset>
+		    <yOffset>0</yOffset>
+		    <width>320</width>
+		    <height>272</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="1">
+		    <xOffset>354</xOffset>
+		    <yOffset>0</yOffset>
+		    <width>320</width>
+		    <height>272</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="2">
+		    <xOffset>704</xOffset>
+		    <yOffset>0</yOffset>
+		    <width>320</width>
+		    <height>272</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="3">
+		    <xOffset>0</xOffset>
+		    <yOffset>369</yOffset>
+		    <width>320</width>
+		    <height>272</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="4">
+		    <xOffset>354</xOffset>
+		    <yOffset>368</yOffset>
+		    <width>320</width>
+		    <height>272</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="5">
+		    <xOffset>705</xOffset>
+		    <yOffset>369</yOffset>
+		    <width>320</width>
+		    <height>272</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="6">
+		    <xOffset>354</xOffset>
+		    <yOffset>0</yOffset>
+		    <width>320</width>
+		    <height>272</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="7">
+		    <xOffset>704</xOffset>
+		    <yOffset>0</yOffset>
+		    <width>320</width>
+		    <height>272</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="8">
+		    <xOffset>0</xOffset>
+		    <yOffset>369</yOffset>
+		    <width>320</width>
+		    <height>272</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="9">
+		    <xOffset>0</xOffset>
+		    <yOffset>752</yOffset>
+		    <width>320</width>
+		    <height>272</height>
+		    <length>0.1f</length>
+		</frame>
+	</animation>
+	
 	<animation name="playerlegs" frames="10">
 	    <path>textures/player/legs.png</path>
 	    <minFilter>GL_NEAREST</minFilter>
