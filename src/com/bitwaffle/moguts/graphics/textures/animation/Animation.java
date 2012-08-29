@@ -65,7 +65,6 @@ public class Animation {
 			currentFrame++;
 			if(currentFrame == frames.length)
 				currentFrame = 0;
-			System.out.println(currentFrame);
 			timeOnFrame = 0.0f;
 		}
 	}

@@ -56,7 +56,7 @@ public class MainActivity extends SwarmActivity {
         mGLView = new SurfaceView(this);
         setContentView(mGLView);
         
-        // intialize swarm
+        // intialize swarm TODO make this optional
         Swarm.init(this, SwarmConsts.App.APP_ID, SwarmConsts.App.APP_AUTH, new LoginListener());
     }
     

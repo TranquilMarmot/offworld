@@ -16,21 +16,21 @@ import com.bitwaffle.offworld.entities.Player;
 class PlayerRenderer extends BoxRenderer{
 	/** Offset of legs (world coordinates) */
 	private final float 
-		FORWARD_LEGS_X_OFFSET = -0.11f,
-		BACKWARD_LEGS_X_OFFSET = -0.2f,
-		LEGS_Y_OFFSET = -1.05f;
+		FORWARD_LEGS_X_OFFSET = -0.064f, // when the player is looking forwards
+		BACKWARD_LEGS_X_OFFSET = -0.158f, // when the player is looking backwards
+		LEGS_Y_OFFSET = -0.94f;
 	
 	/** Location of body (world coordinates) */
 	private final float
 		BODY_X_OFFSET = 0.138f,
-		BODY_Y_OFFSET = 0.84f;
+		BODY_Y_OFFSET = 0.94f;
 	
 	/** Location of arms */
 	private final float
 		L_ARM_X_OFFSET = 0.1f,
-		L_ARM_Y_OFFSET = 0.65f,
+		L_ARM_Y_OFFSET = 0.75f,
 		R_ARM_X_OFFSET = 0.15f,
-		R_ARM_Y_OFFSET = 0.6f,
+		R_ARM_Y_OFFSET = 0.7f,
 		ARM_ROTATION_X_OFFSET = 0.33f,
 		ARM_ROTATION_Y_OFFSET = -0.3f;
 	
@@ -71,7 +71,7 @@ class PlayerRenderer extends BoxRenderer{
 		else 
 			Matrix.translateM(renderer.modelview, 0, movingRight ? BACKWARD_LEGS_X_OFFSET : -BACKWARD_LEGS_X_OFFSET, LEGS_Y_OFFSET, 0.0f);
 		renderer.sendModelViewToShader();
-		player.legsAnimation.renderCurrentFrame(renderer, 1.274f * SCALE, 1.0f * SCALE, movingRight, false);
+		player.legsAnimation.renderCurrentFrame(renderer, 1.2f * SCALE, 1.0f * SCALE, movingRight, false);
 		
 		/*-- Render body --*/
 		BufferUtils.deepCopyFloatArray(oldMatrix, renderer.modelview);
