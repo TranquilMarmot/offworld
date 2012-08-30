@@ -1,7 +1,9 @@
 package com.bitwaffle.moguts.graphics.render.renderers;
 
+import android.opengl.GLES20;
 import android.opengl.Matrix;
 
+import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.util.BufferUtils;
@@ -86,5 +88,29 @@ class PlayerRenderer extends BoxRenderer{
 		Matrix.translateM(renderer.modelview, 0, ARM_ROTATION_X_OFFSET, facingRight ? ARM_ROTATION_Y_OFFSET : -ARM_ROTATION_Y_OFFSET, 0.0f);
 		renderer.sendModelViewToShader();
 		Game.resources.textures.getSubImage("playerarm").render(renderer.quad, 0.5f * SCALE, 0.317f * SCALE, !facingRight, facingRight);
+	}
+	
+	@Override
+	public void renderDebug(Render2D renderer, Entity ent){
+		super.renderDebug(renderer, ent);
+		
+		/*
+		 * Render a box where the player's current target is (under the finger)
+		 */
+		boolean shooting = ((Player) ent).isShooting();
+		Vector2 targetLoc = ((Player) ent).getCurrentTarget();
+		
+		// the box is given a different color based on whether or not the player is shooting
+		renderer.program.setUniform("vColor", shooting ? 0.25f : 0.0f, 0.0f, shooting ? 0.75f : 1.0f, 0.75f);
+		GLES20.glEnable(GLES20.GL_BLEND); // also enable blending for some swell transparency
+		GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_DST_COLOR);
+
+		// reset the modelview and translate it to the right spot
+		Matrix.setIdentityM(renderer.modelview, 0);
+		renderer.translateModelViewToCamera();
+		Matrix.translateM(renderer.modelview, 0, targetLoc.x, targetLoc.y, 0.0f);
+		renderer.quad.draw(0.75f, 0.75f);
+		
+		GLES20.glDisable(GLES20.GL_BLEND); // don't forget to turn blending back off!
 	}
 }

@@ -10,7 +10,6 @@ import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.device.SurfaceView;
-import com.bitwaffle.moguts.entities.Entities;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.moguts.graphics.render.glsl.GLSLProgram;
@@ -119,13 +118,23 @@ public class Render2D {
 		program.use();
 		
 		setUpProjectionScreenCoords();
-		Renderers.BACKGROUND.render(this, null);
+		
 		
 		setUpProjectionWorldCoords();
+		Renderers.BACKGROUND.render(this, null);
 		renderEntities(Game.physics.getPassiveEntityIterator());
 		renderEntities(Game.physics.getDynamicEntityIterator());
 		
 		setUpProjectionScreenCoords();
+		// draw some debug info TODO move this somewhere else!
+		if(drawDebug){
+			float[] debugTextColor = new float[]{ 0.3f, 0.3f, 0.3f, 1.0f };
+			String str =
+					"Version " + Game.VERSION + "\n" +
+					"FPS: " + Game.currentFPS + "\n" +
+					"Ents: " + Game.physics.numDynamicEntities();
+			Game.resources.font.drawString(str, this, 82, 20, 0.15f, debugTextColor);
+		}
 		// draw pause text FIXME temp
 		if(Game.isPaused()){
 			String pauseString = "Hello. This is a message to let you know that\nthe game is paused. Have a nice day.";
@@ -146,53 +155,60 @@ public class Render2D {
 	private void setUpProjectionWorldCoords(){
 		Matrix.setIdentityM(projection, 0);
 		Matrix.orthoM(projection, 0, 0, Game.aspect, 0, 1, -1, 1);
-		Matrix.rotateM(projection, 0, camera.getAngle(), 0.0f, 0.0f, 1.0f);
 		
 		program.setUniformMatrix4f("Projection", projection);
 	}
 	
 	/**
-	 * Renders entities from the given entity list
-	 * @param entities Entity list to render
-	 * @see Entities
+	 * Renders every entity in the given iterator
+	 * @param it Iterator that goes through Entity objects needing to be rendered
 	 */
 	private void renderEntities(Iterator<? extends Entity> it){
-		Vector2 cam = camera.getLocation();
-		
-		// iterate through every entity
 		while(it.hasNext()){
-			Entity ent;
 			try{
-				ent = (Entity) it.next();
-			} catch(ConcurrentModificationException e){
-				break;
-			}
-			
-			if(ent != null){
-				// figure out the location and the angle of what we're rendering
-				Vector2 loc = ent.getLocation();
-				float angle = MathHelper.toDegrees(ent.getAngle());
-				
-				// mainpulate the modelview matrix to draw the entity
-				Matrix.setIdentityM(modelview, 0);
-				Matrix.scaleM(modelview, 0, camera.getZoom(), camera.getZoom(), 1.0f);
-				Matrix.translateM(modelview, 0, loc.x + cam.x, loc.y + cam.y, 0.0f);
-				Matrix.rotateM(modelview, 0, angle, 0.0f, 0.0f, 1.0f);
-				this.sendModelViewToShader();
-				
-				if(ent.renderer != null){
+				Entity ent = it.next();
+				if(ent != null && ent.renderer != null){
+					prepareToRenderEntity(ent);
 					ent.renderer.render(this, ent);
+					
 					if(drawDebug){
-						Matrix.setIdentityM(modelview, 0);
-						Matrix.scaleM(modelview, 0, camera.getZoom(), camera.getZoom(), 1.0f);
-						Matrix.translateM(modelview, 0, loc.x + cam.x, loc.y + cam.y, 0.0f);
-						Matrix.rotateM(modelview, 0, angle, 0.0f, 0.0f, 1.0f);
-						this.sendModelViewToShader();
+						prepareToRenderEntity(ent);
 						ent.renderer.renderDebug(this, ent);
 					}
 				}
+			} catch(ConcurrentModificationException e){
+				break;
 			}
 		}
+	}
+	
+	/**
+	 * Prepares the modelview matrix to render an entity
+	 * @param ent Entity to prepare to render
+	 */
+	public void prepareToRenderEntity(Entity ent){
+		Vector2 loc = ent.getLocation();
+		float angle = MathHelper.toDegrees(ent.getAngle());
+		
+		// mainpulate the modelview matrix to draw the entity
+		Matrix.setIdentityM(modelview, 0);
+		this.translateModelViewToCamera();
+		Matrix.translateM(modelview, 0, loc.x, loc.y, 0.0f);
+		Matrix.rotateM(modelview, 0, angle, 0.0f, 0.0f, 1.0f);
+		this.sendModelViewToShader();
+	}
+	
+	/**
+	 * Translates the modelview matrix to represent the camera's location
+	 */
+	public void translateModelViewToCamera(){
+		Vector2 cameraLoc = camera.getLocation();
+		float cameraAngle = camera.getAngle();
+		float cameraZoom = camera.getZoom();
+		
+		Matrix.scaleM(modelview, 0, cameraZoom, cameraZoom, 1.0f);
+		Matrix.translateM(modelview, 0, cameraLoc.x, cameraLoc.y, 0.0f);
+		Matrix.rotateM(modelview, 0, cameraAngle, 0.0f, 0.0f, 1.0f);
 	}
 	
 	/**
@@ -228,10 +244,6 @@ public class Render2D {
 		} catch(NullPointerException e){
 			Log.v("GUI", "Got null button (ignoring)");
 		}
-		
-		// draw FPS counter TODO move this somewhere else!
-		float[] debugTextColor = new float[]{ 0.0f, 0.0f, 0.0f, 1.0f };
-		Game.resources.font.drawString("FPS: " + Game.currentFPS + "\nEnts: " + Game.physics.numDynamicEntities(), this, 80, 20, 0.15f, debugTextColor);
 	}
 	
 	/**

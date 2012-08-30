@@ -26,6 +26,9 @@ import com.bitwaffle.offworld.entities.Player;
  * @author TranquilMarmot
  */
 public class Game implements GLSurfaceView.Renderer {
+	/** Current version of the game */
+	public static final String VERSION = "0.0.5 (pre-alpha)";
+	
 	/** Resource manager */
 	public static Resources resources;
 	

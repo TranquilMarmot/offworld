@@ -70,18 +70,18 @@ abstract interface EntityRenderer {
  */
 class BackgroundRenderer implements EntityRenderer{
 	public void render(Render2D renderer, Entity ent){
-		// FIXME why the fuck is it so hard to render a background?!
 		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
-		float width = Game.windowWidth / 75.0f;
-		float height = Game.windowHeight / 75.0f;
-		Matrix.translateM(renderer.modelview, 0, width - (width / 4.5f), height - (height / 9.0f), 0);
+		
+		// FIXME magic numbers! ahhh!
+		float width = Game.windowWidth / 1300.0f;
+		float height = Game.windowHeight / 1300.0f;
+		
+		Matrix.setIdentityM(renderer.modelview, 0);
+		Matrix.translateM(renderer.modelview, 0, width, height, 0.0f);
 		renderer.sendModelViewToShader();
 		
 		Game.resources.textures.bindTexture("background");
-		renderer.quad.draw(width, height, false, false);
+		renderer.quad.draw(width, height, true, true);
 	}
-	
-	public void renderDebug(Render2D rednerer, Entity ent){
-		
-	}
+	public void renderDebug(Render2D renderer, Entity ent){}
 }
