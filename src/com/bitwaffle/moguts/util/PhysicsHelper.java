@@ -13,7 +13,7 @@ import com.bitwaffle.moguts.device.SurfaceView;
 import com.bitwaffle.moguts.entities.dynamic.BoxEntity;
 import com.bitwaffle.moguts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.moguts.graphics.render.Render2D;
-import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
+import com.bitwaffle.moguts.graphics.render.Renderers;
 import com.bitwaffle.moguts.physics.Physics;
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.entities.Player;

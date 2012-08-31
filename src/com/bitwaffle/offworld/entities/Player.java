@@ -5,7 +5,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.moguts.entities.dynamic.BoxEntity;
-import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
+import com.bitwaffle.moguts.graphics.render.Renderers;
 import com.bitwaffle.moguts.graphics.textures.animation.Animation;
 import com.bitwaffle.moguts.physics.callbacks.FirstHitQueryCallback;
 import com.bitwaffle.moguts.util.MathHelper;
@@ -102,20 +102,22 @@ public class Player extends BoxEntity implements KryoSerializable{
 		}
 		
 		// update which direction the player is facing
-		if(target.x >= this.location.x)
-			facingRight = true;
-		else
-			facingRight = false;
+		facingRight = target.x >= this.location.x;
+		
+		// update the location of the target so it moves with the player
+		Vector2 linVec = body.getLinearVelocity();
+		target.x += linVec.x * timeStep;
+		target.y += linVec.y * timeStep;
 		
 		// update and shoot pistol
 		if(firearm != null){
 			firearm.update(timeStep);
 			if(this.isShooting)
-				shoot(target);
+				firearm.shootAt(body.getWorld(), target);
 		}
 		
 		// add time to jump timer
-		jumpTimer += timeStep;
+		jumpTimer += timeStep;	
 	}
 	
 	/**
@@ -242,15 +244,6 @@ public class Player extends BoxEntity implements KryoSerializable{
 	 */
 	public float getArmAngle(){
 		return MathHelper.angle(this.getLocation(), this.target);
-	}
-	
-	
-	/**
-	 * Pew pew!
-	 * @param target World-space vector to shoot towards
-	 */
-	private void shoot(Vector2 target){
-		firearm.shootAt(body.getWorld(), target);
 	}
 	
 	@Override

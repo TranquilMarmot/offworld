@@ -2,7 +2,7 @@ package com.bitwaffle.moguts.entities;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
+import com.bitwaffle.moguts.graphics.render.Renderers;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;

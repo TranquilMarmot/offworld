@@ -1,10 +1,11 @@
-package com.bitwaffle.moguts.graphics.render;
+package com.bitwaffle.moguts.graphics.render.shapes;
 
 import java.nio.FloatBuffer;
 
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 
+import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.util.BufferUtils;
 
 /**

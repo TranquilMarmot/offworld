@@ -4,7 +4,7 @@ import java.nio.FloatBuffer;
 
 import android.opengl.GLES20;
 
-import com.bitwaffle.moguts.graphics.render.Quad;
+import com.bitwaffle.moguts.graphics.render.shapes.Quad;
 
 /**
  * A sub-image within a larger texture

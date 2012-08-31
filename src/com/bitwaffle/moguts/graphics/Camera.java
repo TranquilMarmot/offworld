@@ -3,6 +3,7 @@ package com.bitwaffle.moguts.graphics;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.offworld.Game;
 
 /**
  * Describes how a scene should be rendered
@@ -100,6 +101,8 @@ public class Camera extends Entity {
 		case FOLLOW:
 			if(following != null)
 				followEntity();
+			else
+				following = Game.player;
 			break;
 		case FREE:
 			// do nothing (events handled by TouchHandler)

@@ -63,15 +63,17 @@ public class GameSaver {
 			File toWrite = new File(folder, file);
 			if(!toWrite.exists()){
 				try {
-					if(!folder.mkdirs())
+					if(!folder.mkdirs()){
 						Log.e(LOGTAG, "Failed to create directories for save file!");
+						return;
+					}
 					toWrite.createNewFile();
 				} catch (IOException e) {
 					Log.e(LOGTAG, "Failed to create save file! " + e.getMessage());
+					return;
 				}
 			}
 			FileOutputStream out = new FileOutputStream(toWrite);
-			
 			Output output = new Output(out);
 			
 			// write number of dynamic entitites
@@ -106,7 +108,6 @@ public class GameSaver {
 	
 	@SuppressWarnings("unchecked")
 	public void loadGame(String file, Physics physics){
-		//Game.paused = true;
 		// clear the physics world
 		physics.clearWorld();
 		
@@ -136,7 +137,7 @@ public class GameSaver {
 				
 				// add entity to physics world if it's dynamic
 				if(object instanceof DynamicEntity)
-					physics.addEntity((DynamicEntity)object);
+					physics.addEntity((DynamicEntity) reg.getType().cast(object));
 				else if(object instanceof Entity)
 					physics.addEntity((Entity)object);
 				else
@@ -150,6 +151,7 @@ public class GameSaver {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//Game.paused = false;
+		// un-pause the game (assumes that the game was paused to load)
+		Game.togglePause();
 	}
 }

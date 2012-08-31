@@ -1,8 +1,9 @@
-package com.bitwaffle.moguts.graphics.render;
+package com.bitwaffle.moguts.graphics.render.shapes;
 
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 
+import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.util.BufferUtils;
 import com.bitwaffle.moguts.util.MathHelper;
 

@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.moguts.entities.Entity;
-import com.bitwaffle.moguts.graphics.render.renderers.Renderers;
+import com.bitwaffle.moguts.graphics.render.Renderers;
 import com.bitwaffle.moguts.physics.Physics;
 import com.bitwaffle.moguts.util.PhysicsHelper;
 import com.esotericsoftware.kryo.Kryo;

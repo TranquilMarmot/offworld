@@ -1,9 +1,10 @@
-package com.bitwaffle.moguts.graphics.render.renderers;
+package com.bitwaffle.offworld.renderers;
 
 import android.opengl.GLES20;
 
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.entities.dynamic.CircleEntity;
+import com.bitwaffle.moguts.graphics.render.EntityRenderer;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.offworld.Game;
 
