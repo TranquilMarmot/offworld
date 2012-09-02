@@ -51,6 +51,13 @@ public class PlayerRenderer extends BoxRenderer{
 		ARM_X_SCALE = 0.5f,
 		ARM_Y_SCALE = 0.317f;
 	
+	/** Location of gun */
+	private final float
+		GUN_X_OFFSET = 0.6f,
+		GUN_Y_OFFSET = -0.1f,
+		GUN_X_SCALE = 0.363f,
+		GUN_Y_SCALE = 0.25f;
+	
 	/** Scale everything is being drawn at (to fit into bounding box) */
 	private final float SCALE = 0.95f;
 	
@@ -95,6 +102,15 @@ public class PlayerRenderer extends BoxRenderer{
 		Matrix.translateM(renderer.modelview, 0, facingRight ? BODY_X_OFFSET : -BODY_X_OFFSET, BODY_Y_OFFSET, 0.0f);
 		renderer.sendModelViewToShader();
 		Game.resources.textures.getSubImage("playerbody").render(renderer.quad, BODY_X_SCALE * SCALE, BODY_Y_SCALE * SCALE, !facingRight, true);
+		
+		/*-- Render gun --*/
+		BufferUtils.deepCopyFloatArray(oldMatrix, renderer.modelview);
+		Matrix.translateM(renderer.modelview, 0, facingRight ? L_ARM_X_OFFSET : -L_ARM_X_OFFSET, L_ARM_Y_OFFSET, 0.0f);
+		Matrix.rotateM(renderer.modelview, 0, armAngle, 0.0f, 0.0f, 1.0f);
+		Matrix.translateM(renderer.modelview, 0, ARM_ROTATION_X_OFFSET, facingRight ? ARM_ROTATION_Y_OFFSET : -ARM_ROTATION_Y_OFFSET, 0.0f);
+		Matrix.translateM(renderer.modelview, 0, GUN_X_OFFSET, facingRight ?  GUN_Y_OFFSET  : -GUN_Y_OFFSET, 0.0f);
+		renderer.sendModelViewToShader();
+		Game.resources.textures.getSubImage("pistol").render(renderer.quad, GUN_X_SCALE * SCALE, GUN_Y_SCALE * SCALE, !facingRight, facingRight);
 		
 		/*-- Render left arm --*/
 		BufferUtils.deepCopyFloatArray(oldMatrix, renderer.modelview);
