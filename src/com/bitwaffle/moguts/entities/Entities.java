@@ -14,15 +14,15 @@ import com.bitwaffle.moguts.graphics.render.Render2D;
  * @see DynamicEntity
  */
 public class Entities {
-	private EntityList<Entity> passiveEntities;
-	private EntityList<DynamicEntity> dynamicEntities;
+	private EntityList passiveEntities;
+	private EntityList dynamicEntities;
 	
 	/**
 	 * Initialize entity lists
 	 */
 	public Entities(){
-		passiveEntities = new EntityList<Entity>();
-		dynamicEntities = new EntityList<DynamicEntity>();
+		passiveEntities = new EntityList();
+		dynamicEntities = new EntityList();
 	}
 	
 	/**
@@ -61,7 +61,7 @@ public class Entities {
 	 * Get an iterator to go through every dynamic entity
 	 * @return Iterator of list of dynamic entities
 	 */
-	public Iterator<DynamicEntity> getDynamicEntityIterator(){
+	public Iterator<Entity> getDynamicEntityIterator(){
 		return dynamicEntities.getIterator();
 	}
 	

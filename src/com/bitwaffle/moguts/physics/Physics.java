@@ -9,9 +9,10 @@ import android.util.FloatMath;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.GdxNativesLoader;
-import com.bitwaffle.moguts.entities.Entities;
+import com.bitwaffle.moguts.entities.EntitiesLayers;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.physics.callbacks.FirstHitQueryCallback;
 
 /**
@@ -24,7 +25,7 @@ public class Physics {
 	private World world;
 	
 	/** Entities in the world */
-	private Entities entities;
+	private EntitiesLayers entities;
 	
 	/** Gravity for the world */
 	private Vector2 gravity = new Vector2(0.0f, -9.8f);
@@ -69,7 +70,7 @@ public class Physics {
 		// initialize the world
 		world = new World(gravity, doSleep);
 		world.setContactListener(new ContactHandler());
-		entities = new Entities();
+		entities = new EntitiesLayers();
 		toInitialize = new Stack<DynamicEntity>();
 		
 		previousTime = SystemClock.elapsedRealtime();
@@ -123,12 +124,12 @@ public class Physics {
 	 * @param ent Entity to add
 	 */
 	public void addEntity(DynamicEntity ent){
-		entities.addDynamicEntity(ent);
+		entities.addEntity(ent);
 		toInitialize.push(ent);
 	}
 	
 	public void removeEntity(DynamicEntity ent){
-		entities.removeDynamicEntity(ent);
+		entities.removeEntity(ent);
 	}
 	
 	/**
@@ -136,28 +137,22 @@ public class Physics {
 	 * @param ent Entity to add
 	 */
 	public void addEntity(Entity ent){
-		entities.addPassiveEntity(ent);
-	}
-	
-	/**
-	 * @return An iterator of every passive Entity
-	 */
-	public Iterator<Entity> getPassiveEntityIterator(){
-		return entities.getPassiveEntityIterator();
-	}
-	
-	/**
-	 * @return An iterator of every DynamicEntity
-	 */
-	public Iterator<DynamicEntity> getDynamicEntityIterator(){
-		return entities.getDynamicEntityIterator();
+		entities.addEntity(ent);
 	}
 	
 	/**
 	 * @return Current number of dynamic entities
 	 */
-	public int numDynamicEntities(){
-		return entities.numDynamicEntities();
+	public int numEntities(){
+		return entities.numEntities();
+	}
+	
+	public Iterator<Entity>[] getAllIterators(){
+		return entities.getAllIterators();
+	}
+	
+	public void renderAll(Render2D renderer){
+		entities.renderAll(renderer);
 	}
 	
 	/**

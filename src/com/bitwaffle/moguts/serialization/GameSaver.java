@@ -77,23 +77,25 @@ public class GameSaver {
 			Output output = new Output(out);
 			
 			// write number of dynamic entitites
-			output.writeInt(physics.numDynamicEntities());
+			output.writeInt(physics.numEntities());
 			
 			// iterate through every dynamic entity and write them all;
-			Iterator<DynamicEntity> it = physics.getDynamicEntityIterator();
-			while(it.hasNext()){
-				DynamicEntity ent = it.next();
-				/*
-				 * Go through the list of classes and find out which one 'ent' is.
-				 * Each entity has its class written then itself, because sometimes
-				 * the class will by anonymouse (i.e. if the entity was created inside
-				 * of a separate class from itself and had a method overridden)
-				 */
-				for(Class<?> c : serializableClasses){
-					if(c.isInstance(ent)){
-						kryo.writeClass(output, c);
-						kryo.writeObject(output, c.cast(ent));
-						break;
+			Iterator<Entity>[] its = physics.getAllIterators();
+			for(Iterator<Entity> it : its){
+				while(it.hasNext()){
+					Entity ent = it.next();
+					/*
+					 * Go through the list of classes and find out which one 'ent' is.
+					 * Each entity has its class written then itself, because sometimes
+					 * the class will by anonymouse (i.e. if the entity was created inside
+					 * of a separate class from itself and had a method overridden)
+					 */
+					for(Class<?> c : serializableClasses){
+						if(c.isInstance(ent)){
+							kryo.writeClass(output, c);
+							kryo.writeObject(output, c.cast(ent));
+							break;
+						}
 					}
 				}
 			}

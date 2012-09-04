@@ -30,6 +30,9 @@ public abstract class Entity implements KryoSerializable{
 	/** If this gets set to true, the entity is removed ASAP */
 	public boolean removeFlag = false;
 	
+	/** What layer the entity gets rendered on */
+	private int layer = 0;
+	
 	public Entity(){
 		location = new Vector2();
 		angle = 0.0f;
@@ -79,6 +82,13 @@ public abstract class Entity implements KryoSerializable{
 	 * (called right before the entity gets removed)
 	 */
 	public abstract void cleanup();
+	
+	/**
+	 * @return Which layer this entity resides on
+	 */
+	public int getLayer(){
+		return layer;
+	}
 	
 	public void read(Kryo kryo, Input input){
 		this.renderer = Renderers.values()[input.readInt()];

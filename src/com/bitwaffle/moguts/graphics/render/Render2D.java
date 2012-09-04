@@ -123,19 +123,16 @@ public class Render2D {
 		
 		setUpProjectionWorldCoords();
 		Renderers.BACKGROUND.render(this, null);
-		renderEntities(Game.physics.getPassiveEntityIterator());
-		renderEntities(Game.physics.getDynamicEntityIterator());
+		Game.physics.renderAll(this);
 		
 		setUpProjectionScreenCoords();
 		// draw some debug info TODO move this somewhere else!
-		if(drawDebug){
-			float[] debugTextColor = new float[]{ 0.3f, 0.3f, 0.3f, 1.0f };
-			String str =
-					"Version " + Game.VERSION + "\n" +
-					"FPS: " + Game.currentFPS + "\n" +
-					"Ents: " + Game.physics.numDynamicEntities();
-			Game.resources.font.drawString(str, this, 82, 20, 0.15f, debugTextColor);
-		}
+		float[] debugTextColor = new float[]{ 0.3f, 0.3f, 0.3f, 1.0f };
+		String str =
+				"Version " + Game.VERSION + "\n" +
+				"FPS: " + Game.currentFPS + "\n" +
+				"Ents: " + Game.physics.numEntities();
+		Game.resources.font.drawString(str, this, 82, 20, 0.15f, debugTextColor);
 		// draw pause text FIXME temp
 		if(Game.isPaused()){
 			String pauseString = "Hello. This is a message to let you know that\nthe game is paused. Have a nice day.";
@@ -164,7 +161,7 @@ public class Render2D {
 	 * Renders every entity in the given iterator
 	 * @param it Iterator that goes through Entity objects needing to be rendered
 	 */
-	private void renderEntities(Iterator<? extends Entity> it){
+	public void renderEntities(Iterator<? extends Entity> it){
 		while(it.hasNext()){
 			try{
 				Entity ent = it.next();

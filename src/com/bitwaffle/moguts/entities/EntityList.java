@@ -11,27 +11,27 @@ import java.util.Stack;
  *
  * @param <T> Type of <@link Entity> that this list will hold
  */
-public class EntityList<T extends Entity> {
+public class EntityList {
 	/** List of entities */
-	private ArrayList<T> entities;
+	private ArrayList<Entity> entities;
 	
 	/** Used to avoid ConcurrentModificationException */
-	private Stack<T> toAdd, toRemove;
+	private Stack<Entity> toAdd, toRemove;
 	
 	/**
 	 * Create a new entity list
 	 */
 	public EntityList(){
-		entities = new ArrayList<T>();
-		toAdd = new Stack<T>();
-		toRemove = new Stack<T>();
+		entities = new ArrayList<Entity>();
+		toAdd = new Stack<Entity>();
+		toRemove = new Stack<Entity>();
 	}
 	
 	/**
 	 * Add an entity to this list
 	 * @param add Entity to add
 	 */
-	public void add(T add){
+	public void add(Entity add){
 		toAdd.push(add);
 	}
 	
@@ -39,14 +39,14 @@ public class EntityList<T extends Entity> {
 	 * Remove an entity from this list
 	 * @param rem Entity to remove
 	 */
-	public void remove(T rem){
+	public void remove(Entity rem){
 		toRemove.push(rem);
 	}
 	
 	/**
 	 * @return An iterator that goes through every entity in this list
 	 */
-	public Iterator<T> getIterator(){
+	public Iterator<Entity> getIterator(){
 		return entities.iterator();
 	}
 	
@@ -65,7 +65,7 @@ public class EntityList<T extends Entity> {
 	 */
 	public void update(float timeStep){
 		while(!toRemove.isEmpty()){
-			T ent = toRemove.pop();
+			Entity ent = toRemove.pop();
 			ent.cleanup();
 			entities.remove(ent);
 		}
@@ -73,10 +73,10 @@ public class EntityList<T extends Entity> {
 		while(!toAdd.isEmpty())
 			entities.add(toAdd.pop());
 		
-		Iterator<T> it = getIterator();
+		Iterator<Entity> it = getIterator();
 		
 		while(it.hasNext()){
-			T ent = it.next();
+			Entity ent = it.next();
 			
 			if(ent != null){
 				if(ent.removeFlag)
