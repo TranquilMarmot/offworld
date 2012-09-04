@@ -77,7 +77,7 @@ public class Pistol implements Firearm {
 				hit.body.applyForce(new Vector2(normal.x * -force, normal.y * -force), point);
 				
 				//FIXME temp
-				Game.resources.sounds.play("test");
+				Game.resources.sounds.play("shoot");
 				
 				if(hit instanceof Health)
 					((Health)hit).hurt(this.damage);

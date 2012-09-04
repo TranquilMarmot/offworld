@@ -36,6 +36,19 @@
 	    </subImage>
 	</texture>
 	
+	<texture name="muzzleflash-full">
+	   	<path>textures/weapons/muzzleflash.png</path>
+	    <minFilter>GL_NEAREST</minFilter>
+	    <magFilter>GL_NEAREST</magFilter>
+	    
+	    <subImage name="muzzleflash">
+	        <xOffset>0</xOffset>
+	        <yOffset>0</yOffset>
+	        <width>273</width>
+	        <height>276</height>
+	    </subImage>
+	</texture>
+	
 	<texture name="arrows-full">
 	    <path>textures/arrows.png</path>
 	    
