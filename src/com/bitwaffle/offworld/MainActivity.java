@@ -46,6 +46,8 @@ public class MainActivity extends SwarmActivity {
         Display display = getWindowManager().getDefaultDisplay();
         Game.windowWidth = display.getWidth();
         Game.windowHeight = display.getHeight();
+        
+       // getResources().getDisplayMetrics().
 
         /*
          * Create a SurfaceView instance and set it as

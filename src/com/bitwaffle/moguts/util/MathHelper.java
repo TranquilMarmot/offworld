@@ -5,7 +5,7 @@ import android.util.FloatMath;
 import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.moguts.graphics.render.Render2D;
+import com.bitwaffle.moguts.graphics.Camera;
 import com.bitwaffle.offworld.Game;
 
 /**
@@ -118,15 +118,16 @@ public class MathHelper {
 			// some sort of magic or something
 			return new Vector2(outPoint[0] / outPoint[3], outPoint[1] / outPoint[3]);
 	}
-
-
+	
 	/**
-	 * Convert a screen-space vector to a world-space vector
-	 * @param screenX X of screen space vector 
+	 * Convert a screen-spcae vector to a world-space vector,
+	 * with a camera offset/zoom
+	 * @param screenX X of screen space vector
 	 * @param screenY Y of screen space vector
+	 * @param camera Camera to translate to
 	 * @return Screen-space coordinate translated to world-space
 	 */
-	public static Vector2 toWorldSpace(float screenX, float screenY) {
+	public static Vector2 toWorldSpace(float screenX, float screenY, Camera camera){
 		float[] 
 				// projection matrix
 				projection = new float[16],
@@ -136,13 +137,27 @@ public class MathHelper {
 			// create the projection matrix (mimics Render2D's "setUpProjectionWorldCoords" method)
 			Matrix.setIdentityM(projection, 0);
 			Matrix.orthoM(projection, 0, 0, Game.aspect, 0, 1, -1, 1);
-			Matrix.rotateM(projection, 0, Render2D.camera.getAngle(), 0.0f, 0.0f, 1.0f);
 			
 			// create the view matrix (essentially, an identity matrix scaled and translated to the camera's position)
 			Matrix.setIdentityM(view, 0);
-			Matrix.scaleM(view, 0, Render2D.camera.getZoom(), Render2D.camera.getZoom(), 1.0f);
-			Matrix.translateM(view, 0, Render2D.camera.getLocation().x, Render2D.camera.getLocation().y, 0.0f);
+			
+			if(camera != null){
+				Matrix.rotateM(projection, 0, camera.getAngle(), 0.0f, 0.0f, 1.0f);
+				
+				Matrix.scaleM(view, 0, camera.getZoom(), camera.getZoom(), 1.0f);
+				Matrix.translateM(view, 0, camera.getLocation().x, camera.getLocation().y, 0.0f);
+			}
 			
 			return toWorldSpace(projection, view, screenX, screenY);
+	}
+	
+	/**
+	 * Convert a screen-space vector to a world-space vector
+	 * @param screenX X of screen space vector 
+	 * @param screenY Y of screen space vector
+	 * @return Screen-space coordinate translated to world-space
+	 */
+	public static Vector2 toWorldSpace(float screenX, float screenY) {
+		return toWorldSpace(screenX, screenY, null);
 	}
 }

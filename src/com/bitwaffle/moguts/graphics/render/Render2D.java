@@ -164,12 +164,7 @@ public class Render2D {
 				Entity ent = it.next();
 				if(ent != null && ent.renderer != null){
 					prepareToRenderEntity(ent);
-					ent.renderer.render(this, ent);
-					
-					if(drawDebug){
-						prepareToRenderEntity(ent);
-						ent.renderer.renderDebug(this, ent);
-					}
+					ent.renderer.render(this, ent, drawDebug);
 				}
 			} catch(ConcurrentModificationException e){
 				break;

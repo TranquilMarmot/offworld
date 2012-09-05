@@ -14,15 +14,19 @@ import com.bitwaffle.offworld.Game;
  * @author TranquilMarmot
  */
 public class CircleRenderer implements EntityRenderer {
-	public void render(Render2D renderer, Entity ent) {
+	public void render(Render2D renderer, Entity ent, boolean renderDebug) {
 		CircleEntity circ = (CircleEntity) ent;
 		
 		renderer.program.setUniform("vColor", circ.color[0], circ.color[1], circ.color[2], circ.color[3]);
 		Game.resources.textures.bindTexture("box");
 		renderer.circle.render(circ.getRadius(), false, false);
+		
+		if(renderDebug)
+			renderDebug(renderer, ent);
 	}
 
 	public void renderDebug(Render2D renderer, Entity ent) {
+		renderer.prepareToRenderEntity(ent);
 		CircleEntity circ = (CircleEntity) ent;
 		Game.resources.textures.bindTexture("blank");
 		

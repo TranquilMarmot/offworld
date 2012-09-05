@@ -69,7 +69,7 @@ public class PlayerRenderer extends BoxRenderer{
 	}
 	
 	@Override
-	public void render(Render2D renderer, Entity ent){
+	public void render(Render2D renderer, Entity ent, boolean renderDebug){
 		Player player = (Player) ent;
 		renderer.program.setUniform("vColor", player.color[0], player.color[1], player.color[2], player.color[3]);
 		
@@ -119,6 +119,9 @@ public class PlayerRenderer extends BoxRenderer{
 		Matrix.translateM(renderer.modelview, 0, ARM_ROTATION_X_OFFSET, facingRight ? ARM_ROTATION_Y_OFFSET : -ARM_ROTATION_Y_OFFSET, 0.0f);
 		renderer.sendModelViewToShader();
 		Game.resources.textures.getSubImage("playerarm").render(renderer.quad, ARM_X_SCALE * SCALE, ARM_Y_SCALE * SCALE, !facingRight, facingRight);
+		
+		if(renderDebug)
+			renderDebug(renderer, ent);
 	}
 	
 	@Override

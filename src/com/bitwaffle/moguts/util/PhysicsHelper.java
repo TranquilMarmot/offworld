@@ -197,7 +197,7 @@ public class PhysicsHelper {
 		playerFixture.friction = 0.3f;
 		playerFixture.restitution = 0.0f;
 		
-		Game.player = new Player(Renderers.PLAYER, 5, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
+		Game.player = new Player(Renderers.PLAYER, 6, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
 		physics.addDynamicEntity(Game.player);
 		Render2D.camera.follow(Game.player);
 		SurfaceView.touchHandler.setPlayer(Game.player);

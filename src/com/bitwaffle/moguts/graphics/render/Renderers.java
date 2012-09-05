@@ -30,11 +30,7 @@ public enum Renderers{
 		this.renderer = renderer;
 	}
 	
-	public void render(Render2D render2D, Entity ent){
-		renderer.render(render2D, ent);
-	}
-	
-	public void renderDebug(Render2D render2D, Entity ent){
-		renderer.renderDebug(render2D, ent);
+	public void render(Render2D render2D, Entity ent, boolean renderDebug){
+		renderer.render(render2D, ent, renderDebug);
 	}
 }

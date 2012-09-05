@@ -14,14 +14,18 @@ import com.bitwaffle.offworld.Game;
  * @author TranquilMarmot
  */
 public class BoxRenderer implements EntityRenderer{
-	public void render(Render2D renderer, Entity ent) {
+	public void render(Render2D renderer, Entity ent, boolean renderDebug) {
 		BoxEntity box = (BoxEntity) ent;
 		Game.resources.textures.bindTexture("box");
 		renderer.program.setUniform("vColor", box.color[0], box.color[1], box.color[2], box.color[3]);
 		renderer.quad.draw(box.getWidth(), box.getHeight());
+		
+		if(renderDebug)
+			renderDebug(renderer, ent);
 	}
 	
 	public void renderDebug(Render2D renderer, Entity ent){
+		renderer.prepareToRenderEntity(ent);
 		BoxEntity box = (BoxEntity) ent;
 		Game.resources.textures.bindTexture("blank");
 		
