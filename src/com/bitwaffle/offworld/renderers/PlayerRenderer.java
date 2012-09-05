@@ -26,7 +26,7 @@ public class PlayerRenderer extends BoxRenderer{
 	 */
 	
 	/** Offset of legs (world coordinates) */
-	private final float 
+	public final float 
 		FORWARD_LEGS_X_OFFSET = -0.064f, // when the player is looking forwards
 		BACKWARD_LEGS_X_OFFSET = -0.158f, // when the player is looking backwards
 		LEGS_Y_OFFSET = -0.94f,
@@ -34,14 +34,14 @@ public class PlayerRenderer extends BoxRenderer{
 		LEGS_Y_SCALE = 1.0f;
 	
 	/** Location of body (world coordinates) */
-	private final float
+	public final float
 		BODY_X_OFFSET = 0.138f,
 		BODY_Y_OFFSET = 0.94f,
 		BODY_X_SCALE = 0.474f,
 		BODY_Y_SCALE = 1.0f;
 	
 	/** Location of arms */
-	private final float
+	public final float
 		L_ARM_X_OFFSET = 0.1f,
 		L_ARM_Y_OFFSET = 0.75f,
 		R_ARM_X_OFFSET = 0.15f,
@@ -52,14 +52,14 @@ public class PlayerRenderer extends BoxRenderer{
 		ARM_Y_SCALE = 0.317f;
 	
 	/** Location of gun */
-	private final float
+	public final float
 		GUN_X_OFFSET = 0.6f,
 		GUN_Y_OFFSET = -0.1f,
 		GUN_X_SCALE = 0.363f,
 		GUN_Y_SCALE = 0.25f;
 	
 	/** Scale everything is being drawn at (to fit into bounding box) */
-	private final float SCALE = 0.95f;
+	public static final float SCALE = 0.95f;
 	
 	/** Used to preserve the modelview between draws */
 	private float[] oldMatrix;
@@ -110,7 +110,8 @@ public class PlayerRenderer extends BoxRenderer{
 		Matrix.translateM(renderer.modelview, 0, ARM_ROTATION_X_OFFSET, facingRight ? ARM_ROTATION_Y_OFFSET : -ARM_ROTATION_Y_OFFSET, 0.0f);
 		Matrix.translateM(renderer.modelview, 0, GUN_X_OFFSET, facingRight ?  GUN_Y_OFFSET  : -GUN_Y_OFFSET, 0.0f);
 		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("pistol").render(renderer.quad, GUN_X_SCALE * SCALE, GUN_Y_SCALE * SCALE, !facingRight, facingRight);
+		player.getCurrentFirearm().render(renderer);
+		//Game.resources.textures.getSubImage("pistol").render(renderer.quad, GUN_X_SCALE * SCALE, GUN_Y_SCALE * SCALE, !facingRight, facingRight);
 		
 		/*-- Render left arm --*/
 		BufferUtils.deepCopyFloatArray(oldMatrix, renderer.modelview);

@@ -52,6 +52,11 @@ public class Entity implements KryoSerializable{
 		this.location = location;
 	}
 	
+	public Entity(Renderers renderer, int layer, Vector2 location, float angle){
+		this(renderer, layer, location);
+		this.angle = angle;
+	}
+	
 	/**
 	 * Set an entity's location
 	 * @param newLocation New location for entity

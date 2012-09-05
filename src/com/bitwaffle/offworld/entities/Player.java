@@ -25,6 +25,8 @@ import com.esotericsoftware.kryo.io.Output;
 public class Player extends BoxEntity implements KryoSerializable{
 	// FIXME these are temp
 	private static float[] defaultColor = { 1.0f, 1.0f, 1.0f, 1.0f };
+	
+	/** The player's current firearm */
 	private Firearm firearm;
 	
 	/** 
@@ -48,14 +50,15 @@ public class Player extends BoxEntity implements KryoSerializable{
 	/** Whether or not the player is shooting */
 	private boolean isShooting;
 	
-	/** Describe which way the player is moving/facing */
+	/** Describes which way the player is moving/facing */
 	private boolean movingRight = false, facingRight = false;
 	
-	/** Animation for player */
+	/** Animation for player's legs */
 	public Animation legsAnimation;
 	
 	public Player(){
 		super();
+		// TODO get rid of these magic numbers
 		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
 		this.color = defaultColor;
 		legsAnimation = Game.resources.textures.getAnimation("playerlegs");
@@ -74,6 +77,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 		super(renderer, layer, bodyDef, width, height, fixtureDef, defaultColor);
 		
 		this.color = defaultColor;
+		// TODO get rid of these magic numbers
 		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
 		legsAnimation = Game.resources.textures.getAnimation("playerlegs");
 		target = new Vector2();
@@ -230,6 +234,10 @@ public class Player extends BoxEntity implements KryoSerializable{
 	public void updateTarget(Vector2 target){
 		if(!Game.isPaused())
 			this.target.set(target);
+	}
+	
+	public Firearm getCurrentFirearm(){
+		return firearm;
 	}
 	
 	/**

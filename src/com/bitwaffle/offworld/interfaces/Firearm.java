@@ -2,6 +2,7 @@ package com.bitwaffle.offworld.interfaces;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import com.bitwaffle.moguts.graphics.render.Render2D;
 
 /**
  * Something that can shoot at other things
@@ -22,4 +23,6 @@ public interface Firearm {
 	 * @param timeStep Time passed, in seconds
 	 */
 	public void update(float timeStep);
+	
+	public void render(Render2D renderer);
 }

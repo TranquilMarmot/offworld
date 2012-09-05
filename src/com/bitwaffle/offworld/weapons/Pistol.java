@@ -1,14 +1,19 @@
 package com.bitwaffle.offworld.weapons;
 
+import android.opengl.Matrix;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.physics.callbacks.ClosestHitRayCastCallback;
+import com.bitwaffle.moguts.util.BufferUtils;
 import com.bitwaffle.moguts.util.MathHelper;
 import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.Health;
+import com.bitwaffle.offworld.renderers.PlayerRenderer;
 
 /**
  * Single-shooter
@@ -37,6 +42,14 @@ public class Pistol implements Firearm {
 	/** How long it's been since the last shot, in seconds */
 	private float timeSinceLastShot;
 	
+	boolean muzzleFlash;
+	
+	float flashTTL = 0.1f, flashLived; 
+	
+	private final float 		
+		GUN_X_SCALE = 0.363f,
+		GUN_Y_SCALE = 0.25f;
+	
 	/**
 	 * Create a new pistol
 	 * @param owner Owner of this pistol (where the shots come from)
@@ -53,6 +66,7 @@ public class Pistol implements Firearm {
 		this.firingRate = firingRate;
 		timeSinceLastShot = 0.0f;
 		callback = new ClosestHitRayCastCallback(owner.getLocation());
+		flashLived = 0.0f;
 	}
 
 	/**
@@ -61,6 +75,10 @@ public class Pistol implements Firearm {
 	 */
 	public void shootAt(World world, Vector2 target) {
 		if(timeSinceLastShot >= firingRate){
+			//FIXME temp
+			Game.resources.sounds.play("shoot");
+			muzzleFlash = true;
+			
 			// find the difference between the pistol's range and the distance to the given target
 			float diff = range - target.dst(owner.getLocation());
 			// create a difference vector and rotate it accordingly
@@ -76,9 +94,6 @@ public class Pistol implements Firearm {
 				Vector2 point = callback.pointOnClosest();
 				hit.body.applyForce(new Vector2(normal.x * -force, normal.y * -force), point);
 				
-				//FIXME temp
-				Game.resources.sounds.play("shoot");
-				
 				if(hit instanceof Health)
 					((Health)hit).hurt(this.damage);
 			}
@@ -89,5 +104,31 @@ public class Pistol implements Firearm {
 	
 	public void update(float timeStep){
 		timeSinceLastShot += timeStep;
+		
+		if(muzzleFlash){
+			flashLived += timeStep;
+			if(flashLived >= flashTTL){
+				flashLived = 0.0f;
+				muzzleFlash = false;
+			}
+		}
+	}
+	
+	public void render(Render2D renderer){
+		boolean facingRight = Game.player.isFacingRight();
+		
+		// FIXME this is VERY quick and VERY dirty
+		if(muzzleFlash){
+			float[] tmp = new float[16];
+			BufferUtils.deepCopyFloatArray(renderer.modelview, tmp);
+			Matrix.translateM(renderer.modelview, 0, 0.6f, 0.09f, 0.0f);
+			renderer.sendModelViewToShader();
+			Game.resources.textures.getSubImage("muzzleflash").render(renderer.quad, 0.25f, 0.245f, facingRight, facingRight);
+			
+			BufferUtils.deepCopyFloatArray(tmp, renderer.modelview);
+			renderer.sendModelViewToShader();
+		}
+		
+		Game.resources.textures.getSubImage("pistol").render(renderer.quad, GUN_X_SCALE * PlayerRenderer.SCALE, GUN_Y_SCALE * PlayerRenderer.SCALE, !facingRight, facingRight);
 	}
 }

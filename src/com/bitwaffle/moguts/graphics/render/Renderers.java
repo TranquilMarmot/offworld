@@ -20,6 +20,11 @@ import com.bitwaffle.offworld.renderers.PlayerRenderer;
  * @author TranquilMarmot
  */
 public enum Renderers{
+	/*
+	 * FIXME right now, on serialization, the oridnal for each entity's renderer gets written
+	 * This is fine, except if the order of renderers gets changed then it will break old saves
+	 * (adding more renderers works fine)
+	 */
 	BOX(new BoxRenderer()),
 	CIRCLE(new CircleRenderer()),
 	BACKDROP(new BackdropRenderer()),

@@ -20,7 +20,7 @@ public class ButtonManager {
 	private Stack<Button> buttonsToAdd, buttonsToRemove;
 	
 	/** Alpha values for buttons */ // TODO should these be elsewhere?
-	public float activeAlpha = 0.3f, pressedAlpha = 0.6f;
+	private float activeAlpha = 0.3f, pressedAlpha = 0.6f;
 	
 	/**
 	 * Create a new button manager
@@ -85,10 +85,9 @@ public class ButtonManager {
 		while(!buttonsToAdd.isEmpty())
 			buttons.add(buttonsToAdd.pop());
 		
-		Iterator<Button> it = getButtonIterator();
-		
 		// update every button
 		try{
+			Iterator<Button> it = getButtonIterator();
 			while(it.hasNext())
 				it.next().update();
 		} catch(NullPointerException e){
