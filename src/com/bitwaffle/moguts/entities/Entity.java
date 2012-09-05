@@ -17,7 +17,7 @@ import com.esotericsoftware.kryo.io.Output;
  * @author TranquilMarmot
  * @see DynamicEntity
  */
-public abstract class Entity implements KryoSerializable{
+public class Entity implements KryoSerializable{
 	/** Renderer used to draw this entity */
 	public Renderers renderer;
 	
@@ -31,21 +31,24 @@ public abstract class Entity implements KryoSerializable{
 	public boolean removeFlag = false;
 	
 	/** What layer the entity gets rendered on */
-	private int layer = 0;
+	private int layer;
 	
 	public Entity(){
+		renderer = null;
+		location = new Vector2();
+		layer = Entities.NUM_LAYERS / 2;
+		angle = 0.0f;
+	}
+	
+	public Entity(Renderers renderer, int layer){
+		this.renderer = renderer;
+		this.layer = layer;
 		location = new Vector2();
 		angle = 0.0f;
 	}
 	
-	public Entity(Renderers renderer){
-		this.renderer = renderer;
-		location = new Vector2();
-		angle = 0.0f;
-	}
-	
-	public Entity(Renderers renderer, Vector2 location){
-		this.renderer = renderer;
+	public Entity(Renderers renderer, int layer, Vector2 location){
+		this(renderer, layer);
 		this.location = location;
 	}
 	
@@ -75,13 +78,13 @@ public abstract class Entity implements KryoSerializable{
 	 * is called every frame
 	 * @param timeStep How much time has passed since last update (in seconds)
 	 */
-	public abstract void update(float timeStep);
+	public void update(float timeStep){}
 	
 	/**
 	 * Clean up any resources this entity may have allocated
 	 * (called right before the entity gets removed)
 	 */
-	public abstract void cleanup();
+	public void cleanup(){}
 	
 	/**
 	 * @return Which layer this entity resides on
@@ -92,12 +95,14 @@ public abstract class Entity implements KryoSerializable{
 	
 	public void read(Kryo kryo, Input input){
 		this.renderer = Renderers.values()[input.readInt()];
+		this.layer = input.readInt();
 		this.location.set(kryo.readObject(input, Vector2.class));
 		this.angle = input.readFloat();
 	}
 	
 	public void write(Kryo kryo, Output output){
 		output.writeInt(renderer.ordinal());
+		output.writeInt(this.layer);
 		kryo.writeObject(output, this.location);
 		output.writeFloat(this.angle);
 	}

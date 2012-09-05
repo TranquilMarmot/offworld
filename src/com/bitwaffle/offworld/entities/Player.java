@@ -69,9 +69,9 @@ public class Player extends BoxEntity implements KryoSerializable{
 	 * @param height Height of player
 	 * @param fixtureDef Definition for player's fixture
 	 */
-	public Player(Renderers renderer, BodyDef bodyDef, float width, float height,
+	public Player(Renderers renderer, int layer, BodyDef bodyDef, float width, float height,
 			FixtureDef fixtureDef) {
-		super(renderer, bodyDef, width, height, fixtureDef, defaultColor);
+		super(renderer, layer, bodyDef, width, height, fixtureDef, defaultColor);
 		
 		this.color = defaultColor;
 		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);

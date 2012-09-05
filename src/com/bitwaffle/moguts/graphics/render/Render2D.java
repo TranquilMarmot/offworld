@@ -115,14 +115,11 @@ public class Render2D {
 	 */
 	public void renderScene() {
 		gui.update();
+		camera.update(1.0f / 60.0f);
 		
 		program.use();
 		
-		setUpProjectionScreenCoords();
-		
-		
 		setUpProjectionWorldCoords();
-		Renderers.BACKGROUND.render(this, null);
 		Game.physics.renderAll(this);
 		
 		setUpProjectionScreenCoords();
@@ -234,7 +231,7 @@ public class Render2D {
 				if(butt.isVisible()){
 					Matrix.setIdentityM(modelview, 0);
 					Matrix.translateM(modelview, 0, butt.x, butt.y, 0.0f);
-					program.setUniformMatrix4f("ModelView", modelview);
+					this.sendModelViewToShader();
 					
 					butt.render(this);
 				}

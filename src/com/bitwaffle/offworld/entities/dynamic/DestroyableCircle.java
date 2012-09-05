@@ -17,8 +17,8 @@ public class DestroyableCircle extends CircleEntity implements Health, KryoSeria
 		health = 100;
 	}
 	
-	public DestroyableCircle(Renderers renderer, float radius, BodyDef bodyDef, float density, float[] color){
-		super(renderer, radius, bodyDef, density, color);
+	public DestroyableCircle(Renderers renderer, int layer, float radius, BodyDef bodyDef, float density, float[] color){
+		super(renderer, layer, radius, bodyDef, density, color);
 		health = 100;
 	}
 

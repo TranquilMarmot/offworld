@@ -2,89 +2,95 @@ package com.bitwaffle.moguts.entities;
 
 import java.util.Iterator;
 
-import com.bitwaffle.moguts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.moguts.graphics.render.Render2D;
 
 /**
- * Keeps track of every Entity and DynamicEntity,
- * mostly used to render everything
+ * Handles keeping track of which entities to render and handles
+ * updating all entities
  * 
  * @author TranquilMarmot
- * @see Entity
- * @see DynamicEntity
  */
 public class Entities {
-	private EntityList passiveEntities;
-	private EntityList dynamicEntities;
+	/** Number of layers of entities we have */
+	public static final int NUM_LAYERS = 10;
 	
-	/**
-	 * Initialize entity lists
-	 */
+	/** List of lists to keep track of everything */
+	private EntityList[] layers;
+	
 	public Entities(){
-		passiveEntities = new EntityList();
-		dynamicEntities = new EntityList();
+		layers = new EntityList[NUM_LAYERS];
+		for(int i = 0; i < layers.length; i++)
+			layers[i] = new EntityList();
 	}
 	
 	/**
-	 * Add an Entity to the list
-	 * @param ent Entity to add
-	 */
-	public void addPassiveEntity(Entity ent){
-		passiveEntities.add(ent);
-	}
-	
-	public void addDynamicEntity(DynamicEntity ent){
-		dynamicEntities.add(ent);
-	}
-	
-	/**
-	 * Remove an Entity from the list
+	 * Add an entity to be rendered/updated
 	 * @param ent
 	 */
-	public void removePassiveEntity(Entity ent){
-		passiveEntities.remove(ent);
-	}
-	
-	public void removeDynamicEntity(DynamicEntity ent){
-		dynamicEntities.remove(ent);
-	}
-	
-	/**
-	 * Get an iterator to go through every passive entity
-	 * @return Iterator of list of passive entities
-	 */
-	public Iterator<Entity> getPassiveEntityIterator(){
-		return passiveEntities.getIterator();
+	public void addEntity(Entity ent){
+		int layer = ent.getLayer();
+		if(layer > NUM_LAYERS)
+			layer = NUM_LAYERS;
+		layers[layer].add(ent);
 	}
 	
 	/**
-	 * Get an iterator to go through every dynamic entity
-	 * @return Iterator of list of dynamic entities
+	 * Remove an entity from being rendered/updated
+	 * @param ent
 	 */
-	public Iterator<Entity> getDynamicEntityIterator(){
-		return dynamicEntities.getIterator();
-	}
-	
-	/**
-	 * Get rid of all Entities
-	 */
-	public void clear(){
-		passiveEntities.clear();
-		dynamicEntities.clear();
+	public void removeEntity(Entity ent){
+		int layer = ent.getLayer();
+		if(layer > NUM_LAYERS)
+			layer = NUM_LAYERS;
+		layers[layer].remove(ent);
 	}
 	
 	/**
 	 * Update every entity
-	 * @param timeStep How much time has passed since last update
+	 * @param timeStep Amount of time passed since last update
 	 */
 	public void update(float timeStep){
-		if(Render2D.camera != null)
-			Render2D.camera.update(timeStep);
-		passiveEntities.update(timeStep);
-		dynamicEntities.update(timeStep);
+		for(EntityList l : layers)
+			l.update(timeStep);
 	}
 	
-	public int numDynamicEntities(){
-		return dynamicEntities.size();
+	/**
+	 * Renders every entity
+	 * @param renderer Renderer to render entities with
+	 */
+	public void renderAll(Render2D renderer){
+		for(EntityList l : layers)
+			renderer.renderEntities(l.getIterator());
+	}
+	
+	/**
+	 * Clear every entity from this list
+	 */
+	public void clear(){
+		for(EntityList l : layers)
+			l.clear();
+	}
+	
+	/**
+	 * @return Total number of entities
+	 */
+	public int numEntities(){
+		int count = 0;
+		for(EntityList l : layers)
+			count += l.size();
+		return count;
+	}
+	
+	/**
+	 * @return An array containing an iterator for each layer
+	 */
+	public Iterator<Entity>[] getAllIterators(){
+		@SuppressWarnings("unchecked")  //can't have a generic array
+		Iterator<Entity>[] its = new Iterator[NUM_LAYERS];
+		
+		for(int i = 0; i < NUM_LAYERS; i++)
+			its[i] = layers[i].getIterator();
+		
+		return its;
 	}
 }

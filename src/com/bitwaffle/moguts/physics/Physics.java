@@ -9,7 +9,7 @@ import android.util.FloatMath;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.GdxNativesLoader;
-import com.bitwaffle.moguts.entities.EntitiesLayers;
+import com.bitwaffle.moguts.entities.Entities;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.moguts.graphics.render.Render2D;
@@ -25,7 +25,7 @@ public class Physics {
 	private World world;
 	
 	/** Entities in the world */
-	private EntitiesLayers entities;
+	private Entities entities;
 	
 	/** Gravity for the world */
 	private Vector2 gravity = new Vector2(0.0f, -9.8f);
@@ -70,7 +70,7 @@ public class Physics {
 		// initialize the world
 		world = new World(gravity, doSleep);
 		world.setContactListener(new ContactHandler());
-		entities = new EntitiesLayers();
+		entities = new Entities();
 		toInitialize = new Stack<DynamicEntity>();
 		
 		previousTime = SystemClock.elapsedRealtime();
@@ -123,7 +123,7 @@ public class Physics {
 	 * Add a DynamicEntity to the Physics world
 	 * @param ent Entity to add
 	 */
-	public void addEntity(DynamicEntity ent){
+	public void addDynamicEntity(DynamicEntity ent){
 		entities.addEntity(ent);
 		toInitialize.push(ent);
 	}

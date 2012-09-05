@@ -48,16 +48,16 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 	 * @param bodyDef Body definition
 	 * @param fixtureDef Fixture definition
 	 */
-	public DynamicEntity(Renderers renderer, BodyDef bodyDef, FixtureDef fixtureDef){
-		super(renderer);
+	public DynamicEntity(Renderers renderer, int layer, BodyDef bodyDef, FixtureDef fixtureDef){
+		super(renderer, layer);
 		
 		this.bodyDef = bodyDef;
 		fixtureDefs = new ArrayList<FixtureDef>();
 		fixtureDefs.add(fixtureDef);
 	}
 	
-	public DynamicEntity(Renderers renderer, BodyDef bodyDef, ArrayList<FixtureDef> fixtureDefs){
-		super(renderer);
+	public DynamicEntity(Renderers renderer, int layer, BodyDef bodyDef, ArrayList<FixtureDef> fixtureDefs){
+		super(renderer, layer);
 		
 		this.bodyDef = bodyDef;
 		this.fixtureDefs = fixtureDefs;
@@ -69,8 +69,8 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 	 * @param shape Shape of entity
 	 * @param density Density of entity
 	 */
-	public DynamicEntity(Renderers renderer, BodyDef bodyDef, Shape shape, float density){
-		super(renderer);
+	public DynamicEntity(Renderers renderer, int layer, BodyDef bodyDef, Shape shape, float density){
+		super(renderer, layer);
 		
 		this.bodyDef = bodyDef;
 		this.shape = shape;
@@ -81,8 +81,8 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 	 * Create a new DynamicEntity
 	 * @param body Body that this entity is using
 	 */
-	public DynamicEntity(Renderers renderer, Body body){
-		super(renderer);
+	public DynamicEntity(Renderers renderer, int layer, Body body){
+		super(renderer, layer);
 		this.body = body;
 		body.setUserData(this);
 		this.isInitialized = true;

@@ -36,8 +36,8 @@ public class CircleEntity extends DynamicEntity implements KryoSerializable {
 	 * @param density Density of entity
 	 * @param color Color to use when rendering entity
 	 */
-	public CircleEntity(Renderers renderer, float radius, BodyDef bodyDef, float density, float[] color){
-		super(renderer, bodyDef, getCircleShape(radius), density);
+	public CircleEntity(Renderers renderer, int layer, float radius, BodyDef bodyDef, float density, float[] color){
+		super(renderer, layer, bodyDef, getCircleShape(radius), density);
 		this.radius = radius;
 		this.color = color;
 	}

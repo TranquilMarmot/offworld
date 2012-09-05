@@ -36,8 +36,8 @@ public class BoxEntity extends DynamicEntity implements KryoSerializable{
 	 * @param fixtureDef Position/material information about the box
 	 * @param color What color the box is
 	 */
-	public BoxEntity(Renderers renderer, BodyDef bodyDef, float width, float height, FixtureDef fixtureDef, float[] color){
-		super(renderer, bodyDef, fixtureDef);
+	public BoxEntity(Renderers renderer, int layer, BodyDef bodyDef, float width, float height, FixtureDef fixtureDef, float[] color){
+		super(renderer, layer, bodyDef, fixtureDef);
 		this.width = width;
 		this.height = height;
 		this.color = color;
@@ -51,8 +51,8 @@ public class BoxEntity extends DynamicEntity implements KryoSerializable{
 	 * @param density How dense the box is
 	 * @param color What color the box is
 	 */
-	public BoxEntity(Renderers renderer, BodyDef bodyDef, float width, float height, float density, float[] color){
-		super(renderer, bodyDef, getBoxShape(width, height), density);
+	public BoxEntity(Renderers renderer, int layer, BodyDef bodyDef, float width, float height, float density, float[] color){
+		super(renderer, layer, bodyDef, getBoxShape(width, height), density);
 		this.width = width;
 		this.height = height;
 		this.color = color;

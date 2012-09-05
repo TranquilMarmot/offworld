@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.moguts.device.SurfaceView;
+import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.entities.dynamic.BoxEntity;
 import com.bitwaffle.moguts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.moguts.graphics.render.Render2D;
@@ -98,7 +99,7 @@ public class PhysicsHelper {
 		circleDef.type = BodyDef.BodyType.DynamicBody;
 		circleDef.position.set(circX, circY);
 		
-		DestroyableCircle circ = new DestroyableCircle(Renderers.CIRCLE, radius, circleDef, 1.0f, new float[]{r, g, b, 1.0f}){
+		DestroyableCircle circ = new DestroyableCircle(Renderers.CIRCLE, 5, radius, circleDef, 1.0f, new float[]{r, g, b, 1.0f}){
 			@Override
 			public void init(World world){
 				super.init(world);
@@ -114,7 +115,7 @@ public class PhysicsHelper {
 			}
 		};
 		
-		physics.addEntity(circ);
+		physics.addDynamicEntity(circ);
 	}
 	
 	/**
@@ -148,7 +149,7 @@ public class PhysicsHelper {
 		boxFixture.friction = 0.3f;
 		boxFixture.restitution = 0.3f;
 		
-		DestroyableBox box = new DestroyableBox(Renderers.BOX, boxDef, sizeX, sizeY, boxFixture, new float[]{r, g, b, 1.0f}){
+		DestroyableBox box = new DestroyableBox(Renderers.BOX, 5, boxDef, sizeX, sizeY, boxFixture, new float[]{r, g, b, 1.0f}){
 			@Override
 			// give it a random spin and speed on init
 			public void init(World world){
@@ -164,19 +165,23 @@ public class PhysicsHelper {
 				this.body.setLinearVelocity(linX, linY);
 			}
 		};
-		physics.addEntity(box);
+		physics.addDynamicEntity(box);
 	}
 	
 	/**
 	 *  FIXME this initialization method is only temporary
 	 */
 	public static void temp(Physics physics){
+		// backdrop
+		Entity backdrop = new Entity(Renderers.BACKDROP, 0);
+		physics.addEntity(backdrop);
+		
 		// ground
 		BodyDef groundBodyDef = new BodyDef();
 		groundBodyDef.position.set(0.0f, -50.0f);
 		
-		BoxEntity ground = new BoxEntity(Renderers.BOX, groundBodyDef, 1000.0f, 1.0f, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
-		physics.addEntity(ground);
+		BoxEntity ground = new BoxEntity(Renderers.BOX, 5, groundBodyDef, 1000.0f, 1.0f, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
+		physics.addDynamicEntity(ground);
 		
 		// player
 		BodyDef playerBodyDef = new BodyDef();
@@ -192,8 +197,8 @@ public class PhysicsHelper {
 		playerFixture.friction = 0.3f;
 		playerFixture.restitution = 0.0f;
 		
-		Game.player = new Player(Renderers.PLAYER, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
-		physics.addEntity(Game.player);
+		Game.player = new Player(Renderers.PLAYER, 5, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
+		physics.addDynamicEntity(Game.player);
 		Render2D.camera.follow(Game.player);
 		SurfaceView.touchHandler.setPlayer(Game.player);
 		

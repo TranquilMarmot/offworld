@@ -23,8 +23,6 @@ import com.esotericsoftware.kryo.Registration;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-// TODO this currently only serializes DynamicEntities, might be good to serialize Entities too
-
 /**
  * Handles serializing Entities to a save file
  * 
@@ -56,23 +54,41 @@ public class GameSaver {
 		serializableClasses = info.getClasses();
 	}
 	
+	/**
+	 * Makes all the necessary directories to get to SAVE_DIRECTORY and then
+	 * creates the given file in said directory
+	 * @param file Name of file to create
+	 * @return File representing new file, null if file creation failed
+	 */
+	private File makeFile(String file){
+		File folder = new File(Environment.getExternalStorageDirectory(), SAVE_DIRECTORY);
+		File toWrite = new File(folder, file);
+		if(!toWrite.exists()){
+			try {
+				// create directories to get to save folder
+				if(!folder.exists() && !folder.mkdirs()){
+					Log.e(LOGTAG, "Failed to create directories for save file!");
+					return null;
+				}
+				toWrite.createNewFile();
+			} catch (IOException e) {
+				Log.e(LOGTAG, "Failed to create save file! " + e.getMessage());
+				return null;
+			}
+		}
+		return toWrite;
+	}
+	
+	/**
+	 * Saves the current Physics world to a file
+	 * @param file File to save world to
+	 * @param physics Physics world to save to file
+	 */
 	public void saveGame(String file, Physics physics){
 		try {
-			// check if file exists and create it if it doesn't
-			File folder = new File(Environment.getExternalStorageDirectory(), SAVE_DIRECTORY);
-			File toWrite = new File(folder, file);
-			if(!toWrite.exists()){
-				try {
-					if(!folder.mkdirs()){
-						Log.e(LOGTAG, "Failed to create directories for save file!");
-						return;
-					}
-					toWrite.createNewFile();
-				} catch (IOException e) {
-					Log.e(LOGTAG, "Failed to create save file! " + e.getMessage());
-					return;
-				}
-			}
+			File toWrite = makeFile(file);
+			if(toWrite == null)
+				return;
 			FileOutputStream out = new FileOutputStream(toWrite);
 			Output output = new Output(out);
 			
@@ -90,12 +106,19 @@ public class GameSaver {
 					 * the class will by anonymouse (i.e. if the entity was created inside
 					 * of a separate class from itself and had a method overridden)
 					 */
+					boolean written = false;
 					for(Class<?> c : serializableClasses){
 						if(c.isInstance(ent)){
 							kryo.writeClass(output, c);
 							kryo.writeObject(output, c.cast(ent));
+							written = true;
 							break;
 						}
+					}
+					// if all else fails, attempt to use field serializer
+					if(!written){
+						kryo.writeClass(output, ent.getClass());
+						kryo.writeObject(output, ent);
 					}
 				}
 			}
@@ -108,6 +131,11 @@ public class GameSaver {
 		}
 	}
 	
+	/**
+	 * Load a game into a Physics world
+	 * @param file Location of file to load
+	 * @param physics Physics world to shove loaded entities into
+	 */
 	@SuppressWarnings("unchecked")
 	public void loadGame(String file, Physics physics){
 		// clear the physics world
@@ -122,10 +150,10 @@ public class GameSaver {
 			Input input = new Input(in);
 			
 			// read number of entities
-			int numDynamicEntities = input.readInt();
+			int numEntities = input.readInt();
 			
 			// read in each entity
-			for(int i = 0; i < numDynamicEntities; i++){
+			for(int i = 0; i < numEntities; i++){
 				// check which class we're reading
 				Registration reg = kryo.readClass(input);
 				Object object = kryo.readObject(input, reg.getType());
@@ -137,9 +165,10 @@ public class GameSaver {
 					SurfaceView.touchHandler.setPlayer(Game.player);
 				}
 				
-				// add entity to physics world if it's dynamic
+				// Adding to physics with addDynamicEntity() calls the entity's init()
+				// method before adding it to the world
 				if(object instanceof DynamicEntity)
-					physics.addEntity((DynamicEntity) reg.getType().cast(object));
+					physics.addDynamicEntity((DynamicEntity) reg.getType().cast(object));
 				else if(object instanceof Entity)
 					physics.addEntity((Entity)object);
 				else

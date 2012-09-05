@@ -39,7 +39,7 @@ public class Camera extends Entity {
 	 * Create a new camera
 	 */
 	public Camera(){
-		super(null);
+		super();
 		zoom = 1.0f;
 	}
 
@@ -48,7 +48,7 @@ public class Camera extends Entity {
 	 * @param location Initial location to create camera at
 	 */
 	public Camera(Vector2 location) {
-		super(null);
+		super(null, 0);
 		this.setLocation(location);
 	}
 	
@@ -57,7 +57,7 @@ public class Camera extends Entity {
 	 * @param zoom Initial zoom to put camera at
 	 */
 	public Camera(float zoom){
-		super(null);
+		super(null, 0);
 		this.setZoom(zoom);
 	}
 	
@@ -67,7 +67,7 @@ public class Camera extends Entity {
 	 * @param zoom Initial zoom to put camera at
 	 */
 	public Camera(Vector2 location, float zoom){
-		super(null);
+		super(null, 0);
 		this.setLocation(location);
 		this.setZoom(zoom);
 	}

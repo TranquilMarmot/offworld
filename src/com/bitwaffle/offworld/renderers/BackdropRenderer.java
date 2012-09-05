@@ -12,11 +12,11 @@ import com.bitwaffle.offworld.Game;
  * 
  * @author TranquilMarmot
  */
-public class BackgroundRenderer implements EntityRenderer{
+public class BackdropRenderer implements EntityRenderer{
 	public void render(Render2D renderer, Entity ent){
 		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
 		
-		// FIXME magic numbers! ahhh!
+		// FIXME magic numbers! ahhh! Find a truly screen-size-independent way to do this!!!
 		float width = Game.windowWidth / 1300.0f;
 		float height = Game.windowHeight / 1300.0f;
 		
