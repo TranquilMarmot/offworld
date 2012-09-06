@@ -168,17 +168,78 @@ public class PhysicsHelper {
 		physics.addDynamicEntity(box);
 	}
 	
+	public static void temp(Physics physics){
+		// backdrop
+		Entity backdrop = new Entity(Renderers.BACKDROP, 0);
+		physics.addEntity(backdrop);
+		
+		// player
+		BodyDef playerBodyDef = new BodyDef();
+		playerBodyDef.type = BodyDef.BodyType.DynamicBody;
+		playerBodyDef.position.set(0.0f, -25.0f);
+		
+		PolygonShape boxShape = new PolygonShape();
+		boxShape.setAsBox(0.83062f, 1.8034f);
+		
+		FixtureDef playerFixture = new FixtureDef();
+		playerFixture.shape = boxShape;
+		playerFixture.density = 1.0f;
+		playerFixture.friction = 0.3f;
+		playerFixture.restitution = 0.0f;
+		
+		Game.player = new Player(Renderers.PLAYER, 6, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
+		physics.addDynamicEntity(Game.player);
+		Render2D.camera.follow(Game.player);
+		SurfaceView.touchHandler.setPlayer(Game.player);
+		
+		class Ground {
+			float x, y, width, height;
+			
+			public Ground(float x, float y, float width, float height){
+				this.x = x;
+				this.y = y;
+				this.width = width;
+				this.height = height;
+			}
+		}
+		
+		Ground[] grounds = new Ground[]{
+			// bottom
+			new Ground(0.0f, -30.0f, 45.0f, 1.0f),
+			// left
+			new Ground(-46.0f, -1.0f, 1.0f, 30.0f),
+			// right
+			new Ground(46.0f, -1.0f, 1.0f, 30.0f),
+			// stairs
+			new Ground(-35.0f, -28.0f, 10.0f, 1.0f),
+			new Ground(-37.0f, -26.0f, 8.0f, 1.0f),
+			new Ground(-39.0f, -24.0f, 6.0f, 1.0f),
+			new Ground(-41.0f, -22.0f, 4.0f, 1.0f),
+			// floating
+			new Ground(-22.0f, -20.0f, 8.0f, 0.5f),
+			new Ground(2.0f, -20.0f, 8.0f, 0.5f),
+		};
+		
+		for(Ground g : grounds){
+			BodyDef bodyDef = new BodyDef();
+			bodyDef.position.set(g.x, g.y);
+			
+			BoxEntity ground = new BoxEntity(Renderers.BOX, 4, bodyDef, g.width, g.height, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
+			physics.addDynamicEntity(ground);
+		}
+	}
+	
 	/**
 	 *  FIXME this initialization method is only temporary
 	 */
-	public static void temp(Physics physics){
+	public static void temp2(Physics physics){
 		// backdrop
 		Entity backdrop = new Entity(Renderers.BACKDROP, 0);
 		physics.addEntity(backdrop);
 		
 		// ground
 		BodyDef groundBodyDef = new BodyDef();
-		groundBodyDef.position.set(0.0f, -50.0f);
+		groundBodyDef.position.set(0.0f, -30.0f);
 		
 		BoxEntity ground = new BoxEntity(Renderers.BOX, 5, groundBodyDef, 1000.0f, 1.0f, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
 		physics.addDynamicEntity(ground);
