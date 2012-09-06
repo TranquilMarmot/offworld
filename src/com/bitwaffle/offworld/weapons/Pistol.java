@@ -121,7 +121,7 @@ public class Pistol implements Firearm {
 		if(muzzleFlash){
 			float[] tmp = new float[16];
 			BufferUtils.deepCopyFloatArray(renderer.modelview, tmp);
-			Matrix.translateM(renderer.modelview, 0, 0.6f, 0.09f, 0.0f);
+			Matrix.translateM(renderer.modelview, 0, 0.6f, facingRight ? 0.09f : -0.09f, 0.0f);
 			renderer.sendModelViewToShader();
 			Game.resources.textures.getSubImage("muzzleflash").render(renderer.quad, 0.25f, 0.245f, facingRight, facingRight);
 			
