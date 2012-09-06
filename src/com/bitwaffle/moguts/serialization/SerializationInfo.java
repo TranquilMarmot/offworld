@@ -14,6 +14,7 @@ import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.entities.dynamic.BoxEntity;
 import com.bitwaffle.moguts.entities.dynamic.CircleEntity;
 import com.bitwaffle.moguts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.moguts.entities.passive.Decal;
 import com.bitwaffle.moguts.serialization.serializers.BodyDefSerializer;
 import com.bitwaffle.moguts.serialization.serializers.FixtureDefSerializer;
 import com.bitwaffle.moguts.serialization.serializers.Vector2Serializer;
@@ -74,6 +75,8 @@ public class SerializationInfo {
 		/*-- Circles --*/
 		map.put(DestroyableCircle.class, new Info(52));
 		map.put(CircleEntity.class, new Info(53));
+		
+		map.put(Decal.class, new Info(56));
 		
 		/*-- Generic Entities --*/
 		map.put(DynamicEntity.class, new Info(54));

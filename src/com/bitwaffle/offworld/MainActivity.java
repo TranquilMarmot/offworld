@@ -7,9 +7,6 @@ import android.view.Display;
 import android.view.Window;
 
 import com.bitwaffle.moguts.device.SurfaceView;
-import com.bitwaffle.moguts.swarm.LoginListener;
-import com.bitwaffle.moguts.swarm.SwarmConsts;
-import com.swarmconnect.Swarm;
 import com.swarmconnect.SwarmActivity;
 
 /**
@@ -57,9 +54,6 @@ public class MainActivity extends SwarmActivity {
          */
         mGLView = new SurfaceView(this);
         setContentView(mGLView);
-        
-        // intialize swarm TODO make this optional
-        Swarm.init(this, SwarmConsts.App.APP_ID, SwarmConsts.App.APP_AUTH, new LoginListener());
     }
     
     @Override

@@ -1,6 +1,7 @@
 package com.bitwaffle.moguts.graphics.render;
 
 import com.bitwaffle.moguts.entities.Entity;
+import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.renderers.BackdropRenderer;
 import com.bitwaffle.offworld.renderers.BoxRenderer;
 import com.bitwaffle.offworld.renderers.CircleRenderer;
@@ -24,11 +25,16 @@ public enum Renderers{
 	 * FIXME right now, on serialization, the oridnal for each entity's renderer gets written
 	 * This is fine, except if the order of renderers gets changed then it will break old saves
 	 * (adding more renderers works fine)
+	 * There's got to be a better way to reference renderers! Then again, maybe there's not :P
+	 * Might be a good idea to have something similar to SerializationInfo where it fills a map
+	 * and each renderer has an int that references it in the map- so that the order can be changed but their
+	 * ints could stay the same to avoid breaking saves
 	 */
 	BOX(new BoxRenderer()),
 	CIRCLE(new CircleRenderer()),
 	BACKDROP(new BackdropRenderer()),
-	PLAYER(new PlayerRenderer());
+	PLAYER(new PlayerRenderer()),
+	SPARK(new SparkRenderer());
 	
 	private EntityRenderer renderer;
 	private Renderers(EntityRenderer renderer){
@@ -37,5 +43,12 @@ public enum Renderers{
 	
 	public void render(Render2D render2D, Entity ent, boolean renderDebug){
 		renderer.render(render2D, ent, renderDebug);
+	}
+}
+
+class SparkRenderer implements EntityRenderer{
+	public void render(Render2D renderer, Entity ent, boolean drawDebug){
+		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
+		Game.resources.textures.getSubImage("muzzleflash").draw(renderer.quad, 0.3f, 0.29f);
 	}
 }

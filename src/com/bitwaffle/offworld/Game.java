@@ -29,6 +29,9 @@ public class Game implements GLSurfaceView.Renderer {
 	/** Current version of the game */
 	public static final String VERSION = "0.0.5 (pre-alpha)";
 	
+	/** Current context */
+	public static Context context;
+	
 	/** Resource manager */
 	public static Resources resources;
 	
@@ -66,6 +69,7 @@ public class Game implements GLSurfaceView.Renderer {
 	 */
 	public Game(Context context){
 		super();
+		Game.context = context;
 		resources = new Resources(context);
 		vibration = new Vibration(context);
 	}

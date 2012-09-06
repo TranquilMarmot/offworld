@@ -15,16 +15,25 @@ import com.bitwaffle.offworld.Game;
  * @author TranquilMarmot
  */
 public class BackdropRenderer implements EntityRenderer{
+	private float windowWidth = 0.0f, windowHeight = 0.0f;
+	private float worldSizeX, worldSizeY;
+	
 	public void render(Render2D renderer, Entity ent, boolean renderDebug){
+		if(windowWidth != Game.windowWidth || windowHeight != Game.windowHeight){
+			windowWidth = Game.windowWidth;
+			windowHeight = Game.windowHeight;
+			Vector2 worldSize = MathHelper.toWorldSpace(windowWidth / 2, windowHeight / 2);
+			worldSizeX = worldSize.x;
+			worldSizeY = worldSize.y;
+		}
+		
 		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
-
-		Vector2 worldSize = MathHelper.toWorldSpace(Game.windowWidth / 2, Game.windowHeight / 2);
 		
 		Matrix.setIdentityM(renderer.modelview, 0);
-		Matrix.translateM(renderer.modelview, 0, worldSize.x, worldSize.y, 0.0f);
+		Matrix.translateM(renderer.modelview, 0, worldSizeX, worldSizeY, 0.0f);
 		renderer.sendModelViewToShader();
 		
 		Game.resources.textures.bindTexture("background");
-		renderer.quad.draw(worldSize.x, worldSize.y, true, true);
+		renderer.quad.draw(worldSizeX, worldSizeY, true, true);
 	}
 }

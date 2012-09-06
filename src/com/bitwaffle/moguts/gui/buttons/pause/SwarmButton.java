@@ -1,7 +1,11 @@
 package com.bitwaffle.moguts.gui.buttons.pause;
 
+import android.app.Activity;
+
 import com.bitwaffle.moguts.graphics.render.Render2D;
 import com.bitwaffle.moguts.gui.buttons.RectangleButton;
+import com.bitwaffle.moguts.swarm.LoginListener;
+import com.bitwaffle.moguts.swarm.SwarmConsts;
 import com.bitwaffle.offworld.Game;
 import com.swarmconnect.Swarm;
 
@@ -25,6 +29,8 @@ public class SwarmButton extends RectangleButton {
 
 	@Override
 	protected void onRelease() {
+		if(!Swarm.isInitialized())
+			Swarm.init((Activity)Game.context, SwarmConsts.App.APP_ID, SwarmConsts.App.APP_AUTH, new LoginListener());
 		Swarm.showDashboard();
 	}
 

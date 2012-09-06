@@ -18,12 +18,12 @@ import com.bitwaffle.offworld.Game;
 public class SurfaceView extends GLSurfaceView {
 	/** 
 	 * Handles all the rendering (NOTE: {@link Game}
-	 * contains static instances of {@link Render2D} and Render3D,
-	 * which should be referenced whenever doing graphics stuff.
+	 * contains static instances of {@link Render2D},
+	 * which should be referenced whenever doing rendering.
 	 * It's also got a static instance of {@link Physics} which should be
 	 * used when interacting with the physics world) 
 	 */
-	public static Game game;
+	private Game game;
 	
 	/** Handles any touch events */
 	public static TouchHandler touchHandler;
@@ -42,8 +42,8 @@ public class SurfaceView extends GLSurfaceView {
     
     @Override
     public boolean onTouchEvent(MotionEvent e) {
-    	// simply send the event to the touch handler
     	try{
+    		// simply send the event to the touch handler
     		return touchHandler.touchEvent(e);
     	}catch (NullPointerException err){
     		return false;

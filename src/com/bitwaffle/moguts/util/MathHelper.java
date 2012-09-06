@@ -90,33 +90,33 @@ public class MathHelper {
 	 */
 	public static Vector2 toWorldSpace(float[] projection, float[] view, float screenX, float screenY){
 		float[] 
-				// used to multiply projection * view
-				compoundMatrix = new float[16],
-				// screen-space touch point, normalized
-				normalizedInPoint = new float[4],
-				// resulting world-space point
-				outPoint = new float[4];
-			
-			// multiply view and projection and invert (basically, GLUUnproject)
-			Matrix.multiplyMM(compoundMatrix, 0, projection, 0, view, 0);
-			Matrix.invertM(compoundMatrix, 0, compoundMatrix, 0);
+			// used to multiply projection * view
+			compoundMatrix = new float[16],
+			// screen-space touch point, normalized
+			normalizedInPoint = new float[4],
+			// resulting world-space point
+			outPoint = new float[4];
+		
+		// multiply view and projection and invert (basically, GLUUnproject)
+		Matrix.multiplyMM(compoundMatrix, 0, projection, 0, view, 0);
+		Matrix.invertM(compoundMatrix, 0, compoundMatrix, 0);
 
-			// compensate for Y 0 being on the bottom in OpenGL (touch point 0 is on the top)
-			float oglTouchY = Game.windowHeight - screenY;
-			// create our normalized vector
-			normalizedInPoint[0] = ((screenX * 2.0f) / Game.windowWidth) - 1.0f;
-			normalizedInPoint[1] = ((oglTouchY * 2.0f) / Game.windowHeight) - 1.0f;
-			normalizedInPoint[2] = 0.0f; // because everything is drawn at 0 (between -1 and 1)
-			normalizedInPoint[3] = 1.0f;
-			
-			// multiply normalized point by our inverted view-projection matrix
-			Matrix.multiplyMV(outPoint, 0, compoundMatrix, 0, normalizedInPoint, 0);
+		// compensate for Y 0 being on the bottom in OpenGL (touch point 0 is on the top)
+		float oglTouchY = Game.windowHeight - screenY;
+		// create our normalized vector
+		normalizedInPoint[0] = ((screenX * 2.0f) / Game.windowWidth) - 1.0f;
+		normalizedInPoint[1] = ((oglTouchY * 2.0f) / Game.windowHeight) - 1.0f;
+		normalizedInPoint[2] = 0.0f; // because everything is drawn at 0 (between -1 and 1)
+		normalizedInPoint[3] = 1.0f;
+		
+		// multiply normalized point by our inverted view-projection matrix
+		Matrix.multiplyMV(outPoint, 0, compoundMatrix, 0, normalizedInPoint, 0);
 
-			if (outPoint[3] == 0.0f)
-				Log.e("Render2D", "Divide by zero error in screen space to world space conversion!");
+		if (outPoint[3] == 0.0f)
+			Log.e("Render2D", "Divide by zero error in screen space to world space conversion!");
 
-			// some sort of magic or something
-			return new Vector2(outPoint[0] / outPoint[3], outPoint[1] / outPoint[3]);
+		// some sort of magic or something
+		return new Vector2(outPoint[0] / outPoint[3], outPoint[1] / outPoint[3]);
 	}
 	
 	/**
@@ -129,26 +129,25 @@ public class MathHelper {
 	 */
 	public static Vector2 toWorldSpace(float screenX, float screenY, Camera camera){
 		float[] 
-				// projection matrix
 				projection = new float[16],
-				// view matrix (no 'model' since we're not looking at anything specific)
-				view = new float[16];
+				view = new float[16]; // (no 'model' since we're not looking at anything specific)
+		
+		// create the projection matrix (mimics Render2D's "setUpProjectionWorldCoords" method)
+		Matrix.setIdentityM(projection, 0);
+		Matrix.orthoM(projection, 0, 0, Game.aspect, 0, 1, -1, 1);
+		
+		// create the view matrix
+		Matrix.setIdentityM(view, 0);
+		
+		// if we're using a camera, rotate/translate to it
+		if(camera != null){
+			Matrix.rotateM(projection, 0, camera.getAngle(), 0.0f, 0.0f, 1.0f);
 			
-			// create the projection matrix (mimics Render2D's "setUpProjectionWorldCoords" method)
-			Matrix.setIdentityM(projection, 0);
-			Matrix.orthoM(projection, 0, 0, Game.aspect, 0, 1, -1, 1);
-			
-			// create the view matrix (essentially, an identity matrix scaled and translated to the camera's position)
-			Matrix.setIdentityM(view, 0);
-			
-			if(camera != null){
-				Matrix.rotateM(projection, 0, camera.getAngle(), 0.0f, 0.0f, 1.0f);
-				
-				Matrix.scaleM(view, 0, camera.getZoom(), camera.getZoom(), 1.0f);
-				Matrix.translateM(view, 0, camera.getLocation().x, camera.getLocation().y, 0.0f);
-			}
-			
-			return toWorldSpace(projection, view, screenX, screenY);
+			Matrix.scaleM(view, 0, camera.getZoom(), camera.getZoom(), 1.0f);
+			Matrix.translateM(view, 0, camera.getLocation().x, camera.getLocation().y, 0.0f);
+		}
+		
+		return toWorldSpace(projection, view, screenX, screenY);
 	}
 	
 	/**

@@ -6,7 +6,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.moguts.entities.Entity;
 import com.bitwaffle.moguts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.moguts.entities.passive.Decal;
 import com.bitwaffle.moguts.graphics.render.Render2D;
+import com.bitwaffle.moguts.graphics.render.Renderers;
 import com.bitwaffle.moguts.physics.callbacks.ClosestHitRayCastCallback;
 import com.bitwaffle.moguts.util.BufferUtils;
 import com.bitwaffle.moguts.util.MathHelper;
@@ -42,10 +44,13 @@ public class Pistol implements Firearm {
 	/** How long it's been since the last shot, in seconds */
 	private float timeSinceLastShot;
 	
+	/** Whether or not there's currently a muzzle flash */
 	boolean muzzleFlash;
 	
+	/** How long the flash lives and a timer to know when to turn it off */
 	float flashTTL = 0.1f, flashLived; 
 	
+	// FIXME temp?
 	private final float 		
 		GUN_X_SCALE = 0.363f,
 		GUN_Y_SCALE = 0.25f;
@@ -75,7 +80,6 @@ public class Pistol implements Firearm {
 	 */
 	public void shootAt(World world, Vector2 target) {
 		if(timeSinceLastShot >= firingRate){
-			//FIXME temp
 			Game.resources.sounds.play("shoot");
 			muzzleFlash = true;
 			
@@ -94,17 +98,28 @@ public class Pistol implements Firearm {
 				Vector2 point = callback.pointOnClosest();
 				hit.body.applyForce(new Vector2(normal.x * -force, normal.y * -force), point);
 				
+				// add spark decal at hit
+				Game.physics.addEntity(new Decal(
+						Renderers.SPARK,
+						owner.getLayer() + 1,
+						point,
+						MathHelper.toRadians(normal.angle()),
+						0.1f)
+				);
+				
 				if(hit instanceof Health)
 					((Health)hit).hurt(this.damage);
 			}
-			
+			// reset shot timer
 			timeSinceLastShot = 0.0f;
 		}
 	}
 	
 	public void update(float timeStep){
+		// tick shot timer
 		timeSinceLastShot += timeStep;
 		
+		// tick muzzle flash timer if necessary
 		if(muzzleFlash){
 			flashLived += timeStep;
 			if(flashLived >= flashTTL){

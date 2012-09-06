@@ -7,13 +7,30 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
+/**
+ * A decal that disappears after a certain time period
+ * 
+ * @author TranquilMarmot
+ */
 public class Decal extends Entity{
+	/** How long the decal lives and a timer */
 	float timeToLive, timeLived;
 	
+	/**
+	 * Blank constructor for serialization
+	 */
 	public Decal(){
 		super();
 	}
 	
+	/**
+	 * Create a new decal
+	 * @param renderer Renderer to render decal with
+	 * @param layer Which layer to render the decal on
+	 * @param location Location of decal
+	 * @param rotation Rotation of decal
+	 * @param timeToLive How long the decal will live for
+	 */
 	public Decal(Renderers renderer, int layer, Vector2 location, float rotation, float timeToLive){
 		super(renderer, layer, location, rotation);
 		this.timeToLive = timeToLive;
@@ -22,6 +39,7 @@ public class Decal extends Entity{
 	
 	@Override
 	public void update(float timeStep){
+		// update timer and set remove flag if done
 		timeLived += timeStep;
 		if(timeLived >= timeToLive)
 			this.removeFlag = true;
