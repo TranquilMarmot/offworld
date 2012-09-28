@@ -47,6 +47,13 @@
 	        <width>273</width>
 	        <height>276</height>
 	    </subImage>
+	    
+	    <subImage name="spark">
+	        <xOffset>0</xOffset>
+	        <yOffset>289</yOffset>
+	        <width>140</width>
+	        <height>222</height>
+	    </subImage>
 	</texture>
 	
 	<texture name="arrows-full">

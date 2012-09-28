@@ -47,8 +47,10 @@ public enum Renderers{
 }
 
 class SparkRenderer implements EntityRenderer{
+	final float X_RATIO = 0.631f, Y_RATIO = 1.0f;
+	final float SCALE = 0.4f;
 	public void render(Render2D renderer, Entity ent, boolean drawDebug){
 		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
-		Game.resources.textures.getSubImage("muzzleflash").draw(renderer.quad, 0.3f, 0.29f);
+		Game.resources.textures.getSubImage("spark").draw(renderer.quad, X_RATIO * SCALE, Y_RATIO * SCALE);
 	}
 }
