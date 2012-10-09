@@ -27,14 +27,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7071068"
-     inkscape:cx="483.89756"
-     inkscape:cy="117.76584"
+     inkscape:zoom="11.313709"
+     inkscape:cx="293.12364"
+     inkscape:cy="504.11614"
      inkscape:document-units="px"
-     inkscape:current-layer="layer6"
+     inkscape:current-layer="layer2"
      showgrid="false"
-     inkscape:window-width="1680"
-     inkscape:window-height="988"
+     inkscape:window-width="1920"
+     inkscape:window-height="1138"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -52,7 +52,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -134,7 +134,7 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="fire1"
-     style="opacity:0.53472218;display:inline">
+     style="opacity:1;display:inline">
     <path
        style="fill:#ff0000;fill-opacity:1;stroke:none"
        d="m 409.37768,484.43693 28,-24.375 -1.5,17 26.5,-13.875 -5,18 25.375,-2.375 -19.5,18.625 22.75,20.875 -30.875,-7 9.25,20.25 -27.25,-14.25 6.625,20.375 -34.375,-27 z"
@@ -202,7 +202,7 @@
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="Layer"
+     inkscape:label="pistol-detail"
      style="display:inline">
     <path
        style="fill:#abaeae;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -228,5 +228,45 @@
        id="path3101"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#a67c00;fill-opacity:1;stroke:#000000;stroke-width:0.93773264px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 306.11327,536.29543 -0.0322,22.49482 4.89557,-0.3145 c 23.4822,-4.96405 23.58491,-15.95771 -0.29694,-21.89684 z"
+       id="path3021"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld\raw\bullet.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
+    <path
+       style="fill:#ffbf00;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 306.09076,535.8622 -35.59077,-0.0777 0.0183,23.45351 35.55783,-0.0107 z"
+       id="path3797"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld\raw\bullet.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
+    <path
+       style="fill:#ffcf40;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 270.41862,536.67185 -3.31456,0.0442 0.0884,21.54624 3.31456,0 z"
+       id="path3801"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld\raw\bullet.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
+    <path
+       style="fill:#a67c00;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 267.30451,535.72103 -3.0052,0.0442 0.0884,23.58897 2.82842,0 z"
+       id="path3809"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld\raw\bullet.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
   </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="bullet" />
 </svg>

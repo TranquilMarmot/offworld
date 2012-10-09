@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.Window;
 
-import com.bitwaffle.moguts.device.SurfaceView;
+import com.bitwaffle.guts.device.SurfaceView;
 import com.swarmconnect.SwarmActivity;
 
 /**

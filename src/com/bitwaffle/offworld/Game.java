@@ -8,11 +8,11 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.os.SystemClock;
 
-import com.bitwaffle.moguts.device.Vibration;
-import com.bitwaffle.moguts.graphics.render.Render2D;
-import com.bitwaffle.moguts.physics.Physics;
-import com.bitwaffle.moguts.resources.Resources;
-import com.bitwaffle.moguts.util.PhysicsHelper;
+import com.bitwaffle.guts.device.Vibration;
+import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.physics.Physics;
+import com.bitwaffle.guts.resources.Resources;
+import com.bitwaffle.guts.util.PhysicsHelper;
 import com.bitwaffle.offworld.entities.Player;
 
 /**
