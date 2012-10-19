@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.device;
+package com.bitwaffle.guts.android;
 
 import java.util.Iterator;
 

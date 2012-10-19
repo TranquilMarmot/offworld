@@ -1,8 +1,8 @@
 package com.bitwaffle.guts.gui.buttons.movement.right;
 
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.gui.buttons.RectangleButton;
 import com.bitwaffle.guts.gui.buttons.movement.MovementButtonManager;
-import com.bitwaffle.offworld.Game;
 
 /**
  * Button to move right

@@ -2,11 +2,11 @@ package com.bitwaffle.guts.gui;
 
 import java.util.Iterator;
 
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.gui.buttons.Button;
 import com.bitwaffle.guts.gui.buttons.ButtonManager;
 import com.bitwaffle.guts.gui.buttons.movement.MovementButtonManager;
 import com.bitwaffle.guts.gui.buttons.pause.PauseButtonManager;
-import com.bitwaffle.offworld.Game;
 
 /**
  * Handles all GUI elements

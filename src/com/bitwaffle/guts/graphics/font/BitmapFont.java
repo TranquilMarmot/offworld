@@ -10,10 +10,10 @@ import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.graphics.textures.TextureManager;
 import com.bitwaffle.guts.util.BufferUtils;
-import com.bitwaffle.offworld.Game;
 
 /**
  * Pack my box with five dozen liquor jugs!

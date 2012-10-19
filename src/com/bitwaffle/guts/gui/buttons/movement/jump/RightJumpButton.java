@@ -2,9 +2,9 @@ package com.bitwaffle.guts.gui.buttons.movement.jump;
 
 import android.opengl.GLES20;
 
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.buttons.movement.MovementButtonManager;
-import com.bitwaffle.offworld.Game;
 
 /**
  * Button to jump that stays on the right side of the screen

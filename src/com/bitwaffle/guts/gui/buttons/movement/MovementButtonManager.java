@@ -1,5 +1,6 @@
 package com.bitwaffle.guts.gui.buttons.movement;
 
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.graphics.Camera;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.buttons.Button;
@@ -13,7 +14,6 @@ import com.bitwaffle.guts.gui.buttons.movement.left.RightMoveLeftButton;
 import com.bitwaffle.guts.gui.buttons.movement.right.LeftMoveRightButton;
 import com.bitwaffle.guts.gui.buttons.movement.right.RightMoveRightButton;
 import com.bitwaffle.guts.util.PhysicsHelper;
-import com.bitwaffle.offworld.Game;
 
 /**
  * A ButtonManager that keeps track of movement buttons and their size

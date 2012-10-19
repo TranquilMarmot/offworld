@@ -1,9 +1,9 @@
 package com.bitwaffle.guts.graphics;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.offworld.Game;
 
 /**
  * Describes how a scene should be rendered

@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.device;
+package com.bitwaffle.guts.android;
 
 import android.content.Context;
 import android.os.Vibrator;

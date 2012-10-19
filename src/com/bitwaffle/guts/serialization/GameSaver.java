@@ -11,12 +11,12 @@ import java.util.Set;
 import android.os.Environment;
 import android.util.Log;
 
-import com.bitwaffle.guts.device.SurfaceView;
+import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.physics.Physics;
-import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.entities.Player;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Registration;

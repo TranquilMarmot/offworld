@@ -1,10 +1,9 @@
-package com.bitwaffle.guts.device;
+package com.bitwaffle.guts.android;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.widget.EditText;
 
-import com.bitwaffle.offworld.Game;
 
 /**
  * Used to get text input from the user via a popup

@@ -4,6 +4,7 @@ import android.opengl.Matrix;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.entities.passive.Decal;
@@ -12,7 +13,6 @@ import com.bitwaffle.guts.graphics.render.Renderers;
 import com.bitwaffle.guts.physics.callbacks.ClosestHitRayCastCallback;
 import com.bitwaffle.guts.util.BufferUtils;
 import com.bitwaffle.guts.util.MathHelper;
-import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.Health;
 import com.bitwaffle.offworld.renderers.PlayerRenderer;

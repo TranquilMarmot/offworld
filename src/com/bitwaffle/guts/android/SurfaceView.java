@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.device;
+package com.bitwaffle.guts.android;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
@@ -6,7 +6,6 @@ import android.view.MotionEvent;
 
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.physics.Physics;
-import com.bitwaffle.offworld.Game;
 
 /**
  * Implementation of android.opengl.GLSurfaceView.

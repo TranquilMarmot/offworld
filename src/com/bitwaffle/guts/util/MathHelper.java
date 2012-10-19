@@ -5,8 +5,8 @@ import android.util.FloatMath;
 import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.graphics.Camera;
-import com.bitwaffle.offworld.Game;
 
 /**
  * Any math functions not found in Android's FloatMath or 

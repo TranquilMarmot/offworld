@@ -2,11 +2,11 @@ package com.bitwaffle.guts.gui.buttons.pause;
 
 import android.app.Activity;
 
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.buttons.RectangleButton;
 import com.bitwaffle.guts.swarm.LoginListener;
 import com.bitwaffle.guts.swarm.SwarmConsts;
-import com.bitwaffle.offworld.Game;
 import com.swarmconnect.Swarm;
 
 public class SwarmButton extends RectangleButton {

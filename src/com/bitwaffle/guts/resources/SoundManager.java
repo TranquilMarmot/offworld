@@ -13,8 +13,8 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.util.Log;
 
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.util.XMLHelper;
-import com.bitwaffle.offworld.Game;
 
 /**
  * Manages initializing and playing/stopping sounds.

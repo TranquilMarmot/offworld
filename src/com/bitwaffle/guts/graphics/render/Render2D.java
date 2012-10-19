@@ -9,7 +9,8 @@ import android.opengl.Matrix;
 import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.guts.device.SurfaceView;
+import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.graphics.Camera;
 import com.bitwaffle.guts.graphics.render.glsl.GLSLProgram;
@@ -19,7 +20,6 @@ import com.bitwaffle.guts.graphics.render.shapes.Quad;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.buttons.Button;
 import com.bitwaffle.guts.util.MathHelper;
-import com.bitwaffle.offworld.Game;
 
 /**
  * This class handles all 2D rendering

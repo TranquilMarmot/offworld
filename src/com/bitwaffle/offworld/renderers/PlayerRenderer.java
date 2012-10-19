@@ -4,10 +4,10 @@ import android.opengl.GLES20;
 import android.opengl.Matrix;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.util.BufferUtils;
-import com.bitwaffle.offworld.Game;
 import com.bitwaffle.offworld.entities.Player;
 
 /**

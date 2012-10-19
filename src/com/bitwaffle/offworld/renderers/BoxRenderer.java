@@ -2,11 +2,11 @@ package com.bitwaffle.offworld.renderers;
 
 import android.opengl.GLES20;
 
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.guts.graphics.render.Render2D;
-import com.bitwaffle.offworld.Game;
 
 /**
  * Used for rendering wooden boxes
