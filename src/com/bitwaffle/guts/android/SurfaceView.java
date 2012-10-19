@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.physics.Physics;
+import com.bitwaffle.guts.resources.Resources;
 
 /**
  * Implementation of android.opengl.GLSurfaceView.
@@ -35,7 +36,10 @@ public class SurfaceView extends GLSurfaceView {
         
         touchHandler = new TouchHandler(Game.player, Render2D.camera);
         
-        game = new Game(context);
+        game = new Game();
+        Game.context = context;
+		Game.resources = new Resources(context);
+		Game.vibration = new Vibration(context);
         this.setRenderer(game);  
   }
     

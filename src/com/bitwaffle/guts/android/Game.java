@@ -4,32 +4,42 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.Display;
+import android.view.Window;
 
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.Resources;
 import com.bitwaffle.guts.util.PhysicsHelper;
 import com.bitwaffle.offworld.entities.Player;
+import com.swarmconnect.SwarmActivity;
 
 /**
+ * Main Activity!
  * This class handles calling the rendering methods,
  * as well as stepping the physics sim (for now).
- * This class has static instances of Render2D and Render3D,
- * which should be referenced whenever doing graphics things.
  * This class also has a static instance of Physics, which
  * should be used whenever interacting with the physics world.
  * 
  * @author TranquilMarmot
  */
-public class Game implements GLSurfaceView.Renderer {
+public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
 	/** Current version of the game */
 	public static final String VERSION = "0.0.5 (pre-alpha)";
 	
 	/** Current context */
 	public static Context context;
+	
+	/**
+	 * This is VERY important! It holds on to the 'Game' object that
+	 * takes care of all the physics, rendering, etc. etc.
+	 */
+    private static GLSurfaceView mGLView;
 	
 	/** Resource manager */
 	public static Resources resources;
@@ -62,19 +72,44 @@ public class Game implements GLSurfaceView.Renderer {
 	/** Used to count frames for FPS */
 	private int frameCount = 0;
 	
-	/**
-	 * Create a new renderer instance
-	 * @param context Context to use for laoding resources
-	 */
-	public Game(Context context){
-		super();
-		Game.context = context;
-		resources = new Resources(context);
-		vibration = new Vibration(context);
-	}
+	 @Override
+    /**
+     * What to do when the activity is created
+     * (this is overriding the Activity class)
+     * NOTE:
+     * Since this app is pure OpenGL, this is the only activity.
+     * Whenever the screen's orientation gets changed, this gets called
+     * so be careful with any initialization caused by creating the SurfaceView.
+     */
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // TODO make this an option somewhere
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
+        //        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        
+        // initialize window width/height variables
+        Display display = getWindowManager().getDefaultDisplay();
+        Game.windowWidth = display.getWidth();
+        Game.windowHeight = display.getHeight();
+        
+       // getResources().getDisplayMetrics().
+
+        /*
+         * Create a SurfaceView instance and set it as
+         * the ContentView for this Activity.
+         * NOTE: This SurfaceView holds on to the Game object
+         * and handles pretty much EVERYTHING in the game
+         */
+        mGLView = new SurfaceView(this);
+        setContentView(mGLView);
+    }
 
 	/**
-	 * Initializes everything
+	 * What to do when the OpenGL surface is created
+	 * (overrides GLSufraceView.Renderer)
 	 */
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
 		resources.init();
@@ -140,6 +175,11 @@ public class Game implements GLSurfaceView.Renderer {
     	windowWidth = width;
     	aspect = (float) width /  (float) height;
         GLES20.glViewport(0, 0, width, height);
+    }
+    
+    @Override
+    public void onBackPressed(){
+    	togglePause();
     }
     
     public static void togglePause(){
