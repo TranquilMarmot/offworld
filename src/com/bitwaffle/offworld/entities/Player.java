@@ -1,16 +1,23 @@
 package com.bitwaffle.offworld.entities;
 
+import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector2f;
+import org.lwjgl.util.vector.Vector3f;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
+import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.render.Renderers;
 import com.bitwaffle.guts.graphics.textures.animation.Animation;
 import com.bitwaffle.guts.physics.callbacks.FirstHitQueryCallback;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.interfaces.Firearm;
+import com.bitwaffle.offworld.interfaces.FirearmHolder;
+import com.bitwaffle.offworld.renderers.PlayerRenderer;
 import com.bitwaffle.offworld.weapons.Pistol;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
@@ -22,7 +29,7 @@ import com.esotericsoftware.kryo.io.Output;
  * 
  * @author TranquilMarmot
  */
-public class Player extends BoxEntity implements KryoSerializable{
+public class Player extends BoxEntity implements FirearmHolder,KryoSerializable{
 	// FIXME these are temp
 	private static float[] defaultColor = { 1.0f, 1.0f, 1.0f, 1.0f };
 	
@@ -61,7 +68,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 		// TODO get rid of these magic numbers
 		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
 		this.color = defaultColor;
-		legsAnimation = Game.resources.textures.getAnimation("playerlegs");
+		legsAnimation = Game.resources.textures.getAnimation("playerlegsshort");
 		target = new Vector2();
 	}
 	
@@ -79,7 +86,7 @@ public class Player extends BoxEntity implements KryoSerializable{
 		this.color = defaultColor;
 		// TODO get rid of these magic numbers
 		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
-		legsAnimation = Game.resources.textures.getAnimation("playerlegs");
+		legsAnimation = Game.resources.textures.getAnimation("playerlegsshort");
 		target = new Vector2();
 	}
 	
@@ -94,22 +101,19 @@ public class Player extends BoxEntity implements KryoSerializable{
 	@Override
 	public void update(float timeStep){
 		super.update(timeStep);
+		Vector2 linVec = body.getLinearVelocity();
 		
 		// update animation
-		if(body != null){
-			Vector2 linVec = body.getLinearVelocity();
-			if(linVec.x > 0.5f || linVec.x < -0.5f){
-				// FIXME should the animation speed be defined in the animation's XML?
-				float animationStep = timeStep * Math.abs(linVec.x / 15.0f);
-				legsAnimation.updateAnimation(animationStep);
-			}
+		if(body != null && (linVec.x > 0.5f || linVec.x < -0.5f)){
+			// FIXME should the animation speed be defined in the animation's XML?
+			float animationStep = timeStep * Math.abs(linVec.x / 15.0f);
+			legsAnimation.updateAnimation(animationStep);
 		}
 		
 		// update which direction the player is facing
 		facingRight = target.x >= this.location.x;
 		
 		// update the location of the target so it moves with the player
-		Vector2 linVec = body.getLinearVelocity();
 		target.x += linVec.x * timeStep;
 		target.y += linVec.y * timeStep;
 		
@@ -176,8 +180,8 @@ public class Player extends BoxEntity implements KryoSerializable{
 				Vector2 linVec = body.getLinearVelocity();
 				// can only jump if the current vertical speed is within a certain range
 				if(linVec.y <= JUMP_FORCE && linVec.y >= -JUMP_FORCE){
-					Game.vibration.vibrate(25);
-					Game.resources.sounds.play("jump");
+					//Game.vibration.vibrate(25);
+					//Game.resources.sounds.play("jump");
 					
 					// add force to current velocity and set it
 					linVec.y += JUMP_FORCE;
@@ -251,7 +255,27 @@ public class Player extends BoxEntity implements KryoSerializable{
 	 * @return The angle from the player to the player's target
 	 */
 	public float getArmAngle(){
-		return MathHelper.angle(this.getLocation(), this.target);
+		return MathHelper.toRadians(MathHelper.angle(this.getLocation(), this.target));
+	}
+	
+	public Vector2 getFirearmLocation(){
+		// the same translations as in the player renderer to get to the pistol
+		Matrix4f tempMat = new Matrix4f();
+		tempMat.setIdentity();
+		tempMat.translate(new Vector2f(this.location.x, this.location.y));
+		tempMat.translate(new Vector3f(facingRight ? PlayerRenderer.L_ARM_X_OFFSET : -PlayerRenderer.L_ARM_X_OFFSET, PlayerRenderer.L_ARM_Y_OFFSET, 0.0f));
+		tempMat.rotate(this.getArmAngle(), new Vector3f(0.0f, 0.0f, 1.0f));
+		tempMat.translate(new Vector3f(PlayerRenderer.ARM_ROTATION_X_OFFSET, facingRight ? PlayerRenderer.ARM_ROTATION_Y_OFFSET : -PlayerRenderer.ARM_ROTATION_Y_OFFSET, 0.0f));
+		tempMat.translate(new Vector3f(PlayerRenderer.GUN_X_OFFSET, facingRight ?  PlayerRenderer.GUN_Y_OFFSET  : -PlayerRenderer.GUN_Y_OFFSET, 0.0f));
+		return new Vector2(tempMat.m30, tempMat.m31);
+	}
+	
+	public DynamicEntity getFirearmOwningEntity(){
+		return this;
+	}
+	
+	public float getFirearmAngle(){
+		return getArmAngle();
 	}
 	
 	@Override

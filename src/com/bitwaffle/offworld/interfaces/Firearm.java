@@ -24,5 +24,7 @@ public interface Firearm {
 	 */
 	public void update(float timeStep);
 	
+	public Vector2 getTipOffset();
+	
 	public void render(Render2D renderer);
 }

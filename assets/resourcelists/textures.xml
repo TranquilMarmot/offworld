@@ -56,8 +56,8 @@
 	    </subImage>
 	    
 	    <subImage name="pistolbullet">
-	        <xOffset>228</xOffset>
-	        <yOffset>368</yOffset>
+	        <xOffset>241</xOffset>
+	        <yOffset>365</yOffset>
 	        <width>232</width>
 	        <height>88</height>
 	    </subImage>
@@ -107,6 +107,52 @@
 	        <height>73</height>
 	    </subImage>
 	</texture>
+	
+	<animation name="playerlegsshort" frames="5">
+	    <path>textures/player/legs.png</path>
+	    <minFilter>GL_NEAREST</minFilter>
+		<magFilter>GL_NEAREST</magFilter>
+		
+		<frame number="0">
+		    <xOffset>715</xOffset>
+		    <yOffset>397</yOffset>
+		    <width>307</width>
+		    <height>241</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="1">
+		    <xOffset>355</xOffset>
+		    <yOffset>19</yOffset>
+		    <width>307</width>
+		    <height>241</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="2">
+		    <xOffset>716</xOffset>
+		    <yOffset>19</yOffset>
+		    <width>307</width>
+		    <height>241</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="3">
+		    <xOffset>0</xOffset>
+		    <yOffset>398</yOffset>
+		    <width>307</width>
+		    <height>241</height>
+		    <length>0.1f</length>
+		</frame>
+		
+		<frame number="4">
+		    <xOffset>0</xOffset>
+		    <yOffset>737</yOffset>
+		    <width>307</width>
+		    <height>241</height>
+		    <length>0.1f</length>
+		</frame>
+	</animation>
 	
 	<animation name="playerlegs" frames="10">
 	    <path>textures/player/legs.png</path>

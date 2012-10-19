@@ -1,6 +1,6 @@
 package com.bitwaffle.offworld.renderers;
 
-import android.opengl.Matrix;
+import org.lwjgl.util.vector.Vector3f;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.android.Game;
@@ -29,8 +29,8 @@ public class BackdropRenderer implements EntityRenderer{
 		
 		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
 		
-		Matrix.setIdentityM(renderer.modelview, 0);
-		Matrix.translateM(renderer.modelview, 0, worldSizeX, worldSizeY, 0.0f);
+		renderer.modelview.setIdentity();
+		renderer.modelview.translate(new Vector3f(worldSizeX, worldSizeY, 0.0f));
 		renderer.sendModelViewToShader();
 		
 		Game.resources.textures.bindTexture("background");

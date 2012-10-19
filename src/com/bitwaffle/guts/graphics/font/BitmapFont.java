@@ -5,10 +5,11 @@ import java.io.InputStream;
 import java.nio.FloatBuffer;
 import java.util.StringTokenizer;
 
+import org.lwjgl.util.vector.Vector3f;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
-import android.opengl.Matrix;
 
 import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.graphics.render.Render2D;
@@ -180,9 +181,9 @@ public class BitmapFont {
 			int index = (int)charArr[i] - START_CHAR;
 			
 			// scale and move the modelview to get to the char's location
-			Matrix.setIdentityM(renderer.modelview, 0);
-			Matrix.translateM(renderer.modelview, 0, x + xOffset, y + (cellHeight * scale * lineNum), 0.0f);
-			Matrix.scaleM(renderer.modelview, 0, scale, scale, 1.0f);
+			renderer.modelview.setIdentity();
+			renderer.modelview.translate(new Vector3f(x + xOffset, y + (cellHeight * scale * lineNum), 0.0f));
+			renderer.modelview.scale(new Vector3f(scale, scale, 1.0f));
 			renderer.sendModelViewToShader();
 			
 			// draw character

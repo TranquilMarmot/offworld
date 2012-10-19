@@ -5,7 +5,9 @@ import java.io.InputStream;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
-import android.opengl.Matrix;
+import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector3f;
+
 import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
@@ -48,7 +50,8 @@ public class Render2D {
 	public GLSLProgram program;
 	
 	/** The modelview and projection matrices*/
-	public float[] modelview, projection;
+	//public float[] modelview, projection;
+	public Matrix4f modelview, projection;
 	
 	/** The graphical user interface */
 	public static GUI gui;
@@ -69,8 +72,8 @@ public class Render2D {
 	public Render2D() {
 		initShaders();
 		
-		projection = new float[16];
-		modelview = new float[16];
+		projection = new Matrix4f();
+		modelview = new Matrix4f();
 		
 		camera = new Camera(new Vector2(DEFAULT_CAMX, DEFAULT_CAMY), DEFAULT_CAMZ);
 		SurfaceView.touchHandler.setCamera(camera);
@@ -148,8 +151,8 @@ public class Render2D {
 	 * for drawing things in world coordinates
 	 */
 	private void setUpProjectionWorldCoords(){
-		Matrix.setIdentityM(projection, 0);
-		Matrix.orthoM(projection, 0, 0, Game.aspect, 0, 1, -1, 1);
+		projection.setIdentity();
+		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1);
 		
 		program.setUniformMatrix4f("Projection", projection);
 	}
@@ -178,13 +181,13 @@ public class Render2D {
 	 */
 	public void prepareToRenderEntity(Entity ent){
 		Vector2 loc = ent.getLocation();
-		float angle = MathHelper.toDegrees(ent.getAngle());
+		float angle = ent.getAngle();
 		
 		// mainpulate the modelview matrix to draw the entity
-		Matrix.setIdentityM(modelview, 0);
+		modelview.setIdentity();
 		this.translateModelViewToCamera();
-		Matrix.translateM(modelview, 0, loc.x, loc.y, 0.0f);
-		Matrix.rotateM(modelview, 0, angle, 0.0f, 0.0f, 1.0f);
+		Matrix4f.translate(new Vector3f(loc.x, loc.y, 0.0f), modelview, modelview);
+		Matrix4f.rotate(angle, new Vector3f(0.0f, 0.0f, 1.0f), modelview, modelview);
 		this.sendModelViewToShader();
 	}
 	
@@ -196,9 +199,9 @@ public class Render2D {
 		float cameraAngle = camera.getAngle();
 		float cameraZoom = camera.getZoom();
 		
-		Matrix.scaleM(modelview, 0, cameraZoom, cameraZoom, 1.0f);
-		Matrix.translateM(modelview, 0, cameraLoc.x, cameraLoc.y, 0.0f);
-		Matrix.rotateM(modelview, 0, cameraAngle, 0.0f, 0.0f, 1.0f);
+		Matrix4f.scale(new Vector3f(cameraZoom, cameraZoom, 1.0f), modelview, modelview);
+		Matrix4f.translate(new Vector3f(cameraLoc.x, cameraLoc.y, 0.0f), modelview, modelview);
+		Matrix4f.rotate(cameraAngle, new Vector3f(0.0f, 0.0f, 1.0f), modelview, modelview);
 	}
 	
 	/**
@@ -206,8 +209,8 @@ public class Render2D {
 	 * things in screen coordinates
 	 */
 	private void setUpProjectionScreenCoords(){
-		Matrix.setIdentityM(projection, 0);
-		Matrix.orthoM(projection, 0, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
+		projection.setIdentity();
+		MathHelper.orthoM(projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
 		
 		program.setUniformMatrix4f("Projection", projection);
 	}
@@ -224,8 +227,8 @@ public class Render2D {
 				Button butt = it.next();
 				
 				if(butt.isVisible()){
-					Matrix.setIdentityM(modelview, 0);
-					Matrix.translateM(modelview, 0, butt.x, butt.y, 0.0f);
+					modelview.setIdentity();
+					Matrix4f.translate(new Vector3f(butt.x, butt.y, 0.0f), modelview, modelview);
 					this.sendModelViewToShader();
 					
 					butt.render(this);

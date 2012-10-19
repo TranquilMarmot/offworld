@@ -2,11 +2,13 @@ package com.bitwaffle.guts.graphics.render.shapes;
 
 import java.nio.FloatBuffer;
 
+import org.lwjgl.util.vector.Vector3f;
+
 import android.opengl.GLES20;
-import android.opengl.Matrix;
 
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.util.BufferUtils;
+import com.bitwaffle.guts.util.MathHelper;
 
 /**
  * When initialized, this creates a single quad and sends all the appropriate data to OpenGL.
@@ -116,11 +118,11 @@ public class Quad {
         GLES20.glVertexAttribPointer(texCoordHandle, COORDS_PER_TEXCOORD, GLES20.GL_FLOAT, false, 0, texCoords);
         
         // scale matrix to match width/height and flip if needed
-        Matrix.scaleM(renderer.modelview, 0, width * 2.0f, height * 2.0f, 1.0f);
+        renderer.modelview.scale(new Vector3f(width * 2.0f, height * 2.0f, 1.0f));
         if(flipHorizontal)
-        	Matrix.rotateM(renderer.modelview, 0, 180, 0.0f, 1.0f, 0.0f);
+        	renderer.modelview.rotate(MathHelper.PI, new Vector3f(0.0f, 1.0f, 0.0f));
         if(flipVertical)
-        	Matrix.rotateM(renderer.modelview, 0, 180, 0.0f, 0.0f, 1.0f);
+        	renderer.modelview.rotate(MathHelper.PI, new Vector3f(0.0f, 0.0f, 1.0f));
         renderer.sendModelViewToShader();
 
         // actually draw the quad

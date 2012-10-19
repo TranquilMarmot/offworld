@@ -3,13 +3,15 @@ package com.bitwaffle.guts.graphics.render.shapes;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 
+import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector3f;
+
+import android.opengl.GLES20;
+import android.util.FloatMath;
+
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.util.BufferUtils;
 import com.bitwaffle.guts.util.MathHelper;
-
-import android.opengl.GLES20;
-import android.opengl.Matrix;
-import android.util.FloatMath;
 
 public class Circle {
 	/** What will be rendering this quad */
@@ -85,11 +87,11 @@ public class Circle {
         GLES20.glVertexAttribPointer(texCoordHandle, COORDS_PER_TEXCOORD, GLES20.GL_FLOAT, false, 0, texBuffer);
         
         // scale matrix to match radius and flip if needed
-        Matrix.scaleM(renderer.modelview, 0, radius, radius, 1.0f);
+        Matrix4f.scale(new Vector3f(radius, radius, 1.0f), renderer.modelview, renderer.modelview);
         if(flipHorizontal)
-        	Matrix.rotateM(renderer.modelview, 0, 180, 0.0f, 1.0f, 0.0f);
+        	renderer.modelview.rotate(MathHelper.PI, new Vector3f(0.0f, 1.0f, 0.0f));
         if(flipVertical)
-        	Matrix.rotateM(renderer.modelview, 0, 180, 0.0f, 0.0f, 1.0f);
+        	renderer.modelview.rotate(MathHelper.PI, new Vector3f(0.0f, 0.0f, 1.0f));
         renderer.sendModelViewToShader();
 
         // actually draw the quad

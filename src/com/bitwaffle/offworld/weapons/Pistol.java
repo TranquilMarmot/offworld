@@ -1,20 +1,16 @@
 package com.bitwaffle.offworld.weapons;
 
-import android.opengl.Matrix;
+import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector3f;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.android.Game;
-import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.guts.entities.passive.Decal;
 import com.bitwaffle.guts.graphics.render.Render2D;
-import com.bitwaffle.guts.graphics.render.Renderers;
-import com.bitwaffle.guts.physics.callbacks.ClosestHitRayCastCallback;
-import com.bitwaffle.guts.util.BufferUtils;
 import com.bitwaffle.guts.util.MathHelper;
+import com.bitwaffle.offworld.entities.dynamic.Bullet;
 import com.bitwaffle.offworld.interfaces.Firearm;
-import com.bitwaffle.offworld.interfaces.Health;
+import com.bitwaffle.offworld.interfaces.FirearmHolder;
 import com.bitwaffle.offworld.renderers.PlayerRenderer;
 
 /**
@@ -24,19 +20,7 @@ import com.bitwaffle.offworld.renderers.PlayerRenderer;
  */
 public class Pistol implements Firearm {
 	/** The owner of this pistol (where the shots come from) */
-	private Entity owner;
-	
-	/** How much damage this pistol does to anything implementing Health */
-	private int damage;
-	
-	/** Force this pistol exerts on whatever it hits (makes things move away) */
-	private float force;
-	
-	/** How far the pistol can shoot */
-	private float range;
-	
-	/** Callback used for handling hits */
-	private ClosestHitRayCastCallback callback;
+	private FirearmHolder owner;
 	
 	/** How fast this pistol can shoot */
 	private float firingRate;
@@ -62,15 +46,12 @@ public class Pistol implements Firearm {
 	 * @param force How much force this pistol exerts on stuff it hits
 	 * @param range How far the pistol can shoot
 	 */
-	public Pistol(Entity owner, int damage, float force, float range, float firingRate){
+	public Pistol(FirearmHolder owner, int damage, float force, float range, float firingRate){
 		// TODO should probably also include an 'offset' Vector2 to represent the gun's actual location
 		this.owner = owner;
-		this.damage = damage;
-		this.force = force;
-		this.range = range;
 		this.firingRate = firingRate;
 		timeSinceLastShot = 0.0f;
-		callback = new ClosestHitRayCastCallback(owner.getLocation());
+		//callback = new ClosestHitRayCastCallback(owner.getLocation());
 		flashLived = 0.0f;
 	}
 
@@ -80,36 +61,16 @@ public class Pistol implements Firearm {
 	 */
 	public void shootAt(World world, Vector2 target) {
 		if(timeSinceLastShot >= firingRate){
-			Game.resources.sounds.play("shoot");
+			//Game.resources.sounds.play("shoot");
 			muzzleFlash = true;
 			
-			// find the difference between the pistol's range and the distance to the given target
-			float diff = range - target.dst(owner.getLocation());
-			// create a difference vector and rotate it accordingly
-			Vector2 clamps = new Vector2(diff, 0.0f);
-			clamps.rotate(MathHelper.angle(owner.getLocation(), target));
+			float SPEED = 75.0f;
+			Vector2 ownerLoc = owner.getFirearmOwningEntity().getLocation();
+			float angle = MathHelper.angle(ownerLoc, target);
+			Vector2 loc = owner.getFirearmLocation();
+			Bullet bullet = new Bullet(this.owner.getFirearmOwningEntity(), loc.x, loc.y, angle, SPEED);
+			Game.physics.addDynamicEntity(bullet);
 			
-			// perform raycast to clamped target
-			callback.reset(owner.getLocation());
-			world.rayCast(callback, owner.getLocation(), new Vector2(target.x + clamps.x, target.y + clamps.y));
-			DynamicEntity hit = callback.getClosestHit();
-			if(hit != null){
-				Vector2 normal = callback.normalOnClosest();
-				Vector2 point = callback.pointOnClosest();
-				hit.body.applyForce(new Vector2(normal.x * -force, normal.y * -force), point);
-				
-				// add spark decal at hit
-				Game.physics.addEntity(new Decal(
-						Renderers.SPARK,
-						owner.getLayer() + 1,
-						point,
-						MathHelper.toRadians(normal.angle()),
-						0.1f)
-				);
-				
-				if(hit instanceof Health)
-					((Health)hit).hurt(this.damage);
-			}
 			// reset shot timer
 			timeSinceLastShot = 0.0f;
 		}
@@ -129,18 +90,22 @@ public class Pistol implements Firearm {
 		}
 	}
 	
+	public Vector2 getTipOffset(){
+		return new Vector2(0.0f, 0.0f);
+	}
+	
 	public void render(Render2D renderer){
 		boolean facingRight = Game.player.isFacingRight();
 		
-		// FIXME this is VERY quick and VERY dirty
+		// FIXME this is VERY quick and VERY dirty (PistolRenderer?)
 		if(muzzleFlash){
-			float[] tmp = new float[16];
-			BufferUtils.deepCopyFloatArray(renderer.modelview, tmp);
-			Matrix.translateM(renderer.modelview, 0, 0.6f, facingRight ? 0.09f : -0.09f, 0.0f);
+			Matrix4f temp = new Matrix4f();
+			Matrix4f.load(renderer.modelview, temp);
+			renderer.modelview.translate(new Vector3f(0.6f, facingRight ? 0.09f : -0.09f, 0.0f));
 			renderer.sendModelViewToShader();
 			Game.resources.textures.getSubImage("muzzleflash").render(renderer.quad, 0.25f, 0.245f, facingRight, facingRight);
 			
-			BufferUtils.deepCopyFloatArray(tmp, renderer.modelview);
+			Matrix4f.load(temp, renderer.modelview);
 			renderer.sendModelViewToShader();
 		}
 		

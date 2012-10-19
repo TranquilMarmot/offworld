@@ -4,9 +4,10 @@ import java.util.Iterator;
 import java.util.Stack;
 
 import android.os.SystemClock;
-import android.util.FloatMath;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.ContactFilter;
+import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.GdxNativesLoader;
 import com.bitwaffle.guts.entities.Entities;
@@ -69,7 +70,9 @@ public class Physics {
 		
 		// initialize the world
 		world = new World(gravity, doSleep);
-		world.setContactListener(new ContactHandler());
+		ContactHandler handler = new ContactHandler();
+		world.setContactListener((ContactListener)handler);
+		world.setContactFilter((ContactFilter) handler);
 		entities = new Entities();
 		toInitialize = new Stack<DynamicEntity>();
 		
@@ -95,7 +98,7 @@ public class Physics {
 		
 		// add the change in time to the accumulator, then find out how many steps we need to do
 		timeStepAccum += deltaTime;
-		float steps = FloatMath.floor(timeStepAccum / FIXED_TIMESTEP);
+		float steps = (float)Math.floor((double)(timeStepAccum / FIXED_TIMESTEP));
 		
 		// only touch the accumulator if necessary
 		if(steps > 0)

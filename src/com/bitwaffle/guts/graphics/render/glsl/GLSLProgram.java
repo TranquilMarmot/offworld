@@ -2,6 +2,10 @@ package com.bitwaffle.guts.graphics.render.glsl;
 
 import java.util.HashMap;
 
+import org.lwjgl.util.vector.Matrix4f;
+
+import com.bitwaffle.guts.util.MathHelper;
+
 import android.opengl.GLES20;
 
 /**
@@ -22,6 +26,8 @@ public class GLSLProgram {
 	/** Maps every uniform/attribute to it's location in the shader */
 	private HashMap<String, Integer> uniformMap, attribMap;
 	
+	private float[] matrixBuffer;
+	
 	/**
 	 * Creates a handle for a new GLSL program.
 	 * Shaders still need to be added with addShader(),
@@ -30,6 +36,7 @@ public class GLSLProgram {
 	 */
 	public GLSLProgram(){
 		handle = GLES20.glCreateProgram();
+		matrixBuffer = new float[16];
 		
 		if(handle == 0)
 			System.err.println("Error creating shader program!");
@@ -280,12 +287,13 @@ public class GLSLProgram {
 	/**
 	 * Set a uniform matrix from an array
 	 * @param name Name of uniform to set
-	 * @param m A 4x4 matrix (16 floats)
+	 * @param projection A 4x4 matrix (16 floats)
 	 */
-	public void setUniformMatrix4f(String name, float[] m){
+	public void setUniformMatrix4f(String name, Matrix4f projection){
 		int loc = getUniformLocation(name);
 		if(loc >= 0){
-			GLES20.glUniformMatrix4fv(loc, 1, false, m, 0);
+			MathHelper.putMatrixIntoArray(projection, matrixBuffer);
+			GLES20.glUniformMatrix4fv(loc, 1, false, matrixBuffer, 0);
 		} else {
 			System.out.println("Uniform variable " + name + " not found!");
 		}

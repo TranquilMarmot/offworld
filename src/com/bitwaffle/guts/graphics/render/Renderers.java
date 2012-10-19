@@ -4,6 +4,7 @@ import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.offworld.renderers.BackdropRenderer;
 import com.bitwaffle.offworld.renderers.BoxRenderer;
+import com.bitwaffle.offworld.renderers.BulletRenderer;
 import com.bitwaffle.offworld.renderers.CircleRenderer;
 import com.bitwaffle.offworld.renderers.PlayerRenderer;
 
@@ -34,7 +35,8 @@ public enum Renderers{
 	CIRCLE(new CircleRenderer()),
 	BACKDROP(new BackdropRenderer()),
 	PLAYER(new PlayerRenderer()),
-	SPARK(new SparkRenderer());
+	SPARK(new SparkRenderer()),
+	BULLET(new BulletRenderer());
 	
 	private EntityRenderer renderer;
 	private Renderers(EntityRenderer renderer){
