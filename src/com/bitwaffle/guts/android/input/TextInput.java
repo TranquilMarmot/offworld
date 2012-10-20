@@ -1,4 +1,6 @@
-package com.bitwaffle.guts.android;
+package com.bitwaffle.guts.android.input;
+
+import com.bitwaffle.guts.android.Game;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

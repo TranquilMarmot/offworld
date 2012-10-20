@@ -1,5 +1,7 @@
 package com.bitwaffle.guts.android;
 
+import java.util.Random;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -10,9 +12,12 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.Window;
 
+import com.bitwaffle.guts.android.input.KeyboardManager;
 import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.Resources;
 import com.bitwaffle.guts.util.PhysicsHelper;
@@ -39,7 +44,7 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
 	 * This is VERY important! It holds on to the 'Game' object that
 	 * takes care of all the physics, rendering, etc. etc.
 	 */
-    private static GLSurfaceView mGLView;
+    private static GLSurfaceView surfaceView;
 	
 	/** Resource manager */
 	public static Resources resources;
@@ -84,8 +89,8 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         // TODO make this an option somewhere
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
         //        WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -103,8 +108,8 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
          * NOTE: This SurfaceView holds on to the Game object
          * and handles pretty much EVERYTHING in the game
          */
-        mGLView = new SurfaceView(this);
-        setContentView(mGLView);
+        surfaceView = new SurfaceView(this);
+        this.setContentView(surfaceView);
     }
 
 	/**
@@ -135,6 +140,15 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
     public void onDrawFrame(GL10 unused) {
     	// used for FPS counting
     	long timeBeforeLoop = SystemClock.elapsedRealtime();
+    	
+    	// FIXME temp
+    	if(physics.numEntities() < 150){
+        	Random r = new Random();
+    		if(r.nextBoolean())
+    			PhysicsHelper.makeRandomBox(physics);
+    		else
+    			PhysicsHelper.makeRandomCircle(physics);	
+    	}
 
     	// Step the physics sim
     	if(!paused)
@@ -147,6 +161,16 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
         render2D.renderScene();
         
     	updateFPS(timeBeforeLoop);
+    	
+    	// FIXME temp controls
+		if(KeyBindings.CONTROL_RIGHT.isPressed())
+			Game.player.goRight();
+		if(KeyBindings.CONTROL_LEFT.isPressed())
+			Game.player.goLeft();
+		if(KeyBindings.CONTROL_JUMP.pressedOnce())
+			Game.player.jump();
+		if(KeyBindings.SYS_PAUSE.pressedOnce())
+			Game.paused = !Game.paused;
     }
     
     /**
@@ -178,8 +202,13 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
     }
     
     @Override
-    public void onBackPressed(){
-    	togglePause();
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+    	return KeyboardManager.keyDown(keyCode, event);
+    }
+    
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event){
+    	return KeyboardManager.keyUp(keyCode, event);
     }
     
     public static void togglePause(){

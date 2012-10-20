@@ -1,7 +1,7 @@
 package com.bitwaffle.guts.gui.buttons.pause;
 
 import com.bitwaffle.guts.android.Game;
-import com.bitwaffle.guts.android.TextInput;
+import com.bitwaffle.guts.android.input.TextInput;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.buttons.RectangleButton;
 import com.bitwaffle.guts.serialization.GameSaver;
