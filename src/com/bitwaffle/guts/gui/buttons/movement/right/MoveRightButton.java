@@ -26,7 +26,9 @@ public class MoveRightButton extends RectangleButton{
 		KeyBindings.CONTROL_RIGHT.release();
 	}
 	@Override
-	protected void onSlideRelease() {}
+	protected void onSlideRelease() {
+		KeyBindings.CONTROL_RIGHT.release();
+	}
 	@Override
 	protected void onPress() {
 		Game.vibration.vibrate(25);

@@ -23,7 +23,9 @@ public class JumpButton extends RectangleButton{
 		KeyBindings.CONTROL_JUMP.release();
 	}
 	@Override
-	protected void onSlideRelease() {}
+	protected void onSlideRelease() {
+		KeyBindings.CONTROL_JUMP.release();
+	}
 	@Override
 	protected void onPress() {
 		Game.vibration.vibrate(25);

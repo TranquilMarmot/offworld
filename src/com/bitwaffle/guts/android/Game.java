@@ -142,7 +142,7 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
     	long timeBeforeLoop = SystemClock.elapsedRealtime();
     	
     	// FIXME temp
-    	if(physics.numEntities() < 10){
+    	if(physics.numEntities() < 100){
         	Random r = new Random();
     		if(r.nextBoolean())
     			PhysicsHelper.makeRandomBox(physics);
