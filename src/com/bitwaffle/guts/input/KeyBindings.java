@@ -38,23 +38,40 @@ public enum KeyBindings {
 	*/
 
 	/** the InputButtons that activate this binding */
-	private InputButton[] InputButtons;
+	private InputButton[] inputButtons;
+	
+	/** Override */
+	private boolean pressed = false, stillDown = false;
 
 	/**
 	 * KeyBindings constructor
 	 * @param InputButtons InputButtons to use for the binding
 	 */
 	private KeyBindings(InputButton[] InputButtons){
-		this.InputButtons = InputButtons;
+		this.inputButtons = InputButtons;
+	}
+	
+	public void press(){
+		this.pressed = true;
+		this.stillDown = true;
+	}
+	
+	public void release(){
+		this.pressed = false;
+		this.stillDown = false;
 	}
 
 	/**
 	 * @return Whether or not the binding is being pressed
 	 */
 	public boolean isPressed(){
-		for(InputButton InputButton : InputButtons){
-			if(InputButton.isPressed())
-				return true;
+		if(pressed){
+			return true;
+		} else{
+			for(InputButton inputButton : inputButtons){
+				if(inputButton.isPressed())
+					return true;
+			}
 		}
 		return false;
 	}
@@ -63,9 +80,18 @@ public enum KeyBindings {
 	 * @return True if this is the first call to pressedOnce since the key was pressed, else false
 	 */
 	public boolean pressedOnce(){
-		for(InputButton InputButton : InputButtons){
-			if(InputButton.pressedOnce())
+		if(pressed){
+			if(stillDown){
+				stillDown = false;
 				return true;
+			}else{
+				return false;
+			}
+		} else {
+			for(InputButton inputButton : inputButtons){
+				if(inputButton.pressedOnce())
+					return true;
+			}
 		}
 		return false;
 	}
@@ -75,7 +101,7 @@ public enum KeyBindings {
 	 * @param newKey Key to set binding to
 	 */
 	public void setInputButtons(InputButton[] newInputButtons){
-		this.InputButtons = newInputButtons;
+		this.inputButtons = newInputButtons;
 	}
 
 	/**
@@ -83,10 +109,10 @@ public enum KeyBindings {
 	 * @param newInputButton InputButton to add to binding
 	 */
 	public void addInputButton(InputButton newInputButton){
-		InputButton[] newKeys = new Keys[InputButtons.length + 1];
-		for(int i = 0; i < InputButtons.length; i++)
-			newKeys[i] = InputButtons[i];
-		newKeys[InputButtons.length] = newInputButton;
+		InputButton[] newKeys = new Keys[inputButtons.length + 1];
+		for(int i = 0; i < inputButtons.length; i++)
+			newKeys[i] = inputButtons[i];
+		newKeys[inputButtons.length] = newInputButton;
 		this.setInputButtons(newKeys);
 	}
 
@@ -99,24 +125,24 @@ public enum KeyBindings {
 		int bIndex = -1;
 
 		// find bIndex
-		for(int i = 0; i < InputButtons.length; i++){
-			if(InputButtons[i] == oldInputButton)
+		for(int i = 0; i < inputButtons.length; i++){
+			if(inputButtons[i] == oldInputButton)
 				bIndex = i;
 		}
 
 		// found oldInputButton
 		if(bIndex != -1){
-			InputButton[] newInputButtons = new InputButton[InputButtons.length - 1];
-			for(int i = 0; i < InputButtons.length; i++){
+			InputButton[] newInputButtons = new InputButton[inputButtons.length - 1];
+			for(int i = 0; i < inputButtons.length; i++){
 				// skip the InputButton being removed
 				if(i == bIndex)
 					continue;
 
 				// add old InputButtons, minus the old InputButton
 				if(i < bIndex)
-					newInputButtons[i] = InputButtons[i];
+					newInputButtons[i] = inputButtons[i];
 				else
-					newInputButtons[i - 1] = InputButtons[i];
+					newInputButtons[i - 1] = inputButtons[i];
 			}
 
 			this.setInputButtons(newInputButtons);
@@ -129,7 +155,7 @@ public enum KeyBindings {
 	 * @return Whether or not the InputButton activates the binding
 	 */
 	public boolean isInputButton(InputButton other){
-		for(InputButton key : InputButtons){
+		for(InputButton key : inputButtons){
 			if(key == other)
 				return true;
 		}
@@ -148,8 +174,8 @@ public enum KeyBindings {
 	 */
 	public String toString(){
 		String ret = "";
-		for(int i = 0; i < InputButtons.length; i++){
-			ret += InputButtons[i].toString() + " ";
+		for(int i = 0; i < inputButtons.length; i++){
+			ret += inputButtons[i].toString() + " ";
 		}
 
 		return ret;

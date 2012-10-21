@@ -3,6 +3,7 @@ package com.bitwaffle.guts.gui.buttons.movement.right;
 import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.gui.buttons.RectangleButton;
 import com.bitwaffle.guts.gui.buttons.movement.MovementButtonManager;
+import com.bitwaffle.guts.input.KeyBindings;
 
 /**
  * Button to move right
@@ -21,11 +22,14 @@ public class MoveRightButton extends RectangleButton{
 			Game.player.goRight();
 	}
 	@Override
-	protected void onRelease() {}
+	protected void onRelease() {
+		KeyBindings.CONTROL_RIGHT.release();
+	}
 	@Override
 	protected void onSlideRelease() {}
 	@Override
 	protected void onPress() {
 		Game.vibration.vibrate(25);
+		KeyBindings.CONTROL_RIGHT.press();
 	}
 }

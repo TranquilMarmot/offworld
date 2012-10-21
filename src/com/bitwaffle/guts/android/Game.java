@@ -142,7 +142,7 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
     	long timeBeforeLoop = SystemClock.elapsedRealtime();
     	
     	// FIXME temp
-    	if(physics.numEntities() < 150){
+    	if(physics.numEntities() < 10){
         	Random r = new Random();
     		if(r.nextBoolean())
     			PhysicsHelper.makeRandomBox(physics);
@@ -162,15 +162,9 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
         
     	updateFPS(timeBeforeLoop);
     	
-    	// FIXME temp controls
-		if(KeyBindings.CONTROL_RIGHT.isPressed())
-			Game.player.goRight();
-		if(KeyBindings.CONTROL_LEFT.isPressed())
-			Game.player.goLeft();
-		if(KeyBindings.CONTROL_JUMP.pressedOnce())
-			Game.player.jump();
+    	// check for pausing
 		if(KeyBindings.SYS_PAUSE.pressedOnce())
-			Game.paused = !Game.paused;
+			Game.togglePause();
     }
     
     /**

@@ -13,6 +13,7 @@ import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.render.Renderers;
 import com.bitwaffle.guts.graphics.textures.animation.Animation;
+import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.physics.callbacks.FirstHitQueryCallback;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.interfaces.Firearm;
@@ -126,6 +127,14 @@ public class Player extends BoxEntity implements FirearmHolder,KryoSerializable{
 		
 		// add time to jump timer
 		jumpTimer += timeStep;	
+		
+		// check for input
+		if(KeyBindings.CONTROL_RIGHT.isPressed())
+			goRight();
+		if(KeyBindings.CONTROL_LEFT.isPressed())
+			goLeft();
+		if(KeyBindings.CONTROL_JUMP.pressedOnce())
+			jump();
 	}
 	
 	/**

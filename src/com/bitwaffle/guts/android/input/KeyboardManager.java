@@ -103,7 +103,7 @@ public class KeyboardManager {
 		case KeyEvent.KEYCODE_Z:
 			return Keys.Z;
 		case KeyEvent.KEYCODE_BACK:
-			return Keys.BACK;
+			return Keys.ESCAPE;
 		case KeyEvent.KEYCODE_APOSTROPHE:
 			return Keys.APOSTROPHE;
 		case KeyEvent.KEYCODE_AT:
@@ -135,7 +135,7 @@ public class KeyboardManager {
 		case KeyEvent.KEYCODE_RIGHT_BRACKET:
 			return Keys.RBRACKET;
 		case KeyEvent.KEYCODE_MENU:
-			return Keys.RETURN; // TODO handle this maybe?
+			return Keys.ESCAPE; // TODO handle this maybe?
 		case KeyEvent.KEYCODE_MINUS:
 			return Keys.MINUS;
 		case KeyEvent.KEYCODE_PERIOD:
