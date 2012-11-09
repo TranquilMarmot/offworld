@@ -10,12 +10,15 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="488.45261"
-   height="95.395355"
+   width="429.71344"
+   height="95.210747"
    id="svg4397"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="movement-slider.svg">
+   sodipodi:docname="movement-slider.svg"
+   inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\movement-slider.png"
+   inkscape:export-xdpi="50"
+   inkscape:export-ydpi="50">
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -24,8 +27,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.3147287"
-     inkscape:cx="236.98242"
-     inkscape:cy="32.000651"
+     inkscape:cx="236.98166"
+     inkscape:cy="66.317631"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -47,30 +50,30 @@
        visible="true"
        enabled="true"
        snapvisiblegridlinesonly="true"
-       originx="-95.711206px"
-       originy="-515.26328px" />
+       originx="-95.711966px"
+       originy="-515.50759px" />
     <sodipodi:guide
-       position="-95.711206,-515.26328"
+       position="-95.711966,-515.50759"
        orientation="0,744.09448"
        id="guide5121" />
     <sodipodi:guide
-       position="648.38327,-515.26328"
+       position="648.38251,-515.50759"
        orientation="-1052.3622,0"
        id="guide5123" />
     <sodipodi:guide
-       position="648.38327,537.09892"
+       position="648.38251,536.85461"
        orientation="0,-744.09448"
        id="guide5125" />
     <sodipodi:guide
-       position="-95.711206,537.09892"
+       position="-95.711966,536.85461"
        orientation="1052.3622,0"
        id="guide5127" />
     <sodipodi:guide
-       position="-95.711206,-515.26328"
+       position="-95.711966,-515.50759"
        orientation="0,744.09448"
        id="guide5129" />
     <sodipodi:guide
-       position="648.38327,-515.26328"
+       position="648.38251,-515.50759"
        orientation="-1052.3622,0"
        id="guide5131" />
   </sodipodi:namedview>
@@ -173,7 +176,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -181,10 +184,10 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-95.711206,-441.70355)">
+     transform="translate(-95.711966,-441.64385)">
     <path
        style="fill:url(#radialGradient5119);fill-opacity:1;fill-rule:nonzero;stroke:#1f1f1f;stroke-width:8.03329277;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="m 136.86339,515.40853 c -48.429773,-0.10711 -50.348659,-53.15335 -0.69086,-53.14666 l 407.54769,-0.26777 c 49.6578,-0.0536 47.7357,52.68287 -0.69086,53.25136 z"
+       d="m 136.86339,515.40853 c -48.429773,-0.10711 -50.348659,-53.15335 -0.69086,-53.14666 l 348.7935,-0.26777 c 49.6578,-0.0536 47.7357,52.68287 -0.69086,53.25136 z"
        id="path4917"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccc" />

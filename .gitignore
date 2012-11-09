@@ -8,3 +8,6 @@
 
 # binaries
 bin/*
+
+# any log files
+*.log
