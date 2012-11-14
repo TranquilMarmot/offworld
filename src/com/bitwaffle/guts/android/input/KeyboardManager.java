@@ -2,18 +2,78 @@ package com.bitwaffle.guts.android.input;
 
 import android.view.KeyEvent;
 
+import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.input.Keys;
 
 public class KeyboardManager {
+	/** These keys are checked even when the console is on (if they weren't on this list, the game would attempt to print them to the console which wouldn't do anything) */
+	private final static KeyBindings[] checkedWhenConsoleIsOn = {
+			KeyBindings.SYS_PAUSE,
+			KeyBindings.SYS_CONSOLE,
+			KeyBindings.SYS_SCREENSHOT,
+			KeyBindings.SYS_DEBUG,
+			KeyBindings.SYS_DEBUG_PHYSICS,
+			KeyBindings.SYS_CONSOLE_BACKSPACE,
+			KeyBindings.SYS_CONSOLE_NEXT_COMMAND,
+			KeyBindings.SYS_CONSOLE_PREVIOUS_COMMAND,
+			KeyBindings.SYS_CONSOLE_SCROLL_DOWN,
+			KeyBindings.SYS_CONSOLE_SCROLL_UP,
+			KeyBindings.SYS_CONSOLE_SUBMIT,
+	};
+	
 	public static boolean keyDown(int keyCode, KeyEvent event){
 		Keys key = getKey(keyCode);
 		if(key != null){
-			System.out.println(keyCode + key.name());
-			key.press();
+			// if the console is on, we'll check if the key being pressed is a special key, else we'll write to the console
+			if(Game.console.isOn()){
+				//if this turns to true, it means the key isn't written to the console and is pressed instead
+				boolean specialKey = false;
+
+				// go through all the special keys
+				for(KeyBindings binding : checkedWhenConsoleIsOn){
+					if(binding.isInputButton(key)){
+						//found a special key
+						specialKey = true;
+						break;
+					}
+				}
+
+				// print to the console if it's not a special key
+				if(specialKey){
+					key.press();
+				} else{
+					Character c =  getPrintableChar(event);
+					if (!Character.isIdentifierIgnorable(c) && !c.equals('`')
+							&& !c.equals('\n') && !c.equals('\r')) {
+						Game.console.putCharacter(c);
+					}
+				} 
+			}else {
+				key.press();
+			}
 			return true;
 		} else{
-			System.out.println(keyCode + event.getCharacters());
 			return false;
+		}
+	}
+	
+	/**
+	 * Get a printable character from a KeyEvent
+	 * @param event Event to get char from
+	 * @return Printable char (or \0 if char not found)
+	 */
+	private static Character getPrintableChar(KeyEvent event){		
+		if(event.isPrintingKey()){
+			return (char) event.getUnicodeChar(event.getMetaState());
+		} else{
+			// TODO so far this is the only special case I've found that needs printed
+			switch(event.getKeyCode()){
+			case KeyEvent.KEYCODE_SPACE:
+				return ' ';
+			default:
+				return '\0';
+			}
 		}
 	}
 	
@@ -113,7 +173,7 @@ public class KeyboardManager {
 		case KeyEvent.KEYCODE_COMMA:
 			return Keys.COMMA;
 		case KeyEvent.KEYCODE_DEL:
-			return Keys.DELETE;
+			return Keys.BACK;
 		case KeyEvent.KEYCODE_DPAD_CENTER:
 			return Keys.RETURN;
 		case KeyEvent.KEYCODE_DPAD_UP:
@@ -161,7 +221,7 @@ public class KeyboardManager {
 		case 113/* KeyEvent.KEYCODE_CTRL_LEFT FIXME for some reason this isn't in the KeyEvent class??? */:
 			return Keys.LCONTROL;
 		//case KeyEvent.KEYCODE_CTRL_RIGHT:
-		//	return Keys.RCONTROL;	
+		//	return Keys.RCONTROL;
 		case KeyEvent.KEYCODE_UNKNOWN:
 			return null;
 		}

@@ -10,16 +10,16 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.android.Game;
-import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.render.Render2D;
-import com.bitwaffle.guts.graphics.render.Renderers;
 import com.bitwaffle.guts.physics.Physics;
+import com.bitwaffle.offworld.entities.CollisionFilters;
 import com.bitwaffle.offworld.entities.Player;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableBox;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableCircle;
+import com.bitwaffle.offworld.renderers.Renderers;
 
 /**
  * Helper methods for Physics stuff
@@ -186,11 +186,13 @@ public class PhysicsHelper {
 		playerFixture.density = 1.0f;
 		playerFixture.friction = 0.3f;
 		playerFixture.restitution = 0.0f;
+		playerFixture.filter.categoryBits = CollisionFilters.PLAYER;
+		playerFixture.filter.maskBits = CollisionFilters.EVERYTHING;
 		
 		Game.player = new Player(Renderers.PLAYER, 6, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
 		physics.addDynamicEntity(Game.player);
 		Render2D.camera.follow(Game.player);
-		SurfaceView.touchHandler.setPlayer(Game.player);
+		//SurfaceView.touchHandler.setPlayer(Game.player);
 		
 		class Ground {
 			float x, y, width, height;
@@ -257,11 +259,13 @@ public class PhysicsHelper {
 		playerFixture.density = 1.0f;
 		playerFixture.friction = 0.3f;
 		playerFixture.restitution = 0.0f;
+		playerFixture.filter.categoryBits = CollisionFilters.PLAYER;
+		playerFixture.filter.maskBits = CollisionFilters.EVERYTHING;
 		
 		Game.player = new Player(Renderers.PLAYER, 6, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
 		physics.addDynamicEntity(Game.player);
 		Render2D.camera.follow(Game.player);
-		SurfaceView.touchHandler.setPlayer(Game.player);
+		//SurfaceView.touchHandler.setPlayer(Game.player);
 		
 		for(int i = 0; i < 35; i++)
 			PhysicsHelper.makeRandomBox(physics);

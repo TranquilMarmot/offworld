@@ -8,7 +8,7 @@ import com.bitwaffle.guts.input.KeyBindings;
 /**
  * Button to jump
  */
-public class JumpButton extends RectangleButton{
+public abstract class JumpButton extends RectangleButton{
 	protected MovementButtonManager buttMan;
 	
 	public JumpButton(MovementButtonManager buttMan, float x, float y, float width, float height) {

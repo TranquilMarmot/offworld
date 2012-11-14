@@ -8,7 +8,7 @@ import com.bitwaffle.guts.input.KeyBindings;
 /**
  * Button to move right
  */
-public class MoveRightButton extends RectangleButton{
+public abstract class MoveRightButton extends RectangleButton{
 	protected MovementButtonManager buttMan;
 	
 	public MoveRightButton(MovementButtonManager buttMan, float x, float y, float width, float height) {

@@ -36,6 +36,14 @@ import com.bitwaffle.guts.util.BufferUtils;
  * @author TranquilMarmot
  */
 public class BitmapFont {
+	/** Info for font */
+	private static final String FONT_LOCATION = "font.png";
+	public static final int 
+		/** How big each cell is */
+		FONT_CELL_WIDTH = 128, FONT_CELL_HEIGHT = 128,
+		/** How wide each glyph actually is and how much space to put between each glyph */
+		FONT_GLYPH_WIDTH = 31, FONT_GLYPH_HEIGHT = 31;
+	
 	/** 
 	 * ASCII value of chars[0], so that the index in chars can be calculated.
 	 * Since the first 31 values in ASCII are pretty much useless to us (look it up)
@@ -49,34 +57,24 @@ public class BitmapFont {
 	/** Array of every character for this font */
 	FontChar[] chars;
 	
-	/** How big each cell is */
-	int cellWidth, cellHeight;
-	
-	/** How wide each glyph actually is and how much space to put between each glyph */
-	int glyphWidth, glyphSpacing;
-	
 	/**
 	 * Create a new font
 	 * @param imagePath Path to image in assets folder
-	 * @param cellWidth Width of each cell
-	 * @param cellHeight Height of each cell
-	 * @param glyphWidth Width of each glyph
-	 * @param glyphSpacing How far apart each glyph is (typically, same as glyphWidth)
+	 * @param FONT_CELL_WIDTH Width of each cell
+	 * @param FONT_CELL_HEIGHT Height of each cell
+	 * @param FONT_GLYPH_WIDTH Width of each glyph
+	 * @param FONT_GLYPH_HEIGHT How far apart each glyph is (typically, same as FONT_GLYPH_WIDTH)
 	 */
-	public BitmapFont(String imagePath, int cellWidth, int cellHeight, int glyphWidth, int glyphSpacing){
-		this.cellWidth = cellWidth;
-		this.cellHeight = cellHeight;
-		this.glyphWidth = glyphWidth;
-		this.glyphSpacing = glyphSpacing;
+	public BitmapFont(){
 		try{
 			// intialize texture
-			InputStream in = Game.resources.openAsset(imagePath);
+			InputStream in = Game.resources.openAsset(FONT_LOCATION);
 			Bitmap bitmap = BitmapFactory.decodeStream(in);
 			texHandle = TextureManager.initTexture(bitmap, GLES20.GL_NEAREST, GLES20.GL_NEAREST);
 			
 			// find out how many rows and columns we have and initialize the character array
-			int numRows = bitmap.getWidth() / cellWidth;
-			int numCols = bitmap.getHeight() / cellHeight;
+			int numRows = bitmap.getWidth() / FONT_CELL_WIDTH;
+			int numCols = bitmap.getHeight() / FONT_CELL_HEIGHT;
 			chars = new FontChar[numRows * numCols];
 			
 			// go through each row/column and create its character
@@ -85,7 +83,6 @@ public class BitmapFont {
 					chars[(numCols * col) + row] = initFontChar(bitmap, row, col);
 			
 			// clean up after ourselves
-			bitmap.recycle();
 			in.close();
 			
 		} catch(IOException e){
@@ -102,10 +99,10 @@ public class BitmapFont {
 	 */
 	private FontChar initFontChar(Bitmap source, int row, int col){
 		// find our texture coordinates
-		float texX = (float)(row * cellWidth) / (float)source.getWidth();
-		float texY = (float)(col * cellHeight) / (float)source.getHeight();
-		float texWidth = (float)cellWidth / (float)source.getWidth();
-		float texHeight = (float)cellHeight / (float)source.getHeight();
+		float texX = (float)(row * FONT_CELL_WIDTH) / (float)source.getWidth();
+		float texY = (float)(col * FONT_CELL_HEIGHT) / (float)source.getHeight();
+		float texWidth = (float)FONT_CELL_WIDTH / (float)source.getWidth();
+		float texHeight = (float)FONT_CELL_HEIGHT / (float)source.getHeight();
 		
 		// send texture coordinates to a float buffer (buffer is used when glyph is drawn)
 		float[] texCoords = {
@@ -179,18 +176,21 @@ public class BitmapFont {
 			
 			// casting a char to an int returns its ASCII value
 			int index = (int)charArr[i] - START_CHAR;
+			// skip tabs TODO handle tabs? (just use spaces?)
+			if(index < 0)
+				continue;
 			
 			// scale and move the modelview to get to the char's location
 			renderer.modelview.setIdentity();
-			renderer.modelview.translate(new Vector3f(x + xOffset, y + (cellHeight * scale * lineNum), 0.0f));
+			renderer.modelview.translate(new Vector3f(x + xOffset, y + (FONT_CELL_HEIGHT * scale * lineNum), 0.0f));
 			renderer.modelview.scale(new Vector3f(scale, scale, 1.0f));
 			renderer.sendModelViewToShader();
 			
 			// draw character
-			chars[index].draw(renderer, cellWidth, cellHeight);
+			chars[index].draw(renderer, FONT_CELL_WIDTH, FONT_CELL_HEIGHT);
 			
 			// advance to next char
-			xOffset += (glyphWidth + glyphSpacing) * scale;
+			xOffset += (FONT_GLYPH_WIDTH + FONT_GLYPH_HEIGHT) * scale;
 		}
 	}
 	
@@ -217,7 +217,7 @@ public class BitmapFont {
 		StringTokenizer toker = new StringTokenizer(string, "\n");
 		while(toker.hasMoreTokens()){
 			String line = toker.nextToken();
-			float lineSize = (line.length() - 1) * (glyphWidth + glyphSpacing);
+			float lineSize = (line.length() - 1) * (FONT_GLYPH_WIDTH + FONT_GLYPH_HEIGHT);
 			if(lineSize > longestLine)
 				longestLine = lineSize;
 		}
@@ -242,6 +242,6 @@ public class BitmapFont {
 	 */
 	public float stringHeight(String string, float scale){
 		int numLines = new StringTokenizer(string, "\n").countTokens() - 1;
-		return numLines * cellHeight * scale;
+		return numLines * FONT_CELL_HEIGHT * scale;
 	}
 }

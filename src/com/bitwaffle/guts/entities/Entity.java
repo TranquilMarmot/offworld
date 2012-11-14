@@ -2,7 +2,8 @@ package com.bitwaffle.guts.entities;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.render.Renderers;
+import com.bitwaffle.guts.util.MathHelper;
+import com.bitwaffle.offworld.renderers.Renderers;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
@@ -76,7 +77,7 @@ public class Entity implements KryoSerializable{
 	/** @return Current location of entity */
 	public Vector2 getLocation(){ return location; }
 	/** @return Current angle of entity */
-	public float getAngle(){ return angle; }
+	public float getAngle(){ return MathHelper.toRadians(angle); }
 	
 	/**
 	 * Updates the entity- this can pretty much do anything and

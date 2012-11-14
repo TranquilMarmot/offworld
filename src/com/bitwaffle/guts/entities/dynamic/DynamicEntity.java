@@ -12,9 +12,9 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.graphics.render.Renderers;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.util.PhysicsHelper;
+import com.bitwaffle.offworld.renderers.Renderers;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
@@ -109,7 +109,7 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 				shape.dispose();
 				shape = null;
 			} else{
-				Log.wtf("ohshit", "DynamicEntity not given enough parameters to initialize physics info!");
+				Log.e("Init", "DynamicEntity not given enough parameters to initialize physics info!");
 			}
 			
 			isInitialized = true;
@@ -125,7 +125,7 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 	
 	@Override
 	public void update(float timeStep){
-		if(this.isInitialized){
+		if(this.isInitialized && body.isAwake()){
 			this.location.set(body.getPosition());
 			this.angle = body.getAngle();
 		}

@@ -106,9 +106,9 @@ public class MovementButtonManager extends ButtonManager {
 		}
 		
 		@Override
-		public void render(Render2D renderer){
+		public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
 			Game.resources.textures.bindTexture("camera");
-			super.render(renderer);
+			super.render(renderer, flipHorizontal, flipVertical);
 		}
 		
 	}
@@ -148,9 +148,9 @@ public class MovementButtonManager extends ButtonManager {
 		}
 		
 		@Override
-		public void render(Render2D renderer){
+		public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
 			Game.resources.textures.bindTexture("box");
-			super.render(renderer);
+			super.render(renderer, flipHorizontal, flipVertical);
 		}
 	}
 	
@@ -190,9 +190,9 @@ public class MovementButtonManager extends ButtonManager {
 		}
 		
 		@Override
-		public void render(Render2D renderer){
+		public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
 			Game.resources.textures.bindTexture("box");
-			super.render(renderer);
+			super.render(renderer, flipHorizontal, flipVertical);
 		}
 	}
 }

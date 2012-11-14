@@ -17,6 +17,7 @@ import android.view.Window;
 
 import com.bitwaffle.guts.android.input.KeyboardManager;
 import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.gui.console.Console;
 import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.Resources;
@@ -36,6 +37,8 @@ import com.swarmconnect.SwarmActivity;
 public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
 	/** Current version of the game */
 	public static final String VERSION = "0.0.5 (pre-alpha)";
+
+	public static Console console;
 	
 	/** Current context */
 	public static Context context;
@@ -131,7 +134,10 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
         if(physics == null){
         	physics = new Physics();
         	PhysicsHelper.temp(physics);
+        	SurfaceView.touchHandler.setPlayer(Game.player);
         }
+        
+        console = new Console();
     }
     
     /**
@@ -153,6 +159,8 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
     	// Step the physics sim
     	if(!paused)
     		physics.update();
+    	
+    	console.update();
     	
     	// clear the screen
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT /*| GLES20.GL_DEPTH_BUFFER_BIT*/);

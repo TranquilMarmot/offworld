@@ -11,7 +11,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.render.Renderers;
 import com.bitwaffle.guts.graphics.textures.animation.Animation;
 import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.physics.callbacks.FirstHitQueryCallback;
@@ -19,6 +18,7 @@ import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.FirearmHolder;
 import com.bitwaffle.offworld.renderers.PlayerRenderer;
+import com.bitwaffle.offworld.renderers.Renderers;
 import com.bitwaffle.offworld.weapons.Pistol;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
@@ -126,15 +126,17 @@ public class Player extends BoxEntity implements FirearmHolder,KryoSerializable{
 		}
 		
 		// add time to jump timer
-		jumpTimer += timeStep;	
+		jumpTimer += timeStep;
 		
 		// check for input
-		if(KeyBindings.CONTROL_RIGHT.isPressed())
-			goRight();
-		if(KeyBindings.CONTROL_LEFT.isPressed())
-			goLeft();
-		if(KeyBindings.CONTROL_JUMP.pressedOnce())
-			jump();
+		if(!Game.console.isOn()){
+			if(KeyBindings.CONTROL_RIGHT.isPressed())
+				Game.player.goRight();
+			if(KeyBindings.CONTROL_LEFT.isPressed())
+				Game.player.goLeft();
+			if(KeyBindings.CONTROL_JUMP.pressedOnce())
+				Game.player.jump();
+		}
 	}
 	
 	/**
@@ -190,7 +192,7 @@ public class Player extends BoxEntity implements FirearmHolder,KryoSerializable{
 				// can only jump if the current vertical speed is within a certain range
 				if(linVec.y <= JUMP_FORCE && linVec.y >= -JUMP_FORCE){
 					//Game.vibration.vibrate(25);
-					//Game.resources.sounds.play("jump");
+					Game.resources.sounds.play("jump");
 					
 					// add force to current velocity and set it
 					linVec.y += JUMP_FORCE;

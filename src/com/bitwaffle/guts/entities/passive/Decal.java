@@ -2,7 +2,7 @@ package com.bitwaffle.guts.entities.passive;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.graphics.render.Renderers;
+import com.bitwaffle.offworld.renderers.Renderers;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;

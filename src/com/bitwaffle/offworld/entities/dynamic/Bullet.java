@@ -10,10 +10,10 @@ import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.entities.passive.Decal;
-import com.bitwaffle.guts.graphics.render.Renderers;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.CollisionFilters;
 import com.bitwaffle.offworld.interfaces.Health;
+import com.bitwaffle.offworld.renderers.Renderers;
 
 public class Bullet extends BoxEntity {
 	static float[] color = { 1.0f, 1.0f, 1.0f, 1.0f };

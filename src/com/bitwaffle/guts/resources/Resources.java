@@ -18,15 +18,7 @@ import com.bitwaffle.guts.graphics.textures.TextureManager;
  * 
  * @author TranquilMarmot
  */
-public class Resources {
-	/** Info for font */
-	private static final String FONT_LOCATION = "font.png";
-	private static final int 
-		FONT_CELL_WIDTH = 128,
-		FONT_CELL_HEIGHT = 128,
-		FONT_GLYPH_WIDTH = 31,
-		FONT_GLYPH_HEIGHT = 31;
-			
+public class Resources {			
 	/** 
 	 * Everything in the 'assets' folder is read-only,
 	 * so that's where all the game's resources are stored-
@@ -70,7 +62,7 @@ public class Resources {
 	public void init(){
 		textures = new TextureManager();
 		sounds = new SoundManager();
-		font = new BitmapFont(FONT_LOCATION, FONT_CELL_WIDTH, FONT_CELL_HEIGHT, FONT_GLYPH_WIDTH, FONT_GLYPH_HEIGHT);
+		font = new BitmapFont();
 	}
 	
 	/**

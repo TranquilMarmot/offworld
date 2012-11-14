@@ -24,7 +24,7 @@ public class LeftJumpButton extends JumpButton{
 	}
 	
 	@Override
-	public void render(Render2D renderer){
+	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
 		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, this.isDown() ? buttMan.pressedAlpha() : buttMan.activeAlpha());
 		GLES20.glEnable(GLES20.GL_BLEND);
 		GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_DST_COLOR);

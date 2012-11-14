@@ -3,7 +3,8 @@ package com.bitwaffle.guts.entities.dynamic;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.bitwaffle.guts.graphics.render.Renderers;
+import com.bitwaffle.offworld.entities.CollisionFilters;
+import com.bitwaffle.offworld.renderers.Renderers;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
@@ -52,16 +53,22 @@ public class BoxEntity extends DynamicEntity implements KryoSerializable{
 	 * @param color What color the box is
 	 */
 	public BoxEntity(Renderers renderer, int layer, BodyDef bodyDef, float width, float height, float density, float[] color){
-		super(renderer, layer, bodyDef, getBoxShape(width, height), density);
+		super(renderer, layer, bodyDef, getBoxShape(width, height, density));
 		this.width = width;
 		this.height = height;
 		this.color = color;
 	}
 	
-	private static PolygonShape getBoxShape(float width, float height){
+	private static FixtureDef getBoxShape(float width, float height, float density){
 		PolygonShape box = new PolygonShape();
 		box.setAsBox(width, height);
-		return box;
+		
+		FixtureDef fixture = new FixtureDef();
+		fixture.shape = box;
+		fixture.filter.categoryBits = CollisionFilters.GROUND;
+		fixture.filter.maskBits = CollisionFilters.EVERYTHING;
+		fixture.density = density;
+		return fixture;
 	}
 	
 	public float getWidth(){ return width; }

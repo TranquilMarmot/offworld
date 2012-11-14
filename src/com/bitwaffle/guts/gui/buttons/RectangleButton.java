@@ -39,7 +39,7 @@ public abstract class RectangleButton extends Button {
 	}
 
 	@Override
-	public void draw(Render2D renderer, boolean flipHorizontal, boolean flipVertical) {
+	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical) {
 		if(this.isDown())
 			renderer.program.setUniform("vColor", down[0], down[1], down[2], down[3]);
 		else if(this.isActive())

@@ -181,7 +181,7 @@ public class Render2D {
 	 */
 	public void prepareToRenderEntity(Entity ent){
 		Vector2 loc = ent.getLocation();
-		float angle = ent.getAngle();
+		float angle = MathHelper.toDegrees(ent.getAngle());
 		
 		// mainpulate the modelview matrix to draw the entity
 		modelview.setIdentity();
@@ -231,12 +231,15 @@ public class Render2D {
 					Matrix4f.translate(new Vector3f(butt.x, butt.y, 0.0f), modelview, modelview);
 					this.sendModelViewToShader();
 					
-					butt.render(this);
+					butt.render(this, false, false);
 				}
 			}
 		} catch(NullPointerException e){
 			Log.v("GUI", "Got null button (ignoring)");
 		}
+		
+		if(Game.console.isVisible)
+			Game.console.render(this, false, false);
 	}
 	
 	/**

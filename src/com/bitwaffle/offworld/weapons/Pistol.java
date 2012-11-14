@@ -61,7 +61,7 @@ public class Pistol implements Firearm {
 	 */
 	public void shootAt(World world, Vector2 target) {
 		if(timeSinceLastShot >= firingRate){
-			//Game.resources.sounds.play("shoot");
+			Game.resources.sounds.play("shoot");
 			muzzleFlash = true;
 			
 			float SPEED = 75.0f;

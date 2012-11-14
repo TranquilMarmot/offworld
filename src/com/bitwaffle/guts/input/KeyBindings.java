@@ -24,18 +24,17 @@ public enum KeyBindings {
 	SYS_FULLSCREEN(new InputButton[]{Keys.F11}),
 	SYS_DEBUG(new InputButton[]{Keys.F3}),
 	SYS_SCREENSHOT(new InputButton[]{Keys.F2}),
-	SYS_DEBUG_PHYSICS(new InputButton[]{Keys.F4});
+	SYS_DEBUG_PHYSICS(new InputButton[]{Keys.F4}),
 
-	/*
+	
 	SYS_CONSOLE_PREVIOUS_COMMAND(new InputButton[]{Keys.UP}),
 	SYS_CONSOLE_NEXT_COMMAND(new InputButton[]{Keys.DOWN}),
 	SYS_CONSOLE_SUBMIT(new InputButton[]{Keys.RETURN}),
 	SYS_CONSOLE_BACKSPACE(new InputButton[]{Keys.BACK}),
 	SYS_CONSOLE_SCROLL_UP(new InputButton[]{Keys.NEXT}),
-	SYS_CONSOLE_SCROLL_DOWN(new InputButton[]{Keys.PRIOR}),
+	SYS_CONSOLE_SCROLL_DOWN(new InputButton[]{Keys.PRIOR});
 
-	BUILDER_OPEN_ADD_MENU(new InputButton[]{Keys.TAB});
-	*/
+	//BUILDER_OPEN_ADD_MENU(new InputButton[]{Keys.TAB});
 
 	/** the InputButtons that activate this binding */
 	private InputButton[] inputButtons;

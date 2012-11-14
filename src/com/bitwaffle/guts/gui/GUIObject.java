@@ -29,14 +29,10 @@ public abstract class GUIObject {
      */
     public abstract void update();
     
-    public void render(Render2D renderer){
-    	this.draw(renderer, false, false);
-    }
-    
     /**
      * Draws the object
      */
-    public abstract void draw(Render2D renderer, boolean flipHorizontal, boolean flipVertical);
+    public abstract void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical);
     
     /**
      * Get rid of any resources the object may have allocated
