@@ -171,8 +171,12 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
     	updateFPS(timeBeforeLoop);
     	
     	// check for pausing
-		if(KeyBindings.SYS_PAUSE.pressedOnce())
-			Game.togglePause();
+		if(KeyBindings.SYS_PAUSE.pressedOnce()){
+			if(console.isOn())
+				console.hide();
+			else
+				Game.togglePause();
+		}
     }
     
     /**

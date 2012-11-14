@@ -1,6 +1,9 @@
 package com.bitwaffle.guts.gui.buttons.movement;
 
+import android.content.DialogInterface;
+
 import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.android.input.TextInput;
 import com.bitwaffle.guts.graphics.Camera;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.buttons.Button;
@@ -68,6 +71,7 @@ public class MovementButtonManager extends ButtonManager {
 		this.addButton(new CameraButton());
 		this.addButton(new BoxEntityButton());
 		this.addButton(new CircleEntityButton());
+		this.addButton(new ConsoleInputButton());
 		
 		// update to add all buttons
 		this.update();
@@ -192,6 +196,68 @@ public class MovementButtonManager extends ButtonManager {
 		@Override
 		public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
 			Game.resources.textures.bindTexture("box");
+			super.render(renderer, flipHorizontal, flipVertical);
+		}
+	}
+	
+	// FIXME this button needs to be moved/
+	/**
+	 * Button to do text input to console
+	 */
+	class ConsoleInputButton extends RectangleButton{
+		public ConsoleInputButton(){
+			super(
+					Game.windowWidth - boxButtonWidth,
+					boxButtonHeight,
+					boxButtonWidth,
+					boxButtonHeight);
+			this.active[0] = 0.1f;
+			this.active[1] = 0.75f;
+			this.active[2] = 0.1f;
+		}
+
+		@Override
+		public void update() {
+			this.x = (Game.windowWidth / 2) - boxButtonWidth;
+		}
+
+		@Override
+		protected void onRelease() {
+			TextInput input = new TextInput("Console Input", "Enter text to send to console (/? for help)"){
+				@Override
+				public void parseInput(String input) {
+					for(char c : input.toCharArray())
+						Game.console.putCharacter(c);
+					Game.console.submit();
+					Game.console.hide();
+				}
+			};
+			
+			// hide console on cancellation of input
+	    	input.alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					if(Game.console.isOn())
+						Game.console.hide();
+				}
+			});
+			
+			
+			input.askForInput();
+		}
+
+		@Override
+		protected void onSlideRelease() {
+			Game.console.hide();
+		}
+
+		@Override
+		protected void onPress() {
+			Game.console.show();
+		}
+		
+		@Override
+		public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
+			Game.resources.textures.bindTexture("blank");
 			super.render(renderer, flipHorizontal, flipVertical);
 		}
 	}

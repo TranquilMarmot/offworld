@@ -15,7 +15,7 @@ import android.widget.EditText;
  */
 public abstract class TextInput {
 	/** The dialog box */
-	AlertDialog.Builder alert;
+	public AlertDialog.Builder alert;
 	
 	/**
 	 * Create a new user input prompt
