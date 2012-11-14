@@ -6,6 +6,7 @@ import java.util.StringTokenizer;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.net.NetConsoleCommands;
 
 
 /**
@@ -48,7 +49,10 @@ public enum ConsoleCommands {
 	logging(log, true),
 	
 	sysout(new SetSysOutCommand()),
-	systemout(sysout, true);
+	systemout(sysout, true),
+	
+	server(new NetConsoleCommands.ServerCommand()),
+	client(new NetConsoleCommands.ClientCommand());
 
 	/** Function to call for this ConsoleCommands */
 	private Command function;
@@ -113,25 +117,6 @@ public enum ConsoleCommands {
 	public boolean hidden(){
 		return hidden;
 	}
-}
-
-
-/**
- * Every command class should implement this and override the issue() function to carry out a command
- * @author TranquilMarmot
- */
-interface Command{
-	/**
-	 * This should issue the command for the class implementing this interface
-	 * @param toker This will contain the rest of the command, excluding the command itself, separated by spaces
-	 */
-	public void issue(StringTokenizer toker);
-	
-	
-	/**
-	 * This should print out any help info about the command to the console
-	 */
-	public void help();
 }
 
 /**
