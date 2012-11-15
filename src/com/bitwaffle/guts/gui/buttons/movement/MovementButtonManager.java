@@ -225,11 +225,21 @@ public class MovementButtonManager extends ButtonManager {
 		protected void onRelease() {
 			TextInput input = new TextInput("Console Input", "Enter text to send to console (/? for help)"){
 				@Override
-				public void parseInput(String input) {
-					for(char c : input.toCharArray())
-						Game.console.putCharacter(c);
-					Game.console.submit();
-					Game.console.hide();
+				public void parseInput(final String input) {
+					/*
+					 * If you tell the console to submit inside of here, it counts it as the main thread
+					 * On Android, you can't do any networking in the main thread. So, if a networking-related command is given,
+					 * Android will throw an exception when the command is executed. So, we execute it in its own thread.
+					 */
+					new Thread(){
+						@Override
+						public void run(){
+							for(char c : input.toCharArray())
+								Game.console.putCharacter(c);
+							Game.console.submit();
+							Game.console.hide();
+						}
+					}.start();
 				}
 			};
 			
@@ -247,12 +257,15 @@ public class MovementButtonManager extends ButtonManager {
 
 		@Override
 		protected void onSlideRelease() {
-			Game.console.hide();
+			// slide-releasing this button toggles the console
+			if(Game.console.isOn())
+				Game.console.hide();
+			else
+				Game.console.show();
 		}
 
 		@Override
 		protected void onPress() {
-			Game.console.show();
 		}
 		
 		@Override

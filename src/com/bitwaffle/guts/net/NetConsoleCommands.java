@@ -1,166 +1,290 @@
 package com.bitwaffle.guts.net;
 
+import java.net.InetSocketAddress;
 import java.util.StringTokenizer;
 
 import com.bitwaffle.guts.gui.console.Command;
+import com.esotericsoftware.kryonet.Connection;
 
+/**
+ * Commands for controlling local servers/clients
+ * 
+ * @author TranquilMarmot
+ */
 public class NetConsoleCommands{
-	public static final int DEFAULT_TCP_PORT = 42024;
-	public static final int DEFAULT_UDP_PORT = 42042;
-	
+	/**
+	 * Commands to control local server
+	 */
 	public static class ServerCommand implements Command{
-
 		@Override
 		public void issue(StringTokenizer toker) {
 			if(!toker.hasMoreTokens())
 				help();
 			else{
-				String serverCommand = toker.nextToken();
+				String command = toker.nextToken();
 				
-				if(serverCommand.equals("start"))
+				if(command.equals("start") || command.equals("begin"))
 					startCommand(toker);
-				else if(serverCommand.equals("end"))
+				else if(command.equals("stop") || command.equals("end"))
 					endCommand(toker);
-				else if(serverCommand.equals("broadcast"))
+				else if(command.equals("status") || command.equals("stat"))
+					statusCommand(toker);
+				else if(command.equals("broadcast") || command.equals("wall"))
 					broadcastCommand(toker);
+				else
+					System.out.println("Unrecognized server command " + command + " (use '/? server' for available commands)");
 			}
 		}
 
 		@Override
 		public void help() {
-			
+			System.out.println("Usage: /server COMMAND\n" + 
+			                   "Available commands:\n" + 
+			                   "start TCPport UDPport - Start server (leave ports blank for defaults)\n" +
+			                   "stop       -  End server\n" +
+			                   "status     -  Print current server status\n" +
+			                   "broadcast  -  Send a message to all connected clients");
 		}
 		
+		/**
+		 * Starts the server
+		 */
 		private void startCommand(StringTokenizer toker){
+			if(Net.server != null){
+				System.out.println("Server already running.");
+				return;
+			}
+			
 			int tcpPort, udpPort;
-			if(toker.countTokens() != 2){
-				System.out.println("Not enough args given, starting with default TCP port " + DEFAULT_TCP_PORT + " and UDP port " + DEFAULT_UDP_PORT);
-				tcpPort = DEFAULT_TCP_PORT;
-				udpPort = DEFAULT_UDP_PORT;
-			} else {
+			
+			if(toker.countTokens() == 1){
+				tcpPort = Integer.parseInt(toker.nextToken());
+				udpPort = Net.DEFAULT_UDP_PORT;
+				System.out.println("No UDP port specified, starting server with TCP port " + tcpPort + " and default UDP port " + udpPort);
+			} else if(toker.countTokens() >= 2){
 				tcpPort = Integer.parseInt(toker.nextToken());
 				udpPort = Integer.parseInt(toker.nextToken());
+				System.out.println("Starting server with TCP port " + tcpPort + " and UDP port " + udpPort);
+			} else {
+				tcpPort = Net.DEFAULT_TCP_PORT;
+				udpPort = Net.DEFAULT_UDP_PORT;
+				System.out.println("No ports specified, starting server with default TCP port " + tcpPort + " and UDP port " + udpPort);
 			}
-			NetHandler.server = new OffworldServer(tcpPort, udpPort);
-			NetHandler.server.start();
+			
+			Net.server = new NetServer(tcpPort, udpPort);
+			Net.server.start();
 		}
 		
+		/**
+		 * Ends the server if it's running
+		 */
 		private void endCommand(StringTokenizer toker){
-			if(NetHandler.server == null){
+			if(Net.server == null){
 				System.out.println("No server running");
 				return;
 			}
 			
-			NetHandler.server.server.close();
+			Net.server.close();
+			Net.server = null;
 		}
 		
 		private void broadcastCommand(StringTokenizer toker){
-			if(NetHandler.server == null){
+			if(Net.server == null){
 				System.out.println("No server running");
 				return;
 			}
 			
 			String which = toker.nextToken();
-			if(which.equalsIgnoreCase("tcp")){
-				sendRestToTCP(toker);
-			} else if(which.equalsIgnoreCase("udp")){
-				sendRestToUDP(toker);
-			} else {
-				System.out.println("TCP or UDP not specified, sending to TCP...");
-				NetHandler.server.server.sendToAllTCP(which);
-				sendRestToTCP(toker);
-				//NetHandler.server.server.sendToAllUDP(which);
-				//sendRestToUDP(toker);
+			String toSend = "";
+			boolean udp = false; // if this is false, it defaults to tcp, make it true to default to udp
+			
+			if(which.equalsIgnoreCase("udp"))
+				udp = true;
+			else if(which.equalsIgnoreCase("tcp"))
+				udp = false;
+			else 
+				toSend += which  + " ";
+			
+			while(toker.hasMoreTokens())
+				toSend += toker.nextToken() + " ";
+			
+			if(udp)
+				Net.server.broadcastUDP(toSend);
+			else
+				Net.server.broadcastTCP(toSend);
+		}
+		
+		/**
+		 * Prints out the status of the server (hostnames of anything connected)
+		 */
+		private void statusCommand(StringTokenizer toker){
+			if(Net.server == null){
+				System.out.println("Sevrer not running (do '/server start' to start server)");
+				return;
 			}
-		}
-		
-		private static void sendRestToTCP(StringTokenizer toker){
-			while(toker.hasMoreTokens())
-				NetHandler.server.server.sendToAllTCP(toker.nextToken());
-		}
-		
-		private static void sendRestToUDP(StringTokenizer toker){
-			while(toker.hasMoreTokens())
-				NetHandler.server.server.sendToAllUDP(toker.nextToken());
+			
+			System.out.println("Server running, listing connections... (this can take be slow)");
+			
+			// put this one in a thread since it can take a second to receive a reply
+			new Thread(){
+				@Override
+				public void run(){
+					Connection[] conns = Net.server.getConnections();
+					
+					// Prints out "Server has no connections", "Server has 1 connection", or "Server has X connections"
+					System.out.println("Server has " +
+					                  ((conns.length == 0) ? "no" : conns.length) +
+					                  " connection" + ((conns.length > 1 || conns.length == 0) ? "s" : ""));
+					
+					// print out every connection
+					if(conns.length > 0){
+						System.out.println("ID |    hostname    :TCPport");
+						System.out.println("------------");
+						
+						for(Connection connection : conns){
+							InetSocketAddress tcpAddr = connection.getRemoteAddressTCP();
+							System.out.println(String.format("%02d | %15s:%d", connection.getID(), tcpAddr.getHostName(), tcpAddr.getPort()));
+						}
+					}
+				}
+			}.start();
 		}
 	}
 	
+	
+	
+	/**
+	 * Commands to control local client
+	 */
 	public static class ClientCommand implements Command{
 		@Override
 		public void issue(StringTokenizer toker) {
 			if(!toker.hasMoreTokens())
 				help();
 			else{
-				String serverCommand = toker.nextToken();
+				String command = toker.nextToken();
 				
-				if(serverCommand.equals("start"))
+				if(command.equals("start") || command.equals("connect"))
 					startCommand(toker);
-				else if (serverCommand.equals("end"))
+				else if (command.equals("end") || command.equals("disconnect") || command.equals("stop"))
 					endCommand(toker);
-				else if(serverCommand.equals("send"))
+				else if(command.equals("status") || command.equals("stat"))
+					statusCommand(toker);
+				else if(command.equals("send") || command.equals("say"))
 					sendCommand(toker);
+				else
+					System.out.println("Unrecognized client command " + command + " (use '/? client' for available commands)");
 			}
 		}
 	
 		@Override
 		public void help() {
-			
+			System.out.println("Usage: /client COMMAND\n" + 
+	                   "Available commands:\n" + 
+	                   "connect URL TCPport UDPport - Connect to a server (leave URL blank for localhost, ports blank for defaults)\n" +
+	                   "disconnect  -  Disconnect from server\n" +
+	                   "status      -  Print current clien status\n" +
+	                   "send        -  Send a message to server");
 		}
 		
+		/**
+		 * Starts a client
+		 */
 		private void startCommand(StringTokenizer toker){
 			String url;
 			int tcpPort, udpPort;
-			if(toker.countTokens() != 3){
-				System.out.println("Not enough args given, starting with localhost and default TCP port " + DEFAULT_TCP_PORT + " and UDP port " + DEFAULT_UDP_PORT);
-				url = "localhost";
-				tcpPort = DEFAULT_TCP_PORT;
-				udpPort = DEFAULT_UDP_PORT;
-			} else {
+			
+			if(toker.countTokens() == 1){
+				url = toker.nextToken();
+				tcpPort = Net.DEFAULT_TCP_PORT;
+				udpPort = Net.DEFAULT_UDP_PORT;
+				System.out.println("No ports specified, client connecting to " + url + " with default TCP port " + tcpPort + " and default UDP port " + udpPort);
+			} else if(toker.countTokens() == 2){
+				url = toker.nextToken();
+				tcpPort = Integer.parseInt(toker.nextToken());
+				udpPort = Net.DEFAULT_UDP_PORT;
+				System.out.println("No UDP port specified, client connecting to " + url + " with TCP port " + tcpPort + " and default UDP port " + udpPort);
+			} else if(toker.countTokens() >= 3){
 				url = toker.nextToken();
 				tcpPort = Integer.parseInt(toker.nextToken());
 				udpPort = Integer.parseInt(toker.nextToken());
+				System.out.println("Client connecting to " + url + " with TCP port " + tcpPort + " and UDP port " + udpPort);
+			} else {
+				url = "localhost";
+				tcpPort = Net.DEFAULT_TCP_PORT;
+				udpPort = Net.DEFAULT_UDP_PORT;
+				System.out.println("No URL or ports specified, client connecting to localhost and default TCP port " + tcpPort + " and UDP port " + udpPort);
 			}
-			NetHandler.client = new OffworldClient(url, tcpPort, udpPort);
-			NetHandler.client.start();
+			
+			Net.client = new NetClient(url, tcpPort, udpPort);
+			Net.client.start();
 		}
 		
+		/**
+		 * Ends a client
+		 */
 		private void endCommand(StringTokenizer toker){
-			if(NetHandler.client == null){
+			if(Net.client == null){
 				System.out.println("No client running");
 				return;
 			}
 			
-			NetHandler.client.client.close();
+			Net.client.close();
+			Net.client = null;
 		}
 		
+		/**
+		 * Sends a message to a connected server from a client
+		 */
 		private void sendCommand(StringTokenizer toker){
-			if(NetHandler.client == null || !NetHandler.client.client.isConnected()){
+			if(Net.client == null || !Net.client.isConnected()){
 				System.out.println("No client running");
 				return;
 			}
 			
 			String which = toker.nextToken();
-			if(which.equalsIgnoreCase("tcp")){
-				sendRestToTCP(toker);
-			} else if(which.equalsIgnoreCase("udp")){
-				sendRestToUDP(toker);
+			String toSend = "";
+			boolean udp = false; // if this is false, it defaults to tcp, make it true to default to udp
+			
+			if(which.equalsIgnoreCase("udp"))
+				udp = true;
+			else if(which.equalsIgnoreCase("tcp"))
+				udp = false;
+			else 
+				toSend += which  + " ";
+			
+			while(toker.hasMoreTokens())
+				toSend += toker.nextToken() + " ";
+			
+			if(udp)
+				Net.client.sendUDP(toSend);
+			else
+				Net.client.sendTCP(toSend);
+		}
+		
+		/**
+		 * Prints out the status of the client
+		 */
+		private void statusCommand(StringTokenizer toker){
+			if(Net.client == null){
+				System.out.println("Client not connected (do '/client connect URL' to connect)");
+				return;
 			} else {
-				System.out.println("TCP or UDP not specified, sending to TCP...");
-				NetHandler.client.client.sendTCP(which);
-				sendRestToTCP(toker);
-				//NetHandler.client.client.sendUDP(which);
-				//sendRestToUDP(toker);
+				new Thread(){
+					@Override
+					public void run(){
+						String hostname = "Not connected";
+						if(Net.client.isConnected()){
+							InetSocketAddress tcpAddr = Net.client.getRemoteAddressTCP();
+							hostname = tcpAddr.getHostName();
+						}
+						
+						int id = Net.client.getID();
+						System.out.println("Client ID    : " + id);
+						System.out.println("Connected to : " + hostname + " (" + (Net.client.isIdle() ? "not " : "") + "idle)");
+					}
+				}.start();
 			}
-		}
-		
-		private static void sendRestToTCP(StringTokenizer toker){
-			while(toker.hasMoreTokens())
-				NetHandler.client.client.sendTCP(toker.nextToken());
-		}
-		
-		private static void sendRestToUDP(StringTokenizer toker){
-			while(toker.hasMoreTokens())
-				NetHandler.client.client.sendUDP(toker.nextToken());
 		}
 	}
 }
