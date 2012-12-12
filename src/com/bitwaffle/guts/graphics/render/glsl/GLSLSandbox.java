@@ -18,7 +18,7 @@ public class GLSLSandbox extends GUIObject {
 	/** Vertex shader to load on init */
 	private static final String VERTEX_SHADER = "shaders/sandbox.vert";
 	/** Fragment shader to load on init */
-	private static final String FRAGMENT_SHADER = "shaders/waves.frag";
+	private static final String FRAGMENT_SHADER = "shaders/pot.frag";
 	
 	private static final int COORDS_PER_VERTEX = 3;
 	
@@ -115,9 +115,6 @@ public class GLSLSandbox extends GUIObject {
 				-1.0f * width, 1.0f * height, 0.0f,
 				-1.0f * width, -1.0f * height, 0.0f
 		};
-		
-		
-		
 		
 		vertBuffer = BufferUtils.getFloatBuffer(coords.length);
 		vertBuffer.put(coords);
