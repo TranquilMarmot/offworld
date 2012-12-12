@@ -53,6 +53,6 @@ class SparkRenderer implements EntityRenderer{
 	final float SCALE = 0.4f;
 	public void render(Render2D renderer, Entity ent, boolean drawDebug){
 		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
-		Game.resources.textures.getSubImage("spark").draw(renderer.quad, X_RATIO * SCALE, Y_RATIO * SCALE);
+		Game.resources.textures.getSubImage("spark").render(renderer.quad, X_RATIO * SCALE, Y_RATIO * SCALE);
 	}
 }

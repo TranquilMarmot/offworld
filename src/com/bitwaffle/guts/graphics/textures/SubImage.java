@@ -34,7 +34,7 @@ public class SubImage {
 	 * @param width Width to draw sub-image as
 	 * @param height Height to draw sub-image as
 	 */
-	public void draw(Quad quad, float width, float height){
+	public void render(Quad quad, float width, float height){
 		this.render(quad, width, height, false, false);
 	}
 	

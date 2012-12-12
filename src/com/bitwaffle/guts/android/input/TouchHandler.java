@@ -220,6 +220,9 @@ public class TouchHandler {
 			player.beginShooting(MathHelper.toWorldSpace(x1, y1, camera));
 	}
 	
+	/**
+	 * Second pointer released
+	 */
 	private void pointer2Up(){
 		// check for any button releases
 		if (buttonsDown[0] != null && buttonsDown[0].isDown()

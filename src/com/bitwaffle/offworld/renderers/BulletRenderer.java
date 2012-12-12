@@ -17,7 +17,7 @@ public class BulletRenderer implements EntityRenderer {
 		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
 		renderer.modelview.scale(new Vector3f(Bullet.SCALE, Bullet.SCALE, 1.0f));
 		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("pistolbullet").draw(renderer.quad, 1.0f, 0.379f);
+		Game.resources.textures.getSubImage("pistolbullet").render(renderer.quad, 1.0f, 0.379f);
 		
 		if(renderDebug)
 			renderDebug(renderer, ent);
