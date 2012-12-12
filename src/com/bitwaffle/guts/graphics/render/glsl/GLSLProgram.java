@@ -252,6 +252,21 @@ public class GLSLProgram {
 	}
 	
 	/**
+	 * Set a 2f uniform
+	 * @param name Name of uniform to set
+	 * @param x
+	 * @param y
+	 */
+	public void setUniform(String name, float x, float y){
+		int loc = getUniformLocation(name);
+		if(loc >= 0){
+			GLES20.glUniform2f(loc, x, y);
+		} else{
+			System.out.println("Uniform variable " + name + " not found!");
+		}
+	}
+	
+	/**
 	 * Set a 3f uniform
 	 * @param name Name of uniform to set
 	 * @param x

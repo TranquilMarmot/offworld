@@ -204,11 +204,12 @@ public class Render2D {
 	 * @param gui GUI to render
 	 */
 	private void renderGUI(GUI gui){
-		renderText();
 		gui.render(this);
 		
 		if(Game.console.isVisible)
 			Game.console.render(this, false, false);
+		
+		renderText();
 	}
 	
 	private void renderText(){

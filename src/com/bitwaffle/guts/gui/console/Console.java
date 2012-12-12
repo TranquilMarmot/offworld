@@ -40,7 +40,7 @@ public class Console extends GUIObject{
 	 * Info on what to do with text sent to this console.
 	 * These can be changed at runtime by calling methods in the ConsoleOutputstream class.
 	 */
-	private static final boolean PRINT_TO_LOG = false, PRINT_TO_SYSOUT = false;
+	private static final boolean PRINT_TO_LOG = false, PRINT_TO_SYSOUT = true;
 	/** This replaces System.out and System.err, and also enables printing to a log file */
 	protected ConsoleOutputStream outputStream;
 	public PrintStream out;

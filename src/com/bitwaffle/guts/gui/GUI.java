@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.graphics.render.glsl.GLSLSandbox;
 import com.bitwaffle.guts.gui.buttons.Button;
 import com.bitwaffle.guts.gui.buttons.ButtonManager;
 import com.bitwaffle.guts.gui.buttons.movement.MovementButtonManager;
@@ -41,6 +42,8 @@ public class GUI {
 			currentButtonManager = pauseButtons;
 		else
 			currentButtonManager = movementButtons;
+		
+		objects.add(new GLSLSandbox());
 	}
 	
 	public void update(){
@@ -57,8 +60,8 @@ public class GUI {
 	}
 	
 	public void render(Render2D renderer) {
-		renderButtons(renderer);
 		renderObjects(getObjectIterator(), renderer);
+		renderButtons(renderer);
 	}
 	
 	public Iterator<GUIObject> getObjectIterator(){

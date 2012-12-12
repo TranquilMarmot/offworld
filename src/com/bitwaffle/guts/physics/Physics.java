@@ -3,13 +3,14 @@ package com.bitwaffle.guts.physics;
 import java.util.Iterator;
 import java.util.Stack;
 
-import android.os.SystemClock;
+import android.util.FloatMath;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactFilter;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.GdxNativesLoader;
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.Entities;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
@@ -76,7 +77,7 @@ public class Physics {
 		entities = new Entities();
 		toInitialize = new Stack<DynamicEntity>();
 		
-		previousTime = SystemClock.elapsedRealtime();
+		previousTime = Game.getTime();
 	}
 	
 	/**
@@ -84,7 +85,7 @@ public class Physics {
 	 */
 	public void update(){
 		// get the current time
-		long currentTime = SystemClock.elapsedRealtime();
+		long currentTime = Game.getTime();
 		
 		// initialize any entities that need intialization
 		while(!toInitialize.isEmpty())
@@ -98,7 +99,7 @@ public class Physics {
 		
 		// add the change in time to the accumulator, then find out how many steps we need to do
 		timeStepAccum += deltaTime;
-		float steps = (float)Math.floor((double)(timeStepAccum / FIXED_TIMESTEP));
+		float steps = FloatMath.floor(timeStepAccum / FIXED_TIMESTEP);
 		
 		// only touch the accumulator if necessary
 		if(steps > 0)
