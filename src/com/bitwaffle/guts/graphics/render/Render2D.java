@@ -20,7 +20,6 @@ import com.bitwaffle.guts.graphics.render.glsl.GLSLShader;
 import com.bitwaffle.guts.graphics.render.shapes.Circle;
 import com.bitwaffle.guts.graphics.render.shapes.Quad;
 import com.bitwaffle.guts.gui.GUI;
-import com.bitwaffle.guts.gui.buttons.Button;
 import com.bitwaffle.guts.util.MathHelper;
 
 /**
@@ -122,27 +121,12 @@ public class Render2D {
 		
 		program.use();
 		
-		setUpProjectionWorldCoords();
-		Game.physics.renderAll(this);
+		if(Game.physics.entitiesExist()){
+			setUpProjectionWorldCoords();
+			Game.physics.renderAll(this);
+		}
 		
 		setUpProjectionScreenCoords();
-		// draw some debug info TODO move this somewhere else!
-		float[] debugTextColor = new float[]{ 0.3f, 0.3f, 0.3f, 1.0f };
-		String str =
-				"Version " + Game.VERSION + "\n" +
-				"FPS: " + Game.currentFPS + "\n" +
-				"Ents: " + Game.physics.numEntities();
-		Game.resources.font.drawString(str, this, 82, 20, 0.15f, debugTextColor);
-		// draw pause text FIXME temp
-		if(Game.isPaused()){
-			String pauseString = "Hello. This is a message to let you know that\nthe game is paused. Have a nice day.";
-			float scale = 0.3f;
-			float stringWidth = Game.resources.font.stringWidth(pauseString, scale);
-			float stringHeight = Game.resources.font.stringHeight(pauseString, scale);
-			float textX = ((float)Game.windowWidth / 2.0f) - (stringWidth / 2.0f);
-			float textY = ((float)Game.windowHeight / 2.0f) - (stringHeight / 2.0f);
-			Game.resources.font.drawString(pauseString, this, textX, textY, scale);
-		}
 		renderGUI(gui);
 	}
 	
@@ -220,26 +204,31 @@ public class Render2D {
 	 * @param gui GUI to render
 	 */
 	private void renderGUI(GUI gui){
-		Iterator<Button> it = gui.getButtonIterator();
-		
-		try{
-			while(it.hasNext()){
-				Button butt = it.next();
-				
-				if(butt.isVisible()){
-					modelview.setIdentity();
-					Matrix4f.translate(new Vector3f(butt.x, butt.y, 0.0f), modelview, modelview);
-					this.sendModelViewToShader();
-					
-					butt.render(this, false, false);
-				}
-			}
-		} catch(NullPointerException e){
-			Log.v("GUI", "Got null button (ignoring)");
-		}
+		renderText();
+		gui.render(this);
 		
 		if(Game.console.isVisible)
 			Game.console.render(this, false, false);
+	}
+	
+	private void renderText(){
+		// draw some debug info TODO move this somewhere else!
+		float[] debugTextColor = new float[]{ 0.3f, 0.3f, 0.3f, 1.0f };
+		String str =
+				"Version " + Game.VERSION + "\n" +
+				"FPS: " + Game.currentFPS + "\n" +
+				"Ents: " + Game.physics.numEntities();
+		Game.resources.font.drawString(str, this, 82, 20, 0.15f, debugTextColor);
+		// draw pause text FIXME temp
+		if(Game.isPaused()){
+			String pauseString = "Hello. This is a message to let you know that\nthe game is paused. Have a nice day.";
+			float scale = 0.3f;
+			float stringWidth = Game.resources.font.stringWidth(pauseString, scale);
+			float stringHeight = Game.resources.font.stringHeight(pauseString, scale);
+			float textX = ((float)Game.windowWidth / 2.0f) - (stringWidth / 2.0f);
+			float textY = ((float)Game.windowHeight / 2.0f) - (stringHeight / 2.0f);
+			Game.resources.font.drawString(pauseString, this, textX, textY, scale);
+		}
 	}
 	
 	/**

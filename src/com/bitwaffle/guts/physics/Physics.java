@@ -171,4 +171,8 @@ public class Physics {
 		                          origin.x + queryWidth, origin.y + queryHeight);
 		return callback.getHit();
 	}
+
+	public boolean entitiesExist() {
+		return entities.numEntities() > 0;
+	}
 }
