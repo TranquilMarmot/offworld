@@ -63,6 +63,24 @@
 	    </subImage>
 	</texture>
 	
+	<texture name="touchcontrols-full">
+	    <path>textures/ui/touch-movement.png</path>
+	    
+	    <subImage name="touchcontrols-background">
+	        <xOffset>29</xOffset>
+	        <yOffset>18</yOffset>
+	        <width>1528</width>
+	        <height>219</height>
+	    </subImage>
+	    
+	    <subImage name="touchcontrols-joystick">
+	        <xOffset>1645</xOffset>
+	        <yOffset>152</yOffset>
+	        <width>348</width>
+	        <height>338</height>
+	    </subImage>
+	</texture>
+	
 	<texture name="arrows-full">
 	    <path>textures/arrows.png</path>
 	    
