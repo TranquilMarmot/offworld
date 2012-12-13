@@ -25,7 +25,7 @@ public class Bullet extends BoxEntity {
 	private DynamicEntity owner;
 	
 	public Bullet(DynamicEntity owner, float x, float y, float angle, float speed){
-		super(Renderers.BULLET, 5, getBodyDef(x, y, angle, speed), WIDTH, HEIGHT, getFixtureDef(), color);
+		super(Renderers.BULLET.renderer, 5, getBodyDef(x, y, angle, speed), WIDTH, HEIGHT, getFixtureDef(), color);
 		this.angle = angle;
 		this.owner = owner;
 	}
@@ -104,7 +104,7 @@ public class Bullet extends BoxEntity {
 		
 		// add spark decal at hit
 		Game.physics.addEntity(new Decal(
-				Renderers.SPARK,
+				Renderers.SPARK.renderer,
 				5,
 				point,
 				MathHelper.toRadians(normal.angle()),

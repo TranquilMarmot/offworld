@@ -3,8 +3,8 @@ package com.bitwaffle.offworld.entities.dynamic;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
+import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.offworld.interfaces.Health;
-import com.bitwaffle.offworld.renderers.Renderers;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
@@ -25,14 +25,14 @@ public class DestroyableBox extends BoxEntity implements Health, KryoSerializabl
 		health = 100;
 	}
 
-	public DestroyableBox(Renderers renderer, int layer, BodyDef bodyDef, float width, float height,
+	public DestroyableBox(EntityRenderer renderer, int layer, BodyDef bodyDef, float width, float height,
 			float density, float[] color) {
 		super(renderer, layer, bodyDef, width, height, density, color);
 		health = 100;
 	}
 
 	
-	public DestroyableBox(Renderers renderer, int layer, BodyDef bodyDef, float width, float height,
+	public DestroyableBox(EntityRenderer renderer, int layer, BodyDef bodyDef, float width, float height,
 			FixtureDef fixtureDef, float[] color) {
 		super(renderer, layer, bodyDef, width, height, fixtureDef, color);
 		health = 100;

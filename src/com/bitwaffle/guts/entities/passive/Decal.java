@@ -2,7 +2,7 @@ package com.bitwaffle.guts.entities.passive;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.offworld.renderers.Renderers;
+import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
@@ -31,7 +31,7 @@ public class Decal extends Entity{
 	 * @param rotation Rotation of decal
 	 * @param timeToLive How long the decal will live for
 	 */
-	public Decal(Renderers renderer, int layer, Vector2 location, float rotation, float timeToLive){
+	public Decal(EntityRenderer renderer, int layer, Vector2 location, float rotation, float timeToLive){
 		super(renderer, layer, location, rotation);
 		this.timeToLive = timeToLive;
 		timeLived = 0.0f;

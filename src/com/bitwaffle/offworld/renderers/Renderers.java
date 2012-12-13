@@ -35,13 +35,21 @@ public enum Renderers{
 	SPARK(new SparkRenderer()),
 	BULLET(new BulletRenderer());
 	
-	private EntityRenderer renderer;
+	public EntityRenderer renderer;
 	private Renderers(EntityRenderer renderer){
 		this.renderer = renderer;
 	}
 	
 	public void render(Render2D render2D, Entity ent, boolean renderDebug){
 		renderer.render(render2D, ent, renderDebug);
+	}
+	
+	public static Renderers valueOf(EntityRenderer renderer){
+		for(Renderers r : Renderers.values()){
+			if(r.renderer == renderer)
+				return r;
+		}
+		return null;
 	}
 }
 

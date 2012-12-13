@@ -99,7 +99,7 @@ public class PhysicsHelper {
 		circleDef.type = BodyDef.BodyType.DynamicBody;
 		circleDef.position.set(circX, circY);
 		
-		DestroyableCircle circ = new DestroyableCircle(Renderers.CIRCLE, 5, radius, circleDef, 1.0f, new float[]{r, g, b, 1.0f}){
+		DestroyableCircle circ = new DestroyableCircle(Renderers.CIRCLE.renderer, 5, radius, circleDef, 1.0f, new float[]{r, g, b, 1.0f}){
 			@Override
 			public void init(World world){
 				super.init(world);
@@ -149,7 +149,7 @@ public class PhysicsHelper {
 		boxFixture.friction = 0.3f;
 		boxFixture.restitution = 0.3f;
 		
-		DestroyableBox box = new DestroyableBox(Renderers.BOX, 5, boxDef, sizeX, sizeY, boxFixture, new float[]{r, g, b, 1.0f}){
+		DestroyableBox box = new DestroyableBox(Renderers.BOX.renderer, 5, boxDef, sizeX, sizeY, boxFixture, new float[]{r, g, b, 1.0f}){
 			@Override
 			// give it a random spin and speed on init
 			public void init(World world){
@@ -170,7 +170,7 @@ public class PhysicsHelper {
 	
 	public static void temp(Physics physics){
 		// backdrop
-		Entity backdrop = new Entity(Renderers.BACKDROP, 0);
+		Entity backdrop = new Entity(Renderers.BACKDROP.renderer, 0);
 		physics.addEntity(backdrop);
 		
 		// player
@@ -189,7 +189,7 @@ public class PhysicsHelper {
 		playerFixture.filter.categoryBits = CollisionFilters.PLAYER;
 		playerFixture.filter.maskBits = CollisionFilters.EVERYTHING;
 		
-		Game.player = new Player(Renderers.PLAYER, 6, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
+		Game.player = new Player(Renderers.PLAYER.renderer, 6, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
 		physics.addDynamicEntity(Game.player);
 		Render2D.camera.follow(Game.player);
 		//SurfaceView.touchHandler.setPlayer(Game.player);
@@ -226,7 +226,7 @@ public class PhysicsHelper {
 			BodyDef bodyDef = new BodyDef();
 			bodyDef.position.set(g.x, g.y);
 			
-			BoxEntity ground = new BoxEntity(Renderers.BOX, 4, bodyDef, g.width, g.height, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
+			BoxEntity ground = new BoxEntity(Renderers.BOX.renderer, 4, bodyDef, g.width, g.height, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
 			physics.addDynamicEntity(ground);
 		}
 	}
@@ -236,14 +236,14 @@ public class PhysicsHelper {
 	 */
 	public static void temp2(Physics physics){
 		// backdrop
-		Entity backdrop = new Entity(Renderers.BACKDROP, 0);
+		Entity backdrop = new Entity(Renderers.BACKDROP.renderer, 0);
 		physics.addEntity(backdrop);
 		
 		// ground
 		BodyDef groundBodyDef = new BodyDef();
 		groundBodyDef.position.set(0.0f, -30.0f);
 		
-		BoxEntity ground = new BoxEntity(Renderers.BOX, 5, groundBodyDef, 1000.0f, 1.0f, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
+		BoxEntity ground = new BoxEntity(Renderers.BOX.renderer, 5, groundBodyDef, 1000.0f, 1.0f, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
 		physics.addDynamicEntity(ground);
 		
 		// player
@@ -262,7 +262,7 @@ public class PhysicsHelper {
 		playerFixture.filter.categoryBits = CollisionFilters.PLAYER;
 		playerFixture.filter.maskBits = CollisionFilters.EVERYTHING;
 		
-		Game.player = new Player(Renderers.PLAYER, 6, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
+		Game.player = new Player(Renderers.PLAYER.renderer, 6, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
 		physics.addDynamicEntity(Game.player);
 		Render2D.camera.follow(Game.player);
 		//SurfaceView.touchHandler.setPlayer(Game.player);

@@ -90,7 +90,7 @@ public class Camera extends Entity {
 			this.zoom = MIN_ZOOM;
 		else{
 			this.zoom = zoom;
-			if(following != null)
+			if(this.currentMode == Modes.FOLLOW && following != null)
 				followEntity();
 		}
 	}

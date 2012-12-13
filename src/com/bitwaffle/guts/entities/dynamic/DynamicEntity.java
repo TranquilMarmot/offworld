@@ -12,9 +12,9 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.util.PhysicsHelper;
-import com.bitwaffle.offworld.renderers.Renderers;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
@@ -48,7 +48,7 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 	 * @param bodyDef Body definition
 	 * @param fixtureDef Fixture definition
 	 */
-	public DynamicEntity(Renderers renderer, int layer, BodyDef bodyDef, FixtureDef fixtureDef){
+	public DynamicEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, FixtureDef fixtureDef){
 		super(renderer, layer);
 		
 		this.bodyDef = bodyDef;
@@ -56,7 +56,7 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 		fixtureDefs.add(fixtureDef);
 	}
 	
-	public DynamicEntity(Renderers renderer, int layer, BodyDef bodyDef, ArrayList<FixtureDef> fixtureDefs){
+	public DynamicEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, ArrayList<FixtureDef> fixtureDefs){
 		super(renderer, layer);
 		
 		this.bodyDef = bodyDef;
@@ -69,7 +69,7 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 	 * @param shape Shape of entity
 	 * @param density Density of entity
 	 */
-	public DynamicEntity(Renderers renderer, int layer, BodyDef bodyDef, Shape shape, float density){
+	public DynamicEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, Shape shape, float density){
 		super(renderer, layer);
 		
 		this.bodyDef = bodyDef;
@@ -81,7 +81,7 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 	 * Create a new DynamicEntity
 	 * @param body Body that this entity is using
 	 */
-	public DynamicEntity(Renderers renderer, int layer, Body body){
+	public DynamicEntity(EntityRenderer renderer, int layer, Body body){
 		super(renderer, layer);
 		this.body = body;
 		body.setUserData(this);
@@ -150,8 +150,7 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 	}
 
 	public void read(Kryo kryo, Input input) {
-		// read in renderer ordinal
-		this.renderer = Renderers.values()[input.readInt()];
+		super.read(kryo, input);
 		
 		// read in body def
 		BodyDef bodyDef = kryo.readObject(input, BodyDef.class);
@@ -171,8 +170,7 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 	}
 
 	public void write(Kryo kryo, Output output) {
-		// write which renderer we're using
-		output.writeInt(renderer.ordinal());
+		super.write(kryo, output);
 		
 		// write out the body def
 		kryo.writeObject(output, PhysicsHelper.getBodyDef(body));

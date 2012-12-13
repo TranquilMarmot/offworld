@@ -2,8 +2,8 @@ package com.bitwaffle.offworld.entities.dynamic;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.bitwaffle.guts.entities.dynamic.CircleEntity;
+import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.offworld.interfaces.Health;
-import com.bitwaffle.offworld.renderers.Renderers;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
@@ -17,7 +17,7 @@ public class DestroyableCircle extends CircleEntity implements Health, KryoSeria
 		health = 100;
 	}
 	
-	public DestroyableCircle(Renderers renderer, int layer, float radius, BodyDef bodyDef, float density, float[] color){
+	public DestroyableCircle(EntityRenderer renderer, int layer, float radius, BodyDef bodyDef, float density, float[] color){
 		super(renderer, layer, radius, bodyDef, density, color);
 		health = 100;
 	}

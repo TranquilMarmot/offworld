@@ -8,136 +8,184 @@ import android.opengl.GLES20;
 import android.util.Log;
 
 import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.guts.graphics.render.Render2D;
-import com.bitwaffle.guts.gui.GUIObject;
 import com.bitwaffle.guts.util.BufferUtils;
 
-public class GLSLSandbox extends GUIObject {
+/**
+ * This is a port of a Javascript/HTML5/WebGL sandbox that can be found
+ * at http://glsl.heroku.com/
+ * 
+ * All of the code involved in porting was in the file
+ * https://github.com/mrdoob/glsl-sandbox/blob/master/static/index.html
+ * 
+ * @author TranquilMarmot
+ */
+public class GLSLSandbox extends Entity {
 	public static final String LOGTAG = "GLSLSandbox";
 	
 	/** Vertex shader to load on init */
 	private static final String VERTEX_SHADER = "shaders/sandbox.vert";
 	/** Fragment shader to load on init */
-	private static final String FRAGMENT_SHADER = "shaders/pot.frag";
+	private static final String DEFAULT_FRAG_SHADER = "shaders/sandbox/pot.frag";
 	
-	private static final int COORDS_PER_VERTEX = 3;
+	/** What does all the rendering */
+	private SandboxRenderer renderer;
 	
-	/** Buffers to hold data */
-	private FloatBuffer vertBuffer;
-	
-	private GLSLProgram program;
-	
-	private float previousTime, time;
-	
-	private int texture, positionHandle;
-	
+	/**
+	 * Create a new GLSL sandbox, with the default fragment shader
+	 */
 	public GLSLSandbox() {
-		super(0.0f, 0.0f);
-		previousTime = (float)Game.getTime();
-		initShaders();
-		createTarget(Game.windowWidth, Game.windowHeight);
+		this(DEFAULT_FRAG_SHADER);
 	}
-
+	
+	/**
+	 * Create a new GLSL sandbox with a given shader
+	 * @param fragShader Location of shader file
+	 */
+	public GLSLSandbox(String fragShader){
+		super(null, 2);
+		renderer = new SandboxRenderer(fragShader);
+		super.renderer = renderer;
+	}
+	
 	@Override
-	public void update() {
-		float currentTime = (float)Game.getTime();
-		
-		time += currentTime - previousTime;
-		previousTime = currentTime;
-		
-		//if(time >= 3141.5f)
-		//	time -= 3141.5f;
+	public void update(float timeStep) {
+		renderer.update(timeStep);
 	}
-
-	@Override
-	public void render(Render2D renderer, boolean flipHorizontal,
-			boolean flipVertical) {
-		program.use();
-		program.setUniform("time", time / 1000.0f);
-		program.setUniform("resolution", Game.windowWidth, Game.windowHeight);
-
-		GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
-		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texture);
-
-		GLES20.glEnableVertexAttribArray(positionHandle);
-		GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false, 0, vertBuffer);
-		
-		GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);
-		
-		 GLES20.glDisableVertexAttribArray(positionHandle);
-		
-		renderer.program.use();
-		renderer.sendModelViewToShader();
-	}
-
+	
 	@Override
 	public void cleanup() {}
 	
-	/**
-	 * Initializes the vertex and fragment shaders and then links them to the program
-	 */
-	private void initShaders() {
-		GLSLShader vert = new GLSLShader(GLSLShader.ShaderTypes.VERTEX);
-		GLSLShader frag = new GLSLShader(GLSLShader.ShaderTypes.FRAGMENT);
-		try {
-			InputStream vertexStream = Game.resources.openAsset(VERTEX_SHADER);
-			if (!vert.compileShaderFromStream(vertexStream))
-				Log.e(LOGTAG, "Error compiling vertex shader! Result: "
-						+ vert.log());
-			vertexStream.close();
-			
-			InputStream fragmentStream = Game.resources.openAsset(FRAGMENT_SHADER);
-			if (!frag.compileShaderFromStream(fragmentStream))
-				Log.e(LOGTAG, "Error compiling fragment shader! Result: "
-						+ frag.log());
-			fragmentStream.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+	private class SandboxRenderer implements EntityRenderer{
+		/** Number of coordinates per vertex */
+		private static final int COORDS_PER_VERTEX = 3;
+		
+		/** Buffers to hold position data */
+		private FloatBuffer posBuffer;
+		
+		/** The shader program to use */
+		private GLSLProgram program;
+		
+		/** Time accumulator */
+		private float time;
+		
+		/** OpenGL handles */
+		private int textureHandle, positionHandle;
+		
+		/**
+		 * @param fragShader Location of fragment shader to load
+		 */
+		public SandboxRenderer(String fragShader){
+			initShaders(fragShader);
+			initQuad();
+			initTexture();
+			time = 0.0f;
 		}
-		program = new GLSLProgram();
-		program.addShader(vert);
-		program.addShader(frag);
-		if (!program.link())
-			Log.e(LOGTAG, "Error linking program!\n" + program.log());
-	}
-	
-	private void createTarget(float width, float height){
-		int[] texturebuffers = new int[1];
-		GLES20.glGenTextures(1, texturebuffers, 0);
-		texture = texturebuffers[0];
 		
-		float[] coords = {
-				-1.0f * width, -1.0f * height, 0.0f,
-				1.0f * width, -1.0f * height, 0.0f,
-				1.0f * width, 1.0f * height, 0.0f,
+		@Override
+		public void render(Render2D renderer, Entity ent, boolean renderDebug) {
+			// use program and set uniforms
+			program.use();
+			program.setUniform("time", time);
+			program.setUniform("resolution", Game.windowWidth, Game.windowHeight);
+
+			// bind texture
+			GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
+			GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureHandle);
+
+			// bind quad
+			GLES20.glEnableVertexAttribArray(positionHandle);
+			GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false, 0, posBuffer);
+			
+			// draw quad
+			GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);
+			
+			// un-bind quad
+			GLES20.glDisableVertexAttribArray(positionHandle);
+			
+			// go back to normal renderer program
+			renderer.program.use();
+			//renderer.sendModelViewToShader();
+		}
+		
+		/**
+		 * @param timeStep Time since last update, in seconds
+		 */
+		public void update(float timeStep){
+			time += timeStep;
+		}
+		
+		/**
+		 * Initializes the vertex and fragment shaders and then links them to the program
+		 */
+		private void initShaders(String fragShader) {
+			GLSLShader vert = new GLSLShader(GLSLShader.ShaderTypes.VERTEX);
+			GLSLShader frag = new GLSLShader(GLSLShader.ShaderTypes.FRAGMENT);
+			try {
+				// vertex shader
+				InputStream vertexStream = Game.resources.openAsset(VERTEX_SHADER);
+				if (!vert.compileShaderFromStream(vertexStream))
+					Log.e(LOGTAG, "Error compiling vertex shader! Result: " + vert.log());
+				vertexStream.close();
 				
-				1.0f * width, 1.0f * height, 0.0f,
-				-1.0f * width, 1.0f * height, 0.0f,
-				-1.0f * width, -1.0f * height, 0.0f
-		};
+				// fragment shader
+				InputStream fragmentStream = Game.resources.openAsset(fragShader);
+				if (!frag.compileShaderFromStream(fragmentStream))
+					Log.e(LOGTAG, "Error compiling fragment shader! Result: " + frag.log());
+				fragmentStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			// create program, add shaders and link
+			program = new GLSLProgram();
+			program.addShader(vert);
+			program.addShader(frag);
+			if (!program.link())
+				Log.e(LOGTAG, "Error linking program!\n" + program.log());
+		}
 		
-		vertBuffer = BufferUtils.getFloatBuffer(coords.length);
-		vertBuffer.put(coords);
-		vertBuffer.rewind();
+		/**
+		 * Initializes the Quad used for rendering
+		 */
+		private void initQuad(){
+			positionHandle = program.getAttribLocation("position");
+			
+			float[] coords = {
+					-1.0f, -1.0f, 0.0f,
+					1.0f, -1.0f, 0.0f,
+					1.0f, 1.0f, 0.0f,
+					
+					1.0f, 1.0f, 0.0f,
+					-1.0f, 1.0f, 0.0f,
+					-1.0f, -1.0f, 0.0f
+			};
+			posBuffer = BufferUtils.getFloatBuffer(coords.length);
+			posBuffer.put(coords);
+			posBuffer.rewind();
+		}
 		
-		positionHandle = program.getAttribLocation("position");
-		
-		// set position info
-		GLES20.glEnableVertexAttribArray(positionHandle);
-        GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false, 0, vertBuffer);
+		/**
+		 * Initializes texture used for rendering
+		 */
+		private void initTexture(){
+			int[] texturebuffers = new int[1];
+			GLES20.glGenTextures(1, texturebuffers, 0);
+			textureHandle = texturebuffers[0];
 
-		// set up texture
-		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texture);
-		GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_RGBA, (int)width, (int)height, 0, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, null);
-		
-		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
-		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
-		
-		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_NEAREST);
-		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_NEAREST);
+			GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureHandle);
+			GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_RGBA, Game.windowWidth, Game.windowHeight, 0, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, null);
+			
+			GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
+			GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
+			
+			GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_NEAREST);
+			GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_NEAREST);
 
-		// clean up
-		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
+			// clean up
+			GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
+		}
 	}
-
 }

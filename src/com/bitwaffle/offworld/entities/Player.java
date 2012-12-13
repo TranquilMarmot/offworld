@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.guts.graphics.textures.animation.Animation;
 import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.physics.callbacks.FirstHitQueryCallback;
@@ -18,7 +19,6 @@ import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.FirearmHolder;
 import com.bitwaffle.offworld.renderers.PlayerRenderer;
-import com.bitwaffle.offworld.renderers.Renderers;
 import com.bitwaffle.offworld.weapons.Pistol;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
@@ -80,7 +80,7 @@ public class Player extends BoxEntity implements FirearmHolder,KryoSerializable{
 	 * @param height Height of player
 	 * @param fixtureDef Definition for player's fixture
 	 */
-	public Player(Renderers renderer, int layer, BodyDef bodyDef, float width, float height,
+	public Player(EntityRenderer renderer, int layer, BodyDef bodyDef, float width, float height,
 			FixtureDef fixtureDef) {
 		super(renderer, layer, bodyDef, width, height, fixtureDef, defaultColor);
 		

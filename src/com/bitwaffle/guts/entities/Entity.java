@@ -2,6 +2,7 @@ package com.bitwaffle.guts.entities;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.renderers.Renderers;
 import com.esotericsoftware.kryo.Kryo;
@@ -19,8 +20,8 @@ import com.esotericsoftware.kryo.io.Output;
  * @see DynamicEntity
  */
 public class Entity implements KryoSerializable{
-	/** Renderer used to draw this entity */
-	public Renderers renderer;
+	/** EntityRenderer used to draw this entity */
+	public EntityRenderer renderer;
 	
 	/** Current location of entity */
 	protected Vector2 location;
@@ -41,19 +42,19 @@ public class Entity implements KryoSerializable{
 		angle = 0.0f;
 	}
 	
-	public Entity(Renderers renderer, int layer){
+	public Entity(EntityRenderer renderer, int layer){
 		this.renderer = renderer;
 		this.layer = layer;
 		location = new Vector2();
 		angle = 0.0f;
 	}
 	
-	public Entity(Renderers renderer, int layer, Vector2 location){
+	public Entity(EntityRenderer renderer, int layer, Vector2 location){
 		this(renderer, layer);
 		this.location = location;
 	}
 	
-	public Entity(Renderers renderer, int layer, Vector2 location, float angle){
+	public Entity(EntityRenderer renderer, int layer, Vector2 location, float angle){
 		this(renderer, layer, location);
 		this.angle = angle;
 	}
@@ -100,14 +101,15 @@ public class Entity implements KryoSerializable{
 	}
 	
 	public void read(Kryo kryo, Input input){
-		this.renderer = Renderers.values()[input.readInt()];
+		this.renderer = Renderers.values()[input.readInt()].renderer;
 		this.layer = input.readInt();
 		this.location.set(kryo.readObject(input, Vector2.class));
 		this.angle = input.readFloat();
 	}
 	
 	public void write(Kryo kryo, Output output){
-		output.writeInt(renderer.ordinal());
+		Renderers renderers = Renderers.valueOf(this.renderer);
+		output.writeInt(renderers.ordinal());
 		output.writeInt(this.layer);
 		kryo.writeObject(output, this.location);
 		output.writeFloat(this.angle);

@@ -16,7 +16,7 @@ import com.bitwaffle.guts.graphics.render.Render2D;
 public class BoxRenderer implements EntityRenderer{
 	public void render(Render2D renderer, Entity ent, boolean renderDebug) {
 		BoxEntity box = (BoxEntity) ent;
-		if(box.body.getFixtureList().get(0).getDensity() == 0.0f)
+		if(box.body != null && box.body.getFixtureList().get(0).getDensity() == 0.0f)
 			Game.resources.textures.bindTexture("blank");
 		else
 			Game.resources.textures.bindTexture("box");
