@@ -161,7 +161,7 @@ public class Console extends GUIObject{
 	/**
 	 * Update the console
 	 */
-	public void update() {
+	public void update(float timeStep) {
 		// check for any button presses
 		checkForButtonPresses();
 

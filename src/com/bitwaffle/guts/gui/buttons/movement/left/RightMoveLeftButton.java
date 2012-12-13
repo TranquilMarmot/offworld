@@ -19,8 +19,8 @@ public class RightMoveLeftButton extends MoveLeftButton{
 	}
 
 	@Override
-	public void update(){
-		super.update();
+	public void update(float timeStep){
+		super.update(timeStep);
 		
 		this.x = Game.windowWidth - (buttMan.movementButtonWidth() * 3.0f);
 		this.y = Game.windowHeight - buttMan.movementButtonHeight();

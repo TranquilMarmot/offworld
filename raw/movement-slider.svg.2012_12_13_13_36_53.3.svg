@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="429.71344"
+   height="95.210747"
+   id="svg4397"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\movement-slider.svg"
+   inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\movement-slider.png"
+   inkscape:export-xdpi="50"
+   inkscape:export-ydpi="50">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.3147287"
+     inkscape:cx="236.98166"
+     inkscape:cy="66.317631"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:snap-global="true"
+     showguides="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1138"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:guide-bbox="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4919"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       originx="-95.711966px"
+       originy="-515.50759px" />
+    <sodipodi:guide
+       position="-95.711966,-515.50759"
+       orientation="0,744.09448"
+       id="guide5121" />
+    <sodipodi:guide
+       position="648.38251,-515.50759"
+       orientation="-1052.3622,0"
+       id="guide5123" />
+    <sodipodi:guide
+       position="648.38251,536.85461"
+       orientation="0,-744.09448"
+       id="guide5125" />
+    <sodipodi:guide
+       position="207.36771,44.929671"
+       orientation="1052.3622,0"
+       id="guide5127" />
+    <sodipodi:guide
+       position="-95.711966,-515.50759"
+       orientation="0,744.09448"
+       id="guide5129" />
+    <sodipodi:guide
+       position="648.38251,-515.50759"
+       orientation="-1052.3622,0"
+       id="guide5131" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="-53.569993,47.953784"
+       id="guide3809" />
+  </sodipodi:namedview>
+  <defs
+     id="defs4399">
+    <linearGradient
+       id="linearGradient4955">
+      <stop
+         style="stop-color:#fffaff;stop-opacity:1;"
+         offset="0"
+         id="stop4957" />
+      <stop
+         style="stop-color:#ca1a1c;stop-opacity:0;"
+         offset="1"
+         id="stop4959" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4939">
+      <stop
+         id="stop4947"
+         offset="0"
+         style="stop-color:#424242;stop-opacity:1;" />
+      <stop
+         style="stop-color:#69696b;stop-opacity:0.9375;"
+         offset="1"
+         id="stop4943" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4939"
+       id="radialGradient4951"
+       cx="486.67044"
+       cy="519.50043"
+       fx="486.67044"
+       fy="519.50043"
+       r="9.1208105"
+       gradientTransform="matrix(1,0,0,0.12579701,0,454.14883)"
+       gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4955"
+       id="radialGradient4961"
+       cx="484.45312"
+       cy="516.40125"
+       fx="484.45312"
+       fy="516.40125"
+       r="0.96875"
+       gradientTransform="matrix(1,0,0,0.91129032,0,45.809788)"
+       gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4955"
+       id="radialGradient4967"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.91129032,0,45.809788)"
+       cx="484.45312"
+       cy="516.40125"
+       fx="484.45312"
+       fy="516.40125"
+       r="0.96875" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4955"
+       id="radialGradient4975"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.91129032,0,45.809788)"
+       cx="484.45312"
+       cy="516.40125"
+       fx="484.45312"
+       fy="516.40125"
+       r="0.96875" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4955"
+       id="radialGradient5117"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.91129032,0,45.809788)"
+       cx="484.45312"
+       cy="516.40125"
+       fx="484.45312"
+       fy="516.40125"
+       r="0.96875" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4939"
+       id="radialGradient5119"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-9.6444085e-6,19.921761,-48.352566,-2.3456039e-5,25439.852,-9174.3019)"
+       cx="485.05826"
+       cy="519.8642"
+       fx="485.05826"
+       fy="519.8642"
+       r="9.1208105" />
+  </defs>
+  <metadata
+     id="metadata4402">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-95.711966,-441.64385)">
+    <path
+       style="fill:url(#radialGradient5119);fill-opacity:1;fill-rule:nonzero;stroke:#1f1f1f;stroke-width:8.03329276999999920;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 136.86339,515.40853 c -48.429773,-0.10711 -50.348659,-53.15335 -0.69086,-53.14666 l 348.7935,-0.26777 c 49.6578,-0.0536 47.7357,52.68287 -0.69086,53.25136 z"
+       id="path4917"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\movement-limits.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
+    <g
+       id="g4971"
+       transform="matrix(26.777643,0,0,26.777643,-12666.238,-13547.622)"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\movement-joystick.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320">
+      <path
+         transform="translate(-1.8828846,-0.1140399)"
+         d="m 487.62495,519.58807 c 0,0.93293 -0.77643,1.68922 -1.7342,1.68922 -0.95777,0 -1.7342,-0.75629 -1.7342,-1.68922 0,-0.93293 0.77643,-1.68922 1.7342,-1.68922 0.95777,0 1.7342,0.75629 1.7342,1.68922 z"
+         sodipodi:ry="1.6892203"
+         sodipodi:rx="1.7341996"
+         sodipodi:cy="519.58807"
+         sodipodi:cx="485.89075"
+         id="path4405"
+         style="fill:#ca1a1c;fill-opacity:1;stroke:#1f1f1f;stroke-width:0.17716534;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         transform="translate(-0.96875,2.46875)"
+         d="m 485.42187,516.40125 c 0,0.48756 -0.43372,0.88281 -0.96875,0.88281 -0.53502,0 -0.96875,-0.39525 -0.96875,-0.88281 0,-0.48757 0.43373,-0.88282 0.96875,-0.88282 0.53503,0 0.96875,0.39525 0.96875,0.88282 z"
+         sodipodi:ry="0.8828125"
+         sodipodi:rx="0.96875"
+         sodipodi:cy="516.40125"
+         sodipodi:cx="484.45312"
+         id="path4953"
+         style="fill:url(#radialGradient5117);fill-opacity:1;fill-rule:nonzero;stroke:none"
+         sodipodi:type="arc" />
+    </g>
+  </g>
+</svg>

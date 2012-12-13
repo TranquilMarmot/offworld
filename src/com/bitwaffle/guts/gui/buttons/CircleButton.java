@@ -59,5 +59,5 @@ public abstract class CircleButton extends Button{
 	protected abstract void onSlideRelease();
 
 	@Override
-	public abstract void update();
+	public abstract void update(float timeStep);
 }

@@ -17,7 +17,7 @@ public abstract class MoveRightButton extends RectangleButton{
 	}
 
 	@Override
-	public void update() {
+	public void update(float timeStep) {
 		if(this.isDown())
 			Game.player.goRight();
 	}

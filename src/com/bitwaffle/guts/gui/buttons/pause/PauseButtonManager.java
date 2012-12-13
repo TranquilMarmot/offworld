@@ -42,6 +42,6 @@ public class PauseButtonManager extends ButtonManager{
 		this.addButton(new SwarmButton(this));
 		
 		// update to add buttons
-		this.update();
+		this.update(1.0f/60.0f);
 	}
 }

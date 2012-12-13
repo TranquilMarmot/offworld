@@ -73,7 +73,7 @@ public class ButtonManager {
 	/**
 	 * Updates all the buttons being managed by this manager
 	 */
-	public void update(){
+	public void update(float timeStep){
 		// remove any buttons to remove
 		while(!buttonsToRemove.isEmpty()){
 			Button butt = buttonsToRemove.pop();
@@ -89,7 +89,7 @@ public class ButtonManager {
 		try{
 			Iterator<Button> it = getButtonIterator();
 			while(it.hasNext())
-				it.next().update();
+				it.next().update(timeStep);
 		} catch(NullPointerException e){
 			Log.e("Buttons", "Got null button (ignoring)");
 		}

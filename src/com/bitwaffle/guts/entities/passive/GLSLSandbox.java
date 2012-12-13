@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics.render.glsl;
+package com.bitwaffle.guts.entities.passive;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +11,8 @@ import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.graphics.render.glsl.GLSLProgram;
+import com.bitwaffle.guts.graphics.render.glsl.GLSLShader;
 import com.bitwaffle.guts.util.BufferUtils;
 
 /**

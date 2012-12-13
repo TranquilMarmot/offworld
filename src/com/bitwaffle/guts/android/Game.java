@@ -11,13 +11,14 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.FloatMath;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.Window;
 
 import com.bitwaffle.guts.android.input.KeyboardManager;
 import com.bitwaffle.guts.graphics.render.Render2D;
-import com.bitwaffle.guts.graphics.render.glsl.GLSLSandbox;
+import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.console.Console;
 import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.physics.Physics;
@@ -56,6 +57,9 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
 	/** 2D Renderer */
 	private Render2D render2D;
 	
+	/** The graphical user interface */
+	public static GUI gui;
+	
 	/** Physics world */
 	public static Physics physics;
 	
@@ -80,6 +84,18 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
 	private long counter;
 	/** Used to count frames for FPS */
 	private int frameCount = 0;
+	
+	/** How much to step the world each time (Box2D prefers 1/60) */
+	private final float FIXED_TIMESTEP = 1.0f / 60.0f;
+	
+	/** Maximum number of allowed steps per frame */
+	private final int MAX_STEPS = 5;
+	
+	/** Used to know how much time has passed */
+	private float timeStepAccum = 0;
+	
+	/** Used to know how much time has passed */
+	private long previousTime;
 	
 	 @Override
     /**
@@ -121,11 +137,14 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
 	 * (overrides GLSufraceView.Renderer)
 	 */
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
+    	previousTime = Game.getTime();
+    	
 		resources.init();
 		
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
         render2D = new Render2D();
+        gui = new GUI();
         
         /*
          * Only initialize physics engine if it doesn't exist yet
@@ -138,18 +157,50 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
         	SurfaceView.touchHandler.setPlayer(Game.player);
         }
         
-        physics.addEntity(new GLSLSandbox());
+        //physics.addEntity(new GLSLSandbox());
         
         console = new Console();
     }
     
-    /**
-     * Draws a frame and steps the physics sim
-     */
-    public void onDrawFrame(GL10 unused) {
-    	// used for FPS counting
-    	long timeBeforeLoop = SystemClock.elapsedRealtime();
-    	
+    private void update(){
+		// get the current time
+		long currentTime = getTime();
+		
+    	// subtract and convert to seconds 
+		float deltaTime = (currentTime - previousTime) / 1000.0f;
+		
+		// set previousTime for next iteration
+		previousTime = currentTime;
+		
+		// add the change in time to the accumulator, then find out how many steps we need to do
+		timeStepAccum += deltaTime;
+		float steps = FloatMath.floor(timeStepAccum / FIXED_TIMESTEP);
+		
+		// only touch the accumulator if necessary
+		if(steps > 0)
+			timeStepAccum -= steps * FIXED_TIMESTEP;
+		
+		// clamp steps and iterate however many times
+		// update everything by FIXED_TIMESTEP here
+		for(int i = 0; i < Math.min(steps, MAX_STEPS); i++){
+			// Step the physics sim
+			if(!paused)
+				physics.update(FIXED_TIMESTEP);
+			
+			console.update(FIXED_TIMESTEP);
+			
+			gui.update(FIXED_TIMESTEP);
+		}
+		
+    	// check for pausing
+		if(KeyBindings.SYS_PAUSE.pressedOnce()){
+			if(console.isOn())
+				console.hide();
+			else
+				Game.togglePause();
+		}
+		
+		
     	// FIXME temp
     	if(physics.numEntities() < 100){
         	Random r = new Random();
@@ -158,12 +209,17 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
     		else
     			PhysicsHelper.makeRandomCircle(physics);	
     	}
-
-    	// Step the physics sim
-    	if(!paused)
-    		physics.update();
+    }
+    
+    /**
+     * Draws a frame and steps the physics sim
+     */
+    public void onDrawFrame(GL10 unused) {
+    	// update everything
+    	update();
     	
-    	console.update();
+    	// used for FPS counting
+    	long timeBeforeLoop = SystemClock.elapsedRealtime();
     	
     	// clear the screen
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT /*| GLES20.GL_DEPTH_BUFFER_BIT*/);
@@ -172,14 +228,6 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
         render2D.renderScene();
         
     	updateFPS(timeBeforeLoop);
-    	
-    	// check for pausing
-		if(KeyBindings.SYS_PAUSE.pressedOnce()){
-			if(console.isOn())
-				console.hide();
-			else
-				Game.togglePause();
-		}
     }
     
     /**

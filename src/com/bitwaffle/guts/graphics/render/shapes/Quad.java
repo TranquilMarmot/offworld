@@ -36,13 +36,13 @@ public class Quad {
 	 * Position coordinates (quad is scaled when drawn)
 	 */
 	private static float[] coords = {
-		-0.5f, -0.5f, 0.0f,
-		0.5f, -0.5f, 0.0f,
-		0.5f, 0.5f, 0.0f,
+		-1.0f, -1.0f, 0.0f,
+		1.0f, -1.0f, 0.0f,
+		1.0f, 1.0f, 0.0f,
 		
-		0.5f, 0.5f, 0.0f,
-		-0.5f, 0.5f, 0.0f,
-		-0.5f, -0.5f, 0.0f
+		1.0f, 1.0f, 0.0f,
+		-1.0f, 1.0f, 0.0f,
+		-1.0f, -1.0f, 0.0f
 	};
 	
 	/**
@@ -118,13 +118,13 @@ public class Quad {
         GLES20.glVertexAttribPointer(texCoordHandle, COORDS_PER_TEXCOORD, GLES20.GL_FLOAT, false, 0, texCoords);
         
         // scale matrix to match width/height and flip if needed
-        renderer.modelview.scale(new Vector3f(width * 2.0f, height * 2.0f, 1.0f));
+        renderer.modelview.scale(new Vector3f(width, height, 1.0f));
         if(flipHorizontal)
         	renderer.modelview.rotate(MathHelper.PI, new Vector3f(0.0f, 1.0f, 0.0f));
         if(flipVertical)
         	renderer.modelview.rotate(MathHelper.PI, new Vector3f(0.0f, 0.0f, 1.0f));
         renderer.sendModelViewToShader();
-
+        //
         // actually draw the quad
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, NUM_INDICES);
         

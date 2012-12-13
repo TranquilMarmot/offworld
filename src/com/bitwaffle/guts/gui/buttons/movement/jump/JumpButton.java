@@ -17,7 +17,7 @@ public abstract class JumpButton extends RectangleButton{
 	}
 
 	@Override
-	public void update() {}
+	public void update(float timeStep) {}
 	@Override
 	protected void onRelease() {
 		KeyBindings.CONTROL_JUMP.release();

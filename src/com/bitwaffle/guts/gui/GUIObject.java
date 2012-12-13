@@ -27,7 +27,7 @@ public abstract class GUIObject {
     /**
      * Updates this object
      */
-    public abstract void update();
+    public abstract void update(float timeStep);
     
     /**
      * Draws the object

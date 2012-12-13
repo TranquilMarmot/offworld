@@ -52,9 +52,6 @@ public class Render2D {
 	//public float[] modelview, projection;
 	public Matrix4f modelview, projection;
 	
-	/** The graphical user interface */
-	public static GUI gui;
-	
 	/** Used for ALL quad rendering! Whenever something needs to be drawn, this quad's draw() method should be called */
 	public Quad quad;
 	
@@ -79,8 +76,6 @@ public class Render2D {
 		
 		quad = new Quad(this);
 		circle = new Circle(this, CIRCLE_STEP);
-		
-		gui = new GUI();
 	}
 
 	/**
@@ -116,7 +111,6 @@ public class Render2D {
 	 * and updates the GUI and camera
 	 */
 	public void renderScene() {
-		gui.update();
 		camera.update(1.0f / 60.0f);
 		
 		program.use();
@@ -127,7 +121,7 @@ public class Render2D {
 		}
 		
 		setUpProjectionScreenCoords();
-		renderGUI(gui);
+		renderGUI(Game.gui);
 	}
 	
 	/**
@@ -208,30 +202,7 @@ public class Render2D {
 		
 		if(Game.console.isVisible)
 			Game.console.render(this, false, false);
-		
-		renderText();
 	}
-	
-	private void renderText(){
-		// draw some debug info TODO move this somewhere else!
-		float[] debugTextColor = new float[]{ 0.3f, 0.3f, 0.3f, 1.0f };
-		String str =
-				"Version " + Game.VERSION + "\n" +
-				"FPS: " + Game.currentFPS + "\n" +
-				"Ents: " + Game.physics.numEntities();
-		Game.resources.font.drawString(str, this, 82, 20, 0.15f, debugTextColor);
-		// draw pause text FIXME temp
-		if(Game.isPaused()){
-			String pauseString = "Hello. This is a message to let you know that\nthe game is paused. Have a nice day.";
-			float scale = 0.3f;
-			float stringWidth = Game.resources.font.stringWidth(pauseString, scale);
-			float stringHeight = Game.resources.font.stringHeight(pauseString, scale);
-			float textX = ((float)Game.windowWidth / 2.0f) - (stringWidth / 2.0f);
-			float textY = ((float)Game.windowHeight / 2.0f) - (stringHeight / 2.0f);
-			Game.resources.font.drawString(pauseString, this, textX, textY, scale);
-		}
-	}
-	
 	/**
 	 * Sends the current modelview matrix to the shader
 	 */

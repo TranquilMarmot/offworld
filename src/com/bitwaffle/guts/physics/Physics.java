@@ -3,14 +3,11 @@ package com.bitwaffle.guts.physics;
 import java.util.Iterator;
 import java.util.Stack;
 
-import android.util.FloatMath;
-
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactFilter;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.GdxNativesLoader;
-import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.Entities;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
@@ -37,18 +34,6 @@ public class Physics {
 	
 	/** How many iterations to do for calculations */
 	final int velocityIterations = 6, positionIterations = 2;
-	
-	/** How much to step the world each time (Box2D prefers 1/60) */
-	private final float FIXED_TIMESTEP = 1.0f / 60.0f;
-	
-	/** Maximum number of allowed steps per frame */
-	private final int MAX_STEPS = 5;
-	
-	/** Used to know how much time has passed */
-	private float timeStepAccum = 0;
-	
-	/** Used to know how much time has passed */
-	private long previousTime;
 	
 	/**
 	 * Sometimes, DynamicEntities can get added in the middle of a physics tick.
@@ -77,39 +62,19 @@ public class Physics {
 		entities = new Entities();
 		toInitialize = new Stack<DynamicEntity>();
 		
-		previousTime = Game.getTime();
+		
 	}
 	
 	/**
 	 * Steps the physics simulation and updates every entity's location
 	 */
-	public void update(){
-		// get the current time
-		long currentTime = Game.getTime();
-		
+	public void update(float timeStep){
 		// initialize any entities that need intialization
 		while(!toInitialize.isEmpty())
 			toInitialize.pop().init(world);
 
-		// subtract and convert to seconds 
-		float deltaTime = (currentTime - previousTime) / 1000.0f;
-		
-		// set previousTime for next iteration
-		previousTime = currentTime;
-		
-		// add the change in time to the accumulator, then find out how many steps we need to do
-		timeStepAccum += deltaTime;
-		float steps = FloatMath.floor(timeStepAccum / FIXED_TIMESTEP);
-		
-		// only touch the accumulator if necessary
-		if(steps > 0)
-			timeStepAccum -= steps * FIXED_TIMESTEP;
-		
-		// clamp steps and iterate however many times
-		for(int i = 0; i < Math.min(steps, MAX_STEPS); i++){
-			world.step(FIXED_TIMESTEP, velocityIterations, positionIterations);
-			entities.update(FIXED_TIMESTEP);
-		}
+		world.step(timeStep, velocityIterations, positionIterations);
+		entities.update(timeStep);
 	}
 	
 	/**

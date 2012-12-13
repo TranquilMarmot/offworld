@@ -47,6 +47,7 @@ public class TextureManager {
 		// TODO this should be done on a per-room (level?) basis
 		try {
 			parseXML(Game.resources.openAsset("resourcelists/textures.xml"));
+			parseXML(Game.resources.openAsset("resourcelists/ui-textures.xml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

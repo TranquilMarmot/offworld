@@ -1,0 +1,26 @@
+<resources>
+    <texture name="console">
+        <path>textures/ui/console.png</path>
+        <minFilter>GL_NEAREST</minFilter>
+        <magFilter>GL_NEAREST</magFilter>
+    </texture>
+
+    <texture name="camera">
+        <path>textures/ui/camera.png</path>
+        <minFilter>GL_NEAREST</minFilter>
+        <magFilter>GL_NEAREST</magFilter>
+    </texture>
+
+
+    <texture name="camera-locked">
+        <path>textures/ui/camera-locked.png</path>
+        <minFilter>GL_NEAREST</minFilter>
+        <magFilter>GL_NEAREST</magFilter>
+    </texture>
+
+    <texture name="camera-free">
+        <path>textures/ui/camera-free.png</path>
+        <minFilter>GL_NEAREST</minFilter>
+        <magFilter>GL_NEAREST</magFilter>
+    </texture>        
+</resources>

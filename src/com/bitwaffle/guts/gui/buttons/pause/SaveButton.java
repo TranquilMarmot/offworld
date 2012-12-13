@@ -19,7 +19,7 @@ public class SaveButton extends RectangleButton {
 	}
 
 	@Override
-	public void update() {
+	public void update(float timeStep) {
 		this.x = (Game.windowWidth / 2.0f) + xOffset;
 		this.y = (Game.windowHeight / 2.0f) + yOffset;
 	}

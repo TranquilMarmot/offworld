@@ -78,9 +78,6 @@ public abstract class RectangleButton extends Button {
 	public void cleanup() {}
 
 	@Override
-	public abstract void update();
-
-	@Override
 	protected abstract void onRelease();
 
 	@Override

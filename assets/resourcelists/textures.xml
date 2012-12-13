@@ -11,12 +11,6 @@
 		<magFilter>GL_LINEAR</magFilter>
 	</texture>
 
-	<texture name="camera">
-		<path>textures/camera.png</path>
-		<minFilter>GL_NEAREST</minFilter>
-		<magFilter>GL_LINEAR</magFilter>
-	</texture>
-	
 	<texture name="background">
 	    <path>textures/background.png</path>
 	    <minFilter>GL_NEAREST</minFilter>
@@ -24,6 +18,17 @@
 	</texture>
 	
 	<texture name="pistol-full">
+	    <path>textures/weapons/pistol.png</path>
+	    <minFilter>GL_NEAREST</minFilter>
+	    <magFilter>GL_NEAREST</magFilter>
+	    
+	    <subImage name="pistol">
+	        <xOffset>0</xOffset>
+	        <yOffset>0</yOffset>
+	        <width>469</width>
+	        <height>323</height>
+	    </subImage>
+	</texture>	<texture name="pistol-full">
 	    <path>textures/weapons/pistol.png</path>
 	    <minFilter>GL_NEAREST</minFilter>
 	    <magFilter>GL_NEAREST</magFilter>

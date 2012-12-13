@@ -5,9 +5,9 @@ import java.util.Iterator;
 import android.view.MotionEvent;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.graphics.Camera;
-import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.buttons.Button;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.Player;
@@ -147,13 +147,13 @@ public class TouchHandler {
 	 * @return Whether or not a button was pressed
 	 */
 	private boolean checkForButtonPresses(float x, float y) {
-		if(Render2D.gui == null)
+		if(Game.gui == null)
 			return false;
 		else{
 			boolean pressed = false;
 			
 			// check every button for presses
-			Iterator<Button> it = Render2D.gui.getButtonIterator();
+			Iterator<Button> it = Game.gui.getButtonIterator();
 			while (it.hasNext()) {
 				// break if two buttons are being pressed
 				if(buttonsDown[0] != null && buttonsDown[1] != null)

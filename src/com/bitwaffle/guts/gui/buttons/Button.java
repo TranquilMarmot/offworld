@@ -27,6 +27,7 @@ public abstract class Button extends GUIObject{
 		isVisible = true;
 	}
 	
+	
 	/**
 	 * Check if a point lies within a button.
 	 * This needs to be overriden by any implementing class to reflect the shape of the button.

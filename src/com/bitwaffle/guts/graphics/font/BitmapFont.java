@@ -217,7 +217,7 @@ public class BitmapFont {
 		StringTokenizer toker = new StringTokenizer(string, "\n");
 		while(toker.hasMoreTokens()){
 			String line = toker.nextToken();
-			float lineSize = (line.length() - 1) * (FONT_GLYPH_WIDTH + FONT_GLYPH_HEIGHT);
+			float lineSize = (line.length() - 1) * (FONT_GLYPH_WIDTH * 2);
 			if(lineSize > longestLine)
 				longestLine = lineSize;
 		}
@@ -242,6 +242,8 @@ public class BitmapFont {
 	 */
 	public float stringHeight(String string, float scale){
 		int numLines = new StringTokenizer(string, "\n").countTokens() - 1;
-		return numLines * FONT_CELL_HEIGHT * scale;
+		if(numLines == 0)
+				numLines = 1;
+		return numLines * (FONT_GLYPH_HEIGHT * 4) * scale;
 	}
 }
