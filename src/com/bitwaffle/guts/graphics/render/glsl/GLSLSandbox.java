@@ -62,6 +62,9 @@ public class GLSLSandbox extends Entity {
 		/** Number of coordinates per vertex */
 		private static final int COORDS_PER_VERTEX = 3;
 		
+		/** Six indices because we've got 2 triangles */
+		private static final int NUM_INDICES = 6;
+		
 		/** Buffers to hold position data */
 		private FloatBuffer posBuffer;
 		
@@ -72,7 +75,7 @@ public class GLSLSandbox extends Entity {
 		private float time;
 		
 		/** OpenGL handles */
-		private int textureHandle, positionHandle;
+		private int positionHandle;
 		
 		/**
 		 * @param fragShader Location of fragment shader to load
@@ -80,7 +83,6 @@ public class GLSLSandbox extends Entity {
 		public SandboxRenderer(String fragShader){
 			initShaders(fragShader);
 			initQuad();
-			initTexture();
 			time = 0.0f;
 		}
 		
@@ -91,23 +93,18 @@ public class GLSLSandbox extends Entity {
 			program.setUniform("time", time);
 			program.setUniform("resolution", Game.windowWidth, Game.windowHeight);
 
-			// bind texture
-			GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
-			GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureHandle);
-
 			// bind quad
 			GLES20.glEnableVertexAttribArray(positionHandle);
 			GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false, 0, posBuffer);
 			
 			// draw quad
-			GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);
+			GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, NUM_INDICES);
 			
 			// un-bind quad
 			GLES20.glDisableVertexAttribArray(positionHandle);
 			
 			// go back to normal renderer program
 			renderer.program.use();
-			//renderer.sendModelViewToShader();
 		}
 		
 		/**
@@ -165,27 +162,6 @@ public class GLSLSandbox extends Entity {
 			posBuffer = BufferUtils.getFloatBuffer(coords.length);
 			posBuffer.put(coords);
 			posBuffer.rewind();
-		}
-		
-		/**
-		 * Initializes texture used for rendering
-		 */
-		private void initTexture(){
-			int[] texturebuffers = new int[1];
-			GLES20.glGenTextures(1, texturebuffers, 0);
-			textureHandle = texturebuffers[0];
-
-			GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureHandle);
-			GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_RGBA, Game.windowWidth, Game.windowHeight, 0, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, null);
-			
-			GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
-			GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
-			
-			GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_NEAREST);
-			GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_NEAREST);
-
-			// clean up
-			GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
 		}
 	}
 }
