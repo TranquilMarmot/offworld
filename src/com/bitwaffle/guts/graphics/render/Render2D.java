@@ -20,7 +20,6 @@ import com.bitwaffle.guts.graphics.render.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.render.glsl.GLSLShader;
 import com.bitwaffle.guts.graphics.render.shapes.Circle;
 import com.bitwaffle.guts.graphics.render.shapes.Quad;
-import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.util.MathHelper;
 
 /**
@@ -50,7 +49,6 @@ public class Render2D {
 	public GLSLProgram program;
 	
 	/** The modelview and projection matrices*/
-	//public float[] modelview, projection;
 	public Matrix4f modelview, projection;
 	
 	/** Used for ALL quad rendering! Whenever something needs to be drawn, this quad's draw() method should be called */
@@ -124,15 +122,14 @@ public class Render2D {
 			Game.physics.renderAll(this);
 		}
 		
-		setUpProjectionScreenCoords();
-		renderGUI(Game.gui);
+		Game.gui.render(this);
 	}
 	
 	/**
 	 * Sets up the projection matrix with an orthographic projection
 	 * for drawing things in world coordinates
 	 */
-	private void setUpProjectionWorldCoords(){
+	public void setUpProjectionWorldCoords(){
 		projection.setIdentity();
 		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1);
 		
@@ -186,27 +183,6 @@ public class Render2D {
 		Matrix4f.rotate(cameraAngle, new Vector3f(0.0f, 0.0f, 1.0f), modelview, modelview);
 	}
 	
-	/**
-	 * Sets up the projection matrix for drawing
-	 * things in screen coordinates
-	 */
-	private void setUpProjectionScreenCoords(){
-		projection.setIdentity();
-		MathHelper.orthoM(projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
-		
-		program.setUniformMatrix4f("Projection", projection);
-	}
-	
-	/**
-	 * Renders the given GUI
-	 * @param gui GUI to render
-	 */
-	private void renderGUI(GUI gui){
-		gui.render(this);
-		
-		if(Game.console.isVisible)
-			Game.console.render(this, false, false);
-	}
 	/**
 	 * Sends the current modelview matrix to the shader
 	 */
