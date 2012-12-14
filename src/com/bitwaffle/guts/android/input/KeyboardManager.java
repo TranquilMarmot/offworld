@@ -2,7 +2,7 @@ package com.bitwaffle.guts.android.input;
 
 import android.view.KeyEvent;
 
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.input.Keys;
 
@@ -26,7 +26,7 @@ public class KeyboardManager {
 		Keys key = getKey(keyCode);
 		if(key != null){
 			// if the console is on, we'll check if the key being pressed is a special key, else we'll write to the console
-			if(Game.console.isOn()){
+			if(GUI.console.isOn()){
 				//if this turns to true, it means the key isn't written to the console and is pressed instead
 				boolean specialKey = false;
 
@@ -46,7 +46,7 @@ public class KeyboardManager {
 					Character c =  getPrintableChar(event);
 					if (!Character.isIdentifierIgnorable(c) && !c.equals('`')
 							&& !c.equals('\n') && !c.equals('\r')) {
-						Game.console.putCharacter(c);
+						GUI.console.putCharacter(c);
 					}
 				} 
 			}else {

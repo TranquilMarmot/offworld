@@ -60,37 +60,59 @@ public class Entities {
 	 */
 	public void update(float timeStep){
 		// check for any entities to be removed
-		while(!toRemove.isEmpty()){
-			Entity ent = toRemove.pop();
-			ent.cleanup();
-			
-			int layer = ent.getLayer();
-			if(layer > NUM_LAYERS)
-				layer = NUM_LAYERS;
-			
-			layers[layer].remove(ent);
-		}
+		while(!toRemove.isEmpty())
+			cleanup(toRemove.pop());
 		
 		// check for any entities to be added
-		while(!toAdd.isEmpty()){
-			Entity ent = toAdd.pop();
-			
-			int layer = ent.getLayer();
-			if(layer > NUM_LAYERS)
-				layer = NUM_LAYERS;
-			
-			layers[layer].add(ent);
-		}
+		while(!toAdd.isEmpty())
+			init(toAdd.pop());
 		
 		// update all entities
-		for(EntityArrayList list : layers){
-			for(Entity ent : list){
-				if(ent != null){
-					if(ent.removeFlag)
-						this.removeEntity(ent);
-					else
-						ent.update(timeStep);
-				}
+		for(EntityArrayList list : layers)
+			updateEntityArrayList(list, timeStep);
+	}
+	
+	/**
+	 * Does it's best to remove an entity from the game and free up any memory
+	 * entity may have allocated
+	 * @param ent Entity to get rid of
+	 */
+	private void cleanup(Entity ent){
+		ent.cleanup();
+		
+		int layer = ent.getLayer();
+		if(layer > NUM_LAYERS)
+			layer = NUM_LAYERS;
+		
+		layers[layer].remove(ent);
+		
+		ent = null;
+	}
+	
+	/**
+	 * Initialize an entity (that is, add it to the proper layer list)
+	 * @param ent Entity to add
+	 */
+	private void init(Entity ent){
+		int layer = ent.getLayer();
+		if(layer > NUM_LAYERS)
+			layer = NUM_LAYERS;
+		
+		layers[layer].add(ent);
+	}
+	
+	/**
+	 * Update a list of entities. Removes any where removeFlag is true
+	 * @param list List to update
+	 * @param timeStep 
+	 */
+	private void updateEntityArrayList(EntityArrayList list, float timeStep){
+		for(Entity ent : list){
+			if(ent != null){
+				if(ent.removeFlag)
+					this.removeEntity(ent);
+				else
+					ent.update(timeStep);
 			}
 		}
 	}

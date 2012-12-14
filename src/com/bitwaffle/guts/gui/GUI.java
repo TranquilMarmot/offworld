@@ -15,6 +15,7 @@ import com.bitwaffle.guts.gui.buttons.Button;
 import com.bitwaffle.guts.gui.buttons.ButtonManager;
 import com.bitwaffle.guts.gui.buttons.movement.MovementButtonManager;
 import com.bitwaffle.guts.gui.buttons.pause.PauseButtonManager;
+import com.bitwaffle.guts.gui.console.Console;
 import com.bitwaffle.guts.util.MathHelper;
 
 /**
@@ -23,6 +24,9 @@ import com.bitwaffle.guts.util.MathHelper;
  * @author TranquilMarmot
  */
 public class GUI {
+	/** Console for interacting with game */
+	public static Console console;
+	
 	/** List of all GUI objects */
 	private ArrayList<GUIObject> objects;
 	
@@ -61,6 +65,8 @@ public class GUI {
 			setButtonManager(pauseButtons);
 		else
 			setButtonManager(movementButtons);
+		
+		console = new Console();
 	}
 	
 	/**
@@ -71,6 +77,7 @@ public class GUI {
 		checkState();
 		updateButtons(timeStep);
 		updateObjects(timeStep);
+		console.update(timeStep);
 	}
 	
 	/**
@@ -185,8 +192,8 @@ public class GUI {
 		renderObjects(getButtonIterator(), renderer);
 		renderText(renderer);
 		
-		if(Game.console.isVisible)
-			Game.console.render(renderer, false, false);
+		if(console.isVisible)
+			console.render(renderer, false, false);
 	}
 	
 	/**

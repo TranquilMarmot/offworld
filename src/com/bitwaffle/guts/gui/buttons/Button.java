@@ -11,7 +11,7 @@ import com.bitwaffle.guts.gui.GUIObject;
  */
 public abstract class Button extends GUIObject{
 	/** Whether or not the button is active/visible (can only be pressed if both are true) */
-	private boolean isActive, isVisible;
+	private boolean isActive;
 	
 	/** Whether or not the button is being held down */
 	private boolean isDown;
@@ -79,7 +79,6 @@ public abstract class Button extends GUIObject{
 	/** What to do when a finger pressed the button down, but then slid off of it, rather than just releasing (generally, nothing) */
 	protected abstract void onSlideRelease();
 	
-	// FIXME these are pretty much useless unless they get honored by press() and release()
 	public boolean isActive(){ return isActive; }
 	public void deactivate(){ isActive = false; }
 	public void activate(){ isActive = true; }

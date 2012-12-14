@@ -11,6 +11,7 @@ import org.lwjgl.util.vector.Vector3f;
 import android.opengl.GLES20;
 
 import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.android.input.KeyboardManager;
 import com.bitwaffle.guts.graphics.font.BitmapFont;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.GUIObject;
@@ -40,7 +41,7 @@ public class Console extends GUIObject{
 	 * Info on what to do with text sent to this console.
 	 * These can be changed at runtime by calling methods in the ConsoleOutputstream class.
 	 */
-	private static final boolean PRINT_TO_LOG = false, PRINT_TO_SYSOUT = true;
+	private static final boolean PRINT_TO_LOG = false, PRINT_TO_SYSOUT = false;
 	/** This replaces System.out and System.err, and also enables printing to a log file */
 	protected ConsoleOutputStream outputStream;
 	public PrintStream out;
@@ -155,9 +156,6 @@ public class Console extends GUIObject{
 		out = new PrintStream(outputStream);
 	}
 	
-	/** @return Whether or not this console is on */
-	public boolean isOn(){ return this.consoleOn; }
-	
 	/**
 	 * Update the console
 	 */
@@ -204,12 +202,8 @@ public class Console extends GUIObject{
 	 * Checks for any input keys that control the console
 	 */
 	private void checkForButtonPresses(){
-		if(KeyBindings.SYS_CONSOLE.pressedOnce()){
-			if(this.isOn())
-				this.hide();
-			else
-				this.show();
-		}
+		if(KeyBindings.SYS_CONSOLE.pressedOnce())
+			this.toggle();
 		
 		if(KeyBindings.SYS_CONSOLE_BACKSPACE.pressedOnce())
 			this.backspace(); // TODO holding backspace
@@ -460,6 +454,9 @@ public class Console extends GUIObject{
 		consoleFadeDelayTimer = 0.0f;
 	}
 	
+	/** @return Whether or not this console is on */
+	public boolean isOn(){ return this.consoleOn; }
+	
 	/** Hides the console */
 	public void hide(){
 		this.consoleOn = false;
@@ -469,6 +466,14 @@ public class Console extends GUIObject{
 	public void show(){
 		this.consoleOn = true;
 		wake();
+	}
+	
+	/** Toggles console visibility */
+	public void toggle(){
+		if(this.isOn())
+			this.hide();
+		else
+			this.show();
 	}
 
 	/**

@@ -20,6 +20,7 @@ public class LeftJumpButton extends JumpButton{
 	
 	@Override
 	public void update(float timeStep){
+		super.update(timeStep);
 		this.y = Game.windowHeight - (buttMan.movementButtonHeight() * 3.0f);
 	}
 	

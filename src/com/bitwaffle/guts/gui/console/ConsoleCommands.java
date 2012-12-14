@@ -6,6 +6,7 @@ import java.util.StringTokenizer;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.net.NetConsoleCommands;
 
 
@@ -157,7 +158,7 @@ class HelpCommand implements Command{
 class ClearCommand implements Command{
 	@Override
 	public void issue(StringTokenizer toker) {
-		Game.console.clear();
+		GUI.console.clear();
 	}
 	
 	@Override
@@ -356,7 +357,7 @@ class SetLoggingCommand implements Command{
 				System.out.println("Logging is now " + (Game.console.outputStream.isWritingToLog() ? "enabled" : "disabled"));
 			}	*/
 		} else {
-			System.out.println("Logging is currently " + (Game.console.outputStream.isWritingToLog() ? "enabled" : "disabled"));
+			System.out.println("Logging is currently " + (GUI.console.outputStream.isWritingToLog() ? "enabled" : "disabled"));
 		}
 	}
 	
@@ -386,7 +387,7 @@ class SetSysOutCommand implements Command{
 				System.out.println("System.out is now " + (Game.console.outputStream.isWritingToSysOut() ? "enabled" : "disabled"));
 			}	*/
 		} else {
-			System.out.println("System.out is currently " + (Game.console.outputStream.isWritingToSysOut() ? "enabled" : "disabled"));
+			System.out.println("System.out is currently " + (GUI.console.outputStream.isWritingToSysOut() ? "enabled" : "disabled"));
 		}
 	}
 	

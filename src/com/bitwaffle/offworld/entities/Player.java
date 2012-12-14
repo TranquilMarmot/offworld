@@ -13,6 +13,7 @@ import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.guts.graphics.textures.animation.Animation;
+import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.physics.callbacks.FirstHitQueryCallback;
 import com.bitwaffle.guts.util.MathHelper;
@@ -129,7 +130,7 @@ public class Player extends BoxEntity implements FirearmHolder,KryoSerializable{
 		jumpTimer += timeStep;
 		
 		// check for input
-		if(!Game.console.isOn()){
+		if(!GUI.console.isOn()){
 			if(KeyBindings.CONTROL_RIGHT.isPressed())
 				Game.player.goRight();
 			if(KeyBindings.CONTROL_LEFT.isPressed())
@@ -287,6 +288,13 @@ public class Player extends BoxEntity implements FirearmHolder,KryoSerializable{
 	
 	public float getFirearmAngle(){
 		return getArmAngle();
+	}
+	
+	@Override
+	public void cleanup(){
+		super.cleanup();
+		
+		Game.player = null;
 	}
 	
 	@Override

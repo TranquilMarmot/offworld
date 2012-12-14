@@ -1,14 +1,14 @@
 package com.bitwaffle.guts.gui.buttons.movement.jump;
 
 import com.bitwaffle.guts.android.Game;
-import com.bitwaffle.guts.gui.buttons.RectangleButton;
+import com.bitwaffle.guts.gui.buttons.movement.MovementButton;
 import com.bitwaffle.guts.gui.buttons.movement.MovementButtonManager;
 import com.bitwaffle.guts.input.KeyBindings;
 
 /**
  * Button to jump
  */
-public abstract class JumpButton extends RectangleButton{
+public abstract class JumpButton extends MovementButton {
 	protected MovementButtonManager buttMan;
 	
 	public JumpButton(MovementButtonManager buttMan, float x, float y, float width, float height) {
@@ -16,8 +16,6 @@ public abstract class JumpButton extends RectangleButton{
 		this.buttMan = buttMan;
 	}
 
-	@Override
-	public void update(float timeStep) {}
 	@Override
 	protected void onRelease() {
 		KeyBindings.CONTROL_JUMP.release();
