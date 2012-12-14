@@ -56,8 +56,8 @@ public class MathHelper {
 	 * @param y1 Second point's Y value
 	 */
 	public static void midPoint(Vector2 out, float x0, float y0, float x1, float y1){
-		float x = x0 - x1;
-		float y = y0 - y1;
+		float x = x0 + x1;
+		float y = y0 + y1;
 		out.set(x / 2.0f, y / 2.0f);
 	}
 	

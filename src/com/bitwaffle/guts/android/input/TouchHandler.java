@@ -22,6 +22,9 @@ public class TouchHandler {
 	/** How sensitive zoom is- the higher the value, the less sensitive */
 	public final float ZOOM_SENSITIVITY = 100.0f;
 	
+	/** How much two fingers have to move from each other before zooming occurs */
+	public final float ZOOM_THRESHOLD = 5.0f;
+	
 	/** Number of pointers currently down */
 	private int pointerCount;
 	
@@ -38,6 +41,9 @@ public class TouchHandler {
 
 	/** If two fingers are being used, how far apart they are */
 	private float spacing, previousSpacing;
+	
+	/** If two fingers are being used, the point in the middle of them */
+	private Vector2 midpoint, previousMidpoint;
 
 	/** See comment for checkForButtonPresses() */
 	private Button[] buttonsDown;
@@ -63,6 +69,8 @@ public class TouchHandler {
 		previousX1 = 0.0f;
 		previousY1 = 0.0f;
 		previousSpacing = 0.0f;
+		midpoint = new Vector2(0.0f, 0.0f);
+		previousMidpoint = new Vector2(0.0f, 0.0f);
 		buttonsDown = new Button[2];
 	}
 	
@@ -96,10 +104,13 @@ public class TouchHandler {
 			x1 = e.getX(1);
 			y1 = e.getY(1);
 			spacing = MathHelper.spacing(x0, y0, x1, y1);
+			MathHelper.midPoint(midpoint, x0, y0, x1, y1);
 		} else{
-			// FXIME will using 0.0f as a null value cause any issues? If random bugs ever occur, try changing this!
+			// FIXME will using 0.0f as a null value cause any issues? If random bugs ever occur, try changing this!
 			x1 = 0.0f;
 			y1 = 0.0f;
+			spacing = 0.0f;
+			midpoint.set(0.0f, 0.0f);
 		}
 
 		// call appropriate method based on action event
@@ -129,6 +140,7 @@ public class TouchHandler {
 
 		// update values used for panning/zooming
 		previousSpacing = spacing;
+		previousMidpoint.set(midpoint);
 		previousX0 = x0;
 		previousY0 = y0;
 		previousX1 = x1;
@@ -272,7 +284,7 @@ public class TouchHandler {
 		// if there's only 1 pointer and it's not on a button, we're dragging or aiming
 		if (buttonsDown[0] == null && buttonsDown[1] == null) {
 			if(camera.currentMode().equals(Camera.Modes.FREE)){
-				dragEvent();
+				dragEvent(previousX0, previousY0, x0, y0);
 				player.endShooting();
 			}else
 				player.updateTarget(MathHelper.toWorldSpace(x0, y0, camera));
@@ -315,6 +327,7 @@ public class TouchHandler {
 			if(camera.currentMode().equals(Camera.Modes.FREE)){
 				player.endShooting();
 				zoomEvent();
+				dragEvent(previousMidpoint.x, previousMidpoint.y, midpoint.x, midpoint.y);
 			// else check if there's any button presses and aim if there aren't
 			} else if(!(checkForButtonPresses(x0, y0) || checkForButtonPresses(x1, y1)))
 				player.updateTarget(MathHelper.toWorldSpace(x0, y0, camera));
@@ -346,9 +359,9 @@ public class TouchHandler {
 	/**
 	 * Screen is being "dragged" by a single finger
 	 */
-	private void dragEvent() {
-		Vector2 current = MathHelper.toWorldSpace(x0, y0, camera);
-		Vector2 previous = MathHelper.toWorldSpace(previousX0, previousY0, camera);
+	private void dragEvent(float prevX, float prevY, float curX, float curY) {
+		Vector2 current = MathHelper.toWorldSpace(curX, curY, camera);
+		Vector2 previous = MathHelper.toWorldSpace(prevX, prevY, camera);
 		
 		float dx = current.x - previous.x;
 		float dy = current.y - previous.y;
@@ -364,13 +377,16 @@ public class TouchHandler {
 	 */
 	private void zoomEvent() {
 		float ds = spacing - previousSpacing;
-		
-		float zoom = camera.getZoom();
-		
-		zoom += (ds * zoom) / ZOOM_SENSITIVITY;
 
-		camera.setZoom(zoom);
-		
-		previousSpacing = spacing;
+		// only zoom if the amount it in the threshold
+		if(ds > ZOOM_THRESHOLD || ds < -ZOOM_THRESHOLD){
+			float zoom = camera.getZoom();
+			
+			zoom += (ds * zoom) / ZOOM_SENSITIVITY;
+
+			camera.setZoom(zoom);
+			
+			previousSpacing = spacing;
+		}
 	}
 }
