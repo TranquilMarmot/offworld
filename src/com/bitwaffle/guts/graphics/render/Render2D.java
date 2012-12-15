@@ -137,6 +137,17 @@ public class Render2D {
 	}
 	
 	/**
+	 * Sets up the projection matrix with an orthographic projection
+	 * for drawing things in screen coordinates
+	 */
+	public void setUpProjectionScreenCoords(){
+		projection.setIdentity();
+		MathHelper.orthoM(projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
+		
+		program.setUniformMatrix4f("Projection", projection);
+	}
+	
+	/**
 	 * Renders every entity in the given iterator
 	 * @param it Iterator that goes through Entity objects needing to be rendered
 	 */

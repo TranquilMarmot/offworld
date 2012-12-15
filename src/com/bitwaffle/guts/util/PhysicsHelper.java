@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
@@ -192,7 +193,8 @@ public class PhysicsHelper {
 		Game.player = new Player(Renderers.PLAYER.renderer, 6, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
 		physics.addDynamicEntity(Game.player);
 		Render2D.camera.follow(Game.player);
-		//SurfaceView.touchHandler.setPlayer(Game.player);
+		SurfaceView.touchHandler.setPlayer(Game.player);
+		
 		
 		class Ground {
 			float x, y, width, height;
@@ -229,6 +231,19 @@ public class PhysicsHelper {
 			BoxEntity ground = new BoxEntity(Renderers.BOX.renderer, 4, bodyDef, g.width, g.height, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
 			physics.addDynamicEntity(ground);
 		}
+		
+		physics.addEntity(new Entity(){
+			@Override
+			public void update(float timeStep){
+		    	if(Game.physics.numEntities() < 100){
+		        	Random r = new Random();
+		    		if(r.nextBoolean())
+		    			PhysicsHelper.makeRandomBox(Game.physics);
+		    		else
+		    			PhysicsHelper.makeRandomCircle(Game.physics);	
+		    	}
+			}
+		});
 	}
 	
 	/**

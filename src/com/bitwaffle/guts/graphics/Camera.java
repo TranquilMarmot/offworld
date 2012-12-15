@@ -1,7 +1,6 @@
 package com.bitwaffle.guts.graphics;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 
@@ -20,7 +19,8 @@ public class Camera extends Entity {
 	/** Current camera mode */
 	private Modes currentMode = Modes.FOLLOW;
 	
-	private DynamicEntity following;
+	/** What this camera's looking at if it's in FOLLOW mode*/
+	private DynamicEntity target;
 	
 	/**
 	 * Different camera modes
@@ -90,8 +90,8 @@ public class Camera extends Entity {
 			this.zoom = MIN_ZOOM;
 		else{
 			this.zoom = zoom;
-			if(this.currentMode == Modes.FOLLOW && following != null)
-				followEntity();
+			if(this.currentMode == Modes.FOLLOW && target != null)
+				followTarget();
 		}
 	}
 
@@ -99,24 +99,31 @@ public class Camera extends Entity {
 	public void update(float timeStep) {
 		switch(currentMode){
 		case FOLLOW:
-			if(following != null)
-				followEntity();
-			else
-				following = Game.player;
+			if(target != null)
+				followTarget();
+			//else
+			//	target = Game.player;
 			break;
 		case FREE:
 			// do nothing (events handled by TouchHandler)
 		}
 	}
 	
-	private void followEntity(){
-		Vector2 playerLoc = following.getLocation();
+	private void followTarget(){
+		Vector2 targetLoc = target.getLocation();
 		//FIXME make this work more betterer (probably base it on screen size/zoom?)
-		this.location.set(-playerLoc.x + (0.7f / zoom), -playerLoc.y + (0.35f / zoom));
+		this.location.set(-targetLoc.x + (0.7f / zoom), -targetLoc.y + (0.35f / zoom));
 	}
 	
 	public void follow(DynamicEntity entity){
-		this.following = entity;
+		this.target = entity;
+	}
+	
+	/**
+	 * @return What this camera is currently following
+	 */
+	public DynamicEntity getTarget() {
+		return target;
 	}
 	
 	public void setMode(Modes newMode){

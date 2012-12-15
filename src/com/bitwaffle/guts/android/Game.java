@@ -1,7 +1,5 @@
 package com.bitwaffle.guts.android;
 
-import java.util.Random;
-
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -22,7 +20,6 @@ import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.Resources;
-import com.bitwaffle.guts.util.PhysicsHelper;
 import com.bitwaffle.offworld.entities.Player;
 import com.swarmconnect.SwarmActivity;
 
@@ -150,8 +147,7 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
          */
         if(physics == null){
         	physics = new Physics();
-        	PhysicsHelper.temp(physics);
-        	SurfaceView.touchHandler.setPlayer(Game.player);
+        	//PhysicsHelper.temp(physics);
         }
         
         //physics.addEntity(new GLSLSandbox());
@@ -192,16 +188,6 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
 			else
 				Game.togglePause();
 		}
-		
-		
-    	// FIXME temp
-    	if(physics.numEntities() < 100){
-        	Random r = new Random();
-    		if(r.nextBoolean())
-    			PhysicsHelper.makeRandomBox(physics);
-    		else
-    			PhysicsHelper.makeRandomCircle(physics);	
-    	}
     }
     
     /**

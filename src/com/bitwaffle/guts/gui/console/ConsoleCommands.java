@@ -8,6 +8,7 @@ import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.net.NetConsoleCommands;
+import com.bitwaffle.guts.util.PhysicsHelper;
 
 
 /**
@@ -53,7 +54,9 @@ public enum ConsoleCommands {
 	systemout(sysout, true),
 	
 	server(new NetConsoleCommands.ServerCommand()),
-	client(new NetConsoleCommands.ClientCommand());
+	client(new NetConsoleCommands.ClientCommand()),
+	
+	init(new InitCommand());
 
 	/** Function to call for this ConsoleCommands */
 	private Command function;
@@ -397,5 +400,17 @@ class SetSysOutCommand implements Command{
 		                   "Where NEWSTATUS is 'enabled', 'disabled' or any boolean value\n" +
 		                   "Enables/disables printing to default System.out, as well as this console.\n" +
 		                   "Leave NEWSTATUS blank to see current status.");
+	}
+}
+
+class InitCommand implements Command{
+	@Override
+	public void issue(StringTokenizer toker){
+		PhysicsHelper.temp(Game.physics);
+	}
+	
+	@Override
+	public void help(){
+		
 	}
 }

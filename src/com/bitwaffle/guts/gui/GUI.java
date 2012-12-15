@@ -11,12 +11,12 @@ import android.util.Log;
 
 import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.graphics.render.Render2D;
-import com.bitwaffle.guts.gui.buttons.Button;
-import com.bitwaffle.guts.gui.buttons.ButtonManager;
-import com.bitwaffle.guts.gui.buttons.movement.MovementButtonManager;
-import com.bitwaffle.guts.gui.buttons.pause.PauseButtonManager;
+import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.console.Console;
-import com.bitwaffle.guts.util.MathHelper;
+import com.bitwaffle.guts.gui.hud.HUD;
+import com.bitwaffle.guts.gui.state.GUIState;
+import com.bitwaffle.guts.gui.state.movement.MovementGUIState;
+import com.bitwaffle.guts.gui.state.pause.PauseGUIState;
 
 /**
  * Handles all GUI elements
@@ -40,19 +40,16 @@ public class GUI {
 	private Stack<Button> buttonsToAdd, buttonsToRemove;
 	
 	/** All of the pause buttons */
-	private PauseButtonManager pauseButtons;
+	private PauseGUIState pauseState;
 	/** All of the movement buttons */
-	private MovementButtonManager movementButtons;
+	private MovementGUIState movementState;
 	/** The current button manager (basically, the state of the GUI) */
-	private ButtonManager currentButtonManager;
+	private GUIState currentState;
 	
 	/**
 	 * Create a new GUI
 	 */
-	public GUI(){
-		pauseButtons = new PauseButtonManager();
-		movementButtons = new MovementButtonManager();
-		
+	public GUI(){		
 		objects = new ArrayList<GUIObject>();
 		objectsToRemove = new Stack<GUIObject>();
 		objectsToAdd = new Stack<GUIObject>();
@@ -61,12 +58,19 @@ public class GUI {
 		buttonsToRemove = new Stack<Button>();
 		buttonsToAdd = new Stack<Button>();
 		
+		pauseState = new PauseGUIState();
+		movementState = new MovementGUIState();
+		
+		// set initial state
 		if(Game.isPaused())
-			setButtonManager(pauseButtons);
+			setCurrentState(pauseState);
 		else
-			setButtonManager(movementButtons);
+			setCurrentState(movementState);
 		
 		console = new Console();
+		
+		// add a HUD to this GUI
+		this.addObject(new HUD(this));
 	}
 	
 	/**
@@ -84,10 +88,10 @@ public class GUI {
 	 * Checks the state of the GUI and changes it if necessary
 	 */
 	private void checkState(){
-		if(Game.isPaused() && currentButtonManager != pauseButtons)
-			setButtonManager(pauseButtons);
-		else if(!Game.isPaused() && currentButtonManager != movementButtons)
-			setButtonManager(movementButtons);
+		if(Game.isPaused() && currentState != pauseState)
+			setCurrentState(pauseState);
+		else if(!Game.isPaused() && currentState != movementState)
+			setCurrentState(movementState);
 	}
 	
 	/**
@@ -166,20 +170,20 @@ public class GUI {
 	 * Set the current button manager. Accepts null for no button manager
 	 * @param bm Button manager to use
 	 */
-	public void setButtonManager(ButtonManager bm){
-		if(currentButtonManager != null){
-			Iterator<Button> it = currentButtonManager.getButtonIterator();
+	public void setCurrentState(GUIState bm){
+		if(currentState != null){
+			Iterator<Button> it = currentState.getButtonIterator();
 			while(it.hasNext())
 				removeButton(it.next());
 		} 
 		
-		if(bm != null && currentButtonManager != bm){
+		if(bm != null && currentState != bm){
 			Iterator<Button> ti = bm.getButtonIterator();
 			while(ti.hasNext())
 				addButton(ti.next());
 		}
 		
-		currentButtonManager = bm;
+		currentState = bm;
 	}
 	
 	/**
@@ -187,24 +191,13 @@ public class GUI {
 	 * @param renderer
 	 */
 	public void render(Render2D renderer) {
-		setUpProjectionWorldCoords(renderer);
+		renderer.setUpProjectionScreenCoords();
 		renderObjects(getObjectIterator(), renderer);
 		renderObjects(getButtonIterator(), renderer);
 		renderText(renderer);
 		
 		if(console.isVisible)
 			console.render(renderer, false, false);
-	}
-	
-	/**
-	 * Sets up the projection matrix with an orthographic projection
-	 * for drawing things in screen coordinates
-	 */
-	private void setUpProjectionWorldCoords(Render2D renderer){
-		renderer.projection.setIdentity();
-		MathHelper.orthoM(renderer.projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
-		
-		renderer.program.setUniformMatrix4f("Projection", renderer.projection);
 	}
 	
 	/**
@@ -217,16 +210,20 @@ public class GUI {
 				GUIObject obj = it.next();
 				
 				if(obj.isVisible){
-					renderer.modelview.setIdentity();
-					Matrix4f.translate(new Vector3f(obj.x, obj.y, 0.0f), renderer.modelview, renderer.modelview);
-					renderer.sendModelViewToShader();
-					
-					obj.render(renderer, false, false);
+					renderObject(obj, renderer);
 				}
 			}
 		} catch(NullPointerException e){
 			Log.v("GUI", "Got null gui object (ignoring)");
 		}
+	}
+	
+	public void renderObject(GUIObject obj, Render2D renderer){
+		renderer.modelview.setIdentity();
+		Matrix4f.translate(new Vector3f(obj.x, obj.y, 0.0f), renderer.modelview, renderer.modelview);
+		renderer.sendModelViewToShader();
+		
+		obj.render(renderer, false, false);
 	}
 	
 	/**

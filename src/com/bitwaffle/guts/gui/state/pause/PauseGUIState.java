@@ -1,0 +1,51 @@
+package com.bitwaffle.guts.gui.state.pause;
+
+import com.bitwaffle.guts.gui.button.Button;
+import com.bitwaffle.guts.gui.button.RectangleButton;
+import com.bitwaffle.guts.gui.state.GUIState;
+import com.bitwaffle.guts.gui.state.pause.buttons.DebugButton;
+import com.bitwaffle.guts.gui.state.pause.buttons.LoadButton;
+import com.bitwaffle.guts.gui.state.pause.buttons.SaveButton;
+import com.bitwaffle.guts.gui.state.pause.buttons.SwarmButton;
+
+/**
+ * A ButtonManager that manages the pause menu
+ * 
+ * @author TranquilMarmot
+ */
+public class PauseGUIState extends GUIState{
+	/** How big pause menu buttons are */
+	private float pauseMenuButtonWidth = 70.0f, pauseMenuButtonHeight = 40.0f;
+	
+	/** @return Current pause menu button width */
+	public float pauseMenuButtonWidth(){ return pauseMenuButtonWidth; }
+	/** @return Current pause menu button height */
+	public float pauseMenuButtonHeight(){ return pauseMenuButtonHeight; }
+	
+	/**
+	 * Set the size of pause menu buttons
+	 * @param width New width of buttons
+	 * @param height New height of buttons
+	 */
+	public void setPauseMenuButtonSize(float width, float height){
+		this.pauseMenuButtonWidth = width;
+		this.pauseMenuButtonHeight = height;
+		
+		for(Button butt : this.buttons){
+			if(butt instanceof RectangleButton)
+				((RectangleButton) butt).setSize(pauseMenuButtonWidth, pauseMenuButtonHeight);
+		}
+	}
+	
+	public PauseGUIState(){
+		super();
+		
+		this.addButton(new DebugButton(this));
+		this.addButton(new LoadButton(this));
+		this.addButton(new SaveButton(this));
+		this.addButton(new SwarmButton(this));
+		
+		// update to add buttons
+		this.update(1.0f/60.0f);
+	}
+}

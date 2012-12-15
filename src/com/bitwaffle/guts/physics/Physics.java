@@ -61,8 +61,6 @@ public class Physics {
 		world.setContactFilter((ContactFilter) handler);
 		entities = new Entities();
 		toInitialize = new Stack<DynamicEntity>();
-		
-		
 	}
 	
 	/**
