@@ -14,7 +14,7 @@
    id="svg6091"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="roundtangle.svg.2012_12_13_13_36_53.1.svg"
+   sodipodi:docname="console.svg"
    inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\assets\textures\ui\camera.png"
    inkscape:export-xdpi="90.087975"
    inkscape:export-ydpi="90.087975">
@@ -27,9 +27,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.5"
-     inkscape:cx="44.945658"
-     inkscape:cy="29.748364"
+     inkscape:zoom="7.7781746"
+     inkscape:cx="40.834442"
+     inkscape:cy="32.058706"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:document-units="px"
@@ -63,6 +63,9 @@
        d="M 16.625,1.0625 C 7.0179536,1.0625 1.1875,8.8788777 1.1875,16.5 l 0,30.875 c 0,9.756776 5.8304536,15.4375 15.4375,15.4375 l 30.96875,0 c 7.807182,0 15.34375,-5.674683 15.34375,-15.34375 l 0,-31.0625 C 62.9375,8.8728377 55.400932,1.0625 47.59375,1.0625 z m -7.7755682,11.045455 6.4062502,0 0,6.40625 -6.4062502,0 z m 8.3937162,8.408895 6.4375,0 0,6.4375 -6.4375,0 z m 8.441927,8.424966 6.4375,0 0,6.40625 -6.4375,0 z m -8.424074,8.408894 6.4375,0 0,6.40625 -6.4375,0 z m 16.881181,8.410678 22.09375,0 0,6.5625 -22.09375,0 z m -25.323109,0.0134 6.4375,0 0,6.4375 -6.4375,0 z"
        id="path6127"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ssssssssscccccccccccccccccccccccccccccc" />
+       sodipodi:nodetypes="ssssssssscccccccccccccccccccccccccccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\assets\textures\ui\console.png"
+       inkscape:export-xdpi="361.41177"
+       inkscape:export-ydpi="361.41177" />
   </g>
 </svg>

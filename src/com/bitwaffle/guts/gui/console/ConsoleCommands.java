@@ -248,6 +248,8 @@ class BeerCommand implements Command{
 					 + (i - 1) + " bottles of beer on the wall");
 			 i--;
 		 } while(i > 0);
+		 
+		 System.out.println("thisstringrighthereisexceptionallylonganddoesn'thaveanyspaces untilrighthere");
 	}
 	
 	@Override

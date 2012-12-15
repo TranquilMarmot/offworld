@@ -160,7 +160,8 @@ public class BitmapFont {
 		renderer.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
 		
 		// this gets advanced with every character drawn and reset to 0 on newlines
-		int xOffset = 0;
+		float xOffset = FONT_GLYPH_WIDTH * scale;
+		//float xOffset = 0.0f;
 		// in case we hit any newlines
 		int lineNum = 0;
 		
@@ -170,7 +171,7 @@ public class BitmapFont {
 			// look for any carriage returns or line feeds
 			if(charArr[i] == '\n' || charArr[i] == '\r'){
 				lineNum++;
-				xOffset = 0;
+				xOffset = FONT_GLYPH_WIDTH * scale;
 				continue;
 			}
 			
@@ -182,15 +183,15 @@ public class BitmapFont {
 			
 			// scale and move the modelview to get to the char's location
 			renderer.modelview.setIdentity();
-			renderer.modelview.translate(new Vector3f(x + xOffset, y + (FONT_CELL_HEIGHT * scale * lineNum), 0.0f));
+			renderer.modelview.translate(new Vector3f(x + xOffset, y + (FONT_GLYPH_HEIGHT * scale * lineNum), 0.0f));
 			renderer.modelview.scale(new Vector3f(scale, scale, 1.0f));
 			renderer.sendModelViewToShader();
 			
 			// draw character
-			chars[index].draw(renderer, FONT_CELL_WIDTH, FONT_CELL_HEIGHT);
+			chars[index].draw(renderer, FONT_GLYPH_WIDTH * 2.0f, FONT_GLYPH_HEIGHT * 2.0f);
 			
 			// advance to next char
-			xOffset += (FONT_GLYPH_WIDTH + FONT_GLYPH_HEIGHT) * scale;
+			xOffset += FONT_GLYPH_WIDTH * scale;
 		}
 	}
 	
@@ -211,18 +212,18 @@ public class BitmapFont {
 	 */
 	public float stringWidth(String string, float scale){
 		// at the end of the longest line, that's where I will always be
-		float longestLine = 0;
+		int longestLine = 0;
 		
 		// go through every line and find out how long it is, keeping track of the longest
 		StringTokenizer toker = new StringTokenizer(string, "\n");
 		while(toker.hasMoreTokens()){
 			String line = toker.nextToken();
-			float lineSize = (line.length() - 1) * (FONT_GLYPH_WIDTH * 2);
+			int lineSize = line.length();
 			if(lineSize > longestLine)
 				longestLine = lineSize;
 		}
 		
-		return longestLine * scale;
+		return (longestLine - 1)* FONT_GLYPH_WIDTH * scale;
 	}
 	
 	/**
@@ -244,6 +245,6 @@ public class BitmapFont {
 		int numLines = new StringTokenizer(string, "\n").countTokens() - 1;
 		if(numLines == 0)
 				numLines = 1;
-		return numLines * (FONT_GLYPH_HEIGHT * 4) * scale;
+		return numLines * FONT_GLYPH_HEIGHT * scale;
 	}
 }

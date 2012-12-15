@@ -138,7 +138,6 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
         render2D = new Render2D();
-        gui = new GUI();
         
         /*
          * Only initialize physics engine if it doesn't exist yet
@@ -147,10 +146,10 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
          */
         if(physics == null){
         	physics = new Physics();
-        	//PhysicsHelper.temp(physics);
         }
         
-        //physics.addEntity(new GLSLSandbox());
+        gui = new GUI();
+        gui.setCurrentState(GUI.States.TITLESCREEN);
     }
     
     private void update(){

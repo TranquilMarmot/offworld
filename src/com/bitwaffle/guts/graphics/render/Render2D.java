@@ -16,6 +16,7 @@ import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.graphics.Camera;
+import com.bitwaffle.guts.graphics.font.BitmapFont;
 import com.bitwaffle.guts.graphics.render.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.render.glsl.GLSLShader;
 import com.bitwaffle.guts.graphics.render.shapes.Circle;
@@ -51,6 +52,9 @@ public class Render2D {
 	/** The modelview and projection matrices*/
 	public Matrix4f modelview, projection;
 	
+	/** Grumpy wizards make toxic brew for the evil Queen and Jack */
+	public BitmapFont font;
+	
 	/** Used for ALL quad rendering! Whenever something needs to be drawn, this quad's draw() method should be called */
 	public Quad quad;
 	
@@ -75,6 +79,7 @@ public class Render2D {
 		
 		quad = new Quad(this);
 		circle = new Circle(this, CIRCLE_STEP);
+		font = new BitmapFont();
 	}
 
 	/**

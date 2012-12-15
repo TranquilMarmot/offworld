@@ -1,5 +1,8 @@
 package com.bitwaffle.guts.gui.state.pause;
 
+import java.util.Iterator;
+
+import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.button.RectangleButton;
 import com.bitwaffle.guts.gui.state.GUIState;
@@ -31,14 +34,17 @@ public class PauseGUIState extends GUIState{
 		this.pauseMenuButtonWidth = width;
 		this.pauseMenuButtonHeight = height;
 		
-		for(Button butt : this.buttons){
+		Iterator<Button> it = this.getButtonIterator();
+		while(it.hasNext()){
+			Button butt = it.next();
+			
 			if(butt instanceof RectangleButton)
 				((RectangleButton) butt).setSize(pauseMenuButtonWidth, pauseMenuButtonHeight);
 		}
 	}
 	
-	public PauseGUIState(){
-		super();
+	public PauseGUIState(GUI gui){
+		super(gui);
 		
 		this.addButton(new DebugButton(this));
 		this.addButton(new LoadButton(this));

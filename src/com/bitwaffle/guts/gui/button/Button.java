@@ -24,7 +24,6 @@ public abstract class Button extends GUIObject{
 	public Button(float x, float y) {
 		super(x, y);
 		isActive = true;
-		isVisible = true;
 	}
 	
 	
@@ -83,13 +82,12 @@ public abstract class Button extends GUIObject{
 	public void deactivate(){ isActive = false; }
 	public void activate(){ isActive = true; }
 	
-	public boolean isVisible(){ return isVisible; }
 	public void hide(){ 
-		isVisible = false;
+		super.hide();
 		deactivate();
 	}
 	public void show(){
-		isVisible = true;
+		super.show();
 		activate();
 	}
 	

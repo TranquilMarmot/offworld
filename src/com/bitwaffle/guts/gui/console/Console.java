@@ -41,7 +41,7 @@ public class Console extends GUIObject{
 	 * Info on what to do with text sent to this console.
 	 * These can be changed at runtime by calling methods in the ConsoleOutputstream class.
 	 */
-	private static final boolean PRINT_TO_LOG = false, PRINT_TO_SYSOUT = false;
+	private static final boolean PRINT_TO_LOG = false, PRINT_TO_SYSOUT = true;
 	/** This replaces System.out and System.err, and also enables printing to a log file */
 	protected ConsoleOutputStream outputStream;
 	public PrintStream out;
@@ -53,7 +53,7 @@ public class Console extends GUIObject{
 	/** Height and width of the console, in characters (multiply by character size to get total console size) */
 	private int numRows, numCols;
 	/** How big the console gets rendered (1.0 = normal size, 0.5 = half, 2.0 = twice, etc.) */
-	private float scale = 0.2f;
+	private float scale = 0.5f;
 	
 	/** The text currently being typed into the console */
 	private String input;
@@ -115,7 +115,7 @@ public class Console extends GUIObject{
 	 * Default console constructor
 	 */
 	public Console() {
-		this(4, -4, 65, 14);
+		this(BitmapFont.FONT_GLYPH_WIDTH, Game.windowHeight - BitmapFont.FONT_GLYPH_HEIGHT, 65, 14);
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class Console extends GUIObject{
 	 * @param numRows
 	 *            window height expanding up
 	 */
-	public Console(int x, int y, int numCols, int numRows) {
+	public Console(float x, float y, int numCols, int numRows) {
 		super(x, y);
 		this.x = x;
 		this.y = y;
@@ -162,6 +162,11 @@ public class Console extends GUIObject{
 	public void update(float timeStep) {
 		// check for any button presses
 		checkForButtonPresses();
+		
+		
+		this.x = BitmapFont.FONT_GLYPH_WIDTH * scale;
+		this.y = Game.windowHeight ;
+		
 
 		if (consoleOn) {
 			// Brighten the console
@@ -272,6 +277,7 @@ public class Console extends GUIObject{
 	 *            The string to print to the console
 	 */
 	protected void print(String s) {
+		// TODO should have some sort of super transparent mode to 'notify' of stuff
 		// make the console text opaque
 		this.wake();
 
@@ -290,8 +296,7 @@ public class Console extends GUIObject{
 		} else {
 			// otherwise, for each word:
 			for (int i = 0;
-			     i < words.length &&
-			     (currentWidth + words[i].length()) <= numCols;
+			     i < words.length && (currentWidth + words[i].length()) <= numCols;
 			     i++)
 				// Add the width of that word and a space, unless the combined number of characters exceeds the width of the console.
 				currentWidth += words[i].length() + 1;
@@ -505,8 +510,8 @@ public class Console extends GUIObject{
 	 */
 	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical) {
 		// where to draw the console (x stays at its given location)
-		float drawY = (Game.windowHeight) + y;
-		float drawX = (BitmapFont.FONT_CELL_WIDTH * scale) + x;
+		//float drawY = (Game.windowHeight) + y;
+		//float drawX = (BitmapFont.FONT_GLYPH_WIDTH  * scale) + x + 2.5f;
 
 		GLES20.glEnable(GLES20.GL_BLEND);
 		
@@ -515,11 +520,11 @@ public class Console extends GUIObject{
 		
 		if (consoleOn){
 			drawInputBox(renderer);
-			renderInput(renderer, drawX, drawY);
+			renderInput(renderer);
 		}
 		
 		if(this.textAlpha > 0.0f)
-			renderScrollback(renderer, drawX, drawY);
+			renderScrollback(renderer);
 		
 		GLES20.glDisable(GLES20.GL_BLEND);
 	}
@@ -531,7 +536,7 @@ public class Console extends GUIObject{
 	 * @param drawY
 	 *             Y location to draw everything at
 	 */
-	private void renderScrollback(Render2D renderer, float drawX, float drawY){
+	private void renderScrollback(Render2D renderer){
 		GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
 
 		// figure out how many lines to print out
@@ -554,7 +559,7 @@ public class Console extends GUIObject{
 			int line = text.size() - (i + scroll);
 
 			// draw the string, going up on the y axis by how tall each line is
-			Game.resources.font.drawString(text.get(i), renderer, drawX, drawY - ((BitmapFont.FONT_CELL_HEIGHT * scale) * line), scale, textColor);
+			renderer.font.drawString(text.get(i), renderer, this.x, this.y - ((BitmapFont.FONT_GLYPH_HEIGHT * 2.0f) * scale * line), scale, textColor);
 		}
 	}
 	
@@ -567,13 +572,13 @@ public class Console extends GUIObject{
 	 * @param drawY
 	 *             Y location to draw text at
 	 */
-	private void renderInput(Render2D renderer, float drawX, float drawY){
+	private void renderInput(Render2D renderer){
 		GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
 		// draw the blinking cursor
 		String toPrint = "> " + input;
 		if (blink)
 			toPrint += "_";
-		Game.resources.font.drawString(toPrint, renderer, drawX , drawY , scale, new float[]{0.0f, 1.0f, 0.0f, this.textAlpha});
+		renderer.font.drawString(toPrint, renderer, this.x , this.y , scale, new float[]{0.0f, 1.0f, 0.0f, this.textAlpha});
 	}
 	
 	/**
@@ -587,11 +592,11 @@ public class Console extends GUIObject{
 		float[] color = { 0.0f, 0.0f, 0.0f, inputBoxAlpha };
 		renderer.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
 		
-		float boxWidth = (numCols * BitmapFont.FONT_CELL_WIDTH) / 2.0f;
-		float boxHeight = BitmapFont.FONT_CELL_HEIGHT / 2.0f;
+		float boxWidth = (numCols * BitmapFont.FONT_GLYPH_WIDTH * scale) * 2.0f;
+		float boxHeight = (BitmapFont.FONT_GLYPH_HEIGHT * scale) * 2.0f;
 		float boxX = this.x;
 		// add one height-sized row to location to offset for input row
-		float boxY = this.y + (Game.windowHeight - (boxHeight * scale));
+		float boxY = this.y - (boxHeight / 2.0f) /*(Game.windowHeight - (boxHeight * scale))*/;
 		
 		// translate and scale modelview to be behind text
 		renderer.modelview.setIdentity();
@@ -614,11 +619,11 @@ public class Console extends GUIObject{
 		float[] color = { 0.0f, 0.0f, 0.0f, consoleAlpha };
 		renderer.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
 		
-		float boxWidth = (numCols * BitmapFont.FONT_CELL_WIDTH) / 2.0f;
-		float boxHeight = ((numRows * BitmapFont.FONT_CELL_HEIGHT) / 2.0f) + 10.0f;
+		float boxWidth = (numCols * BitmapFont.FONT_GLYPH_WIDTH * scale) * 2.0f;
+		float boxHeight = (numRows * BitmapFont.FONT_GLYPH_HEIGHT * scale) * 2.0f;
 		float boxX = this.x;
 		// add one height-sized row to location to offset for input row
-		float boxY = this.y + (Game.windowHeight - (boxHeight * scale)) - (BitmapFont.FONT_CELL_HEIGHT * scale);
+		float boxY = this.y - (boxHeight / 2.0f) - ((BitmapFont.FONT_GLYPH_HEIGHT * scale) * 2);
 		
 		// translate and scale modelview to be behind text
 		renderer.modelview.setIdentity();

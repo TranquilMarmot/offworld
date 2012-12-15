@@ -1,4 +1,10 @@
 <resources>
+    <texture name="blankbutton">
+        <path>textures/ui/blankbutton.png</path>
+        <minFilter>GL_NEAREST</minFilter>
+        <magFilter>GL_NEAREST</magFilter>
+    </texture>
+    
     <texture name="console">
         <path>textures/ui/console.png</path>
         <minFilter>GL_NEAREST</minFilter>

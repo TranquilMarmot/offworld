@@ -47,6 +47,6 @@ public class SwarmButton extends RectangleButton {
 	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
 		Game.resources.textures.bindTexture("blank");
 		super.render(renderer, flipHorizontal, flipVertical);
-		Game.resources.font.drawString("Swarm", renderer, x, y + 17.0f, 0.3f);
+		renderer.font.drawString("Swarm", renderer, x, y + 17.0f, 0.3f);
 	}
 }

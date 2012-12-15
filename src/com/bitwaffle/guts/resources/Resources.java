@@ -10,6 +10,7 @@ import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 
 import com.bitwaffle.guts.graphics.font.BitmapFont;
+import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.graphics.textures.TextureManager;
 
 /**
@@ -44,8 +45,7 @@ public class Resources {
 	/** Sound manager */
 	public SoundManager sounds;
 	
-	/** Grumpy wizards make toxic brew for the evil Queen and Jack */
-	public BitmapFont font;
+
 	
 	/**
 	 * Create a new resource manager
@@ -62,7 +62,6 @@ public class Resources {
 	public void init(){
 		textures = new TextureManager();
 		sounds = new SoundManager();
-		font = new BitmapFont();
 	}
 	
 	/**

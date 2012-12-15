@@ -1,5 +1,8 @@
 package com.bitwaffle.guts.gui.state.movement;
 
+import java.util.Iterator;
+
+import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.button.RectangleButton;
 import com.bitwaffle.guts.gui.state.GUIState;
@@ -31,7 +34,9 @@ public class MovementGUIState extends GUIState {
 		this.movementButtonHeight = buttonHeight;
 		this.movementButtonWidth = buttonWidth;
 		
-		for(Button butt : buttons){
+		Iterator<Button> it = this.getButtonIterator();
+		while(it.hasNext()){
+			Button butt = it.next();
 			if(butt instanceof RectangleButton)
 				((RectangleButton) butt).setSize(movementButtonWidth, movementButtonHeight);
 		}
@@ -59,8 +64,8 @@ public class MovementGUIState extends GUIState {
 	/** @return Current alpha value of pressed buttons */
 	public float pressedAlpha(){ return pressedAlpha; }
 	
-	public MovementGUIState(){
-		super();
+	public MovementGUIState(GUI gui){
+		super(gui);
 		
 		// MoveLeftButtons
 		this.addButton(new LeftMoveLeftButton(this));

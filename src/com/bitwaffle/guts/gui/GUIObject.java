@@ -8,7 +8,7 @@ import com.bitwaffle.guts.graphics.render.Render2D;
  */
 public abstract class GUIObject {
     /** whether or not the object is visible */
-    public boolean isVisible;
+    private boolean isVisible;
     
     /** middle of the object */
     public float x, y;
@@ -38,4 +38,22 @@ public abstract class GUIObject {
      * Get rid of any resources the object may have allocated
      */
     public abstract void cleanup();
+    
+    /**
+     * Hides this GUI object (skips rendering)
+     */
+	public void hide(){ 
+		isVisible = false;
+	}
+	
+	/**
+	 * Shows this GUI object
+	 */
+	public void show(){ 
+		isVisible = true;
+	}
+	
+	public boolean isVisible(){
+		return isVisible;
+	}
 }

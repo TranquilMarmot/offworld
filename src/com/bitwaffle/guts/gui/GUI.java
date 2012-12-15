@@ -17,6 +17,7 @@ import com.bitwaffle.guts.gui.hud.HUD;
 import com.bitwaffle.guts.gui.state.GUIState;
 import com.bitwaffle.guts.gui.state.movement.MovementGUIState;
 import com.bitwaffle.guts.gui.state.pause.PauseGUIState;
+import com.bitwaffle.guts.gui.state.titlescreen.TitleScreen;
 
 /**
  * Handles all GUI elements
@@ -24,27 +25,32 @@ import com.bitwaffle.guts.gui.state.pause.PauseGUIState;
  * @author TranquilMarmot
  */
 public class GUI {
+	public enum States{
+		PAUSE,
+		MOVEMENT,
+		TITLESCREEN;
+	}
+	
+	
 	/** Console for interacting with game */
 	public static Console console;
 	
 	/** List of all GUI objects */
 	private ArrayList<GUIObject> objects;
-	
 	/** Used to add/remove GUI objects and avoid ConcurrentModificationExceptions */
 	private Stack<GUIObject> objectsToAdd, objectsToRemove;
 	
 	/** Anything that can be clicked/pressed */
 	private ArrayList<Button> buttons;
-	
 	/** Used to add/remove GUI objects and avoid ConcurrentModificationExceptions */
 	private Stack<Button> buttonsToAdd, buttonsToRemove;
 	
-	/** All of the pause buttons */
 	private PauseGUIState pauseState;
-	/** All of the movement buttons */
 	private MovementGUIState movementState;
+	private TitleScreen titleScreen;
+	
 	/** The current button manager (basically, the state of the GUI) */
-	private GUIState currentState;
+	private States currentState;
 	
 	/**
 	 * Create a new GUI
@@ -58,16 +64,11 @@ public class GUI {
 		buttonsToRemove = new Stack<Button>();
 		buttonsToAdd = new Stack<Button>();
 		
-		pauseState = new PauseGUIState();
-		movementState = new MovementGUIState();
-		
-		// set initial state
-		if(Game.isPaused())
-			setCurrentState(pauseState);
-		else
-			setCurrentState(movementState);
-		
 		console = new Console();
+		
+		pauseState = new PauseGUIState(this);
+		movementState = new MovementGUIState(this);
+		titleScreen = new TitleScreen(this);
 		
 		// add a HUD to this GUI
 		this.addObject(new HUD(this));
@@ -79,6 +80,9 @@ public class GUI {
 	 */
 	public void update(float timeStep){
 		checkState();
+		if(currentState != null)
+			getState(currentState).update(timeStep);
+		
 		updateButtons(timeStep);
 		updateObjects(timeStep);
 		console.update(timeStep);
@@ -88,10 +92,28 @@ public class GUI {
 	 * Checks the state of the GUI and changes it if necessary
 	 */
 	private void checkState(){
-		if(Game.isPaused() && currentState != pauseState)
-			setCurrentState(pauseState);
-		else if(!Game.isPaused() && currentState != movementState)
-			setCurrentState(movementState);
+		if(currentState != States.TITLESCREEN){
+			if(Game.isPaused() && currentState != States.PAUSE)
+				setCurrentState(States.PAUSE);
+			else if(!Game.isPaused() && currentState != States.MOVEMENT)
+				setCurrentState(States.MOVEMENT);
+		}
+	}
+	
+	private GUIState getState(States state){
+		if(state == null)
+			return null;
+		
+		switch(state){
+		case PAUSE:
+			return pauseState;
+		case MOVEMENT:
+			return movementState;
+		case TITLESCREEN:
+			return titleScreen;
+		default:
+			return null;
+		}
 	}
 	
 	/**
@@ -167,23 +189,17 @@ public class GUI {
 	}
 	
 	/**
-	 * Set the current button manager. Accepts null for no button manager
-	 * @param bm Button manager to use
+	 * Set the current state of the GUI
+	 * @param newState New state to use
 	 */
-	public void setCurrentState(GUIState bm){
-		if(currentState != null){
-			Iterator<Button> it = currentState.getButtonIterator();
-			while(it.hasNext())
-				removeButton(it.next());
-		} 
+	public void setCurrentState(States newState){
+		if(currentState != null)
+		getState(currentState).loseCurrentState();
 		
-		if(bm != null && currentState != bm){
-			Iterator<Button> ti = bm.getButtonIterator();
-			while(ti.hasNext())
-				addButton(ti.next());
-		}
+		if(newState != null)
+			 getState(newState).gainCurrentState();
 		
-		currentState = bm;
+		currentState = newState;
 	}
 	
 	/**
@@ -196,7 +212,7 @@ public class GUI {
 		renderObjects(getButtonIterator(), renderer);
 		renderText(renderer);
 		
-		if(console.isVisible)
+		if(console.isVisible())
 			console.render(renderer, false, false);
 	}
 	
@@ -209,7 +225,7 @@ public class GUI {
 			while(it.hasNext()){
 				GUIObject obj = it.next();
 				
-				if(obj.isVisible){
+				if(obj.isVisible()){
 					renderObject(obj, renderer);
 				}
 			}
@@ -236,24 +252,24 @@ public class GUI {
 		float tscale = 0.15f;
 		
 		String vers = "Version " + Game.VERSION;
-		Game.resources.font.drawString(vers, renderer, Game.windowWidth - Game.resources.font.stringWidth(vers, tscale), Game.resources.font.stringHeight(vers, tscale), tscale, debugTextColor);
+		renderer.font.drawString(vers, renderer, Game.windowWidth - renderer.font.stringWidth(vers, tscale), renderer.font.stringHeight(vers, tscale), tscale, debugTextColor);
 		
 		String fps = Game.currentFPS + " FPS";
-		Game.resources.font.drawString(fps, renderer, Game.windowWidth - Game.resources.font.stringWidth(fps, tscale), Game.resources.font.stringHeight(fps, tscale) * 2, tscale, debugTextColor);
+		renderer.font.drawString(fps, renderer, Game.windowWidth - renderer.font.stringWidth(fps, tscale), renderer.font.stringHeight(fps, tscale) * 2, tscale, debugTextColor);
 		
 		String ents = Game.physics.numEntities() + " ents";
-		Game.resources.font.drawString(ents, renderer, Game.windowWidth - Game.resources.font.stringWidth(ents, tscale), Game.resources.font.stringHeight(ents, tscale) * 3, tscale, debugTextColor);
+		renderer.font.drawString(ents, renderer, Game.windowWidth - renderer.font.stringWidth(ents, tscale), renderer.font.stringHeight(ents, tscale) * 3, tscale, debugTextColor);
 		
 		
 		// draw pause text FIXME temp
 		if(Game.isPaused()){
 			String pauseString = "Hello. This is a message to let you know that\nthe game is paused. Have a nice day.";
-			float scale = 0.3f;
-			float stringWidth = Game.resources.font.stringWidth(pauseString, scale);
-			float stringHeight = Game.resources.font.stringHeight(pauseString, scale);
+			float scale = 0.75f;
+			float stringWidth = renderer.font.stringWidth(pauseString, scale);
+			float stringHeight = renderer.font.stringHeight(pauseString, scale);
 			float textX = ((float)Game.windowWidth / 2.0f) - (stringWidth / 2.0f);
 			float textY = ((float)Game.windowHeight / 2.0f) - (stringHeight / 2.0f);
-			Game.resources.font.drawString(pauseString, renderer, textX, textY, scale);
+			renderer.font.drawString(pauseString, renderer, textX, textY, scale);
 		}
 	}
 }
