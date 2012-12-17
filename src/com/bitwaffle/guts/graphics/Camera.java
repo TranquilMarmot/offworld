@@ -115,7 +115,7 @@ public class Camera extends Entity {
 		this.location.set(-targetLoc.x + (0.7f / zoom), -targetLoc.y + (0.35f / zoom));
 	}
 	
-	public void follow(DynamicEntity entity){
+	public void setTarget(DynamicEntity entity){
 		this.target = entity;
 	}
 	

@@ -5,6 +5,32 @@
         <magFilter>GL_NEAREST</magFilter>
     </texture>
     
+    <texture name="blankrectangle">
+        <path>textures/ui/blankrectangle.png</path>
+        <minFilter>GL_NEAREST</minFilter>
+        <magFilter>GL_NEAREST</magFilter>
+    </texture>
+    
+    <texture name="buttonbits">
+        <path>textures/ui/buttonbits.png</path>
+        <minFilter>GL_NEAREST</minFilter>
+        <magFilter>GL_NEAREST</magFilter>
+        
+         <subImage name="buttoncorner">
+	        <xOffset>0</xOffset>
+	        <yOffset>0</yOffset>
+	        <width>128</width>
+	        <height>128</height>
+	    </subImage>
+	    
+       <subImage name="buttonsegment">
+	        <xOffset>128</xOffset>
+	        <yOffset>128</yOffset>
+	        <width>128</width>
+	        <height>128</height>
+	    </subImage>
+    </texture>
+    
     <texture name="console">
         <path>textures/ui/console.png</path>
         <minFilter>GL_NEAREST</minFilter>
@@ -21,5 +47,17 @@
         <path>textures/ui/camera-free.png</path>
         <minFilter>GL_NEAREST</minFilter>
         <magFilter>GL_NEAREST</magFilter>
-    </texture>        
+    </texture>
+    
+    <texture name="mainmenupizza">
+        <path>textures/ui/mainmenu/pizza.png</path>
+        <minFilter>GL_NEAREST</minFilter>
+        <magFilter>GL_NEAREST</magFilter>
+    </texture>
+    
+    <texture name="mainmenubanner">
+        <path>textures/ui/mainmenu/banner.png</path>
+        <minFilter>GL_NEAREST</minFilter>
+        <magFilter>GL_NEAREST</magFilter>
+    </texture>
 </resources>

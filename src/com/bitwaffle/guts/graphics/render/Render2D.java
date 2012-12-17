@@ -115,7 +115,9 @@ public class Render2D {
 	 * and updates the GUI and camera
 	 */
 	public void renderScene() {
-		camera.update(1.0f / 60.0f);
+		if(camera != null){
+			camera.update(1.0f / 60.0f);
+		}
 		
     	// clear the screen
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT /*| GLES20.GL_DEPTH_BUFFER_BIT*/);

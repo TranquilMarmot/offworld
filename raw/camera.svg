@@ -27,26 +27,21 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6568543"
-     inkscape:cx="24.971638"
-     inkscape:cy="30.226102"
+     inkscape:zoom="8"
+     inkscape:cx="34.213612"
+     inkscape:cy="31.17624"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:document-units="px"
      inkscape:grid-bbox="true"
-     showguides="false"
+     showguides="true"
      inkscape:guide-bbox="true"
      inkscape:window-width="1920"
      inkscape:window-height="1138"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:snap-nodes="true">
-    <sodipodi:guide
-       orientation="0,1"
-       position="21,18.265625"
-       id="guide4643" />
-  </sodipodi:namedview>
+     inkscape:snap-nodes="true" />
   <metadata
      id="metadata6096">
     <rdf:RDF>
@@ -64,7 +59,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer">
     <path
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2.012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        d="M 16.625 1.0625 C 7.0179536 1.0625 1.1875 8.8788777 1.1875 16.5 L 1.1875 47.375 C 1.1875 57.131776 7.0179536 62.8125 16.625 62.8125 L 47.59375 62.8125 C 55.400932 62.8125 62.9375 57.137817 62.9375 47.46875 L 62.9375 16.40625 C 62.9375 8.8728377 55.400932 1.0625 47.59375 1.0625 L 16.625 1.0625 z M 18.40625 11.9375 C 30.21186 11.9375 30.08759 28.8125 21.875 28.8125 L 33.15625 28.8125 C 25.64942 28.8125 25.60099 11.9375 36.5 11.9375 C 48.04897 11.9375 48.04638 28.8125 40.21875 28.8125 L 45.84375 28.8125 L 45.84375 34.625 L 54.25 28.8125 L 54.25 51.375 L 45.84375 45.875 L 45.84375 51.375 L 9.09375 51.375 L 9.09375 28.8125 L 14.8125 28.8125 C 7.1773484 28.8125 7.1780884 11.9375 18.40625 11.9375 z "
        id="path6127"
        inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\assets\textures\ui\camera-free.png"
@@ -88,8 +83,8 @@
        inkscape:export-xdpi="361.41177"
        inkscape:export-ydpi="361.41177" />
     <path
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26640221px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 11.347686,34.440309 3.1e-5,11.08872 2.677034,0 0,-4.987328 3.004784,0 0,-1.931818 -3.012564,-0.0049 0,-2.27653 3.012564,0.0087 -0.01545,-1.896847 z"
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.75000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill-opacity:1"
+       d="m 11.785186,34.610874 3.1e-5,11.08872 2.677034,0 0,-4.987328 3.004784,0 0,-1.931818 -3.012564,-0.0049 0,-2.27653 3.012564,0.0087 -0.01545,-1.896847 z"
        id="path4542"
        inkscape:connector-curvature="0"
        inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\assets\textures\ui\camera-free.png"
@@ -97,17 +92,17 @@
        inkscape:export-ydpi="361.41177"
        sodipodi:nodetypes="ccccccccccc" />
     <path
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26640221px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 23.022497,34.484043 -3.737325,0.0072 0,11.08872 2.199663,-0.0072 0,-4.987328 3.317395,5.042832 2.559599,-0.01085 -3.185478,-5.024268 c 1.928809,-0.307013 1.798445,-1.375872 1.820542,-3.957888 0.01833,-2.141266 -1.590469,-2.153884 -2.974396,-2.151218 z m -1.712428,1.438383 c 1.257524,0.04425 2.63157,-0.209148 2.639611,0.908748 -0.02205,2.046784 0.403756,2.234705 -2.639611,2.215179 z"
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.75000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill-opacity:1"
+       d="m 23.521577,34.627349 -3.737325,0.0072 0,11.08872 2.199663,-0.0072 0.03079,-4.034203 3.2866,4.089707 2.559599,-0.01085 -3.763603,-5.024268 c 1.83341,-0.517213 2.514476,-0.975832 2.383042,-3.754763 -0.04094,-1.331656 -0.769386,-2.342999 -2.958766,-2.354343 z m -1.81265,1.635686 c 1.190026,0.0044 2.855108,-0.213479 2.873986,0.908748 0.169482,2.284023 -0.600951,2.024514 -2.883139,2.002251 z"
        id="path4544"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="scccccccsscccc"
+       sodipodi:nodetypes="cccccccccccccc"
        inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\assets\textures\ui\camera-free.png"
        inkscape:export-xdpi="361.41177"
        inkscape:export-ydpi="361.41177" />
     <path
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26640221px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 28.818356,34.528698 0.01811,11.08872 6.140625,0 0,-2.089179 -3.734375,0 0,-2.898149 3.734375,0 0,-1.931818 -3.734375,0 0,-2.09588 3.734375,0 0.0042,-2.073694 z"
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.75000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill-opacity:1"
+       d="m 29.276383,34.716198 0.01811,11.08872 6.140625,0 0,-2.089179 -3.734375,0 0,-2.898149 3.734375,0 0,-1.931818 -3.734375,0 0,-2.09588 3.734375,0 0.0042,-2.073694 z"
        id="path4548"
        inkscape:connector-curvature="0"
        inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\assets\textures\ui\camera-free.png"
@@ -115,8 +110,8 @@
        inkscape:export-ydpi="361.41177"
        sodipodi:nodetypes="ccccccccccccc" />
     <path
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26640221px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 37.521093,34.440309 0.01811,11.08872 6.140625,0 0,-2.089179 -3.734375,0 0,-2.898149 3.734375,0 0,-1.931818 -3.734375,0 0,-2.09588 3.734375,0 0.0042,-2.073694 z"
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.75000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;fill-opacity:1"
+       d="m 37.54319,34.699263 0.01811,11.08872 6.140625,0 0,-2.089179 -3.734375,0 0,-2.898149 3.734375,0 0,-1.931818 -3.734375,0 0,-2.09588 3.734375,0 0.0042,-2.073694 z"
        id="path4548-9"
        inkscape:connector-curvature="0"
        inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\assets\textures\ui\camera-free.png"

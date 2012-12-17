@@ -183,7 +183,7 @@ public class BitmapFont {
 			
 			// scale and move the modelview to get to the char's location
 			renderer.modelview.setIdentity();
-			renderer.modelview.translate(new Vector3f(x + xOffset, y + (FONT_GLYPH_HEIGHT * scale * lineNum), 0.0f));
+			renderer.modelview.translate(new Vector3f(x + xOffset, y + ((BitmapFont.FONT_GLYPH_HEIGHT * 2.0f) * scale * lineNum), 0.0f));
 			renderer.modelview.scale(new Vector3f(scale, scale, 1.0f));
 			renderer.sendModelViewToShader();
 			
@@ -223,7 +223,7 @@ public class BitmapFont {
 				longestLine = lineSize;
 		}
 		
-		return (longestLine - 1)* FONT_GLYPH_WIDTH * scale;
+		return (longestLine - 1) * FONT_GLYPH_WIDTH * scale;
 	}
 	
 	/**

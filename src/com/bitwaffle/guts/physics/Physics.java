@@ -54,13 +54,25 @@ public class Physics {
 		// load natvies before doing anything (this is important!)
 		GdxNativesLoader.load();
 		
+		entities = new Entities();
+		toInitialize = new Stack<DynamicEntity>();
+		
 		// initialize the world
+		initWorld();
+	}
+	
+	/**
+	 * Initializes a new Physics world
+	 * WARNING: Everything in the world will be destroyed! Use with caution!
+	 */
+	private void initWorld(){
+		if(world != null)
+			world.dispose();
+		
 		world = new World(gravity, doSleep);
 		ContactHandler handler = new ContactHandler();
 		world.setContactListener((ContactListener)handler);
 		world.setContactFilter((ContactFilter) handler);
-		entities = new Entities();
-		toInitialize = new Stack<DynamicEntity>();
 	}
 	
 	/**
@@ -82,8 +94,7 @@ public class Physics {
 	 */
 	public void clearWorld(){
 		entities.clear();
-		world.dispose();
-		world = new World(gravity, doSleep);
+		initWorld();	
 	}
 	
 	/**
@@ -95,7 +106,10 @@ public class Physics {
 		toInitialize.push(ent);
 	}
 	
-	public void removeEntity(DynamicEntity ent){
+	/**
+	 * @param ent Entity to remove from world
+	 */
+	public void removeEntity(Entity ent){
 		entities.removeEntity(ent);
 	}
 	
@@ -114,10 +128,17 @@ public class Physics {
 		return entities.numEntities();
 	}
 	
+	/**
+	 * @return List of every iterator for every entity in the world
+	 */
 	public Iterator<Entity>[] getAllIterators(){
 		return entities.getAllIterators();
 	}
 	
+	/**
+	 * Renders everything in the world
+	 * @param renderer Renderer to use to render
+	 */
 	public void renderAll(Render2D renderer){
 		entities.renderAll(renderer);
 	}
@@ -136,6 +157,9 @@ public class Physics {
 		return callback.getHit();
 	}
 
+	/**
+	 * @return Whether or not there are any entities in the world
+	 */
 	public boolean entitiesExist() {
 		return entities.numEntities() > 0;
 	}

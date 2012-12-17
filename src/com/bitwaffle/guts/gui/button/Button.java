@@ -78,18 +78,40 @@ public abstract class Button extends GUIObject{
 	/** What to do when a finger pressed the button down, but then slid off of it, rather than just releasing (generally, nothing) */
 	protected abstract void onSlideRelease();
 	
-	public boolean isActive(){ return isActive; }
-	public void deactivate(){ isActive = false; }
-	public void activate(){ isActive = true; }
+	/**
+	 * @return Whether or not a button is currently being held down
+	 */
+	public boolean isDown(){ return isDown;}
 	
+	/**
+	 * Deactivate a button
+	 */
+	public void deactivate(){
+		isActive = false;
+	}
+	
+	/**
+	 * Activate a button
+	 */
+	public void activate() {
+		isActive = true;
+	}
+	
+	/**
+	 * @return Whether or not a button is active
+	 */
+	public boolean isActive(){ return isActive; }
+	
+
+	@Override
 	public void hide(){ 
 		super.hide();
 		deactivate();
 	}
+	
+	@Override
 	public void show(){
 		super.show();
 		activate();
 	}
-	
-	public boolean isDown(){ return isDown;}
 }

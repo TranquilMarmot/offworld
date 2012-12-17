@@ -9,8 +9,6 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 
-import com.bitwaffle.guts.graphics.font.BitmapFont;
-import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.graphics.textures.TextureManager;
 
 /**
@@ -129,6 +127,9 @@ public class Resources {
     	} catch (IOException e){ throw e; }
     }
     
+    /**
+     * @return Context that resources are being loaded from
+     */
     public Context getContext(){
     	return context;
     }

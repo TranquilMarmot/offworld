@@ -27,6 +27,21 @@
 	        <yOffset>0</yOffset>
 	        <width>469</width>
 	        <height>323</height>
+	    </subImage>    <subImage name="pistol">
+	        <xOffset>0</xOffset>
+	        <yOffset>0</yOffset>
+	        <width>469</width>
+	        <height>323</height>
+	    </subImage>    <subImage name="pistol">
+	        <xOffset>0</xOffset>
+	        <yOffset>0</yOffset>
+	        <width>469</width>
+	        <height>323</height>
+	    </subImage>    <subImage name="pistol">
+	        <xOffset>0</xOffset>
+	        <yOffset>0</yOffset>
+	        <width>469</width>
+	        <height>323</height>
 	    </subImage>
 	</texture>
 	

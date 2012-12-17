@@ -30,7 +30,7 @@ public class GLSLSandbox extends Entity {
 	/** Vertex shader to load on init */
 	private static final String VERTEX_SHADER = "shaders/sandbox.vert";
 	/** Fragment shader to load on init */
-	private static final String DEFAULT_FRAG_SHADER = "shaders/sandbox/wiggle.frag";
+	private static final String DEFAULT_FRAG_SHADER = "shaders/sandbox/pulseblob.frag";
 	
 	/** What does all the rendering */
 	private SandboxRenderer renderer;

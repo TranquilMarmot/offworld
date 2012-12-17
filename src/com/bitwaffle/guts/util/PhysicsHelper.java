@@ -192,7 +192,7 @@ public class PhysicsHelper {
 		
 		Game.player = new Player(Renderers.PLAYER.renderer, 6, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
 		physics.addDynamicEntity(Game.player);
-		Render2D.camera.follow(Game.player);
+		Render2D.camera.setTarget(Game.player);
 		SurfaceView.touchHandler.setPlayer(Game.player);
 		
 		
@@ -279,7 +279,7 @@ public class PhysicsHelper {
 		
 		Game.player = new Player(Renderers.PLAYER.renderer, 6, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
 		physics.addDynamicEntity(Game.player);
-		Render2D.camera.follow(Game.player);
+		Render2D.camera.setTarget(Game.player);
 		//SurfaceView.touchHandler.setPlayer(Game.player);
 		
 		for(int i = 0; i < 35; i++)

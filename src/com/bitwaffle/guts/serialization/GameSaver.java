@@ -161,7 +161,7 @@ public class GameSaver {
 				// check if we've hit the player
 				if(reg.getType().equals(Player.class)){
 					Game.player = (Player)object;
-					Render2D.camera.follow(Game.player);
+					Render2D.camera.setTarget(Game.player);
 					SurfaceView.touchHandler.setPlayer(Game.player);
 				}
 				

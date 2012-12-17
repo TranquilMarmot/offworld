@@ -7,6 +7,7 @@ import java.util.Stack;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
+import android.opengl.GLES20;
 import android.util.Log;
 
 import com.bitwaffle.guts.android.Game;
@@ -14,10 +15,10 @@ import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.console.Console;
 import com.bitwaffle.guts.gui.hud.HUD;
-import com.bitwaffle.guts.gui.state.GUIState;
-import com.bitwaffle.guts.gui.state.movement.MovementGUIState;
-import com.bitwaffle.guts.gui.state.pause.PauseGUIState;
-import com.bitwaffle.guts.gui.state.titlescreen.TitleScreen;
+import com.bitwaffle.guts.gui.states.GUIState;
+import com.bitwaffle.guts.gui.states.movement.MovementGUIState;
+import com.bitwaffle.guts.gui.states.pause.PauseGUIState;
+import com.bitwaffle.guts.gui.states.titlescreen.TitleScreen;
 
 /**
  * Handles all GUI elements
@@ -30,7 +31,6 @@ public class GUI {
 		MOVEMENT,
 		TITLESCREEN;
 	}
-	
 	
 	/** Console for interacting with game */
 	public static Console console;
@@ -51,6 +51,7 @@ public class GUI {
 	
 	/** The current button manager (basically, the state of the GUI) */
 	private States currentState;
+	
 	
 	/**
 	 * Create a new GUI
@@ -157,7 +158,7 @@ public class GUI {
 	 * @param o Object to remove from GUI
 	 */
 	public void removeObject(GUIObject o){
-		objectsToAdd.push(o);
+		objectsToRemove.push(o);
 	}
 	
 	/**
@@ -249,16 +250,21 @@ public class GUI {
 	private void renderText(Render2D renderer){
 		// draw some debug info TODO move this somewhere else!
 		float[] debugTextColor = new float[]{ 0.3f, 0.3f, 0.3f, 1.0f };
-		float tscale = 0.15f;
+		float tscale = 0.4f;
+		
+		GLES20.glEnable(GLES20.GL_BLEND);
+		GLES20.glBlendFunc(GLES20.GL_ONE_MINUS_DST_COLOR, GLES20.GL_ZERO);
 		
 		String vers = "Version " + Game.VERSION;
-		renderer.font.drawString(vers, renderer, Game.windowWidth - renderer.font.stringWidth(vers, tscale), renderer.font.stringHeight(vers, tscale), tscale, debugTextColor);
+		renderer.font.drawString(vers, renderer, Game.windowWidth - renderer.font.stringWidth(vers, tscale), renderer.font.stringHeight(vers, tscale) * 2, tscale, debugTextColor);
 		
 		String fps = Game.currentFPS + " FPS";
-		renderer.font.drawString(fps, renderer, Game.windowWidth - renderer.font.stringWidth(fps, tscale), renderer.font.stringHeight(fps, tscale) * 2, tscale, debugTextColor);
+		renderer.font.drawString(fps, renderer, Game.windowWidth - renderer.font.stringWidth(fps, tscale), renderer.font.stringHeight(fps, tscale) * 4, tscale, debugTextColor);
 		
 		String ents = Game.physics.numEntities() + " ents";
-		renderer.font.drawString(ents, renderer, Game.windowWidth - renderer.font.stringWidth(ents, tscale), renderer.font.stringHeight(ents, tscale) * 3, tscale, debugTextColor);
+		renderer.font.drawString(ents, renderer, Game.windowWidth - renderer.font.stringWidth(ents, tscale), renderer.font.stringHeight(ents, tscale) * 6, tscale, debugTextColor);
+		
+		GLES20.glDisable(GLES20.GL_BLEND);
 		
 		
 		// draw pause text FIXME temp
