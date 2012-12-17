@@ -8,6 +8,8 @@ import com.bitwaffle.guts.gui.states.titlescreen.buttons.OptionsButton;
 import com.bitwaffle.guts.gui.states.titlescreen.buttons.StartGameButton;
 
 public class TitleScreen extends GUIState {
+	/** Alpha values of buttons */
+	public static float activeAlpha = 0.8f, pressedAlpha = 0.95f;
 	
 	private GLSLSandbox sandbox;
 	

@@ -6,6 +6,7 @@ import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.TextButton;
+import com.bitwaffle.guts.gui.states.titlescreen.TitleScreen;
 import com.bitwaffle.guts.util.PhysicsHelper;
 
 public class StartGameButton extends TextButton {
@@ -47,7 +48,12 @@ public class StartGameButton extends TextButton {
 		GLES20.glEnable(GLES20.GL_BLEND);
 		GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_SRC_COLOR);
 		
-		renderer.program.setUniform("vColor", 0.4f, 0.4f, 0.4f, 0.9f);
+		if(this.isDown())
+			renderer.program.setUniform("vColor", 0.4f, 0.4f, 0.4f, TitleScreen.pressedAlpha);
+		else if(this.isActive())
+			renderer.program.setUniform("vColor", 0.4f, 0.4f, 0.4f, TitleScreen.activeAlpha);
+		else
+			renderer.program.setUniform("vColor", 0.2f, 0.2f, 0.2f, 1.0f);
 		super.renderBackground(renderer, flipHorizontal, flipVertical);
 		
 		super.renderText(renderer, flipHorizontal, flipVertical);

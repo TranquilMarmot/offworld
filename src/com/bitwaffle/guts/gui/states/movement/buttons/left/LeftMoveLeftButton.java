@@ -10,24 +10,23 @@ import com.bitwaffle.guts.gui.states.movement.MovementGUIState;
  * Button to move left that stays on the left side of the screen
  */
 public class LeftMoveLeftButton extends MoveLeftButton{
-	public LeftMoveLeftButton(MovementGUIState buttMan) {
-		super(buttMan,
-				buttMan.movementButtonWidth(),
-				Game.windowHeight - buttMan.movementButtonHeight(),
-				buttMan.movementButtonWidth(),
-				buttMan.movementButtonHeight());
+	public LeftMoveLeftButton() {
+		super(  MovementGUIState.buttonWidth,
+				Game.windowHeight - MovementGUIState.buttonHeight,
+				MovementGUIState.buttonWidth,
+				MovementGUIState.buttonHeight);
 	}
 
 	@Override
 	public void update(float timeStep){
 		super.update(timeStep);
 		
-		this.y = Game.windowHeight - buttMan.movementButtonHeight();
+		this.y = Game.windowHeight - MovementGUIState.buttonHeight;
 	}
 	
 	@Override
 	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
-		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, this.isDown() ? buttMan.pressedAlpha() : buttMan.activeAlpha());
+		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, this.isDown() ? MovementGUIState.pressedAlpha : MovementGUIState.activeAlpha);
 		GLES20.glEnable(GLES20.GL_BLEND);
 		GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_DST_COLOR);
 		Game.resources.textures.getSubImage("leftarrow").render(renderer.quad, this.width, this.height, false, false);
