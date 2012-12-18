@@ -46,6 +46,8 @@ public class CameraButton extends RectangleButton{
 	@Override
 	protected void onSlideRelease() {}
 	@Override
+	protected void onDrag(float dx, float dy){}
+	@Override
 	protected void onPress() {
 		Game.vibration.vibrate(25);
 	}

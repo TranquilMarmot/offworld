@@ -114,4 +114,12 @@ public abstract class Button extends GUIObject{
 		super.show();
 		activate();
 	}
+
+
+	public void drag(float dx, float dy) {
+		// TODO Auto-generated method stub
+		this.onDrag(dx, dy);
+	}
+	
+	protected abstract void onDrag(float dx, float dy);
 }

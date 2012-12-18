@@ -25,4 +25,7 @@ public abstract class JumpButton extends MovementButton {
 		Game.vibration.vibrate(25);
 		KeyBindings.CONTROL_JUMP.press();
 	}
+	
+	@Override
+	protected void onDrag(float dx, float dy){}
 }

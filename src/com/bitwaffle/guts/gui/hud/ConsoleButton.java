@@ -107,6 +107,8 @@ public class ConsoleButton extends RectangleButton{
 
 	@Override
 	protected void onSlideRelease() {}
+	@Override
+	protected void onDrag(float dx, float dy){}
 	
 	@Override
 	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){

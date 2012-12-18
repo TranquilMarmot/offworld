@@ -41,6 +41,12 @@ public class OptionsButton extends TextButton {
 	}
 	
 	@Override
+	protected void onDrag(float dx, float dy){
+		this.xOffset += dx;
+		this.yOffset += dy;
+	}
+	
+	@Override
 	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
 		GLES20.glEnable(GLES20.GL_BLEND);
 		GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_SRC_COLOR);

@@ -33,6 +33,9 @@ public class DebugButton extends TextButton {
 
 	@Override
 	protected void onSlideRelease() {}
+	
+	@Override
+	protected void onDrag(float dx, float dy){}
 
 	@Override
 	protected void onPress() {

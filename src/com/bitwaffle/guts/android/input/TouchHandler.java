@@ -284,19 +284,30 @@ public class TouchHandler {
 		// if there's only 1 pointer and it's not on a button, we're dragging or aiming
 		if (buttonsDown[0] == null && buttonsDown[1] == null) {
 			if(camera.currentMode().equals(Camera.Modes.FREE)){
-				dragEvent(previousX0, previousY0, x0, y0);
+				panEvent(previousX0, previousY0, x0, y0);
 				player.endShooting();
 			}else
 				player.updateTarget(MathHelper.toWorldSpace(x0, y0, camera));
 		// else check if the pointer slid off a button
 		} else{
-			if (buttonsDown[0] != null && !buttonsDown[0].contains(x0, y0)) {
+			if (buttonsDown[0] != null){
+				if(buttonsDown[0].contains(x0, y0)){
+					buttonsDown[0].drag(x0 - previousX0, y0 - previousY0);
+				}
+				else {
 					buttonsDown[0].slideRelease();
 					buttonsDown[0] = null;
+				}
 			}
+			
+			
 			if (buttonsDown[1] != null && !buttonsDown[1].contains(x0, y0)){
+				if(buttonsDown[1].contains(x0, y0)){
+					buttonsDown[1].drag(x0 - previousX0, y0 - previousY0);
+				} else{
 					buttonsDown[1].slideRelease();
 					buttonsDown[1] = null;
+				}
 			}
 		}
 		checkForButtonPresses(x0, y0);
@@ -327,7 +338,7 @@ public class TouchHandler {
 			if(camera.currentMode().equals(Camera.Modes.FREE)){
 				player.endShooting();
 				zoomEvent();
-				dragEvent(previousMidpoint.x, previousMidpoint.y, midpoint.x, midpoint.y);
+				panEvent(previousMidpoint.x, previousMidpoint.y, midpoint.x, midpoint.y);
 			// else check if there's any button presses and aim if there aren't
 			} else if(!(checkForButtonPresses(x0, y0) || checkForButtonPresses(x1, y1)))
 				player.updateTarget(MathHelper.toWorldSpace(x0, y0, camera));
@@ -359,7 +370,7 @@ public class TouchHandler {
 	/**
 	 * Screen is being "dragged" by a single finger
 	 */
-	private void dragEvent(float prevX, float prevY, float curX, float curY) {
+	private void panEvent(float prevX, float prevY, float curX, float curY) {
 		Vector2 current = MathHelper.toWorldSpace(curX, curY, camera);
 		Vector2 previous = MathHelper.toWorldSpace(prevX, prevY, camera);
 		

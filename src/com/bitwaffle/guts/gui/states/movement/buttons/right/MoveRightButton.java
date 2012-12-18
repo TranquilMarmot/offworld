@@ -25,4 +25,7 @@ public abstract class MoveRightButton extends MovementButton{
 		Game.vibration.vibrate(25);
 		KeyBindings.CONTROL_RIGHT.press();
 	}
+	
+	@Override
+	protected void onDrag(float dx, float dy){}
 }
