@@ -116,10 +116,19 @@ public abstract class Button extends GUIObject{
 	}
 
 
+	/**
+	 * Notify a button that it's being dragged
+	 * @param dx Amount of drag on X axis
+	 * @param dy Amount of drag on Y axis
+	 */
 	public void drag(float dx, float dy) {
-		// TODO Auto-generated method stub
 		this.onDrag(dx, dy);
 	}
 	
+	/**
+	 * What to do when a button is dragged
+	 * @param dx Length of drag on X axis
+	 * @param dy Length of drag on Y axis
+	 */
 	protected abstract void onDrag(float dx, float dy);
 }

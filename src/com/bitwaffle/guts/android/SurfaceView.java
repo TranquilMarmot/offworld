@@ -46,11 +46,10 @@ public class SurfaceView extends GLSurfaceView {
     
     @Override
     public boolean onTouchEvent(MotionEvent e) {
-    	try{
-    		// simply send the event to the touch handler
+    	// simply send the event to the touch handler
+    	if(touchHandler != null)
     		return touchHandler.touchEvent(e);
-    	}catch (NullPointerException err){
+    	else
     		return false;
-    	}
     }
 }

@@ -7,7 +7,7 @@ import android.view.MotionEvent;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.android.SurfaceView;
-import com.bitwaffle.guts.graphics.Camera;
+import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.Player;
@@ -36,7 +36,6 @@ public class TouchHandler {
 	/** Current position of second pointer */
 	private float x1, y1;
 	/** Touch position for second pointer from previous event */
-	@SuppressWarnings("unused")
 	private float previousX1, previousY1;
 
 	/** If two fingers are being used, how far apart they are */
@@ -191,12 +190,44 @@ public class TouchHandler {
 	}
 	
 	/**
+	 * Make the player begin shooting
+	 * @param x X location of spot to shoot, in screen space
+	 * @param y Y location of spot to shoot, in screen space
+	 */
+	private void beginShooting(float x, float y){
+		if(player != null && !player.isShooting())
+			player.beginShooting(MathHelper.toWorldSpace(x, y, camera));
+	}
+	
+	/**
+	 * Tell the player to stop shooting
+	 */
+	private void endShooting(){
+		if(player != null)
+			player.endShooting();
+	}
+	
+	
+	/**
+	 * Update the player's target
+	 * @param x X location of spot to shoot, in screen space
+	 * @param y Y location of spot to shoot, in screen space
+	 */
+	private void updateTarget(float x, float y){
+		if(player != null)
+			player.updateTarget(MathHelper.toWorldSpace(x, y, camera));
+	}
+	
+	/**
 	 * First pointer is put down on the screen
 	 */
 	private void pointer1Down(){
 		// if there's no button presses, start shooting
-		if(!checkForButtonPresses(x0, y0) && !camera.currentMode().equals(Camera.Modes.FREE))
-			player.beginShooting(MathHelper.toWorldSpace(x0, y0, camera));
+		if(!checkForButtonPresses(x0, y0)){
+			if(camera.currentMode().equals(Camera.Modes.FOLLOW))
+				beginShooting(x0, y0);
+		}
+		
 	}
 	
 	/**
@@ -208,10 +239,10 @@ public class TouchHandler {
 		if(
 		(buttonsDown[0] != null && buttonsDown[0].contains(x1, y1)) ||
 		(buttonsDown[1] != null && buttonsDown[1].contains(x1, y1)))
-			player.endShooting();
+			endShooting();
 		// else the second finger is down and shooting
 		else
-			player.updateTarget(MathHelper.toWorldSpace(x1, y1, camera));
+			updateTarget(x1, y1);
 		
 		/*
 		 * Since draggaing uses x0 and y0's values, but the finger controlling
@@ -228,8 +259,8 @@ public class TouchHandler {
 	 */
 	private void pointer2Down(){
 		// if there's no button presses, start shooting
-		if(!checkForButtonPresses(x1, y1) && !camera.currentMode().equals(Camera.Modes.FREE))
-			player.beginShooting(MathHelper.toWorldSpace(x1, y1, camera));
+		if(!checkForButtonPresses(x1, y1) && camera.currentMode().equals(Camera.Modes.FOLLOW))
+			beginShooting(x1, y1);
 	}
 	
 	/**
@@ -253,10 +284,10 @@ public class TouchHandler {
 		if(
 		(buttonsDown[0] != null && buttonsDown[0].contains(x0, y0)) ||
 		(buttonsDown[1] != null && buttonsDown[1].contains(x0, y0)))
-			player.endShooting();
+			endShooting();
 		// else the first finger is down and shooting
 		else
-			player.updateTarget(MathHelper.toWorldSpace(x0, y0, camera));
+			updateTarget(x0, y0);
 					
 	}
 	
@@ -274,7 +305,7 @@ public class TouchHandler {
 			buttonsDown[1] = null;
 		}
 		// stop shooting
-		player.endShooting();
+		endShooting();
 	}
 	
 	/**
@@ -285,23 +316,23 @@ public class TouchHandler {
 		if (buttonsDown[0] == null && buttonsDown[1] == null) {
 			if(camera.currentMode().equals(Camera.Modes.FREE)){
 				panEvent(previousX0, previousY0, x0, y0);
-				player.endShooting();
-			}else
-				player.updateTarget(MathHelper.toWorldSpace(x0, y0, camera));
-		// else check if the pointer slid off a button
+				endShooting();
+			}else if(player != null)
+				updateTarget(x0, y0);
+		// else check if the pointer slid off a button or drag a button
 		} else{
+			// check first button
 			if (buttonsDown[0] != null){
 				if(buttonsDown[0].contains(x0, y0)){
 					buttonsDown[0].drag(x0 - previousX0, y0 - previousY0);
-				}
-				else {
+				} else {
 					buttonsDown[0].slideRelease();
 					buttonsDown[0] = null;
 				}
 			}
 			
-			
-			if (buttonsDown[1] != null && !buttonsDown[1].contains(x0, y0)){
+			// check second button
+			if (buttonsDown[1] != null){
 				if(buttonsDown[1].contains(x0, y0)){
 					buttonsDown[1].drag(x0 - previousX0, y0 - previousY0);
 				} else{
@@ -317,17 +348,35 @@ public class TouchHandler {
 	 * Two fingers down and at least one is moving
 	 */
 	private void twoFingerMove(){
-		// check if either finger slid off of a button
+		// drag/slide off of button 0
 		if (buttonsDown[0] != null) {
-			if (!buttonsDown[0].contains(x0, y0)
-			 && !buttonsDown[0].contains(x1, y1)) {
+			// contains first finger, drag with first finger
+			if(buttonsDown[0].contains(x0, y0)){
+				buttonsDown[0].drag(x0 - previousX0, y0 - previousY0);
+				
+			// contains second finger, drag with second finger
+			} else if(buttonsDown[0].contains(x1, y1)){
+				buttonsDown[0].drag(x1 - previousX1, y1 - previousY1);
+				
+			// no fingers, so the button was slid off of
+			} else{
 				buttonsDown[0].slideRelease();
 				buttonsDown[0] = null;
 			}
 		}
+		
+		// drag/slide off of button 1
 		if (buttonsDown[1] != null) {
-			if (!buttonsDown[1].contains(x0, y0)
-			 && !buttonsDown[1].contains(x1, y1)) {
+			// contains first finger, drag with first finger
+			if(buttonsDown[1].contains(x0, y0)){
+				buttonsDown[1].drag(x0 - previousX0, y0 - previousY0);
+				
+			// contains second finger, drag with second finger
+			} else if(buttonsDown[1].contains(x1, y1)){
+				buttonsDown[1].drag(x1 - previousX1, y1 - previousY1);
+				
+			// no fingers, so the button was slid off of
+			} else{
 				buttonsDown[1].slideRelease();
 				buttonsDown[1] = null;
 			}
@@ -336,39 +385,39 @@ public class TouchHandler {
 		if (buttonsDown[0] == null && buttonsDown[1] == null) {
 			// zoom if the camera is in free mode
 			if(camera.currentMode().equals(Camera.Modes.FREE)){
-				player.endShooting();
+				endShooting();
 				zoomEvent();
 				panEvent(previousMidpoint.x, previousMidpoint.y, midpoint.x, midpoint.y);
 			// else check if there's any button presses and aim if there aren't
 			} else if(!(checkForButtonPresses(x0, y0) || checkForButtonPresses(x1, y1)))
-				player.updateTarget(MathHelper.toWorldSpace(x0, y0, camera));
+				updateTarget(x0, y0);
 		} else {
 			// button 0 is down and button 1 isn't
 			if(buttonsDown[0] != null && buttonsDown[1] == null){
 				// first pointer is on button 0, aim with second pointer if no button presses
 				if(buttonsDown[0].contains(x0, y0) && !checkForButtonPresses(x1, y1))
-					player.updateTarget(MathHelper.toWorldSpace(x1, y1, camera));
+					updateTarget(x1, y1);
 				
 				// check if first pointer hits any buttons, shoot if it didn't
 				else if(!checkForButtonPresses(x0, y0))
-					player.updateTarget(MathHelper.toWorldSpace(x0, y0, camera));
+					updateTarget(x0, y0);
 				
 			// button 1 is down and button 0 isn't
 			} else if(buttonsDown[0] == null && buttonsDown[1] != null) {
 				// first pointer is on button 1, aim with second pointer if no button presses
 				if(buttonsDown[1].contains(x0, y0) && !checkForButtonPresses(x1, y1))
-					player.updateTarget(MathHelper.toWorldSpace(x1, y1, camera));
+					updateTarget(x1, y1);
 				
 				
 				// check if first pointer hit any buttons, shoot if it didn't
 				else if(!checkForButtonPresses(x0, y0))
-					player.updateTarget(MathHelper.toWorldSpace(x0, y0, camera));
+					updateTarget(x0, y0);
 			}
 		}
 	}
 
 	/**
-	 * Screen is being "dragged" by a single finger
+	 * Screen is being "dragged" by a single finger to change where the camera is looking
 	 */
 	private void panEvent(float prevX, float prevY, float curX, float curY) {
 		Vector2 current = MathHelper.toWorldSpace(curX, curY, camera);
@@ -389,7 +438,7 @@ public class TouchHandler {
 	private void zoomEvent() {
 		float ds = spacing - previousSpacing;
 
-		// only zoom if the amount it in the threshold
+		// only zoom if the amount is in the threshold
 		if(ds > ZOOM_THRESHOLD || ds < -ZOOM_THRESHOLD){
 			float zoom = camera.getZoom();
 			

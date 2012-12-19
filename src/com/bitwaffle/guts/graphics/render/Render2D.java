@@ -6,6 +6,7 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
 import android.opengl.GLES20;
@@ -15,7 +16,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.graphics.Camera;
+import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.graphics.font.BitmapFont;
 import com.bitwaffle.guts.graphics.render.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.render.glsl.GLSLShader;
@@ -41,7 +42,7 @@ public class Render2D {
 	public static boolean drawDebug = false;
 	
 	/** Initial values for camera */
-	private static final float DEFAULT_CAMX = 245.0f, DEFAULT_CAMY = 75.0f, DEFAULT_CAMZ = 0.04f;
+	private static final float DEFAULT_CAMX = 0.0f, DEFAULT_CAMY = 0.0f, DEFAULT_CAMZ = 0.04f;
 	
 	/** Camera for describing how the scene should be looked at */
 	public static Camera camera;
@@ -115,10 +116,6 @@ public class Render2D {
 	 * and updates the GUI and camera
 	 */
 	public void renderScene() {
-		if(camera != null){
-			camera.update(1.0f / 60.0f);
-		}
-		
     	// clear the screen
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT /*| GLES20.GL_DEPTH_BUFFER_BIT*/);
 		
@@ -196,8 +193,9 @@ public class Render2D {
 		float cameraAngle = camera.getAngle();
 		float cameraZoom = camera.getZoom();
 		
+		//Matrix4f.translate(new Vector2f(cameraLoc.x * cameraZoom, cameraLoc.y * cameraZoom), modelview, modelview);
 		Matrix4f.scale(new Vector3f(cameraZoom, cameraZoom, 1.0f), modelview, modelview);
-		Matrix4f.translate(new Vector3f(cameraLoc.x, cameraLoc.y, 0.0f), modelview, modelview);
+		Matrix4f.translate(new Vector2f(cameraLoc.x, cameraLoc.y), modelview, modelview);
 		Matrix4f.rotate(cameraAngle, new Vector3f(0.0f, 0.0f, 1.0f), modelview, modelview);
 	}
 	

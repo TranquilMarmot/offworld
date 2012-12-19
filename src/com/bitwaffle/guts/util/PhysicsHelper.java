@@ -14,6 +14,7 @@ import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.offworld.entities.CollisionFilters;
@@ -193,6 +194,8 @@ public class PhysicsHelper {
 		Game.player = new Player(Renderers.PLAYER.renderer, 6, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
 		physics.addDynamicEntity(Game.player);
 		Render2D.camera.setTarget(Game.player);
+		Render2D.camera.setMode(Camera.Modes.FOLLOW);
+		Render2D.camera.setLocation(Game.player.getLocation());
 		SurfaceView.touchHandler.setPlayer(Game.player);
 		
 		
@@ -232,6 +235,7 @@ public class PhysicsHelper {
 			physics.addDynamicEntity(ground);
 		}
 		
+		/*
 		physics.addEntity(new Entity(){
 			@Override
 			public void update(float timeStep){
@@ -244,6 +248,7 @@ public class PhysicsHelper {
 		    	}
 			}
 		});
+		*/
 	}
 	
 	/**

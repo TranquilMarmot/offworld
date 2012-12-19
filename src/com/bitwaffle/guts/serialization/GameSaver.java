@@ -15,6 +15,7 @@ import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.offworld.entities.Player;
@@ -162,6 +163,7 @@ public class GameSaver {
 				if(reg.getType().equals(Player.class)){
 					Game.player = (Player)object;
 					Render2D.camera.setTarget(Game.player);
+					Render2D.camera.setMode(Camera.Modes.FOLLOW);
 					SurfaceView.touchHandler.setPlayer(Game.player);
 				}
 				

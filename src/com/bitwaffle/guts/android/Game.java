@@ -174,8 +174,12 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
 		// update everything by FIXED_TIMESTEP here
 		for(int i = 0; i < Math.min(steps, MAX_STEPS); i++){
 			// Step the physics sim
-			if(!paused)
+			if(!paused){
 				physics.update(FIXED_TIMESTEP);
+				
+				if(Render2D.camera != null)
+					Render2D.camera.update(FIXED_TIMESTEP);
+			}
 			
 			gui.update(FIXED_TIMESTEP);
 		}
