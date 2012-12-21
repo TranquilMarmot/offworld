@@ -188,7 +188,7 @@ public class Player extends BoxEntity implements FirearmHolder,KryoSerializable{
 			                             underneath.y + 0.01f);
 			
 			// if there's a hit, jump!
-			if(callback.getHit() != null && callback.getHit() != this){
+			//if(callback.getHit() != null && callback.getHit() != this){
 				Vector2 linVec = body.getLinearVelocity();
 				// can only jump if the current vertical speed is within a certain range
 				if(linVec.y <= JUMP_FORCE && linVec.y >= -JUMP_FORCE){
@@ -202,7 +202,7 @@ public class Player extends BoxEntity implements FirearmHolder,KryoSerializable{
 				
 				// don't forget to reset the timer
 				jumpTimer = 0.0f;
-			}
+			//}
 		}
 	}
 	

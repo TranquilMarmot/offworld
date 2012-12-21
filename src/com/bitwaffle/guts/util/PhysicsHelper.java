@@ -22,6 +22,7 @@ import com.bitwaffle.offworld.entities.Player;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableBox;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableCircle;
 import com.bitwaffle.offworld.renderers.Renderers;
+import com.bitwaffle.offworld.rooms.Room1;
 
 /**
  * Helper methods for Physics stuff
@@ -171,6 +172,11 @@ public class PhysicsHelper {
 	}
 	
 	public static void temp(Physics physics){
+		Room1 r1 = new Room1();
+		r1.addToWorld(physics);
+	}
+	
+	public static void temp1(Physics physics){
 		// backdrop
 		Entity backdrop = new Entity(Renderers.BACKDROP.renderer, 0);
 		physics.addEntity(backdrop);

@@ -34,6 +34,6 @@ public class BackdropRenderer implements EntityRenderer{
 		renderer.sendModelViewToShader();
 		
 		Game.resources.textures.bindTexture("background");
-		renderer.quad.draw(worldSizeX, worldSizeY, true, true);
+		renderer.quad.render(worldSizeX, worldSizeY, true, true);
 	}
 }

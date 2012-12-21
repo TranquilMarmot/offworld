@@ -89,6 +89,6 @@ public class Animation {
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, sheetHandle);
 		
 		// for some reason the image always get flipped, so we pass flipped booleans
-		renderer.quad.draw(width, height, !flipHorizontal, !flipVertical, frames[currentFrame].getTexCoordBuffer());
+		renderer.quad.render(width, height, !flipHorizontal, !flipVertical, frames[currentFrame].getTexCoordBuffer());
 	}
 }

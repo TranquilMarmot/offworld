@@ -145,7 +145,7 @@ public class PlayerRenderer extends BoxRenderer{
 		renderer.modelview.setIdentity();
 		renderer.translateModelViewToCamera();
 		renderer.modelview.translate(new Vector3f(targetLoc.x, targetLoc.y, 0.0f));
-		renderer.quad.draw(0.75f, 0.75f);
+		renderer.quad.render(0.75f, 0.75f);
 		
 		GLES20.glDisable(GLES20.GL_BLEND); // don't forget to turn blending back off!
 	}

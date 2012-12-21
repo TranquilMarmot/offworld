@@ -41,9 +41,6 @@ public class Render2D {
 	/** Whether or not to call every entity's debug drawing method */
 	public static boolean drawDebug = false;
 	
-	/** Initial values for camera */
-	private static final float DEFAULT_CAMX = 0.0f, DEFAULT_CAMY = 0.0f, DEFAULT_CAMZ = 0.04f;
-	
 	/** Camera for describing how the scene should be looked at */
 	public static Camera camera;
 	
@@ -75,7 +72,7 @@ public class Render2D {
 		projection = new Matrix4f();
 		modelview = new Matrix4f();
 		
-		camera = new Camera(new Vector2(DEFAULT_CAMX, DEFAULT_CAMY), DEFAULT_CAMZ);
+		camera = new Camera();
 		SurfaceView.touchHandler.setCamera(camera);
 		
 		quad = new Quad(this);

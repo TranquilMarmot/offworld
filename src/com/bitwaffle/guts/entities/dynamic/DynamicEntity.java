@@ -44,7 +44,9 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 	}
 	
 	/**
-	 * Create a new DynmicEntity
+	 * Create a new DynmicEntity with one fixture
+	 * @param renderer Renderer to use to draw entity
+	 * @param layer Layer to draw entity on
 	 * @param bodyDef Body definition
 	 * @param fixtureDef Fixture definition
 	 */
@@ -56,6 +58,13 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 		fixtureDefs.add(fixtureDef);
 	}
 	
+	/**
+	 * Create a new DynmicEntity with multiple fixtures
+	 * @param renderer Renderer to use to draw entity
+	 * @param layer Layer to draw entity on
+	 * @param bodyDef Body definition
+	 * @param fixtureDefs Fixture definition list
+	 */
 	public DynamicEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, ArrayList<FixtureDef> fixtureDefs){
 		super(renderer, layer);
 		
@@ -64,8 +73,9 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 	}
 	
 	/**
-	 * Create a new DynamicEntity
-	 * @param bodyDef Body definition
+	 * Create a new DynamicEntity with a single shape and given density
+	 * @param bodyDef Body definition 
+	 * @param layer Layer to draw entity on
 	 * @param shape Shape of entity
 	 * @param density Density of entity
 	 */
@@ -93,10 +103,15 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 	 * @param world Physics world to put this Entity into
 	 */
 	public void init(World world){
+		// only initialize if not intiialized
 		if(!this.isInitialized){
+			// create a body using the given body def
 			body = world.createBody(bodyDef);
+			
+			// set a pointer back to this object
 			body.setUserData(this);
 			
+			// if we're given fixture defs, use them to create body
 			if(fixtureDefs != null){
 				for(FixtureDef def : fixtureDefs){
 					body.createFixture(def);
@@ -104,12 +119,14 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 				}
 				fixtureDefs.clear();
 				fixtureDefs = null;
+				
+			// else we're given a single shape as the body
 			} else if(shape != null){
 				body.createFixture(shape, density);
 				shape.dispose();
 				shape = null;
 			} else{
-				Log.e("Init", "DynamicEntity not given enough parameters to initialize physics info!");
+				Log.e("DynamicEntity", "DynamicEntity not given enough parameters to initialize physics info!");
 			}
 			
 			isInitialized = true;
@@ -149,6 +166,7 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 		body = null;
 	}
 
+	@Override
 	public void read(Kryo kryo, Input input) {
 		super.read(kryo, input);
 		
@@ -169,6 +187,7 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 		this.fixtureDefs = fixtureDefs;
 	}
 
+	@Override
 	public void write(Kryo kryo, Output output) {
 		super.write(kryo, output);
 		

@@ -13,6 +13,9 @@ import com.bitwaffle.guts.graphics.camera.modes.FreeMode;
  * @author TranquilMarmot
  */
 public class Camera extends Entity {
+	/** Initial values for camera */
+	private static final float DEFAULT_CAMX = 0.0f, DEFAULT_CAMY = -25.0f, DEFAULT_CAMZ = 0.05f;
+	
 	/** Current zoom level of camera (smaller it is, the smaller everything will be rendered) */
 	private float zoom;
 	
@@ -26,7 +29,7 @@ public class Camera extends Entity {
 	 * Different camera modes
 	 */
 	public static enum Modes{
-		FOLLOW(new FollowMode(100.0f, 0.0f, -0.25f, 1.0f, 1.0f)),
+		FOLLOW(new FollowMode(100.0f, 0.0f, -0.3f, 1.0f, 1.5f)),
 		FREE(new FreeMode());
 		
 		private CameraMode mode;
@@ -52,10 +55,10 @@ public class Camera extends Entity {
 	 * @param location Initial location to put camera at
 	 * @param zoom Initial zoom to put camera at
 	 */
-	public Camera(Vector2 location, float zoom){
+	public Camera(){
 		super();
-		this.setLocation(location);
-		this.setZoom(zoom);
+		this.setLocation(new Vector2(DEFAULT_CAMX, DEFAULT_CAMY));
+		this.setZoom(DEFAULT_CAMZ);
 		
 		for(Modes mode : Modes.values())
 			mode.setCamera(this);

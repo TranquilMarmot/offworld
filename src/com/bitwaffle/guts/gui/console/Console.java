@@ -605,7 +605,7 @@ public class Console extends GUIObject{
 		renderer.sendModelViewToShader();
 		
 		GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-		renderer.quad.draw(boxWidth, boxHeight);
+		renderer.quad.render(boxWidth, boxHeight);
 	}
 	
 	/**
@@ -632,7 +632,7 @@ public class Console extends GUIObject{
 		renderer.sendModelViewToShader();
 		
 		GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-		renderer.quad.draw(boxWidth, boxHeight);
+		renderer.quad.render(boxWidth, boxHeight);
 	}
 
 	@Override

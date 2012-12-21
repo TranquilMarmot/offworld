@@ -48,7 +48,7 @@ public class SubImage {
 	 */
 	public void render(Quad quad, float width, float height, boolean flipHorizontal, boolean flipVertical){
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, sheetHandle);
-		quad.draw(width, height, flipHorizontal, flipVertical, texCoords);
+		quad.render(width, height, flipHorizontal, flipVertical, texCoords);
 	}
 
 }

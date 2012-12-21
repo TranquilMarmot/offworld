@@ -1,4 +1,16 @@
 <resources>
+    <texture name="tut">
+        <path>rooms/tut.png</path>
+        <minFilter>GL_NEAREST</minFilter>
+        <magFilter>GL_NEAREST</magFilter>
+    </texture>
+    
+    <texture name="tutback">
+        <path>rooms/back.png</path>
+        <minFilter>GL_NEAREST</minFilter>
+        <magFilter>GL_NEAREST</magFilter>
+    </texture>
+    
     <texture name="blank">
         <path>textures/blank.png</path>
         <minFilter>GL_NEAREST</minFilter>

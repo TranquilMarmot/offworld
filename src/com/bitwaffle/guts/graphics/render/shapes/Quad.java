@@ -85,8 +85,8 @@ public class Quad {
 	 * @param width Width of quad, from center
 	 * @param height Height of quad, from center
 	 */
-	public void draw(float width, float height){
-		draw(width, height, false, false);
+	public void render(float width, float height){
+		render(width, height, false, false);
 	}
 	
 	/**
@@ -96,8 +96,8 @@ public class Quad {
 	 * @param flipHorizontal Whether or not to flip the image horizontally
 	 * @param flipVertical Whether or not to flip the image vertically
 	 */
-	public void draw(float width, float height, boolean flipHorizontal, boolean flipVertical){
-		this.draw(width, height, flipHorizontal, flipVertical, defaultTexBuffer);
+	public void render(float width, float height, boolean flipHorizontal, boolean flipVertical){
+		this.render(width, height, flipHorizontal, flipVertical, defaultTexBuffer);
         
 	}
 	
@@ -108,7 +108,7 @@ public class Quad {
 	 * @param flipHorizontal Whether or not to flip the image horizontally
 	 * @param flipVertical Whether or not to flip the image vertically
 	 */
-	public void draw(float width, float height, boolean flipHorizontal, boolean flipVertical, FloatBuffer texCoords){
+	public void render(float width, float height, boolean flipHorizontal, boolean flipVertical, FloatBuffer texCoords){
 		// set position info
 		GLES20.glEnableVertexAttribArray(positionHandle);
         GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false, 0, vertBuffer);

@@ -5,6 +5,7 @@ import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 
 public class FollowMode extends CameraMode {
+	/** What the camera is following */
 	private DynamicEntity target;
 	
 	/** How fast the camera follows its target. Higher number means slower following, 1 means instant. */
@@ -24,11 +25,17 @@ public class FollowMode extends CameraMode {
 		this.yVelocityFactor = yVelocityFactor;
 	}
 	
+	/**
+	 * @param newTarget New target to follow
+	 */
 	public void setTarget(DynamicEntity newTarget){
 		this.target = newTarget;
 	}
 	
 	
+	/**
+	 * @return Current entity being followed
+	 */
 	public DynamicEntity getTarget(){
 		return target;
 	}
@@ -41,7 +48,11 @@ public class FollowMode extends CameraMode {
 			Vector2 camLoc = camera.getLocation();
 			
 			Vector2 targetLoc = target.getLocation();
-			Vector2 linVec = target.body.getLinearVelocity();
+			Vector2 linVec;
+			if(target.body != null)
+				linVec = target.body.getLinearVelocity();
+			else
+				linVec = new Vector2(0.0f, 0.0f);
 			
 			float heightRatio = (float)Game.windowHeight / (float)Game.windowWidth;
 			float widthRatio = (float)Game.windowWidth / (float)Game.windowHeight;

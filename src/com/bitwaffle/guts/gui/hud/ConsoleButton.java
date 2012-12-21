@@ -117,7 +117,7 @@ public class ConsoleButton extends RectangleButton{
 		renderer.program.setUniform("vColor", 0.5f, 0.5f, 0.5f, this.isDown() ? 1.0f : 0.5f);
 		
 		Game.resources.textures.bindTexture("console");
-		renderer.quad.draw(consoleButtonWidth, consoleButtonHeight);
+		renderer.quad.render(consoleButtonWidth, consoleButtonHeight);
 		GLES20.glDisable(GLES20.GL_BLEND);
 	}
 }

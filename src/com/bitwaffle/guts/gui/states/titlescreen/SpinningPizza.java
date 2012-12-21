@@ -46,13 +46,13 @@ public class SpinningPizza extends GUIObject {
 		
 		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
 		Game.resources.textures.bindTexture("mainmenupizza");
-		renderer.quad.draw(pizzaSize, pizzaSize);
+		renderer.quad.render(pizzaSize, pizzaSize);
 		
 		
 		Matrix4f.load(oldModelview, renderer.modelview);
 		renderer.sendModelViewToShader();
 		Game.resources.textures.bindTexture("mainmenubanner");
-		renderer.quad.draw(pizzaSize + 5.0f, pizzaSize + 5.0f);
+		renderer.quad.render(pizzaSize + 5.0f, pizzaSize + 5.0f);
 		
 	}
 

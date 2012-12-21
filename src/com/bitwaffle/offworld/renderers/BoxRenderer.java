@@ -21,7 +21,7 @@ public class BoxRenderer implements EntityRenderer{
 		else
 			Game.resources.textures.bindTexture("box");
 		renderer.program.setUniform("vColor", box.color[0], box.color[1], box.color[2], box.color[3]);
-		renderer.quad.draw(box.getWidth(), box.getHeight());
+		renderer.quad.render(box.getWidth(), box.getHeight());
 		
 		if(renderDebug)
 			renderDebug(renderer, ent);
@@ -42,7 +42,7 @@ public class BoxRenderer implements EntityRenderer{
 		
 		GLES20.glEnable(GLES20.GL_BLEND);
 		GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_DST_COLOR);
-		renderer.quad.draw(box.getWidth(), box.getHeight());
+		renderer.quad.render(box.getWidth(), box.getHeight());
 		GLES20.glDisable(GLES20.GL_BLEND);
 	}
 }

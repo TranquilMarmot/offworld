@@ -34,6 +34,6 @@ public class FontChar {
 	 * @param height Height of character
 	 */
 	public void draw(Render2D renderer, float width, float height){
-		renderer.quad.draw(width, height, false, false, texCoordBuff);
+		renderer.quad.render(width, height, false, false, texCoordBuff);
 	}
 }

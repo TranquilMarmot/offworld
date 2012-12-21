@@ -62,7 +62,7 @@ public class CameraButton extends RectangleButton{
 			Game.resources.textures.bindTexture("camera-free");
 		else
 			Game.resources.textures.bindTexture("camera");
-		renderer.quad.draw(cameraButtonWidth, cameraButtonHeight);
+		renderer.quad.render(cameraButtonWidth, cameraButtonHeight);
 		GLES20.glDisable(GLES20.GL_BLEND);
 	}
 	

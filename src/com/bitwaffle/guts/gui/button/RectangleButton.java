@@ -47,7 +47,7 @@ public abstract class RectangleButton extends Button {
 		else
 			renderer.program.setUniform("vColor", disabled[0], disabled[1], disabled[2], disabled[3]);
 		
-		renderer.quad.draw(this.width, this.height, flipHorizontal, flipVertical);
+		renderer.quad.render(this.width, this.height, flipHorizontal, flipVertical);
 	}
 	
 	/**

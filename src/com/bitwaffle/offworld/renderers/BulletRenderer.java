@@ -38,7 +38,7 @@ public class BulletRenderer implements EntityRenderer {
 		
 		GLES20.glEnable(GLES20.GL_BLEND);
 		GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_DST_COLOR);
-		renderer.quad.draw(box.getWidth(), box.getHeight());
+		renderer.quad.render(box.getWidth(), box.getHeight());
 		GLES20.glDisable(GLES20.GL_BLEND);
 	}
 }
