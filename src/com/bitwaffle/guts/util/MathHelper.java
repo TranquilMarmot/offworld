@@ -19,7 +19,7 @@ import com.bitwaffle.guts.graphics.camera.Camera;
  */
 public class MathHelper {
 	/** No pie jokes here */
-	public static final float PI = 3.14159265f;
+	public static final float PI = 3.141592653589793238462f;
 	
 	/**
 	 * Find an angle between two vectors

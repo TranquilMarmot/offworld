@@ -1,6 +1,5 @@
 package com.bitwaffle.guts.gui.button;
 
-import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;
 
 import com.bitwaffle.guts.android.Game;
@@ -14,14 +13,9 @@ import com.bitwaffle.guts.graphics.render.Render2D;
 public abstract class StretchButton extends RectangleButton {
 	// TODO segments should be drawn in a for loop based on the ratio of width-height
 	// I'm thinking it might be as simple as 2:1 ratio = 2 width segments, 1 height segment
-	
-	/** Used to preserve modelview between transitions */
-	private Matrix4f oldModelview;
 
 	public StretchButton(float x, float y, float width, float height) {
 		super(x, y, width, height);
-		
-		oldModelview = new Matrix4f();
 	}
 
 	@Override
@@ -29,56 +23,36 @@ public abstract class StretchButton extends RectangleButton {
 		float segmentWidth = this.width / 3.0f;
 		float segmentHeight = this.height / 2.0f;
 		
+		// translate to top row
+		renderer.modelview.translate(new Vector2f(0.0f, -segmentHeight));
+		renderer.sendModelViewToShader();
+		
+		// top middle segment
+		Game.resources.textures.getSubImage("buttonsegment").render(renderer.quad, segmentWidth, segmentHeight, false, false);
+		
 		// top-left corner
-		Matrix4f.load(renderer.modelview, oldModelview);
-		renderer.modelview.translate(new Vector2f(-segmentWidth * 3.0f, -segmentHeight));
+		renderer.modelview.translate(new Vector2f(-segmentWidth * 2.0f, 0.0f));
 		renderer.sendModelViewToShader();
 		Game.resources.textures.getSubImage("buttoncorner").render(renderer.quad, segmentWidth, segmentHeight, false, false);
 		
-		
-		// top-right corner
-		Matrix4f.load(oldModelview, renderer.modelview);
-		renderer.modelview.translate(new Vector2f(segmentWidth * 3.0f, -segmentHeight));
-		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("buttoncorner").render(renderer.quad, segmentWidth, segmentHeight, true, false);
-		
-		
 		// bottom-left corner
-		Matrix4f.load(oldModelview, renderer.modelview);
-		renderer.modelview.translate(new Vector2f(-segmentWidth * 3.0f, segmentHeight));
+		renderer.modelview.translate(new Vector2f(0.0f, (segmentHeight * 2.0f) - (segmentHeight / 100.0f)));
 		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("buttoncorner").render(renderer.quad, segmentWidth, segmentHeight + 1.0f, true, true);
+		Game.resources.textures.getSubImage("buttoncorner").render(renderer.quad, segmentWidth, segmentHeight, true, true);
 		
+		// bottom middle segment
+		renderer.modelview.translate(new Vector2f(segmentWidth * 2.0f, 0.0f));
+		renderer.sendModelViewToShader();
+		Game.resources.textures.getSubImage("buttonsegment").render(renderer.quad, segmentWidth, segmentHeight, false, true);
 		
 		// bottom-right corner
-		Matrix4f.load(oldModelview, renderer.modelview);
-		renderer.modelview.translate(new Vector2f(segmentWidth * 3.0f, segmentHeight));
+		renderer.modelview.translate(new Vector2f(segmentWidth * 2.0f, 0.0f));
 		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("buttoncorner").render(renderer.quad, segmentWidth, segmentHeight + 1.0f, false, true);
+		Game.resources.textures.getSubImage("buttoncorner").render(renderer.quad, segmentWidth, segmentHeight, false, true);
 		
-		// top segment 1
-		Matrix4f.load(oldModelview, renderer.modelview);
-		renderer.modelview.translate(new Vector2f(-segmentWidth, -segmentHeight));
+		// top-right corner
+		renderer.modelview.translate(new Vector2f(0.0f, -segmentHeight * 2.0f));
 		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("buttonsegment").render(renderer.quad, segmentWidth, segmentHeight, false, false);
-		
-		// top segment 3
-		Matrix4f.load(oldModelview, renderer.modelview);
-		renderer.modelview.translate(new Vector2f(segmentWidth, -segmentHeight));
-		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("buttonsegment").render(renderer.quad, segmentWidth, segmentHeight, false, false);
-		
-		
-		// bottom segment 1
-		Matrix4f.load(oldModelview, renderer.modelview);
-		renderer.modelview.translate(new Vector2f(-segmentWidth, segmentHeight));
-		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("buttonsegment").render(renderer.quad, segmentWidth, segmentHeight+ 1.0f, false, true);
-		
-		// bottom segment 3
-		Matrix4f.load(oldModelview, renderer.modelview);
-		renderer.modelview.translate(new Vector2f(segmentWidth, segmentHeight));
-		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("buttonsegment").render(renderer.quad, segmentWidth, segmentHeight + 1.0f, false, true);
+		Game.resources.textures.getSubImage("buttoncorner").render(renderer.quad, segmentWidth, segmentHeight, true, false);
 	}
 }

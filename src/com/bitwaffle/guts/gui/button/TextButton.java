@@ -27,7 +27,7 @@ public abstract class TextButton extends StretchButton {
 		// Maybe get width + height of string, then scale that down to fit inside button w/h
 		// But maybe it would better if all text buttons are the same size? (Or maybe a minimum size?)
 		// Could also have scrolling text!
-		textScale = (width + height) / 200.0f;
+		textScale = (width + height) / 225.0f;
 	}
 	
 	public void setTextColor(float r, float g, float b, float a){

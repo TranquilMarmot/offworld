@@ -2,6 +2,7 @@ package com.bitwaffle.guts.graphics.render.shapes;
 
 import java.nio.FloatBuffer;
 
+import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
 import android.opengl.GLES20;
@@ -31,6 +32,9 @@ public class Quad {
 	
 	/** Six indices because we've got 2 triangles */
 	private static final int NUM_INDICES = 6;
+	
+	/** Used to preserve modelview between draws */
+	private Matrix4f oldModelview;
 	
 	/**
 	 * Position coordinates (quad is scaled when drawn)
@@ -78,6 +82,8 @@ public class Quad {
 		
 		positionHandle = renderer.program.getAttribLocation("vPosition");
 		texCoordHandle = renderer.program.getAttribLocation("vTexCoord");
+		
+		oldModelview = new Matrix4f();
 	}
 	
 	/**
@@ -117,6 +123,9 @@ public class Quad {
         GLES20.glEnableVertexAttribArray(texCoordHandle);
         GLES20.glVertexAttribPointer(texCoordHandle, COORDS_PER_TEXCOORD, GLES20.GL_FLOAT, false, 0, texCoords);
         
+        // save the modelview before changing it
+        oldModelview.load(renderer.modelview);
+        
         // scale matrix to match width/height and flip if needed
         renderer.modelview.scale(new Vector3f(width, height, 1.0f));
         if(flipHorizontal)
@@ -131,5 +140,8 @@ public class Quad {
         // don't forget to disable the attrib arrays!
         GLES20.glDisableVertexAttribArray(positionHandle);
         GLES20.glDisableVertexAttribArray(texCoordHandle);
+        
+        // restore the modelview
+        renderer.modelview.load(oldModelview);
 	}
 }
