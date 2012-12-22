@@ -1,20 +1,13 @@
 package com.bitwaffle.guts.resources;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.SoundPool;
-import android.util.Log;
 
 import com.bitwaffle.guts.android.Game;
-import com.bitwaffle.guts.util.XMLHelper;
 
 /**
  * Manages initializing and playing/stopping sounds.
@@ -51,45 +44,18 @@ public class SoundManager {
 		soundIDs = new HashMap<String, Integer>();
 		pool = new SoundPool(MAX_STREAMS, AudioManager.STREAM_MUSIC, SRC_QUALITY);
 		pool.setOnLoadCompleteListener(new LoadCompleteListener());
-		// TODO this should be done on a per-room (level?) basis
-		try {
-			parseXML(Game.resources.openAsset("resourcelists/sounds.xml"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	/**
-	 * Parses an XML resource list
-	 * @param file InputStream from resource list
+	 * Initializes a sound from a file and adds it to the sound list
+	 * @param soundName Name to give new sound
+	 * @param soundPath Path of file sound is located at
+	 * @param priority Priority of loading this sound (relative to other sounds- pretty useless)
 	 */
-	private void parseXML(InputStream file){
-		NodeList nodes = XMLHelper.getNodeList(file);
-		
-		// grab all the resources
-		if (nodes != null && nodes.getLength() > 0) {
-			for (int i = 0; i < nodes.getLength(); i++) {
-				// we want to skip anything that's not an element node
-				if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE)
-					loadSound((Element) nodes.item(i));
-			}
-		} else {
-			Log.e("XML", "Error parsing XML in TextureManager! Either there was nothing in the given file or the parser simply just didn't want to work");
-		}
-	}
-	
-	/**
-	 * Load a sound from an XML element
-	 * @param ele Element to load sound from
-	 */
-	private void loadSound(Element ele){
-		String name = ele.getAttribute("name");
-		String path = XMLHelper.getString(ele, "path");
-		int priority = Integer.parseInt(XMLHelper.getString(ele, "priority"));
-		
+	public void loadSound(String soundName, String soundPath, int priority){
 		try{
-			AssetFileDescriptor afd = Game.resources.openAssetFD(path);
-			soundIDs.put(name, pool.load(afd, priority));
+			AssetFileDescriptor afd = Game.resources.openAssetFD(soundPath);
+			soundIDs.put(soundName, pool.load(afd, priority));
 			afd.close();
 		} catch(IOException e){
 			e.printStackTrace();

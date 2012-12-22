@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics.textures;
+package com.bitwaffle.guts.resources.textures;
 
 import java.nio.FloatBuffer;
 

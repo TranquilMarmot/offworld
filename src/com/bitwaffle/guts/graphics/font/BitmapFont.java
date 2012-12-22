@@ -13,7 +13,7 @@ import android.opengl.GLES20;
 
 import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.graphics.render.Render2D;
-import com.bitwaffle.guts.graphics.textures.TextureManager;
+import com.bitwaffle.guts.resources.ResourceLoader;
 import com.bitwaffle.guts.util.BufferUtils;
 
 /**
@@ -70,7 +70,7 @@ public class BitmapFont {
 			// intialize texture
 			InputStream in = Game.resources.openAsset(FONT_LOCATION);
 			Bitmap bitmap = BitmapFactory.decodeStream(in);
-			texHandle = TextureManager.initTexture(bitmap, GLES20.GL_NEAREST, GLES20.GL_NEAREST);
+			texHandle = ResourceLoader.initTexture(bitmap, GLES20.GL_NEAREST, GLES20.GL_NEAREST);
 			
 			// find out how many rows and columns we have and initialize the character array
 			int numRows = bitmap.getWidth() / FONT_CELL_WIDTH;

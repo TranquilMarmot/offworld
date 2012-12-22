@@ -135,7 +135,6 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
     	
 		resources.init();
 		
-        GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         
         render2D = new Render2D();
         
@@ -150,6 +149,12 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
         
         gui = new GUI();
         gui.setCurrentState(GUI.States.TITLESCREEN);
+    }
+    
+    public static void setContext(Context context){
+        Game.context = context;
+		resources = new Resources(context);
+		vibration = new Vibration(context);
     }
     
     private void update(){

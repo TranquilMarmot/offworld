@@ -67,6 +67,9 @@ public class Render2D {
 	 * @param context Context for things being rendered
 	 */
 	public Render2D() {
+		GLES20.glViewport(0, 0, Game.windowWidth, Game.windowHeight);
+		GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		
 		initShaders();
 		
 		projection = new Matrix4f();

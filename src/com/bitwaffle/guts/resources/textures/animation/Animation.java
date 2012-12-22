@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics.textures.animation;
+package com.bitwaffle.guts.resources.textures.animation;
 
 import com.bitwaffle.guts.graphics.render.Render2D;
 

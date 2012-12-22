@@ -51,6 +51,7 @@ public class Room1 extends Room {
 		Render2D.camera.setMode(Camera.Modes.FOLLOW);
 		Render2D.camera.setLocation(Game.player.getLocation());
 		SurfaceView.touchHandler.setPlayer(Game.player);
+		//Game.mouse.setPlayer(Game.player);
 		
 		EntityRenderer backdropRenderer = new EntityRenderer(){
 			@Override

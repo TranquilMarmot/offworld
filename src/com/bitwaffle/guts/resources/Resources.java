@@ -9,7 +9,7 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 
-import com.bitwaffle.guts.graphics.textures.TextureManager;
+import com.bitwaffle.guts.resources.textures.TextureManager;
 
 /**
  * Manages resources for the game. All resources should be acquired through this.
@@ -52,14 +52,15 @@ public class Resources {
 	public Resources(Context context){
 		this.context = context;
 		this.assMan = context.getAssets();
+		textures = new TextureManager();
+		sounds = new SoundManager();
 	}
 	
 	/**
 	 * This must be called AFTER OpenGL has been initialized
 	 */
 	public void init(){
-		textures = new TextureManager();
-		sounds = new SoundManager();
+		ResourceLoader.loadResourceFile("base.res");
 	}
 	
 	/**
@@ -70,6 +71,7 @@ public class Resources {
 	 * @throws FileNotFoundException If given file isn't found
 	 */
 	public OutputStream openFileOutput(String fileLoc, int mode) throws FileNotFoundException{
+		// TODO test this on android!
 		try { 
 			return context.openFileOutput(fileLoc, mode); 
 		} catch (FileNotFoundException e) { throw e; }

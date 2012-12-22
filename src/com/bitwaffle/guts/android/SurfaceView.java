@@ -7,7 +7,6 @@ import android.view.MotionEvent;
 import com.bitwaffle.guts.android.input.TouchHandler;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.physics.Physics;
-import com.bitwaffle.guts.resources.Resources;
 
 /**
  * Implementation of android.opengl.GLSurfaceView.
@@ -19,10 +18,7 @@ import com.bitwaffle.guts.resources.Resources;
 public class SurfaceView extends GLSurfaceView {
 	/** 
 	 * Handles all the rendering (NOTE: {@link Game}
-	 * contains static instances of {@link Render2D},
-	 * which should be referenced whenever doing rendering.
-	 * It's also got a static instance of {@link Physics} which should be
-	 * used when interacting with the physics world)
+	 * contains static instances of everything that runs the game.
 	 */
 	private Game game;
 	
@@ -38,9 +34,7 @@ public class SurfaceView extends GLSurfaceView {
         touchHandler = new TouchHandler(Game.player, Render2D.camera);
         
         game = new Game();
-        Game.context = context;
-		Game.resources = new Resources(context);
-		Game.vibration = new Vibration(context);
+        Game.setContext(context);
         this.setRenderer(game);
     }
     
