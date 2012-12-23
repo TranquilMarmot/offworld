@@ -14,12 +14,38 @@ public abstract class StretchButton extends RectangleButton {
 	// TODO segments should be drawn in a for loop based on the ratio of width-height
 	// I'm thinking it might be as simple as 2:1 ratio = 2 width segments, 1 height segment
 
+	/*
 	public StretchButton(float x, float y, float width, float height) {
 		super(x, y, width, height);
 	}
+	*/
+	
+	private float segmentWidth, segmentHeight;
+	private int rows, columns;
+	
+	public StretchButton(float x, float y, int rows, int columns, float segmentWidth, float segmentHeight){
+		super(x, y, rows * segmentWidth, columns * segmentHeight);
+		this.rows = rows;
+		this.columns = columns;
+		this.segmentWidth = segmentWidth;
+		this.segmentHeight = segmentHeight;
+	}
+	
 
-	@Override
-	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
+	public void render(Render2D renderer){
+		/*
+		 * If there's only one row, just draw 
+		 */
+		/* draw top row */
+		// translate to top left corner
+		
+		renderer.modelview.translate(new Vector2f(-segmentWidth * columns, -segmentHeight * (rows / 2.0f)));
+		renderer.sendModelViewToShader();
+		Game.resources.textures.getSubImage("buttoncorner").render(renderer.quad, segmentWidth, segmentHeight, false, false);
+	}
+
+
+	public void render(Render2D renderer, boolean flipVertical, boolean flipHorizontal){
 		float segmentWidth = this.width / 3.0f;
 		float segmentHeight = this.height / 2.0f;
 		

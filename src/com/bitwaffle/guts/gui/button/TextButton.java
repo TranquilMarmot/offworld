@@ -19,7 +19,7 @@ public abstract class TextButton extends StretchButton {
 	private float[] textColor = {0.0f, 0.0f, 0.0f, 1.0f};
 	
 	public TextButton(String text, float x, float y, float width, float height) {
-		super(x, y, width, height);
+		super(x, y, 3, 2, width / 3.0f, height / 2.0f);
 		
 		this.text = text;
 		

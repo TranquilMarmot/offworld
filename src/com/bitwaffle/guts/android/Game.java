@@ -151,6 +151,10 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
         gui.setCurrentState(GUI.States.TITLESCREEN);
     }
     
+    /**
+     * Sets the current context to use for this game
+     * @param context New context to use for game
+     */
     public static void setContext(Context context){
         Game.context = context;
 		resources = new Resources(context);

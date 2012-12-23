@@ -52,14 +52,14 @@ public class Resources {
 	public Resources(Context context){
 		this.context = context;
 		this.assMan = context.getAssets();
-		textures = new TextureManager();
-		sounds = new SoundManager();
 	}
 	
 	/**
-	 * This must be called AFTER OpenGL has been initialized
+	 * This must be called AFTER OpenGL has been initialized and Game.context has been set
 	 */
 	public void init(){
+		textures = new TextureManager();
+		sounds = new SoundManager();
 		ResourceLoader.loadResourceFile("base.res");
 	}
 	
