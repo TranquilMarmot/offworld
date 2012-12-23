@@ -17,6 +17,7 @@ import com.bitwaffle.guts.gui.console.Console;
 import com.bitwaffle.guts.gui.hud.HUD;
 import com.bitwaffle.guts.gui.states.GUIState;
 import com.bitwaffle.guts.gui.states.movement.MovementGUIState;
+import com.bitwaffle.guts.gui.states.options.OptionsScreen;
 import com.bitwaffle.guts.gui.states.pause.PauseGUIState;
 import com.bitwaffle.guts.gui.states.titlescreen.TitleScreen;
 
@@ -29,7 +30,8 @@ public class GUI {
 	public enum States{
 		PAUSE,
 		MOVEMENT,
-		TITLESCREEN;
+		TITLESCREEN,
+		OPTIONS;
 	}
 	
 	/** Console for interacting with game */
@@ -48,6 +50,7 @@ public class GUI {
 	private PauseGUIState pauseState;
 	private MovementGUIState movementState;
 	private TitleScreen titleScreen;
+	private OptionsScreen optionsScreen;
 	
 	/** The current button manager (basically, the state of the GUI) */
 	private States currentState;
@@ -70,6 +73,7 @@ public class GUI {
 		pauseState = new PauseGUIState(this);
 		movementState = new MovementGUIState(this);
 		titleScreen = new TitleScreen(this);
+		optionsScreen = new OptionsScreen(this);
 		
 		// add a HUD to this GUI
 		this.addObject(new HUD(this));
@@ -93,7 +97,7 @@ public class GUI {
 	 * Checks the state of the GUI and changes it if necessary
 	 */
 	private void checkState(){
-		if(currentState != States.TITLESCREEN){
+		if(currentState != States.TITLESCREEN && currentState != States.OPTIONS){
 			if(Game.isPaused() && currentState != States.PAUSE)
 				setCurrentState(States.PAUSE);
 			else if(!Game.isPaused() && currentState != States.MOVEMENT)
@@ -112,6 +116,8 @@ public class GUI {
 			return movementState;
 		case TITLESCREEN:
 			return titleScreen;
+		case OPTIONS:
+			return optionsScreen;
 		default:
 			return null;
 		}
@@ -195,10 +201,10 @@ public class GUI {
 	 */
 	public void setCurrentState(States newState){
 		if(currentState != null)
-		getState(currentState).loseCurrentState();
+			getState(currentState).loseCurrentState();
 		
 		if(newState != null)
-			 getState(newState).gainCurrentState();
+			getState(newState).gainCurrentState();
 		
 		currentState = newState;
 	}
@@ -235,6 +241,11 @@ public class GUI {
 		}
 	}
 	
+	/**
+	 * Render a given object
+	 * @param obj Object to render
+	 * @param renderer Renderer to use
+	 */
 	public void renderObject(GUIObject obj, Render2D renderer){
 		renderer.modelview.setIdentity();
 		Matrix4f.translate(new Vector3f(obj.x, obj.y, 0.0f), renderer.modelview, renderer.modelview);
@@ -248,7 +259,7 @@ public class GUI {
 	 * @param renderer What to use to render text
 	 */
 	private void renderText(Render2D renderer){
-		// draw some debug info TODO move this somewhere else!
+		// draw some debug info
 		float[] debugTextColor = new float[]{ 0.3f, 0.3f, 0.3f, 1.0f };
 		float tscale = 0.4f;
 		

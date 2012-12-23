@@ -4,6 +4,7 @@ import android.opengl.GLES20;
 
 import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.TextButton;
 import com.bitwaffle.guts.gui.states.titlescreen.TitleScreen;
 
@@ -27,7 +28,7 @@ public class OptionsButton extends TextButton {
 
 	@Override
 	protected void onRelease() {
-		// TODO
+		Game.gui.setCurrentState(GUI.States.OPTIONS);
 	}
 
 	@Override

@@ -35,7 +35,6 @@ public class ResourceLoader {
 	 */
 	public static void loadResourceFile(String resourceFile){
     	try {
-    		Log.e("wat", " " + (Game.resources == null));
 			InputStream stream = Game.resources.openAsset(resourceFile);
 
 			JSONObject jobj = getJSONObjectFromStream(stream);

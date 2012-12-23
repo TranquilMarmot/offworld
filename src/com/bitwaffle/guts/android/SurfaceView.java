@@ -19,7 +19,7 @@ public class SurfaceView extends GLSurfaceView {
 	 * Handles all the rendering (NOTE: {@link Game}
 	 * contains static instances of everything that runs the game.
 	 */
-	private Game game;
+	public static Game game;
 	
 	/** Handles any touch events */
 	public static TouchHandler touchHandler;

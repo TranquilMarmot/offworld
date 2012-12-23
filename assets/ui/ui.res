@@ -41,6 +41,12 @@
 			"path":	"ui/textures/buttons/hud/camera-free.png",
 			"minFilter":	"nearest",
 			"magFilter":	"nearest"
+		},
+		{
+			"name":	"circlebutton",
+			"path":	"ui/textures/buttons/circlebutton.png",
+			"minFilter":	"nearest",
+			"magFilter":	"nearest"
 		}
 	],
 	

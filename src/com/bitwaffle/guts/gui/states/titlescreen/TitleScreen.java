@@ -11,6 +11,10 @@ public class TitleScreen extends GUIState {
 	/** Alpha values of buttons */
 	public static float activeAlpha = 0.8f, pressedAlpha = 0.95f;
 	
+	/**
+	 * Sandbox has to be managed by this class since it's an entity
+	 * (GUIStates only manage GUIObjects)
+	 */
 	private GLSLSandbox sandbox;
 	
 	public TitleScreen(GUI gui){
