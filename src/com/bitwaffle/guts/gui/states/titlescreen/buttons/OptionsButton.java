@@ -32,12 +32,10 @@ public class OptionsButton extends TextButton {
 
 	@Override
 	protected void onSlideRelease() {
-		
 	}
 
 	@Override
 	protected void onPress() {
-		
 	}
 	
 	@Override

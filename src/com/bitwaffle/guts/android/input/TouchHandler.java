@@ -99,17 +99,19 @@ public class TouchHandler {
 		pointerCount = e.getPointerCount();
 		x0 = e.getX(0);
 		y0 = e.getY(0);
+		
+		// 2 pointers down, get pointer 2 values
 		if(pointerCount >= 2){
 			x1 = e.getX(1);
 			y1 = e.getY(1);
+			// if there's two pointers, they have a spacing and a midpoint
 			spacing = MathHelper.spacing(x0, y0, x1, y1);
 			MathHelper.midPoint(midpoint, x0, y0, x1, y1);
 		} else{
-			// FIXME will using 0.0f as a null value cause any issues? If random bugs ever occur, try changing this!
-			x1 = 0.0f;
-			y1 = 0.0f;
-			spacing = 0.0f;
-			midpoint.set(0.0f, 0.0f);
+			x1 = Float.NaN;
+			y1 = Float.NaN;
+			spacing = Float.NaN;
+			midpoint.set(Float.NaN, Float.NaN);
 		}
 
 		// call appropriate method based on action event
@@ -118,7 +120,7 @@ public class TouchHandler {
 		case MotionEvent.ACTION_POINTER_1_DOWN:  // happens when pointer 2 is kept down and pointer 1 goes up then down again
 			pointer1Down();
 			break;
-		case MotionEvent.ACTION_POINTER_1_UP:    // first pointer is lifted after two pointers are put down
+		case MotionEvent.ACTION_POINTER_1_UP:    // first pointer is lifted after two pointers are put down (second finger still down)
 			pointer1Up();
 			break;
 		case MotionEvent.ACTION_POINTER_2_DOWN:
@@ -231,7 +233,7 @@ public class TouchHandler {
 	}
 	
 	/**
-	 * First pointer is lifted from the screen
+	 * First pointer is lifted from the screen, second pointer still down
 	 */
 	private void pointer1Up(){
 		// if a button is being pressed with the second pointer,
@@ -241,7 +243,7 @@ public class TouchHandler {
 		(buttonsDown[1] != null && buttonsDown[1].contains(x1, y1)))
 			endShooting();
 		// else the second finger is down and shooting
-		else
+		else if(camera.currentMode() == Camera.Modes.FOLLOW)
 			updateTarget(x1, y1);
 		
 		/*
@@ -295,15 +297,28 @@ public class TouchHandler {
 	 * All pointers are released from the screen
 	 */
 	private void allPointersUp(){
-		// release any pressed buttons
-		if (buttonsDown[0] != null && buttonsDown[0].isDown()) {
-			buttonsDown[0].release();
-			buttonsDown[0] = null;
-		} 
-		if (buttonsDown[1] != null && buttonsDown[1].isDown()) {
-			buttonsDown[1].release();
-			buttonsDown[1] = null;
+		// either release or slide-release button 0
+		if(buttonsDown[0] != null){
+			if(buttonsDown[0].isDown() && (buttonsDown[0].contains(x0, y0) || buttonsDown[0].contains(x1,y1))){
+				buttonsDown[0].release();
+				buttonsDown[0] = null;
+			} else {
+				buttonsDown[0].slideRelease();
+				buttonsDown[0] = null;
+			}
 		}
+		
+		// either release or slide-release button 0
+		if(buttonsDown[1] != null){
+			if(buttonsDown[1].isDown() && (buttonsDown[1].contains(x0, y0) || buttonsDown[1].contains(x1,y1))){
+				buttonsDown[1].release();
+				buttonsDown[1] = null;
+			} else {
+				buttonsDown[1].slideRelease();
+				buttonsDown[1] = null;
+			}
+		}
+		
 		// stop shooting
 		endShooting();
 	}
@@ -319,29 +334,16 @@ public class TouchHandler {
 				endShooting();
 			}else if(player != null)
 				updateTarget(x0, y0);
-		// else check if the pointer slid off a button or drag a button
+		// else drag button
 		} else{
-			// check first button
-			if (buttonsDown[0] != null){
-				if(buttonsDown[0].contains(x0, y0)){
+			// drag first button
+			if (buttonsDown[0] != null)
 					buttonsDown[0].drag(x0 - previousX0, y0 - previousY0);
-				} else {
-					buttonsDown[0].slideRelease();
-					buttonsDown[0] = null;
-				}
-			}
 			
-			// check second button
-			if (buttonsDown[1] != null){
-				if(buttonsDown[1].contains(x0, y0)){
+			// drag second button
+			if (buttonsDown[1] != null)
 					buttonsDown[1].drag(x0 - previousX0, y0 - previousY0);
-				} else{
-					buttonsDown[1].slideRelease();
-					buttonsDown[1] = null;
-				}
-			}
 		}
-		checkForButtonPresses(x0, y0);
 	}
 	
 	/**
@@ -351,36 +353,23 @@ public class TouchHandler {
 		// drag/slide off of button 0
 		if (buttonsDown[0] != null) {
 			// contains first finger, drag with first finger
-			if(buttonsDown[0].contains(x0, y0)){
+			if(buttonsDown[0].contains(x0, y0))
 				buttonsDown[0].drag(x0 - previousX0, y0 - previousY0);
-				
 			// contains second finger, drag with second finger
-			} else if(buttonsDown[0].contains(x1, y1)){
+			else if(buttonsDown[0].contains(x1, y1))
 				buttonsDown[0].drag(x1 - previousX1, y1 - previousY1);
-				
-			// no fingers, so the button was slid off of
-			} else{
-				buttonsDown[0].slideRelease();
-				buttonsDown[0] = null;
-			}
 		}
 		
 		// drag/slide off of button 1
 		if (buttonsDown[1] != null) {
 			// contains first finger, drag with first finger
-			if(buttonsDown[1].contains(x0, y0)){
+			if(buttonsDown[1].contains(x0, y0))
 				buttonsDown[1].drag(x0 - previousX0, y0 - previousY0);
-				
 			// contains second finger, drag with second finger
-			} else if(buttonsDown[1].contains(x1, y1)){
+			else if(buttonsDown[1].contains(x1, y1))
 				buttonsDown[1].drag(x1 - previousX1, y1 - previousY1);
-				
-			// no fingers, so the button was slid off of
-			} else{
-				buttonsDown[1].slideRelease();
-				buttonsDown[1] = null;
-			}
 		}
+		
 		// if there's two pointers and neither are on a button, we're zooming
 		if (buttonsDown[0] == null && buttonsDown[1] == null) {
 			// zoom if the camera is in free mode
