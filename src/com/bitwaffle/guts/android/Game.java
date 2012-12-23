@@ -119,8 +119,7 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
         /*
          * Create a SurfaceView instance and set it as
          * the ContentView for this Activity.
-         * NOTE: This SurfaceView holds on to the Game object
-         * and handles pretty much EVERYTHING in the game
+         * NOTE: This SurfaceView holds on to the actual Game object
          */
         surfaceView = new SurfaceView(this);
         this.setContentView(surfaceView);
@@ -135,7 +134,6 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
     	
 		resources.init();
 		
-        
         render2D = new Render2D();
         
         /*
@@ -255,15 +253,27 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
     	return KeyboardManager.keyUp(keyCode, event);
     }
     
+    /** Toggle between paused/unpaused */
     public static void togglePause(){
     	paused = !paused;
     }
     
+    /** @return Whether ot not the game is currently paused */
     public static boolean isPaused(){
     	return paused;
     }
     
+    /**
+     * @return Current time
+     */
     public static long getTime(){
     	return SystemClock.elapsedRealtime();
     }
+
+    /**
+     * Ends the game... immediately
+     */
+	public static void endGame() {
+		System.exit(0);
+	}
 }

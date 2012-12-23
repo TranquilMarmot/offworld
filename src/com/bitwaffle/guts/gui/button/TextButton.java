@@ -8,7 +8,7 @@ import com.bitwaffle.guts.graphics.render.Render2D;
  * 
  * @author TranquilMarmot
  */
-public abstract class TextButton extends StretchButton {
+public abstract class TextButton extends TiledButton {
 	/** Text being displayed on button */
 	private String text;
 	
@@ -18,16 +18,12 @@ public abstract class TextButton extends StretchButton {
 	/** Color to render text in (black by default) */
 	private float[] textColor = {0.0f, 0.0f, 0.0f, 1.0f};
 	
-	public TextButton(String text, float x, float y, float width, float height) {
-		super(x, y, 3, 2, width / 3.0f, height / 2.0f);
+	public TextButton(String text, float textScale, float x, float y, int rows, int columns, float rowWidth, float columnHeight) {
+		super(x, y, rows, columns, rowWidth, columnHeight);
 		
 		this.text = text;
 		
-		// FIXME is there a better way to determine this? Maybe based on text length?
-		// Maybe get width + height of string, then scale that down to fit inside button w/h
-		// But maybe it would better if all text buttons are the same size? (Or maybe a minimum size?)
-		// Could also have scrolling text!
-		textScale = (width + height) / 225.0f;
+		this.textScale = (width + height) / (10.0f * textScale);
 	}
 	
 	public void setTextColor(float r, float g, float b, float a){
@@ -55,7 +51,13 @@ public abstract class TextButton extends StretchButton {
 		float stringWidth = renderer.font.stringWidth(text, textScale) - (BitmapFont.FONT_GLYPH_WIDTH * textScale);
 		float stringHeight = renderer.font.stringHeight(text, textScale);
 		
-		renderer.font.drawString(text, renderer, x - (stringWidth / 2.0f), y + stringHeight, textScale, textColor);
+		// FIXME I don't... wat? I was having issues centering the text... this sort of works
+		if(stringHeight == (BitmapFont.FONT_GLYPH_HEIGHT * textScale))
+			stringHeight = -((BitmapFont.FONT_GLYPH_HEIGHT * textScale) * 2.0f);
+		else
+			stringHeight -= ((BitmapFont.FONT_GLYPH_HEIGHT * textScale) * 2.0f);
+		
+		renderer.font.drawString(text, renderer, x - (stringWidth / 2.0f), y - (stringHeight / 2.0f), textScale, textColor);
 	}
 
 }

@@ -286,7 +286,7 @@ public class TouchHandler {
 		(buttonsDown[1] != null && buttonsDown[1].contains(x0, y0)))
 			endShooting();
 		// else the first finger is down and shooting
-		else
+		else if(camera.currentMode() == Camera.Modes.FOLLOW)
 			updateTarget(x0, y0);
 					
 	}

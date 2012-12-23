@@ -284,7 +284,7 @@ class CameraCommand implements Command{
 class QuitCommand implements Command{
 	@Override
 	public void issue(StringTokenizer toker){
-		System.exit(0); // FIXME see if this works lol
+		Game.endGame();
 	}
 	
 	@Override

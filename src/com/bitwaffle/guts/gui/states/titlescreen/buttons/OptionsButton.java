@@ -12,8 +12,8 @@ public class OptionsButton extends TextButton {
 	
 	float xOffset, yOffset;
 
-	public OptionsButton(float xOffset, float yOffset, float width, float height) {
-		super(TEXT, 0.0f, 0.0f, width, height);
+	public OptionsButton(float xOffset, float yOffset, int rows, int columns, float rowWidth, float columnHeight) {
+		super(TEXT, 25.0f, 0.0f, 0.0f, rows, columns, rowWidth, columnHeight);
 		
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;

@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.Button;
-import com.bitwaffle.guts.gui.button.RectangleButton;
 import com.bitwaffle.guts.gui.states.GUIState;
 import com.bitwaffle.guts.gui.states.pause.buttons.DebugButton;
 import com.bitwaffle.guts.gui.states.pause.buttons.LoadButton;
@@ -17,13 +16,16 @@ import com.bitwaffle.guts.gui.states.pause.buttons.SaveButton;
  * @author TranquilMarmot
  */
 public class PauseGUIState extends GUIState{
-	/** How big pause menu buttons are */
-	private float pauseMenuButtonWidth = 80.0f, pauseMenuButtonHeight = 40.0f;
+	/** How many columns and rows each pause button has */
+	private int buttonCols = 2, buttonRows = 3;
 	
-	/** @return Current pause menu button width */
-	public float pauseMenuButtonWidth(){ return pauseMenuButtonWidth; }
-	/** @return Current pause menu button height */
-	public float pauseMenuButtonHeight(){ return pauseMenuButtonHeight; }
+	/** How big pause menu buttons are */
+	private float buttonRowWidth = 30.0f, buttonColHeight = 20.0f;
+	
+	public int buttonCols(){ return buttonCols; }
+	public int buttonRows(){ return buttonRows; }
+	public float buttonRowWidth(){ return buttonRowWidth; }
+	public float buttonColHeight(){ return buttonColHeight; }
 	
 	/**
 	 * Set the size of pause menu buttons
@@ -31,15 +33,16 @@ public class PauseGUIState extends GUIState{
 	 * @param height New height of buttons
 	 */
 	public void setPauseMenuButtonSize(float width, float height){
-		this.pauseMenuButtonWidth = width;
-		this.pauseMenuButtonHeight = height;
+		//this.pauseMenuButtonWidth = width;
+		//this.pauseMenuButtonHeight = height;
 		
 		Iterator<Button> it = this.getButtonIterator();
 		while(it.hasNext()){
-			Button butt = it.next();
+			//Button butt = it.next();
 			
-			if(butt instanceof RectangleButton)
-				((RectangleButton) butt).setSize(pauseMenuButtonWidth, pauseMenuButtonHeight);
+			//if(butt instanceof RectangleButton)
+			//	((RectangleButton) butt).setSize(pauseMenuButtonWidth, pauseMenuButtonHeight);
+			// TODO
 		}
 	}
 	

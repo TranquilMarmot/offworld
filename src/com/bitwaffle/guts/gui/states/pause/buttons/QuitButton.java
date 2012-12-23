@@ -12,13 +12,16 @@ public class QuitButton extends TextButton {
 	// offset of button from center
 	public static float xOffset = -150.0f, yOffset = -150.0f;
 
-	public QuitButton(PauseGUIState buttMan) {
+	public QuitButton(PauseGUIState state) {
 		super(
 				"Quit",
+				25.0f,
 				(Game.windowWidth / 2.0f) + xOffset,
 				(Game.windowHeight / 2.0f) + yOffset,
-				buttMan.pauseMenuButtonWidth(),
-				buttMan.pauseMenuButtonHeight());
+				state.buttonRows(),
+				state.buttonCols(),
+				state.buttonRowWidth(),
+				state.buttonColHeight());
 	}
 
 	@Override

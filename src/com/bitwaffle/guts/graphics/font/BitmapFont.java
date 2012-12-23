@@ -242,9 +242,7 @@ public class BitmapFont {
 	 * @return Height of string
 	 */
 	public float stringHeight(String string, float scale){
-		int numLines = new StringTokenizer(string, "\n").countTokens() - 1;
-		if(numLines == 0)
-				numLines = 1;
+		int numLines = new StringTokenizer(string, "\n").countTokens();
 		return numLines * FONT_GLYPH_HEIGHT * scale;
 	}
 }

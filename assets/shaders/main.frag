@@ -1,6 +1,6 @@
 #define TRANSPARENCY_MASK vec3(1.0, 0.0, 1.0)
 
-precision mediump float;
+precision highp float;
 uniform vec4 vColor;
 
 varying lowp vec2 vTexCoordOut;
