@@ -103,21 +103,23 @@ public class Player extends BoxEntity implements FirearmHolder,KryoSerializable{
 	@Override
 	public void update(float timeStep){
 		super.update(timeStep);
-		Vector2 linVec = body.getLinearVelocity();
 		
 		// update animation
-		if(body != null && (linVec.x > 0.5f || linVec.x < -0.5f)){
-			// FIXME should the animation speed be defined in the animation's XML?
-			float animationStep = timeStep * Math.abs(linVec.x / 15.0f);
-			legsAnimation.updateAnimation(animationStep);
+		if(body != null){
+			Vector2 linVec = body.getLinearVelocity();
+			if((linVec.x > 0.5f || linVec.x < -0.5f)){
+				// FIXME should the animation speed be defined in the animation's XML?
+				float animationStep = timeStep * Math.abs(linVec.x / 15.0f);
+				legsAnimation.updateAnimation(animationStep);
+			}
+			
+			// update the location of the target so it moves with the player
+			target.x += linVec.x * timeStep;
+			target.y += linVec.y * timeStep;
 		}
 		
 		// update which direction the player is facing
 		facingRight = target.x >= this.location.x;
-		
-		// update the location of the target so it moves with the player
-		target.x += linVec.x * timeStep;
-		target.y += linVec.y * timeStep;
 		
 		// update and shoot pistol
 		if(firearm != null){

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 
-import com.bitwaffle.guts.android.input.TouchHandler;
+import com.bitwaffle.guts.android.input.touch.TouchHandler;
 import com.bitwaffle.guts.graphics.render.Render2D;
 
 /**
