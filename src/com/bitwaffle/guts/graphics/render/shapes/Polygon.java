@@ -7,6 +7,7 @@ import org.lwjgl.util.vector.Vector3f;
 import android.opengl.GLES20;
 
 import com.badlogic.gdx.physics.box2d.Shape;
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.util.MathHelper;
 
@@ -28,13 +29,17 @@ public class Polygon {
 	/** Shape in physics world */
 	private Shape physicsShape;
 	
+	/** Name of texture to bind for drawing */
+	private String textureName;
+	
 	/**
 	 * Create a new polygon
 	 * @param vertices Vertices of polygon
 	 * @param texCoords Texture coordinates of polygon
 	 * @param numIndices Number of indices in polygon
 	 */
-	public Polygon(FloatBuffer vertices, FloatBuffer texCoords, int numIndices, float xScale, float yScale, Shape physicsShape){
+	public Polygon(String textureName, FloatBuffer vertices, FloatBuffer texCoords, int numIndices, float xScale, float yScale, Shape physicsShape){
+		this.textureName = textureName;
 		this.vertBuffer = vertices;
 		this.texCoordBuffer = texCoords;
 		this.numIndices = numIndices;
@@ -54,9 +59,12 @@ public class Polygon {
 		if(texCoordHandle == null)
 			texCoordHandle = renderer.program.getAttribLocation("vTexCoord");
 		
+		// bind texture
+		Game.resources.textures.bindTexture(textureName);
+		
 		// set position info
 		GLES20.glEnableVertexAttribArray(positionHandle);
-        GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false, 0, vertBuffer);
+        GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false,  0, vertBuffer);
         
         // set texture coordinate info
         GLES20.glEnableVertexAttribArray(texCoordHandle);
@@ -78,6 +86,9 @@ public class Polygon {
         GLES20.glDisableVertexAttribArray(texCoordHandle);
 	}
 	
+	/**
+	 * @return Shape to use for this polygon in the physics world
+	 */
 	public Shape getShape(){
 		return physicsShape;
 	}

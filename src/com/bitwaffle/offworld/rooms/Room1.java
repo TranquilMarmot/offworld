@@ -11,16 +11,15 @@ import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.PolygonEntity;
+import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.guts.graphics.render.Render2D;
-import com.bitwaffle.guts.graphics.render.shapes.Polygon;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.util.PhysicsHelper;
-import com.bitwaffle.guts.util.PolygonLoader;
 import com.bitwaffle.offworld.entities.CollisionFilters;
 import com.bitwaffle.offworld.entities.Player;
 import com.bitwaffle.offworld.renderers.Renderers;
-import com.bitwaffle.guts.graphics.camera.Camera;
+//import com.bitwaffle.guts.android.SurfaceView;
 
 public class Room1 extends Room {
 
@@ -87,52 +86,37 @@ public class Room1 extends Room {
 	}
 	
 	private void addTut(Physics physics){
-		Polygon poly = PolygonLoader.loadPolygon("rooms/tut.obj", "rooms/tut-collision.obj", 4.0f, 4.0f);
+		String polygonName = "tut1";
 		int layer = 5;
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.position.set(0.0f, -20.0f);
-		//bodyDef.type = BodyDef.BodyType.StaticBody;
+		bodyDef.type = BodyDef.BodyType.StaticBody;
 		float density = 0.0f;
 		float friction = 1.0f;
 		float restitution = 0.01f;
 		boolean isSensor = false;
-		PolygonEntity tut = new PolygonEntity(poly, layer, bodyDef, density, friction, restitution, isSensor){
-			@Override
-			public void renderPolygon(Render2D renderer){
-				Game.resources.textures.bindTexture("tut");
-				renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
-				super.renderPolygon(renderer);
-			}
-		};
+		PolygonEntity tut = new PolygonEntity(polygonName, layer, bodyDef, density, friction, restitution, isSensor);
 		physics.addDynamicEntity(tut);
 		Render2D.camera.setTarget(tut);
 	}
 	
 	private void addTut2(Physics physics){
-		Polygon poly = PolygonLoader.loadPolygon("rooms/tut2.obj", "rooms/tut2-collision.obj", 4.0f, 4.0f);
+		String polygonName = "tut2";
 		int layer = 5;
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.position.set(2.0f, -20.0f);
-		//bodyDef.type = BodyDef.BodyType.StaticBody;
+		bodyDef.type = BodyDef.BodyType.StaticBody;
 		float density = 0.0f;
 		float friction = 1.0f;
 		float restitution = 0.01f;
 		boolean isSensor = false;
-		PolygonEntity tut = new PolygonEntity(poly, layer, bodyDef, density, friction, restitution, isSensor){
-			@Override
-			public void renderPolygon(Render2D renderer){
-				Game.resources.textures.bindTexture("tut");
-				renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
-				super.renderPolygon(renderer);
-			}
-		};
+		PolygonEntity tut = new PolygonEntity(polygonName, layer, bodyDef, density, friction, restitution, isSensor);
 		physics.addDynamicEntity(tut);
 		Render2D.camera.setTarget(tut);
 	}
 
 	@Override
 	public void removeFromWorld(Physics physics) {
-		// TODO Auto-generated method stub
 		
 	}
 	

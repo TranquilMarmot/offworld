@@ -132,18 +132,17 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
     	previousTime = Game.getTime();
     	
-		resources.init();
-		
-        render2D = new Render2D();
-        
         /*
          * Only initialize physics engine if it doesn't exist yet
          * Whenever the screen's orientation is called, the WHOLE application
          * starts over- so physics can get re-initialized if we're not careful.
          */
-        if(physics == null){
+        if(physics == null)
         	physics = new Physics();
-        }
+    	
+		resources.init();
+		
+        render2D = new Render2D();
         
         gui = new GUI();
         gui.setCurrentState(GUI.States.TITLESCREEN);

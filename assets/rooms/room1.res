@@ -23,16 +23,18 @@
 	"polygons": [
 		{
 			"name":	"tut1",
-			"renderobj":	"rooms/tut.obj",
-			"geomobj":	"rooms/tut-collision.obj",
-			"texture":	"tut"
+			"render":	"rooms/tut.obj",
+			"geom":	"rooms/tut-collision.obj",
+			"texture":	"tut",
+			"scale":	4.0
 		},
 	
 		{
 			"name":	"tut2",
-			"renderobj":	"rooms/tut2.obj",
-			"geomobj":	"rooms/tut2-collision.obj",
-			"texture":	"tut"
+			"render":	"rooms/tut2.obj",
+			"geom":	"rooms/tut2-collision.obj",
+			"texture":	"tut",
+			"scale":	4.0
 		}
 	]
 }}

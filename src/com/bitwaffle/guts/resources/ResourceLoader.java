@@ -17,10 +17,12 @@ import android.opengl.GLUtils;
 import android.util.Log;
 
 import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.graphics.render.shapes.Polygon;
 import com.bitwaffle.guts.resources.textures.SubImage;
 import com.bitwaffle.guts.resources.textures.animation.Animation;
 import com.bitwaffle.guts.resources.textures.animation.Frame;
 import com.bitwaffle.guts.util.BufferUtils;
+import com.bitwaffle.guts.util.PolygonLoader;
 
 /**
  * Loads a resource file and initializes resources
@@ -98,9 +100,14 @@ public class ResourceLoader {
 			if(animations != null)
 				parseAnimationArray(animations);
 			
+			// parse sounds
 			JSONArray sounds = resources.optJSONArray("sounds");
 			if(sounds != null)
 				parseSoundArray(sounds);
+			
+			JSONArray polygons = resources.optJSONArray("polygons");
+			if(polygons != null)
+				parsePolygonArray(polygons);
 			
 		} catch (JSONException e) {
 			Log.e(LOGTAG, "Got invalid resources file! Doesn't begin with \"resources\" object!");
@@ -344,6 +351,37 @@ public class ResourceLoader {
 			}
 		} catch(JSONException e){
 			Log.e(LOGTAG, "Error parsing sound array in resource file!");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * @param arr Array of polygons to initialize
+	 */
+	private static void parsePolygonArray(JSONArray arr){
+		try{
+			for(int i = 0; i < arr.length(); i++){
+				JSONObject polyObj = arr.getJSONObject(i);
+				
+				String polyName = polyObj.getString("name");
+				String renderPath = polyObj.getString("render");
+				String geomPath = polyObj.getString("geom");
+				String polyTex = polyObj.getString("texture");
+				float xScale, yScale;
+				double polyScale = polyObj.optDouble("scale");
+				if(polyScale == Double.NaN){
+					xScale = (float)polyObj.getDouble("xScale");
+					yScale = (float)polyObj.getDouble("yScale");
+				} else {
+					xScale = (float)polyScale;
+					yScale = (float)polyScale;
+				}
+				
+				Polygon poly = PolygonLoader.loadPolygon(renderPath, geomPath, xScale, yScale, polyTex);
+				Game.resources.polygons.addPolygon(polyName, poly);
+			}
+		} catch(JSONException e){
+			Log.e(LOGTAG, "Error parsing geometry array in resource file!");
 			e.printStackTrace();
 		}
 	}

@@ -161,7 +161,6 @@ public class BitmapFont {
 		
 		// this gets advanced with every character drawn and reset to 0 on newlines
 		float xOffset = FONT_GLYPH_WIDTH * scale;
-		//float xOffset = 0.0f;
 		// in case we hit any newlines
 		int lineNum = 0;
 		
@@ -181,7 +180,7 @@ public class BitmapFont {
 			if(index < 0)
 				continue;
 			
-			// scale and move the modelview to get to the char's location
+			// scale and move the modelview to translate to the char's location
 			renderer.modelview.setIdentity();
 			renderer.modelview.translate(new Vector3f(x + xOffset, y + ((BitmapFont.FONT_GLYPH_HEIGHT * 2.0f) * scale * lineNum), 0.0f));
 			renderer.modelview.scale(new Vector3f(scale, scale, 1.0f));

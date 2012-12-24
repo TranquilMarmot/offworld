@@ -43,6 +43,8 @@ public class Resources {
 	/** Sound manager */
 	public SoundManager sounds;
 	
+	/** Polygon manager */
+	public PolygonManager polygons;
 
 	
 	/**
@@ -60,6 +62,7 @@ public class Resources {
 	public void init(){
 		textures = new TextureManager();
 		sounds = new SoundManager();
+		polygons = new PolygonManager();
 		ResourceLoader.loadResourceFile("base.res");
 	}
 	
