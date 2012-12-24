@@ -167,12 +167,12 @@ public class GameSaver {
 					SurfaceView.touchHandler.setPlayer(Game.player);
 				}
 				
-				// Adding to physics with addDynamicEntity() calls the entity's init()
-				// method before adding it to the world
+				// Adding to DynamicEntity to physics makes it so that it calls the entity's init()
+				// method before adding it to the world (if added as an Entity, init() is skipped)
 				if(object instanceof DynamicEntity)
-					physics.addDynamicEntity((DynamicEntity) reg.getType().cast(object));
+					physics.addEntity((DynamicEntity) reg.getType().cast(object), true);
 				else if(object instanceof Entity)
-					physics.addEntity((Entity)object);
+					physics.addEntity((Entity)object, true);
 				else
 					Log.e(LOGTAG, "Encountered unknown class! " + object.getClass().getName());
 			}

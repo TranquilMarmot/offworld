@@ -1,6 +1,7 @@
 package com.bitwaffle.guts.entities.passive;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.esotericsoftware.kryo.Kryo;
@@ -42,7 +43,7 @@ public class Decal extends Entity{
 		// update timer and set remove flag if done
 		timeLived += timeStep;
 		if(timeLived >= timeToLive)
-			this.removeFlag = true;
+			Game.physics.removeEntity(this, true);
 	}
 	
 	@Override

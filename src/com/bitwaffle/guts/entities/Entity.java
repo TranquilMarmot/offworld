@@ -29,9 +29,6 @@ public class Entity implements KryoSerializable{
 	/** Current rotation of entity (in radians) */
 	protected float angle;
 	
-	/** If this gets set to true, the entity is removed ASAP */
-	public boolean removeFlag = false;
-	
 	/** What layer the entity gets rendered on */
 	private int layer;
 	

@@ -23,9 +23,9 @@ public class ContactHandler implements ContactListener, ContactFilter{
 		
 		// bullet collision
 		if(entA instanceof Bullet)
-			Bullet.bulletCollision(contact, (Bullet)entA, entB);
+			((Bullet)entA).collision(contact, entB);
 		else if(entB instanceof Bullet)
-			Bullet.bulletCollision(contact, (Bullet)entB, entA);
+			((Bullet)entB).collision(contact, entA);
 	}
 
 	public void endContact(Contact contact) {

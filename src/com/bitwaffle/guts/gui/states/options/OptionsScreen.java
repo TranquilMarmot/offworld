@@ -53,13 +53,13 @@ public class OptionsScreen extends GUIState {
 	public void gainCurrentState(){
 		super.gainCurrentState();
 		
-		Game.physics.addEntity(sandbox);
+		Game.physics.addEntity(sandbox, false);
 	}
 	
 	@Override
 	public void loseCurrentState(){
 		super.loseCurrentState();
 		
-		Game.physics.removeEntity(sandbox);
+		Game.physics.removeEntity(sandbox, false);
 	}
 }

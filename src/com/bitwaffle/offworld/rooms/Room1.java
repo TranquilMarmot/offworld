@@ -4,53 +4,26 @@ import java.util.Random;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.android.Game;
-import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.entities.Room;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.PolygonEntity;
-import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.util.PhysicsHelper;
-import com.bitwaffle.offworld.entities.CollisionFilters;
-import com.bitwaffle.offworld.entities.Player;
 import com.bitwaffle.offworld.renderers.Renderers;
-//import com.bitwaffle.guts.android.SurfaceView;
 
 public class Room1 extends Room {
-
-	@Override
-	public void addToWorld(Physics physics) {
-		addTut(physics);
-		addTut2(physics);
+	private static float minX = -10.0f, maxX = 10.0f, minY = -10.0f, maxY = 10.0f;
+	
+	
+	public Room1(){
+		super(minX, maxX, minY, maxY);
 		
-		// player
-		BodyDef playerBodyDef = new BodyDef();
-		playerBodyDef.type = BodyDef.BodyType.DynamicBody;
-		playerBodyDef.position.set(1.0f, -30.0f);
-		
-		PolygonShape boxShape = new PolygonShape();
-		boxShape.setAsBox(0.83062f, 1.8034f);
-		
-		FixtureDef playerFixture = new FixtureDef();
-		playerFixture.shape = boxShape;
-		playerFixture.density = 1.0f;
-		playerFixture.friction = 0.3f;
-		playerFixture.restitution = 0.0f;
-		playerFixture.filter.categoryBits = CollisionFilters.PLAYER;
-		playerFixture.filter.maskBits = CollisionFilters.EVERYTHING;
-		
-		Game.player = new Player(Renderers.PLAYER.renderer, 6, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
-		physics.addDynamicEntity(Game.player);
-		Render2D.camera.setTarget(Game.player);
-		Render2D.camera.setMode(Camera.Modes.FOLLOW);
-		Render2D.camera.setLocation(Game.player.getLocation());
-		SurfaceView.touchHandler.setPlayer(Game.player);
-		//Game.mouse.setPlayer(Game.player);
+		this.addEntity(tut1());
+		this.addEntity(tut2());
 		
 		EntityRenderer backdropRenderer = new EntityRenderer(){
 			@Override
@@ -63,13 +36,12 @@ public class Room1 extends Room {
 		};
 		
 		Entity backdrop = new Entity(backdropRenderer, 1, new Vector2(0.0f, -22.0f));
-		physics.addEntity(backdrop);
+		this.addEntity(backdrop);
 		
 		Entity staticbackdrop = new Entity(Renderers.BACKDROP.renderer, 0);
-		physics.addEntity(staticbackdrop);
+		this.addEntity(staticbackdrop);
 		
-		
-		physics.addEntity(new Entity(){
+		this.addEntity(new Entity(){
 			@Override
 			public void update(float timeStep){
 		    	if(Game.physics.numEntities() < 50){
@@ -82,10 +54,13 @@ public class Room1 extends Room {
 			}
 		});
 		
-		temp1(physics);
+		temp();
+		
+		this.update(1.0f / 60.0f);
 	}
 	
-	private void addTut(Physics physics){
+	private PolygonEntity tut1(){
+		// TODO this could totally all just be in JSON
 		String polygonName = "tut1";
 		int layer = 5;
 		BodyDef bodyDef = new BodyDef();
@@ -96,11 +71,10 @@ public class Room1 extends Room {
 		float restitution = 0.01f;
 		boolean isSensor = false;
 		PolygonEntity tut = new PolygonEntity(polygonName, layer, bodyDef, density, friction, restitution, isSensor);
-		physics.addDynamicEntity(tut);
-		Render2D.camera.setTarget(tut);
+		return tut;
 	}
 	
-	private void addTut2(Physics physics){
+	private PolygonEntity tut2(){
 		String polygonName = "tut2";
 		int layer = 5;
 		BodyDef bodyDef = new BodyDef();
@@ -111,16 +85,16 @@ public class Room1 extends Room {
 		float restitution = 0.01f;
 		boolean isSensor = false;
 		PolygonEntity tut = new PolygonEntity(polygonName, layer, bodyDef, density, friction, restitution, isSensor);
-		physics.addDynamicEntity(tut);
-		Render2D.camera.setTarget(tut);
+		return tut;
 	}
 
 	@Override
-	public void removeFromWorld(Physics physics) {
-		
-	}
+	public void onAddToWorld(Physics physics) {}
+
+	@Override
+	public void onRemoveFromWorld(Physics physics) {}
 	
-	private void temp1(Physics physics){
+	private void temp(){
 		class Ground {
 			float x, y, width, height;
 			
@@ -154,7 +128,7 @@ public class Room1 extends Room {
 			bodyDef.position.set(g.x, g.y);
 			
 			BoxEntity ground = new BoxEntity(Renderers.BOX.renderer, 4, bodyDef, g.width, g.height, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
-			physics.addDynamicEntity(ground);
+			this.addEntity(ground);
 		}
 	}
 }

@@ -2,6 +2,7 @@ package com.bitwaffle.offworld.entities.dynamic;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.offworld.interfaces.Health;
@@ -47,7 +48,7 @@ public class DestroyableBox extends BoxEntity implements Health, KryoSerializabl
 	public void hurt(int amount) {
 		health -= amount;
 		if(health <= 0)
-			this.removeFlag = true;
+			Game.physics.removeEntity(this, true);
 	}
 
 

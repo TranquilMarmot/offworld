@@ -118,7 +118,7 @@ public class PhysicsHelper {
 			}
 		};
 		
-		physics.addDynamicEntity(circ);
+		physics.addEntity(circ, true);
 	}
 	
 	/**
@@ -168,18 +168,45 @@ public class PhysicsHelper {
 				this.body.setLinearVelocity(linX, linY);
 			}
 		};
-		physics.addDynamicEntity(box);
+		physics.addEntity(box, true);
 	}
 	
 	public static void temp(Physics physics){
+		initPlayer(physics);
 		Room1 r1 = new Room1();
-		r1.addToWorld(physics);
+		physics.setCurrentRoom(r1);
+	}
+	
+	private static void initPlayer(Physics physics){
+		// player
+		BodyDef playerBodyDef = new BodyDef();
+		playerBodyDef.type = BodyDef.BodyType.DynamicBody;
+		playerBodyDef.position.set(1.0f, -30.0f);
+		
+		PolygonShape boxShape = new PolygonShape();
+		boxShape.setAsBox(0.83062f, 1.8034f);
+		
+		FixtureDef playerFixture = new FixtureDef();
+		playerFixture.shape = boxShape;
+		playerFixture.density = 1.0f;
+		playerFixture.friction = 0.3f;
+		playerFixture.restitution = 0.0f;
+		playerFixture.filter.categoryBits = CollisionFilters.PLAYER;
+		playerFixture.filter.maskBits = CollisionFilters.EVERYTHING;
+		
+		Game.player = new Player(Renderers.PLAYER.renderer, 6, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
+		physics.addEntity(Game.player, false);
+		Render2D.camera.setTarget(Game.player);
+		Render2D.camera.setMode(Camera.Modes.FOLLOW);
+		Render2D.camera.setLocation(Game.player.getLocation());
+		SurfaceView.touchHandler.setPlayer(Game.player);
+		//Game.mouse.setPlayer(Game.player);
 	}
 	
 	public static void temp1(Physics physics){
 		// backdrop
 		Entity backdrop = new Entity(Renderers.BACKDROP.renderer, 0);
-		physics.addEntity(backdrop);
+		physics.addEntity(backdrop, false);
 		
 		// player
 		BodyDef playerBodyDef = new BodyDef();
@@ -198,11 +225,11 @@ public class PhysicsHelper {
 		playerFixture.filter.maskBits = CollisionFilters.EVERYTHING;
 		
 		Game.player = new Player(Renderers.PLAYER.renderer, 6, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
-		physics.addDynamicEntity(Game.player);
+		physics.addEntity(Game.player, false);
 		Render2D.camera.setTarget(Game.player);
 		Render2D.camera.setMode(Camera.Modes.FOLLOW);
 		Render2D.camera.setLocation(Game.player.getLocation());
-		SurfaceView.touchHandler.setPlayer(Game.player);
+		//SurfaceView.touchHandler.setPlayer(Game.player);
 		
 		
 		class Ground {
@@ -238,7 +265,7 @@ public class PhysicsHelper {
 			bodyDef.position.set(g.x, g.y);
 			
 			BoxEntity ground = new BoxEntity(Renderers.BOX.renderer, 4, bodyDef, g.width, g.height, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
-			physics.addDynamicEntity(ground);
+			physics.addEntity(ground, false);
 		}
 		
 		/*
@@ -263,14 +290,14 @@ public class PhysicsHelper {
 	public static void temp2(Physics physics){
 		// backdrop
 		Entity backdrop = new Entity(Renderers.BACKDROP.renderer, 0);
-		physics.addEntity(backdrop);
+		physics.addEntity(backdrop, false);
 		
 		// ground
 		BodyDef groundBodyDef = new BodyDef();
 		groundBodyDef.position.set(0.0f, -30.0f);
 		
 		BoxEntity ground = new BoxEntity(Renderers.BOX.renderer, 5, groundBodyDef, 1000.0f, 1.0f, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
-		physics.addDynamicEntity(ground);
+		physics.addEntity(ground, false);
 		
 		// player
 		BodyDef playerBodyDef = new BodyDef();
@@ -289,7 +316,7 @@ public class PhysicsHelper {
 		playerFixture.filter.maskBits = CollisionFilters.EVERYTHING;
 		
 		Game.player = new Player(Renderers.PLAYER.renderer, 6, playerBodyDef, 0.83062f, 1.8034f, playerFixture);
-		physics.addDynamicEntity(Game.player);
+		physics.addEntity(Game.player, false);
 		Render2D.camera.setTarget(Game.player);
 		//SurfaceView.touchHandler.setPlayer(Game.player);
 		

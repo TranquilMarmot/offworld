@@ -69,7 +69,7 @@ public class Pistol implements Firearm {
 			float angle = MathHelper.angle(ownerLoc, target);
 			Vector2 loc = owner.getFirearmLocation();
 			Bullet bullet = new Bullet(this.owner.getFirearmOwningEntity(), loc.x, loc.y, angle, SPEED);
-			Game.physics.addDynamicEntity(bullet);
+			Game.physics.addEntity(bullet, true);
 			
 			// reset shot timer
 			timeSinceLastShot = 0.0f;

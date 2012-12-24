@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.GdxNativesLoader;
 import com.bitwaffle.guts.entities.Entities;
 import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.entities.Room;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.physics.callbacks.FirstHitQueryCallback;
@@ -22,6 +23,9 @@ import com.bitwaffle.guts.physics.callbacks.FirstHitQueryCallback;
 public class Physics {
 	/** World that everything is in */
 	private World world;
+	
+	/** The current room */
+	private Room currentRoom;
 	
 	/** Entities in the world */
 	private Entities entities;
@@ -76,6 +80,28 @@ public class Physics {
 	}
 	
 	/**
+	 * Set the current room in the Physics world
+	 * @param newRoom New room
+	 */
+	public void setCurrentRoom(Room newRoom){
+		if(currentRoom != null)
+			currentRoom.removeFromWorld(this);
+		
+		if(newRoom != null)
+			newRoom.addToWorld(this);
+		
+		currentRoom = newRoom;
+	}
+	
+	
+	/**
+	 * @return The current room
+	 */
+	public Room currentRoom(){
+		return currentRoom;
+	}
+	
+	/**
 	 * Steps the physics simulation and updates every entity's location
 	 */
 	public void update(float timeStep){
@@ -83,8 +109,15 @@ public class Physics {
 		while(!toInitialize.isEmpty())
 			toInitialize.pop().init(world);
 
+		// this makes everything move around
 		world.step(timeStep, velocityIterations, positionIterations);
+		
+		// this actually calls each entity's update() method
 		entities.update(timeStep);
+		
+		// this updates any entities added/removed to the current room
+		if(currentRoom != null)
+			currentRoom.update(timeStep);
 	}
 	
 	/**
@@ -93,32 +126,58 @@ public class Physics {
 	 * if something is using an iterator from this physics class.
 	 */
 	public void clearWorld(){
-		entities.clear();
+		clearEntities();
 		initWorld();	
 	}
 	
-	/**
-	 * Add a DynamicEntity to the Physics world
-	 * @param ent Entity to add
-	 */
-	public void addDynamicEntity(DynamicEntity ent){
-		entities.addEntity(ent);
-		toInitialize.push(ent);
+	private void clearEntities(){
+		// get rid of the current room
+		if(currentRoom != null){
+			currentRoom.removeFromWorld(this);
+			currentRoom = null;
+		}
+		
+		// remove every entity, so that cleanup() gets called
+		for(Iterator<Entity> it : entities.getAllIterators()){
+			while(it.hasNext())
+				this.removeEntity(it.next(), false);
+		}
+		
+		// update so entities actually get removed/have cleanup() called
+		this.update(1.0f / 60.0f);
+		
+		// actually clear the arraylists
+		entities.clear();
 	}
 	
 	/**
+	 * Directly remove an entity from the world
 	 * @param ent Entity to remove from world
+	 * @param removeFromCurrentRoom Whether or not to remove the entity from the current room as well (generally, yes)
 	 */
-	public void removeEntity(Entity ent){
+	public void removeEntity(Entity ent, boolean removeFromCurrentRoom){
 		entities.removeEntity(ent);
+		
+		// remove from current room as well
+		if(removeFromCurrentRoom && currentRoom != null)
+			currentRoom.removeEntity(ent);
 	}
 	
 	/**
 	 * Add a passive Entity to the Entities list
 	 * @param ent Entity to add
+	 * @param addToCurrentRoom Whether or not to add the entity to the current room as well (if added, it gets removed on room change)
 	 */
-	public void addEntity(Entity ent){
+	public void addEntity(Entity ent, boolean addToCurrentRoom){
 		entities.addEntity(ent);
+		
+		// add to current room as well, if told to
+		if(addToCurrentRoom && currentRoom != null)
+			currentRoom.addEntity(ent);
+		
+		// DynamicEntity needs to be initialized when it's added
+		if(ent instanceof DynamicEntity)
+			toInitialize.push((DynamicEntity)ent);
 	}
 	
 	/**

@@ -51,7 +51,8 @@ public class Entities {
 	 * @param ent
 	 */
 	public void removeEntity(Entity ent){
-		toRemove.add(ent);
+		if(!toRemove.contains(ent))
+			toRemove.add(ent);
 	}
 	
 	/**
@@ -59,10 +60,6 @@ public class Entities {
 	 * @param timeStep Amount of time passed since last update
 	 */
 	public void update(float timeStep){
-		// check for any entities to be removed
-		while(!toRemove.isEmpty())
-			cleanup(toRemove.pop());
-		
 		// check for any entities to be added
 		while(!toAdd.isEmpty())
 			init(toAdd.pop());
@@ -70,6 +67,12 @@ public class Entities {
 		// update all entities
 		for(EntityArrayList list : layers)
 			updateEntityArrayList(list, timeStep);
+		
+		// check for any entities to be removed
+		while(!toRemove.isEmpty()){
+			Entity ent = toRemove.pop();
+			cleanup(ent);
+		}
 	}
 	
 	/**
@@ -107,14 +110,9 @@ public class Entities {
 	 * @param timeStep 
 	 */
 	private void updateEntityArrayList(EntityArrayList list, float timeStep){
-		for(Entity ent : list){
-			if(ent != null){
-				if(ent.removeFlag)
-					this.removeEntity(ent);
-				else
-					ent.update(timeStep);
-			}
-		}
+		for(Entity ent : list)
+			if(ent != null)
+				ent.update(timeStep);
 	}
 	
 	/**

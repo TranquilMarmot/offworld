@@ -94,10 +94,9 @@ public class Bullet extends BoxEntity {
 	 * @param bullet Bullet entity
 	 * @param hit What the bullet is hitting
 	 */
-	public static void bulletCollision(Contact contact, Bullet bullet, DynamicEntity hit){
-		bullet.removeFlag = true;
+	public void collision(Contact contact, DynamicEntity hit){
 		if(hit instanceof Health)
-			((Health)hit).hurt(bullet.getDamage());
+			((Health)hit).hurt(this.getDamage());
 		
 		Vector2 point = contact.getWorldManifold().getPoints()[0];
 		Vector2 normal = contact.getWorldManifold().getNormal();
@@ -108,7 +107,10 @@ public class Bullet extends BoxEntity {
 				5,
 				point,
 				MathHelper.toRadians(normal.angle()),
-				0.1f)
+				0.1f),
+				true
 		);
+		
+		Game.physics.removeEntity(this, true);
 	}
 }
