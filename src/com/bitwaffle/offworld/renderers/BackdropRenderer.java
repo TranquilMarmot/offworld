@@ -16,24 +16,27 @@ import com.bitwaffle.guts.util.MathHelper;
  */
 public class BackdropRenderer implements EntityRenderer{
 	private float windowWidth = 0.0f, windowHeight = 0.0f;
-	private float worldSizeX, worldSizeY;
+	
+	private Vector2 worldSize;
+	
+	public BackdropRenderer(){
+		worldSize = new Vector2();
+	}
 	
 	public void render(Render2D renderer, Entity ent, boolean renderDebug){
 		if(windowWidth != Game.windowWidth || windowHeight != Game.windowHeight){
 			windowWidth = Game.windowWidth;
 			windowHeight = Game.windowHeight;
-			Vector2 worldSize = MathHelper.toWorldSpace(windowWidth / 2, windowHeight / 2);
-			worldSizeX = worldSize.x;
-			worldSizeY = worldSize.y;
+			MathHelper.toWorldSpace(worldSize, windowWidth / 2, windowHeight / 2);
 		}
 		
 		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
 		
 		renderer.modelview.setIdentity();
-		renderer.modelview.translate(new Vector3f(worldSizeX, worldSizeY, 0.0f));
+		renderer.modelview.translate(new Vector3f(worldSize.x, worldSize.y, 0.0f));
 		renderer.sendModelViewToShader();
 		
 		Game.resources.textures.bindTexture("background");
-		renderer.quad.render(worldSizeX, worldSizeY, true, true);
+		renderer.quad.render(worldSize.x, worldSize.y, true, true);
 	}
 }

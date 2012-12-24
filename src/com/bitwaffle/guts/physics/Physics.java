@@ -130,6 +130,10 @@ public class Physics {
 		initWorld();	
 	}
 	
+	/**
+	 * Calls every entity's cleanup() method and then
+	 * clears all the lists inside of entities.
+	 */
 	private void clearEntities(){
 		// get rid of the current room
 		if(currentRoom != null){

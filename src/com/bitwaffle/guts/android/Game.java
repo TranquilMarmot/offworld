@@ -113,6 +113,7 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
         Display display = getWindowManager().getDefaultDisplay();
         Game.windowWidth = display.getWidth();
         Game.windowHeight = display.getHeight();
+    	Game.aspect = (float)  Game.windowWidth /  (float) Game.windowHeight;
         
        // getResources().getDisplayMetrics().
 
@@ -240,6 +241,9 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
     	windowWidth = width;
     	aspect = (float) width /  (float) height;
         GLES20.glViewport(0, 0, width, height);
+        
+        if(Render2D.camera != null)
+        	Render2D.camera.updateWorldWindowSize();
     }
     
     @Override

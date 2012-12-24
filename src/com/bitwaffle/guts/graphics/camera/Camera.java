@@ -1,11 +1,16 @@
 package com.bitwaffle.guts.graphics.camera;
 
+import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector3f;
+
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.camera.modes.CameraMode;
 import com.bitwaffle.guts.graphics.camera.modes.FollowMode;
 import com.bitwaffle.guts.graphics.camera.modes.FreeMode;
+import com.bitwaffle.guts.util.MathHelper;
 
 /**
  * Describes how a scene should be rendered and handles following a given entity
@@ -14,7 +19,7 @@ import com.bitwaffle.guts.graphics.camera.modes.FreeMode;
  */
 public class Camera extends Entity {
 	/** Initial values for camera */
-	private static final float DEFAULT_CAMX = 0.0f, DEFAULT_CAMY = -25.0f, DEFAULT_CAMZ = 0.05f;
+	private static final float DEFAULT_CAMX = 0.0f, DEFAULT_CAMY = 0.0f, DEFAULT_CAMZ = 0.04f;
 	
 	/** Current zoom level of camera (smaller it is, the smaller everything will be rendered) */
 	private float zoom;
@@ -24,6 +29,15 @@ public class Camera extends Entity {
 	
 	/** Current camera mode */
 	private Modes currentMode = Modes.FOLLOW;
+	
+	/** Used to determine how much of the screen the camera can see */
+	private Matrix4f projection, view;
+	
+	/** How much of the world the camera can see */
+	private Vector2 worldWindowSize;
+	
+	/** Vectors that get reused for maths */
+	private Vector2 prevWorldWindowSize, tempVec;
 	
 	/**
 	 * Different camera modes
@@ -57,6 +71,11 @@ public class Camera extends Entity {
 	 */
 	public Camera(){
 		super();
+		projection = new Matrix4f();
+		view = new Matrix4f();
+		worldWindowSize = new Vector2();
+		prevWorldWindowSize = new Vector2();
+		tempVec = new Vector2();
 		this.setLocation(new Vector2(DEFAULT_CAMX, DEFAULT_CAMY));
 		this.setZoom(DEFAULT_CAMZ);
 		
@@ -80,13 +99,37 @@ public class Camera extends Entity {
 	 * Set the zoom level
 	 * @param zoom New zoom level
 	 */
-	public void setZoom(float zoom){		
+	public void setZoom(float zoom){
 		if(zoom > maxZoom)
 			this.zoom = maxZoom;
 		else if(zoom < minZoom)
 			this.zoom = minZoom;
 		else
 			this.zoom = zoom;
+		prevWorldWindowSize.set(worldWindowSize);
+		
+		// update window size, since we zoomed
+		updateWorldWindowSize();
+		
+		// make it so the camera zooms in to the middle
+		this.location.x += worldWindowSize.x - prevWorldWindowSize.x;
+		this.location.y += worldWindowSize.y - prevWorldWindowSize.y; 
+	}
+	
+	/**
+	 * Updates worldWindowSize to represent the latest state of everything
+	 */
+	public void updateWorldWindowSize(){
+		projection.setIdentity();
+		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1);
+		
+		view.setIdentity();
+		Matrix4f.scale(new Vector3f(this.zoom, this.zoom, 1.0f), view, view);
+		
+		// don't ask, that's just how it works, okay?
+		MathHelper.toWorldSpace(worldWindowSize, projection, view, (Game.windowWidth / 2.0f), 0.0f);
+		MathHelper.toWorldSpace(tempVec, projection, view, 0.0f,  (Game.windowHeight / 2.0f));
+		worldWindowSize.sub(tempVec);
 	}
 	
 	
@@ -117,6 +160,10 @@ public class Camera extends Entity {
 	 */
 	public DynamicEntity getTarget() {
 		return ((FollowMode)Modes.FOLLOW.getMode()).getTarget();
+	}
+	
+	public Vector2 getWorldWindowSize(){
+		return worldWindowSize;
 	}
 	
 	@Override

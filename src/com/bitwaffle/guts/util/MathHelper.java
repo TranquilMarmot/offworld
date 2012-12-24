@@ -1,9 +1,9 @@
 package com.bitwaffle.guts.util;
 
 import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
-import android.util.FloatMath;
 import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
@@ -20,6 +20,9 @@ import com.bitwaffle.guts.graphics.camera.Camera;
 public class MathHelper {
 	/** No pie jokes here */
 	public static final float PI = 3.141592653589793238462f;
+	
+	private static float[] outPoint = new float[4];
+	private static Matrix4f projection = new Matrix4f(), view = new Matrix4f(); // (no 'model' since we're not looking at anything specific)
 	
 	/**
 	 * Find an angle between two vectors
@@ -42,9 +45,9 @@ public class MathHelper {
 	 * @return Distance between points
 	 */
 	public static float spacing(float x0, float y0, float x1, float y1){
-		float x = x0 - x1;
-		float y = y0 - y1;
-		return FloatMath.sqrt(x * x + y * y);
+		double x = (double)x0 - (double)x1;
+		double y = (double)y0 - (double)y1;
+		return (float) Math.sqrt(x * x + y * y);
 	}
 	
 	/**
@@ -90,7 +93,7 @@ public class MathHelper {
 	 * @param screenY Y of screen space vector
 	 * @return Screen-space coordinate translated to world-space
 	 */
-	public static Vector2 toWorldSpace(Matrix4f projection, Matrix4f view, float screenX, float screenY){
+	public static void toWorldSpace(Vector2 out, Matrix4f projection, Matrix4f view, float screenX, float screenY){
 		// used to multiply projection * view
 		Matrix4f compoundMatrix = new Matrix4f();
 		
@@ -110,25 +113,39 @@ public class MathHelper {
 		normalizedInPoint[3] = 1.0f;
 		
 		// multiply normalized point by our inverted view-projection matrix
-		float[] outPoint = multiplyVectorByMatrix(normalizedInPoint, compoundMatrix);
-		//Matrix.multiplyMV(outPoint, 0, compoundMatrix, 0, normalizedInPoint, 0);
+		multiplyVectorByMatrix(outPoint, normalizedInPoint, compoundMatrix);
 
 		if (outPoint[3] == 0.0f)
-			Log.e("Math","Divide by zero error in screen space to world space conversion!");
+			Log.e("MathHelper", "Divide by zero error in screen space to world space conversion!");
 
 		// some sort of magic or something
-		return new Vector2(outPoint[0] / outPoint[3], outPoint[1] / outPoint[3]);
+		out.set(outPoint[0] / outPoint[3], outPoint[1] / outPoint[3]);
 	}
 	
-	public static float[] multiplyVectorByMatrix(float[] inPoint, Matrix4f matrix){
-		float[] result = new float[4];
-		
-		result[0] = (matrix.m00 * inPoint[0]) + (matrix.m10 * inPoint[1]) + (matrix.m20 * inPoint[2]) + (matrix.m30 * inPoint[3]);
-		result[1] = (matrix.m01 * inPoint[0]) + (matrix.m11 * inPoint[1]) + (matrix.m21 * inPoint[2]) + (matrix.m31 * inPoint[3]);
-		result[2] = (matrix.m02 * inPoint[0]) + (matrix.m12 * inPoint[1]) + (matrix.m22 * inPoint[2]) + (matrix.m32 * inPoint[3]);
-		result[3] = (matrix.m03 * inPoint[0]) + (matrix.m13 * inPoint[1]) + (matrix.m23 * inPoint[2]) + (matrix.m33 * inPoint[3]);
-
+	/**
+	 * Simply creates a new vector and calls the toWorldSpace method with it.
+	 * It's preferred that you re-use the same vector with each call but
+	 * do what you gotta do
+	 */
+	public static Vector2 toWorldSpace(float screenX, float screenY, Camera camera){
+		Vector2 result = new Vector2();
+		toWorldSpace(result, screenX, screenY, camera);
 		return result;
+	}
+	
+	/**
+	 * Multiply a 4-element vector by a 4x4 matrix
+	 * @param dest Where to put the result (must have length of 4)
+	 * @param inPoint Vector to multiply
+	 * @param matrix Matrix to multiply vector y
+	 */
+	public static void multiplyVectorByMatrix(float[] dest, float[] inPoint, Matrix4f matrix){
+		if(dest.length != 4)
+			Log.e("MathHelper", "Destination array not of length 4");
+		dest[0] = (matrix.m00 * inPoint[0]) + (matrix.m10 * inPoint[1]) + (matrix.m20 * inPoint[2]) + (matrix.m30 * inPoint[3]);
+		dest[1] = (matrix.m01 * inPoint[0]) + (matrix.m11 * inPoint[1]) + (matrix.m21 * inPoint[2]) + (matrix.m31 * inPoint[3]);
+		dest[2] = (matrix.m02 * inPoint[0]) + (matrix.m12 * inPoint[1]) + (matrix.m22 * inPoint[2]) + (matrix.m32 * inPoint[3]);
+		dest[3] = (matrix.m03 * inPoint[0]) + (matrix.m13 * inPoint[1]) + (matrix.m23 * inPoint[2]) + (matrix.m33 * inPoint[3]);
 	}
 	
 	/**
@@ -139,11 +156,7 @@ public class MathHelper {
 	 * @param camera Camera to translate to
 	 * @return Screen-space coordinate translated to world-space
 	 */
-	public static Vector2 toWorldSpace(float screenX, float screenY, Camera camera){
-		Matrix4f 
-			projection = new Matrix4f(), 
-			view = new Matrix4f(); // (no 'model' since we're not looking at anything specific)
-		
+	public static void toWorldSpace(Vector2 out, float screenX, float screenY, Camera camera){
 		// create the projection matrix (mimics Render2D's "setUpProjectionWorldCoords" method)
 		projection.setIdentity();
 		orthoM(projection, 0, Game.aspect, 0, 1, -1, 1);
@@ -155,10 +168,10 @@ public class MathHelper {
 		if(camera != null){
 			Matrix4f.rotate(camera.getAngle(), new Vector3f(0.0f, 0.0f, 1.0f), projection, projection);
 			Matrix4f.scale(new Vector3f(camera.getZoom(), camera.getZoom(), 1.0f), view, view);
-			Matrix4f.translate(new Vector3f(camera.getLocation().x, camera.getLocation().y, 0.0f), view, view);
+			Matrix4f.translate(new Vector2f(camera.getLocation().x, camera.getLocation().y), view, view);
 		}
 		
-		return toWorldSpace(projection, view, screenX, screenY);
+		toWorldSpace(out, projection, view, screenX, screenY);
 	}
 	
 	/**
@@ -167,10 +180,20 @@ public class MathHelper {
 	 * @param screenY Y of screen space vector
 	 * @return Screen-space coordinate translated to world-space
 	 */
-	public static Vector2 toWorldSpace(float screenX, float screenY) {
-		return toWorldSpace(screenX, screenY, null);
+	public static void toWorldSpace(Vector2 out, float screenX, float screenY) {
+		toWorldSpace(out, screenX, screenY, null);
 	}
 	
+	/**
+	 * Set up an orthographic view on a matrix
+	 * @param m Target matrix
+	 * @param left Left size
+	 * @param right Right size
+	 * @param bottom Bottom size
+	 * @param top Top size
+	 * @param near How close things can get
+	 * @param far How far things can get
+	 */
 	public static void orthoM(Matrix4f m,
 	        float left, float right, float bottom, float top,
 	        float near, float far) {
@@ -184,33 +207,41 @@ public class MathHelper {
 	            throw new IllegalArgumentException("near == far");
 	        }
 
-	        final float r_width  = 1.0f / (right - left);
-	        final float r_height = 1.0f / (top - bottom);
-	        final float r_depth  = 1.0f / (far - near);
-	        final float x =  2.0f * (r_width);
-	        final float y =  2.0f * (r_height);
-	        final float z = -2.0f * (r_depth);
-	        final float tx = -(right + left) * r_width;
-	        final float ty = -(top + bottom) * r_height;
-	        final float tz = -(far + near) * r_depth;
-	        /*m[mOffset + 0] = x;*/ m.m00 = x;
-	        /*m[mOffset + 5] = y;*/m.m11 = y;
-	        /*m[mOffset +10] = z;*/ m.m22 = z;
-	        /*m[mOffset +12] = tx;*/ m.m30 = tx;
-	        /*m[mOffset +13] = ty;*/ m.m31 = ty;
-	        /*m[mOffset +14] = tz;*/ m.m32 = tz;
-	        /*m[mOffset +15] = 1.0f;*/ m.m33 = 1.0f;
-	        /*m[mOffset + 1] = 0.0f;*/ m.m01 = 0.0f;
-	        /*m[mOffset + 2] = 0.0f;*/ m.m02 = 0.0f;
-	        /*m[mOffset + 3] = 0.0f;*/ m.m03 = 0.0f;
-	        /*m[mOffset + 4] = 0.0f;*/ m.m10 = 0.0f;
-	        /*m[mOffset + 6] = 0.0f;*/ m.m12 = 0.0f;
-	        /*m[mOffset + 7] = 0.0f;*/ m.m13 = 0.0f;
-	        /*m[mOffset + 8] = 0.0f;*/ m.m20 = 0.0f;
-	        /*m[mOffset + 9] = 0.0f;*/ m.m21 = 0.0f;
-	        /*m[mOffset + 11] = 0.0f;*/ m.m23 = 0.0f;
+	        final float 
+    		r_width  = 1.0f / (right - left),
+    		r_height = 1.0f / (top - bottom),
+    		r_depth  = 1.0f / (far - near),
+    		x =  2.0f * (r_width),
+    		y =  2.0f * (r_height),
+    		z = -2.0f * (r_depth),
+    		tx = -(right + left) * r_width,
+    		ty = -(top + bottom) * r_height,
+    		tz = -(far + near) * r_depth;
+	        
+	        m.m00 = x;
+	        m.m11 = y;
+	        m.m22 = z;
+	        m.m30 = tx;
+	        m.m31 = ty;
+	        m.m32 = tz;
+	        m.m33 = 1.0f;
+	        m.m01 = 0.0f;
+	        m.m02 = 0.0f;
+	        m.m03 = 0.0f;
+	        m.m10 = 0.0f;
+	        m.m12 = 0.0f;
+	        m.m13 = 0.0f;
+	        m.m20 = 0.0f;
+	        m.m21 = 0.0f;
+	        m.m23 = 0.0f;
 	 }
 	
+	
+	/**
+	 * Puts a matrix into a device to use with android
+	 * @param mat Matrix to put into array
+	 * @param dest Array to put matrix into
+	 */
 	public static void putMatrixIntoArray(Matrix4f mat, float[] dest){
 		dest[0] = mat.m00;
 		dest[1] = mat.m01;

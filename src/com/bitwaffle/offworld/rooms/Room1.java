@@ -2,6 +2,8 @@ package com.bitwaffle.offworld.rooms;
 
 import java.util.Random;
 
+import android.opengl.GLES20;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.bitwaffle.guts.android.Game;
@@ -55,6 +57,30 @@ public class Room1 extends Room {
 		});
 		
 		temp();
+		
+		EntityRenderer roomBoundsDrawer = new EntityRenderer(){
+			@Override
+			public void render(Render2D renderer, Entity ent,
+					boolean renderDebug) {
+				GLES20.glEnable(GLES20.GL_BLEND);
+				GLES20.glBlendFunc(GLES20.GL_SRC_COLOR, GLES20.GL_SRC_ALPHA);
+				Game.resources.textures.bindTexture("blank");
+				renderer.program.setUniform("vColor", 0.75f, 0.75f, 0.75f, 0.75f);
+				//Vector2 windah = Render2D.camera.getWorldWindowSize();
+				//renderer.quad.render(windah.x, windah.y, false, false);
+				GLES20.glDisable(GLES20.GL_BLEND);
+			}
+		};
+		
+		this.addEntity(new Entity(roomBoundsDrawer, 6, new Vector2(0.0f, 0.0f)){
+			@Override
+			public void update(float timeStep){
+				Vector2 camLoc = Render2D.camera.getLocation();
+				Vector2 windah = Render2D.camera.getWorldWindowSize();
+				this.location.x = -camLoc.x + windah.x;
+				this.location.y = -camLoc.y + windah.y;
+			}
+		});
 		
 		this.update(1.0f / 60.0f);
 	}

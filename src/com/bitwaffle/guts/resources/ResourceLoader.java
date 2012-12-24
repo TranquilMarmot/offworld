@@ -167,6 +167,7 @@ public class ResourceLoader {
 				Bitmap bitmap = BitmapFactory.decodeStream(in);
 				in.close();
 				int handle = initTexture(bitmap, minFilter, magFilter);
+				bitmap.recycle();
 				Game.resources.textures.addTexture(texName, handle);
 			}
 		} catch(JSONException e){
