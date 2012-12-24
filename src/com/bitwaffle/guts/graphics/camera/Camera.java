@@ -6,6 +6,7 @@ import org.lwjgl.util.vector.Vector3f;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.entities.Room;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.camera.modes.CameraMode;
 import com.bitwaffle.guts.graphics.camera.modes.FollowMode;
@@ -19,7 +20,7 @@ import com.bitwaffle.guts.util.MathHelper;
  */
 public class Camera extends Entity {
 	/** Initial values for camera */
-	private static final float DEFAULT_CAMX = 0.0f, DEFAULT_CAMY = 0.0f, DEFAULT_CAMZ = 0.04f;
+	private static final float DEFAULT_CAMX = 1.0f, DEFAULT_CAMY = -30.0f, DEFAULT_CAMZ = 0.06f;
 	
 	/** Current zoom level of camera (smaller it is, the smaller everything will be rendered) */
 	private float zoom;
@@ -33,7 +34,7 @@ public class Camera extends Entity {
 	/** Used to determine how much of the screen the camera can see */
 	private Matrix4f projection, view;
 	
-	/** How much of the world the camera can see */
+	/** How much of the world the camera can see. X value is width in world-coordinates, Y value is height */
 	private Vector2 worldWindowSize;
 	
 	/** Vectors that get reused for maths */
@@ -77,6 +78,7 @@ public class Camera extends Entity {
 		prevWorldWindowSize = new Vector2();
 		tempVec = new Vector2();
 		this.setLocation(new Vector2(DEFAULT_CAMX, DEFAULT_CAMY));
+		this.location.set(DEFAULT_CAMX, DEFAULT_CAMY);
 		this.setZoom(DEFAULT_CAMZ);
 		
 		for(Modes mode : Modes.values())
@@ -86,6 +88,38 @@ public class Camera extends Entity {
 	@Override
 	public void update(float timeStep) {
 		currentMode.update(timeStep);
+		
+		if(this.currentMode == Modes.FOLLOW){
+			Room r = Game.physics.currentRoom();
+			if(r != null){
+				Vector2 center = getWorldCenterPoint();
+				
+				float cameraBottomY = center.y - worldWindowSize.y;
+				float roomBottomY = r.getRoomY() - r.getRoomHeight();
+				if(cameraBottomY < roomBottomY)
+					this.location.y += (cameraBottomY - roomBottomY);
+				
+				float cameraTopY = center.y + worldWindowSize.y;
+				float roomTopY = r.getRoomY() + r.getRoomHeight();
+				if(cameraTopY > roomTopY)
+					this.location.y += (cameraTopY - roomTopY);
+				
+				float cameraLeftX = center.x - worldWindowSize.x;
+				float roomLeftX = r.getRoomX() - r.getRoomWidth();
+				if(cameraLeftX < roomLeftX)
+					this.location.x += (cameraLeftX - roomLeftX);
+				
+				float cameraRightX = center.x + worldWindowSize.x;
+				float roomRightX = r.getRoomX() + r.getRoomWidth();
+				if(cameraRightX > roomRightX)
+					this.location.x += (cameraRightX - roomRightX);
+			}
+		}
+	}
+	
+	public Vector2 getWorldCenterPoint(){
+		//return new Vector2(this.location.x - (worldWindowSize.x / 2.0f), -this.location.y - (worldWindowSize.y / 2.0f));
+		return new Vector2(-(this.location.x) + worldWindowSize.x, -(this.location.y) + worldWindowSize.y);
 	}
 	
 	/**
@@ -129,7 +163,7 @@ public class Camera extends Entity {
 		// don't ask, that's just how it works, okay?
 		MathHelper.toWorldSpace(worldWindowSize, projection, view, (Game.windowWidth / 2.0f), 0.0f);
 		MathHelper.toWorldSpace(tempVec, projection, view, 0.0f,  (Game.windowHeight / 2.0f));
-		worldWindowSize.sub(tempVec);
+		worldWindowSize.sub(tempVec.x, tempVec.y);
 	}
 	
 	

@@ -2,8 +2,6 @@ package com.bitwaffle.offworld.rooms;
 
 import java.util.Random;
 
-import android.opengl.GLES20;
-
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.bitwaffle.guts.android.Game;
@@ -18,11 +16,11 @@ import com.bitwaffle.guts.util.PhysicsHelper;
 import com.bitwaffle.offworld.renderers.Renderers;
 
 public class Room1 extends Room {
-	private static float minX = -10.0f, maxX = 10.0f, minY = -10.0f, maxY = 10.0f;
+	private static float x = 1.0f, y = -15.0f, width = 17.0f, height = 21.0f;
 	
 	
 	public Room1(){
-		super(minX, maxX, minY, maxY);
+		super(x, y, width, height);
 		
 		this.addEntity(tut1());
 		this.addEntity(tut2());
@@ -40,8 +38,7 @@ public class Room1 extends Room {
 		Entity backdrop = new Entity(backdropRenderer, 1, new Vector2(0.0f, -22.0f));
 		this.addEntity(backdrop);
 		
-		Entity staticbackdrop = new Entity(Renderers.BACKDROP.renderer, 0);
-		this.addEntity(staticbackdrop);
+		temp();
 		
 		this.addEntity(new Entity(){
 			@Override
@@ -53,32 +50,6 @@ public class Room1 extends Room {
 		    		else
 		    			PhysicsHelper.makeRandomCircle(Game.physics);	
 		    	}
-			}
-		});
-		
-		temp();
-		
-		EntityRenderer roomBoundsDrawer = new EntityRenderer(){
-			@Override
-			public void render(Render2D renderer, Entity ent,
-					boolean renderDebug) {
-				GLES20.glEnable(GLES20.GL_BLEND);
-				GLES20.glBlendFunc(GLES20.GL_SRC_COLOR, GLES20.GL_SRC_ALPHA);
-				Game.resources.textures.bindTexture("blank");
-				renderer.program.setUniform("vColor", 0.75f, 0.75f, 0.75f, 0.75f);
-				//Vector2 windah = Render2D.camera.getWorldWindowSize();
-				//renderer.quad.render(windah.x, windah.y, false, false);
-				GLES20.glDisable(GLES20.GL_BLEND);
-			}
-		};
-		
-		this.addEntity(new Entity(roomBoundsDrawer, 6, new Vector2(0.0f, 0.0f)){
-			@Override
-			public void update(float timeStep){
-				Vector2 camLoc = Render2D.camera.getLocation();
-				Vector2 windah = Render2D.camera.getWorldWindowSize();
-				this.location.x = -camLoc.x + windah.x;
-				this.location.y = -camLoc.y + windah.y;
 			}
 		});
 		
@@ -133,20 +104,27 @@ public class Room1 extends Room {
 		}
 		
 		Ground[] grounds = new Ground[]{
-			// bottom
-			new Ground(0.0f, -60.0f, 45.0f, 1.0f),
-			// left
-			new Ground(-46.0f, -31.0f, 1.0f, 30.0f),
-			// right
-			new Ground(46.0f, -31.0f, 1.0f, 30.0f),
-			// stairs
-			new Ground(-35.0f, -58.0f, 10.0f, 1.0f),
-			new Ground(-37.0f, -56.0f, 8.0f, 1.0f),
-			new Ground(-39.0f, -54.0f, 6.0f, 1.0f),
-			new Ground(-41.0f, -52.0f, 4.0f, 1.0f),
-			// floating
-			new Ground(-22.0f, -50.0f, 8.0f, 0.5f),
-			new Ground(2.0f, -50.0f, 8.0f, 0.5f),
+				new Ground(19.0f, -10.0f, 1.0f, 50.0f),
+				new Ground(-17.0f, -10.0f, 1.0f, 50.0f),
+				new Ground(0.0f, -34.7f, 50.0f, 1.0f)
+					
+					
+				/*	
+				// bottom
+				new Ground(0.0f, -60.0f, 45.0f, 1.0f),
+				// left
+				new Ground(-46.0f, -31.0f, 1.0f, 30.0f),
+				// right
+				new Ground(46.0f, -31.0f, 1.0f, 30.0f),
+				// stairs
+				new Ground(-35.0f, -58.0f, 10.0f, 1.0f),
+				new Ground(-37.0f, -56.0f, 8.0f, 1.0f),
+				new Ground(-39.0f, -54.0f, 6.0f, 1.0f),
+				new Ground(-41.0f, -52.0f, 4.0f, 1.0f),
+				// floating
+				new Ground(-22.0f, -50.0f, 8.0f, 0.5f),
+				new Ground(2.0f, -50.0f, 8.0f, 0.5f),
+				*/
 		};
 		
 		for(Ground g : grounds){

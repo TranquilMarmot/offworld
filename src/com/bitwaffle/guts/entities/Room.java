@@ -14,8 +14,11 @@ import com.bitwaffle.guts.physics.Physics;
  * @author TranquilMarmot
  */
 public abstract class Room {
-	/** Bounds of room */
-	private float minX, maxX, minY, maxY;
+	/** Location of center of room */
+	private float roomX, roomY;
+	
+	/** Size of room. Camera will not be allowed outside of these bounds. */
+	private float roomWidth, roomHeight;
 	
 	/** List of entities in this room */
 	private ArrayList<Entity> entities;
@@ -23,27 +26,32 @@ public abstract class Room {
 	/** Used to avoid ConcurrentModificationException */
 	private Stack<Entity> entitiesToRemove, entitiesToAdd;
 	
+	/** Whether or not this room object is the current room */
 	private boolean isCurrentRoom;
 	
 	/**
 	 * Create a new room.
-	 * @param boundsMinX
-	 * @param boundsMaxX
-	 * @param boundsMinY
-	 * @param boundsMaxY
+	 * @param roomX
+	 * @param roomY
+	 * @param roomWidth
+	 * @param roomHeight
 	 */
-	public Room(float boundsMinX, float boundsMaxX, float boundsMinY, float boundsMaxY){
-		this.minX = boundsMinX;
-		this.maxX = boundsMaxX;
+	public Room(float roomX, float roomY, float roomWidth, float roomHeight){
+		this.roomX = roomX;
+		this.roomY = roomY;
 		
-		this.minY = boundsMinY;
-		this.maxY = boundsMaxY;
+		this.roomWidth = roomWidth;
+		this.roomHeight = roomHeight;
 		
 		entities = new ArrayList<Entity>();
 		entitiesToRemove = new Stack<Entity>();
 		entitiesToAdd = new Stack<Entity>();
 	}
 	
+	/**
+	 * Add/removes any entities that have been added/removed from this room
+	 * @param timeStep Unused
+	 */
 	public void update(float timeStep){
 		while(!entitiesToRemove.isEmpty())
 			entities.remove(entitiesToRemove.pop());
@@ -68,7 +76,7 @@ public abstract class Room {
 	 * NOTE:
 	 * This should NEVER be called from anywhere but from in
 	 * physics.removeEntity!!!! This is basically just so entities can
-	 * be added to the current room
+	 * be removed from the current room
 	 * @param ent Entity to remove
 	 */
 	public void removeEntity(Entity ent){
@@ -76,7 +84,7 @@ public abstract class Room {
 	}
 	
 	/**
-	 * Add a room to the world
+	 * Add this room to a world
 	 * @param physics World to add room to
 	 */
 	public void addToWorld(Physics physics){
@@ -94,7 +102,7 @@ public abstract class Room {
 	}
 	
 	/**
-	 * Remove a room from the world
+	 * Remove this room from a world
 	 * @param physics World to remove room from
 	 */
 	public void removeFromWorld(Physics physics){
@@ -117,17 +125,17 @@ public abstract class Room {
 		return isCurrentRoom;
 	}
 	
-	// TODO maybe just serialize everything here? or shoudl it be left up to the room?
+	// TODO maybe just serialize everything here? or should it be left up to the room?
 	// perhaps it should just have a write(kryo, out) method that writes everything out!
-	// in fact... these almost seem useless...
 	public abstract void onAddToWorld(Physics physics);
 	
 	public abstract void onRemoveFromWorld(Physics physics);
 	
-	public float getBoundsMinX(){ return minX; }
-	public float getBoundsMaxX(){ return maxX; }
-	public float getBoundsMinY(){ return minY; }
-	public float getBoundsMaxY(){ return maxY; }
+	
+	public float getRoomX(){ return roomX; }
+	public float getRoomY(){ return roomY; }
+	public float getRoomWidth(){ return roomWidth; }
+	public float getRoomHeight(){ return roomHeight; }
 
 	public int numEntities() {
 		return entities.size();

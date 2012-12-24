@@ -1,9 +1,6 @@
 package com.bitwaffle.guts.gui.states.options.buttons;
 
-import android.view.WindowManager;
-
 import com.bitwaffle.guts.android.Game;
-import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.button.BooleanButton;
 import com.bitwaffle.guts.gui.button.CircleButton;
