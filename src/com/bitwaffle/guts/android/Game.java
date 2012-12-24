@@ -9,6 +9,7 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.DisplayMetrics;
 import android.util.FloatMath;
 import android.view.Display;
 import android.view.KeyEvent;
@@ -17,6 +18,7 @@ import android.view.Window;
 import com.bitwaffle.guts.android.input.KeyboardManager;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.GUI;
+import com.bitwaffle.guts.gui.states.movement.MovementGUIState;
 import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.Resources;
@@ -44,6 +46,9 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
 	 * takes care of all the physics, rendering, etc. etc.
 	 */
     private static GLSurfaceView surfaceView;
+    
+    /** Info about the screen */
+    public static DisplayMetrics displayMetrics;
 	
 	/** Resource manager */
 	public static Resources resources;
@@ -114,8 +119,11 @@ public class Game extends SwarmActivity implements GLSurfaceView.Renderer {
         Game.windowWidth = display.getWidth();
         Game.windowHeight = display.getHeight();
     	Game.aspect = (float)  Game.windowWidth /  (float) Game.windowHeight;
-        
-       // getResources().getDisplayMetrics().
+    	
+    	displayMetrics = new DisplayMetrics();
+    	display.getMetrics(displayMetrics);
+    	MovementGUIState.buttonWidth = 37.0f *  displayMetrics.scaledDensity;
+    	MovementGUIState.buttonHeight = 37.0f *  displayMetrics.scaledDensity;
 
         /*
          * Create a SurfaceView instance and set it as
