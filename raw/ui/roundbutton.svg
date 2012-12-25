@@ -14,7 +14,7 @@
    id="svg2985"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="New document 2">
+   sodipodi:docname="roundbutton.svg">
   <defs
      id="defs2987" />
   <sodipodi:namedview
@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="11"
-     inkscape:cx="35.569006"
-     inkscape:cy="36.227991"
+     inkscape:zoom="2.75"
+     inkscape:cx="35.780487"
+     inkscape:cy="30.454544"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:document-units="px"
@@ -81,7 +81,7 @@
      inkscape:groupmode="layer">
     <path
        sodipodi:type="arc"
-       style="fill:#000000;fill-opacity:0.51851851;fill-rule:nonzero;stroke:#000000;stroke-width:0.17716534000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.52910055000000000;stroke-dasharray:none"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.17716534000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.52910055000000000;stroke-dasharray:none"
        id="path2993"
        sodipodi:cx="34.455383"
        sodipodi:cy="35.265751"
@@ -91,25 +91,43 @@
        sodipodi:start="6.282293"
        sodipodi:end="12.563642"
        transform="translate(-2.4553833,-3.2657509)"
-       sodipodi:open="true" />
+       sodipodi:open="true"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\assets\ui\textures\buttons\circlebutton.png"
+       inkscape:export-xdpi="359.12308"
+       inkscape:export-ydpi="359.12308" />
     <path
        sodipodi:type="arc"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.17716534000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.52910055000000000;stroke-dasharray:none"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.17716534;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.52910055;stroke-dasharray:none"
        id="path2993-1"
        sodipodi:cx="34.455383"
        sodipodi:cy="35.265751"
-       sodipodi:rx="32"
-       sodipodi:ry="32"
-       d="m 66.455371,35.237197 a 32,32 0 1 1 -1.07e-4,-0.05876"
+       sodipodi:rx="33.408649"
+       sodipodi:ry="33.207413"
+       d="m 67.864019,35.23612 a 33.408649,33.207413 0 1 1 -1.11e-4,-0.06098"
        sodipodi:start="6.282293"
        sodipodi:end="12.563642"
        transform="matrix(0.9035095,0,0,0.9035095,1.0478378,0.1628577)"
-       sodipodi:open="true" />
+       sodipodi:open="true"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\assets\ui\textures\buttons\circlebutton.png"
+       inkscape:export-xdpi="359.12308"
+       inkscape:export-ydpi="359.12308" />
     <path
-       style="fill:#000000;fill-opacity:0.43915345;stroke:none"
+       style="fill:#000000;fill-opacity:0.44973546;stroke:none"
        d="m 19.090909,54.909091 c 19.503153,3.325405 37.272779,-11.363148 40.363637,-26.454545 1.090909,9.030303 -1.772111,16.378993 -7.818182,23 -5.901266,5.978942 -19.363637,13.090909 -32.545455,3.454545 z"
        id="path3793"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccc" />
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\assets\ui\textures\buttons\circlebutton.png"
+       inkscape:export-xdpi="359.12308"
+       inkscape:export-ydpi="359.12308" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Castellar;-inkscape-font-specification:Castellar"
+       x="15.454545"
+       y="28.909092"
+       id="text3833"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3835"></tspan></text>
   </g>
 </svg>
