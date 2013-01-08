@@ -14,6 +14,7 @@ import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.entities.dynamic.PolygonEntity;
 import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.physics.Physics;
@@ -119,6 +120,45 @@ public class PhysicsHelper {
 		};
 		
 		physics.addEntity(circ, true);
+	}
+	
+	public static void makeRandomRock(Physics physics){
+		Random randy = new Random();
+		float rockX = randy.nextFloat() * 150.0f - 50.0f;
+		if(rockX < 1.0f) rockX = 1.0f;
+		float rockY = randy.nextFloat() * 150.0f - 25.0f;
+		if(rockY < 1.0f) rockY = 1.0f;
+		
+		String polygonName = "rock1";
+		int layer = 5;
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.type = BodyDef.BodyType.DynamicBody;
+		bodyDef.position.set(rockX, rockY);
+		bodyDef.allowSleep = false;
+		bodyDef.fixedRotation = false;
+		bodyDef.active = true;
+		bodyDef.bullet = false;
+		float density = 1.0f;
+		float friction = 1.4f;
+		float restitution = 0.2f;
+		boolean isSensor = false;
+	PolygonEntity poly = new PolygonEntity(polygonName, layer, bodyDef, false, density, friction, restitution, isSensor, CollisionFilters.ENTITY, CollisionFilters.GROUND){
+			@Override
+			// give it a random spin and speed on init
+			public void init(World world){
+				super.init(world);
+				
+				Random randy = new Random();
+				//this.body.setAngularVelocity(randy.nextFloat() * 1.0f);
+				
+				float linX = randy.nextFloat() * 1.0f;
+				float linY = randy.nextFloat() * 1.0f;
+				if(randy.nextBoolean()) linX *= -1.0f;
+				if(randy.nextBoolean()) linY *= -1.0f;
+				this.body.setLinearVelocity(linX, linY);
+			}
+		};
+		physics.addEntity(poly, true);
 	}
 	
 	/**

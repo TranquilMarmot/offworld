@@ -13,14 +13,14 @@ import com.bitwaffle.offworld.entities.dynamic.Bullet;
 public class BulletRenderer implements EntityRenderer {
 	@Override
 	public void render(Render2D renderer, Entity ent, boolean renderDebug) {
-		//Bullet bullet = (Bullet) ent;
-		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
-		renderer.modelview.scale(new Vector3f(Bullet.SCALE, Bullet.SCALE, 1.0f));
-		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("pistolbullet").render(renderer.quad, 1.0f, 0.379f);
-		
 		if(renderDebug)
 			renderDebug(renderer, ent);
+		else{
+			renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
+			renderer.modelview.scale(new Vector3f(Bullet.SCALE, Bullet.SCALE, 1.0f));
+			renderer.sendModelViewToShader();
+			Game.resources.textures.getSubImage("pistolbullet").render(renderer.quad, 1.0f, 0.379f);
+		}
 	}
 
 	public void renderDebug(Render2D renderer, Entity ent){
@@ -32,7 +32,7 @@ public class BulletRenderer implements EntityRenderer {
 		col[0] = (box.body != null) ? (box.body.isAwake() ? 0.0f : 1.0f) : 0.0f;
 		col[1] =(box.body != null) ? (box.body.isAwake() ? 1.0f : 0.0f) : 0.0f;
 		col[2] = 0.0f;
-		col[3] = 0.2f;
+		col[3] = 0.7f;
 		
 		renderer.program.setUniform("vColor", col[0], col[1], col[2], col[3]);
 		

@@ -116,15 +116,7 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 				for(FixtureDef def : fixtureDefs){
 					body.createFixture(def);
 					
-					/*
-					 *  If we're given a box or a circle, it's safe to say that we
-					 *  can dispose of the shape since next time we'll just be given
-					 *  a new one. If we have something like a polygon, however,
-					 *  we want to keep the shape around in case it needs to be reused
-					 *  (otherwise, it would need to be created again)
-					 */
-					if((this instanceof BoxEntity) || (this instanceof CircleEntity))
-						def.shape.dispose();
+					def.shape.dispose();
 				}
 				fixtureDefs.clear();
 				fixtureDefs = null;
@@ -133,9 +125,7 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 			} else if(shape != null){
 				body.createFixture(shape, density);
 
-				// same goes here as above
-				if((this instanceof BoxEntity) || (this instanceof CircleEntity))
-					shape.dispose();
+				shape.dispose();
 				shape = null;
 			} else{
 				Log.e("DynamicEntity", "DynamicEntity not given enough parameters to initialize physics info!");

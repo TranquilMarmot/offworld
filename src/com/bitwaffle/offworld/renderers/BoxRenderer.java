@@ -16,15 +16,17 @@ import com.bitwaffle.guts.graphics.render.Render2D;
 public class BoxRenderer implements EntityRenderer{
 	public void render(Render2D renderer, Entity ent, boolean renderDebug) {
 		BoxEntity box = (BoxEntity) ent;
-		if(box.body != null && box.body.getFixtureList().get(0).getDensity() == 0.0f)
-			Game.resources.textures.bindTexture("blank");
-		else
-			Game.resources.textures.bindTexture("box");
-		renderer.program.setUniform("vColor", box.color[0], box.color[1], box.color[2], box.color[3]);
-		renderer.quad.render(box.getWidth(), box.getHeight());
 		
 		if(renderDebug)
 			renderDebug(renderer, ent);
+		else{
+			if(box.body != null && box.body.getFixtureList().get(0).getDensity() == 0.0f)
+				Game.resources.textures.bindTexture("blank");
+			else
+				Game.resources.textures.bindTexture("box");
+			renderer.program.setUniform("vColor", box.color[0], box.color[1], box.color[2], box.color[3]);
+			renderer.quad.render(box.getWidth(), box.getHeight());
+		}
 	}
 	
 	public void renderDebug(Render2D renderer, Entity ent){
@@ -36,7 +38,7 @@ public class BoxRenderer implements EntityRenderer{
 		col[0] = (box.body != null) ? (box.body.isAwake() ? 0.0f : 1.0f) : 0.0f;
 		col[1] =(box.body != null) ? (box.body.isAwake() ? 1.0f : 0.0f) : 0.0f;
 		col[2] = 0.0f;
-		col[3] = 0.2f;
+		col[3] = 0.8f;
 		
 		renderer.program.setUniform("vColor", col[0], col[1], col[2], col[3]);
 		

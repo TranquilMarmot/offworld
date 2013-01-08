@@ -2,7 +2,8 @@ package com.bitwaffle.guts.resources;
 
 import java.util.HashMap;
 
-import com.badlogic.gdx.physics.box2d.Shape;
+import com.badlogic.gdx.physics.box2d.ChainShape;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.graphics.render.shapes.Polygon;
 
@@ -40,12 +41,20 @@ public class PolygonManager {
 		polygons.get(polygonName).render(renderer, false, false);
 	}
 	
+	public void renderPolygonDebug(Render2D renderer, String polygonName){
+		polygons.get(polygonName).renderDebug(renderer, false, false);
+	}
+	
 	/**
 	 * Get the physics shape of a polygon
 	 * @param polygonName Name of polygon to get shape of
 	 * @return Shape of polygon (null if polygon has no shape)
 	 */
-	public Shape getPhysicsShape(String polygonName){
-		return polygons.get(polygonName).getShape();
+	public ChainShape getShapeAsChain(String polygonName){
+		return polygons.get(polygonName).getShapeAsChain();
+	}
+	
+	public PolygonShape getShapeAsPolygon(String polygonName){
+		return polygons.get(polygonName).getShapeAsPolygon();
 	}
 }

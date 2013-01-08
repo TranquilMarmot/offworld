@@ -1,7 +1,5 @@
 package com.bitwaffle.offworld.rooms;
 
-import java.util.Random;
-
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.bitwaffle.guts.android.Game;
@@ -13,6 +11,7 @@ import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.util.PhysicsHelper;
+import com.bitwaffle.offworld.entities.CollisionFilters;
 import com.bitwaffle.offworld.renderers.Renderers;
 
 public class Room1 extends Room {
@@ -43,12 +42,13 @@ public class Room1 extends Room {
 		this.addEntity(new Entity(){
 			@Override
 			public void update(float timeStep){
-		    	if(Game.physics.numEntities() < 50){
-		        	Random r = new Random();
-		    		if(r.nextBoolean())
-		    			PhysicsHelper.makeRandomBox(Game.physics);
-		    		else
-		    			PhysicsHelper.makeRandomCircle(Game.physics);	
+		    	if(Game.physics.numEntities() < 30){
+		        	//Random r = new Random();
+		    		//if(r.nextBoolean())
+		    		//	PhysicsHelper.makeRandomBox(Game.physics);
+		    		//else
+		    		//	PhysicsHelper.makeRandomCircle(Game.physics);
+		        	PhysicsHelper.makeRandomRock(Game.physics);
 		    	}
 			}
 		});
@@ -67,7 +67,8 @@ public class Room1 extends Room {
 		float friction = 1.0f;
 		float restitution = 0.01f;
 		boolean isSensor = false;
-		PolygonEntity tut = new PolygonEntity(polygonName, layer, bodyDef, density, friction, restitution, isSensor);
+		boolean isChain = true;
+		PolygonEntity tut = new PolygonEntity(polygonName, layer, bodyDef, isChain, density, friction, restitution, isSensor, CollisionFilters.GROUND, CollisionFilters.EVERYTHING);
 		return tut;
 	}
 	
@@ -81,7 +82,8 @@ public class Room1 extends Room {
 		float friction = 1.0f;
 		float restitution = 0.01f;
 		boolean isSensor = false;
-		PolygonEntity tut = new PolygonEntity(polygonName, layer, bodyDef, density, friction, restitution, isSensor);
+		boolean isChain = true;
+		PolygonEntity tut = new PolygonEntity(polygonName, layer, bodyDef, isChain, density, friction, restitution, isSensor, CollisionFilters.GROUND, CollisionFilters.EVERYTHING);
 		return tut;
 	}
 

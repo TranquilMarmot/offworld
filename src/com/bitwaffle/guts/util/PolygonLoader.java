@@ -11,8 +11,6 @@ import java.util.StringTokenizer;
 import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.ChainShape;
-import com.badlogic.gdx.physics.box2d.Shape;
 import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.graphics.render.shapes.Polygon;
 
@@ -81,9 +79,9 @@ public class PolygonLoader {
 		// done parsing! let's fill some float buffers!
 		FloatBuffer vertexBuffer = putVerticesIntoBuffer();
 		FloatBuffer texCoordBuffer = putTextureCoordsIntoBuffer();
-		Shape shape = parseCollisionObj(collisionObjLoc);
+		Vector2[] geom = parseCollisionObj(collisionObjLoc);
 		
-		return new Polygon(textureName, vertexBuffer, texCoordBuffer, count, xScale, yScale, shape);
+		return new Polygon(textureName, vertexBuffer, texCoordBuffer, count, xScale, yScale, geom);
 	}
 	
 	/**
@@ -291,7 +289,7 @@ public class PolygonLoader {
 	 * @param collisionObjLoc Location of obj file
 	 * @return Shape from obj file
 	 */
-	private Shape parseCollisionObj(String collisionObjLoc){
+	private Vector2[] parseCollisionObj(String collisionObjLoc){
 		try{
 			// for to reading through file
 			BufferedReader reader = new BufferedReader(new InputStreamReader(Game.resources.openAsset(collisionObjLoc)));
@@ -329,10 +327,7 @@ public class PolygonLoader {
 				i++;
 			}
 			
-			// create a chain shape from the read vertices
-			ChainShape chain = new ChainShape();
-			chain.createLoop(arr);
-			return chain;
+			return arr;
 		} catch(IOException e){
 			e.printStackTrace();
 		}

@@ -44,6 +44,7 @@ public class FullScreenButton extends CircleButton implements BooleanButton{
 
 	@Override
 	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
+		renderer.program.setUniform("vColor", 0.3f, 1.0f, 0.3f, 0.5f);
 		Game.resources.textures.bindTexture("circlebutton");
 		renderer.circle.render(this.getRadius(), flipHorizontal, flipVertical);
 	}

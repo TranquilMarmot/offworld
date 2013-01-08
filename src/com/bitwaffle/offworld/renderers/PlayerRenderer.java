@@ -72,58 +72,60 @@ public class PlayerRenderer extends BoxRenderer{
 	@Override
 	public void render(Render2D renderer, Entity ent, boolean renderDebug){
 		Player player = (Player) ent;
-		renderer.program.setUniform("vColor", player.color[0], player.color[1], player.color[2], player.color[3]);
-		
-		// so the player doesn't have to keep getting polled
-		boolean movingRight = player.isMovingRight();
-		boolean facingRight = player.isFacingRight();
-		float armAngle = player.getArmAngle();
-		
-		/*-- Render right arm --*/
-		Matrix4f.load(renderer.modelview, oldMatrix); // save the modelview for repeated drawing at the same spot
-		renderer.modelview.translate(new Vector3f(facingRight ? R_ARM_X_OFFSET : -R_ARM_X_OFFSET, R_ARM_Y_OFFSET, 0.0f));
-		renderer.modelview.rotate(armAngle, new Vector3f(0.0f, 0.0f, 1.0f));
-		renderer.modelview.translate(new Vector3f(ARM_ROTATION_X_OFFSET, facingRight ? ARM_ROTATION_Y_OFFSET : -ARM_ROTATION_Y_OFFSET, 0.0f));
-		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("playerarm").render(renderer.quad, ARM_X_SCALE * SCALE, ARM_Y_SCALE * SCALE, !facingRight, facingRight);
-		
-		/*-- Render Legs --*/
-		Matrix4f.load(oldMatrix, renderer.modelview);
-		// if movingRight and facingRight are the same, it means the player is moving in the direction it's looking
-		if(movingRight == facingRight)
-			renderer.modelview.translate(new Vector3f(movingRight ? FORWARD_LEGS_X_OFFSET : -FORWARD_LEGS_X_OFFSET, LEGS_Y_OFFSET, 0.0f));
-		// else the legs are moving in the opposite direction as the player is looking
-		else 
-			renderer.modelview.translate(new Vector3f(movingRight ? BACKWARD_LEGS_X_OFFSET : -BACKWARD_LEGS_X_OFFSET, LEGS_Y_OFFSET, 0.0f));
-		renderer.sendModelViewToShader();
-		player.legsAnimation.renderCurrentFrame(renderer, LEGS_X_SCALE * SCALE, LEGS_Y_SCALE * SCALE, movingRight, false);
-		
-		/*-- Render body --*/
-		Matrix4f.load(oldMatrix, renderer.modelview);
-		renderer.modelview.translate(new Vector3f(facingRight ? BODY_X_OFFSET : -BODY_X_OFFSET, BODY_Y_OFFSET, 0.0f));
-		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("playerbody").render(renderer.quad, BODY_X_SCALE * SCALE, BODY_Y_SCALE * SCALE, !facingRight, true);
-		
-		/*-- Render gun --*/
-		Matrix4f.load(oldMatrix, renderer.modelview);
-		renderer.modelview.translate(new Vector3f(facingRight ? L_ARM_X_OFFSET : -L_ARM_X_OFFSET, L_ARM_Y_OFFSET, 0.0f));
-		renderer.modelview.rotate(armAngle, new Vector3f(0.0f, 0.0f, 1.0f));
-		renderer.modelview.translate(new Vector3f(ARM_ROTATION_X_OFFSET, facingRight ? ARM_ROTATION_Y_OFFSET : -ARM_ROTATION_Y_OFFSET, 0.0f));
-		renderer.modelview.translate(new Vector3f(GUN_X_OFFSET, facingRight ?  GUN_Y_OFFSET  : -GUN_Y_OFFSET, 0.0f));
-		renderer.sendModelViewToShader();
-		player.getCurrentFirearm().render(renderer);
-		//Game.resources.textures.getSubImage("pistol").render(renderer.quad, GUN_X_SCALE * SCALE, GUN_Y_SCALE * SCALE, !facingRight, facingRight);
-		
-		/*-- Render left arm --*/
-		Matrix4f.load(oldMatrix, renderer.modelview);
-		renderer.modelview.translate(new Vector3f(facingRight ? L_ARM_X_OFFSET : -L_ARM_X_OFFSET, L_ARM_Y_OFFSET, 0.0f));
-		renderer.modelview.rotate(armAngle, new Vector3f(0.0f, 0.0f, 1.0f));
-		renderer.modelview.translate(new Vector3f(ARM_ROTATION_X_OFFSET, facingRight ? ARM_ROTATION_Y_OFFSET : -ARM_ROTATION_Y_OFFSET, 0.0f));
-		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("playerarm").render(renderer.quad, ARM_X_SCALE * SCALE, ARM_Y_SCALE * SCALE, !facingRight, facingRight);
 		
 		if(renderDebug)
 			renderDebug(renderer, ent);
+		else{
+			renderer.program.setUniform("vColor", player.color[0], player.color[1], player.color[2], player.color[3]);
+			
+			// so the player doesn't have to keep getting polled
+			boolean movingRight = player.isMovingRight();
+			boolean facingRight = player.isFacingRight();
+			float armAngle = player.getArmAngle();
+			
+			/*-- Render right arm --*/
+			Matrix4f.load(renderer.modelview, oldMatrix); // save the modelview for repeated drawing at the same spot
+			renderer.modelview.translate(new Vector3f(facingRight ? R_ARM_X_OFFSET : -R_ARM_X_OFFSET, R_ARM_Y_OFFSET, 0.0f));
+			renderer.modelview.rotate(armAngle, new Vector3f(0.0f, 0.0f, 1.0f));
+			renderer.modelview.translate(new Vector3f(ARM_ROTATION_X_OFFSET, facingRight ? ARM_ROTATION_Y_OFFSET : -ARM_ROTATION_Y_OFFSET, 0.0f));
+			renderer.sendModelViewToShader();
+			Game.resources.textures.getSubImage("playerarm").render(renderer.quad, ARM_X_SCALE * SCALE, ARM_Y_SCALE * SCALE, !facingRight, facingRight);
+			
+			/*-- Render Legs --*/
+			Matrix4f.load(oldMatrix, renderer.modelview);
+			// if movingRight and facingRight are the same, it means the player is moving in the direction it's looking
+			if(movingRight == facingRight)
+				renderer.modelview.translate(new Vector3f(movingRight ? FORWARD_LEGS_X_OFFSET : -FORWARD_LEGS_X_OFFSET, LEGS_Y_OFFSET, 0.0f));
+			// else the legs are moving in the opposite direction as the player is looking
+			else 
+				renderer.modelview.translate(new Vector3f(movingRight ? BACKWARD_LEGS_X_OFFSET : -BACKWARD_LEGS_X_OFFSET, LEGS_Y_OFFSET, 0.0f));
+			renderer.sendModelViewToShader();
+			player.legsAnimation.renderCurrentFrame(renderer, LEGS_X_SCALE * SCALE, LEGS_Y_SCALE * SCALE, movingRight, false);
+			
+			/*-- Render body --*/
+			Matrix4f.load(oldMatrix, renderer.modelview);
+			renderer.modelview.translate(new Vector3f(facingRight ? BODY_X_OFFSET : -BODY_X_OFFSET, BODY_Y_OFFSET, 0.0f));
+			renderer.sendModelViewToShader();
+			Game.resources.textures.getSubImage("playerbody").render(renderer.quad, BODY_X_SCALE * SCALE, BODY_Y_SCALE * SCALE, !facingRight, true);
+			
+			/*-- Render gun --*/
+			Matrix4f.load(oldMatrix, renderer.modelview);
+			renderer.modelview.translate(new Vector3f(facingRight ? L_ARM_X_OFFSET : -L_ARM_X_OFFSET, L_ARM_Y_OFFSET, 0.0f));
+			renderer.modelview.rotate(armAngle, new Vector3f(0.0f, 0.0f, 1.0f));
+			renderer.modelview.translate(new Vector3f(ARM_ROTATION_X_OFFSET, facingRight ? ARM_ROTATION_Y_OFFSET : -ARM_ROTATION_Y_OFFSET, 0.0f));
+			renderer.modelview.translate(new Vector3f(GUN_X_OFFSET, facingRight ?  GUN_Y_OFFSET  : -GUN_Y_OFFSET, 0.0f));
+			renderer.sendModelViewToShader();
+			player.getCurrentFirearm().render(renderer);
+			//Game.resources.textures.getSubImage("pistol").render(renderer.quad, GUN_X_SCALE * SCALE, GUN_Y_SCALE * SCALE, !facingRight, facingRight);
+			
+			/*-- Render left arm --*/
+			Matrix4f.load(oldMatrix, renderer.modelview);
+			renderer.modelview.translate(new Vector3f(facingRight ? L_ARM_X_OFFSET : -L_ARM_X_OFFSET, L_ARM_Y_OFFSET, 0.0f));
+			renderer.modelview.rotate(armAngle, new Vector3f(0.0f, 0.0f, 1.0f));
+			renderer.modelview.translate(new Vector3f(ARM_ROTATION_X_OFFSET, facingRight ? ARM_ROTATION_Y_OFFSET : -ARM_ROTATION_Y_OFFSET, 0.0f));
+			renderer.sendModelViewToShader();
+			Game.resources.textures.getSubImage("playerarm").render(renderer.quad, ARM_X_SCALE * SCALE, ARM_Y_SCALE * SCALE, !facingRight, facingRight);
+		}
 	}
 	
 	@Override
