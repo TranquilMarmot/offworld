@@ -19,6 +19,10 @@
 		{
 			"name":	"room1",
 			"path":	"rooms/room1.res"
+		},
+		{
+			"name":	"rock1",
+			"path": "entities/rocks/rock1.res"
 		}
 	],
 	

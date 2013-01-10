@@ -14,14 +14,15 @@ import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.guts.entities.dynamic.PolygonEntity;
 import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.graphics.render.shapes.Polygon;
+import com.bitwaffle.guts.physics.CollisionFilters;
 import com.bitwaffle.guts.physics.Physics;
-import com.bitwaffle.offworld.entities.CollisionFilters;
 import com.bitwaffle.offworld.entities.Player;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableBox;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableCircle;
+import com.bitwaffle.offworld.renderers.PolygonRenderer;
 import com.bitwaffle.offworld.renderers.Renderers;
 import com.bitwaffle.offworld.rooms.Room1;
 
@@ -124,40 +125,29 @@ public class PhysicsHelper {
 	
 	public static void makeRandomRock(Physics physics){
 		Random randy = new Random();
-		float rockX = randy.nextFloat() * 150.0f - 50.0f;
+		float rockX = randy.nextFloat() * 10.0f - 50.0f;
 		if(rockX < 1.0f) rockX = 1.0f;
 		float rockY = randy.nextFloat() * 150.0f - 25.0f;
 		if(rockY < 1.0f) rockY = 1.0f;
 		
 		String polygonName = "rock1";
 		int layer = 5;
-		BodyDef bodyDef = new BodyDef();
-		bodyDef.type = BodyDef.BodyType.DynamicBody;
+		BodyDef bodyDef = Game.resources.entityInfo.getEntityBodyDef(polygonName);
+		bodyDef.angularVelocity = (randy.nextFloat() * 25.0f);
+		
+		float linX = randy.nextFloat() * 1.0f;
+		float linY = randy.nextFloat() * 1.0f;
+		if(randy.nextBoolean()) linX *= -1.0f;
+		if(randy.nextBoolean()) linY *= -1.0f;
+		bodyDef.linearVelocity.set(linX, linY);
+		
 		bodyDef.position.set(rockX, rockY);
-		bodyDef.allowSleep = false;
-		bodyDef.fixedRotation = false;
-		bodyDef.active = true;
-		bodyDef.bullet = false;
-		float density = 1.0f;
-		float friction = 1.4f;
-		float restitution = 0.2f;
-		boolean isSensor = false;
-	PolygonEntity poly = new PolygonEntity(polygonName, layer, bodyDef, false, density, friction, restitution, isSensor, CollisionFilters.ENTITY, CollisionFilters.GROUND){
-			@Override
-			// give it a random spin and speed on init
-			public void init(World world){
-				super.init(world);
-				
-				Random randy = new Random();
-				//this.body.setAngularVelocity(randy.nextFloat() * 1.0f);
-				
-				float linX = randy.nextFloat() * 1.0f;
-				float linY = randy.nextFloat() * 1.0f;
-				if(randy.nextBoolean()) linX *= -1.0f;
-				if(randy.nextBoolean()) linY *= -1.0f;
-				this.body.setLinearVelocity(linX, linY);
-			}
-		};
+		
+		FixtureDef fixtureDef = Game.resources.entityInfo.getEntityFixtureDef(polygonName);
+		
+		Polygon renderpoly = Game.resources.polygons.get(polygonName);
+		DynamicEntity poly = new DynamicEntity(new PolygonRenderer(renderpoly, new float[]{0.6f, 0.6f, 0.6f, 1.0f}), layer, bodyDef, fixtureDef);
+		
 		physics.addEntity(poly, true);
 	}
 	

@@ -21,6 +21,7 @@ import com.bitwaffle.guts.graphics.render.shapes.Polygon;
  */
 public class PolygonLoader {
 	private static final String LOGTAG = "PolygonLoader";
+	
 	/** scale polygon is being loaded in at */
 	private float xScale, yScale;
 	
@@ -41,8 +42,8 @@ public class PolygonLoader {
 	 * @param yScale Y scale to load polygon in at
 	 * @return Polygon object containing necessary data for physics and rendering
 	 */
-	public static Polygon loadPolygon(String renderObjLoc, String collisiionObjLoc, float xScale, float yScale, String textureName){
-		return new PolygonLoader(xScale, yScale).loadPolygon(renderObjLoc, collisiionObjLoc, textureName);
+	public static Polygon loadPolygon(String renderObjLoc, String collisiionObjLoc, Polygon.Types shapeType, float xScale, float yScale, String textureName){
+		return new PolygonLoader(xScale, yScale).loadPolygon(renderObjLoc, collisiionObjLoc, textureName, shapeType);
 	}
 	
 	/**
@@ -72,7 +73,7 @@ public class PolygonLoader {
 	 * @param scale Scale to load polygon in at
 	 * @return Polygon from obj file
 	 */
-	private Polygon loadPolygon(String renderObjLoc, String collisionObjLoc, String textureName){
+	private Polygon loadPolygon(String renderObjLoc, String collisionObjLoc, String textureName, Polygon.Types shapeType){
 		// this fills up the ArrayLists
 		parseRenderObj(renderObjLoc);
 		
@@ -81,7 +82,7 @@ public class PolygonLoader {
 		FloatBuffer texCoordBuffer = putTextureCoordsIntoBuffer();
 		Vector2[] geom = parseCollisionObj(collisionObjLoc);
 		
-		return new Polygon(textureName, vertexBuffer, texCoordBuffer, count, xScale, yScale, geom);
+		return new Polygon(textureName, vertexBuffer, texCoordBuffer, count, geom, shapeType);
 	}
 	
 	/**
@@ -175,7 +176,7 @@ public class PolygonLoader {
 						addAsTriangles(texIndices, textureIndices);
 						count += 6;
 					} else {
-						Log.e(LOGTAG, "Error! Count " + numVertices + " in PolygonLoader face! (Exptected 3 or 4)");
+						Log.d(LOGTAG, "Error! Count " + numVertices + " in PolygonLoader face! (Exptected 3 or 4)");
 					}
 				}
 			}

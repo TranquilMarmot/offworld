@@ -116,7 +116,7 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 				for(FixtureDef def : fixtureDefs){
 					body.createFixture(def);
 					
-					def.shape.dispose();
+					//def.shape.dispose();
 				}
 				fixtureDefs.clear();
 				fixtureDefs = null;
@@ -125,7 +125,7 @@ public class DynamicEntity extends Entity implements KryoSerializable{
 			} else if(shape != null){
 				body.createFixture(shape, density);
 
-				shape.dispose();
+				//shape.dispose();
 				shape = null;
 			} else{
 				Log.e("DynamicEntity", "DynamicEntity not given enough parameters to initialize physics info!");

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 
+import com.bitwaffle.guts.resources.entityinfo.EntityInfoManager;
 import com.bitwaffle.guts.resources.textures.TextureManager;
 
 /**
@@ -45,6 +46,9 @@ public class Resources {
 	
 	/** Polygon manager */
 	public PolygonManager polygons;
+	
+	/** Info about entities */
+	public EntityInfoManager entityInfo;
 
 	
 	/**
@@ -63,6 +67,7 @@ public class Resources {
 		textures = new TextureManager();
 		sounds = new SoundManager();
 		polygons = new PolygonManager();
+		entityInfo = new EntityInfoManager();
 		ResourceLoader.loadResourceFile("base.res");
 	}
 	

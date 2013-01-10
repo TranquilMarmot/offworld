@@ -10,8 +10,8 @@ import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.entities.passive.Decal;
+import com.bitwaffle.guts.physics.CollisionFilters;
 import com.bitwaffle.guts.util.MathHelper;
-import com.bitwaffle.offworld.entities.CollisionFilters;
 import com.bitwaffle.offworld.interfaces.Health;
 import com.bitwaffle.offworld.renderers.Renderers;
 

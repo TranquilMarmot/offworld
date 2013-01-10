@@ -1,17 +1,21 @@
 package com.bitwaffle.offworld.rooms;
 
+import android.opengl.GLES20;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.guts.android.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.Room;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
-import com.bitwaffle.guts.entities.dynamic.PolygonEntity;
+import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.graphics.render.shapes.Polygon;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.util.PhysicsHelper;
-import com.bitwaffle.offworld.entities.CollisionFilters;
+import com.bitwaffle.offworld.renderers.PolygonRenderer;
 import com.bitwaffle.offworld.renderers.Renderers;
 
 public class Room1 extends Room {
@@ -20,6 +24,8 @@ public class Room1 extends Room {
 	
 	public Room1(){
 		super(x, y, width, height);
+		
+		GLES20.glClearColor(0.412f, 0.592f, 0.827f, 1.0f);
 		
 		this.addEntity(tut1());
 		this.addEntity(tut2());
@@ -37,14 +43,12 @@ public class Room1 extends Room {
 		Entity backdrop = new Entity(backdropRenderer, 1, new Vector2(0.0f, -22.0f));
 		this.addEntity(backdrop);
 		
-		temp();
-		
 		this.addEntity(new Entity(){
 			@Override
 			public void update(float timeStep){
-		    	if(Game.physics.numEntities() < 30){
+		    	if(Game.physics.numEntities() < 15){
 		        	//Random r = new Random();
-		    		//if(r.nextBoolean())
+		        	//if(r.nextBoolean())
 		    		//	PhysicsHelper.makeRandomBox(Game.physics);
 		    		//else
 		    		//	PhysicsHelper.makeRandomCircle(Game.physics);
@@ -53,37 +57,30 @@ public class Room1 extends Room {
 			}
 		});
 		
+		temp();
+		
 		this.update(1.0f / 60.0f);
 	}
 	
-	private PolygonEntity tut1(){
-		// TODO this could totally all just be in JSON
+	private DynamicEntity tut1(){
 		String polygonName = "tut1";
 		int layer = 5;
-		BodyDef bodyDef = new BodyDef();
+		BodyDef bodyDef = Game.resources.entityInfo.getEntityBodyDef(polygonName);
 		bodyDef.position.set(0.0f, -20.0f);
-		bodyDef.type = BodyDef.BodyType.StaticBody;
-		float density = 0.0f;
-		float friction = 1.0f;
-		float restitution = 0.01f;
-		boolean isSensor = false;
-		boolean isChain = true;
-		PolygonEntity tut = new PolygonEntity(polygonName, layer, bodyDef, isChain, density, friction, restitution, isSensor, CollisionFilters.GROUND, CollisionFilters.EVERYTHING);
+		FixtureDef fixtureDef = Game.resources.entityInfo.getEntityFixtureDef(polygonName);
+		Polygon poly = Game.resources.polygons.get(polygonName);
+		DynamicEntity tut = new DynamicEntity(new PolygonRenderer(poly), layer, bodyDef, fixtureDef);
 		return tut;
 	}
 	
-	private PolygonEntity tut2(){
+	private DynamicEntity tut2(){
 		String polygonName = "tut2";
 		int layer = 5;
-		BodyDef bodyDef = new BodyDef();
+		BodyDef bodyDef = Game.resources.entityInfo.getEntityBodyDef(polygonName);
 		bodyDef.position.set(2.0f, -20.0f);
-		bodyDef.type = BodyDef.BodyType.StaticBody;
-		float density = 0.0f;
-		float friction = 1.0f;
-		float restitution = 0.01f;
-		boolean isSensor = false;
-		boolean isChain = true;
-		PolygonEntity tut = new PolygonEntity(polygonName, layer, bodyDef, isChain, density, friction, restitution, isSensor, CollisionFilters.GROUND, CollisionFilters.EVERYTHING);
+		FixtureDef fixtureDef = Game.resources.entityInfo.getEntityFixtureDef(polygonName);
+		Polygon poly = Game.resources.polygons.get(polygonName);
+		DynamicEntity tut = new DynamicEntity(new PolygonRenderer(poly), layer, bodyDef, fixtureDef);
 		return tut;
 	}
 
@@ -106,27 +103,27 @@ public class Room1 extends Room {
 		}
 		
 		Ground[] grounds = new Ground[]{
-				new Ground(19.0f, -10.0f, 1.0f, 50.0f),
-				new Ground(-17.0f, -10.0f, 1.0f, 50.0f),
-				new Ground(0.0f, -34.7f, 50.0f, 1.0f)
-					
-					
-				/*	
-				// bottom
-				new Ground(0.0f, -60.0f, 45.0f, 1.0f),
-				// left
-				new Ground(-46.0f, -31.0f, 1.0f, 30.0f),
-				// right
-				new Ground(46.0f, -31.0f, 1.0f, 30.0f),
-				// stairs
-				new Ground(-35.0f, -58.0f, 10.0f, 1.0f),
-				new Ground(-37.0f, -56.0f, 8.0f, 1.0f),
-				new Ground(-39.0f, -54.0f, 6.0f, 1.0f),
-				new Ground(-41.0f, -52.0f, 4.0f, 1.0f),
-				// floating
-				new Ground(-22.0f, -50.0f, 8.0f, 0.5f),
-				new Ground(2.0f, -50.0f, 8.0f, 0.5f),
-				*/
+			new Ground(19.0f, -10.0f, 1.0f, 50.0f),
+			new Ground(-17.0f, -10.0f, 1.0f, 50.0f),
+			new Ground(0.0f, -34.7f, 50.0f, 1.0f)
+				
+				
+			/*	
+			// bottom
+			new Ground(0.0f, -60.0f, 45.0f, 1.0f),
+			// left
+			new Ground(-46.0f, -31.0f, 1.0f, 30.0f),
+			// right
+			new Ground(46.0f, -31.0f, 1.0f, 30.0f),
+			// stairs
+			new Ground(-35.0f, -58.0f, 10.0f, 1.0f),
+			new Ground(-37.0f, -56.0f, 8.0f, 1.0f),
+			new Ground(-39.0f, -54.0f, 6.0f, 1.0f),
+			new Ground(-41.0f, -52.0f, 4.0f, 1.0f),
+			// floating
+			new Ground(-22.0f, -50.0f, 8.0f, 0.5f),
+			new Ground(2.0f, -50.0f, 8.0f, 0.5f),
+			*/
 		};
 		
 		for(Ground g : grounds){
