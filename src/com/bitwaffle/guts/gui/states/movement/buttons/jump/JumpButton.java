@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.gui.states.movement.buttons.jump;
 
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.android.AndroidGame;
 import com.bitwaffle.guts.gui.states.movement.buttons.MovementButton;
 import com.bitwaffle.guts.input.KeyBindings;
 
@@ -22,7 +22,7 @@ public abstract class JumpButton extends MovementButton {
 	}
 	@Override
 	protected void onPress() {
-		Game.vibration.vibrate(25);
+		AndroidGame.vibration.vibrate(25);
 		KeyBindings.CONTROL_JUMP.press();
 	}
 	

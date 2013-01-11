@@ -11,7 +11,7 @@ import java.util.Set;
 import android.os.Environment;
 import android.util.Log;
 
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;

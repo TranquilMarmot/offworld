@@ -32,9 +32,12 @@ public enum KeyBindings {
 	SYS_CONSOLE_SUBMIT(new InputButton[]{Keys.RETURN}),
 	SYS_CONSOLE_BACKSPACE(new InputButton[]{Keys.BACK}),
 	SYS_CONSOLE_SCROLL_UP(new InputButton[]{Keys.NEXT}),
-	SYS_CONSOLE_SCROLL_DOWN(new InputButton[]{Keys.PRIOR});
-
-	//BUILDER_OPEN_ADD_MENU(new InputButton[]{Keys.TAB});
+	SYS_CONSOLE_SCROLL_DOWN(new InputButton[]{Keys.PRIOR}),
+	SYS_CONSOLE_LEFT(new InputButton[]{Keys.LEFT}),
+	SYS_CONSOLE_RIGHT(new InputButton[]{Keys.RIGHT}),
+	SYS_CONSOLE_HOME(new InputButton[]{Keys.HOME}),
+	SYS_CONSOLE_END(new InputButton[]{Keys.END}),
+	SYS_CONSOLE_DELETE(new InputButton[]{Keys.DELETE});
 
 	/** the InputButtons that activate this binding */
 	private InputButton[] inputButtons;
@@ -50,11 +53,17 @@ public enum KeyBindings {
 		this.inputButtons = InputButtons;
 	}
 	
+	/**
+	 * Press a key binding
+	 */
 	public void press(){
 		this.pressed = true;
 		this.stillDown = true;
 	}
-	
+
+	/**
+	 * Release a key binding
+	 */
 	public void release(){
 		this.pressed = false;
 		this.stillDown = false;
@@ -101,6 +110,13 @@ public enum KeyBindings {
 	 */
 	public void setInputButtons(InputButton[] newInputButtons){
 		this.inputButtons = newInputButtons;
+	}
+	
+	/**
+	 * @return All the input buttons that activate this KeyBinding
+	 */
+	public InputButton[] getInputButtons(){
+		return inputButtons;
 	}
 
 	/**
@@ -162,11 +178,11 @@ public enum KeyBindings {
 	}
 
 	/**
-	 * To string, or not to string -- that is the question
-	 * Whether 'tis nobler in the mind to suffer
-	 * The slings and arrows of outrageous fortune
-	 * Or to take arms against a sea of troubles
-	 * And by opposing them. To die, to sleep--
+	 * To string, or not to string -- that is the method
+	 * Whether 'tis nobler in the mind to return
+	 * The strings and arrows of outrageous fortune
+	 * Or to take arms against a sea of exceptions
+	 * And by opposing them. To System.exit(0), to sleep()--
 	 * No more
 	 * 
 	 * Shakespeare while you code!

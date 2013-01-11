@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.shapes.Polygon;
 
 /**

@@ -10,7 +10,7 @@ import org.lwjgl.util.vector.Vector3f;
 import android.opengl.GLES20;
 import android.util.Log;
 
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.console.Console;

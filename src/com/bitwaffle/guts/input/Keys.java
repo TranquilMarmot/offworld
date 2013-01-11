@@ -29,11 +29,14 @@ public enum Keys implements InputButton{
 	UNDERLINE,CIRCUMFLEX,AT,
 	NONE;
 
-	/** whether or not the key is being pressed right now */
+	/** Whether or not the key is being pressed right now */
 	private boolean isPressed;
 
-	/** whether or not the key is still down from the previous update */
+	/** Whether or not the key is still down from the previous update */
 	private boolean stillDown;
+	
+	/** Time that key went down (to know how long it's being held) */
+	private long timePressed;
 
 	/**
 	 * Constructor
@@ -41,6 +44,7 @@ public enum Keys implements InputButton{
 	private Keys(){
 		isPressed = false;
 		stillDown = false;
+		timePressed = 0L;
 	}
 
 	@Override
@@ -50,6 +54,7 @@ public enum Keys implements InputButton{
 	public void press(){
 		this.isPressed = true;
 		this.stillDown = true;
+		timePressed = System.currentTimeMillis();
 	}
 
 	@Override
@@ -59,6 +64,7 @@ public enum Keys implements InputButton{
 	public void release(){
 		this.isPressed = false;
 		this.stillDown = false;
+		timePressed = 0L;
 	}
 
 	@Override
@@ -81,5 +87,15 @@ public enum Keys implements InputButton{
 		} else{
 			return false;
 		}
+	}
+	
+	/**
+	 * @return How long the key has been down (0 if it's not down)
+	 */
+	public long timeDown(){
+		if(timePressed == 0)
+			return 0L;
+		else
+			return System.currentTimeMillis() - timePressed;
 	}
 }

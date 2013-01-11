@@ -1,7 +1,7 @@
 package com.bitwaffle.offworld.entities.dynamic;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.CircleEntity;
 import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.offworld.interfaces.Health;

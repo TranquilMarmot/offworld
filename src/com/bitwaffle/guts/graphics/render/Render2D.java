@@ -13,7 +13,7 @@ import android.opengl.GLES20;
 import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.graphics.camera.Camera;

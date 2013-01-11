@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.gui.states.options;
 
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.passive.GLSLSandbox;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.TextButton;

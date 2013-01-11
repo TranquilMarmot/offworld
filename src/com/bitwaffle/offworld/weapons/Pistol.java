@@ -5,7 +5,7 @@ import org.lwjgl.util.vector.Vector3f;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.dynamic.Bullet;
@@ -32,7 +32,7 @@ public class Pistol implements Firearm {
 	boolean muzzleFlash;
 	
 	/** How long the flash lives and a timer to know when to turn it off */
-	float flashTTL = 0.1f, flashLived; 
+	float muzzleFlashTTL = 0.1f, muzzleFlashLived; 
 	
 	// FIXME temp?
 	private final float 		
@@ -52,7 +52,7 @@ public class Pistol implements Firearm {
 		this.firingRate = firingRate;
 		timeSinceLastShot = 0.0f;
 		//callback = new ClosestHitRayCastCallback(owner.getLocation());
-		flashLived = 0.0f;
+		muzzleFlashLived = 0.0f;
 	}
 
 	/**
@@ -82,9 +82,9 @@ public class Pistol implements Firearm {
 		
 		// tick muzzle flash timer if necessary
 		if(muzzleFlash){
-			flashLived += timeStep;
-			if(flashLived >= flashTTL){
-				flashLived = 0.0f;
+			muzzleFlashLived += timeStep;
+			if(muzzleFlashLived >= muzzleFlashTTL){
+				muzzleFlashLived = 0.0f;
 				muzzleFlash = false;
 			}
 		}

@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.graphics.render;
 
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.offworld.renderers.BackdropRenderer;
 import com.bitwaffle.offworld.renderers.BoxRenderer;

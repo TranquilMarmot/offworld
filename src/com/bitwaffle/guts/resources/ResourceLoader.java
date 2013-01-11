@@ -18,7 +18,7 @@ import android.util.Log;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.shapes.Polygon;
 import com.bitwaffle.guts.physics.CollisionFilters;
 import com.bitwaffle.guts.resources.entityinfo.EntityInfo;
@@ -199,12 +199,14 @@ public class ResourceLoader {
 		
 		GLES20.glGenTextures(1, handles, 0);		
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, handles[0]);
-		
-		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, minFilter);
-		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, magFilter);
-		
 		GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
 		
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, minFilter);
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, magFilter);
+		
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE);
+
 		int error = GLES20.glGetError();
 		if(error != GLES20.GL_NO_ERROR)
 			Log.e(LOGTAG, "Error loading texture! (GL error number " + error + " string: "+ GLES20.glGetString(error) + ")");

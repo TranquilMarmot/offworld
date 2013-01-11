@@ -2,7 +2,7 @@ package com.bitwaffle.guts.android.input.touch;
 
 import java.util.Iterator;
 
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.util.MathHelper;

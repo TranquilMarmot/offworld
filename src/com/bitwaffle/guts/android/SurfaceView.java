@@ -4,6 +4,7 @@ import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.view.MotionEvent;
 
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.android.input.touch.TouchHandler;
 import com.bitwaffle.guts.graphics.render.Render2D;
 
@@ -19,7 +20,7 @@ public class SurfaceView extends GLSurfaceView {
 	 * Handles all the rendering (NOTE: {@link Game}
 	 * contains static instances of everything that runs the game.
 	 */
-	public static Game game;
+	public static AndroidGame game;
 	
 	/** Handles any touch events */
 	public static TouchHandler touchHandler;
@@ -32,8 +33,8 @@ public class SurfaceView extends GLSurfaceView {
         
         touchHandler = new TouchHandler(Game.player, Render2D.camera);
         
-        game = new Game();
-        Game.setContext(context);
+        game = new AndroidGame();
+        AndroidGame.setContext(context);
         this.setRenderer(game);
     }
     

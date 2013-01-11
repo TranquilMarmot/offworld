@@ -7,7 +7,7 @@ import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.SoundPool;
 
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
 
 /**
  * Manages initializing and playing/stopping sounds.

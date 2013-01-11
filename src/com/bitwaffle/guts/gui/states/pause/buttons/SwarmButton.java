@@ -1,15 +1,12 @@
 package com.bitwaffle.guts.gui.states.pause.buttons;
 
-import android.app.Activity;
 import android.opengl.GLES20;
 
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.android.AndroidGame;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.button.TextButton;
 import com.bitwaffle.guts.gui.states.pause.PauseGUIState;
-import com.bitwaffle.guts.swarm.LoginListener;
-import com.bitwaffle.guts.swarm.SwarmConsts;
-import com.swarmconnect.Swarm;
 
 public class SwarmButton extends TextButton {
 	// offset of button from center
@@ -35,9 +32,9 @@ public class SwarmButton extends TextButton {
 
 	@Override
 	protected void onRelease() {
-		if(!Swarm.isInitialized())
-			Swarm.init((Activity)Game.context, SwarmConsts.App.APP_ID, SwarmConsts.App.APP_AUTH, new LoginListener());
-		Swarm.showDashboard();
+		//if(!Swarm.isInitialized())
+		//	Swarm.init((Activity)Game.context, SwarmConsts.App.APP_ID, SwarmConsts.App.APP_AUTH, new LoginListener());
+		//Swarm.showDashboard();
 	}
 
 	@Override
@@ -48,7 +45,7 @@ public class SwarmButton extends TextButton {
 
 	@Override
 	protected void onPress() {
-		Game.vibration.vibrate(25);
+		AndroidGame.vibration.vibrate(25);
 	}
 	
 	@Override

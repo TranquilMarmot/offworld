@@ -4,7 +4,8 @@ import java.util.Iterator;
 import java.util.StringTokenizer;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.android.AndroidGame;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.net.NetConsoleCommands;
@@ -284,7 +285,7 @@ class CameraCommand implements Command{
 class QuitCommand implements Command{
 	@Override
 	public void issue(StringTokenizer toker){
-		Game.endGame();
+		AndroidGame.endGame();
 	}
 	
 	@Override

@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.entities.passive.Decal;
@@ -16,12 +16,15 @@ import com.bitwaffle.offworld.interfaces.Health;
 import com.bitwaffle.offworld.renderers.Renderers;
 
 public class Bullet extends BoxEntity {
-	static float[] color = { 1.0f, 1.0f, 1.0f, 1.0f };
-	
+	// TODO move all this into the renderer
 	public static float SCALE = 0.25f;
 	public static float WIDTH = 1.0f * SCALE, HEIGHT = 0.379f * SCALE;
+	static float[] color = { 1.0f, 1.0f, 1.0f, 1.0f };
+	
+	/** How much damage the bullet does */ // TODO should this be defined somewhere else? In the constructor?
 	private int DAMAGE = 10;
 	
+	/** The owner of this bullet. The bullet can never hit its owner (see the physics.CollisionHandler) */
 	private DynamicEntity owner;
 	
 	public Bullet(DynamicEntity owner, float x, float y, float angle, float speed){

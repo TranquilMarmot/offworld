@@ -4,13 +4,13 @@ import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.entities.Room;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.camera.modes.CameraMode;
 import com.bitwaffle.guts.graphics.camera.modes.FollowMode;
 import com.bitwaffle.guts.graphics.camera.modes.FreeMode;
+import com.bitwaffle.guts.physics.Room;
 import com.bitwaffle.guts.util.MathHelper;
 
 /**
@@ -37,8 +37,8 @@ public class Camera extends Entity {
 	/** How much of the world the camera can see. X value is width in world-coordinates, Y value is height */
 	private Vector2 worldWindowSize;
 	
-	/** Vectors that get reused for maths */
-	private Vector2 prevWorldWindowSize, tempVec;
+	/** Whether or not to keep the camera within Physics.getCurrentRoom */
+	private boolean boundsCheck = true;
 	
 	/**
 	 * Different camera modes
@@ -75,8 +75,6 @@ public class Camera extends Entity {
 		projection = new Matrix4f();
 		view = new Matrix4f();
 		worldWindowSize = new Vector2();
-		prevWorldWindowSize = new Vector2();
-		tempVec = new Vector2();
 		this.setLocation(new Vector2(DEFAULT_CAMX, DEFAULT_CAMY));
 		this.location.set(DEFAULT_CAMX, DEFAULT_CAMY);
 		this.setZoom(DEFAULT_CAMZ);
@@ -88,97 +86,12 @@ public class Camera extends Entity {
 	@Override
 	public void update(float timeStep) {
 		currentMode.update(timeStep);
-		
-		if(this.currentMode == Modes.FOLLOW){
+	
+		if(boundsCheck){
 			Room r = Game.physics.currentRoom();
-			if(r != null){
-				Vector2 center = getWorldCenterPoint();
-				
-				float cameraBottomY = center.y - worldWindowSize.y;
-				float roomBottomY = r.getRoomY() - r.getRoomHeight();
-				if(cameraBottomY < roomBottomY)
-					this.location.y += (cameraBottomY - roomBottomY);
-				
-				float cameraTopY = center.y + worldWindowSize.y;
-				float roomTopY = r.getRoomY() + r.getRoomHeight();
-				if(cameraTopY > roomTopY)
-					this.location.y += (cameraTopY - roomTopY);
-				
-				float cameraLeftX = center.x - worldWindowSize.x;
-				float roomLeftX = r.getRoomX() - r.getRoomWidth();
-				if(cameraLeftX < roomLeftX)
-					this.location.x += (cameraLeftX - roomLeftX);
-				
-				float cameraRightX = center.x + worldWindowSize.x;
-				float roomRightX = r.getRoomX() + r.getRoomWidth();
-				if(cameraRightX > roomRightX)
-					this.location.x += (cameraRightX - roomRightX);
-			}
+			if(r != null)
+				boundsCheck(r);	
 		}
-	}
-	
-	public Vector2 getWorldCenterPoint(){
-		//return new Vector2(this.location.x - (worldWindowSize.x / 2.0f), -this.location.y - (worldWindowSize.y / 2.0f));
-		return new Vector2(-(this.location.x) + worldWindowSize.x, -(this.location.y) + worldWindowSize.y);
-	}
-	
-	/**
-	 * @return Current zoom level of this camera
-	 */
-	public float getZoom(){
-		return zoom;
-	}
-	
-	/**
-	 * Set the zoom level
-	 * @param zoom New zoom level
-	 */
-	public void setZoom(float zoom){
-		if(zoom > maxZoom)
-			this.zoom = maxZoom;
-		else if(zoom < minZoom)
-			this.zoom = minZoom;
-		else
-			this.zoom = zoom;
-		prevWorldWindowSize.set(worldWindowSize);
-		
-		// update window size, since we zoomed
-		updateWorldWindowSize();
-		
-		// make it so the camera zooms in to the middle
-		this.location.x += worldWindowSize.x - prevWorldWindowSize.x;
-		this.location.y += worldWindowSize.y - prevWorldWindowSize.y; 
-	}
-	
-	/**
-	 * Updates worldWindowSize to represent the latest state of everything
-	 */
-	public void updateWorldWindowSize(){
-		projection.setIdentity();
-		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1);
-		
-		view.setIdentity();
-		Matrix4f.scale(new Vector3f(this.zoom, this.zoom, 1.0f), view, view);
-		
-		// don't ask, that's just how it works, okay?
-		MathHelper.toWorldSpace(worldWindowSize, projection, view, (Game.windowWidth / 2.0f), 0.0f);
-		MathHelper.toWorldSpace(tempVec, projection, view, 0.0f,  (Game.windowHeight / 2.0f));
-		worldWindowSize.sub(tempVec.x, tempVec.y);
-	}
-	
-	
-	/**
-	 * Set the mode of the camera
-	 * @param newMode Mode from Camera.Modes
-	 */
-	public void setMode(Modes newMode){
-		this.currentMode = newMode;
-	}
-	/**
-	 * @return Current mode of camera, from Camera.Modes
-	 */
-	public Modes currentMode(){
-		return currentMode;
 	}
 	
 	/**
@@ -189,13 +102,108 @@ public class Camera extends Entity {
 		((FollowMode)Modes.FOLLOW.getMode()).setTarget(entity);
 	}
 	
-	/**
-	 * @return What this camera is currently following
-	 */
+	/** @return What this camera is currently following */
 	public DynamicEntity getTarget() {
 		return ((FollowMode)Modes.FOLLOW.getMode()).getTarget();
 	}
 	
+	/**
+	 * Set the mode of the camera
+	 * @param newMode Mode from Camera.Modes
+	 */
+	public void setMode(Modes newMode){ this.currentMode = newMode; }
+	
+	/** @return Current mode of camera, from Camera.Modes */
+	public Modes currentMode(){ return currentMode; }
+	
+	/** @return Current zoom level of this camera */
+	public float getZoom(){ return zoom; }
+	
+	/**
+	 * Set the zoom level
+	 * @param zoom New zoom level
+	 */
+	public void setZoom(float zoom){
+		float oldZoom = this.zoom;
+		if(zoom > maxZoom)
+			this.zoom = maxZoom;
+		else if(zoom < minZoom)
+			this.zoom = minZoom;
+		else
+			this.zoom = zoom;
+		Vector2 prevWorldWindowSize = new Vector2(worldWindowSize);
+		
+		// update window size, since we zoomed
+		updateWorldWindowSize();
+		
+		// make it so the camera zooms in to the middle
+		this.location.x += worldWindowSize.x - prevWorldWindowSize.x;
+		this.location.y += worldWindowSize.y - prevWorldWindowSize.y; 
+		
+		// make sure the camera doesn't zoom outside of the room if bounds are being checked
+		if(boundsCheck){
+			Room r = Game.physics.currentRoom();
+			if(r != null){
+				Vector2 windowSize = getWorldWindowSize();
+				if(windowSize.x > r.getRoomWidth() || windowSize.y > r.getRoomHeight())
+					this.setZoom(oldZoom);
+			}	
+		}
+	}
+	
+	/** Updates worldWindowSize to represent the latest state of everything */
+	public void updateWorldWindowSize(){
+		projection.setIdentity();
+		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1);
+		
+		view.setIdentity();
+		Matrix4f.scale(new Vector3f(this.zoom, this.zoom, 1.0f), view, view);
+		
+		// don't ask, that's just how it works, okay?
+		Vector2 tempVec = new Vector2();
+		MathHelper.toWorldSpace(worldWindowSize, projection, view, (Game.windowWidth / 2.0f), 0.0f);
+		MathHelper.toWorldSpace(tempVec, projection, view, 0.0f,  (Game.windowHeight / 2.0f));
+		worldWindowSize.sub(tempVec.x, tempVec.y);
+	}
+	
+	/** @return The center of where the camera is currently looking, in world coordinates */
+	public Vector2 getWorldCenterPoint(){
+		return new Vector2(-(this.location.x) + worldWindowSize.x, -(this.location.y) + worldWindowSize.y);
+	}
+	
+	/**
+	 * Keeps the camera within the bounds of a given room
+	 * @param r Room to keep camera inside of
+	 */
+	private void boundsCheck(Room r){
+		Vector2 center = getWorldCenterPoint();
+		
+		// bottom bounds (-y)
+		float cameraBottomY = center.y - worldWindowSize.y;
+		float roomBottomY = r.getRoomY() - r.getRoomHeight();
+		if(cameraBottomY < roomBottomY)
+			this.location.y += (cameraBottomY - roomBottomY);
+		
+		// top bounds (+y)
+		float cameraTopY = center.y + worldWindowSize.y;
+		float roomTopY = r.getRoomY() + r.getRoomHeight();
+		if(cameraTopY > roomTopY)
+			this.location.y += (cameraTopY - roomTopY);
+		
+		// left bounds (-x)
+		float cameraLeftX = center.x - worldWindowSize.x;
+		float roomLeftX = r.getRoomX() - r.getRoomWidth();
+		if(cameraLeftX < roomLeftX)
+			this.location.x += (cameraLeftX - roomLeftX);
+		
+		// right bounds (+x)
+		float cameraRightX = center.x + worldWindowSize.x;
+		float roomRightX = r.getRoomX() + r.getRoomWidth();
+		if(cameraRightX > roomRightX)
+			this.location.x += (cameraRightX - roomRightX);
+	}
+	
+	/** @return How much the camera can see, in world coordinates */
 	public Vector2 getWorldWindowSize(){
 		return worldWindowSize;
 	}

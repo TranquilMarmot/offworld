@@ -19,7 +19,7 @@
 					"polyName":	"rock1"
 				},
 				"density":	1.0,
-				"friction":	0.3,
+				"friction":	0.5,
 				"restitution":	0.0,
 				"isSensor":	false,
 				"groupIndex":	5,

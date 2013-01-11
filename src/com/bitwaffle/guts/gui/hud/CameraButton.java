@@ -2,7 +2,8 @@ package com.bitwaffle.guts.gui.hud;
 
 import android.opengl.GLES20;
 
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.android.AndroidGame;
 import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.button.RectangleButton;
@@ -49,7 +50,7 @@ public class CameraButton extends RectangleButton{
 	protected void onDrag(float dx, float dy){}
 	@Override
 	protected void onPress() {
-		Game.vibration.vibrate(25);
+		AndroidGame.vibration.vibrate(25);
 	}
 	
 	@Override

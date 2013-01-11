@@ -1,7 +1,7 @@
 package com.bitwaffle.guts.entities.passive;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.esotericsoftware.kryo.Kryo;

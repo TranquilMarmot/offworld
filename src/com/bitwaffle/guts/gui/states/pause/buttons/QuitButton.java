@@ -2,7 +2,8 @@ package com.bitwaffle.guts.gui.states.pause.buttons;
 
 import android.opengl.GLES20;
 
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.android.AndroidGame;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.TextButton;
@@ -50,7 +51,7 @@ public class QuitButton extends TextButton {
 
 	@Override
 	protected void onPress() {
-		Game.vibration.vibrate(25);
+		AndroidGame.vibration.vibrate(25);
 	}
 	
 	@Override

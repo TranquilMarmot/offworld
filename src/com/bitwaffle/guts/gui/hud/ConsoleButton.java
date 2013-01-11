@@ -3,7 +3,7 @@ package com.bitwaffle.guts.gui.hud;
 import android.content.DialogInterface;
 import android.opengl.GLES20;
 
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.android.input.TextInput;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.GUI;

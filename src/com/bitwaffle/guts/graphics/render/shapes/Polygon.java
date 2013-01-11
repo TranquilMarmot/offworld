@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 
-// TODO seiralize this!!!
+// TODO seiralize this?
 
 public class Polygon {
 	/**
@@ -51,36 +51,44 @@ public class Polygon {
 		this.geometryType = type;
 	}
 	
+	/** @return Number of indices this polygon has (for rendering) */
 	public int getNumIndices(){
 		return numIndices;
 	}
 	
+	/** @return Name of texture to use to render this polygon */
 	public String getTextureName(){
 		return textureName;
 	}
 	
+	/** @return Buffer filled with vertex data for rendering */
 	public FloatBuffer getVertexBuffer(){
 		return vertBuffer;
 	}
 	
+	/** @return Buffer filled with texture coordinate data for rendering */
 	public FloatBuffer getTexCoordBuffer(){
 		return texCoordBuffer;
 	}
 	
+	/** @return Shape to use for this polygon */
 	public Shape getShape(){
 		switch(geometryType){
 		case POLYGON:
 			PolygonShape poly = new PolygonShape();
 			poly.set(geometry);
 			return poly;
+			
 		case CHAIN:
 			ChainShape chain = new ChainShape();
 			chain.createChain(geometry);
 			return chain;
+			
 		case LOOP:
 			ChainShape loop = new ChainShape();
 			loop.createLoop(geometry);
 			return loop;
+			
 		default:
 			return null;
 		}

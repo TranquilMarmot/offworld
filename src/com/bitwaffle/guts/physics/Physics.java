@@ -10,7 +10,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.GdxNativesLoader;
 import com.bitwaffle.guts.entities.Entities;
 import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.entities.Room;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.physics.callbacks.FirstHitQueryCallback;

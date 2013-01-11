@@ -2,7 +2,7 @@ package com.bitwaffle.guts.gui.states.movement.buttons.left;
 
 import android.opengl.GLES20;
 
-import com.bitwaffle.guts.android.Game;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.states.movement.MovementGUIState;
 
