@@ -66,7 +66,7 @@ public class Room1 extends Room {
 	}
 	
 	private DynamicEntity intro(){
-		String polygonName = "intro";
+		String polygonName = "intro-seg1";
 		int layer = 5;
 		BodyDef bodyDef = Game.resources.entityInfo.getEntityBodyDef(polygonName);
 		bodyDef.position.set(0.0f, 0.0f);

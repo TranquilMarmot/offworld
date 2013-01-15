@@ -41,19 +41,28 @@ public class Polygon {
 	/** What type of geometry this polygon uses */
 	private Types geometryType;
 	
+	private FloatBuffer debugVertBuffer, debugTexCoordBuffer;
+	
+	private int debugVertexCount;
+	
 	/**
 	 * Create a new polygon
 	 * @param vertices Vertices of polygon
 	 * @param texCoords Texture coordinates of polygon
 	 * @param numIndices Number of indices in polygon
 	 */
-	public Polygon(ArrayList<String> textureNames, ArrayList<FloatBuffer> vertices, ArrayList<FloatBuffer> texCoords, ArrayList<Integer> numIndices, Vector2[] geometry, Types type){
+	public Polygon(ArrayList<String> textureNames, ArrayList<FloatBuffer> vertices, ArrayList<FloatBuffer> texCoords, ArrayList<Integer> numIndices,
+	               Vector2[] geometry, Types type,
+	               FloatBuffer debugVertBuffer, FloatBuffer debugTexCoordBuffer, int debugCount){
 		this.textureNames = textureNames;
 		this.vertBuffers = vertices;
 		this.texCoordBuffers = texCoords;
 		this.numIndices = numIndices;
 		this.geometry = geometry;
 		this.geometryType = type;
+		this.debugVertBuffer = debugVertBuffer;
+		this.debugTexCoordBuffer = debugTexCoordBuffer;
+		this.debugVertexCount = debugCount;
 	}
 	
 	public int getNumRenderParts(){
@@ -75,6 +84,18 @@ public class Polygon {
 	
 	public String getTextureName(int index){
 		return textureNames.get(index);
+	}
+	
+	public FloatBuffer getDebugVertBuffer(){
+		return debugVertBuffer;
+	}
+	
+	public FloatBuffer getDebugTexCoordBuffer(){
+		return debugTexCoordBuffer;
+	}
+	
+	public int getDebugVertexCount(){
+		return debugVertexCount;
 	}
 	
 	

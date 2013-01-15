@@ -42,8 +42,8 @@ public class PolygonLoader {
 	 * @param yScale Y scale to load polygon in at
 	 * @return Polygon object containing necessary data for physics and rendering
 	 */
-	public static Polygon loadPolygon(ArrayList<String> renderObjLocs, ArrayList<String> textureNames, String collisiionObjLoc, Polygon.Types shapeType, float xScale, float yScale){
-		return new PolygonLoader(xScale, yScale).loadPolygon(renderObjLocs, textureNames, collisiionObjLoc, shapeType);
+	public static Polygon loadPolygon(float xScale, float yScale, ArrayList<String> renderObjLocs, ArrayList<String> textureNames, String collisiionObjLoc, Polygon.Types shapeType, String debugObjLoc){
+		return new PolygonLoader(xScale, yScale).loadPolygon(renderObjLocs, textureNames, collisiionObjLoc, shapeType, debugObjLoc);
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class PolygonLoader {
 	 * @param scale Scale to load polygon in at
 	 * @return Polygon from obj file
 	 */
-	private Polygon loadPolygon(ArrayList<String> renderObjLocs, ArrayList<String> textureNames, String collisionObjLoc, Polygon.Types shapeType){
+	private Polygon loadPolygon(ArrayList<String> renderObjLocs, ArrayList<String> textureNames, String collisionObjLoc, Polygon.Types shapeType, String debugObjLoc){
 		ArrayList<FloatBuffer> vertBuffers = new ArrayList<FloatBuffer>(), texCoordBuffers = new ArrayList<FloatBuffer>();
 		ArrayList<Integer> counts = new ArrayList<Integer>();
 		for(String renderObjLoc : renderObjLocs){
@@ -97,10 +97,16 @@ public class PolygonLoader {
 			vertices.add(new Vector2(0.0f, 0.0f));
 			textureCoords.add(new Vector2(0.0f, 0.0f));
 		}
+		
+		parseRenderObj(debugObjLoc);
+		
+		FloatBuffer debugVertexBuffer = putVerticesIntoBuffer();
+		FloatBuffer debugTexCoordBuffer = putTextureCoordsIntoBuffer();
+		int debugCount = count;
 			
 		Vector2[] geom = parseCollisionObj(collisionObjLoc);
 		
-		return new Polygon(textureNames, vertBuffers, texCoordBuffers, counts, geom, shapeType);
+		return new Polygon(textureNames, vertBuffers, texCoordBuffers, counts, geom, shapeType, debugVertexBuffer, debugTexCoordBuffer, debugCount);
 	}
 	
 	/**

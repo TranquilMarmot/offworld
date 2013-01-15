@@ -13,6 +13,7 @@
 			"name":	"rock1",
 			"render":	"entities/rocks/rock1-render.obj",
 			"geom":	"entities/rocks/rock1-geom.obj",
+			"debug":	"entities/rocks/rock1-render.obj",
 			"type":	"polygon",
 			"texture":	"rocks",
 			"scale":	4.0

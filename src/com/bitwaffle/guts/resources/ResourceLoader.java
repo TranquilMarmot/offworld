@@ -403,6 +403,7 @@ public class ResourceLoader {
 				
 				
 				String geomPath = polyObj.getString("geom");
+				String debugPath = polyObj.getString("debug");
 				
 				
 				float xScale, yScale;
@@ -426,7 +427,7 @@ public class ResourceLoader {
 				else
 					Log.e(LOGTAG, "ERROR! Got unkown polygon shape type (got " + typeStr + ")");
 				
-				Polygon poly = PolygonLoader.loadPolygon(renderObjLocs, textureNames, geomPath, shapeType, xScale, yScale);
+				Polygon poly = PolygonLoader.loadPolygon(xScale, yScale, renderObjLocs, textureNames, geomPath, shapeType, debugPath);
 				Game.resources.polygons.addPolygon(polyName, poly);
 			}
 		} catch(JSONException e){
