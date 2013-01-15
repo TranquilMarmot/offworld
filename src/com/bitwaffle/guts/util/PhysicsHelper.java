@@ -211,7 +211,7 @@ public class PhysicsHelper {
 		// player
 		BodyDef playerBodyDef = new BodyDef();
 		playerBodyDef.type = BodyDef.BodyType.DynamicBody;
-		playerBodyDef.position.set(1.0f, -30.0f);
+		playerBodyDef.position.set(1.0f, 0.0f);
 		
 		PolygonShape boxShape = new PolygonShape();
 		boxShape.setAsBox(0.83062f, 1.8034f);

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.FloatBuffer;
+import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -377,9 +378,33 @@ public class ResourceLoader {
 				JSONObject polyObj = arr.getJSONObject(i);
 				
 				String polyName = polyObj.getString("name");
-				String renderPath = polyObj.getString("render");
+				
+				ArrayList<String> renderObjLocs = new ArrayList<String>();
+				ArrayList<String> textureNames = new ArrayList<String>();
+				
+				JSONArray renderArr = polyObj.optJSONArray("render");
+				if(renderArr != null){
+					for(int j = 0; j < renderArr.length(); j++){
+						JSONObject renderObj = renderArr.getJSONObject(j);
+						String renderPath = renderObj.getString("render");
+						renderObjLocs.add(renderPath);
+						
+						String texName = renderObj.getString("texture");
+						textureNames.add(texName);
+						
+					}
+				} else{
+					String singleRenderPath = polyObj.optString("render");
+					renderObjLocs.add(singleRenderPath);
+					String polyTex = polyObj.getString("texture");
+					textureNames.add(polyTex);
+				}
+				
+				
+				
 				String geomPath = polyObj.getString("geom");
-				String polyTex = polyObj.getString("texture");
+				
+				
 				float xScale, yScale;
 				double polyScale = polyObj.optDouble("scale");
 				if(polyScale == Double.NaN){
@@ -401,7 +426,7 @@ public class ResourceLoader {
 				else
 					Log.e(LOGTAG, "ERROR! Got unkown polygon shape type (got " + typeStr + ")");
 				
-				Polygon poly = PolygonLoader.loadPolygon(renderPath, geomPath, shapeType, xScale, yScale, polyTex);
+				Polygon poly = PolygonLoader.loadPolygon(renderObjLocs, textureNames, geomPath, shapeType, xScale, yScale);
 				Game.resources.polygons.addPolygon(polyName, poly);
 			}
 		} catch(JSONException e){

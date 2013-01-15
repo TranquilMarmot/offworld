@@ -1,9 +1,12 @@
 package com.bitwaffle.guts.graphics.render.shapes;
 
 import java.nio.FloatBuffer;
+import java.util.ArrayList;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ChainShape;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 
@@ -18,14 +21,19 @@ public class Polygon {
 	public enum Types{
 		POLYGON,
 		CHAIN,
-		LOOP
+		LOOP,
+		EDGE, // TODO
+		CIRCLE // TODO
 	}
 	
 	/** Buffers to hold datas */
-	private FloatBuffer vertBuffer, texCoordBuffer;
+	private ArrayList<FloatBuffer> vertBuffers, texCoordBuffers;
+	
+	/** Name of texture to bind for drawing */
+	private ArrayList<String> textureNames;
 	
 	/** Number of indices */
-	private int numIndices;
+	private ArrayList<Integer> numIndices;
 
 	/** Shape in physics world */
 	private Vector2[] geometry;
@@ -33,43 +41,43 @@ public class Polygon {
 	/** What type of geometry this polygon uses */
 	private Types geometryType;
 	
-	/** Name of texture to bind for drawing */
-	private String textureName;
-	
 	/**
 	 * Create a new polygon
 	 * @param vertices Vertices of polygon
 	 * @param texCoords Texture coordinates of polygon
 	 * @param numIndices Number of indices in polygon
 	 */
-	public Polygon(String textureName, FloatBuffer vertices, FloatBuffer texCoords, int numIndices, Vector2[] geometry, Types type){
-		this.textureName = textureName;
-		this.vertBuffer = vertices;
-		this.texCoordBuffer = texCoords;
+	public Polygon(ArrayList<String> textureNames, ArrayList<FloatBuffer> vertices, ArrayList<FloatBuffer> texCoords, ArrayList<Integer> numIndices, Vector2[] geometry, Types type){
+		this.textureNames = textureNames;
+		this.vertBuffers = vertices;
+		this.texCoordBuffers = texCoords;
 		this.numIndices = numIndices;
 		this.geometry = geometry;
 		this.geometryType = type;
 	}
 	
-	/** @return Number of indices this polygon has (for rendering) */
-	public int getNumIndices(){
-		return numIndices;
+	public int getNumRenderParts(){
+		assert (vertBuffers.size() == texCoordBuffers.size() && texCoordBuffers.size() == textureNames.size() && textureNames.size() == numIndices.size());
+		return vertBuffers.size();
 	}
 	
-	/** @return Name of texture to use to render this polygon */
-	public String getTextureName(){
-		return textureName;
+	public FloatBuffer getVertexBuffer(int index){
+		return vertBuffers.get(index);
 	}
 	
-	/** @return Buffer filled with vertex data for rendering */
-	public FloatBuffer getVertexBuffer(){
-		return vertBuffer;
+	public FloatBuffer getTexCoordBuffer(int index){
+		return texCoordBuffers.get(index);
 	}
 	
-	/** @return Buffer filled with texture coordinate data for rendering */
-	public FloatBuffer getTexCoordBuffer(){
-		return texCoordBuffer;
+	public int getNumIndices(int index){
+		return numIndices.get(index);
 	}
+	
+	public String getTextureName(int index){
+		return textureNames.get(index);
+	}
+	
+	
 	
 	/** @return Shape to use for this polygon */
 	public Shape getShape(){
@@ -88,6 +96,16 @@ public class Polygon {
 			ChainShape loop = new ChainShape();
 			loop.createLoop(geometry);
 			return loop;
+			
+		case CIRCLE:
+			CircleShape circ = new CircleShape();
+			// TODO circ.setRadius(radius);
+			//return circ;
+			
+		case EDGE:
+			EdgeShape edge = new EdgeShape();
+			// TODO edge.set(v1, v2);
+			//return edge;
 			
 		default:
 			return null;

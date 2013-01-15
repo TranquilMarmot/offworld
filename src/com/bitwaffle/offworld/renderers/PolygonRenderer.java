@@ -43,23 +43,25 @@ public class PolygonRenderer implements EntityRenderer {
 			
 			renderer.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
 			
-			// bind texture
-			Game.resources.textures.bindTexture(poly.getTextureName());
-			
-			// set position info
-			GLES20.glEnableVertexAttribArray(positionHandle);
-	        GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false,  0, poly.getVertexBuffer());
-	        
-	        // set texture coordinate info
-	        GLES20.glEnableVertexAttribArray(texCoordHandle);
-	        GLES20.glVertexAttribPointer(texCoordHandle, COORDS_PER_TEXCOORD, GLES20.GL_FLOAT, false, 0, poly.getTexCoordBuffer());
-	        
-	        // actually draw the polygon
-	        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, poly.getNumIndices());
-	        
-	        // don't forget to disable the attrib arrays!
-	        GLES20.glDisableVertexAttribArray(positionHandle);
-	        GLES20.glDisableVertexAttribArray(texCoordHandle);
+			for(int i = 0; i < poly.getNumRenderParts(); i++){
+				// bind texture
+				Game.resources.textures.bindTexture(poly.getTextureName(i));
+				
+				// set position info
+				GLES20.glEnableVertexAttribArray(positionHandle);
+		        GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false,  0, poly.getVertexBuffer(i));
+		        
+		        // set texture coordinate info
+		        GLES20.glEnableVertexAttribArray(texCoordHandle);
+		        GLES20.glVertexAttribPointer(texCoordHandle, COORDS_PER_TEXCOORD, GLES20.GL_FLOAT, false, 0, poly.getTexCoordBuffer(i));
+		        
+		        // actually draw the polygon
+		        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, poly.getNumIndices(i));
+		        
+		        // don't forget to disable the attrib arrays!
+		        GLES20.glDisableVertexAttribArray(positionHandle);
+		        GLES20.glDisableVertexAttribArray(texCoordHandle);
+			}
 		}
 	}
 	
@@ -77,26 +79,24 @@ public class PolygonRenderer implements EntityRenderer {
 		
 		renderer.program.setUniform("vColor", 0.0f, 1.0f, 1.0f, 0.4f);
 		
-		// bind texture
-		Game.resources.textures.bindTexture("blank");
-		
-		// set position info
-		GLES20.glEnableVertexAttribArray(positionHandle);
-        GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false,  0, poly.getVertexBuffer());
-        
-        // set texture coordinate info
-        GLES20.glEnableVertexAttribArray(texCoordHandle);
-        GLES20.glVertexAttribPointer(texCoordHandle, COORDS_PER_TEXCOORD, GLES20.GL_FLOAT, false, 0, poly.getTexCoordBuffer());
-        
-        // actually draw the polygon
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, poly.getNumIndices());
-        
-        // don't forget to disable the attrib arrays!
-        GLES20.glDisableVertexAttribArray(positionHandle);
-        GLES20.glDisableVertexAttribArray(texCoordHandle);
-		
-		
-		
-		GLES20.glDisable(GLES20.GL_BLEND);
+		for(int i = 0; i < poly.getNumRenderParts(); i++){
+			// bind texture
+			Game.resources.textures.bindTexture("blank");
+			
+			// set position info
+			GLES20.glEnableVertexAttribArray(positionHandle);
+	        GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false,  0, poly.getVertexBuffer(i));
+	        
+	        // set texture coordinate info
+	        GLES20.glEnableVertexAttribArray(texCoordHandle);
+	        GLES20.glVertexAttribPointer(texCoordHandle, COORDS_PER_TEXCOORD, GLES20.GL_FLOAT, false, 0, poly.getTexCoordBuffer(i));
+	        
+	        // actually draw the polygon
+	        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, poly.getNumIndices(i));
+	        
+	        // don't forget to disable the attrib arrays!
+	        GLES20.glDisableVertexAttribArray(positionHandle);
+	        GLES20.glDisableVertexAttribArray(texCoordHandle);
+		}
 	}
 }

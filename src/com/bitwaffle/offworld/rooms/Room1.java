@@ -30,8 +30,9 @@ public class Room1 extends Room {
 		
 		GLES20.glClearColor(0.412f, 0.592f, 0.827f, 1.0f);
 		
-		this.addEntity(tut1());
-		this.addEntity(tut2());
+		//this.addEntity(tut1());
+		//this.addEntity(tut2());
+		this.addEntity(intro());
 		
 		// backdrop
 		EntityRenderer backdropRenderer = new EntityRenderer(){
@@ -44,7 +45,7 @@ public class Room1 extends Room {
 			}
 		};
 		Entity backdrop = new Entity(backdropRenderer, 1, new Vector2(0.0f, -22.0f));
-		this.addEntity(backdrop);
+		//this.addEntity(backdrop);
 		
 		// random maker
 		this.addEntity(new Entity(){
@@ -61,7 +62,18 @@ public class Room1 extends Room {
 		});
 		
 		// create walls
-		makeWalls();
+		//makeWalls();
+	}
+	
+	private DynamicEntity intro(){
+		String polygonName = "intro";
+		int layer = 5;
+		BodyDef bodyDef = Game.resources.entityInfo.getEntityBodyDef(polygonName);
+		bodyDef.position.set(0.0f, 0.0f);
+		FixtureDef fixtureDef = Game.resources.entityInfo.getEntityFixtureDef(polygonName);
+		Polygon poly = Game.resources.polygons.get(polygonName);
+		DynamicEntity tut = new DynamicEntity(new PolygonRenderer(poly), layer, bodyDef, fixtureDef);
+		return tut;
 	}
 	
 	/**
@@ -71,7 +83,7 @@ public class Room1 extends Room {
 		String polygonName = "tut1";
 		int layer = 5;
 		BodyDef bodyDef = Game.resources.entityInfo.getEntityBodyDef(polygonName);
-		bodyDef.position.set(0.0f, -20.0f);
+		bodyDef.position.set(0.0f, 0.0f);
 		FixtureDef fixtureDef = Game.resources.entityInfo.getEntityFixtureDef(polygonName);
 		Polygon poly = Game.resources.polygons.get(polygonName);
 		DynamicEntity tut = new DynamicEntity(new PolygonRenderer(poly), layer, bodyDef, fixtureDef);

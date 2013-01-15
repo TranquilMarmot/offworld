@@ -1,0 +1,1402 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="792pt"
+   height="612pt"
+   id="svg4591"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="tut17.svg"
+   inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\tut16.png"
+   inkscape:export-xdpi="186.18182"
+   inkscape:export-ydpi="186.18182">
+  <defs
+     id="defs4593">
+    <linearGradient
+       id="linearGradient4077">
+      <stop
+         id="stop4079"
+         offset="0"
+         style="stop-color:#000000;stop-opacity:1;" />
+      <stop
+         id="stop4081"
+         offset="1"
+         style="stop-color:#05326d;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient7586">
+      <stop
+         style="stop-color:#bf6530;stop-opacity:1;"
+         offset="0"
+         id="stop7588" />
+      <stop
+         style="stop-color:#ad5220;stop-opacity:1;"
+         offset="1"
+         id="stop7590" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient7574">
+      <stop
+         style="stop-color:#b85420;stop-opacity:1;"
+         offset="0"
+         id="stop7576" />
+      <stop
+         style="stop-color:#ab4912;stop-opacity:1;"
+         offset="1"
+         id="stop7578" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient7046">
+      <stop
+         style="stop-color:#6997d3;stop-opacity:1;"
+         offset="0"
+         id="stop7060" />
+      <stop
+         style="stop-color:#05326d;stop-opacity:1;"
+         offset="1"
+         id="stop7050" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient7046"
+       id="linearGradient7070"
+       x1="182.50252"
+       y1="182.57443"
+       x2="412.05231"
+       y2="180.34042"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-0.04586364,1.3179755,-4.2134576,-0.01434621,1091.648,-44.39918)" />
+    <linearGradient
+       gradientTransform="translate(-0.158017,-1.6096739)"
+       inkscape:collect="always"
+       xlink:href="#linearGradient7574-1"
+       id="linearGradient7580-5"
+       x1="526.03033"
+       y1="766.41418"
+       x2="520.53033"
+       y2="193.38235"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient7574-1">
+      <stop
+         style="stop-color:#b85420;stop-opacity:1;"
+         offset="0"
+         id="stop7576-8" />
+      <stop
+         style="stop-color:#ab4912;stop-opacity:1;"
+         offset="1"
+         id="stop7578-3" />
+    </linearGradient>
+    <linearGradient
+       gradientTransform="translate(44.389709,-1.6096739)"
+       inkscape:collect="always"
+       xlink:href="#linearGradient7574-1"
+       id="linearGradient7592-6"
+       x1="697.17395"
+       y1="766.41418"
+       x2="684.8689"
+       y2="193.6734"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient5883">
+      <stop
+         style="stop-color:#b85420;stop-opacity:1;"
+         offset="0"
+         id="stop5885" />
+      <stop
+         style="stop-color:#ab4912;stop-opacity:1;"
+         offset="1"
+         id="stop5887" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient7046-7"
+       id="linearGradient7070-1"
+       x1="388.93967"
+       y1="182.53288"
+       x2="493.90054"
+       y2="181.46336"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-0.04586364,1.3179755,-4.2134576,-0.01434621,1155.648,-24.399181)" />
+    <linearGradient
+       id="linearGradient7046-7">
+      <stop
+         style="stop-color:#6997d3;stop-opacity:1;"
+         offset="0"
+         id="stop7060-4" />
+      <stop
+         style="stop-color:#05326d;stop-opacity:1;"
+         offset="1"
+         id="stop7050-0" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient7574-1"
+       id="radialGradient4065"
+       cx="1590.573"
+       cy="757.32745"
+       fx="1590.573"
+       fy="757.32745"
+       r="134.375"
+       gradientTransform="matrix(1.0669767,-0.00930046,0.00237871,0.27289355,-12.27076,545.09449)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4077"
+       id="linearGradient4083"
+       x1="1455.5"
+       y1="769.24261"
+       x2="1456"
+       y2="697.82483"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     inkscape:document-units="in"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.1767767"
+     inkscape:cx="3012.1441"
+     inkscape:cy="464.04668"
+     inkscape:current-layer="layer2"
+     id="namedview4595"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1138"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:snap-nodes="true"
+     inkscape:snap-to-guides="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid7038" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="1785.091,-4.2426406"
+       id="guide4047" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="1828.5781,140.71425"
+       id="guide4049" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="1429,66.499998"
+       id="guide4051" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="0.37499999,33.874999"
+       id="guide4053" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="2464.2499,299.99999"
+       id="guide4085" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="2484.9999,539.24999"
+       id="guide4087" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata4597">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <path
+       style="fill:#6997d3;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       d="M 1828.8548,-432.28484 -0.85484463,-432.53425 0.5010185,327.11191 1828.8548,328.53429 z"
+       id="path7044-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#05326d;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       d="M 1828.8548,326.61092 5.1451596,326.46572 6.4965766,768.70621 1828.8548,769.53428 z"
+       id="path7044-9-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:url(#linearGradient7070);fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="m 479.94282,-11.214917 -345.70967,-0.249406 0.25618,759.646163 345.45349,1.42238 z"
+       id="path7044"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <g
+       style="display:inline"
+       id="g5934"
+       transform="matrix(1.7570973,0,0,1.7570973,-504.96384,-509.24789)">
+      <path
+         sodipodi:nodetypes="csccc"
+         inkscape:connector-curvature="0"
+         id="path3040-0-4"
+         d="m 462.11457,669.3676 c 0,0 -2.17886,5.28072 -0.0293,5.29594 0.70947,0.005 6.20457,-7.31857 6.20457,-7.31857 l -2.79734,-1.99057 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.51005554px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path3928-1"
+         d="m 453.82176,643.40766 -3.82315,8.67094 c -0.99887,1.95521 -1.48146,5.65444 1.65768,8.54343 l 10.48641,8.63747 3.53391,-3.63621 -4.64805,-3.94927 c -6.87767,-5.64117 -6.63985,-6.62775 -3.62774,-13.08338 l 2.19348,-5.09734"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.51005554px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="csccc"
+         inkscape:connector-curvature="0"
+         id="path3040-4-9"
+         d="m 469.12946,676.77334 c 0,0 -3.84924,4.14049 -1.88373,5.01082 0.64873,0.28725 8.29997,-4.13968 8.29997,-4.13968 l -1.78443,-3.10668 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.51005554px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path3928-4-1"
+         d="m 459.41971,643.38976 -0.63934,7.35646 c -0.15145,2.98443 0.64446,7.58298 2.2663,10.61725 l 8.07448,15.42245 4.64785,-2.23791 -6.07598,-11.71361 c -2.39191,-4.3686 -3.28805,-9.72265 -2.88051,-14.71956 l 0.45764,-4.60531"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.51005554px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path3925-0-8-4-7"
+         d="m 459.54465,619.85531 c 4.44741,-1.04054 7.04586,17.30103 5.75515,23.65629 l -11.50577,-0.14674 -0.20487,-23.62159"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.51005554px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         id="path3893-5"
+         d="m 451.75633,613.90603 0.0638,4.97304 c -0.0691,1.53016 1.31233,1.14762 2.47058,1.19544 l 5.79392,0.0319 c 2.12549,0.0754 1.74396,-1.26922 1.81684,-1.8913 l -1.56979,-5.98268 -7.3958,0.12751"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.51005554px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path3902-7"
+         d="m 451.88842,613.76928 -0.0225,1.48774 4.80134,-0.0225 c 0.45083,-0.0451 0.90166,0.22542 1.01437,0.60862 l 0.0131,2.34968 1.55536,0.003 -0.10329,-5.35032 -7.32598,0.1578"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.51005554px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         id="path3090-6"
+         d="m 463.16883,612.00926 0.11157,6.20036 -4.76583,-0.0159 -0.0615,-2.6824 c 0.0997,-2.11325 -1.01097,-1.71308 -0.89483,-1.78061 l -7.26442,0.0187 c 0.63282,-8.28157 11.95989,-6.81236 12.87503,-1.7401 z"
+         style="fill:#4296ff;fill-opacity:1;stroke:#000000;stroke-width:0.51005554px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         transform="matrix(0.51005554,0,0,0.51005554,425.42472,355.77665)"
+         d="m 71.5,507.29968 a 1.8125,1.8125 0 1 1 -3.625,0 1.8125,1.8125 0 1 1 3.625,0 z"
+         sodipodi:ry="1.8125"
+         sodipodi:rx="1.8125"
+         sodipodi:cy="507.29968"
+         sodipodi:cx="69.6875"
+         id="path3860-1"
+         style="opacity:0.9792;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         sodipodi:type="arc" />
+      <path
+         sodipodi:nodetypes="cccccc"
+         inkscape:connector-curvature="0"
+         id="path3866-8"
+         d="m 453.51739,608.57619 0.005,-3.1397 1.89677,-0.0159 0.0179,2.5267 c -0.92549,0.17082 -1.32557,0.39902 -1.91931,0.62891 z"
+         style="fill:#4296ff;fill-opacity:1;stroke:#000000;stroke-width:0.51005554px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path3866-7-9"
+         d="m 458.02513,609.98327 0,-4.53929 1.89677,-0.0159 0.0225,4.57182"
+         style="fill:#4296ff;fill-opacity:1;stroke:#000000;stroke-width:0.51005554px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path3928-9-8-5-6-4"
+         d="m 455.9703,628.74738 -0.19464,4.5312 c -0.11457,2.71338 -0.85003,2.74305 -4.03962,2.6571 l -7.93354,-0.0915 c -2.31597,0.24291 -2.03288,3.55734 0.009,3.64963 l 8.12475,0.0516 c 6.72694,0.18462 7.76989,-0.91371 8.12815,-5.18019 l 0.12417,-5.57801"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.56199092px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+    </g>
+    <g
+       id="g6703"
+       transform="translate(-342.70868,-732.86536)">
+      <path
+         sodipodi:nodetypes="csccc"
+         inkscape:connector-curvature="0"
+         id="path3040-0-4-1"
+         d="m 89.81498,169.36505 c 0,0 -3.82847,9.27874 -0.0515,9.30548 1.24661,0.009 10.90203,-12.85944 10.90203,-12.85944 l -4.9152,-3.49762 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.89621723px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path3928-1-7"
+         d="m 75.24371,123.75091 -6.71765,15.23569 c -1.75511,3.43549 -2.60307,9.9354 2.91271,15.01164 l 18.42564,15.17687 6.20942,-6.38917 -8.16707,-6.93926 C 75.82202,145.9346 76.2399,144.20108 81.53247,132.85791 l 3.85415,-8.95652"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.89621723px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="csccc"
+         inkscape:connector-curvature="0"
+         id="path3040-4-9-1"
+         d="m 102.14083,182.37766 c 0,0 -6.76349,7.27524 -3.3099,8.8045 1.13988,0.50472 14.58386,-7.27382 14.58386,-7.27382 l -3.13542,-5.45874 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.89621723px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path3928-4-1-1"
+         d="m 85.07985,123.71946 -1.12338,12.92602 c -0.26611,5.24393 1.13238,13.32403 3.98211,18.65554 l 14.18765,27.09874 8.16672,-3.93222 -10.67609,-20.58196 c -4.20282,-7.67605 -5.77742,-17.08364 -5.06133,-25.86369 l 0.80411,-8.09198"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.89621723px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path3925-0-8-4-7-5"
+         d="m 85.29938,82.36714 c 4.96434,-1.21757 6.47629,31.01035 10.11236,41.5664 l -20.21676,-0.25783 0.45437,-40.89467"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.89621723px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path3893-5-2"
+         d="m 71.61455,71.91368 c -0.36066,14.33725 1.76316,10.82382 14.63363,10.89462 3.73469,0.13248 3.06431,-2.23014 3.19237,-3.3232 L 86.68227,68.97295 73.68713,69.197"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.89621723px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path3902-7-7"
+         d="m 71.84664,71.67339 -0.0395,2.61411 8.43642,-0.0395 c 0.79215,-0.0792 1.5843,0.39609 1.78235,1.06941 l 0.023,4.12861 2.73292,0.005 -0.18149,-9.40104 -12.87246,0.27727"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.89621723px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         id="path3090-6-6"
+         d="m 91.66742,68.58087 0.19604,10.89463 -8.37403,-0.0279 -0.10806,-4.71324 c 0.17518,-3.71319 -1.77637,-3.01005 -1.5723,-3.12871 l -12.76429,0.0329 C 70.1567,57.08703 90.05947,59.66857 91.66746,68.58103 z"
+         style="fill:#db28f3;fill-opacity:1;stroke:#000000;stroke-width:0.89621723px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         transform="matrix(0.89621721,0,0,0.89621721,25.34735,-381.64476)"
+         d="m 71.5,507.29968 a 1.8125,1.8125 0 1 1 -3.625,0 1.8125,1.8125 0 1 1 3.625,0 z"
+         sodipodi:ry="1.8125"
+         sodipodi:rx="1.8125"
+         sodipodi:cy="507.29968"
+         sodipodi:cx="69.6875"
+         id="path3860-1-1"
+         style="opacity:0.9792;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         sodipodi:type="arc" />
+      <path
+         sodipodi:nodetypes="cccccc"
+         inkscape:connector-curvature="0"
+         id="path3866-8-4"
+         d="m 74.7089,62.54863 0.009,-5.51676 3.33281,-0.0279 0.0315,4.43966 c -1.62618,0.30015 -2.32916,0.70112 -3.37242,1.10506 z"
+         style="fill:#db28f3;fill-opacity:1;stroke:#000000;stroke-width:0.89621723px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path3866-7-9-2"
+         d="m 82.62944,65.02101 0,-7.97598 3.33281,-0.0279 0.0395,8.03314"
+         style="fill:#db28f3;fill-opacity:1;stroke:#000000;stroke-width:0.89621723px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path3928-9-8-5-6-4-3"
+         d="m 79.83324,95.95552 0.0652,7.351 c -0.20131,4.76768 -0.47566,5.63415 -6.08008,5.48313 l -15.36511,-0.16078 c -4.06938,0.42682 -3.57196,5.43625 0.0158,5.59842 l 14.27597,0.0907 c 11.81989,0.3244 12.02378,-1.60547 12.65328,-9.10209 l 0.21817,-9.80111"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.98747271px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path6601"
+         d="m 76.26211,92.26569 c -3.79227,2.30614 -3.16705,8.13708 0,8.90485"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="walls"
+     style="display:inline">
+    <path
+       style="fill:url(#linearGradient4083);fill-opacity:1;stroke:none"
+       d="M 1308,768.74264 1307.5,678 l 301,0.5 4,89.74264 z"
+       id="path4067"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:url(#linearGradient7580-5);fill-opacity:1;stroke:#000000;stroke-width:0.99000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.94229,218.74083 6.8335,28.0195 -2.2952,20.26732 3.3744,31.09465 -5.6777,49.5211 4.6066,56.43102 -2.3033,24.18472 0.078,41.13118 c -14.9804,-4.56614 -39.6346,2.52491 -58.4831,0.38178 -17.3767,-3.73986 -48.4362,0.32296 -68.4622,1.29009 -31.2477,2.17769 -37.727,-3.92187 -67.461807,-1.67187 -15.7901,1.81417 -25.4703,11.25003 -48.5598,9.6627 -16.3676,-1.53416 -21.5599001,21.03003 -20.6241001,34.40466 4.1987001,28.05821 -3.9828,71.37582 0.7917,92.81203 1.5835,9.37847 1.1517,30.27348 -1.5835,46.84979 -1.2476,16.89091 2.1114,31.84523 2.3033,44.70536 l 1310.5231171,0 16.231,-3.28628 14.4633,0.42603 12.3704,-4.03401 21.1384,-2.43415 0.189,9.88308 3.0919,13.43157 -1.4541,12.46579 1.273,13.98289 10.6365,16.74144 0.8865,14.24142 -1397.45310001,3e-5 0,-549.01844 z"
+       id="path4662"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccccccccccccccccccccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:url(#linearGradient7592-6);fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 2635.0747,465.00001 c -21.1137,4.94093 -1639.83208,-1.46073 -1662.87978,4.59988 -9.1341,3.40608 -27.1241,4.47092 -49.6948,0.34433 -13.8225,-1.21021 -46.7531,-4.85196 -66.5814,-0.0564 -19.5604,4.52845 -41.4567,1.77825 -63.2421,3.6017 -14.1019,1.32013 -16.3814,-6.66926 -28.2819,-4.74984 -18.8017,4.16152 -21.3719,-2.77538 -40.0863,2.11915 -13.5083,2.42007 -46.7763,5.28615 -65.9705,1.83119 -16.2017,-2.44303 -25.1043,-5.15492 -50.8355,-2.54323 -19.5781,1.82345 -67.4112,3.60246 -84.3981,2.54678 -29.3671,-2.49525 -30.9888,0.91948 -57.4768,-3.30325 -26.0082,-6.23812 -40.8192,3.63151 -67.6911,2 -11.2286,-0.76776 -23.9736,-5.25 -35.5506,-1.80738 l -0.7155,-44.20297 -4.6066,-35.70126 8.0615,-59.31015 -4.874,-62.57455 6.6749,-37.95517 2735.14858,-3.94361 -20.1172,14.96032 -47.1172,5.96032 -46.2344,25.92064 -60.4687,11.84127 -76.9375,5.68255 -53.875,21.36511 -23.75,30.73021 -53.5,35.46043 -36,38.72797 z"
+       id="path4664"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccccccccccccccccccccccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#4ea429;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 272.65139,246.23232 c -4.5477,-0.26279 -3.2176,-13.41728 -4.6717,-7.68267 -2.9346,13.45194 -10.3199,-2.78677 -20.7298,13.81985 7.769,-16.60662 -23.962,-3.96323 -29.943,-13.81985 -0.1599,13.83885 -18.0698,-3.07967 -20.7297,15.75918 -13.5971,-2.83885 -8.5573,-15.69241 -27.5539,-15.58241 14.2521,14.25091 -25.6357,1.5291 -23.5634,17.2696 -8.8294,-15.12438 -33.7779,-1.82935 -35.8572,-11.70373 -7.3471,9.35662 -16.928607,2.47579 -19.775707,12.58241 -12.1955,-4.4905 -12.7519,-12.99356 -21.4473,-13.73406 -5.4277,9.50827 -20.5248,-0.23346 -27.4525,11.77481 -5.0438,-11.54381 -21.027,-1.49142 -20.8208,-11.78523 -8.5975,4.15992 -10.8865001,-1.14982 -19.734,4.5101 l 0,-57.75 242.167607,0 6.8462,5.97798 5.8462,13.99574 11.8366,8.96634 z"
+       id="path4666"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccccccccccccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <g
+       id="g9465"
+       transform="translate(44.547726,0)">
+      <path
+         sodipodi:nodetypes="ccccccccc"
+         inkscape:connector-curvature="0"
+         id="path5786-3"
+         d="m 763.19501,195.21683 27.63969,43.76284 0,34.5496 -33.39796,11.51654 -40.30787,-14.9715 -9.21323,-27.63968 12.66819,-20.72976 10.36488,-17.27481 z"
+         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path4003"
+         d="m 721.59196,259.01534 35.75,15.625 23.75,-9.25"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.48677248" />
+      <path
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         id="path4144"
+         d="m 717.52991,269.70015 -0.91565,-2.72288 40.94998,15.10892 32.8572,-10.86827 -0.076,1.97853 -32.73831,11.37825 z"
+         style="fill:#000000;fill-opacity:0.42857145;stroke:none" />
+    </g>
+    <path
+       style="fill:#4ea429;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1038.7587,189.89032 -654.81998,0 -10.7942,10.1306 -6.4578,17.79323 -5.7507,8.60083 3.1603,18.847 c 2.5677,-9.19746 0.7866,-5.89599 4.0392,-1.96676 3.4008,4.10825 11.8041,10.51914 14.9728,12.22962 -12.3086,-15.76654 23.8829,-25.78309 19.3244,-5.29963 6.1326,-11.97273 31.7653,-19.94546 26.1479,-4.41819 9.3472,-4.27727 12.6943,-4.0545 23.0414,8.66819 6.4004,-14.58884 12.3008,-3.92769 21.7012,-16.01653 0.8199,11.87438 37.6397,-9.00123 43.2096,11.12315 9.4004,-11.7405 39.8008,8.019 47.9512,-5.4715 9.5971,8.08885 18.9443,0.67769 28.7914,11.51654 14.4715,-9.72273 19.943,8.30454 30.6645,-8.16819 1.6681,12.20496 49.5863,-5.09008 52.2545,5.86488 12.4182,-21.60661 21.5864,-4.21323 38.0046,-13.81984 -0.1269,11.2405 31.7463,-4.01901 48.3694,14.97149 8.5699,-11.35661 28.1397,-1.96323 41.4596,-13.81984 -2.4029,8.4905 22.6942,5.481 28.7913,14.9715 4.9893,-17.60662 35.352,8.85263 42.0913,-9.75399 4.1149,15.64215 25.6063,-1.28155 36.2211,14.3606 4.4265,-16.00827 37.103,-3.01653 55.2794,-17.2748 -2.2334,12.67769 25.5331,11.10538 34.54958,23.03307 -0.4254,-24.10622 28.7234,-0.96245 37.798,-18.31867 z"
+       id="path4664-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccscccccccccccccccccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <g
+       id="g7278"
+       transform="translate(-9.158017,4.8903261)"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069">
+      <path
+         d="m 403.93475,729.73303 c 0.86418,0.66918 -0.47568,1.49504 -1.11222,1.43631 -1.72496,-0.15914 -2.2679,-2.27363 -1.7604,-3.66075 0.9078,-2.48122 3.99928,-3.15151 6.20928,-2.08449 3.24326,1.56589 4.05761,5.747 2.40859,8.75781 -2.19789,4.01293 -7.50239,4.97308 -11.30634,2.73268 -4.78689,-2.81931 -5.89334,-9.26138 -3.05677,-13.85487 3.43546,-5.56334 11.02239,-6.81637 16.4034,-3.38087 6.34133,4.04862 7.74113,12.78467 3.70495,18.95193 -4.65992,7.12035 -14.54778,8.66707 -21.50046,4.02905 -7.90007,-5.27 -9.5938,-16.31149 -4.35314,-24.04899 5.87923,-8.6803 18.07563,-10.52113 26.59752,-4.67723 9.46092,6.48783 11.4489,19.8401 5.00133,29.14605"
+         sodipodi:t0="0"
+         sodipodi:argument="-18.190647"
+         sodipodi:radius="21.799154"
+         sodipodi:revolution="3"
+         sodipodi:expansion="1"
+         sodipodi:cy="729.73303"
+         sodipodi:cx="403.93475"
+         id="path7274"
+         style="fill:#b63f77;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         sodipodi:type="spiral" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7276"
+         d="m 421.81601,742.94488 -6.44883,-4.61319"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <g
+       id="g7308"
+       transform="matrix(0.75167098,0,0,0.75167098,634.04602,121.42699)"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069">
+      <path
+         transform="matrix(-0.87003861,-0.4929836,0.4929836,-0.87003861,371.65457,1233.8485)"
+         d="m 403.93475,729.73303 c 0.86418,0.66918 -0.47568,1.49504 -1.11222,1.43631 -1.72496,-0.15914 -2.2679,-2.27363 -1.7604,-3.66075 0.9078,-2.48122 3.99928,-3.15151 6.20928,-2.08449 3.24326,1.56589 4.05761,5.747 2.40859,8.75781 -2.19789,4.01293 -7.50239,4.97308 -11.30634,2.73268 -4.78689,-2.81931 -5.89334,-9.26138 -3.05677,-13.85487 3.43546,-5.56334 11.02239,-6.81637 16.4034,-3.38087 6.34133,4.04862 7.74113,12.78467 3.70495,18.95193 -4.65992,7.12035 -14.54778,8.66707 -21.50046,4.02905 -7.90007,-5.27 -9.5938,-16.31149 -4.35314,-24.04899 5.87923,-8.6803 18.07563,-10.52113 26.59752,-4.67723 9.46092,6.48783 11.4489,19.8401 5.00133,29.14605"
+         sodipodi:t0="0"
+         sodipodi:argument="-18.190647"
+         sodipodi:radius="21.799154"
+         sodipodi:revolution="3"
+         sodipodi:expansion="1"
+         sodipodi:cy="729.73303"
+         sodipodi:cx="403.93475"
+         id="path7274-1"
+         style="fill:#df4aaf;fill-opacity:0.48148151;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         sodipodi:type="spiral" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7276-1"
+         d="m 370.918,379.50942 3.3365,7.19282"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none"
+       d="m 135.96009,296.87662 6.5407,-6.71751 7.2479,6.71751 -0.8839,8.66206 -13.7886,-2.12132 z"
+       id="path7312"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#ffa773;fill-opacity:1;stroke:none"
+       d="m 26.004983,391.45215 -4.0659,6.54074 6.1872,5.48008 6.5407,-2.47488 1.0607,-4.59619 -2.4749,-6.89429 z"
+       id="path7314"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#ff8740;fill-opacity:1;stroke:none"
+       d="m 212.84199,427.39032 8,-10 13.5,8 0,8.5 -10,8 z"
+       id="path7336"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#ffa773;fill-opacity:1;stroke:none"
+       d="m 227.34199,311.39032 7,-4 4.5,5.5 0,8 -7.5,-0.5 z"
+       id="path7340"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none"
+       d="m 80.591983,437.14032 12.75,-2.25 5.25,10.25 -3,9.25 -13.25,-4.5 z"
+       id="path7562"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none"
+       d="m 404.30712,337.00493 16.617,-8.13173 6.3639,9.8995 4.2427,12.72792 -19.799,2.47487 -11.3137,-8.13172 z"
+       id="path7568"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#ff8740;fill-opacity:1;stroke:none"
+       d="m 541.13222,280.08283 9.1924,-2.82842 9.546,10.6066 -0.3536,7.77817 -12.3744,1.76777 -6.3639,-6.71751 z"
+       id="path7570"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#ffa773;fill-opacity:1;stroke:none"
+       d="m 527.34372,386.50241 20.1525,-0.35356 3.8891,8.48528 -3.8891,12.37437 -13.7886,-2.82843 -8.4853,-10.6066 z"
+       id="path7572"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none"
+       d="m 647.19832,313.31685 22.9809,-9.19238 12.7279,16.97056 -8.1317,10.25305 -18.0312,-0.35356 z"
+       id="path7594"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#ff8740;fill-opacity:1;stroke:none"
+       d="m 770.94192,353.97549 -11.6672,6.01041 1.7677,11.66726 9.8995,4.24264 10.9602,-2.12132 2.1213,-9.54594 -6.3639,-9.19239 z"
+       id="path7596"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#ff8740;fill-opacity:1;stroke:none"
+       d="m 848.37012,324.27701 6.0104,-10.25305 11.6673,4.24264 9.8995,11.66726 -2.4749,10.96016 -13.7886,-5.3033 z"
+       id="path7600"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none"
+       d="m 843.06682,412.3118 -10.6066,6.01041 2.8285,11.66726 13.7885,7.42462 15.9099,-4.94974 -3.5355,-21.21321 z"
+       id="path7602"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#ff8740;fill-opacity:1;stroke:none"
+       d="m 994.03422,417.96866 -5.3033,8.48528 1.4142,9.54594 3.5355,7.42462 16.97058,3.88909 -1.0607,-22.27387 z"
+       id="path7604"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <g
+       transform="translate(44.389709,-1.6096739)"
+       id="g7697"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069">
+      <path
+         sodipodi:nodetypes="cccccc"
+         inkscape:connector-curvature="0"
+         id="path7606"
+         d="m 515.92279,353.8174 c 13.03511,0.4705 21.83279,-33.51445 44.76923,-24.45399 7.56847,3.10171 4.19607,7.66313 -0.0447,4.21306 -19.53914,-10.6861 -25.75048,23.42292 -45.52001,24.92552 -6.18718,0.20624 -5.39169,-5.15599 0.7955,-4.68459 z"
+         style="fill:#ff2496;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path7608"
+         d="m 540.8125,331.5 c -0.95833,2.66667 0.77083,4.52083 3.3125,5 L 548.5,334 c 0.22917,-2.08333 -0.91667,-4.72917 -2.6875,-5.5 z"
+         style="fill:#ff6596;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7610"
+         d="m 521.4375,352.3125 c -0.3333,1.375 1.33333,2.0625 1.6875,1.8125"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7610-7"
+         d="m 523.55315,350.56844 c -0.3333,1.375 1.33333,2.0625 1.6875,1.8125"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7610-79"
+         d="m 525.67815,348.50594 c -0.3333,1.375 1.33333,2.0625 1.6875,1.8125"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7610-3"
+         d="m 527.55315,346.63094 c -0.3333,1.375 1.33333,2.0625 1.6875,1.8125"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7610-1"
+         d="m 529.42815,344.44344 c -0.3333,1.375 1.33333,2.0625 1.6875,1.8125"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7610-9"
+         d="m 531.30315,342.38094 c -0.3333,1.375 1.33333,2.0625 1.6875,1.8125"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7610-8"
+         d="m 532.80315,340.38094 c -0.3333,1.375 1.33333,2.0625 1.6875,1.8125"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7610-6"
+         d="m 534.17815,339.00594 c -0.3333,1.375 1.33333,2.0625 1.6875,1.8125"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none"
+       d="m 0.372383,547.16514 5.2499999,10.25 -5.2499999,8.89645 z"
+       id="path7562-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#ffa773;fill-opacity:1;stroke:none"
+       d="m 7.8723829,732.89032 -7.4999999,12.5 7.4999999,8.5 12.5000001,-1 3,-8.5 -8,-8.5 z"
+       id="path7727"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none"
+       d="m 123.34199,746.89032 17,-7 11,13 -12.5,11.91421 -14.5,-8 z"
+       id="path7729"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#ffa773;fill-opacity:1;stroke:none"
+       d="m 306.34199,717.89032 8,-3.5 6.5,7.5 0,8.5 -14.5,-7.5 z"
+       id="path7731"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#ff8740;fill-opacity:1;stroke:none"
+       d="m 464.34199,743.89032 10,-4 18.5,6.5 -10.5,7.5 -16,-3.5 z"
+       id="path7735"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#ffa773;fill-opacity:1;stroke:none"
+       d="m 714.34199,753.39032 19.5,-5.5 15,5.5 -2.5,9 -22,0 z"
+       id="path7739"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none"
+       d="m 643.84199,710.39032 -7,11 6.5,11.5 14.5,1 8,-9.5 -5.5,-13 z"
+       id="path7741"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#ff8740;fill-opacity:1;stroke:none"
+       d="m 933.34209,718.89032 -10,9 9,10.5 10,4 15.5,-5.5 -6.5,-12 z"
+       id="path7743"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <g
+       id="g3976"
+       transform="matrix(0.83615165,-0.54849832,0.54849832,0.83615165,-123.27242,280.46687)"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069">
+      <g
+         transform="matrix(0.7355047,-0.00317247,0.00317247,0.7355047,89.911476,111.67768)"
+         id="g7418">
+        <path
+           style="fill:#d7d5c9;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 377.06322,391.55923 c 2.69694,-22.84839 49.22354,-22.84839 55.32101,-3e-5 1.1718,5.92172 -0.15012,13.07658 -3.08188,16.61701 -3.43648,5.25 -15.07036,3.18198 -15.07036,6.67332 l -0.0297,22.71687 -21.0147,-0.13365 0.12678,-22.68227 c 0,-3.39178 -11.28638,-2.5977 -13.5849,-6.62551 -3.77418,-5.45417 -3.10872,-11.89951 -2.66627,-16.56574 z"
+           id="path7342"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cccccccccc" />
+        <path
+           style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 386.22985,390.21339 0.0311,7.99879 c 3e-5,4.04377 9.72275,4.04377 9.71335,0.0324 l 0.009,-8.00949 c 4e-4,-3.99953 -9.72232,-3.99953 -9.75385,-0.0218 z"
+           id="path7350"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cccccc" />
+        <path
+           style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 411.36305,389.51526 0.0311,7.99879 c 3e-5,4.04377 9.72275,4.04377 9.71335,0.0324 l 0.009,-8.00949 c 4e-4,-3.99953 -9.72232,-3.99953 -9.75385,-0.0218 z"
+           id="path7350-8"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cccccc" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 396.02399,437.25601 -0.26516,-15.60055"
+           id="path7388"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 399.51534,437.65375 -0.17678,-12.72792"
+           id="path7390"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 403.71378,437.52117 -0.48614,-15.02601"
+           id="path7392"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 408.08901,437.69795 -0.53033,-12.19759"
+           id="path7394"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 411.62454,437.38859 -0.30937,-14.27472"
+           id="path7396"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+        <path
+           style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 402.21512,403.40618 0.44194,6.89429 c 0.16404,1.65625 -1.60197,1.00335 -2.38648,-3.04939 -0.39688,-2.53776 1.83855,-6.9684 1.94454,-3.8449 z"
+           id="path7398"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cccc" />
+        <path
+           style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 405.73327,410.06978 -0.44194,-6.89429 c -0.16404,-1.65626 1.60197,-1.00336 2.38648,3.04939 0.39689,2.53776 -1.83855,6.9684 -1.94454,3.8449 z"
+           id="path7398-7"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cccc" />
+      </g>
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path3138"
+         d="m 377.13911,388.30977 c 7.73148,-1.69622 26.53206,-1.35649 31.992,12.77124 -0.63865,-14.61379 -22.42849,-17.66053 -31.992,-12.77124 z"
+         style="fill:#ffffff;fill-opacity:0.44444442;stroke:none" />
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path3910"
+         d="m 382.7818,403.35938 c -1.11418,3.40625 -6.37968,3.40686 -7.89506,0 -0.27305,5.2835 8.41794,5.28125 7.89506,0 z"
+         style="fill:#0f0f0d;fill-opacity:0.58201055;stroke:none" />
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path3910-1"
+         d="m 401.27527,402.75001 c -1.11418,3.40625 -6.37968,3.40686 -7.89506,0 -0.27305,5.2835 8.41794,5.28125 7.89506,0 z"
+         style="fill:#0f0f0d;fill-opacity:0.58201055;stroke:none" />
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path3950"
+         d="m 385.20704,409.60322 c 2.18795,6.37826 2.45345,0.80198 2.31015,-0.0345 1.79685,6.64467 -2.52465,4.74905 -2.31015,0.0345 z"
+         style="fill:#0f0f0d;fill-opacity:0.58201055;stroke:none" />
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path3950-4"
+         d="m 391.45578,409.56837 c -1.83639,7.26888 -2.29223,1.27398 -2.35987,0 -1.6406,6.62123 2.66812,4.79267 2.35987,0 z"
+         style="fill:#0f0f0d;fill-opacity:0.58201055;stroke:none" />
+      <path
+         sodipodi:nodetypes="cccccc"
+         inkscape:connector-curvature="0"
+         id="path3974"
+         d="m 380.68749,432.09376 15.1875,0.0937 0.28125,-4.4375 c -1.84375,1.41667 -4.6875,-1.04165 -7.25,2.34375 -2.57292,1.84375 -7.27083,-0.96875 -8.21875,2 z"
+         style="fill:#0f0f0d;fill-opacity:0.58201055;stroke:none" />
+    </g>
+    <g
+       id="g9451"
+       transform="translate(44.547726,0)">
+      <g
+         style="fill:#b6b5b9;fill-opacity:1;stroke-width:3.35782695;stroke-miterlimit:4;stroke-dasharray:none"
+         transform="matrix(0.25840355,0,0,0.25840355,875.3512,372.77712)"
+         id="g4098">
+        <path
+           style="fill:#b6b5b9;fill-opacity:1;stroke:#000000;stroke-width:3.35782695;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m -1046.2393,-31.896207 313.24833,2.12132 2.82842,204.707407 0.70711,7.42462 2.47487,7.77817 6.01041,10.6066 0.35356,13.08148 2.82842,1.41421 0.35356,7.07107 -39.59798,1.76777 -76.01398,2.47487 -4.94975,-1.76777 -5.3033,5.65686 -6.01041,0 -5.65685,-1.76777 -3.53553,3.53553 -7.07107,-0.35355 -1.41421,-1.76777 -11.66727,8.83884 -17.32411,-0.70711 -1.76777,-3.53553 -5.65685,7.77817 -5.65686,0.35355 -6.0104,-0.7071 -6.36397,2.12132 -3.88908,-4.24264 -7.77818,-0.35356 -9.89949,6.01041 -3.88909,0 -6.71751,-2.47487 -5.3033,4.94975 -7.07107,0 -4.24264,-3.53554 -5.65686,0 -5.65685,-5.3033 -8.13173,0 -11.66727,6.01041 -9.5459,-0.35355 -3.8891,6.71751 -8.8389,0.35355 -4.2426,3.53554 -4.9497,0.35355 -6.0105,-4.59619 -11.3137,-6.71752 -1.4142,-19.44543 -11.6672,-15.90991 -2.4749,0.70711 -0.3536,-4.59619 -9.1924,2.82842 -10.253,-6.0104 -12.0208,2.12132 -32.1734,-7.07107 -0.3535,-2.12132 2.8284,-6.71752 8.4853,-4.59619 -5.3033,-21.2132 -6.7175,-4.24264 -0.3536,-6.36396 7.0711,-6.71752 2.1213,-0.70711 0,-4.24264 -6.7175,-8.48528 -3.8891,1.41422 -0.3536,-4.24264 0,-12.72793 -7.7781,-8.83883 0.3535,-12.020817 -3.182,-10.25304 -1.0606,-13.78859 -10.9602,-15.556338 -1.0606,-6.01041 -1.4142,-11.31371 -1.7678,-0.35355 0,-5.65686 5.3033,-4.242638 -0.3536,-3.18198 8.4853,-0.353553 9.1924,4.596194 4.9498,-0.353554 6.7175,5.656851 3.1819,2.12132 18.3848,2.47488 4.5962,4.59619 22.981,-1.06066 6.7175,4.5962 7.0711,0.35355 5.3033,-4.5962 3.5355,-0.35355 2.4749,11.66726 4.5962,6.36396 -3.8891,13.435028 5.3033,-8.838828 5.6568,-0.35356 2.4749,2.47488 0.7071,5.303298 -3.5355,14.49569 2.4749,7.42462 2.1213,3.18198 0.3535,5.303297 -2.4748,4.24264 2.4748,2.82843 0,3.18198 3.5356,0 3.5355,-1.76777 3.182,-6.01041 -4.9498,-20.152537 -0.3535,-21.920308 7.071,-2.12132 -1.7677,-6.01041 5.3033,-1.41421 -2.1213,-9.19239 -5.3033,-1.76777 0,-4.94974 -3.5356,-4.5962 0.3536,-6.717511 -2.1213,-7.778174 -3.182,-1.767767 0.3535,-7.4246214 6.364,-6.0104081 -6.7175,-14.1421345 1.0606,-2.828427 2.1214,0 -3.182,-6.010408 -11.6673,-2.474873 1.4142,-1.06066 1.4142,-2.121321 -2.8284,-3.535534 z"
+           id="path4029-8"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:#b6b5b9;fill-opacity:1;stroke:#000000;stroke-width:3.35782695;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m -1044.8251,31.036294 -3.1819,5.303301 4.5962,2.47487 1.4142,12.02082 3.5355,-1.06066 0,-2.47487 4.5962,3.53553 0.3535,2.12132 3.8891,3.53553 -1.4142,4.94975 -4.9497,-0.70711 -2.8285,-4.24264 -3.1819,0 -3.5356,-12.72792 -8.8388,-10.6066 4.5962,-3.181981 0.3535,-9.899494 6.0105,5.656854 5.3033,3.889087 -0.3536,2.474874 z"
+           id="path4031-8"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:#b6b5b9;fill-opacity:1;stroke:#000000;stroke-width:3.35782695;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m -1038.8146,37.400255 0.7071,6.01041 6.3639,4.59619 0,-2.82843 -1.7677,-3.18198 -0.3536,-4.94974 2.8284,-0.70711 -2.8284,-2.12132 -4.5962,1.41421 z"
+           id="path4033-2"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:#b6b5b9;fill-opacity:1;stroke:#000000;stroke-width:3.35782695;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m -1067.806,9.8230916 -0.3536,6.0104074 0.7071,7.424621 -4.9497,-1.06066 -3.5356,-4.596194 -2.8284,1.06066 1.4142,-15.5563495 3.182,1.767767 2.4749,3.8890871 z"
+           id="path4035-4"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:#b6b5b9;fill-opacity:1;stroke:#000000;stroke-width:3.35782695;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m -1060.0279,9.1159846 -1.7677,4.2426404 -0.3536,4.242641 4.9498,5.303301 4.2426,1.414213 -4.5962,-10.253048 0,-4.2426404 z"
+           id="path4037-5"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:#b6b5b9;fill-opacity:1;stroke:#000000;stroke-width:3.35782695;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m -1046.9464,2.0449166 -2.4749,1.7677669 0,4.5961941 3.5356,0 4.2426,1.414214 2.4749,-1.060661 0.7071,-3.18198 -4.2426,-1.0606601 -2.8285,-2.8284269 z"
+           id="path4039-5"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:#b6b5b9;fill-opacity:1;stroke:#000000;stroke-width:3.35782695;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m -1046.9464,12.651519 -0.3535,1.767767 2.1213,2.12132 0,3.181981 2.8284,1.414213 0,-3.18198 4.5962,-0.707107 -0.3535,-3.181981 z"
+           id="path4041-1"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:#b6b5b9;fill-opacity:1;stroke:#000000;stroke-width:3.35782695;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m -1063.9169,-6.0868111 0,6.01040769 4.2426,3.53553391 -1.0607,2.4748731 -3.1819,0 -3.8891,-2.8284271 -2.4749,-1.0606599 -0.3536,-3.535534 z"
+           id="path4043-7"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:#b6b5b9;fill-opacity:1;stroke:#000000;stroke-width:3.35782695;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m -1061.0885,-7.5010241 7.0711,2.4748737 0,4.59619399 -2.4749,3.53553291 z"
+           id="path4045-1"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         id="path4109"
+         d="m 637.04258,371.95952 18.90194,0.61974 1.54934,4.64802 13.32432,2.78881 3.40855,7.12695 3.09868,8.98617 0.9296,11.46512"
+         style="fill:none;stroke:#000000;stroke-width:0.8764388px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.22751321" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="cccccccccccc"
+         inkscape:connector-curvature="0"
+         id="path4142"
+         d="m 683.65449,365.51533 -0.2696,62.17094 -22.8697,3.53016 29.2302,-1.12788 -0.3094,-1.3516 -0.7493,-0.44194 -0.022,-3.45906 -1.6573,-2.86244 -0.5833,-1.82636 -0.2298,-2.09153 -0.696,-52.55591 z"
+         style="fill:#000000;fill-opacity:0.45502642;stroke:none" />
+    </g>
+    <g
+       id="g9470"
+       transform="translate(44.547726,0)">
+      <path
+         sodipodi:nodetypes="cccccccccc"
+         inkscape:connector-curvature="0"
+         id="path5788-2"
+         d="m 900.2022,347.176 3.37025,19.76787 19.54338,1.34713 21.56517,2.69487 13.92722,-6.29031 7.41193,-30.1015 -17.74702,-21.56445 -24.26055,4.26895 -11.00664,15.05101 z"
+         style="fill:#b6b5b9;fill-opacity:1;stroke:#000000;stroke-width:0.703282px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4124"
+         d="m 906.52963,346.55089 19.26866,-25.27906 20.50609,-3.88909 10.78338,12.9047"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.47619048" />
+      <path
+         sodipodi:nodetypes="ccccccccc"
+         inkscape:connector-curvature="0"
+         id="path4146"
+         d="m 948.13846,313.27267 -2.55882,0.53413 17.22722,21.50738 -6.71919,27.63116 -16.16933,7.22732 4.70669,0.95018 13.72229,-6.62912 7.31413,-29.96365 z"
+         style="fill:#000000;fill-opacity:0.50264551;stroke:none" />
+    </g>
+    <path
+       style="fill:#000000;fill-opacity:0.50264551;stroke:none"
+       d="m 907.73942,411.46606 c -11.4554,19.39699 10.3423,28.16981 16.9453,22.74275 -16.0168,1.11891 -19.9496,-10.57246 -16.9453,-22.74275 z"
+       id="path4926"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <g
+       id="g9446"
+       transform="translate(44.547726,0)">
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="cccccccccc"
+         inkscape:connector-curvature="0"
+         id="path5927-5"
+         d="m 427.62259,327.07564 1.5258,18.93216 6.2057,3.98341 11.8393,0.86727 9.0846,-5.49598 9.078,-7.31687 -4.6022,-13.64023 -9.1245,-5.4295 -13.0946,4.41804 z"
+         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         inkscape:connector-curvature="0"
+         id="path4001"
+         d="m 433.38689,342.04308 -1.0607,-7.86657 1.591,-5.03813 10.1646,-3.35876"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.43915345" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="ccccccccc"
+         inkscape:connector-curvature="0"
+         id="path4928"
+         d="m 435.57449,349.51188 11.1148,-0.59662 8.563,-4.7799 7.6563,-6.5559 -2.5633,-12.8826 4.5078,13.19196 -8.4411,6.98267 -9.2365,5.61266 z"
+         style="fill:#000000;fill-opacity:0.50264551;stroke:none" />
+    </g>
+    <path
+       style="fill:#000000;fill-opacity:0.50264551;stroke:none"
+       d="m 415.30909,737.7978 c 0.849,-25.9779 -26.1825,-26.05978 -32.2891,-16.64176 15.2731,-8.97477 28.965,2.45528 32.2891,16.64176 z"
+       id="path4926-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#2b800f;fill-opacity:0.94117647;stroke:none"
+       d="m 380.08872,202.65465 9.0156,8.48528 10.253,-8.66206 -9.0156,-6.54074 z"
+       id="path3949"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#41db00;fill-opacity:1;stroke:none"
+       d="m 424.56962,233.48917 5.3033,-9.36917 10.0763,6.18719 -5.4801,5.83363 z"
+       id="path3951"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#00c21b;fill-opacity:1;stroke:none"
+       d="m 462.00392,195.84279 -1.244,7.46391 13.1862,0.49758 0.2488,-8.21029 z"
+       id="path3953"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#007d1c;fill-opacity:1;stroke:none"
+       d="m 482.38742,228.52637 -3,6.5 10.75,3.75 0.75,-10.75 z"
+       id="path3955"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#2b800f;fill-opacity:0.94117647;stroke:none"
+       d="m 528.21022,202.11133 -6.9335,2.60277 3.3433,10.11787 11.9826,-0.53031 2.4488,-5.79699 z"
+       id="path4002"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#007d1c;fill-opacity:1;stroke:none"
+       d="m 601.47112,237.29247 4.5962,-3.18198 5.6568,2.82843 0.7071,7.07107 -13.0814,1.41421 z"
+       id="path4004"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#00c21b;fill-opacity:1;stroke:none"
+       d="m 579.19472,198.62951 -0.7071,7.42462 16.0867,-1.06066 -0.3536,-9.19239 z"
+       id="path4006"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#007d1c;fill-opacity:1;stroke:none"
+       d="m 226.13089,199.74044 11.6673,1.41421 -2.8284,8.13173 -10.2531,-2.82843 z"
+       id="path4008"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#41db00;fill-opacity:1;stroke:none"
+       d="m 161.88039,218.78206 10.6066,-5.3033 4.5962,6.36396 0.7071,7.07106 -17.3241,0.35356 z"
+       id="path4010"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#2b800f;fill-opacity:0.94117647;stroke:none"
+       d="m 57.021483,219.38257 -4.2427,6.71751 7.4247,7.77817 7.7781,-2.47487 -4.5962,-8.13173 z"
+       id="path4012"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#007d1c;fill-opacity:1;stroke:none"
+       d="m 109.56219,198.91545 -4,6.5 4,8 11.5,-4 z"
+       id="path4014"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#41db00;fill-opacity:1;stroke:none"
+       d="m 637.65232,216.08967 0,6.36396 18.7383,0.35355 -0.7071,-6.71751 z"
+       id="path4016"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#007d1c;fill-opacity:1;stroke:none"
+       d="m 690.68532,203.71531 5.3033,-4.94975 7.0711,6.01041 -6.364,4.24264 z"
+       id="path4018"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#2b800f;fill-opacity:0.94117647;stroke:none"
+       d="m 846.24882,222.45364 -2.4749,9.89949 15.5564,0.35355 4.2426,-9.19238 z"
+       id="path4020"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#00c21b;fill-opacity:1;stroke:none"
+       d="m 10.919983,195.97928 -6.4106001,8.99471 8.0587001,7.02196 8.5489,-2.24544 1.5507,-6.62159 z"
+       id="path4022"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#007d1c;fill-opacity:1;stroke:none"
+       d="m 739.82922,231.64601 2.8285,-8.48528 10.9601,4.24264 -0.3535,12.02082 z"
+       id="path4024"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#41db00;fill-opacity:1;stroke:none"
+       d="m 886.20042,196.64423 0.7071,5.3033 25.8094,-1.41421 -9.8995,-4.24264 z"
+       id="path4026"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#2b800f;fill-opacity:0.94117647;stroke:none"
+       d="m 780.13432,201.59397 0.7071,8.48528 19.4455,0 0,-6.01041 z"
+       id="path4028"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#007d1c;fill-opacity:1;stroke:none"
+       d="m 952.66842,204.77596 -14.1421,4.24264 7.4246,4.94975 6.0104,5.3033 12.3744,-3.88909 -1.7678,-6.01041 z"
+       id="path4030"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#007d1c;fill-opacity:1;stroke:none"
+       d="m 977.75562,249.67387 7.7213,-10.84005 8.9867,6.47031 1.6148,5.00172 z"
+       id="path4032"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <path
+       style="fill:#2b800f;fill-opacity:0.94117647;stroke:none"
+       d="m 1023.7327,194.87647 -9.8995,8.83884 10.9601,2.47487 8.4853,-3.88909 z"
+       id="path4034"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+       inkscape:export-xdpi="370.55069"
+       inkscape:export-ydpi="370.55069" />
+    <g
+       id="g9440">
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="cccccccccccc"
+         inkscape:connector-curvature="0"
+         id="path5925-1"
+         d="m 145.67579,371.79429 -13.2852,12.19753 -0.8807,8.74537 6.7805,13.99086 15.3862,5.34098 10.551,0.64554 10.5988,-3.21693 13.5045,-9.10436 2.8297,-20.56799 -13.5168,-10.72616 -20.851,-0.7729 z"
+         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         inkscape:connector-curvature="0"
+         id="path4126"
+         d="m 137.37429,391.27539 0,-5.48008 8.4853,-9.36917 9.1924,-2.65165"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.54497358" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         inkscape:connector-curvature="0"
+         id="path4128"
+         d="m 157.70359,408.77628 5.8336,0 9.0157,-3.18198 12.0208,-7.95495 0.8839,-9.8995"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.39153436" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="ccccccccc"
+         inkscape:connector-curvature="0"
+         id="path3202"
+         d="m 145.87329,372.17157 c 2,0 10.9062,-1.625 10.9062,-1.625 l 19.625,0.9375 11.5625,9.15625 -0.094,19.53125 2.7813,-20.09375 -13.2188,-10.53125 -20.6875,-0.84375 z"
+         style="fill:#000000;fill-opacity:0.40740739;stroke:none" />
+    </g>
+    <g
+       id="g9435">
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="cccccc"
+         inkscape:connector-curvature="0"
+         id="path5794-4"
+         d="m 41.940683,330.96577 21.6182,0.91708 -0.1436,7.72419 -16.2219,13.60673 -18.2699,-14.76319 z"
+         style="fill:#b6b5b9;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         inkscape:connector-curvature="0"
+         id="path4130"
+         d="m 35.374083,338.68432 7.0711,-4.86136 15.5564,0.70711"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.36507939" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         id="path3972"
+         d="m 29.748283,338.45282 17.4687,11.53125 14.1875,-11.09375 1.6563,-6.71875 -0.062,7.15625 -15.6563,14.0625 z"
+         style="fill:#000000;fill-opacity:0.40740739;stroke:none" />
+    </g>
+    <g
+       id="g9495">
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="cccccccccc"
+         inkscape:connector-curvature="0"
+         id="path5927-5-3"
+         d="m 63.688483,709.02629 -4.3979,18.47736 4.6714,5.70581 10.9921,4.48262 10.3382,-2.42037 10.8944,-4.15423 -0.1628,-14.39476 -7.0006,-7.98292 -13.819,0.15627 z"
+         style="fill:#b6b5b9;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         inkscape:connector-curvature="0"
+         id="path4132"
+         d="m 64.365483,726.97432 1.7678,3.18198 7.2478,3.53554"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.52910055" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         id="path3976"
+         d="m 63.922783,709.4421 c 2,1 23.5215,1.90533 23.5215,1.90533 l 5.9406,6.72856 2.3245,12.85094 -0.1767,-14.03661 -6.8094,-7.69064 z"
+         style="fill:#000000;fill-opacity:0.40740739;stroke:none" />
+    </g>
+    <g
+       id="g9490">
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="ccccccccccc"
+         inkscape:connector-curvature="0"
+         id="path5953-3"
+         d="m 216.59699,756.83754 2.035,-13.8533 5.9053,-14.79134 17.2536,-6.49463 22.2607,6.39907 10.8801,19.40792 4.4921,9.80129 -20.9888,7.49798 -25.0874,0 -17.4845,0 z"
+         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         inkscape:connector-curvature="0"
+         id="path4134"
+         d="m 229.47489,729.80275 12.0209,-4.77297 20.5061,5.83363"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.56613758" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="cccccccccc"
+         inkscape:connector-curvature="0"
+         id="path3978"
+         d="m 263.68119,728.47692 9.546,19.799 1.4142,7.42462 -16.2635,5.65685 -41.8076,0.26517 -0.2652,2.82842 42.0728,-0.17677 21.1249,-6.8943 -4.4195,-10.51821 z"
+         style="fill:#000000;fill-opacity:0.40740739;stroke:none" />
+    </g>
+    <g
+       id="g9485">
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="ccccccccccccc"
+         inkscape:connector-curvature="0"
+         id="path6953-3"
+         d="m 543.48409,764.80453 -1.8849,-16.38108 1.5433,-14.451 10.8087,1.77249 4.1972,-2.31114 11.1522,-1.42055 16.0764,-1.90827 8.3268,-2.08837 3.726,2.11653 6.9935,-1.91471 1.7784,13.57932 -1.2948,23.00678 z"
+         style="fill:#b6b5b9;fill-opacity:1;stroke:#000000;stroke-width:0.9937942px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         inkscape:connector-curvature="0"
+         id="path4136"
+         d="m 545.55169,738.28803 11.1369,1.59099 3.182,-3.0052 25.6326,-2.47488 7.2478,-2.47487"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.56613758" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         inkscape:connector-curvature="0"
+         id="path3199"
+         d="m 590.01099,729.36081 7.0711,3.71231 4.6846,-0.88389 1.4142,9.54595 -1.6794,22.62741 3.5355,0.35356 1.5026,-22.89259 -1.8561,-13.6118 -7.0711,2.12132 -3.9775,-2.56326 z"
+         style="fill:#000000;fill-opacity:0.44444442;stroke:none" />
+    </g>
+    <g
+       id="g9475">
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path5929-4-4-0"
+         d="m 797.78669,717.76101 -2.7184,18.48677 -14.9826,1.99388 -11.9388,-2.2398 -2.8072,-14.94086 11.1858,-12.39897 16.6929,-0.45102 z"
+         style="fill:#777777;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         inkscape:connector-curvature="0"
+         id="path4138"
+         d="m 771.11869,732.4544 8.1318,1.59099"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.6931217" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         id="path3969"
+         d="m 776.52949,709.17157 14.5,1.96875 3.5,7.21875 0.125,17.78125 3.1875,-18.25 -4.9375,-9.1875 z"
+         style="fill:#000000;fill-opacity:0.44444442;stroke:none" />
+    </g>
+    <g
+       id="g9480">
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="cccccccccccc"
+         inkscape:connector-curvature="0"
+         id="path5925"
+         d="m 886.42209,750.56322 9.8042,-15.13782 -1.3392,-8.687 -10.0705,-11.84497 -16.2338,-1.31438 -10.3761,2.01941 -9.4543,5.77057 -10.7917,12.19835 2.4155,20.62074 15.7736,6.99618 20.3792,-4.47752 z"
+         style="fill:#b6b5b9;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         inkscape:connector-curvature="0"
+         id="path4140"
+         d="m 872.05819,718.48904 12.0209,0 7.071,7.77817 1.4143,6.18719"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.51322752" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         sodipodi:nodetypes="ccccccccccc"
+         inkscape:connector-curvature="0"
+         id="path3973"
+         d="m 840.59199,751.32782 c 0.25,0.1875 15.375,7.1875 15.375,7.1875 l 19.4375,-4.6875 9.0625,-5.5625 11,-15.0625 0.375,2.125 -9.625,15 -9.5625,6.1875 -20.4375,4.125 -15.5625,-6.5 z"
+         style="fill:#000000;fill-opacity:0.44444442;stroke:none" />
+    </g>
+    <path
+       style="fill:url(#radialGradient4065);fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1541.3043,769.91778 2.75,-11.74264 8.5,-8.25 -3,-20 1.75,-14 10.75,-3.92514 6.25,-7.75 10,-3.32486 21,-2.42514 1107.6141,0 49.4264,-12.84226 14.7782,-23.44885 22.25,-19.89555 29.125,-16.69778 126.5625,0.65111 19.7812,-32.67444 27.1407,-20.67479 44.3203,-9.0874 105.1601,1.2063 31.8301,-43.39685 34.415,-18.69842 35.2076,-15.34921 97.6037,0.32539 29.3019,-18.91724 41.651,-15.87868 44.8254,-23.93934 54.4128,-7.96967 63.2063,-8.98484 45.6032,-11.49241 55.3016,-22.24621 67.6508,-15.6231 70.8254,-17.81156 47.9127,-34.90577 73.4563,-38.45289 70.7282,-45.94553 1709.7929,0 -1.4054,543.49263 z"
+       id="path4057"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccccc" />
+  </g>
+</svg>

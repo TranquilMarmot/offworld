@@ -42,8 +42,8 @@ public class PolygonLoader {
 	 * @param yScale Y scale to load polygon in at
 	 * @return Polygon object containing necessary data for physics and rendering
 	 */
-	public static Polygon loadPolygon(String renderObjLoc, String collisiionObjLoc, Polygon.Types shapeType, float xScale, float yScale, String textureName){
-		return new PolygonLoader(xScale, yScale).loadPolygon(renderObjLoc, collisiionObjLoc, textureName, shapeType);
+	public static Polygon loadPolygon(ArrayList<String> renderObjLocs, ArrayList<String> textureNames, String collisiionObjLoc, Polygon.Types shapeType, float xScale, float yScale){
+		return new PolygonLoader(xScale, yScale).loadPolygon(renderObjLocs, textureNames, collisiionObjLoc, shapeType);
 	}
 	
 	/**
@@ -73,16 +73,34 @@ public class PolygonLoader {
 	 * @param scale Scale to load polygon in at
 	 * @return Polygon from obj file
 	 */
-	private Polygon loadPolygon(String renderObjLoc, String collisionObjLoc, String textureName, Polygon.Types shapeType){
-		// this fills up the ArrayLists
-		parseRenderObj(renderObjLoc);
-		
-		// done parsing! let's fill some float buffers!
-		FloatBuffer vertexBuffer = putVerticesIntoBuffer();
-		FloatBuffer texCoordBuffer = putTextureCoordsIntoBuffer();
+	private Polygon loadPolygon(ArrayList<String> renderObjLocs, ArrayList<String> textureNames, String collisionObjLoc, Polygon.Types shapeType){
+		ArrayList<FloatBuffer> vertBuffers = new ArrayList<FloatBuffer>(), texCoordBuffers = new ArrayList<FloatBuffer>();
+		ArrayList<Integer> counts = new ArrayList<Integer>();
+		for(String renderObjLoc : renderObjLocs){
+			// this fills up the ArrayLists and increments count
+			parseRenderObj(renderObjLoc);
+			// done parsing! let's fill some float buffers!
+			FloatBuffer vertexBuffer = putVerticesIntoBuffer();
+			FloatBuffer texCoordBuffer = putTextureCoordsIntoBuffer();
+			
+			vertBuffers.add(vertexBuffer);
+			texCoordBuffers.add(texCoordBuffer);
+			counts.add(count);
+			
+			count = 0;
+			vertexIndices.clear();
+			textureIndices.clear();
+			
+			vertices.clear();
+			textureCoords.clear();
+			// obj references things with 1 origin instead of 0 (wtf?! who decided that? asshole)
+			vertices.add(new Vector2(0.0f, 0.0f));
+			textureCoords.add(new Vector2(0.0f, 0.0f));
+		}
+			
 		Vector2[] geom = parseCollisionObj(collisionObjLoc);
 		
-		return new Polygon(textureName, vertexBuffer, texCoordBuffer, count, geom, shapeType);
+		return new Polygon(textureNames, vertBuffers, texCoordBuffers, counts, geom, shapeType);
 	}
 	
 	/**

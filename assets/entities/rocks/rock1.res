@@ -1,4 +1,13 @@
 {"resources":	{
+	"textures":	[
+		{
+			"name": "rocks",
+			"path": "entities/rocks/rocks.png",
+			"minFilter":	"nearest",
+			"magFilter":	"nearest"
+		}
+	],
+	
 	"polygons": [
 		{
 			"name":	"rock1",
