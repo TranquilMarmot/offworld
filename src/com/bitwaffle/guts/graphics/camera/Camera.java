@@ -44,7 +44,7 @@ public class Camera extends Entity {
 	 * Different camera modes
 	 */
 	public static enum Modes{
-		FOLLOW(new FollowMode(100.0f, 0.0f, -0.3f, 1.0f, 1.5f)),
+		FOLLOW(new FollowMode(100.0f, 0.0f, -0.3f, 2.25f, 1.0f)),
 		FREE(new FreeMode());
 		
 		private CameraMode mode;

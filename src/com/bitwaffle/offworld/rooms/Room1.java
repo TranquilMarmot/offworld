@@ -2,21 +2,16 @@ package com.bitwaffle.offworld.rooms;
 
 import android.opengl.GLES20;
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.render.EntityRenderer;
-import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.graphics.render.shapes.Polygon;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.physics.Room;
 import com.bitwaffle.guts.util.PhysicsHelper;
 import com.bitwaffle.offworld.renderers.PolygonRenderer;
-import com.bitwaffle.offworld.renderers.Renderers;
 
 public class Room1 extends Room {
 	/** Bounds of room */
@@ -28,7 +23,7 @@ public class Room1 extends Room {
 	public Room1(){
 		super(x, y, width, height);
 		
-		GLES20.glClearColor(0.412f, 0.592f, 0.827f, 1.0f);
+		GLES20.glClearColor(0.4117647058823529f, 0.592156862745098f, 0.8274509803921569f, 1.0f);
 		
 		//this.addEntity(tut1());
 		//this.addEntity(tut2());
@@ -36,6 +31,7 @@ public class Room1 extends Room {
 		this.addEntity(getEntity("intro-seg2", 5));
 		this.addEntity(getEntity("intro-seg3", 5));
 		this.addEntity(getGradient("intro-gradient3", 4));
+		this.addEntity(getGradient("intro-gradient1", 4));
 		this.addEntity(getUndergroundBackground(3));
 		
 		// random maker
@@ -73,13 +69,14 @@ public class Room1 extends Room {
 	
 	private Entity getUndergroundBackground(int layer){
 		Polygon poly = Game.resources.polygons.get("intro-underground-background");
-		Entity ent = new Entity(new PolygonRenderer(poly, new float[]{0.0196f, 0.1922f, 0.4274f, 1.0f}), layer);
+		Entity ent = new Entity(new PolygonRenderer(poly, new float[]{0.0196078431372549f,0.196078431372549f, 0.4274509803921569f, 1.0f}), layer);
 		return ent;
 	}
 	
 	/**
 	 * Makes bounds for room
 	 */
+	/*
 	private void makeWalls(){
 		class Ground {
 			float x, y, width, height;
@@ -106,6 +103,7 @@ public class Room1 extends Room {
 			this.addEntity(ground);
 		}
 	}
+	*/
 
 	@Override
 	public void onAddToWorld(Physics physics) {}

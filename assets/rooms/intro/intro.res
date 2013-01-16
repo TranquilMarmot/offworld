@@ -15,6 +15,10 @@
 		{
 			"name":	"intro-gradient3",
 			"path":	"rooms/intro/gradient3/gradient3.res"
+		},
+		{
+			"name":	"intro-gradient1",
+			"path":	"rooms/intro/gradient1/gradient1.res"
 		}
 	],
 	
