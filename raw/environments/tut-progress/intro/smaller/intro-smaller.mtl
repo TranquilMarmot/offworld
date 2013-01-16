@@ -1,0 +1,241 @@
+# Blender MTL File: 'intro-smaller.blend'
+# Material Count: 24
+newmtl 
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+
+
+newmtl _2.png
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\environments\blend\tut-progress\intro\smaller\gradient3\2.png
+
+
+newmtl _gradient3-0
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\environments\blend\tut-progress\intro\smaller\gradient3\0.png
+
+
+newmtl _gradient3-1
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\environments\blend\tut-progress\intro\smaller\gradient3\1.png
+
+
+newmtl _seg1-0
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg1\0.png
+
+
+newmtl _seg1-1
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg1\1.png
+
+
+newmtl _seg1-2
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg1\2.png
+
+
+newmtl _seg1-3
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg1\3.png
+
+
+newmtl _seg1-4
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg1\4.png
+
+
+newmtl _seg1-5
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg1\5.png
+
+
+newmtl _seg2-0
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg2\0.png
+
+
+newmtl _seg2-1
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg2\1.png
+
+
+newmtl _seg2-2
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg2\2.png
+
+
+newmtl _seg2-3
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg2\3.png
+
+
+newmtl _seg2-4
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg2\4.png
+
+
+newmtl _seg2-5
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg2\5.png
+
+
+newmtl _seg3-0
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg3\0.png
+
+
+newmtl _seg3-1
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg3\1.png
+
+
+newmtl _seg3-2
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg3\2.png
+
+
+newmtl _seg3-3
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg3\3.png
+
+
+newmtl _seg3-4
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg3\4.png
+
+
+newmtl _seg3-5
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg3\5.png
+
+
+newmtl _seg3-6
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg3\6.png
+
+
+newmtl _seg3-7
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\assets\rooms\intro\seg3\7.png
+
+

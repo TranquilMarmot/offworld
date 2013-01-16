@@ -38,7 +38,7 @@ public class Camera extends Entity {
 	private Vector2 worldWindowSize;
 	
 	/** Whether or not to keep the camera within Physics.getCurrentRoom */
-	private boolean boundsCheck = false;
+	private boolean boundsCheck = true;
 	
 	/**
 	 * Different camera modes
@@ -92,6 +92,8 @@ public class Camera extends Entity {
 			if(r != null)
 				boundsCheck(r);	
 		}
+		
+		// System.out.println(getWorldCenterPoint());
 	}
 	
 	/**

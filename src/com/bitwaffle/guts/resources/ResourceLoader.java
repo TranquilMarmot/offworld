@@ -402,8 +402,8 @@ public class ResourceLoader {
 				
 				
 				
-				String geomPath = polyObj.getString("geom");
-				String debugPath = polyObj.getString("debug");
+				String geomPath = polyObj.optString("geom");
+				String debugPath = polyObj.optString("debug");
 				
 				
 				float xScale, yScale;
@@ -416,7 +416,7 @@ public class ResourceLoader {
 					yScale = (float)polyScale;
 				}
 				
-				String typeStr = polyObj.getString("type");
+				String typeStr = polyObj.optString("type");
 				Polygon.Types shapeType = null;
 				if(typeStr.equalsIgnoreCase("POLYGON"))
 					shapeType = Polygon.Types.POLYGON;
@@ -424,8 +424,8 @@ public class ResourceLoader {
 					shapeType = Polygon.Types.LOOP;
 				else if(typeStr.equalsIgnoreCase("CHAIN"))
 					shapeType = Polygon.Types.CHAIN;
-				else
-					Log.e(LOGTAG, "ERROR! Got unkown polygon shape type (got " + typeStr + ")");
+				//else
+				//	Log.e(LOGTAG, "ERROR! Got unkown polygon shape type (got " + typeStr + ")");
 				
 				Polygon poly = PolygonLoader.loadPolygon(xScale, yScale, renderObjLocs, textureNames, geomPath, shapeType, debugPath);
 				Game.resources.polygons.addPolygon(polyName, poly);

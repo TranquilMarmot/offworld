@@ -98,13 +98,19 @@ public class PolygonLoader {
 			textureCoords.add(new Vector2(0.0f, 0.0f));
 		}
 		
-		parseRenderObj(debugObjLoc);
-		
-		FloatBuffer debugVertexBuffer = putVerticesIntoBuffer();
-		FloatBuffer debugTexCoordBuffer = putTextureCoordsIntoBuffer();
-		int debugCount = count;
+		FloatBuffer debugVertexBuffer = null, debugTexCoordBuffer = null;
+		int debugCount = -1;
+		if(!debugObjLoc.equals("")){
+			parseRenderObj(debugObjLoc);
 			
-		Vector2[] geom = parseCollisionObj(collisionObjLoc);
+			debugVertexBuffer = putVerticesIntoBuffer();
+			debugTexCoordBuffer = putTextureCoordsIntoBuffer();
+			debugCount = count;
+		}
+		
+		Vector2[] geom = null;
+		if(!collisionObjLoc.equals(""))
+			geom = parseCollisionObj(collisionObjLoc);
 		
 		return new Polygon(textureNames, vertBuffers, texCoordBuffers, counts, geom, shapeType, debugVertexBuffer, debugTexCoordBuffer, debugCount);
 	}

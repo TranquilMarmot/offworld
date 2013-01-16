@@ -66,7 +66,6 @@ public class Polygon {
 	}
 	
 	public int getNumRenderParts(){
-		assert (vertBuffers.size() == texCoordBuffers.size() && texCoordBuffers.size() == textureNames.size() && textureNames.size() == numIndices.size());
 		return vertBuffers.size();
 	}
 	
@@ -102,7 +101,9 @@ public class Polygon {
 	
 	/** @return Shape to use for this polygon */
 	public Shape getShape(){
-		switch(geometryType){
+		if(geometryType == null)
+			return null;
+		else switch(geometryType){
 		case POLYGON:
 			PolygonShape poly = new PolygonShape();
 			poly.set(geometry);

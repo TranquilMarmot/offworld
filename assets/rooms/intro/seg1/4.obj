@@ -1,4 +1,4 @@
-# Blender v2.59 (sub 0) OBJ File: 'intro-seg1.blend'
+# Blender v2.59 (sub 0) OBJ File: 'intro-smaller.blend'
 # www.blender.org
 v 1.000000 0.000000 -0.000000
 v 1.000000 0.000000 -1.000000
@@ -8,6 +8,6 @@ vt 1.000000 1.000000
 vt 0.000000 1.000000
 vt 0.000000 0.000000
 vt 1.000000 0.000000
-usemtl _seg1_4.png
+usemtl _4.png
 s off
 f 1/1 4/2 3/3 2/4

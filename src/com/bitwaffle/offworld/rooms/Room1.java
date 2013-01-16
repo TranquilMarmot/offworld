@@ -20,7 +20,7 @@ import com.bitwaffle.offworld.renderers.Renderers;
 
 public class Room1 extends Room {
 	/** Bounds of room */
-	private static float x = 1.0f, y = -15.0f, width = 17.0f, height = 21.0f;
+	private static float x = 63.3f, y = 50.4f, width = 79.2f, height = 50.2f;
 	
 	/**
 	 * Create room
@@ -32,26 +32,17 @@ public class Room1 extends Room {
 		
 		//this.addEntity(tut1());
 		//this.addEntity(tut2());
-		this.addEntity(intro());
-		
-		// backdrop
-		EntityRenderer backdropRenderer = new EntityRenderer(){
-			@Override
-			public void render(Render2D renderer, Entity ent,
-					boolean renderDebug) {
-				renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
-				Game.resources.textures.bindTexture("tutback");
-				renderer.quad.render(20.0f, 12.0f, false, true);
-			}
-		};
-		Entity backdrop = new Entity(backdropRenderer, 1, new Vector2(0.0f, -22.0f));
-		//this.addEntity(backdrop);
+		this.addEntity(getEntity("intro-seg1", 5));
+		this.addEntity(getEntity("intro-seg2", 5));
+		this.addEntity(getEntity("intro-seg3", 5));
+		this.addEntity(getGradient("intro-gradient3", 4));
+		this.addEntity(getUndergroundBackground(3));
 		
 		// random maker
 		this.addEntity(new Entity(){
 			@Override
 			public void update(float timeStep){
-		    	if(Game.physics.numEntities() < 30){
+		    	if(Game.physics.numEntities() < 15){
 		        	//Random r = new Random();
 		        	//if(r.nextBoolean())
 		    		//	PhysicsHelper.makeRandomBox(Game.physics);
@@ -65,43 +56,25 @@ public class Room1 extends Room {
 		//makeWalls();
 	}
 	
-	private DynamicEntity intro(){
-		String polygonName = "intro-seg1";
-		int layer = 5;
-		BodyDef bodyDef = Game.resources.entityInfo.getEntityBodyDef(polygonName);
+	private DynamicEntity getEntity(String name, int layer){
+		BodyDef bodyDef = Game.resources.entityInfo.getEntityBodyDef(name);
 		bodyDef.position.set(0.0f, 0.0f);
-		FixtureDef fixtureDef = Game.resources.entityInfo.getEntityFixtureDef(polygonName);
-		Polygon poly = Game.resources.polygons.get(polygonName);
+		FixtureDef fixtureDef = Game.resources.entityInfo.getEntityFixtureDef(name);
+		Polygon poly = Game.resources.polygons.get(name);
 		DynamicEntity tut = new DynamicEntity(new PolygonRenderer(poly), layer, bodyDef, fixtureDef);
 		return tut;
 	}
 	
-	/**
-	 * @return Left thingy
-	 */
-	private DynamicEntity tut1(){
-		String polygonName = "tut1";
-		int layer = 5;
-		BodyDef bodyDef = Game.resources.entityInfo.getEntityBodyDef(polygonName);
-		bodyDef.position.set(0.0f, 0.0f);
-		FixtureDef fixtureDef = Game.resources.entityInfo.getEntityFixtureDef(polygonName);
-		Polygon poly = Game.resources.polygons.get(polygonName);
-		DynamicEntity tut = new DynamicEntity(new PolygonRenderer(poly), layer, bodyDef, fixtureDef);
-		return tut;
+	private Entity getGradient(String name, int layer){
+		Polygon poly = Game.resources.polygons.get(name);
+		Entity ent = new Entity(new PolygonRenderer(poly), layer);
+		return ent;
 	}
 	
-	/**
-	 * @return Right thingy
-	 */
-	private DynamicEntity tut2(){
-		String polygonName = "tut2";
-		int layer = 5;
-		BodyDef bodyDef = Game.resources.entityInfo.getEntityBodyDef(polygonName);
-		bodyDef.position.set(2.0f, -20.0f);
-		FixtureDef fixtureDef = Game.resources.entityInfo.getEntityFixtureDef(polygonName);
-		Polygon poly = Game.resources.polygons.get(polygonName);
-		DynamicEntity tut = new DynamicEntity(new PolygonRenderer(poly), layer, bodyDef, fixtureDef);
-		return tut;
+	private Entity getUndergroundBackground(int layer){
+		Polygon poly = Game.resources.polygons.get("intro-underground-background");
+		Entity ent = new Entity(new PolygonRenderer(poly, new float[]{0.0196f, 0.1922f, 0.4274f, 1.0f}), layer);
+		return ent;
 	}
 	
 	/**

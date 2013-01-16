@@ -127,7 +127,7 @@ public class PhysicsHelper {
 		Random randy = new Random();
 		float rockX = randy.nextFloat() * 10.0f - 50.0f;
 		if(rockX < 1.0f) rockX = 1.0f;
-		float rockY = randy.nextFloat() * 150.0f - 25.0f;
+		float rockY = randy.nextFloat() * 150.0f + 15.0f;
 		if(rockY < 1.0f) rockY = 1.0f;
 		
 		String polygonName = "rock1";
@@ -211,7 +211,7 @@ public class PhysicsHelper {
 		// player
 		BodyDef playerBodyDef = new BodyDef();
 		playerBodyDef.type = BodyDef.BodyType.DynamicBody;
-		playerBodyDef.position.set(1.0f, 0.0f);
+		playerBodyDef.position.set(1.0f, 6.0f);
 		
 		PolygonShape boxShape = new PolygonShape();
 		boxShape.setAsBox(0.83062f, 1.8034f);
