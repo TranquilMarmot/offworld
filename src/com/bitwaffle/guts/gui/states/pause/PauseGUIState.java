@@ -2,7 +2,6 @@ package com.bitwaffle.guts.gui.states.pause;
 
 import java.util.Iterator;
 
-import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
 import com.bitwaffle.guts.gui.states.pause.buttons.DebugButton;
@@ -46,8 +45,8 @@ public class PauseGUIState extends GUIState{
 		}
 	}
 	
-	public PauseGUIState(GUI gui){
-		super(gui);
+	public PauseGUIState(){
+		super();
 		
 		this.addButton(new DebugButton(this));
 		this.addButton(new LoadButton(this));

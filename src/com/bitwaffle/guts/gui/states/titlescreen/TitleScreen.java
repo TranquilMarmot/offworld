@@ -2,7 +2,6 @@ package com.bitwaffle.guts.gui.states.titlescreen;
 
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.passive.GLSLSandbox;
-import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.states.GUIState;
 import com.bitwaffle.guts.gui.states.titlescreen.buttons.OptionsButton;
 import com.bitwaffle.guts.gui.states.titlescreen.buttons.StartGameButton;
@@ -11,14 +10,10 @@ public class TitleScreen extends GUIState {
 	/** Alpha values of buttons */
 	public static float activeAlpha = 0.8f, pressedAlpha = 0.95f;
 	
-	/**
-	 * Sandbox has to be managed by this class since it's an entity
-	 * (GUIStates only manage GUIObjects)
-	 */
 	private GLSLSandbox sandbox;
 	
-	public TitleScreen(GUI gui){
-		super(gui);
+	public TitleScreen(){
+		super();
 		
 		sandbox = new GLSLSandbox();
 		
@@ -30,13 +25,6 @@ public class TitleScreen extends GUIState {
 	@Override
 	public void update(float timeStep){
 		super.update(timeStep);
-		
-		/*
-		if(Game.player != null){
-			this.loseCurrentState();
-			gui.setCurrentState(GUI.States.MOVEMENT);
-		}
-		*/
 	}
 	
 

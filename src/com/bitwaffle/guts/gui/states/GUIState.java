@@ -34,8 +34,7 @@ public class GUIState {
 	/**
 	 * Create a new GUI state
 	 */
-	public GUIState(GUI gui){
-		this.gui = gui;
+	public GUIState(){
 		this.isCurrentState = false;
 		
 		buttons = new ArrayList<Button>();
@@ -45,6 +44,10 @@ public class GUIState {
 		objects = new ArrayList<GUIObject>();
 		objectsToRemove = new Stack<GUIObject>();
 		objectsToAdd = new Stack<GUIObject>();
+	}
+	
+	public void setParentGUI(GUI gui){
+		this.gui = gui;
 	}
 	
 	/**

@@ -37,6 +37,7 @@ public class HUD extends GUIObject {
 		
 		addCameraButton();
 		addConsoleButton();
+		gui.addObject(new DebugText());
 	}
 
 	@Override

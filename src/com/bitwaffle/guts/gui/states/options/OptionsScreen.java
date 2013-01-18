@@ -11,8 +11,8 @@ public class OptionsScreen extends GUIState {
 	
 	GLSLSandbox sandbox;
 	
-	public OptionsScreen(GUI gui) {
-		super(gui);
+	public OptionsScreen() {
+		super();
 		
 		this.addButton(new FullScreenButton(Game.windowWidth / 2.0f, Game.windowHeight / 2.0f, 30));
 		

@@ -7,7 +7,6 @@ import java.util.Stack;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
-import android.opengl.GLES20;
 import android.util.Log;
 
 import com.bitwaffle.guts.Game;
@@ -27,11 +26,23 @@ import com.bitwaffle.guts.gui.states.titlescreen.TitleScreen;
  * @author TranquilMarmot
  */
 public class GUI {
+	private static final String LOGTAG = "GUI";
+	/**
+	 * Possible states for the GUI. 
+	 */
 	public enum States{
-		PAUSE,
-		MOVEMENT,
-		TITLESCREEN,
-		OPTIONS;
+		PAUSE(new PauseGUIState()),
+		MOVEMENT(new MovementGUIState()),
+		TITLESCREEN(new TitleScreen()),
+		OPTIONS(new OptionsScreen());
+		
+		// Each value in this enum basically acts as a wrapper to access a GUIState
+		GUIState state;
+		States(GUIState state){ this.state = state; }
+		protected void setParentGUI(GUI gui){ state.setParentGUI(gui); }
+		protected void update(float timeStep){ state.update(timeStep); }
+		protected void loseCurrentState(){ state.loseCurrentState(); }
+		protected void gainCurrentState(){ state.gainCurrentState(); }
 	}
 	
 	/** Console for interacting with game */
@@ -47,14 +58,8 @@ public class GUI {
 	/** Used to add/remove GUI objects and avoid ConcurrentModificationExceptions */
 	private Stack<Button> buttonsToAdd, buttonsToRemove;
 	
-	private PauseGUIState pauseState;
-	private MovementGUIState movementState;
-	private TitleScreen titleScreen;
-	private OptionsScreen optionsScreen;
-	
-	/** The current button manager (basically, the state of the GUI) */
+	/** Current state of the GUI (manages buttons and objects) */
 	private States currentState;
-	
 	
 	/**
 	 * Create a new GUI
@@ -70,10 +75,9 @@ public class GUI {
 		
 		console = new Console();
 		
-		pauseState = new PauseGUIState(this);
-		movementState = new MovementGUIState(this);
-		titleScreen = new TitleScreen(this);
-		optionsScreen = new OptionsScreen(this);
+		// All of the GUI states 
+		for(States s : States.values())
+			s.setParentGUI(this);
 		
 		// add a HUD to this GUI
 		this.addObject(new HUD(this));
@@ -86,7 +90,7 @@ public class GUI {
 	public void update(float timeStep){
 		checkState();
 		if(currentState != null)
-			getState(currentState).update(timeStep);
+			currentState.update(timeStep);
 		
 		updateButtons(timeStep);
 		updateObjects(timeStep);
@@ -97,29 +101,12 @@ public class GUI {
 	 * Checks the state of the GUI and changes it if necessary
 	 */
 	private void checkState(){
+		// check if we need to switch between the pause menu and the movement keys
 		if(currentState != States.TITLESCREEN && currentState != States.OPTIONS){
 			if(Game.isPaused() && currentState != States.PAUSE)
 				setCurrentState(States.PAUSE);
 			else if(!Game.isPaused() && currentState != States.MOVEMENT)
 				setCurrentState(States.MOVEMENT);
-		}
-	}
-	
-	private GUIState getState(States state){
-		if(state == null)
-			return null;
-		
-		switch(state){
-		case PAUSE:
-			return pauseState;
-		case MOVEMENT:
-			return movementState;
-		case TITLESCREEN:
-			return titleScreen;
-		case OPTIONS:
-			return optionsScreen;
-		default:
-			return null;
 		}
 	}
 	
@@ -201,10 +188,10 @@ public class GUI {
 	 */
 	public void setCurrentState(States newState){
 		if(currentState != null)
-			getState(currentState).loseCurrentState();
+			currentState.loseCurrentState();
 		
 		if(newState != null)
-			getState(newState).gainCurrentState();
+			 newState.gainCurrentState();
 		
 		currentState = newState;
 	}
@@ -217,14 +204,13 @@ public class GUI {
 		renderer.setUpProjectionScreenCoords();
 		renderObjects(getObjectIterator(), renderer);
 		renderObjects(getButtonIterator(), renderer);
-		renderText(renderer);
 		
 		if(console.isVisible())
 			console.render(renderer, false, false);
 	}
 	
 	/**
-	 * @param objects Objects to render
+	 * @param objects GUI Objects to render
 	 * @param renderer Renderer to use
 	 */
 	private void renderObjects(Iterator<? extends GUIObject> it, Render2D renderer){
@@ -237,13 +223,12 @@ public class GUI {
 				}
 			}
 		} catch(NullPointerException e){
-			Log.v("GUI", "Got null gui object (ignoring)");
+			Log.d(LOGTAG, "Got null gui object (ignoring)");
 		}
 	}
 	
 	/**
-	 * Render a given object
-	 * @param obj Object to render
+	 * @param obj GUI Object to render
 	 * @param renderer Renderer to use
 	 */
 	public void renderObject(GUIObject obj, Render2D renderer){
@@ -252,41 +237,5 @@ public class GUI {
 		renderer.sendModelViewToShader();
 		
 		obj.render(renderer, false, false);
-	}
-	
-	/**
-	 * Debug text rendering
-	 * @param renderer What to use to render text
-	 */
-	private void renderText(Render2D renderer){
-		// draw some debug info
-		float[] debugTextColor = new float[]{ 0.3f, 0.3f, 0.3f, 1.0f };
-		float tscale = 0.4f;
-		
-		GLES20.glEnable(GLES20.GL_BLEND);
-		GLES20.glBlendFunc(GLES20.GL_ONE_MINUS_DST_COLOR, GLES20.GL_ZERO);
-		
-		String vers = "Version " + Game.VERSION;
-		renderer.font.drawString(vers, renderer, Game.windowWidth - renderer.font.stringWidth(vers, tscale), renderer.font.stringHeight(vers, tscale) * 2, tscale, debugTextColor);
-		
-		String fps = Game.currentFPS + " FPS";
-		renderer.font.drawString(fps, renderer, Game.windowWidth - renderer.font.stringWidth(fps, tscale), renderer.font.stringHeight(fps, tscale) * 4, tscale, debugTextColor);
-		
-		String ents = Game.physics.numEntities() + " ents";
-		renderer.font.drawString(ents, renderer, Game.windowWidth - renderer.font.stringWidth(ents, tscale), renderer.font.stringHeight(ents, tscale) * 6, tscale, debugTextColor);
-		
-		GLES20.glDisable(GLES20.GL_BLEND);
-		
-		
-		// draw pause text FIXME temp
-		if(Game.isPaused()){
-			String pauseString = "Hello. This is a message to let you know that\nthe game is paused. Have a nice day.";
-			float scale = 0.75f;
-			float stringWidth = renderer.font.stringWidth(pauseString, scale);
-			float stringHeight = renderer.font.stringHeight(pauseString, scale);
-			float textX = ((float)Game.windowWidth / 2.0f) - (stringWidth / 2.0f);
-			float textY = ((float)Game.windowHeight / 2.0f) - (stringHeight / 2.0f);
-			renderer.font.drawString(pauseString, renderer, textX, textY, scale);
-		}
 	}
 }

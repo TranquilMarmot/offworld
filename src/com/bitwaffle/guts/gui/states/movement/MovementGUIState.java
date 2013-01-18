@@ -1,6 +1,5 @@
 package com.bitwaffle.guts.gui.states.movement;
 
-import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.states.GUIState;
 import com.bitwaffle.guts.gui.states.movement.buttons.jump.LeftJumpButton;
 import com.bitwaffle.guts.gui.states.movement.buttons.jump.RightJumpButton;
@@ -20,8 +19,8 @@ public class MovementGUIState extends GUIState {
 	/** Alpha values for buttons */
 	public static float activeAlpha = 0.3f, pressedAlpha = 0.6f;
 	
-	public MovementGUIState(GUI gui){
-		super(gui);
+	public MovementGUIState(){
+		super();
 		
 		// MoveLeftButtons
 		this.addButton(new LeftMoveLeftButton());
