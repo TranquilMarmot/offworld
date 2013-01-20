@@ -15,7 +15,7 @@ import com.bitwaffle.offworld.renderers.PolygonRenderer;
 
 public class Room1 extends Room {
 	/** Bounds of room */
-	private static float x = 63.3f, y = 50.4f, width = 79.2f, height = 50.2f;
+	private static float x = 80.0f, y = 60.0f, width = 112.0f, height = 60.0f;
 	
 	/**
 	 * Create room
@@ -30,9 +30,9 @@ public class Room1 extends Room {
 		this.addEntity(getEntity("intro-seg1", 5));
 		this.addEntity(getEntity("intro-seg2", 5));
 		this.addEntity(getEntity("intro-seg3", 5));
-		this.addEntity(getGradient("intro-gradient3", 4));
-		this.addEntity(getGradient("intro-gradient1", 4));
-		this.addEntity(getUndergroundBackground(3));
+		//this.addEntity(getGradient("intro-gradient3", 4));
+		//this.addEntity(getGradient("intro-gradient1", 4));
+		//this.addEntity(getUndergroundBackground(3));//
 		
 		// random maker
 		this.addEntity(new Entity(){

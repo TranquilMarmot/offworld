@@ -1,4 +1,49 @@
 {"resources":	{
+	"textures":	[
+		{
+			"name":	"intro-0",
+			"path":	"rooms/intro/intro-0.png",
+			"minFilter":	"linear",
+			"magFilter":	"linear"
+		},
+		{
+			"name":	"intro-1",
+			"path":	"rooms/intro/intro-1.png",
+			"minFilter":	"linear",
+			"magFilter":	"linear"
+		},
+		{
+			"name":	"intro-2",
+			"path":	"rooms/intro/intro-2.png",
+			"minFilter":	"linear",
+			"magFilter":	"linear"
+		},
+		{
+			"name":	"intro-3",
+			"path":	"rooms/intro/intro-3.png",
+			"minFilter":	"linear",
+			"magFilter":	"linear"
+		},
+		{
+			"name":	"intro-4",
+			"path":	"rooms/intro/intro-4.png",
+			"minFilter":	"linear",
+			"magFilter":	"linear"
+		},
+		{
+			"name":	"intro-5",
+			"path":	"rooms/intro/intro-5.png",
+			"minFilter":	"linear",
+			"magFilter":	"linear"
+		},
+		{
+			"name":	"intro-6",
+			"path":	"rooms/intro/intro-6.png",
+			"minFilter":	"linear",
+			"magFilter":	"linear"
+		}
+	],
+		
 	"resources":	[
 		{
 			"name":	"intro-seg1",
@@ -11,23 +56,6 @@
 		{
 			"name":	"intro-seg3",
 			"path":	"rooms/intro/seg3/seg3.res"
-		},
-		{
-			"name":	"intro-gradient3",
-			"path":	"rooms/intro/gradient3/gradient3.res"
-		},
-		{
-			"name":	"intro-gradient1",
-			"path":	"rooms/intro/gradient1/gradient1.res"
-		}
-	],
-	
-	"polygons": [
-		{
-			"name":	"intro-underground-background",
-			"render":	"rooms/intro/underground-background.obj",
-			"texture":	"blank",
-			"scale":	16.0
 		}
 	]
 }}

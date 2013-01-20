@@ -1,76 +1,25 @@
 {"resources":	{
-	"textures":	[
-		{
-			"name":	"intro-seg1-0",
-			"path":	"rooms/intro/seg1/0.png",
-			"minFilter":	"linear",
-			"magFilter":	"linear"
-		},
-		{
-			"name":	"intro-seg1-1",
-			"path":	"rooms/intro/seg1/1.png",
-			"minFilter":	"linear",
-			"magFilter":	"linear"
-		},
-		{
-			"name":	"intro-seg1-2",
-			"path":	"rooms/intro/seg1/2.png",
-			"minFilter":	"linear",
-			"magFilter":	"linear"
-		},
-		{
-			"name":	"intro-seg1-3",
-			"path":	"rooms/intro/seg1/3.png",
-			"minFilter":	"linear",
-			"magFilter":	"linear"
-		},
-		{
-			"name":	"intro-seg1-4",
-			"path":	"rooms/intro/seg1/4.png",
-			"minFilter":	"linear",
-			"magFilter":	"linear"
-		},
-		{
-			"name":	"intro-seg1-5",
-			"path":	"rooms/intro/seg1/5.png",
-			"minFilter":	"linear",
-			"magFilter":	"linear"
-		}
-	],
-	
 	"polygons": [
 		{
 			"name":	"intro-seg1",
 			"render":	[
 				{
 					"render":	"rooms/intro/seg1/0.obj",
-					"texture":	"intro-seg1-0"
+					"texture":	"intro-0"
 				},
 				{
 					"render":	"rooms/intro/seg1/1.obj",
-					"texture":	"intro-seg1-1"
+					"texture":	"intro-1"
 				},
 				{
 					"render":	"rooms/intro/seg1/2.obj",
-					"texture":	"intro-seg1-2"
-				},
-				{
-					"render":	"rooms/intro/seg1/3.obj",
-					"texture":	"intro-seg1-3"
-				},
-				{
-					"render":	"rooms/intro/seg1/4.obj",
-					"texture":	"intro-seg1-4"
-				},
-				{
-					"render":	"rooms/intro/seg1/5.obj",
-					"texture":	"intro-seg1-5"
+					"texture":	"intro-2"
 				}
 			],
 			"geom":	"rooms/intro/seg1/geom.obj",
 			"debug":	"rooms/intro/seg1/debug.obj",
 			"type":	"loop",
-			"scale":	16.0
+			"scale":	32.0
 		}
 	],
 	

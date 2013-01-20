@@ -13,18 +13,6 @@
 			"magFilter":	"nearest"
 		},
 		{
-			"name":	"blankbutton",
-			"path":	"ui/textures/buttons/blankbutton.png",
-			"minFilter":	"nearest",
-			"magFilter":	"nearest"
-		},
-		{
-			"name":	"blankrectangle",
-			"path":	"ui/textures/buttons/blankrectangle.png",
-			"minFilter":	"nearest",
-			"magFilter":	"nearest"
-		},
-		{
 			"name":	"console",
 			"path":	"ui/textures/buttons/hud/console.png",
 			"minFilter":	"nearest",
