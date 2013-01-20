@@ -195,7 +195,7 @@ public class Player extends BoxEntity implements FirearmHolder,KryoSerializable{
 				// can only jump if the current vertical speed is within a certain range
 				if(linVec.y <= JUMP_FORCE && linVec.y >= -JUMP_FORCE){
 					//Game.vibration.vibrate(25);
-					Game.resources.sounds.play("jump");
+					Game.resources.sounds.playSound("jump");
 					
 					// add force to current velocity and set it
 					linVec.y += JUMP_FORCE;

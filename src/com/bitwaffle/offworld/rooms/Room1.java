@@ -32,7 +32,7 @@ public class Room1 extends Room {
 		this.addEntity(getEntity("intro-seg3", 5));
 		//this.addEntity(getGradient("intro-gradient3", 4));
 		//this.addEntity(getGradient("intro-gradient1", 4));
-		//this.addEntity(getUndergroundBackground(3));//
+		//this.addEntity(getUndergroundBackground(3));
 		
 		// random maker
 		this.addEntity(new Entity(){

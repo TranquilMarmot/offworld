@@ -361,7 +361,7 @@ public class ResourceLoader {
 				String soundName = soundObj.getString("name");
 				String soundPath = soundObj.getString("path");
 				
-				Game.resources.sounds.loadSound(soundName, soundPath, 1);
+				Game.resources.sounds.loadSound(soundName, soundPath);
 			}
 		} catch(JSONException e){
 			Log.e(LOGTAG, "Error parsing sound array in resource file!");
