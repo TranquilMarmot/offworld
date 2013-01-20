@@ -20,14 +20,14 @@ import android.util.Log;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.shapes.Polygon;
 import com.bitwaffle.guts.physics.CollisionFilters;
+import com.bitwaffle.guts.polygon.Polygon;
+import com.bitwaffle.guts.polygon.PolygonLoader;
 import com.bitwaffle.guts.resources.entityinfo.EntityInfo;
 import com.bitwaffle.guts.resources.textures.SubImage;
 import com.bitwaffle.guts.resources.textures.animation.Animation;
 import com.bitwaffle.guts.resources.textures.animation.Frame;
 import com.bitwaffle.guts.util.BufferUtils;
-import com.bitwaffle.guts.util.PolygonLoader;
 
 /**
  * Loads a resource file and initializes resources

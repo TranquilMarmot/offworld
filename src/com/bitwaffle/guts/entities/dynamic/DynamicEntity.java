@@ -14,7 +14,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.guts.physics.Physics;
-import com.bitwaffle.guts.util.PhysicsHelper;
+import com.bitwaffle.guts.physics.PhysicsHelper;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;

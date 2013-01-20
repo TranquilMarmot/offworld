@@ -9,7 +9,7 @@ import com.bitwaffle.guts.android.AndroidGame;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.net.NetConsoleCommands;
-import com.bitwaffle.guts.util.PhysicsHelper;
+import com.bitwaffle.guts.physics.PhysicsHelper;
 
 
 /**
@@ -409,7 +409,7 @@ class SetSysOutCommand implements Command{
 class InitCommand implements Command{
 	@Override
 	public void issue(StringTokenizer toker){
-		PhysicsHelper.temp(Game.physics);
+		PhysicsHelper.tempInit(Game.physics);
 	}
 	
 	@Override

@@ -7,7 +7,7 @@ import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.TextButton;
 import com.bitwaffle.guts.gui.states.titlescreen.TitleScreen;
-import com.bitwaffle.guts.util.PhysicsHelper;
+import com.bitwaffle.guts.physics.PhysicsHelper;
 
 public class StartGameButton extends TextButton {
 	private static final String TEXT = "Start Game";
@@ -29,7 +29,7 @@ public class StartGameButton extends TextButton {
 
 	@Override
 	protected void onRelease() {
-		PhysicsHelper.temp(Game.physics);
+		PhysicsHelper.tempInit(Game.physics);
 		Game.gui.setCurrentState(GUI.States.MOVEMENT);
 	}
 

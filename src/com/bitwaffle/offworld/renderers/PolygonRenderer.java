@@ -8,7 +8,7 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.guts.graphics.render.Render2D;
-import com.bitwaffle.guts.graphics.render.shapes.Polygon;
+import com.bitwaffle.guts.polygon.Polygon;
 
 public class PolygonRenderer implements EntityRenderer {
 	/** Polygon that this renderer is rendering */

@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.util;
+package com.bitwaffle.guts.polygon;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import android.util.Log;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.shapes.Polygon;
+import com.bitwaffle.guts.util.BufferUtils;
 
 /**
  * Loads in obj files to create Polygons
