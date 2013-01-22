@@ -68,7 +68,7 @@ public class Player extends BoxEntity implements FirearmHolder,KryoSerializable{
 	public Player(){
 		super();
 		// TODO get rid of these magic numbers
-		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
+		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.2f);
 		this.color = defaultColor;
 		legsAnimation = Game.resources.textures.getAnimation("playerlegsshort");
 		target = new Vector2();
@@ -87,7 +87,7 @@ public class Player extends BoxEntity implements FirearmHolder,KryoSerializable{
 		
 		this.color = defaultColor;
 		// TODO get rid of these magic numbers
-		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
+		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.2f);
 		legsAnimation = Game.resources.textures.getAnimation("playerlegsshort");
 		target = new Vector2();
 	}

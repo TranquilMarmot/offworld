@@ -1,7 +1,5 @@
 package com.bitwaffle.guts.physics;
 
-import java.util.Random;
-
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -15,11 +13,9 @@ import com.bitwaffle.guts.android.SurfaceView;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.graphics.render.Render2D;
-import com.bitwaffle.guts.polygon.Polygon;
 import com.bitwaffle.offworld.entities.Player;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableBox;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableCircle;
-import com.bitwaffle.offworld.renderers.PolygonRenderer;
 import com.bitwaffle.offworld.renderers.Renderers;
 import com.bitwaffle.offworld.rooms.Room1;
 
@@ -128,52 +124,19 @@ public class PhysicsHelper {
 	}
 	
 	/**
-	 * Make random rocks
-	 * @param physics World to add rocks to
-	 */
-	public static void makeRandomRock(Physics physics){
-		Random randy = new Random();
-		float rockX = randy.nextFloat() * 10.0f - 50.0f;
-		if(rockX < 1.0f) rockX = 1.0f;
-		float rockY = randy.nextFloat() * 150.0f + 15.0f;
-		if(rockY < 1.0f) rockY = 1.0f;
-		
-		String polygonName = "rock1";
-		int layer = 5;
-		BodyDef bodyDef = Game.resources.entityInfo.getEntityBodyDef(polygonName);
-		bodyDef.angularVelocity = (randy.nextFloat() * 25.0f);
-		
-		float linX = randy.nextFloat() * 1.0f;
-		float linY = randy.nextFloat() * 1.0f;
-		if(randy.nextBoolean()) linX *= -1.0f;
-		if(randy.nextBoolean()) linY *= -1.0f;
-		bodyDef.linearVelocity.set(linX, linY);
-		
-		bodyDef.position.set(rockX, rockY);
-		
-		FixtureDef fixtureDef = Game.resources.entityInfo.getEntityFixtureDef(polygonName);
-		
-		Polygon renderpoly = Game.resources.polygons.get(polygonName);
-		DynamicEntity poly = new DynamicEntity(new PolygonRenderer(renderpoly, new float[]{0.6f, 0.6f, 0.6f, 1.0f}), layer, bodyDef, fixtureDef);
-		
-		physics.addEntity(poly, true);
-	}
-	
-	/**
 	 * Make random circle-boxes
 	 * @param physics World to add circles to
 	 */
 	public static void makeRandomCircle(Physics physics){
-		Random randy = new Random();
-		float circX = randy.nextFloat() * 100.0f - 50.0f;
+		float circX = Game.random.nextFloat() * 100.0f - 50.0f;
 		if(circX < 1.0f) circX = 1.0f;
-		float circY = randy.nextFloat() * 50.0f - 25.0f;
+		float circY = Game.random.nextFloat() * 50.0f - 25.0f;
 		if(circY < 1.0f) circY = 1.0f;
-		float radius = randy.nextFloat() * 1.5f;
+		float radius = Game.random.nextFloat() * 1.5f;
 		if(radius < 1.0f) radius = 1.0f;
-		float r = randy.nextFloat();
-		float g = randy.nextFloat();
-		float b = randy.nextFloat();
+		float r = Game.random.nextFloat();
+		float g = Game.random.nextFloat();
+		float b = Game.random.nextFloat();
 		
 		BodyDef circleDef = new BodyDef();
 		circleDef.type = BodyDef.BodyType.DynamicBody;
@@ -184,13 +147,12 @@ public class PhysicsHelper {
 			public void init(World world){
 				super.init(world);
 				
-				Random randy = new Random();
-				this.body.setAngularVelocity(randy.nextFloat() * 1.0f);
+				this.body.setAngularVelocity(Game.random.nextFloat() * 1.0f);
 				
-				float linX = randy.nextFloat() * 1.0f;
-				float linY = randy.nextFloat() * 1.0f;
-				if(randy.nextBoolean()) linX *= -1.0f;
-				if(randy.nextBoolean()) linY *= -1.0f;
+				float linX = Game.random.nextFloat() * 1.0f;
+				float linY = Game.random.nextFloat() * 1.0f;
+				if(Game.random.nextBoolean()) linX *= -1.0f;
+				if(Game.random.nextBoolean()) linY *= -1.0f;
 				this.body.setLinearVelocity(linX, linY);
 			}
 		};
@@ -202,18 +164,17 @@ public class PhysicsHelper {
 	 * Make random boxes
 	 */
 	public static void makeRandomBox(Physics physics){
-		Random randy = new Random();
-		float boxX = randy.nextFloat() * 100.0f - 50.0f;
+		float boxX = Game.random.nextFloat() * 100.0f - 50.0f;
 		if(boxX < 1.0f) boxX = 1.0f;
-		float boxY = randy.nextFloat() * 50.0f - 25.0f;
+		float boxY = Game.random.nextFloat() * 50.0f - 25.0f;
 		if(boxY < 1.0f) boxY = 1.0f;
-		float sizeX = randy.nextFloat() * 1.5f;
+		float sizeX = Game.random.nextFloat() * 1.5f;
 		if(sizeX < 1.0f) sizeX = 1.0f;
-		float sizeY = randy.nextFloat() * 1.5f;
+		float sizeY = Game.random.nextFloat() * 1.5f;
 		if(sizeY < 1.0f) sizeY = 1.0f;
-		float r = randy.nextFloat();
-		float g = randy.nextFloat();
-		float b = randy.nextFloat();
+		float r = Game.random.nextFloat();
+		float g = Game.random.nextFloat();
+		float b = Game.random.nextFloat();
 		
 		
 		BodyDef boxDef = new BodyDef();
@@ -235,13 +196,12 @@ public class PhysicsHelper {
 			public void init(World world){
 				super.init(world);
 				
-				Random randy = new Random();
-				this.body.setAngularVelocity(randy.nextFloat() * 1.0f);
+				this.body.setAngularVelocity(Game.random.nextFloat() * 1.0f);
 				
-				float linX = randy.nextFloat() * 1.0f;
-				float linY = randy.nextFloat() * 1.0f;
-				if(randy.nextBoolean()) linX *= -1.0f;
-				if(randy.nextBoolean()) linY *= -1.0f;
+				float linX = Game.random.nextFloat() * 1.0f;
+				float linY = Game.random.nextFloat() * 1.0f;
+				if(Game.random.nextBoolean()) linX *= -1.0f;
+				if(Game.random.nextBoolean()) linY *= -1.0f;
 				this.body.setLinearVelocity(linX, linY);
 			}
 		};

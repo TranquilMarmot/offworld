@@ -6,6 +6,7 @@ import java.util.Stack;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactFilter;
 import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.GdxNativesLoader;
 import com.bitwaffle.guts.entities.Entities;
@@ -217,6 +218,16 @@ public class Physics {
 		world.QueryAABB(callback, origin.x - queryWidth, origin.y - queryHeight,
 		                          origin.x + queryWidth, origin.y + queryHeight);
 		return callback.getHit();
+	}
+	
+	/**
+	 * Perform a raycast
+	 * @param callback Callback to use
+	 * @param point1 First point
+	 * @param point2 Second point
+	 */
+	public void rayCast(RayCastCallback callback, Vector2 point1, Vector2 point2){
+		world.rayCast(callback, point1, point2);
 	}
 
 	/**

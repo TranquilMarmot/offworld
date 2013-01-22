@@ -1,5 +1,7 @@
 package com.bitwaffle.guts;
 
+import java.util.Random;
+
 import android.app.Activity;
 import android.util.FloatMath;
 
@@ -23,7 +25,7 @@ import com.bitwaffle.offworld.entities.Player;
 // Android version has to extend Activity
 public abstract class Game extends Activity {
 	/** Current version of the game */
-	public static final String VERSION = "0.0.6.0 (pre-alpha)";
+	public static final String VERSION = "0.0.6.1 (pre-alpha)";
 	
 	/** Resource manager */
 	public static Resources resources;
@@ -68,10 +70,15 @@ public abstract class Game extends Activity {
 	/** The aspect ratio of the window */
 	public static float aspect = (float) windowWidth / (float) windowHeight;
 	
+	/** Random generator */
+	public static Random random;
+	
 	/**
 	 * Initializes everything
 	 */
 	protected void init(){
+		random = new Random(this.getTime());
+		
 		if(physics == null)
 			physics = new Physics();
 		

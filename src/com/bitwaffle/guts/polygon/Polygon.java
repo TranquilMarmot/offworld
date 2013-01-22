@@ -10,7 +10,6 @@ import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 
-// TODO seiralize this?
 
 /**
  * Each polygon consists of a series of rendering parts and a geometry part
@@ -151,36 +150,53 @@ public class Polygon {
 		return debugVertexCount;
 	}
 	
-	
-	
-	/** @return Shape to use for this polygon */
+	/** @return  Shape to use for this polygon*/
 	public Shape getShape(){
+		return getShape(1.0f);
+	}
+	
+	/** 
+	 * @param scale Scale to get shape at
+	 * @return Shape to use for this polygon
+	 */
+	public Shape getShape(float scale){
+		Vector2[] scaledGeom = geometry;
+		
+		// only scale if necessary
+		if(scale != 1.0f){
+			scaledGeom = new Vector2[geometry.length];
+			for(int i = 0; i < geometry.length; i++){
+				scaledGeom[i] = new Vector2(geometry[i].x * scale, geometry[i].y * scale);
+			}
+		}
+		
+		
 		if(geometryType == null)
 			return null;
 		else switch(geometryType){
 		case POLYGON:
 			PolygonShape poly = new PolygonShape();
-			poly.set(geometry);
+			poly.set(scaledGeom);
 			return poly;
 			
 		case CHAIN:
 			ChainShape chain = new ChainShape();
-			chain.createChain(geometry);
+			chain.createChain(scaledGeom);
 			return chain;
 			
 		case LOOP:
 			ChainShape loop = new ChainShape();
-			loop.createLoop(geometry);
+			loop.createLoop(scaledGeom);
 			return loop;
 			
 		case CIRCLE:
 			CircleShape circ = new CircleShape();
-			circ.setRadius(geometry[0].x);
+			circ.setRadius(scaledGeom[0].x);
 			return circ;
 			
 		case EDGE:
 			EdgeShape edge = new EdgeShape();
-			edge.set(geometry[0], geometry[1]);
+			edge.set(scaledGeom[0], scaledGeom[1]);
 			return edge;
 			
 		default:

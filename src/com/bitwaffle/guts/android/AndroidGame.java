@@ -30,9 +30,6 @@ import com.bitwaffle.guts.resources.Resources;
  * @author TranquilMarmot
  */
 public class AndroidGame extends Game implements GLSurfaceView.Renderer {
-	/** Current version of the game */
-	public static final String VERSION = "0.0.5 (pre-alpha)";
-	
 	/** Current context */
 	public static Context context;
 	

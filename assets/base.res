@@ -21,8 +21,8 @@
 			"path":	"rooms/intro/intro.res"
 		},
 		{
-			"name":	"rock1",
-			"path": "entities/rocks/rock1.res"
+			"name":	"rocks",
+			"path": "entities/rocks/rocks.res"
 		}
 	],
 	

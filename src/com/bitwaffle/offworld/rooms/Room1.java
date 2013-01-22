@@ -2,15 +2,16 @@ package com.bitwaffle.offworld.rooms;
 
 import android.opengl.GLES20;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.physics.Physics;
-import com.bitwaffle.guts.physics.PhysicsHelper;
 import com.bitwaffle.guts.physics.Room;
 import com.bitwaffle.guts.polygon.Polygon;
+import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
 import com.bitwaffle.offworld.renderers.PolygonRenderer;
 
 public class Room1 extends Room {
@@ -32,19 +33,19 @@ public class Room1 extends Room {
 		//this.addEntity(getEntity("intro-gradient1", 4, new float[]{1.0f, 1.0f, 1.0f, 1.0f}));
 		//this.addEntity(getEntity("intro-underground-background", 3, new float[]{0.0196078431372549f,0.196078431372549f, 0.4274509803921569f, 1.0f});
 		
-		// random maker
-		this.addEntity(new Entity(){
-			@Override
-			public void update(float timeStep){
-		    	if(Game.physics.numEntities() < 15){
-		        	//Random r = new Random();
-		        	//if(r.nextBoolean())
-		    		//	PhysicsHelper.makeRandomBox(Game.physics);
-		    		//else
-		    			PhysicsHelper.makeRandomRock(Game.physics);
-		    	}
-			}
-		});
+		// add random rocks
+		for(int i = 0; i < 30; i++){
+    		float rockX = Game.random.nextFloat() * 10.0f - 50.0f;
+    		if(rockX < 1.0f) rockX = 1.0f;
+    		float rockY = Game.random.nextFloat() * 150.0f + 15.0f;
+    		if(rockY < 1.0f) rockY = 1.0f;
+    		
+    		int layer = 4;
+    		
+    		BreakableRock rock = new BreakableRock(new Vector2(rockX, rockY), 1.0f, layer);
+    		
+    		Game.physics.addEntity(rock, true);
+		}
 		
 		// create walls
 		//makeWalls();
