@@ -18,7 +18,7 @@ import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.physics.Physics;
-import com.bitwaffle.offworld.entities.Player;
+import com.bitwaffle.offworld.entities.player.Player;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Registration;
 import com.esotericsoftware.kryo.io.Input;

@@ -10,7 +10,7 @@ import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.Resources;
-import com.bitwaffle.offworld.entities.Player;
+import com.bitwaffle.offworld.entities.player.Player;
 
 /**
  * This class handles calling the rendering methods,

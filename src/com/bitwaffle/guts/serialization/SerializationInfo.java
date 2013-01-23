@@ -22,9 +22,9 @@ import com.bitwaffle.guts.serialization.serializers.shapes.ChainShapeSerializer;
 import com.bitwaffle.guts.serialization.serializers.shapes.CircleShapeSerializer;
 import com.bitwaffle.guts.serialization.serializers.shapes.EdgeShapeSerializer;
 import com.bitwaffle.guts.serialization.serializers.shapes.PolygonShapeSerializer;
-import com.bitwaffle.offworld.entities.Player;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableBox;
 import com.bitwaffle.offworld.entities.dynamic.DestroyableCircle;
+import com.bitwaffle.offworld.entities.player.Player;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
 

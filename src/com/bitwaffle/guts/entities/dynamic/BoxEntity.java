@@ -16,9 +16,6 @@ import com.esotericsoftware.kryo.io.Output;
  * @author TranquilMarmot
  */
 public class BoxEntity extends DynamicEntity implements KryoSerializable{
-	/** Color to draw entity in (4 floats, between 0.0 and 1.0) */
-	public float[] color;
-	
 	/** Width and height of box (from center) */
 	protected float width, height;
 	
@@ -26,7 +23,6 @@ public class BoxEntity extends DynamicEntity implements KryoSerializable{
 		super();
 		this.width = 0.0f;
 		this.height = 0.0f;
-		color = new float[]{0.0f, 0.0f, 0.0f, 1.0f};
 	}
 	
 	/**
@@ -37,11 +33,10 @@ public class BoxEntity extends DynamicEntity implements KryoSerializable{
 	 * @param fixtureDef Position/material information about the box
 	 * @param color What color the box is
 	 */
-	public BoxEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, float width, float height, FixtureDef fixtureDef, float[] color){
+	public BoxEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, float width, float height, FixtureDef fixtureDef){
 		super(renderer, layer, bodyDef, fixtureDef);
 		this.width = width;
 		this.height = height;
-		this.color = color;
 	}
 	
 	/**
@@ -52,13 +47,19 @@ public class BoxEntity extends DynamicEntity implements KryoSerializable{
 	 * @param density How dense the box is
 	 * @param color What color the box is
 	 */
-	public BoxEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, float width, float height, float density, float[] color){
+	public BoxEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, float width, float height, float density){
 		super(renderer, layer, bodyDef, getBoxShape(width, height, density));
 		this.width = width;
 		this.height = height;
-		this.color = color;
 	}
 	
+	/**
+	 * Gets a box shape with a given width and height
+	 * @param width Width of box to get
+	 * @param height Height of box to get
+	 * @param density Desity to give box
+	 * @return Box.
+	 */
 	private static FixtureDef getBoxShape(float width, float height, float density){
 		PolygonShape box = new PolygonShape();
 		box.setAsBox(width, height);
@@ -71,7 +72,9 @@ public class BoxEntity extends DynamicEntity implements KryoSerializable{
 		return fixture;
 	}
 	
+	/** @return Width of this entity */
 	public float getWidth(){ return width; }
+	/** @return Height of this entity */
 	public float getHeight(){ return height; }
 	
 	@Override
@@ -81,11 +84,6 @@ public class BoxEntity extends DynamicEntity implements KryoSerializable{
 		// write out width/height
 		output.writeFloat(width);
 		output.writeFloat(height);
-		
-		// write out color
-		output.writeFloat(color[0]);
-		output.writeFloat(color[1]);
-		output.writeFloat(color[2]);
 	}
 	
 	@Override
@@ -95,10 +93,5 @@ public class BoxEntity extends DynamicEntity implements KryoSerializable{
 		// read in width/height
 		this.width = input.readFloat();
 		this.height = input.readFloat();
-		
-		// read in color
-		color[0] = input.readFloat();
-		color[1] = input.readFloat();
-		color[2] = input.readFloat();
 	}
 }

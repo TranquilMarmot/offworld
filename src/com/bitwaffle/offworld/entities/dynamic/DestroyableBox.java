@@ -28,14 +28,14 @@ public class DestroyableBox extends BoxEntity implements Health, KryoSerializabl
 
 	public DestroyableBox(EntityRenderer renderer, int layer, BodyDef bodyDef, float width, float height,
 			float density, float[] color) {
-		super(renderer, layer, bodyDef, width, height, density, color);
+		super(renderer, layer, bodyDef, width, height, density);
 		health = 100;
 	}
 
 	
 	public DestroyableBox(EntityRenderer renderer, int layer, BodyDef bodyDef, float width, float height,
 			FixtureDef fixtureDef, float[] color) {
-		super(renderer, layer, bodyDef, width, height, fixtureDef, color);
+		super(renderer, layer, bodyDef, width, height, fixtureDef);
 		health = 100;
 	}
 

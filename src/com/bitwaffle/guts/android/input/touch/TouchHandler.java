@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.util.MathHelper;
-import com.bitwaffle.offworld.entities.Player;
+import com.bitwaffle.offworld.entities.player.Player;
 
 /**
  * Handles touch events. See {@link Pointer} as well.

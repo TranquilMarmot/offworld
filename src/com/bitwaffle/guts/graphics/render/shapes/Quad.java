@@ -12,8 +12,9 @@ import com.bitwaffle.guts.util.BufferUtils;
 import com.bitwaffle.guts.util.MathHelper;
 
 /**
- * When initialized, this creates a single quad and sends all the appropriate data to OpenGL.
- * There should really only be instance of this at a time, owned by the {@link Render2D} renderer
+ * A quad for rendering. Can either draw a quad using an entire texture or can send texture coordinates
+ * to only draw a part of a texture.
+ * There should only be one instance of this at a time, owned by the {@link Render2D} renderer
  * that it's given in its constructor.
  * 
  * This single instance's draw method should just be called repeatedly.

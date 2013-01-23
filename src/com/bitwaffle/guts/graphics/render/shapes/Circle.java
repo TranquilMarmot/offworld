@@ -7,14 +7,18 @@ import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
 import android.opengl.GLES20;
-import android.util.FloatMath;
 
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.util.BufferUtils;
 import com.bitwaffle.guts.util.MathHelper;
 
+/**
+ * A circle for rendering
+ * 
+ * @author TranquilMarmot
+ */
 public class Circle {
-	/** What will be rendering this quad */
+	/** What will be rendering this circle */
 	private Render2D renderer;
 	
 	/** Buffers to hold data */
@@ -26,8 +30,14 @@ public class Circle {
 	/** Handles to send data to when drawing */
 	private int positionHandle, texCoordHandle;
 	
+	/** Number of indices in circle */
 	private int numIndices;
 	
+	/**
+	 * Create a new circle for rendering
+	 * @param renderer Renderer that will be rendering this circle
+	 * @param step How much to increase the angle between each vertex (lower means more vertices, must be between 0.1 and 90.0)
+	 */
 	public Circle(Render2D renderer, float step){
 		this.renderer = renderer;
 		
@@ -38,10 +48,10 @@ public class Circle {
 		
 		// go from 0-360 by the given step (a higher step means less vertices)
 		for(float angle = 0.0f; angle <= 360.0f; angle += step){
-			float rad = MathHelper.toRadians(angle);
+			double rad = Math.toRadians((double) angle);
 			
-			float x = FloatMath.sin(rad);
-			float y = FloatMath.cos(rad);
+			float x = (float)Math.sin(rad);
+			float y = (float)Math.cos(rad);
             float z = 0.0f;
             float u = x * 0.5f + 0.5f;
             float v = y * 0.5f + 0.5f;
@@ -77,6 +87,12 @@ public class Circle {
 		texCoordHandle = renderer.program.getAttribLocation("vTexCoord");
 	}
 	
+	/**
+	 * Render this circle
+	 * @param radius Radius to render at
+	 * @param flipHorizontal Whether or not to flip horizontally
+	 * @param flipVertical Whether or not to flip vertically
+	 */
 	public void render(float radius, boolean flipHorizontal, boolean flipVertical){
 		// set position info
 		GLES20.glEnableVertexAttribArray(positionHandle);
@@ -94,7 +110,7 @@ public class Circle {
         	renderer.modelview.rotate(MathHelper.PI, new Vector3f(0.0f, 0.0f, 1.0f));
         renderer.sendModelViewToShader();
 
-        // actually draw the quad
+        // actually draw the circle
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_FAN, 0, numIndices);
         
         // don't forget to disable the attrib arrays!

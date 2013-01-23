@@ -11,8 +11,8 @@ import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.physics.Room;
 import com.bitwaffle.guts.polygon.Polygon;
+import com.bitwaffle.guts.polygon.PolygonRenderer;
 import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
-import com.bitwaffle.offworld.renderers.PolygonRenderer;
 
 public class Room1 extends Room {
 	/** Bounds of room */

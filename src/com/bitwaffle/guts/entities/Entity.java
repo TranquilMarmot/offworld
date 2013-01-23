@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.guts.util.MathHelper;
-import com.bitwaffle.offworld.renderers.Renderers;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
@@ -98,15 +97,15 @@ public class Entity implements KryoSerializable{
 	}
 	
 	public void read(Kryo kryo, Input input){
-		this.renderer = Renderers.values()[input.readInt()].renderer;
+		//this.renderer = Renderers.values()[input.readInt()].renderer; TODO serialize renderers
 		this.layer = input.readInt();
 		this.location.set(kryo.readObject(input, Vector2.class));
 		this.angle = input.readFloat();
 	}
 	
 	public void write(Kryo kryo, Output output){
-		Renderers renderers = Renderers.valueOf(this.renderer);
-		output.writeInt(renderers.ordinal());
+		//Renderers renderers = Renderers.valueOf(this.renderer);
+		//output.writeInt(renderers.ordinal());
 		output.writeInt(this.layer);
 		kryo.writeObject(output, this.location);
 		output.writeFloat(this.angle);

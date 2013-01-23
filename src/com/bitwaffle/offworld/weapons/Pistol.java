@@ -8,10 +8,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.util.MathHelper;
-import com.bitwaffle.offworld.entities.dynamic.Bullet;
+import com.bitwaffle.offworld.entities.player.PlayerRenderer;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.FirearmHolder;
-import com.bitwaffle.offworld.renderers.PlayerRenderer;
 
 /**
  * Single-shooter

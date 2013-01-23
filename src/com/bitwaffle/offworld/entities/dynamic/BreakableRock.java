@@ -7,8 +7,8 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.render.EntityRenderer;
 import com.bitwaffle.guts.physics.callbacks.FirstHitRayCastCallback;
+import com.bitwaffle.guts.polygon.PolygonRenderer;
 import com.bitwaffle.offworld.interfaces.Health;
-import com.bitwaffle.offworld.renderers.PolygonRenderer;
 
 public class BreakableRock extends DynamicEntity implements Health {
 	/** Possible rocks */
