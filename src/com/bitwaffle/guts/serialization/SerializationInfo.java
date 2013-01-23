@@ -22,8 +22,6 @@ import com.bitwaffle.guts.serialization.serializers.shapes.ChainShapeSerializer;
 import com.bitwaffle.guts.serialization.serializers.shapes.CircleShapeSerializer;
 import com.bitwaffle.guts.serialization.serializers.shapes.EdgeShapeSerializer;
 import com.bitwaffle.guts.serialization.serializers.shapes.PolygonShapeSerializer;
-import com.bitwaffle.offworld.entities.dynamic.DestroyableBox;
-import com.bitwaffle.offworld.entities.dynamic.DestroyableCircle;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
@@ -69,11 +67,11 @@ public class SerializationInfo {
 		map.put(Player.class, new Info(49));
 		
 		/*-- Boxes --*/
-		map.put(DestroyableBox.class, new Info(50));
+		//map.put(DestroyableBox.class, new Info(50));
 		map.put(BoxEntity.class, new Info(51));
 		
 		/*-- Circles --*/
-		map.put(DestroyableCircle.class, new Info(52));
+		//map.put(DestroyableCircle.class, new Info(52));
 		map.put(CircleEntity.class, new Info(53));
 		
 		map.put(Decal.class, new Info(56));

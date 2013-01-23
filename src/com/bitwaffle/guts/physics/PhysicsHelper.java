@@ -80,6 +80,19 @@ public class PhysicsHelper {
 	}
 	
 	/**
+	 * Gets a box shape with a given width and height
+	 * @param width Width of box to get
+	 * @param height Height of box to get
+	 * @param density Desity to give box
+	 * @return Box.
+	 */
+	public static void setFixtureAsBox(FixtureDef fixture, float width, float height){
+		PolygonShape box = new PolygonShape();
+		box.setAsBox(width, height);
+		fixture.shape = box;
+	}
+	
+	/**
 	 * Temporary physics initialization
 	 * @param physics Physics world to initialize
 	 */
