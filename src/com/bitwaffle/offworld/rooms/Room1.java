@@ -43,8 +43,21 @@ public class Room1 extends Room {
     		int layer = 4;
     		
     		BreakableRock rock = new BreakableRock(new Vector2(rockX, rockY), 1.0f, layer);
-    		
     		Game.physics.addEntity(rock, true);
+    		
+    		/*
+    		QuadRenderer rend = new QuadRenderer("box", false, true, 2.0f, 2.0f, 1.0f, 1.0f, new float[]{1.0f, 1.0f, 1.0f, 1.0f});
+    		BodyDef bod = Game.resources.entityInfo.getEntityBodyDef("rock1");
+    		bod.position.set(rockX, rockY);
+    		bod.fixedRotation = false;
+    		
+    		FixtureDef fixt = new FixtureDef();
+    		PhysicsHelper.setFixtureAsBox(fixt, 2.0f, 2.0f);
+    		fixt.density = 2.0f;
+    		
+    		DestroyableEntity ent = new DestroyableEntity(rend, layer, bod, fixt, 50);
+    		Game.physics.addEntity(ent, true);
+    		*/
 		}
 		
 		// create walls

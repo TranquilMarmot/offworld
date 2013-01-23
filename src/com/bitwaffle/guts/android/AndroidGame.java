@@ -13,6 +13,7 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.Window;
+import android.view.WindowManager;
 
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.android.input.KeyboardManager;
@@ -22,10 +23,7 @@ import com.bitwaffle.guts.resources.Resources;
 
 /**
  * Main Activity!
- * This class handles calling the rendering methods,
- * as well as stepping the physics sim (for now).
- * This class also has a static instance of Physics, which
- * should be used whenever interacting with the physics world.
+ * Heart of the game on Android devices
  * 
  * @author TranquilMarmot
  */
@@ -60,8 +58,7 @@ public class AndroidGame extends Game implements GLSurfaceView.Renderer {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         // TODO make this an option somewhere
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
-        //        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
         // initialize window width/height variables
         Display display = getWindowManager().getDefaultDisplay();
