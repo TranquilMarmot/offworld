@@ -1,13 +1,19 @@
-# ignore any compiled classes
+# ignore compiled java classes and binary folders
+offworld-android/bin/
+./*/bin/*
 *.class
 
 # eclipse project files
 .classpath
 .project
 .settings
+.metadata/*
 
-# binaries
-bin/*
-
-# any log files
+# error logs
 *.log
+
+# screenshots
+screenshots/
+
+# GWT stuff
+offworld-html/war/assets
