@@ -78,9 +78,11 @@ public class PlayerRenderer implements EntityRenderer {
 		else{
 			float armAngle = player.getArmAngle();
 			boolean facingRight = player.isFacingRight();
+			Vector2 rArmLoc = player.bodyAnimation.getCurrentRShoulderLocation();
+			Vector2 lArmLoc = player.bodyAnimation.getCurrentLShoulderLocation();
 			//Vector2 rArmLoc = player.rArmAnimation.getShoulderLocation();
 			//Vector2 lArmLoc = player.lArmAnimation.getShoulderLocation();
-			//Vector2 gunOffset = PlayerArmAnimation.gunOffset;
+			Vector2 gunOffset = PlayerBodyAnimation.gunOffset;
 			
 			/*
 			renderer.modelview.translate(lArmLoc.x, lArmLoc.y, 0.0f);
@@ -93,12 +95,31 @@ public class PlayerRenderer implements EntityRenderer {
 			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, facingRight ? -armAngle : armAngle);
 			renderer.modelview.translate(-lArmLoc.x, -lArmLoc.y, 0.0f);
 			*/
+			
+			// draw left arm
+			renderer.modelview.translate(lArmLoc.x, lArmLoc.y, 0.0f);
+			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
+			renderer.sendModelViewToShader();
+			Game.resources.textures.bindTexture("player-arm");
+			renderer.quad.render(0.95f, 0.95f, true, true);
+			
+			// draw body
+			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, -armAngle);
+			renderer.modelview.translate(-lArmLoc.x, -lArmLoc.y, 0.0f);
 			renderer.sendModelViewToShader();
 			player.bodyAnimation.renderCurrentFrame(renderer, !facingRight, false);
 			
-			Vector2 rArmLoc = player.bodyAnimation.getCurrentShoulderLocation();
+			// draw gun
 			renderer.modelview.translate(rArmLoc.x, rArmLoc.y, 0.0f);
 			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
+			renderer.modelview.translate(gunOffset.x, gunOffset.y, 0.0f);
+			renderer.sendModelViewToShader();
+			player.getCurrentFirearm().render(renderer);
+			
+			// draw right arm
+			//renderer.modelview.translate(rArmLoc.x, rArmLoc.y, 0.0f);
+			//renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
+			renderer.modelview.translate(-gunOffset.x, -gunOffset.y, 0.0f);
 			renderer.sendModelViewToShader();
 			Game.resources.textures.bindTexture("player-arm");
 			renderer.quad.render(0.95f, 0.95f, true, true);

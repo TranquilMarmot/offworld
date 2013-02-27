@@ -54,7 +54,6 @@ public class Player extends BoxEntity implements FirearmHolder{
 	
 	/** Animation for player's legs */
 	public PlayerBodyAnimation bodyAnimation;
-	public PlayerArmAnimation rArmAnimation, lArmAnimation;
 	
 	/**
 	 * Noargs constructor ONLY to be used with serialization!!!
@@ -88,8 +87,6 @@ public class Player extends BoxEntity implements FirearmHolder{
 	
 	private void initAnimations(){
 		bodyAnimation = new PlayerBodyAnimation(Game.resources.textures.getAnimation("player-body"));
-		rArmAnimation = new PlayerArmAnimation(Game.resources.textures.getAnimation("player-r-arm"), PlayerArmAnimation.rShoulderLocations);
-		lArmAnimation = new PlayerArmAnimation(Game.resources.textures.getAnimation("player-l-arm"), PlayerArmAnimation.lShoulderLocations);
 	}
 	
 	@Override
@@ -112,8 +109,6 @@ public class Player extends BoxEntity implements FirearmHolder{
 				float animationStep = timeStep * (linVec.x / 10.0f);
 				if(!facingRight) animationStep = -animationStep;
 				bodyAnimation.update(animationStep);
-				//rArmAnimation.update(animationStep);
-				//lArmAnimation.update(animationStep);
 			}
 			
 			// update the location of the target so it moves with the player
@@ -324,8 +319,6 @@ public class Player extends BoxEntity implements FirearmHolder{
 	// FIXME temp
 	public void nextFrame(){
 		bodyAnimation.update(0.03f);
-		rArmAnimation.update(0.03f);
-		lArmAnimation.update(0.03f);
 		Game.out.println("Current frame: " + bodyAnimation.currentFrame());
 	}
 }

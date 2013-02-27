@@ -39,11 +39,19 @@ public class PlayerBodyAnimation extends Animation {
 			{-0.21301842f, 0.82005787f}	
 	};
 	
+	public static final Vector2 gunOffset = new Vector2(0.61631774f, -0.58159732f);
+	
+	Vector2 lArmOffset = new Vector2(0.1f, -0.1f);
+	
 	public PlayerBodyAnimation(Animation animation) {
 		super(animation);
 	}
 	
-	public Vector2 getCurrentShoulderLocation(){
+	public Vector2 getCurrentRShoulderLocation(){
 		return new Vector2(shoulderLocations[currentFrame()][0], shoulderLocations[currentFrame()][1]);
+	}
+	
+	public Vector2 getCurrentLShoulderLocation(){
+		return getCurrentRShoulderLocation().add(lArmOffset);
 	}
 }
