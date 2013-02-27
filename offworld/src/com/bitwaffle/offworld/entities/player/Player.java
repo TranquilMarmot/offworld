@@ -19,7 +19,8 @@ import com.bitwaffle.offworld.interfaces.FirearmHolder;
 import com.bitwaffle.offworld.weapons.Pistol;
 
 /**
- * Player class
+ * The person the person playing the game plays as while they play the game.
+ * The player. Playing the game.
  * 
  * @author TranquilMarmot
  */
@@ -54,6 +55,9 @@ public class Player extends BoxEntity implements FirearmHolder{
 	/** Animation for player's legs */
 	public Animation bodyAnimation, rArmAnimation, lArmAnimation;
 	
+	/**
+	 * Noargs constructor ONLY to be used with serialization!!!
+	 */
 	public Player(){
 		super();
 		// TODO get rid of these magic numbers
@@ -100,7 +104,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 			Vector2 linVec = body.getLinearVelocity();
 			if((linVec.x > 0.5f || linVec.x < -0.5f)){
 				// FIXME should the animation speed be defined in the animation's XML?
-				float animationStep = timeStep * (linVec.x / 15.0f);
+				float animationStep = timeStep * (linVec.x / 10.0f);
 				if(!facingRight) animationStep = -animationStep;
 				bodyAnimation.update(animationStep);
 				rArmAnimation.update(animationStep);
@@ -291,6 +295,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 	public void cleanup(){
 		super.cleanup();
 		
+		// FIXME This should not be here...
 		Game.player = null;
 	}
 	
