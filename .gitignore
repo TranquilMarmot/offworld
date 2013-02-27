@@ -1,7 +1,10 @@
 # ignore compiled java classes and binary folders
 offworld-android/bin/
-./*/bin/*
+offworld-desktop/bin/
 *.class
+
+# eclipse stuff
+.metadata/
 
 # error logs
 *.log
