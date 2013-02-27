@@ -1,3 +1,8 @@
+# temp files
+*.swp
+*~
+*.lock
+
 # ignore compiled java classes and binary folders
 offworld-android/bin/
 offworld-desktop/bin/
@@ -11,6 +16,3 @@ offworld-desktop/bin/
 
 # screenshots
 screenshots/
-
-# GWT stuff
-offworld-html/war/assets

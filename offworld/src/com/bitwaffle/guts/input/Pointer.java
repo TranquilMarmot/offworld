@@ -67,6 +67,11 @@ public class Pointer {
 			if(handler.player != null && !handler.player.isShooting())
 				handler.player.beginShooting(MathHelper.toWorldSpace(x, y, Render2D.camera));
 		}
+		
+		if(Game.player != null){
+			Vector2 world = MathHelper.toWorldSpace(x, y, Render2D.camera);
+			System.out.println("{" + (world.x - Game.player.getLocation().x) + "f, " + (world.y - Game.player.getLocation().y) + "f},");
+		}
 	}
 
 	public void move(float newX, float newY){

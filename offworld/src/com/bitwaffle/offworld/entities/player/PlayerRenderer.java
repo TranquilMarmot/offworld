@@ -78,10 +78,11 @@ public class PlayerRenderer implements EntityRenderer {
 		else{
 			float armAngle = player.getArmAngle();
 			boolean facingRight = player.isFacingRight();
-			Vector2 rArmLoc = player.rArmAnimation.getShoulderLocation();
-			Vector2 lArmLoc = player.lArmAnimation.getShoulderLocation();
-			Vector2 gunOffset = PlayerArmAnimation.gunOffset;
+			//Vector2 rArmLoc = player.rArmAnimation.getShoulderLocation();
+			//Vector2 lArmLoc = player.lArmAnimation.getShoulderLocation();
+			//Vector2 gunOffset = PlayerArmAnimation.gunOffset;
 			
+			/*
 			renderer.modelview.translate(lArmLoc.x, lArmLoc.y, 0.0f);
 			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, facingRight ? armAngle : -armAngle);
 			renderer.modelview.translate(-lArmLoc.x, -lArmLoc.y, 0.0f);
@@ -91,9 +92,19 @@ public class PlayerRenderer implements EntityRenderer {
 			renderer.modelview.translate(lArmLoc.x, lArmLoc.y, 0.0f);
 			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, facingRight ? -armAngle : armAngle);
 			renderer.modelview.translate(-lArmLoc.x, -lArmLoc.y, 0.0f);
+			*/
 			renderer.sendModelViewToShader();
 			player.bodyAnimation.renderCurrentFrame(renderer, !facingRight, false);
 			
+			Vector2 rArmLoc = player.bodyAnimation.getCurrentShoulderLocation();
+			renderer.modelview.translate(rArmLoc.x, rArmLoc.y, 0.0f);
+			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
+			renderer.sendModelViewToShader();
+			Game.resources.textures.bindTexture("player-arm");
+			renderer.quad.render(0.95f, 0.95f, true, true);
+			
+			
+			/*
 			renderer.modelview.translate(rArmLoc.x, rArmLoc.y, 0.0f);
 			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
 			renderer.modelview.translate(-rArmLoc.x, -rArmLoc.y, 0.0f);
@@ -103,6 +114,7 @@ public class PlayerRenderer implements EntityRenderer {
 			
 			renderer.modelview.translate(-gunOffset.x, gunOffset.y / 2.0f, 0.0f);
 			player.rArmAnimation.renderCurrentFrame(renderer, !facingRight, false);
+			*/
 		}
 	}
 	

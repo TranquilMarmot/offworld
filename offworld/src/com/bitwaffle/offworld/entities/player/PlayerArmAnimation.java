@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.entities.player;
+ package com.bitwaffle.offworld.entities.player;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.graphics.animation.Animation;

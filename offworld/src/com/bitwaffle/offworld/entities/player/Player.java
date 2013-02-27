@@ -53,7 +53,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 	private boolean movingRight = false, facingRight = false;
 	
 	/** Animation for player's legs */
-	public Animation bodyAnimation;
+	public PlayerBodyAnimation bodyAnimation;
 	public PlayerArmAnimation rArmAnimation, lArmAnimation;
 	
 	/**
@@ -87,7 +87,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 	}
 	
 	private void initAnimations(){
-		bodyAnimation = Game.resources.textures.getAnimation("player-body");
+		bodyAnimation = new PlayerBodyAnimation(Game.resources.textures.getAnimation("player-body"));
 		rArmAnimation = new PlayerArmAnimation(Game.resources.textures.getAnimation("player-r-arm"), PlayerArmAnimation.rShoulderLocations);
 		lArmAnimation = new PlayerArmAnimation(Game.resources.textures.getAnimation("player-l-arm"), PlayerArmAnimation.lShoulderLocations);
 	}
@@ -112,8 +112,8 @@ public class Player extends BoxEntity implements FirearmHolder{
 				float animationStep = timeStep * (linVec.x / 10.0f);
 				if(!facingRight) animationStep = -animationStep;
 				bodyAnimation.update(animationStep);
-				rArmAnimation.update(animationStep);
-				lArmAnimation.update(animationStep);
+				//rArmAnimation.update(animationStep);
+				//lArmAnimation.update(animationStep);
 			}
 			
 			// update the location of the target so it moves with the player
@@ -223,7 +223,8 @@ public class Player extends BoxEntity implements FirearmHolder{
 	 * @return Whether or not the player is facing right
 	 */
 	public boolean isFacingRight(){
-		return facingRight;
+		//return facingRight;
+		return true;
 	}
 	
 	/**

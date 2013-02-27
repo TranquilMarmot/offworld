@@ -1,4 +1,13 @@
 {"resources": {
+	"textures": [
+		{
+			"name":"player-arm",
+			"path":"entities/player/arm.png",
+			"minFilter": "linear",
+			"magFilter": "linear"
+		}
+	],
+
 	"resources": [
 		{
 			"name": "player-body-anim",
