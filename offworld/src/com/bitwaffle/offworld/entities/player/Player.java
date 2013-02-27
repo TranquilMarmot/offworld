@@ -2,7 +2,6 @@ package com.bitwaffle.offworld.entities.player;
 
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
@@ -10,7 +9,6 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.EntityRenderer;
-import com.bitwaffle.guts.graphics.animation.Animation;
 import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.physics.callbacks.FirstHitQueryCallback;
 import com.bitwaffle.guts.util.MathHelper;
@@ -254,6 +252,9 @@ public class Player extends BoxEntity implements FirearmHolder{
 			this.target.set(target);
 	}
 	
+	/**
+	 * @return The player's current weapon
+	 */
 	public Firearm getCurrentFirearm(){
 		return firearm;
 	}
@@ -272,15 +273,21 @@ public class Player extends BoxEntity implements FirearmHolder{
 		return MathHelper.angle(this.getLocation(), this.target);
 	}
 	
+	/**
+	 * Get the current location of the player's firearm, in world coordinates.
+	 * Does the same translations as in PlayerRenderer to get to firearm's location.
+	 */
 	public Vector2 getFirearmLocation(){
 		// the same translations as in the player renderer to get to the pistol
+		Vector2 rArmLoc = bodyAnimation.getCurrentRShoulderLocation();
+		Vector2 gunOffset = bodyAnimation.getGunOffset();
+		float armAngle = getArmAngle();
 		Matrix4 tempMat = new Matrix4();
 		tempMat.idt();
 		tempMat.translate(this.location.x, this.location.y, 0.0f);
-		tempMat.translate(facingRight ? PlayerRenderer.L_ARM_X_OFFSET : -PlayerRenderer.L_ARM_X_OFFSET, PlayerRenderer.L_ARM_Y_OFFSET, 0.0f);
-		tempMat.rotate(0.0f, 0.0f, 1.0f, this.getArmAngle());
-		tempMat.translate(PlayerRenderer.ARM_ROTATION_X_OFFSET, facingRight ? PlayerRenderer.ARM_ROTATION_Y_OFFSET : -PlayerRenderer.ARM_ROTATION_Y_OFFSET, 0.0f);
-		tempMat.translate(new Vector3(PlayerRenderer.GUN_X_OFFSET, facingRight ?  PlayerRenderer.GUN_Y_OFFSET  : -PlayerRenderer.GUN_Y_OFFSET, 0.0f));
+		tempMat.translate(rArmLoc.x, rArmLoc.y, 0.0f);
+		tempMat.rotate(0.0f, 0.0f, 1.0f, armAngle);
+		tempMat.translate(gunOffset.x, gunOffset.y, 0.0f);
 		return new Vector2(tempMat.getValues()[Matrix4.M03], tempMat.getValues()[Matrix4.M13]);
 	}
 	
@@ -290,14 +297,6 @@ public class Player extends BoxEntity implements FirearmHolder{
 	
 	public float getFirearmAngle(){
 		return getArmAngle();
-	}
-	
-	@Override
-	public void cleanup(){
-		super.cleanup();
-		
-		// FIXME This should not be here...
-		Game.player = null;
 	}
 	
 	/*

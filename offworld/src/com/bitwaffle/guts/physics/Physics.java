@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.ContactFilter;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entities;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
@@ -151,6 +152,9 @@ public class Physics {
 		
 		// actually clear the arraylists
 		entities.clear();
+		
+		// get rid of the player FIXME should this be here?
+		Game.player = null;
 	}
 	
 	/**
