@@ -2,6 +2,7 @@ package com.bitwaffle.guts.input;
 
 import java.util.Iterator;
 
+import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.camera.Camera;
@@ -65,6 +66,11 @@ public class Pointer {
 		if(!checkForButtonPresses() && Render2D.camera != null && Render2D.camera.currentMode() != Camera.Modes.FREE){
 			if(handler.player != null && !handler.player.isShooting())
 				handler.player.beginShooting(MathHelper.toWorldSpace(x, y, Render2D.camera));
+		}
+		
+		if(Game.player != null){
+		Vector2 world = MathHelper.toWorldSpace(x, y, Render2D.camera);
+		System.out.println("{" + (world.x - Game.player.getLocation().x) + "f, " + (world.y - Game.player.getLocation().y) + "f},");
 		}
 	}
 

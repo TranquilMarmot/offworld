@@ -112,11 +112,24 @@ public class AnimationPart {
 		renderer.quad.render(
 				frames[currentFrame].getRenderWidth() * this.xScale,
 				frames[currentFrame].getRenderHeight() * this.yScale,
-				// for some reason the image always get flipped, so we pass flipped booleans
-				// FIXME? Not really TOO bad of a problem...
+				// for some reason the image always get flipped, so we pass flipped booleans FIXME? Not really TOO bad of a problem...
 				!flipHorizontal, !flipVertical,
 				frames[currentFrame].getTexCoordBuffer()
 		);
+	}
+	
+	/**
+	 * @return How many frames this animation part has
+	 */
+	public int numFrames(){
+		return frames.length;
+	}
+	
+	/**
+	 * @return Current frame this part is on
+	 */
+	public int currentFrame(){
+		return currentFrame;
 	}
 
 }

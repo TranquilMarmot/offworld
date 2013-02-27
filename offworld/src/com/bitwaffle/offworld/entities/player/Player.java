@@ -53,7 +53,8 @@ public class Player extends BoxEntity implements FirearmHolder{
 	private boolean movingRight = false, facingRight = false;
 	
 	/** Animation for player's legs */
-	public Animation bodyAnimation, rArmAnimation, lArmAnimation;
+	public Animation bodyAnimation;
+	public PlayerArmAnimation rArmAnimation, lArmAnimation;
 	
 	/**
 	 * Noargs constructor ONLY to be used with serialization!!!
@@ -62,10 +63,9 @@ public class Player extends BoxEntity implements FirearmHolder{
 		super();
 		// TODO get rid of these magic numbers
 		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
-		bodyAnimation = Game.resources.textures.getAnimation("player-body");
-		rArmAnimation = Game.resources.textures.getAnimation("player-r-arm");
-		lArmAnimation = Game.resources.textures.getAnimation("player-l-arm");
 		target = new Vector2();
+		
+		initAnimations();
 	}
 	
 	/**
@@ -81,10 +81,15 @@ public class Player extends BoxEntity implements FirearmHolder{
 		
 		// TODO get rid of these magic numbers
 		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
-		bodyAnimation = Game.resources.textures.getAnimation("player-body");
-		rArmAnimation = Game.resources.textures.getAnimation("player-r-arm");
-		lArmAnimation = Game.resources.textures.getAnimation("player-l-arm");
 		target = new Vector2();
+		
+		initAnimations();
+	}
+	
+	private void initAnimations(){
+		bodyAnimation = Game.resources.textures.getAnimation("player-body");
+		rArmAnimation = new PlayerArmAnimation(Game.resources.textures.getAnimation("player-r-arm"), PlayerArmAnimation.rShoulderLocations);
+		lArmAnimation = new PlayerArmAnimation(Game.resources.textures.getAnimation("player-l-arm"), PlayerArmAnimation.lShoulderLocations);
 	}
 	
 	@Override
@@ -314,4 +319,12 @@ public class Player extends BoxEntity implements FirearmHolder{
 		this.target.set(kryo.readObject(input, Vector2.class));
 	}
 	*/
+	
+	// FIXME temp
+	public void nextFrame(){
+		bodyAnimation.update(0.03f);
+		rArmAnimation.update(0.03f);
+		lArmAnimation.update(0.03f);
+		Game.out.println("Current frame: " + bodyAnimation.currentFrame());
+	}
 }

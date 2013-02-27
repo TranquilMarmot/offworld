@@ -3,21 +3,19 @@ package com.bitwaffle.guts.graphics.animation;
 import java.nio.Buffer;
 
 /**
- * A frame in an {@link Animation}
+ * A frame in an {@link AnimationPart}
  * 
  * @author TranquilMarmot
  */
 public class Frame {
-	/** Contains the sprite's location in the sprite sheet */
+	/** Contains the sprite's location in the sprite sheet (basically, the location of this frame in the sheet) */
 	private Buffer texCoordBuff;
 	
 	/** How long to stay on this frame */
 	private float length;
 	
+	/** Size of this frame, in pixels */
 	private int frameW, frameH;
-	
-	@SuppressWarnings("unused")
-	private int sourceWidth, sourceHeight;
 	
 
 	/**
@@ -27,15 +25,13 @@ public class Frame {
 	 * @param sourceWidth 
 	 * @param frameH 
 	 * @param frameW 
-	 * @param frameBuff Texture coordinates for frame in animation sprite sheet
+	 * @param texCoordBuff Texture coordinates for frame in animation sprite sheet
 	 */
-	public Frame(float length, int frameW, int frameH, int sourceWidth, int sourceHeight, Buffer frameBuff){
+	public Frame(float length, int frameW, int frameH, Buffer texCoordBuff){
 		this.length = length;
-		this.texCoordBuff = frameBuff;
+		this.texCoordBuff = texCoordBuff;
 		this.frameW = frameW;
 		this.frameH = frameH;
-		this.sourceWidth = sourceWidth;
-		this.sourceHeight = sourceHeight;
 	}
 	
 	/**
@@ -43,10 +39,16 @@ public class Frame {
 	 */
 	public float getLength(){ return length; }
 	
+	/**
+	 * @return Width to render this frame at
+	 */
 	public float getRenderWidth(){
 		return (float)this.frameW / (float)this.frameH;
 	}
 	
+	/**
+	 * @return Height to render this frame on
+	 */
 	public float getRenderHeight(){
 		return 1.0f;
 	}

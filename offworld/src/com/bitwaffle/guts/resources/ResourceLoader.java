@@ -356,7 +356,7 @@ public class ResourceLoader {
 								sourceWidth,
 								sourceHeight
 						);
-						frames[k] = new Frame(frameLength, frameW, frameH, sourceWidth, sourceHeight, frameBuff);
+						frames[k] = new Frame(frameLength, frameW, frameH, frameBuff);
 					}
 					parts[j] = new AnimationPart(textureName, frames, xScale, yScale);
 				}

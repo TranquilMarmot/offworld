@@ -1,5 +1,6 @@
 package com.bitwaffle.guts.graphics.animation;
 
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 
 /**
@@ -43,6 +44,23 @@ public class Animation {
 	 */
 	public Animation(Animation other){
 		this(other.parts);
+	}
+	
+	/**
+	 * @return Total number of frames in this animation
+	 */
+	public int totalFrames(){
+		int count = 0;
+		for(AnimationPart part : parts)
+			count += part.numFrames();
+		return count;
+	}
+	
+	public int currentFrame(){
+		int count = 0;
+		for(int i = 0; i < currentPart; i++)
+			count += parts[i].numFrames();
+		return count + parts[currentPart].currentFrame();
 	}
 	
 	/**

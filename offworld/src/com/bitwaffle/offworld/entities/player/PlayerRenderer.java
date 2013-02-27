@@ -78,25 +78,62 @@ public class PlayerRenderer implements EntityRenderer {
 		else{
 			float armAngle = player.getArmAngle();
 			boolean facingRight = player.isFacingRight();
+			Vector2 rArmLoc = player.rArmAnimation.getArmPosition();
+			Vector2 lArmLoc = player.lArmAnimation.getArmPosition();
+			Vector2 gunOffset = PlayerArmAnimation.gunOffset;
 			
+			renderer.modelview.translate(lArmLoc.x, lArmLoc.y, 0.0f);
 			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
+			renderer.modelview.translate(-lArmLoc.x, -lArmLoc.y, 0.0f);
 			renderer.sendModelViewToShader();
 			player.lArmAnimation.renderCurrentFrame(renderer, !facingRight, !facingRight);
 			
+			renderer.modelview.translate(lArmLoc.x, lArmLoc.y, 0.0f);
 			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, -armAngle);
+			renderer.modelview.translate(-lArmLoc.x, -lArmLoc.y, 0.0f);
 			renderer.sendModelViewToShader();
 			player.bodyAnimation.renderCurrentFrame(renderer, !facingRight, false);
 			
+			renderer.modelview.translate(rArmLoc.x, rArmLoc.y, 0.0f);
 			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
-			renderer.modelview.translate(GUN_X_OFFSET, !facingRight ?  GUN_Y_OFFSET  : -GUN_Y_OFFSET, 0.0f);
+			renderer.modelview.translate(-rArmLoc.x, -rArmLoc.y, 0.0f);
+			renderer.modelview.translate(gunOffset.x, -gunOffset.y / 2.0f, 0.0f);
 			renderer.sendModelViewToShader();
 			player.getCurrentFirearm().render(renderer);
 			
-			//renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
-			renderer.modelview.translate(-GUN_X_OFFSET, !facingRight ?  -GUN_Y_OFFSET  : GUN_Y_OFFSET, 0.0f);
-			renderer.sendModelViewToShader();
+			renderer.modelview.translate(-gunOffset.x, gunOffset.y / 2.0f, 0.0f);
 			player.rArmAnimation.renderCurrentFrame(renderer, !facingRight, !facingRight);
 			
+			
+			
+			/*
+			renderer.modelview.translate(armLoc.x, armLoc.y, 0.0f);
+			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
+			renderer.modelview.translate(-armLoc.x, -armLoc.y, 0.0f);
+			renderer.sendModelViewToShader();
+			player.lArmAnimation.renderCurrentFrame(renderer, !facingRight, !facingRight);
+			
+			renderer.modelview.translate(armLoc.x, armLoc.y, 0.0f);
+			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, -armAngle);
+			renderer.modelview.translate(-armLoc.x, -armLoc.y, 0.0f);
+			*/
+
+			
+			
+			
+			/*
+			renderer.modelview.translate(armLoc.x, armLoc.y, 0.0f);
+			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
+			renderer.modelview.translate(-armLoc.x, -armLoc.y, 0.0f);
+			renderer.modelview.translate(-gunOffset.x, !facingRight ?  gunOffset.y  : -gunOffset.y, 0.0f);
+			renderer.sendModelViewToShader();
+			player.getCurrentFirearm().render(renderer);
+			
+			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
+			renderer.modelview.translate(-gunOffset.x, !facingRight ?  -gunOffset.y  : gunOffset.y, 0.0f);
+			renderer.sendModelViewToShader();
+			player.rArmAnimation.renderCurrentFrame(renderer, !facingRight, !facingRight);
+			*/
 			
 		}
 	}
