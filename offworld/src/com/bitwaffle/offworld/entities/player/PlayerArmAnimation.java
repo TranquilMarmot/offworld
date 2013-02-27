@@ -89,7 +89,7 @@ public class PlayerArmAnimation extends Animation {
 		
 	}
 	
-	public Vector2 getArmPosition(){
+	public Vector2 getShoulderLocation(){
 		return new Vector2(shoulderLocations[currentFrame()][0], shoulderLocations[currentFrame()][1]);
 	}
 }

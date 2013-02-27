@@ -1,6 +1,5 @@
 package com.bitwaffle.guts.graphics.animation;
 
-import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 
 /**

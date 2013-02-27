@@ -3,12 +3,6 @@ offworld-android/bin/
 ./*/bin/*
 *.class
 
-# eclipse project files
-.classpath
-.project
-.settings
-.metadata/*
-
 # error logs
 *.log
 
