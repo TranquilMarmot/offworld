@@ -26,6 +26,10 @@ public class Player extends BoxEntity implements FirearmHolder{
 	/** The player's current firearm */
 	private Firearm firearm;
 	
+	// FIXME temp values
+	private int pistolDamage = 10;
+	private float pistolForce = 2000.0f, pistolRange = 25.0f, pistolFiringRate = 0.3f;
+	
 	/** 
 	 * How fast the player can go on the X axis
 	 * Goes both ways, so going right it can go
@@ -33,6 +37,9 @@ public class Player extends BoxEntity implements FirearmHolder{
 	 * -maxVelocityX
 	 */
 	private float maxVelocityX = 15.0f;
+	
+	/** How big the box that checks if the player can jump is */
+	protected float jumpCheckWidth = 0.25f, jumpCheckHeight = 0.5f;
 	
 	/** Used to time jumps, so that the player can't jump too often */
 	private float jumpTimer = 0.0f;
@@ -48,7 +55,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 	private boolean isShooting;
 	
 	/** Describes which way the player is moving/facing */
-	private boolean movingRight = false, facingRight = false;
+	private boolean facingRight = false;
 	
 	/** Animation for player's legs */
 	protected PlayerBodyAnimation bodyAnimation;
@@ -64,11 +71,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 	 */
 	public Player(){
 		super();
-		// TODO get rid of these magic numbers
-		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
-		target = new Vector2();
-		
-		initAnimations();
+		init();
 	}
 	
 	/**
@@ -81,15 +84,16 @@ public class Player extends BoxEntity implements FirearmHolder{
 	public Player(EntityRenderer renderer, int layer, BodyDef bodyDef, float width, float height,
 			FixtureDef fixtureDef) {
 		super(renderer, layer, bodyDef, width, height, fixtureDef);
-		
-		// TODO get rid of these magic numbers
-		firearm = new Pistol(this, 20, 2000.0f, 25.0f, 0.3f);
-		target = new Vector2();
-		
-		initAnimations();
+		init();
 	}
 	
-	private void initAnimations(){
+	/**
+	 * Init method only used in constructor
+	 */
+	private void init(){
+		firearm = new Pistol(this, pistolDamage, pistolForce, pistolRange, pistolFiringRate);
+		target = new Vector2();
+		
 		bodyAnimation = new PlayerBodyAnimation(Game.resources.textures.getAnimation("player-body"));
 	}
 	
@@ -154,7 +158,6 @@ public class Player extends BoxEntity implements FirearmHolder{
 			if(linVec.x > -maxVelocityX) {
 				linVec.x -= 0.5f;
 				body.setLinearVelocity(linVec);
-				movingRight = false;
 			}
 		}
 	}
@@ -170,7 +173,6 @@ public class Player extends BoxEntity implements FirearmHolder{
 			if(linVec.x < maxVelocityX) {
 				linVec.x += 0.5f;
 				body.setLinearVelocity(linVec);
-				movingRight = true;
 			}
 		}
 	}
@@ -181,17 +183,8 @@ public class Player extends BoxEntity implements FirearmHolder{
 	public void jump(){
 		// we can only jump if the game isn't paused and if the timer is done
 		if(!Game.isPaused() && jumpTimer >= JUMP_COOLDOWN){
-			// perform an AABB query underneath the player's feet
-			Vector2 underneath = new Vector2(this.location.x, this.location.y - this.height * 1.25f);
-			FirstHitQueryCallback callback = new FirstHitQueryCallback();
-			this.body.getWorld().QueryAABB(callback, 
-			                             underneath.x - this.width,
-			                             underneath.y - 0.01f,
-			                             underneath.x + this.width,
-			                             underneath.y + 0.01f);
-			
 			// if there's a hit, jump!
-			//if(callback.getHit() != null && callback.getHit() != this){
+			if(this.isOnGround()){
 				Vector2 linVec = body.getLinearVelocity();
 				// can only jump if the current vertical speed is within a certain range
 				if(linVec.y <= JUMP_FORCE && linVec.y >= -JUMP_FORCE){
@@ -205,16 +198,25 @@ public class Player extends BoxEntity implements FirearmHolder{
 				
 				// don't forget to reset the timer
 				jumpTimer = 0.0f;
-			//}
+			}
 				
 		}
 	}
 	
-	/**
-	 * @return Whether or not the player is moving left
-	 */
-	public boolean isMovingRight(){
-		return movingRight;
+	public boolean isOnGround(){
+		// perform an AABB query underneath the player's feet
+		Vector2 underneath = new Vector2(this.location.x, this.location.y - this.height);
+		FirstHitQueryCallback callback = new FirstHitQueryCallback();
+		this.body.getWorld().QueryAABB(callback, 
+		                             underneath.x - jumpCheckWidth,
+		                             underneath.y - jumpCheckHeight,
+		                             underneath.x + jumpCheckWidth,
+		                             underneath.y + jumpCheckHeight);
+		
+		if(callback.getHit() != null && callback.getHit() != this)
+			return true;
+		else
+			return false;
 	}
 	
 	/**

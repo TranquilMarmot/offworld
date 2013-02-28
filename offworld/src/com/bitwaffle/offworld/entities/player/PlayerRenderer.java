@@ -87,6 +87,11 @@ public class PlayerRenderer implements EntityRenderer {
 		renderer.quad.render(player.getWidth(), player.getHeight());
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 		
+		// render player's jump check box
+		renderer.modelview.translate(0.0f, -player.getHeight(), 0.0f);
+		renderer.quad.render(player.jumpCheckWidth, player.jumpCheckHeight);
+		
+		
 		/*
 		 * Render a box where the player's current target is (under the finger)
 		 */
