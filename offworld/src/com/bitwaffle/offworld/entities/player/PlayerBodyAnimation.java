@@ -46,7 +46,7 @@ public class PlayerBodyAnimation extends Animation {
 	};
 	
 	/** Offset of gun from right arm's shoulder */
-	private static final Vector2 gunOffset = new Vector2(0.81f, -0.5f);
+	private static final Vector2 gunOffset = new Vector2(0.85f, -0.5f);
 	
 	/** Offset of left arm from right arm's shoulder*/
 	private static final Vector2 lArmOffset = new Vector2(0.1f, -0.05f);

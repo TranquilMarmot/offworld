@@ -18,7 +18,7 @@ import com.bitwaffle.offworld.entities.player.Player;
 
 public abstract class Game implements ApplicationListener {
 	/** Current version of the game */
-	public static final String VERSION = "0.0.6.1 (pre-alpha)";
+	public static final String VERSION = "0.0.6.5 (pre-alpha)";
 	
 	/** Resource manager */
 	public static Resources resources;

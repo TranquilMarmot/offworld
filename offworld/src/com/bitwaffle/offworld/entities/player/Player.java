@@ -216,8 +216,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 	 * @return Whether or not the player is facing right
 	 */
 	public boolean isFacingRight(){
-		//return facingRight;
-		return true;
+		return facingRight;
 	}
 	
 	/**
@@ -285,9 +284,9 @@ public class Player extends BoxEntity implements FirearmHolder{
 		Matrix4 tempMat = new Matrix4();
 		tempMat.idt();
 		tempMat.translate(this.location.x, this.location.y, 0.0f);
-		tempMat.translate(rArmLoc.x, rArmLoc.y, 0.0f);
+		tempMat.translate(facingRight ? rArmLoc.x : -rArmLoc.x, rArmLoc.y, 0.0f);
 		tempMat.rotate(0.0f, 0.0f, 1.0f, armAngle);
-		tempMat.translate(gunOffset.x, gunOffset.y, 0.0f);
+		tempMat.translate(gunOffset.x, facingRight ? gunOffset.y : -gunOffset.y, 0.0f);
 		return new Vector2(tempMat.getValues()[Matrix4.M03], tempMat.getValues()[Matrix4.M13]);
 	}
 	
