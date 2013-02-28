@@ -51,7 +51,13 @@ public class Player extends BoxEntity implements FirearmHolder{
 	private boolean movingRight = false, facingRight = false;
 	
 	/** Animation for player's legs */
-	public PlayerBodyAnimation bodyAnimation;
+	protected PlayerBodyAnimation bodyAnimation;
+	
+	/** How fast the animation is played, depending on the player's linear velocity. Higher number means slower animation. */
+	private float animationSpeed = 10.0f;
+	
+	/** How fast the player has to be moving for the animation to be stepped */
+	private float minAnimationVelocity = 0.5f;
 	
 	/**
 	 * Noargs constructor ONLY to be used with serialization!!!
@@ -102,9 +108,8 @@ public class Player extends BoxEntity implements FirearmHolder{
 		// update animation
 		if(body != null){
 			Vector2 linVec = body.getLinearVelocity();
-			if((linVec.x > 0.5f || linVec.x < -0.5f)){
-				// FIXME should the animation speed be defined in the animation's XML?
-				float animationStep = timeStep * (linVec.x / 10.0f);
+			if((linVec.x > minAnimationVelocity || linVec.x < -minAnimationVelocity)){
+				float animationStep = timeStep * (linVec.x / animationSpeed);
 				if(!facingRight) animationStep = -animationStep;
 				bodyAnimation.update(animationStep);
 			}

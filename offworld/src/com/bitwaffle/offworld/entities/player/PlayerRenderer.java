@@ -41,7 +41,10 @@ public class PlayerRenderer implements EntityRenderer {
 			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
 			renderer.sendModelViewToShader();
 			Game.resources.textures.bindTexture("player-arm");
+			Gdx.gl20.glEnable(GL20.GL_BLEND);
+			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 			renderer.quad.render(SCALE, SCALE, facingRight, facingRight);
+			Gdx.gl20.glDisable(GL20.GL_BLEND);
 			
 			// draw body
 			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, -armAngle);
@@ -60,7 +63,10 @@ public class PlayerRenderer implements EntityRenderer {
 			renderer.modelview.translate(-gunOffset.x, facingRight ? -gunOffset.y : gunOffset.y, 0.0f);
 			renderer.sendModelViewToShader();
 			Game.resources.textures.bindTexture("player-arm");
+			Gdx.gl20.glEnable(GL20.GL_BLEND);
+			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 			renderer.quad.render(SCALE, SCALE, facingRight, facingRight);
+			Gdx.gl20.glDisable(GL20.GL_BLEND);
 		}
 	}
 	
