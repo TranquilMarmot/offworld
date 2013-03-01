@@ -41,6 +41,7 @@ public class PlayerRenderer implements EntityRenderer {
 			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
 			renderer.sendModelViewToShader();
 			Game.resources.textures.bindTexture("player-arm");
+			// enable blending so alpha doesn't show up white
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 			renderer.quad.render(SCALE, SCALE, facingRight, facingRight);
@@ -63,6 +64,7 @@ public class PlayerRenderer implements EntityRenderer {
 			renderer.modelview.translate(-gunOffset.x, facingRight ? -gunOffset.y : gunOffset.y, 0.0f);
 			renderer.sendModelViewToShader();
 			Game.resources.textures.bindTexture("player-arm");
+			// enable blending so alpha doesn't show up white
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 			renderer.quad.render(SCALE, SCALE, facingRight, facingRight);
@@ -87,9 +89,10 @@ public class PlayerRenderer implements EntityRenderer {
 		renderer.quad.render(player.getWidth(), player.getHeight());
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 		
-		// render player's jump check box
-		renderer.modelview.translate(0.0f, -player.getHeight(), 0.0f);
-		renderer.quad.render(player.jumpCheckWidth, player.jumpCheckHeight);
+		// render player's jump sensor box
+		JumpSensor sensor = player.getJumpSensor();
+		renderer.modelview.translate(sensor.getX(), sensor.getY(), 0.0f);
+		renderer.quad.render(sensor.getWidth(), sensor.getHeight());
 		
 		
 		/*

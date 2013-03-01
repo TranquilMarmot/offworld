@@ -101,16 +101,16 @@ public class PhysicsHelper {
 		physics.setCurrentRoom(r1);
 	}
 	
+	// FIXME get this out of here!!!
 	/**
 	 * Initializes the player
 	 * @param physics
 	 */
 	private static void initPlayer(Physics physics, Vector2 position){
-		float width = 0.83062f, height = 1.8034f;
+		float width = 0.52062f, height = 1.8034f;
 		
 		BodyDef playerBodyDef = new BodyDef();
 		playerBodyDef.type = BodyDef.BodyType.DynamicBody;
-		playerBodyDef.position.set(position);
 		
 		PolygonShape boxShape = new PolygonShape();
 		boxShape.setAsBox(width, height);
@@ -128,6 +128,8 @@ public class PhysicsHelper {
 		Render2D.camera.setTarget(Game.player);
 		Render2D.camera.setMode(Camera.Modes.FOLLOW);
 		Render2D.camera.setLocation(Game.player.getLocation());
+		
+		playerBodyDef.position.set(position);
 		//SurfaceView.touchHandler.setPlayer(Game.player);
 		//DesktopGame.mouse.setPlayer(Game.player); TODO
 	}

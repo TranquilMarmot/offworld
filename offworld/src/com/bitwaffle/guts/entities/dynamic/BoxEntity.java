@@ -48,7 +48,7 @@ public class BoxEntity extends DynamicEntity {
 		this.width = width;
 		this.height = height;
 	}
-	
+
 	/**
 	 * Gets a box shape with a given width and height
 	 * @param width Width of box to get

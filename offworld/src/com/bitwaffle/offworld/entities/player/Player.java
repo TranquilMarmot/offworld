@@ -10,7 +10,6 @@ import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.EntityRenderer;
 import com.bitwaffle.guts.input.KeyBindings;
-import com.bitwaffle.guts.physics.callbacks.FirstHitQueryCallback;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.FirearmHolder;
@@ -38,10 +37,8 @@ public class Player extends BoxEntity implements FirearmHolder{
 	 */
 	private float maxVelocityX = 15.0f;
 	
-	private JumpSensorFixture jumpSensor;
-	
-	/** How big the box that checks if the player can jump is */
-	protected float jumpCheckWidth = 0.25f, jumpCheckHeight = 0.5f;
+	/** If the counter for this is >= 1, it means the player can jump. See JumpSensorFixture docs for more info. */
+	private JumpSensor jumpSensor;
 	
 	/** Used to time jumps, so that the player can't jump too often */
 	private float jumpTimer = 0.0f;
@@ -106,10 +103,14 @@ public class Player extends BoxEntity implements FirearmHolder{
 		// don't want out player rotating all willy nilly now, do we?
 		this.body.setFixedRotation(true);
 		
-		jumpSensor = new JumpSensorFixture(this);
+		// creating the jump sensor adds it as a fixture to the player's body
+		jumpSensor = new JumpSensor(this);
 	}
 	
-	public JumpSensorFixture getJumpSensor(){
+	/**
+	 * @return The player's jump sensor
+	 */
+	public JumpSensor getJumpSensor(){
 		return jumpSensor;
 	}
 	
@@ -189,16 +190,16 @@ public class Player extends BoxEntity implements FirearmHolder{
 	 * Make the player jump
 	 */
 	public void jump(){
+		System.out.println(this.jumpSensor.numContacts());
 		// we can only jump if the game isn't paused and if the timer is done
 		if(!Game.isPaused() && jumpTimer >= JUMP_COOLDOWN){
-			// if there's a hit, jump!
-			if(this.isOnGround()){
+			// if there's a contact, jump!
+			if(jumpSensor.numContacts() >= 1){
 				Vector2 linVec = body.getLinearVelocity();
 				// can only jump if the current vertical speed is within a certain range
 				if(linVec.y <= JUMP_FORCE && linVec.y >= -JUMP_FORCE){
 					//Game.vibration.vibrate(25);
 					Game.resources.sounds.getSound("jump").play();
-					
 					// add force to current velocity and set it
 					linVec.y += JUMP_FORCE;
 					body.setLinearVelocity(linVec);
@@ -210,23 +211,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 				
 		}
 	}
-	
-	public boolean isOnGround(){
-		// perform an AABB query underneath the player's feet
-		Vector2 underneath = new Vector2(this.location.x, this.location.y - this.height);
-		FirstHitQueryCallback callback = new FirstHitQueryCallback();
-		this.body.getWorld().QueryAABB(callback, 
-		                             underneath.x - jumpCheckWidth,
-		                             underneath.y - jumpCheckHeight,
-		                             underneath.x + jumpCheckWidth,
-		                             underneath.y + jumpCheckHeight);
-		
-		if(callback.getHit() != null && callback.getHit() != this)
-			return true;
-		else
-			return false;
-	}
-	
+
 	/**
 	 * @return Whether or not the player is facing right
 	 */
