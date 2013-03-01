@@ -1,12 +1,16 @@
 package com.bitwaffle.guts.physics;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactFilter;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.offworld.entities.player.Player;
 import com.bitwaffle.offworld.weapons.Bullet;
 
 /**
@@ -20,6 +24,22 @@ public class ContactHandler implements ContactListener, ContactFilter{
 		DynamicEntity entA = PhysicsHelper.getDynamicEntity(contact.getFixtureA());
 		DynamicEntity entB = PhysicsHelper.getDynamicEntity(contact.getFixtureB());
 		
+		if(entA instanceof Player){
+			Game.out.println("begin player contact");
+			Player player = (Player)entA;
+			ArrayList<Fixture> fixtures = player.body.getFixtureList();
+			for(Fixture f : fixtures){
+				if(f.equals(player.getJumpSensor().fixture()))
+					Game.out.println("wat");
+			}
+		} else if(entB instanceof Player){
+			Player player = (Player)entB;
+			ArrayList<Fixture> fixtures = player.body.getFixtureList();
+			for(Fixture f : fixtures){
+				if(f.equals(player.getJumpSensor().fixture()))
+					Game.out.println("wat");
+			}
+		}
 		// bullet collision
 		if(entA instanceof Bullet)
 			((Bullet)entA).collision(contact, entB);

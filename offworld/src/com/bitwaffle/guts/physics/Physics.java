@@ -239,4 +239,22 @@ public class Physics {
 	public boolean entitiesExist() {
 		return entities.numEntities() > 0;
 	}
+
+	// FIXME temp testing method
+	public void temp(float x, float y) {
+		if(Game.player != null){
+			System.out.println("{" + (x - Game.player.getLocation().x) + "f, " + (y - Game.player.getLocation().y) + "f},");
+		}
+		
+		FirstHitQueryCallback callback = new FirstHitQueryCallback();
+		world.QueryAABB(callback, 
+                x - 1.0f,
+                y - 1.0f,
+                x + 1.0f,
+                y + 1.0f);
+
+		if(callback.getHit() != null){
+			Game.out.println(callback.getHit().getClass().getCanonicalName());
+		}
+	}
 }

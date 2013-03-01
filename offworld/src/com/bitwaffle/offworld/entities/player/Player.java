@@ -38,6 +38,8 @@ public class Player extends BoxEntity implements FirearmHolder{
 	 */
 	private float maxVelocityX = 15.0f;
 	
+	private JumpSensorFixture jumpSensor;
+	
 	/** How big the box that checks if the player can jump is */
 	protected float jumpCheckWidth = 0.25f, jumpCheckHeight = 0.5f;
 	
@@ -103,6 +105,12 @@ public class Player extends BoxEntity implements FirearmHolder{
 		
 		// don't want out player rotating all willy nilly now, do we?
 		this.body.setFixedRotation(true);
+		
+		jumpSensor = new JumpSensorFixture(this);
+	}
+	
+	public JumpSensorFixture getJumpSensor(){
+		return jumpSensor;
 	}
 	
 	@Override
