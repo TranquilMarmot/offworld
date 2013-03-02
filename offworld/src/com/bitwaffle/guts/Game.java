@@ -188,6 +188,18 @@ public abstract class Game implements ApplicationListener {
     public static void togglePause () {
     	paused = !paused;
     }
+    
+	@Override
+	public void pause() {
+		if(!paused)
+			togglePause();
+		
+	}
+
+	@Override
+	public void resume() {
+		// TODO anything in here?
+	}
 
     public void resize (int width, int height) {
     	Game.windowWidth = width;

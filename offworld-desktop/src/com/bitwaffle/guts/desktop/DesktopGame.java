@@ -4,7 +4,6 @@ import org.lwjgl.Sys;
 import org.lwjgl.input.Mouse;
 
 import com.badlogic.gdx.Files.FileType;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.desktop.input.MouseManager;
@@ -15,6 +14,7 @@ import com.bitwaffle.guts.input.KeyBindings;
  * @author TranquilMarmot
  */
 public class DesktopGame extends Game {
+	public static GameFrame frame;
 	/**
 	 * @param args None if LWJGL library path is in /libs/natives,
 	 * location of natives otherwise (See comment at top of class)
@@ -28,7 +28,8 @@ public class DesktopGame extends Game {
 		config.useGL20 = true;
 		config.addIcon("icon.png", FileType.Local);
 		
-		new LwjglApplication(new DesktopGame(), config);
+		//frame = new Frame();
+		frame = new GameFrame(new DesktopGame(), config);
 	}
 	
 	@Override
