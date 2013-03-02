@@ -17,20 +17,20 @@ public class DebugText extends GUIObject {
 			boolean flipVertical) {
 		// draw some debug info TODO move this somewhere else!
 		float[] debugTextColor = new float[]{ 0.3f, 0.3f, 0.3f, 1.0f };
-		float tscale = 0.4f;
+		float tscale = 0.35f;
 		
 		Gdx.gl20.glEnable(GL20.GL_BLEND);
 		Gdx.gl20.glBlendFunc(GL20.GL_ONE_MINUS_DST_COLOR, GL20.GL_ZERO);
 		
 		String vers = "Version " + Game.VERSION;
 		renderer.font.drawString(vers, renderer, Game.windowWidth - renderer.font.stringWidth(vers, tscale), renderer.font.stringHeight(vers, tscale) * 2, tscale, debugTextColor);
-		
+		/*
 		String fps = Game.currentFPS + " FPS";
 		renderer.font.drawString(fps, renderer, Game.windowWidth - renderer.font.stringWidth(fps, tscale), renderer.font.stringHeight(fps, tscale) * 4, tscale, debugTextColor);
 		
 		String ents = Game.physics.numEntities() + " ents";
 		renderer.font.drawString(ents, renderer, Game.windowWidth - renderer.font.stringWidth(ents, tscale), renderer.font.stringHeight(ents, tscale) * 6, tscale, debugTextColor);
-		
+		*/
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 		
 		

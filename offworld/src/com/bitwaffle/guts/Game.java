@@ -164,10 +164,7 @@ public abstract class Game implements ApplicationListener {
 			if(gui.console.isOn())
 				gui.console.hide();
 			else{
-				if(Game.isPaused())
-					this.resume();
-				else
-					this.pause();
+				togglePause();
 			}
 		}
 		
@@ -188,12 +185,8 @@ public abstract class Game implements ApplicationListener {
     	return paused;
     }
     
-    public void pause () {
-    	paused = true;
-    }
-
-    public void resume () {
-    	paused = false;
+    public static void togglePause () {
+    	paused = !paused;
     }
 
     public void resize (int width, int height) {

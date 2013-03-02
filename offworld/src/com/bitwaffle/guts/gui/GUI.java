@@ -190,6 +190,9 @@ public class GUI {
 		setCurrentState(newState.state);
 	}
 	
+	/**
+	 * @param newState New state to set GUI to
+	 */
 	public void setCurrentState(GUIState newState){
 		if(currentState != null)
 			currentState.loseCurrentState();
@@ -201,7 +204,23 @@ public class GUI {
 	}
 	
 	/**
-	 * Draw the GUI/
+	 * Checks if the given state in the enum is the current state
+	 * @param state State to check for
+	 * @return Whether or not the given state is the curent state
+	 */
+	public boolean isCurrentState(States state){
+		return currentState == state.state;
+	}
+	
+	/**
+	 * @return Whether the given state is the current state
+	 */
+	public boolean isCurrentState(GUIState state){
+		return currentState == state;
+	}
+	
+	/**
+	 * Draw the GUI
 	 * @param renderer
 	 */
 	public void render(Render2D renderer) {

@@ -8,6 +8,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.desktop.input.MouseManager;
+import com.bitwaffle.guts.desktop.scala.builder.Builder;
 import com.bitwaffle.guts.input.KeyBindings;
 
 /**
@@ -38,9 +39,17 @@ public class DesktopGame extends Game {
 
 		// desktop has its own screenshot code
     	if(KeyBindings.SYS_SCREENSHOT.pressedOnce())
-			Screenshot.takeScreenshot(windowWidth, windowHeight);		
+			Screenshot.takeScreenshot(windowWidth, windowHeight);
+    	
+    	// FIXME get out of fullscreen too!!
+    	if(KeyBindings.SYS_FULLSCREEN.pressedOnce()){
+    		//Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode());
+    		//buildMode();
+    		Builder.create();
+    	}
+    	
+    	Builder.update();
 	}
-	
 	/**
 	 * Called right before dying to close all resources
 	 */

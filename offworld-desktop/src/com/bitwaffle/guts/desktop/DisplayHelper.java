@@ -60,6 +60,7 @@ public class DisplayHelper {
 	 * Creates a window to render to
 	 */
 	public static void createWindow(){
+		System.out.println("wat");
 		// create the frame that holds everything
 		frame = new Frame(windowTitle);
 		frame.setLayout(new BorderLayout());

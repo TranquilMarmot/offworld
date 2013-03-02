@@ -213,7 +213,6 @@ public class Player extends BoxEntity implements FirearmHolder{
 	private void jetpack(){
 		Vector2 linVec = body.getLinearVelocity();
 		if(linVec.y <= maxVelocityX){
-			Game.out.println("pshhh" + System.currentTimeMillis());
 			linVec.y += JUMP_FORCE / 5.0f;
 			body.setLinearVelocity(linVec);
 		}

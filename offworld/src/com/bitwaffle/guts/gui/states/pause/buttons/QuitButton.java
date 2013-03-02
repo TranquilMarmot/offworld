@@ -38,8 +38,8 @@ public class QuitButton extends TextButton {
 		Render2D.camera.setTarget(null);
 		
 		Game.gui.setCurrentState(GUI.States.TITLESCREEN);
-		//if(Game.isPaused())
-		//	Game.togglePause();
+		if(Game.isPaused())
+			Game.togglePause();
 	}
 
 	@Override
