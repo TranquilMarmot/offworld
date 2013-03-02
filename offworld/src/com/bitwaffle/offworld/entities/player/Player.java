@@ -65,6 +65,8 @@ public class Player extends BoxEntity implements FirearmHolder{
 	/** How fast the player has to be moving for the animation to be stepped */
 	private float minAnimationVelocity = 0.5f;
 	
+	private boolean justJumped = false;
+	
 	/**
 	 * Noargs constructor ONLY to be used with serialization!!!
 	 */
@@ -151,8 +153,69 @@ public class Player extends BoxEntity implements FirearmHolder{
 				goRight();
 			if(KeyBindings.CONTROL_LEFT.isPressed())
 				goLeft();
-			if(KeyBindings.CONTROL_JUMP.pressedOnce())
-				jump();
+			checkForJumpInput();
+		}
+	}
+	
+	/**
+	 * Checks if the jump key is pressed and acts accordingly
+	 */
+	private void checkForJumpInput(){
+		if(KeyBindings.CONTROL_JUMP.isPressed()){
+			/*
+			 * On first press of the button, can only jump
+			 * So it goes jump, then jetpack (can't just hold button
+			 * down to jetpack, have to press it twice)
+			 * OR the jetpack works if the player is just in the air
+			 * without pressing the button (i.e. falling off a ledge)
+			 */
+			if(!justJumped){
+				if(jump())
+					justJumped = true;
+				else if(jumpSensor.numContacts() <= 0)
+					jetpack();
+			}
+		} else {
+			// to know when the button is lifted
+			justJumped = false;
+		}
+	}
+	
+	/**
+	 * Make the player jump
+	 */
+	public boolean jump(){
+		// we can only jump if the game isn't paused and if the timer is done
+		if(!Game.isPaused() && jumpTimer >= JUMP_COOLDOWN){
+			// if there's a contact, jump!
+			if(jumpSensor.numContacts() >= 1){
+				Vector2 linVec = body.getLinearVelocity();
+				// can only jump if the current vertical speed is within a certain range
+				if(linVec.y <= JUMP_FORCE && linVec.y >= -JUMP_FORCE){
+					//Game.vibration.vibrate(25);
+					Game.resources.sounds.getSound("jump").play();
+					// add force to current velocity and set it
+					linVec.y += JUMP_FORCE;
+					body.setLinearVelocity(linVec);
+					return true;
+				}
+				
+				// don't forget to reset the timer
+				jumpTimer = 0.0f;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Activates the player's jetpack
+	 */
+	private void jetpack(){
+		Vector2 linVec = body.getLinearVelocity();
+		if(linVec.y <= maxVelocityX){
+			Game.out.println("pshhh" + System.currentTimeMillis());
+			linVec.y += JUMP_FORCE / 5.0f;
+			body.setLinearVelocity(linVec);
 		}
 	}
 	
@@ -183,32 +246,6 @@ public class Player extends BoxEntity implements FirearmHolder{
 				linVec.x += 0.5f;
 				body.setLinearVelocity(linVec);
 			}
-		}
-	}
-	
-	/**
-	 * Make the player jump
-	 */
-	public void jump(){
-		System.out.println(this.jumpSensor.numContacts());
-		// we can only jump if the game isn't paused and if the timer is done
-		if(!Game.isPaused() && jumpTimer >= JUMP_COOLDOWN){
-			// if there's a contact, jump!
-			if(jumpSensor.numContacts() >= 1){
-				Vector2 linVec = body.getLinearVelocity();
-				// can only jump if the current vertical speed is within a certain range
-				if(linVec.y <= JUMP_FORCE && linVec.y >= -JUMP_FORCE){
-					//Game.vibration.vibrate(25);
-					Game.resources.sounds.getSound("jump").play();
-					// add force to current velocity and set it
-					linVec.y += JUMP_FORCE;
-					body.setLinearVelocity(linVec);
-				}
-				
-				// don't forget to reset the timer
-				jumpTimer = 0.0f;
-			}
-				
 		}
 	}
 
@@ -276,8 +313,9 @@ public class Player extends BoxEntity implements FirearmHolder{
 	 * Get the current location of the player's firearm, in world coordinates.
 	 * Does the same translations as in PlayerRenderer to get to firearm's location.
 	 */
+	@Override
 	public Vector2 getFirearmLocation(){
-		// the same translations as in the player renderer to get to the pistol
+		// the same translations as in the player renderer to get to the firearm
 		Vector2 rArmLoc = bodyAnimation.getCurrentRShoulderLocation();
 		Vector2 gunOffset = bodyAnimation.getGunOffset();
 		float armAngle = getArmAngle();
@@ -290,10 +328,12 @@ public class Player extends BoxEntity implements FirearmHolder{
 		return new Vector2(tempMat.getValues()[Matrix4.M03], tempMat.getValues()[Matrix4.M13]);
 	}
 	
+	@Override
 	public DynamicEntity getFirearmOwningEntity(){
 		return this;
 	}
 	
+	@Override
 	public float getFirearmAngle(){
 		return getArmAngle();
 	}
