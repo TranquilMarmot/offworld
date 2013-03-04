@@ -15,6 +15,12 @@ public class EmitterSettings {
 	
 	public float particleEmissionRate;
 	
+	public int particlesPerEmission;
+	
+	public float xLocationVariance, yLocationVariance;
+	
+	public float particleFriction, particleRestitution;
+	
 	public float particleWidth, particleHeight;
 	
 	public float particleDensity;

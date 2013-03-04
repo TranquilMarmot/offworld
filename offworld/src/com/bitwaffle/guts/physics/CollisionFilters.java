@@ -9,6 +9,7 @@ public class CollisionFilters {
 	public static final short PLAYER = bit(2);
 	public static final short BULLET = bit(3);
 	public static final short PICKUP = bit(4);
+	public static final short PARTICLE = bit(5);
 
 	public static final short EVERYTHING = (short)(ENTITY | GROUND | PLAYER | BULLET | GROUND | PICKUP); 
 

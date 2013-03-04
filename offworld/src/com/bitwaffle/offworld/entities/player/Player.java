@@ -1,5 +1,7 @@
 package com.bitwaffle.offworld.entities.player;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -52,6 +54,8 @@ public class Player extends BoxEntity implements FirearmHolder{
 	/** How much force the player jumps with */
 	private final float JUMP_FORCE = 7.5f;
 	
+	private final float JETPACK_FORCE = 0.4f;
+	
 	/** What the player is aiming at */
 	private Vector2 target;
 	
@@ -71,6 +75,8 @@ public class Player extends BoxEntity implements FirearmHolder{
 	private float minAnimationVelocity = 0.5f;
 	
 	private boolean justJumped = false;
+	
+	private ParticleEmitter emitter;
 	
 	/**
 	 * Noargs constructor ONLY to be used with serialization!!!
@@ -104,23 +110,32 @@ public class Player extends BoxEntity implements FirearmHolder{
 		
 		EmitterSettings set = new EmitterSettings();
 		set.attached = this;
-		set.numParticles = 30;
-		set.offset = new Vector2(-0.3f, -0.3f);
-		set.particleDensity = 0.3f;
-		set.particleEmissionRate = 0.03f;
-		set.particleForce = new Vector2(0.0f, -10.0f);
-		set.particleHeight = 0.5f;
-		set.particleWidth = 0.5f;
-		set.particleLifetime = 0.5f;
+		set.numParticles = 150;
+		set.offset = new Vector2(-0.2f, -0.02f);
+		set.particleDensity = 0.1f;
+		set.particleEmissionRate = 0.025f;
+		set.particlesPerEmission = 3;
+		set.particleForce = new Vector2(0.05f, -50.0f);
+		set.particleHeight = 0.2f;
+		set.particleWidth = 0.2f;
+		set.particleLifetime = 0.75f;
+		set.xLocationVariance = 0.75f;
+		set.yLocationVariance = 0.1f;
+		set.particleFriction = 10.0f;
+		set.particleRestitution = 0.1f;
 		set.particleRenderer = new EntityRenderer(){
 			@Override
 			public void render(Render2D renderer, Entity ent, boolean renderDebug){
+				renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
 				Particle p = (Particle) ent;
+				//Gdx.gl20.glEnable(GL20.GL_BLEND);
+				//Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_SRC_ALPHA);
 				Game.resources.textures.bindTexture("particle-fire");
-				renderer.quad.render(p.getWidth(), p.getHeight());
+				renderer.quad.render(p.getWidth() * 2.0f, p.getHeight() * 2.0f);
+				//Gdx.gl20.glDisable(GL20.GL_BLEND);
 			}
 		};
-		ParticleEmitter emitter = new ParticleEmitter(this.getLayer() - 1, set);
+		emitter = new ParticleEmitter(this.getLayer() - 1, set);
 		Game.physics.addEntity(emitter, false);
 	}
 	
@@ -204,6 +219,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 		} else {
 			// to know when the button is lifted
 			justJumped = false;
+			emitter.deactivate();
 		}
 	}
 	
@@ -239,8 +255,9 @@ public class Player extends BoxEntity implements FirearmHolder{
 	private void jetpack(){
 		Vector2 linVec = body.getLinearVelocity();
 		if(linVec.y <= maxVelocityX){
-			linVec.y += JUMP_FORCE / 5.0f;
+			linVec.y += JETPACK_FORCE;
 			body.setLinearVelocity(linVec);
+			emitter.activate();
 		}
 	}
 	
