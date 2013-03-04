@@ -17,7 +17,7 @@ class Particle(
 		width: Float, height: Float,
 		fixtureDef: FixtureDef,
 		timeToLive: Float,
-		owner: DynamicEntity)
+		owner: ParticleEmitter)
 		
 		extends BoxEntity(renderer, layer, bodyDef, width, height, fixtureDef) {
 	
@@ -28,8 +28,14 @@ class Particle(
 		
 		timeAlive += timeStep
 		if(timeAlive >= timeToLive)
-			Game.physics.removeEntity(this, false);
+			Game.physics.removeEntity(this, false)
 	}
 	
-	def getOwner = owner
+	override def cleanup(){
+	  super.cleanup()
+	  
+	  owner notifyOfParticleDeath
+	}
+	
+	def getOwner = owner.settings.attached
 }

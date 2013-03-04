@@ -1,7 +1,5 @@
 package com.bitwaffle.offworld.entities.player;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -74,9 +72,14 @@ public class Player extends BoxEntity implements FirearmHolder{
 	/** How fast the player has to be moving for the animation to be stepped */
 	private float minAnimationVelocity = 0.5f;
 	
+	/**
+	 *  Whether or not the player has just jumped, to know whether to jetpack or not
+	 *  (Player can only jetpack while in the air or after jumping off the ground) 
+	 */
 	private boolean justJumped = false;
 	
-	private ParticleEmitter emitter;
+	/** Particle emitter for jetpack */
+	private ParticleEmitter jetpackEmitter;
 	
 	/**
 	 * Noargs constructor ONLY to be used with serialization!!!
@@ -110,7 +113,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 		
 		EmitterSettings set = new EmitterSettings();
 		set.attached = this;
-		set.numParticles = 150;
+		set.maxParticles = 150;
 		set.offset = new Vector2(-0.2f, -0.02f);
 		set.particleDensity = 0.1f;
 		set.particleEmissionRate = 0.025f;
@@ -135,8 +138,8 @@ public class Player extends BoxEntity implements FirearmHolder{
 				//Gdx.gl20.glDisable(GL20.GL_BLEND);
 			}
 		};
-		emitter = new ParticleEmitter(this.getLayer() - 1, set);
-		Game.physics.addEntity(emitter, false);
+		jetpackEmitter = new ParticleEmitter(this.getLayer() - 1, set);
+		Game.physics.addEntity(jetpackEmitter, false);
 	}
 	
 	@Override
@@ -219,7 +222,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 		} else {
 			// to know when the button is lifted
 			justJumped = false;
-			emitter.deactivate();
+			jetpackEmitter.deactivate();
 		}
 	}
 	
@@ -257,7 +260,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 		if(linVec.y <= maxVelocityX){
 			linVec.y += JETPACK_FORCE;
 			body.setLinearVelocity(linVec);
-			emitter.activate();
+			jetpackEmitter.activate();
 		}
 	}
 	
