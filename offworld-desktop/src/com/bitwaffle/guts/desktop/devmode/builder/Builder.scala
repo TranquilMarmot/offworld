@@ -96,8 +96,8 @@ object Builder {
 		val rockButt = new JButton("Rock")
 		rockButt.addActionListener(new ActionListener{
 			override def actionPerformed(e: ActionEvent){
-				val rockX = Game.random.nextFloat() * 10.0f - 50.0f
-				val rockY = Game.random.nextFloat() * 150.0f + 15.0f
+				val rockX = Game.random.nextFloat * 10.0f - 50.0f
+				val rockY = Game.random.nextFloat * 150.0f + 15.0f
 				val layer = 4
 				val rock = new BreakableRock(new Vector2(rockX, rockY), 1.0f, layer);
 				Game.physics.addEntity(rock, true);

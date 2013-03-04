@@ -5,6 +5,12 @@
 			"path":"entities/player/arm.png",
 			"minFilter": "linear",
 			"magFilter": "linear"
+		},
+		{
+			"name": "particle-fire",
+			"path": "particles/fire.png",
+			"minFilter": "nearest",
+			"magFilter": "nearest"
 		}
 	],
 

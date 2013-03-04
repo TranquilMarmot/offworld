@@ -117,6 +117,7 @@ public class Bullet extends BoxEntity {
 				true
 		);
 		
-		Game.physics.removeEntity(this, true);
+		Game.physics.removeEntity(this, true);	
+		
 	}
 }

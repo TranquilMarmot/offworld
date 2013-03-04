@@ -6,9 +6,14 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.entities.particles.EmitterSettings;
+import com.bitwaffle.guts.entities.particles.Particle;
+import com.bitwaffle.guts.entities.particles.ParticleEmitter;
 import com.bitwaffle.guts.graphics.EntityRenderer;
+import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.interfaces.Firearm;
@@ -96,6 +101,27 @@ public class Player extends BoxEntity implements FirearmHolder{
 		target = new Vector2();
 		
 		bodyAnimation = new PlayerBodyAnimation(Game.resources.textures.getAnimation("player-body"));
+		
+		EmitterSettings set = new EmitterSettings();
+		set.attached = this;
+		set.numParticles = 30;
+		set.offset = new Vector2(-0.3f, -0.3f);
+		set.particleDensity = 0.3f;
+		set.particleEmissionRate = 0.03f;
+		set.particleForce = new Vector2(0.0f, -10.0f);
+		set.particleHeight = 0.5f;
+		set.particleWidth = 0.5f;
+		set.particleLifetime = 0.5f;
+		set.particleRenderer = new EntityRenderer(){
+			@Override
+			public void render(Render2D renderer, Entity ent, boolean renderDebug){
+				Particle p = (Particle) ent;
+				Game.resources.textures.bindTexture("particle-fire");
+				renderer.quad.render(p.getWidth(), p.getHeight());
+			}
+		};
+		ParticleEmitter emitter = new ParticleEmitter(this.getLayer() - 1, set);
+		Game.physics.addEntity(emitter, false);
 	}
 	
 	@Override

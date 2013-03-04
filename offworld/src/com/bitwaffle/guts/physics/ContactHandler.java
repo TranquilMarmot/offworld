@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.entities.particles.Particle;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.bitwaffle.offworld.weapons.Bullet;
 
@@ -81,6 +82,18 @@ public class ContactHandler implements ContactListener, ContactFilter{
 				return false;
 		} else if(entB instanceof Bullet){
 			if(entA != ((Bullet)entB).getOwner())
+				return true;
+			else
+				return false;
+		}
+		
+		if(entA instanceof Particle){
+			if(entB != ((Particle)entA).getOwner() && !(entB instanceof Bullet))
+				return true;
+			else
+				return false;
+		} else if(entB instanceof Particle){
+			if(entA != ((Particle)entB).getOwner() && !(entA instanceof Bullet))
 				return true;
 			else
 				return false;
