@@ -17,21 +17,24 @@ class JetpackEmitterSettings(attachedTo: DynamicEntity) extends EmitterSettings 
 	def maxParticles = 150
 	def particleDensity = 0.1f
 	def particleEmissionRate = 0.05f
-	def particlesPerEmission = 1
+	def particlesPerEmission = 5
 	def particleForce = new Vector2(if(Game.random.nextBoolean()) Game.random.nextFloat * -5.0f else Game.random.nextFloat * 5.0f, Game.random.nextFloat * -50.0f)
-	def particleHeight = 0.5f
-	def particleWidth = 0.5f
+	def particleHeight = 0.25f
+	def particleWidth = 0.25f
 	def particleLifetime = {
-		if(Game.random.nextFloat > 0.6f)
-			Game.random.nextFloat * 2.0f;
-		else
-			Game.random.nextFloat * 1.0f;
+		if(Game.random.nextFloat > 0.9f){
+			val low = 0.8f
+			val high = 1.0f
+			val liveLong = Game.random.nextFloat
+			if(liveLong < low) low * 2.0f else if(liveLong > high) high * 2.0f else liveLong * 2.0f
+		}else
+			Game.random.nextFloat * 0.75f;
 			
 	}
 	def xLocationVariance = 0.5f
 	def yLocationVariance = 0.1f
 	def particleFriction = 10.0f
-	def particleRestitution = 0.1f
+	def particleRestitution = 0.2f
 	
 	
 	def particleRenderer = new EntityRenderer {
