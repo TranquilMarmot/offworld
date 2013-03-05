@@ -1,5 +1,7 @@
 package com.bitwaffle.offworld.entities.player;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -14,6 +16,7 @@ import com.bitwaffle.guts.entities.particles.Particle;
 import com.bitwaffle.guts.entities.particles.ParticleEmitter;
 import com.bitwaffle.guts.graphics.EntityRenderer;
 import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.graphics.shapes.QuadRenderer;
 import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.interfaces.Firearm;
@@ -117,27 +120,50 @@ public class Player extends BoxEntity implements FirearmHolder{
 		set.offset = new Vector2(-0.2f, -0.02f);
 		set.particleDensity = 0.1f;
 		set.particleEmissionRate = 0.025f;
-		set.particlesPerEmission = 3;
-		set.particleForce = new Vector2(0.05f, -50.0f);
-		set.particleHeight = 0.2f;
-		set.particleWidth = 0.2f;
+		set.particlesPerEmission = 2;
+		set.particleForce = new Vector2(0.0f, -50.0f);
+		set.particleHeight = 0.4f;
+		set.particleWidth = 0.4f;
 		set.particleLifetime = 0.75f;
-		set.xLocationVariance = 0.75f;
+		set.xLocationVariance = 0.5f;
 		set.yLocationVariance = 0.1f;
 		set.particleFriction = 10.0f;
 		set.particleRestitution = 0.1f;
+		set.particleRenderer = new QuadRenderer("particle-fire", false, true, 1.0f, 1.0f, set.particleWidth * 2.0f, set.particleHeight * 2.0f, new float[]{1.0f, 1.0f, 1.0f, 1.0f});
+		
 		set.particleRenderer = new EntityRenderer(){
 			@Override
 			public void render(Render2D renderer, Entity ent, boolean renderDebug){
-				renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
+				Gdx.gl20.glEnable(GL20.GL_BLEND);
+				Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+				if(renderDebug){
+					renderDebug(renderer, ent);
+					
+				} else{
+					renderer.program.setUniform("vColor", 1.0f, 0.0f, 0.0f, 0.75f);
+					Particle p = (Particle) ent;
+					//Gdx.gl20.glEnable(GL20.GL_BLEND);
+					//Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_SRC_ALPHA);
+					Game.resources.textures.bindTexture("particle-blur");
+					renderer.quad.render(p.getWidth() * 2.0f, p.getHeight() * 2.0f);
+					//Gdx.gl20.glDisable(GL20.GL_BLEND);
+				}
+
+				Gdx.gl20.glDisable(GL20.GL_BLEND);
+			}
+			
+			private void renderDebug(Render2D renderer, Entity ent){
+				renderer.program.setUniform("vColor", 0.0f, 1.0f, 1.0f, 0.4f);
+				renderer.sendModelViewToShader();
+				
 				Particle p = (Particle) ent;
-				//Gdx.gl20.glEnable(GL20.GL_BLEND);
-				//Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_SRC_ALPHA);
-				Game.resources.textures.bindTexture("particle-fire");
-				renderer.quad.render(p.getWidth() * 2.0f, p.getHeight() * 2.0f);
-				//Gdx.gl20.glDisable(GL20.GL_BLEND);
+				
+				
+				Game.resources.textures.bindTexture("blank");
+				renderer.quad.render(p.getWidth(), p.getHeight());
 			}
 		};
+		
 		jetpackEmitter = new ParticleEmitter(this.getLayer() - 1, set);
 		Game.physics.addEntity(jetpackEmitter, false);
 	}

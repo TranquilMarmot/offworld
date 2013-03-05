@@ -1,5 +1,7 @@
 package com.bitwaffle.offworld.weapons;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
@@ -93,6 +95,8 @@ public class Pistol implements Firearm {
 	
 	public void render(Render2D renderer){
 		boolean facingRight = Game.player.isFacingRight();
+		Gdx.gl20.glEnable(GL20.GL_BLEND);
+		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		
 		// FIXME this is VERY quick and VERY dirty (PistolRenderer?)
 		if(muzzleFlash){
@@ -106,5 +110,6 @@ public class Pistol implements Firearm {
 		}
 		
 		Game.resources.textures.getSubImage("pistol").render(renderer.quad, GUN_X_SCALE * PlayerRenderer.SCALE, GUN_Y_SCALE * PlayerRenderer.SCALE, !facingRight, facingRight);
+		Gdx.gl20.glDisable(GL20.GL_BLEND);
 	}
 }

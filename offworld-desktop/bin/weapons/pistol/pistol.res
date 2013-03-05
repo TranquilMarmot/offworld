@@ -2,22 +2,22 @@
 	"sheets":	[
 		{
 			"path":	"weapons/pistol/pistol.png",
-			"minFilter":	"nearest",
-			"magFilter":	"nearest",
+			"minFilter":	"linear",
+			"magFilter":	"linear",
 			"sprites":	[
 			{
 				"name":	"pistol",
 				"x":	0,
 				"y":	0,
-				"w":	469,
-				"h":	323
+				"w":	238,
+				"h":	174
 			}
 			]
 		},
 		{
 			"path":	"weapons/pistol/muzzleflash.png",
-			"magFilter":	"nearest",
-			"minFilter":	"nearest",
+			"magFilter":	"linear",
+			"minFilter":	"linear",
 			"sprites":	[
 			{
 				"name":	"muzzleflash",

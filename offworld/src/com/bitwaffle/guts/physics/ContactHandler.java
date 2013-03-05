@@ -74,6 +74,19 @@ public class ContactHandler implements ContactListener, ContactFilter{
 		DynamicEntity entA = PhysicsHelper.getDynamicEntity(fix1);
 		DynamicEntity entB = PhysicsHelper.getDynamicEntity(fix2);
 		
+		// ignore particles hitting their emitter and any bullets
+		if(entA instanceof Particle){
+			if(entB != ((Particle)entA).getOwner() && !(entB instanceof Bullet))
+				return true;
+			else
+				return false;
+		} else if(entB instanceof Particle){
+			if(entA != ((Particle)entB).getOwner() && !(entA instanceof Bullet))
+				return true;
+			else
+				return false;
+		}
+		
 		// ignore bullets hitting what they came from
 		if(entA instanceof Bullet){
 			if(entB != ((Bullet)entA).getOwner())
@@ -82,18 +95,6 @@ public class ContactHandler implements ContactListener, ContactFilter{
 				return false;
 		} else if(entB instanceof Bullet){
 			if(entA != ((Bullet)entB).getOwner())
-				return true;
-			else
-				return false;
-		}
-		
-		if(entA instanceof Particle){
-			if(entB != ((Particle)entA).getOwner() && !(entB instanceof Bullet))
-				return true;
-			else
-				return false;
-		} else if(entB instanceof Particle){
-			if(entA != ((Particle)entB).getOwner() && !(entA instanceof Bullet))
 				return true;
 			else
 				return false;

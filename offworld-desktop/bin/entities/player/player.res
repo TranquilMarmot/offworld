@@ -11,6 +11,12 @@
 			"path": "particles/fire.png",
 			"minFilter": "nearest",
 			"magFilter": "nearest"
+		},
+		{
+			"name": "particle-blur",
+			"path": "particles/blur.png",
+			"minFilter": "linear",
+			"magFilter": "linear"
 		}
 	],
 
