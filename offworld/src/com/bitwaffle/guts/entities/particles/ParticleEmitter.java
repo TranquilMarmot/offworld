@@ -28,7 +28,7 @@ public class ParticleEmitter extends Entity{
 	 * @param settings Settings to use for emitters
 	 */
 	public ParticleEmitter(int layer, EmitterSettings settings){
-		super(null, layer, new Vector2(settings.offset.x + settings.attached.getLocation().x, settings.offset.y + settings.attached.getLocation().y));
+		super(null, layer, new Vector2(settings.offset().x + settings.attached().getLocation().x, settings.offset().y + settings.attached().getLocation().y));
 		this.settings = settings;
 		
 		this.timeSinceLastEmission = 0.0f;
@@ -47,9 +47,8 @@ public class ParticleEmitter extends Entity{
 		def.awake = true;
 		def.type = BodyType.DynamicBody;
 		//particleDef.angularDamping =
-		def.linearVelocity.set(Game.random.nextFloat() * settings.particleForce.x, Game.random.nextFloat() * settings.particleForce.y);
-		def.position.set(settings.offset.x + settings.attached.getLocation().x, settings.offset.y + settings.attached.getLocation().y);
-		def.position.add(Game.random.nextFloat() * settings.xLocationVariance, Game.random.nextFloat() * settings.yLocationVariance);
+		def.linearVelocity.set(settings.particleForce().x, settings.particleForce().y);
+		def.position.set(settings.offset().x + settings.attached().getLocation().x, settings.offset().y + settings.attached().getLocation().y);
 		
 		return def;
 	}
@@ -60,14 +59,14 @@ public class ParticleEmitter extends Entity{
 	private FixtureDef getParticleFixtureDef(){
 		FixtureDef def = new FixtureDef();
 		
-		def.density = settings.particleDensity;
+		def.density = settings.particleDensity();
 		def.filter.categoryBits = CollisionFilters.PARTICLE;
 		//def.filter.groupIndex = (short) -CollisionFilters.BULLET;
 		//def.filter.maskBits = (short) (CollisionFilters.GROUND | CollisionFilters.ENTITY);
-		def.friction = settings.particleFriction;
-		def.restitution = settings.particleRestitution;
+		def.friction = settings.particleFriction();
+		def.restitution = settings.particleRestitution();
 		PolygonShape particleBox = new PolygonShape();
-		particleBox.setAsBox(settings.particleWidth, settings.particleHeight);
+		particleBox.setAsBox(settings.particleWidth(), settings.particleHeight());
 		//CircleShape circ = new CircleShape();
 		//circ.setRadius(settings.particleWidth);
 		def.shape = particleBox;
@@ -80,27 +79,27 @@ public class ParticleEmitter extends Entity{
 		super.update(timeStep);
 		
 		// follow the entity that the emitter is attached to
-		this.setLocation(new Vector2(settings.offset.x + settings.attached.getLocation().x, settings.offset.y + settings.attached.getLocation().y));
+		this.setLocation(new Vector2(settings.offset().x + settings.attached().getLocation().x, settings.offset().y + settings.attached().getLocation().y));
 		
 		if(this.active){
 			timeSinceLastEmission += timeStep;
 			
 			// only emit particles if we're past the emission rate
-			if(timeSinceLastEmission >= settings.particleEmissionRate && numParticlesOut < settings.maxParticles){
+			if(timeSinceLastEmission >= settings.particleEmissionRate() && numParticlesOut < settings.maxParticles()){
 				// release number of specified particles
-				for(int i = 0; i < settings.particlesPerEmission; i++){
+				for(int i = 0; i < settings.particlesPerEmission(); i++){
 					Game.physics.addEntity(new Particle(
-							settings.particleRenderer,
+							settings.particleRenderer(),
 							this.getLayer(),
 							getParticleBodyDef(),
-							settings.particleWidth, settings.particleHeight,
+							settings.particleWidth(), settings.particleHeight(),
 							getParticleFixtureDef(),
-							Game.random.nextFloat() * settings.particleLifetime,
+							Game.random.nextFloat() * settings.particleLifetime(),
 							this
 							),false);
 					
 					numParticlesOut++;
-					if(numParticlesOut >= settings.maxParticles)
+					if(numParticlesOut >= settings.maxParticles())
 						break;
 				}
 				

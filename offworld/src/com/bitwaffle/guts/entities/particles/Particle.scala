@@ -10,6 +10,9 @@ import com.bitwaffle.guts.entities.dynamic.DynamicEntity
 import com.badlogic.gdx.physics.box2d.World
 import com.badlogic.gdx.math.Vector2
 
+/**
+ * A particle that comes from an emitter
+ */
 class Particle(
 		renderer: EntityRenderer,
 		layer: Int,

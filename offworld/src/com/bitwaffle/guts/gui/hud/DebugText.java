@@ -24,10 +24,11 @@ public class DebugText extends GUIObject {
 		
 		String vers = "Version " + Game.VERSION;
 		renderer.font.drawString(vers, renderer, Game.windowWidth - renderer.font.stringWidth(vers, tscale), renderer.font.stringHeight(vers, tscale) * 2, tscale, debugTextColor);
-		/*
+		
 		String fps = Game.currentFPS + " FPS";
 		renderer.font.drawString(fps, renderer, Game.windowWidth - renderer.font.stringWidth(fps, tscale), renderer.font.stringHeight(fps, tscale) * 4, tscale, debugTextColor);
 		
+		/*
 		String ents = Game.physics.numEntities() + " ents";
 		renderer.font.drawString(ents, renderer, Game.windowWidth - renderer.font.stringWidth(ents, tscale), renderer.font.stringHeight(ents, tscale) * 6, tscale, debugTextColor);
 		*/
