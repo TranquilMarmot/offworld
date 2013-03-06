@@ -19,14 +19,14 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.graphics.SubImage;
 import com.bitwaffle.guts.graphics.animation.Animation;
 import com.bitwaffle.guts.graphics.animation.AnimationPart;
 import com.bitwaffle.guts.graphics.animation.Frame;
+import com.bitwaffle.guts.graphics.shapes.polygon.Polygon;
+import com.bitwaffle.guts.graphics.shapes.polygon.PolygonLoader;
 import com.bitwaffle.guts.physics.CollisionFilters;
-import com.bitwaffle.guts.polygon.Polygon;
-import com.bitwaffle.guts.polygon.PolygonLoader;
 import com.bitwaffle.guts.resources.entityinfo.EntityInfo;
-import com.bitwaffle.guts.resources.textures.SubImage;
 
 /**
  * Loads a resource file and initializes resources

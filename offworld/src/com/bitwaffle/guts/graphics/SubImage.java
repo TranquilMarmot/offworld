@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.resources.textures;
+package com.bitwaffle.guts.graphics;
 
 import java.nio.Buffer;
 

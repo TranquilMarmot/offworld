@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.polygon;
+package com.bitwaffle.guts.graphics.shapes.polygon;
 
 import java.nio.Buffer;
 import java.util.ArrayList;

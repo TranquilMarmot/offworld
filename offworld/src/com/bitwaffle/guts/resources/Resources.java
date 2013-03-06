@@ -6,7 +6,6 @@ import java.io.InputStream;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.bitwaffle.guts.resources.entityinfo.EntityInfoManager;
-import com.bitwaffle.guts.resources.textures.TextureManager;
 
 /**
  * Manages resources for the game. All resources should be acquired through this.

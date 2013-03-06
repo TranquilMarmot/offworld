@@ -1,9 +1,10 @@
-package com.bitwaffle.guts.resources.textures;
+package com.bitwaffle.guts.resources;
 
 import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.bitwaffle.guts.graphics.SubImage;
 import com.bitwaffle.guts.graphics.animation.Animation;
 
 /**

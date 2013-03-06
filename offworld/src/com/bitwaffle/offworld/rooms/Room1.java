@@ -7,10 +7,10 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.graphics.shapes.polygon.Polygon;
+import com.bitwaffle.guts.graphics.shapes.polygon.PolygonRenderer;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.physics.Room;
-import com.bitwaffle.guts.polygon.Polygon;
-import com.bitwaffle.guts.polygon.PolygonRenderer;
 import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
 
 public class Room1 extends Room {
