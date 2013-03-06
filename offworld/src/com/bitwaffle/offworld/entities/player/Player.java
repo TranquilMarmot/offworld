@@ -14,7 +14,7 @@ import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.FirearmHolder;
-import com.bitwaffle.offworld.weapons.Pistol;
+import com.bitwaffle.offworld.weapons.pistol.Pistol;
 
 /**
  * The person the person playing the game plays as while they play the game.

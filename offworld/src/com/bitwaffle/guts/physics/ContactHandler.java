@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.entities.particles.Particle;
 import com.bitwaffle.offworld.entities.player.Player;
-import com.bitwaffle.offworld.weapons.Bullet;
+import com.bitwaffle.offworld.weapons.pistol.PistolBullet;
 
 /**
  * Handles all collisions
@@ -36,10 +36,10 @@ public class ContactHandler implements ContactListener, ContactFilter{
 		}
 		
 		// bullet collision
-		if(entA instanceof Bullet)
-			((Bullet)entA).collision(contact, entB);
-		else if(entB instanceof Bullet)
-			((Bullet)entB).collision(contact, entA);
+		if(entA instanceof PistolBullet)
+			((PistolBullet)entA).collision(contact, entB);
+		else if(entB instanceof PistolBullet)
+			((PistolBullet)entB).collision(contact, entA);
 	}
 
 	public void endContact(Contact contact) {
@@ -76,25 +76,25 @@ public class ContactHandler implements ContactListener, ContactFilter{
 		
 		// ignore particles hitting their emitter and any bullets
 		if(entA instanceof Particle){
-			if(entB != ((Particle)entA).getOwner() && !(entB instanceof Bullet))
+			if(entB != ((Particle)entA).getOwner() && !(entB instanceof PistolBullet))
 				return true;
 			else
 				return false;
 		} else if(entB instanceof Particle){
-			if(entA != ((Particle)entB).getOwner() && !(entA instanceof Bullet))
+			if(entA != ((Particle)entB).getOwner() && !(entA instanceof PistolBullet))
 				return true;
 			else
 				return false;
 		}
 		
 		// ignore bullets hitting what they came from
-		if(entA instanceof Bullet){
-			if(entB != ((Bullet)entA).getOwner())
+		if(entA instanceof PistolBullet){
+			if(entB != ((PistolBullet)entA).getOwner())
 				return true;
 			else
 				return false;
-		} else if(entB instanceof Bullet){
-			if(entA != ((Bullet)entB).getOwner())
+		} else if(entB instanceof PistolBullet){
+			if(entA != ((PistolBullet)entB).getOwner())
 				return true;
 			else
 				return false;

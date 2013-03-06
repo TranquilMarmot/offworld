@@ -4,7 +4,6 @@ import java.nio.Buffer;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.bitwaffle.guts.graphics.shapes.Quad;
 
 /**
  * A sub-image within a larger texture
@@ -33,7 +32,7 @@ public class SubImage {
 		this.texCoords = texCoords;
 		this.width = width;
 		this.height = height;
-		this.renderWidth = (float)width / (float)this.height;
+		this.renderWidth = (float)width / (float)height;
 	}
 	
 	/**

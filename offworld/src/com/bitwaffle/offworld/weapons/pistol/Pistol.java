@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.weapons;
+package com.bitwaffle.offworld.weapons.pistol;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -8,7 +8,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.util.MathHelper;
-import com.bitwaffle.offworld.entities.player.PlayerRenderer;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.FirearmHolder;
 
@@ -32,11 +31,6 @@ public class Pistol implements Firearm {
 	
 	/** How long the flash lives and a timer to know when to turn it off */
 	float muzzleFlashTTL = 0.1f, muzzleFlashLived; 
-	
-	// FIXME temp?
-	private final float 		
-		GUN_X_SCALE = 0.363f,
-		GUN_Y_SCALE = 0.25f;
 	
 	/**
 	 * Create a new pistol
@@ -67,7 +61,7 @@ public class Pistol implements Firearm {
 			Vector2 ownerLoc = owner.getFirearmOwningEntity().getLocation();
 			float angle = MathHelper.angle(ownerLoc, target);
 			Vector2 loc = owner.getFirearmLocation();
-			Bullet bullet = new Bullet(this.owner.getFirearmOwningEntity(), loc.x, loc.y, angle, SPEED);
+			PistolBullet bullet = new PistolBullet(this.owner.getFirearmOwningEntity(), loc.x, loc.y, angle, SPEED);
 			Game.physics.addEntity(bullet, true);
 			
 			// reset shot timer
@@ -103,13 +97,13 @@ public class Pistol implements Firearm {
 			Matrix4 temp = renderer.modelview.cpy();
 			renderer.modelview.translate(0.6f, facingRight ? 0.09f : -0.09f, 0.0f);
 			renderer.sendModelViewToShader();
-			Game.resources.textures.getSubImage("muzzleflash").render(renderer, facingRight, facingRight);
+			Game.resources.textures.getSubImage("muzzleflash").render(renderer, 0.25f, 0.25f, facingRight, facingRight);
 			
 			renderer.modelview.set(temp);
 			renderer.sendModelViewToShader();
 		}
 		
-		Game.resources.textures.getSubImage("pistol").render(renderer, PlayerRenderer.SCALE, PlayerRenderer.SCALE, !facingRight, facingRight);
+		Game.resources.textures.getSubImage("pistol").render(renderer, 0.25f, 0.25f, !facingRight, facingRight);
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 	}
 }

@@ -6,6 +6,7 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.graphics.EntityRenderer;
 import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.graphics.SubImage;
 import com.bitwaffle.guts.resources.TextureManager;
 
 /**
@@ -76,7 +77,7 @@ public class QuadRenderer implements EntityRenderer {
 			
 			// subimage has a special call that binds texture and draws it with special coords
 			if(isSubImage)
-				Game.resources.textures.getSubImage(textureName).render(renderer);
+				Game.resources.textures.getSubImage(textureName).render(renderer, width, height);
 			
 			else{
 				Game.resources.textures.bindTexture(textureName);
@@ -93,6 +94,12 @@ public class QuadRenderer implements EntityRenderer {
 		renderer.sendModelViewToShader();
 		
 		Game.resources.textures.bindTexture("blank");
-		renderer.quad.render(width, height);
+		
+		if(isSubImage){
+			SubImage sub = Game.resources.textures.getSubImage(textureName);
+			renderer.quad.render(sub.getRenderWidth() * width, sub.getRenderHeight() * width);
+		} else{
+			renderer.quad.render(width, height);
+		}
 	}
 }

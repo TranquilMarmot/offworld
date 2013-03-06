@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.weapons;
+package com.bitwaffle.offworld.weapons.pistol;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -15,10 +15,8 @@ import com.bitwaffle.guts.physics.CollisionFilters;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.interfaces.Health;
 
-public class Bullet extends BoxEntity {
-	// TODO move all this into the renderer
-	public static float SCALE = 0.25f;
-	public static float WIDTH = 1.0f * SCALE, HEIGHT = 0.379f * SCALE;
+public class PistolBullet extends BoxEntity {
+	private static final float SCALE = 0.125f;
 	
 	/** How much damage the bullet does */ // TODO should this be defined somewhere else? In the constructor?
 	private int DAMAGE = 10;
@@ -26,11 +24,11 @@ public class Bullet extends BoxEntity {
 	/** The owner of this bullet. The bullet can never hit its owner (see the physics.CollisionHandler) */
 	private DynamicEntity owner;
 	
-	public Bullet(DynamicEntity owner, float x, float y, float angle, float speed){
-		super(new QuadRenderer("pistolbullet", true, true, 0.25f, 0.25f, 1.0f, 0.379f, new float[]{1.0f, 1.0f, 1.0f, 1.0f}),
+	public PistolBullet(DynamicEntity owner, float x, float y, float angle, float speed){
+		super(getRenderer(),
 				5,
 				getBodyDef(x, y, angle, speed),
-				WIDTH, HEIGHT,
+				getBulletWidth(), getBulletHeight(),
 				getFixtureDef());
 		this.angle = angle;
 		this.owner = owner;
@@ -83,8 +81,28 @@ public class Bullet extends BoxEntity {
 	 */
 	private static Shape getShape(){
 		PolygonShape boxShape = new PolygonShape();
-		boxShape.setAsBox(WIDTH, HEIGHT);
+		float width = getBulletWidth();
+		float height = getBulletWidth();
+		boxShape.setAsBox(width, height);
 		return boxShape;
+	}
+	
+	private static QuadRenderer getRenderer(){
+		float xScale = SCALE;
+		float yScale = SCALE;
+		float width = 1.0f;
+		float height = 1.0f;
+		
+		
+		return new QuadRenderer("pistolbullet", true, true, xScale, yScale, width, height, new float[]{1.0f, 1.0f, 1.0f, 1.0f});
+	}
+	
+	private static float getBulletWidth(){
+		return Game.resources.textures.getSubImage("pistolbullet").getRenderWidth() * SCALE;
+	}
+	
+	private static float getBulletHeight(){
+		return Game.resources.textures.getSubImage("pistolbullet").getRenderHeight() * SCALE;
 	}
 	
 	/**
