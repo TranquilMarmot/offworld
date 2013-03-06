@@ -17,6 +17,8 @@ public class Frame {
 	/** Size of this frame, in pixels */
 	private int frameW, frameH;
 	
+	private float renderWidth;
+	
 
 	/**
 	 * Create a new frame in an animation
@@ -32,6 +34,7 @@ public class Frame {
 		this.texCoordBuff = texCoordBuff;
 		this.frameW = frameW;
 		this.frameH = frameH;
+		this.renderWidth = (float)frameW / (float)frameH;
 	}
 	
 	/**
@@ -43,7 +46,7 @@ public class Frame {
 	 * @return Width to render this frame at
 	 */
 	public float getRenderWidth(){
-		return (float)this.frameW / (float)this.frameH;
+		return renderWidth;
 	}
 	
 	/**
@@ -51,6 +54,14 @@ public class Frame {
 	 */
 	public float getRenderHeight(){
 		return 1.0f;
+	}
+	
+	public float getPixelWidth(){
+		return this.frameW;
+	}
+	
+	public float getPixelHeight(){
+		return this.frameH;
 	}
 	
 	/**

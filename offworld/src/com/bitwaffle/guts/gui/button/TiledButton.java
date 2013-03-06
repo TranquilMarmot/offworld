@@ -33,26 +33,26 @@ public abstract class TiledButton extends RectangleButton {
 		// top-left corner
 		renderer.modelview.translate(new Vector3(-columnWidth * (columns - 1), -rowHeight * (rows - 1), 0.0f));
 		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("buttoncorner").render(renderer.quad, columnWidth + extraX, rowHeight + extraY, false, false);
+		Game.resources.textures.getSubImage("buttoncorner").render(renderer, columnWidth + extraX, rowHeight + extraY, false, false);
 		
 		// top row segments
 		for(int i = 0; i < columns - 2; i++){
 			renderer.modelview.translate(new Vector3((columnWidth * 2.0f), 0.0f, 0.0f));
 			renderer.sendModelViewToShader();
-			Game.resources.textures.getSubImage("buttonsegment").render(renderer.quad, columnWidth + extraX, rowHeight + extraY, false, false);
+			Game.resources.textures.getSubImage("buttonsegment").render(renderer, false, false);
 		}
 		
 		// top-right corner
 		renderer.modelview.translate(new Vector3((columnWidth * 2.0f), 0.0f, 0.0f));
 		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("buttoncorner").render(renderer.quad, columnWidth + extraX, rowHeight + extraY, true, false);
+		Game.resources.textures.getSubImage("buttoncorner").render(renderer, true, false);
 		
 		/* draw middle rows */
 		for(int i = 0; i < rows - 2; i++){
 			// translate to row
 			renderer.modelview.translate(new Vector3(-(columnWidth * 2.0f) * (columns - 1), (rowHeight * 2.0f), 0.0f));
 			renderer.sendModelViewToShader();
-			Game.resources.textures.getSubImage("buttonside").render(renderer.quad, columnWidth + extraX, rowHeight + extraY, false, false);
+			Game.resources.textures.getSubImage("buttonside").render(renderer, false, false);
 			
 			for(int j = 0; j < columns - 2; j++){
 				renderer.modelview.translate(new Vector3(columnWidth * 2.0f, 0.0f, 0.0f));
@@ -63,25 +63,85 @@ public abstract class TiledButton extends RectangleButton {
 			
 			renderer.modelview.translate(new Vector3((columnWidth * 2.0f), 0.0f, 0.0f));
 			renderer.sendModelViewToShader();
-			Game.resources.textures.getSubImage("buttonside").render(renderer.quad, columnWidth + extraX, rowHeight + extraY, true, false);
+			Game.resources.textures.getSubImage("buttonside").render(renderer, true, false);
 		}
 		
 		/* draw bottom row */
 		// bottom-right cornerl
 		renderer.modelview.translate(new Vector3(0.0f, (rowHeight * 2.0f), 0.0f));
 		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("buttoncorner").render(renderer.quad, columnWidth + extraX, rowHeight + extraY, false, true);
+		Game.resources.textures.getSubImage("buttoncorner").render(renderer, false, true);
 		
 		// top row segments
 		for(int i = 0; i < columns - 2; i++){
 			renderer.modelview.translate(new Vector3(-(columnWidth * 2.0f), 0.0f, 0.0f));
 			renderer.sendModelViewToShader();
-			Game.resources.textures.getSubImage("buttonsegment").render(renderer.quad, columnWidth + extraX, rowHeight + extraY, false, true);
+			Game.resources.textures.getSubImage("buttonsegment").render(renderer, false, true);
 		}
 		
 		// bottom-right corner
 		renderer.modelview.translate(new Vector3(-(columnWidth * 2.0f), 0.0f, 0.0f));
 		renderer.sendModelViewToShader();
-		Game.resources.textures.getSubImage("buttoncorner").render(renderer.quad, columnWidth + extraX, rowHeight + extraY, true, true);
+		Game.resources.textures.getSubImage("buttoncorner").render(renderer, true, true);
+	}
+	
+	public void renderOld(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
+		// OpenGL was having some issues drawing things sometimes, so I added a tiny bit of extra width/height to the rendering
+		float extraX = 0.01f, extraY = 0.01f;
+		
+		/* draw top row */
+		// top-left corner
+		renderer.modelview.translate(new Vector3(-columnWidth * (columns - 1), -rowHeight * (rows - 1), 0.0f));
+		renderer.sendModelViewToShader();
+		//Game.resources.textures.getSubImage("buttoncorner").render(renderer, columnWidth + extraX, rowHeight + extraY, false, false);
+		
+		// top row segments
+		for(int i = 0; i < columns - 2; i++){
+			renderer.modelview.translate(new Vector3((columnWidth * 2.0f), 0.0f, 0.0f));
+			renderer.sendModelViewToShader();
+			//Game.resources.textures.getSubImage("buttonsegment").render(renderer.quad, columnWidth + extraX, rowHeight + extraY, false, false);
+		}
+		
+		// top-right corner
+		renderer.modelview.translate(new Vector3((columnWidth * 2.0f), 0.0f, 0.0f));
+		renderer.sendModelViewToShader();
+		//Game.resources.textures.getSubImage("buttoncorner").render(renderer.quad, columnWidth + extraX, rowHeight + extraY, true, false);
+		
+		/* draw middle rows */
+		for(int i = 0; i < rows - 2; i++){
+			// translate to row
+			renderer.modelview.translate(new Vector3(-(columnWidth * 2.0f) * (columns - 1), (rowHeight * 2.0f), 0.0f));
+			renderer.sendModelViewToShader();
+			//Game.resources.textures.getSubImage("buttonside").render(renderer.quad, columnWidth + extraX, rowHeight + extraY, false, false);
+			
+			for(int j = 0; j < columns - 2; j++){
+				renderer.modelview.translate(new Vector3(columnWidth * 2.0f, 0.0f, 0.0f));
+				renderer.sendModelViewToShader();
+				Game.resources.textures.bindTexture("blank");
+				renderer.quad.render(columnWidth + extraX, rowHeight + extraY);	
+			}
+			
+			renderer.modelview.translate(new Vector3((columnWidth * 2.0f), 0.0f, 0.0f));
+			renderer.sendModelViewToShader();
+			//Game.resources.textures.getSubImage("buttonside").render(renderer.quad, columnWidth + extraX, rowHeight + extraY, true, false);
+		}
+		
+		/* draw bottom row */
+		// bottom-right cornerl
+		renderer.modelview.translate(new Vector3(0.0f, (rowHeight * 2.0f), 0.0f));
+		renderer.sendModelViewToShader();
+	//	Game.resources.textures.getSubImage("buttoncorner").render(renderer.quad, columnWidth + extraX, rowHeight + extraY, false, true);
+		
+		// top row segments
+		for(int i = 0; i < columns - 2; i++){
+			renderer.modelview.translate(new Vector3(-(columnWidth * 2.0f), 0.0f, 0.0f));
+			renderer.sendModelViewToShader();
+		//	Game.resources.textures.getSubImage("buttonsegment").render(renderer.quad, columnWidth + extraX, rowHeight + extraY, false, true);
+		}
+		
+		// bottom-right corner
+		renderer.modelview.translate(new Vector3(-(columnWidth * 2.0f), 0.0f, 0.0f));
+		renderer.sendModelViewToShader();
+		//Game.resources.textures.getSubImage("buttoncorner").render(renderer.quad, columnWidth + extraX, rowHeight + extraY, true, true);
 	}
 }

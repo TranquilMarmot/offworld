@@ -302,7 +302,7 @@ public class ResourceLoader {
 							sheetTexture.getWidth(),
 							sheetTexture.getHeight()
 					);
-					Game.resources.textures.addSubImage(spriteName, new SubImage(sheetHandle, spriteBuff));
+					Game.resources.textures.addSubImage(spriteName, new SubImage(sheetHandle, spriteW, spriteH, spriteBuff));
 				}
 			}
 		} catch(JSONException e){

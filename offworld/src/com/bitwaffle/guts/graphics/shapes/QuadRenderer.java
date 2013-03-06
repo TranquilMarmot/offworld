@@ -76,7 +76,7 @@ public class QuadRenderer implements EntityRenderer {
 			
 			// subimage has a special call that binds texture and draws it with special coords
 			if(isSubImage)
-				Game.resources.textures.getSubImage(textureName).render(renderer.quad, width, height);
+				Game.resources.textures.getSubImage(textureName).render(renderer);
 			
 			else{
 				Game.resources.textures.bindTexture(textureName);

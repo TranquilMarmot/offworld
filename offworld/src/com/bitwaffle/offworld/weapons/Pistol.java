@@ -103,13 +103,13 @@ public class Pistol implements Firearm {
 			Matrix4 temp = renderer.modelview.cpy();
 			renderer.modelview.translate(0.6f, facingRight ? 0.09f : -0.09f, 0.0f);
 			renderer.sendModelViewToShader();
-			Game.resources.textures.getSubImage("muzzleflash").render(renderer.quad, 0.25f, 0.245f, facingRight, facingRight);
+			Game.resources.textures.getSubImage("muzzleflash").render(renderer, facingRight, facingRight);
 			
 			renderer.modelview.set(temp);
 			renderer.sendModelViewToShader();
 		}
 		
-		Game.resources.textures.getSubImage("pistol").render(renderer.quad, GUN_X_SCALE * PlayerRenderer.SCALE, GUN_Y_SCALE * PlayerRenderer.SCALE, !facingRight, facingRight);
+		Game.resources.textures.getSubImage("pistol").render(renderer, PlayerRenderer.SCALE, PlayerRenderer.SCALE, !facingRight, facingRight);
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 	}
 }

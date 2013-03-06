@@ -106,16 +106,16 @@ public class PlayerBodyAnimation extends Animation {
 			
 			if(linVecX < -thresh){
 				if(facingRight)
-					Game.resources.textures.getSubImage(airLeftSubTex).render(renderer.quad, 0.6137331f, 1.9f, facingRight, true);
+					Game.resources.textures.getSubImage(airLeftSubTex).render(renderer, 1.9f, 1.9f, facingRight, true);
 				else
-					Game.resources.textures.getSubImage(airRightSubTex).render(renderer.quad, 0.55946463f, 1.9f, facingRight, true);
+					Game.resources.textures.getSubImage(airRightSubTex).render(renderer, 1.9f, 1.9f, facingRight, true);
 			} else if(linVecX > thresh){
 				if(facingRight)
-					Game.resources.textures.getSubImage(airRightSubTex).render(renderer.quad, 0.55946463f, 1.9f, facingRight, true);
+					Game.resources.textures.getSubImage(airRightSubTex).render(renderer, 1.9f, 1.9f, facingRight, true);
 				else
-					Game.resources.textures.getSubImage(airLeftSubTex).render(renderer.quad, 0.6137331f, 1.9f, facingRight, true);
+					Game.resources.textures.getSubImage(airLeftSubTex).render(renderer, 1.9f, 1.9f, facingRight, true);
 			} else
-				Game.resources.textures.getSubImage(jumpSubTex).render(renderer.quad, 0.504230769f, 1.9f, facingRight, true);
+				Game.resources.textures.getSubImage(jumpSubTex).render(renderer, 1.9f, 1.9f, facingRight, true);
 			
 			
 			Gdx.gl20.glDisable(GL20.GL_BLEND);
