@@ -34,8 +34,8 @@ class Particle(
 			Game.physics.removeEntity(this, false)
 	}
 	
-	override def cleanup(){
-	  super.cleanup()
+	override def cleanup{
+	  super.cleanup
 	  
 	  owner notifyOfParticleDeath
 	}
