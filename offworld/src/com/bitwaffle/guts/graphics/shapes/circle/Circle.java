@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics.shapes;
+package com.bitwaffle.guts.graphics.shapes.circle;
 
 import java.nio.Buffer;
 import java.util.ArrayList;

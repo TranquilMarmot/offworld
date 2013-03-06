@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics.shapes;
+package com.bitwaffle.guts.graphics.shapes.quad;
 
 import java.nio.Buffer;
 

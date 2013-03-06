@@ -15,8 +15,8 @@ import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.graphics.font.BitmapFont;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.glsl.GLSLShader;
-import com.bitwaffle.guts.graphics.shapes.Circle;
-import com.bitwaffle.guts.graphics.shapes.Quad;
+import com.bitwaffle.guts.graphics.shapes.circle.Circle;
+import com.bitwaffle.guts.graphics.shapes.quad.Quad;
 import com.bitwaffle.guts.util.MathHelper;
 
 /**

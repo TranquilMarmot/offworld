@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics.shapes;
+package com.bitwaffle.guts.graphics.shapes.circle;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
