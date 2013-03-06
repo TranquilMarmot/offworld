@@ -1,6 +1,10 @@
 package com.bitwaffle.offworld.entities.player;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.animation.Animation;
 
 public class PlayerBodyAnimation extends Animation {
@@ -44,17 +48,23 @@ public class PlayerBodyAnimation extends Animation {
 			{-0.20940018f, 0.81147766f} // 31
 	};
 	
+	private static String jumpSubTex = "player-body-jump", airLeftSubTex = "player-body-inair-l", airRightSubTex = "player-body-inair-r";
+	
 	/** Offset of gun from right arm's shoulder */
 	private static final Vector2 gunOffset = new Vector2(0.85f, -0.5f);
 	
 	/** Offset of left arm from right arm's shoulder*/
 	private static final Vector2 lArmOffset = new Vector2(0.02f, 0.04f);
 	
+	/** Player this animation belongs to */
+	private Player player;
+	
 	/**
 	 * @param animation Source animation
 	 */
-	public PlayerBodyAnimation(Animation animation) {
+	public PlayerBodyAnimation(Animation animation, Player player) {
 		super(animation);
+		this.player = player;
 	}
 	
 	/**
@@ -79,5 +89,36 @@ public class PlayerBodyAnimation extends Animation {
 	 */
 	public Vector2 getGunOffset(){
 		return gunOffset;
+	}
+	
+	@Override
+	public void renderCurrentFrame(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
+		if(player.getJumpSensor().numContacts() > 0)
+			super.renderCurrentFrame(renderer, flipHorizontal, flipVertical);
+		else{
+			boolean facingRight = player.isFacingRight();
+			float linVecX = player.body.getLinearVelocity().x;
+			
+			float thresh = 1.5f;
+			
+			Gdx.gl20.glEnable(GL20.GL_BLEND);
+			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+			
+			if(linVecX < -thresh){
+				if(facingRight)
+					Game.resources.textures.getSubImage(airLeftSubTex).render(renderer.quad, 0.6137331f, 1.9f, facingRight, true);
+				else
+					Game.resources.textures.getSubImage(airRightSubTex).render(renderer.quad, 0.55946463f, 1.9f, facingRight, true);
+			} else if(linVecX > thresh){
+				if(facingRight)
+					Game.resources.textures.getSubImage(airRightSubTex).render(renderer.quad, 0.55946463f, 1.9f, facingRight, true);
+				else
+					Game.resources.textures.getSubImage(airLeftSubTex).render(renderer.quad, 0.6137331f, 1.9f, facingRight, true);
+			} else
+				Game.resources.textures.getSubImage(jumpSubTex).render(renderer.quad, 0.504230769f, 1.9f, facingRight, true);
+			
+			
+			Gdx.gl20.glDisable(GL20.GL_BLEND);
+		}
 	}
 }

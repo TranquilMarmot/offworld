@@ -46,9 +46,9 @@ public class Player extends BoxEntity implements FirearmHolder{
 	/** How long the player has to wait in between jumps */
 	private final float JUMP_COOLDOWN = 0.5f;
 	/** How much force the player jumps with */
-	private final float JUMP_FORCE = 7.5f;
+	private final float JUMP_FORCE = 5.0f;
 	
-	private final float JETPACK_FORCE = 0.4f;
+	private final float JETPACK_FORCE = 0.375f;
 	
 	/** What the player is aiming at */
 	private Vector2 target;
@@ -105,7 +105,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 		firearm = new Pistol(this, pistolDamage, pistolForce, pistolRange, pistolFiringRate);
 		target = new Vector2();
 		
-		bodyAnimation = new PlayerBodyAnimation(Game.resources.textures.getAnimation("player-body"));
+		bodyAnimation = new PlayerBodyAnimation(Game.resources.textures.getAnimation("player-body"), this);
 
 		jetpackEmitter = new ParticleEmitter(this.getLayer() - 1, new JetpackEmitterSettings(this));
 	}

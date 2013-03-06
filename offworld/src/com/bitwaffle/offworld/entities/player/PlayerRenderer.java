@@ -51,7 +51,9 @@ public class PlayerRenderer implements EntityRenderer {
 			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, -armAngle);
 			renderer.modelview.translate(facingRight ? -lArmLoc.x : lArmLoc.x, -lArmLoc.y, 0.0f);
 			renderer.sendModelViewToShader();
+			
 			player.bodyAnimation.renderCurrentFrame(renderer, !facingRight, false);
+
 			
 			// draw gun
 			renderer.modelview.translate(facingRight ? rArmLoc.x : -rArmLoc.x, rArmLoc.y, 0.0f);
