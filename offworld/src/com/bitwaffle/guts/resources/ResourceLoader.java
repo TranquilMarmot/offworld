@@ -330,6 +330,7 @@ public class ResourceLoader {
 					JSONObject partObj = partsArr.getJSONObject(j);
 					
 					String textureName = partObj.getString("texture");
+					int textureHandle = Game.resources.textures.getTextureHandle(textureName);
 					int sourceWidth = partObj.getInt("sourceWidth");
 					int sourceHeight = partObj.getInt("sourceHeight");
 					float xScale = (float)partObj.getDouble("xScale");
@@ -356,9 +357,9 @@ public class ResourceLoader {
 								sourceWidth,
 								sourceHeight
 						);
-						frames[k] = new Frame(frameLength, frameW, frameH, frameBuff);
+						frames[k] = new Frame(frameLength, textureHandle, frameW, frameH, frameBuff);
 					}
-					parts[j] = new AnimationPart(textureName, frames, xScale, yScale);
+					parts[j] = new AnimationPart(frames, xScale, yScale);
 				}
 				
 				Game.resources.textures.addAnimation(animName, new Animation(parts));

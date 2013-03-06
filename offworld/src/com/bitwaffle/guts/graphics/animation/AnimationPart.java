@@ -1,6 +1,5 @@
 package com.bitwaffle.guts.graphics.animation;
 
-import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 
 /**
@@ -11,9 +10,6 @@ import com.bitwaffle.guts.graphics.Render2D;
  * @author TranquilMarmot
  */
 public class AnimationPart {
-	/** Handle for the sprite sheet to use for this animation */
-	private String sheetName;
-	
 	/** Array of every frame of the animation */
 	private Frame[] frames;
 	
@@ -32,8 +28,7 @@ public class AnimationPart {
 	 * @param xScale X scale to render frames at
 	 * @param yScale Y scale to render frames at
 	 */
-	public AnimationPart(String sheetName, Frame[] frames, float xScale, float yScale) {
-		this.sheetName = sheetName;
+	public AnimationPart(Frame[] frames, float xScale, float yScale) {
 		this.frames = frames;
 		this.xScale = xScale;
 		this.yScale = yScale;
@@ -106,16 +101,7 @@ public class AnimationPart {
 	 */
 	public void renderCurrentFrame(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
 		// bind given texture
-		Game.resources.textures.bindTexture(sheetName);
-		
-		// draw quad with frame's texture coordinates
-		renderer.quad.render(
-				frames[currentFrame].getRenderWidth() * this.xScale,
-				frames[currentFrame].getRenderHeight() * this.yScale,
-				// for some reason the image always get flipped, so we pass flipped booleans FIXME? Not really TOO bad of a problem...
-				!flipHorizontal, !flipVertical,
-				frames[currentFrame].getTexCoordBuffer()
-		);
+		frames[currentFrame].render(renderer, xScale, yScale, !flipHorizontal, !flipVertical);
 	}
 	
 	/**

@@ -18,8 +18,9 @@ public class SubImage {
 	private Buffer texCoords;
 	
 	/** Size of this sub-image, in pixels */
-	private float width, height;
+	private float pixelWidth, pixelHeight;
 	
+	/** How wide to render this sub-image so its the right raio (height is always 1) */
 	private float renderWidth;
 	
 	/**
@@ -30,8 +31,8 @@ public class SubImage {
 	public SubImage(int sheetHandle, float width, float height, Buffer texCoords){
 		this.sheetHandle = sheetHandle;
 		this.texCoords = texCoords;
-		this.width = width;
-		this.height = height;
+		this.pixelWidth = width;
+		this.pixelHeight = height;
 		this.renderWidth = (float)width / (float)height;
 	}
 	
@@ -49,39 +50,57 @@ public class SubImage {
 		return 1.0f;
 	}
 	
+	/**
+	 * @return Width of this subimage is, in pixels
+	 */
 	public float getPixelWidth(){
-		return this.width;
+		return this.pixelWidth;
 	}
 	
+	/**
+	 * @return Height of this subimage is, in pixels
+	 */
 	public float getPixelHeight(){
-		return this.height;
+		return this.pixelHeight;
 	}
 	
+	/**
+	 * Renders this subimage
+	 * @param renderer Rendere to use
+	 */
 	public void render(Render2D renderer){
 		this.render(renderer, 1.0f, 1.0f);
 	}
 	
+
 	/**
-	 * Draws a sub-image
-	 * @param quad Quad to use for drawing
-	 * @param width Width to draw sub-image as
-	 * @param height Height to draw sub-image as
+	 * Renders this subimage at a given scale
+	 * @param renderer Renderer to use
+	 * @param xScale X scale to render at
+	 * @param yScale Y scale to render at
 	 */
 	public void render(Render2D renderer, float xScale, float yScale){
 		this.render(renderer, xScale, yScale, false, false);
 	}
 	
+	/**
+	 * Renders this subimage
+	 * @param renderer Renderer to use
+	 * @param flipHorizontal Whether or not to flip the image horizontally
+	 * @param flipVertical Whether or not to flip the image vertically
+	 */
 	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
 		this.render(renderer, 1.0f, 1.0f, flipHorizontal, flipVertical);
 	}
 	
+
 	/**
-	 * Draws a sub-image
-	 * @param quad Quad to use for drawing
-	 * @param width Width to draw sub-image as
-	 * @param height Height to draw sub-image as
-	 * @param flipHorizontal Whether or not the flip the sub-image horizontally
-	 * @param flipVertical Whether or not to flip the sub-image vertically
+	 * Renders this subimage
+	 * @param renderer Renderer to use
+	 * @param xScale X scale to render at
+	 * @param yScale Y scale to render at
+	 * @param flipHorizontal Whether or not to flip horizontally
+	 * @param flipVertical Whether or not to flip vertically
 	 */
 	public void render(Render2D renderer,  float xScale, float yScale, boolean flipHorizontal, boolean flipVertical){
 		Gdx.gl20.glBindTexture(GL20.GL_TEXTURE_2D, sheetHandle);
