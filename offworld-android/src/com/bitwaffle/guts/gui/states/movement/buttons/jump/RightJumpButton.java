@@ -29,7 +29,7 @@ public class RightJumpButton extends JumpButton{
 		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, this.isDown() ? MovementGUIState.pressedAlpha : MovementGUIState.activeAlpha);
 		Gdx.gl20.glEnable(GL20.GL_BLEND);
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_DST_COLOR);
-		Game.resources.textures.getSubImage("uparrow").render(renderer.quad, this.width, this.height);
+		Game.resources.textures.getSubImage("uparrow").render(renderer, this.width, this.height);
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 	}
 	
