@@ -31,7 +31,7 @@ public class StartGameButton extends TextButton {
 	protected void onRelease() {
 		PhysicsHelper.tempInit(Game.physics);
 		Game.gui.setCurrentState(GUI.States.NONE);
-		Game.input.setPlayer(Game.player);
+		Game.input.setPlayer(Game.players[0]);
 	}
 
 	@Override
@@ -42,6 +42,14 @@ public class StartGameButton extends TextButton {
 	@Override
 	protected void onPress() {
 		
+	}
+	
+	@Override
+	protected void onSelect() {
+	}
+
+	@Override
+	protected void onUnselect() {
 	}
 	
 	@Override

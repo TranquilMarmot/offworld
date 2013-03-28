@@ -15,9 +15,9 @@ public abstract class MovementButton extends RectangleButton {
 	
 	@Override
 	public void update(float timeStep) {
-		if(Game.player == null && this.isVisible())
+		if(Game.players[0] == null && this.isVisible())
 			this.hide();
-		else if(Game.player != null && !this.isVisible())
+		else if(Game.players[0] != null && !this.isVisible())
 			this.show();
 	}
 }

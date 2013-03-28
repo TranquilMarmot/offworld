@@ -154,7 +154,8 @@ public class Physics {
 		entities.clear();
 		
 		// get rid of the player FIXME should this be here?
-		Game.player = null;
+		for(int i = 0; i < Game.players.length; i++)
+			Game.players[i] = null;
 	}
 	
 	/**
@@ -238,23 +239,5 @@ public class Physics {
 	 */
 	public boolean entitiesExist() {
 		return entities.numEntities() > 0;
-	}
-
-	// FIXME temp testing method
-	public void temp(float x, float y) {
-		if(Game.player != null){
-			System.out.println("{" + (x - Game.player.getLocation().x) + "f, " + (y - Game.player.getLocation().y) + "f},");
-		}
-		
-		FirstHitQueryCallback callback = new FirstHitQueryCallback();
-		world.QueryAABB(callback, 
-                x - 1.0f,
-                y - 1.0f,
-                x + 1.0f,
-                y + 1.0f);
-
-		if(callback.getHit() != null){
-			Game.out.println(callback.getHit().getClass().getCanonicalName());
-		}
 	}
 }

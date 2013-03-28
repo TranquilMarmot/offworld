@@ -150,7 +150,7 @@ public class InputHandler implements InputProcessor {
 			Render2D.camera.setMode(Camera.Modes.FOLLOW);
 		}
 		if(player != null){
-			player.updateTarget(MathHelper.toWorldSpace(screenX, screenY, Render2D.camera));
+			player.setTarget(MathHelper.toWorldSpace(screenX, screenY, Render2D.camera));
 
 			// if there's no button being pressed but the mouse button is down, start shooting
 			if(/*buttonDown == null &&*/ mouseButton0){

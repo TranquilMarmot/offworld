@@ -51,18 +51,7 @@ public enum ConsoleCommands {
 	//server(new NetConsoleCommands.ServerCommand()),
 	//client(new NetConsoleCommands.ClientCommand()),
 	
-	init(new InitCommand()),
-	
-	// FIXME temp
-	n(new Command(){
-		@Override
-		public void issue(StringTokenizer toker) {
-			Game.player.nextFrame();
-		}
-		@Override
-		public void help() {
-		}
-	});
+	init(new InitCommand());
 
 	/** Function to call for this ConsoleCommands */
 	private Command function;

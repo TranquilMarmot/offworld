@@ -41,6 +41,14 @@ public class OptionsButton extends TextButton {
 	}
 	
 	@Override
+	protected void onSelect() {
+	}
+
+	@Override
+	protected void onUnselect() {
+	}
+	
+	@Override
 	protected void onDrag(float dx, float dy){
 		this.xOffset += dx;
 		this.yOffset += dy;

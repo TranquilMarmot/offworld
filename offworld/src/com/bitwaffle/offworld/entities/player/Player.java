@@ -56,6 +56,12 @@ public class Player extends BoxEntity implements FirearmHolder{
 	/** Whether or not the player is shooting */
 	private boolean isShooting;
 	
+	/** Whether or not the player is moving left/right */
+	private boolean movingRight, movingLeft;
+	
+	/** Whether or not the player is using the jetpack */
+	private boolean jetpackEnabled;
+	
 	/** Describes which way the player is moving/facing */
 	private boolean facingRight = false;
 	
@@ -102,6 +108,10 @@ public class Player extends BoxEntity implements FirearmHolder{
 	 * Init method only used in constructor
 	 */
 	private void init(){
+		movingRight = false;
+		movingLeft = false;
+		jetpackEnabled = false;
+		
 		firearm = new Pistol(this, pistolDamage, pistolForce, pistolRange, pistolFiringRate);
 		target = new Vector2();
 		
@@ -161,14 +171,26 @@ public class Player extends BoxEntity implements FirearmHolder{
 		// add time to jump timer
 		jumpTimer += timeStep;
 		
-		// check for input
+		// check for input TODO only do this if this player is being controlled by the keyboard! (maybe add special listener to multiplexer on creating a player with the keyboard)
 		if(!Game.gui.console.isOn()){
 			if(KeyBindings.CONTROL_RIGHT.isPressed())
-				goRight();
+				movingRight = true;
+			//else
+			//	movingRight = false;
 			if(KeyBindings.CONTROL_LEFT.isPressed())
-				goLeft();
+				movingLeft = true;
+			//else
+			//	movingLeft = false;
 			checkForJumpInput();
 		}
+		
+		// apply forces based on toggles
+		if(movingLeft)
+			applyLeftForce();
+		if(movingRight)
+			applyRightForce();
+		if(jetpackEnabled)
+			applyJetpackForce();
 	}
 	
 	/**
@@ -187,7 +209,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 				if(jump())
 					justJumped = true;
 				else if(jumpSensor.numContacts() <= 0)
-					jetpack();
+					applyJetpackForce();
 			}
 		} else {
 			// to know when the button is lifted
@@ -222,10 +244,25 @@ public class Player extends BoxEntity implements FirearmHolder{
 		return false;
 	}
 	
+	/** Start using the jetpack */
+	public void enableJetpack(){ 
+		jetpackEnabled = true;
+		jetpackEmitter.activate();
+	}
+	
+	/** Stop using the jetpack */
+	public void disableJetpack(){
+		jetpackEnabled = false;
+		jetpackEmitter.deactivate();
+	}
+	
+	/** @return Whether or not the jetpack is being used */
+	public boolean jetpackEnabled(){ return jetpackEnabled; }
+	
 	/**
 	 * Activates the player's jetpack
 	 */
-	private void jetpack(){
+	private void applyJetpackForce(){
 		Vector2 linVec = body.getLinearVelocity();
 		if(linVec.y <= maxVelocityX){
 			linVec.y += JETPACK_FORCE;
@@ -239,7 +276,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 	 * Should be called every frame that the player is moving,
 	 * i.e. when a button is being held down
 	 */
-	public void goLeft(){
+	private void applyLeftForce(){
 		if(!Game.isPaused()){
 			Vector2 linVec = body.getLinearVelocity();
 			if(linVec.x > -maxVelocityX) {
@@ -254,7 +291,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 	 * Should be called every frame that the player is moving,
 	 * i.e. when a button is being held down
 	 */
-	public void goRight(){
+	private void applyRightForce(){
 		if(!Game.isPaused()){
 			Vector2 linVec = body.getLinearVelocity();
 			if(linVec.x < maxVelocityX) {
@@ -263,6 +300,19 @@ public class Player extends BoxEntity implements FirearmHolder{
 			}
 		}
 	}
+	
+	/** Start moving right */
+	public void moveRight(){ movingRight = true; }
+	/** Start moving left */
+	public void moveLeft(){ movingLeft = true; }
+	/** Stop moving right */
+	public void stopMovingRight(){ movingRight = false; }
+	/** Stop moving left */
+	public void stopMovingLeft(){ movingLeft = false; }
+	/** @return Whether or not the player is moving right */
+	public boolean isMovingRight(){ return movingRight; }
+	/** @return Whether or not the player is moving left */
+	public boolean isMovingLeft(){ return movingLeft; }
 
 	/**
 	 * @return Whether or not the player is facing right
@@ -272,12 +322,19 @@ public class Player extends BoxEntity implements FirearmHolder{
 	}
 	
 	/**
-	 * Start shooting
+	 * Start shootin'!
 	 * @param target Target to start shooting at
 	 */
 	public void beginShooting(Vector2 target){
+		this.setTarget(target);
+		beginShooting();
+	}
+	
+	/**
+	 * Start shootin'!
+	 */
+	public void beginShooting(){
 		isShooting = true;
-		this.updateTarget(target);
 	}
 	
 	/**
@@ -298,7 +355,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 	 * Updates where the player is aiming
 	 * @param target New spot to aim at
 	 */
-	public void updateTarget(Vector2 target){
+	public void setTarget(Vector2 target){
 		if(!Game.isPaused())
 			this.target.set(target);
 	}

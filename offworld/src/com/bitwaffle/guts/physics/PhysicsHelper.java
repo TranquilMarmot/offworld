@@ -1,5 +1,8 @@
 package com.bitwaffle.guts.physics;
 
+import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.controllers.Controllers;
+import com.badlogic.gdx.controllers.mappings.Ouya;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -11,6 +14,8 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.camera.Camera;
+import com.bitwaffle.guts.input.controller.player.OuyaPlayerControllerListener;
+import com.bitwaffle.guts.input.controller.player.XboxPlayerControllerListener;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.bitwaffle.offworld.entities.player.PlayerRenderer;
 import com.bitwaffle.offworld.rooms.Room1;
@@ -123,11 +128,19 @@ public class PhysicsHelper {
 		playerFixture.filter.categoryBits = CollisionFilters.PLAYER;
 		playerFixture.filter.maskBits = CollisionFilters.EVERYTHING;
 		
-		Game.player = new Player(new PlayerRenderer(), 6, playerBodyDef, width, height, playerFixture);
-		physics.addEntity(Game.player, false);
-		Render2D.camera.setTarget(Game.player);
+		Game.players[0] = new Player(new PlayerRenderer(), 6, playerBodyDef, width, height, playerFixture);
+		physics.addEntity(Game.players[0], false);
+		Render2D.camera.setTarget(Game.players[0]);
 		Render2D.camera.setMode(Camera.Modes.FOLLOW);
-		Render2D.camera.setLocation(Game.player.getLocation());
+		Render2D.camera.setLocation(Game.players[0].getLocation());
+		
+		// TODO have each player press start
+		for(Controller con : Controllers.getControllers()){
+			if(con.getName().equals(Ouya.ID))
+				con.addListener(new OuyaPlayerControllerListener(Game.players[0]));
+			else if(con.getName().contains("XBOX 360"))
+				con.addListener(new XboxPlayerControllerListener(Game.players[0]));
+		}
 		
 		playerBodyDef.position.set(position);
 		//SurfaceView.touchHandler.setPlayer(Game.player);

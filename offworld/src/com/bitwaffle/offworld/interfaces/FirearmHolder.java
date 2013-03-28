@@ -6,5 +6,6 @@ import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 public interface FirearmHolder {
 	public Vector2 getFirearmLocation();
 	public float getFirearmAngle();
+	public boolean isFacingRight();
 	public DynamicEntity getFirearmOwningEntity();
 }

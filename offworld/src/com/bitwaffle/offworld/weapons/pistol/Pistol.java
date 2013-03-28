@@ -88,7 +88,7 @@ public class Pistol implements Firearm {
 	}
 	
 	public void render(Render2D renderer){
-		boolean facingRight = Game.player.isFacingRight();
+		boolean facingRight = owner.isFacingRight();
 		Gdx.gl20.glEnable(GL20.GL_BLEND);
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		

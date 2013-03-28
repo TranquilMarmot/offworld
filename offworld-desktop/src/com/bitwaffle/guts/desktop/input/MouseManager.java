@@ -5,7 +5,6 @@ import org.lwjgl.input.Mouse;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.desktop.DesktopGame;
 import com.bitwaffle.guts.graphics.Render2D;
-import com.bitwaffle.guts.util.MathHelper;
 
 
 /**
@@ -36,8 +35,8 @@ public class MouseManager {
 		if(Render2D.camera != null){
 			updateCamera();
 			
-			if(Game.player != null)
-				Game.player.updateTarget(MathHelper.toWorldSpace(x, y, Render2D.camera));
+			//if(Game.players[0] != null)
+			//	Game.players[0].setTarget(MathHelper.toWorldSpace(x, y, Render2D.camera));
 		}
 	}
 	

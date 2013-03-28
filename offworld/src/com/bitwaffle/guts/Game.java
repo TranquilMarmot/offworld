@@ -32,8 +32,8 @@ public abstract class Game implements ApplicationListener {
 	/** Physics world */
 	public static Physics physics;
 	
-	/** The player */
-	public static Player player;
+	/** Local players */
+	public static Player[] players = new Player[4];
 	
 	/** Whether or not the game is paused */
 	private static boolean paused = false;
@@ -74,7 +74,6 @@ public abstract class Game implements ApplicationListener {
 	
 	@Override
     public void create () {
-    	//GdxNativesLoader.load();
     	random = new Random(this.getTime());
 		
     	initGDX();

@@ -51,12 +51,24 @@ public class CameraButton extends RectangleButton{
 	protected void onPress() {
 		//Game.vibration.vibrate(25);
 	}
+	@Override
+	protected void onSelect() {}
+	@Override
+	protected void onUnselect() {}
 	
 	@Override
 	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
 		Gdx.gl20.glEnable(GL20.GL_BLEND);
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_SRC_COLOR);
-		renderer.program.setUniform("vColor", 0.5f, 0.5f, 0.5f, this.isDown() ? 1.0f : 0.5f);
+		float r = 0.5f;
+		float g = 0.5f;
+		float b = 0.5f;
+		float a = 0.5f;
+		if(this.isDown())
+			a = 1.0f;
+		else if(this.isSelected())
+			a = 0.75f;
+		renderer.program.setUniform("vColor", r, g, b, a);
 		
 		if(Render2D.camera.currentMode() == Camera.Modes.FREE)
 			Game.resources.textures.bindTexture("camera-free");

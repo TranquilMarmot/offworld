@@ -41,6 +41,14 @@ public class FullScreenButton extends CircleButton implements BooleanButton{
 	@Override
 	protected void onDrag(float dx, float dy) {
 	}
+	
+		@Override
+	protected void onSelect() {
+	}
+
+	@Override
+	protected void onUnselect() {
+	}
 
 	@Override
 	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
@@ -48,4 +56,6 @@ public class FullScreenButton extends CircleButton implements BooleanButton{
 		Game.resources.textures.bindTexture("circlebutton");
 		renderer.circle.render(this.getRadius(), flipHorizontal, flipVertical);
 	}
+
+
 }

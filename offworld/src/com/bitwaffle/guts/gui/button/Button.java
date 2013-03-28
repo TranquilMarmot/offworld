@@ -16,6 +16,8 @@ public abstract class Button extends GUIObject{
 	/** Whether or not the button is being held down */
 	private boolean isDown;
 	
+	private boolean isSelected;
+	
 	/**
 	 * Create a new button
 	 * @param x X location of button
@@ -24,6 +26,7 @@ public abstract class Button extends GUIObject{
 	public Button(float x, float y) {
 		super(x, y);
 		isActive = true;
+		isSelected = false;
 	}
 	
 	
@@ -82,6 +85,40 @@ public abstract class Button extends GUIObject{
 	 * @return Whether or not a button is currently being held down
 	 */
 	public boolean isDown(){ return isDown;}
+	
+	/**
+	 * What to do when this button is selected
+	 */
+	protected abstract void onSelect();
+	
+	/**
+	 * Selects a button (generally, changes button rendering to tell if it's selected)
+	 */
+	public void select(){
+		if(this.isActive){
+			this.isSelected = true;
+			onSelect();
+		}
+	}
+	
+	/**
+	 * What to do when a button is un-seleceted
+	 */
+	protected abstract void onUnselect();
+	
+	/**
+	 * Unselects a button
+	 */
+	public void unselect(){
+		if(this.isActive){
+			this.isSelected = false;
+			onUnselect();
+		}
+	}
+	
+	public boolean isSelected(){
+		return isSelected;
+	}
 	
 	/**
 	 * Deactivate a button

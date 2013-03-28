@@ -83,7 +83,7 @@ public class Pointer {
 			if(!handler.player.isShooting())
 				handler.player.beginShooting(MathHelper.toWorldSpace(x, y, Render2D.camera));
 			else
-				handler.player.updateTarget(MathHelper.toWorldSpace(x, y, Render2D.camera));
+				handler.player.setTarget(MathHelper.toWorldSpace(x, y, Render2D.camera));
 		}
 	}
 

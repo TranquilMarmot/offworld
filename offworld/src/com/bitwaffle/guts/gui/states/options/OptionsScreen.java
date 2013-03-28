@@ -43,6 +43,12 @@ public class OptionsScreen extends GUIState {
 
 			@Override
 			public void update(float timeStep) {}
+			
+			@Override
+			protected void onSelect() {}
+
+			@Override
+			protected void onUnselect() {}
 		});
 		
 		
