@@ -2,6 +2,7 @@ package com.bitwaffle.guts.gui;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Stack;
 
 import com.badlogic.gdx.Gdx;
@@ -51,12 +52,14 @@ public class GUI {
 	private Stack<GUIObject> objectsToAdd, objectsToRemove;
 	
 	/** Anything that can be clicked/pressed */
-	protected ArrayList<Button> buttons;
+	protected LinkedList<Button> buttons;
 	/** Used to add/remove GUI objects and avoid ConcurrentModificationExceptions */
 	private Stack<Button> buttonsToAdd, buttonsToRemove;
 	
 	/** Current state of the GUI (manages buttons and objects) */
 	protected GUIState currentState;
+	
+	public Button selectedButton;
 	
 	/**
 	 * Create a new GUI
@@ -66,7 +69,7 @@ public class GUI {
 		objectsToRemove = new Stack<GUIObject>();
 		objectsToAdd = new Stack<GUIObject>();
 		
-		buttons = new ArrayList<Button>();
+		buttons = new LinkedList<Button>();
 		buttonsToRemove = new Stack<Button>();
 		buttonsToAdd = new Stack<Button>();
 		
@@ -123,6 +126,30 @@ public class GUI {
 		
 		for(Button butt : buttons)
 			butt.update(timeStep);
+	}
+	
+	/**
+	 * Moves on to the next button in the UI
+	 */
+	public void nextButton(){
+		if(selectedButton == null){
+			selectedButton = buttons.getFirst();
+			selectedButton.select();
+		} else {
+			selectedButton.unselect();
+			int index = buttons.indexOf(selectedButton) + 1;
+			if(index >= buttons.size())
+				selectedButton = buttons.getFirst();
+			else
+				selectedButton = buttons.get(index);
+		}
+	
+	}
+	
+	
+	public void previousButton(){
+		
+	
 	}
 	
 	/**

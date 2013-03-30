@@ -1,10 +1,13 @@
 package com.bitwaffle.guts.desktop.input;
 
+import java.util.Iterator;
+
 import org.lwjgl.input.Mouse;
 
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.desktop.DesktopGame;
 import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.gui.button.Button;
 
 
 /**
@@ -50,12 +53,44 @@ public class MouseManager {
 		x = (float)Mouse.getX();
 		y = (float)DesktopGame.windowHeight - Mouse.getY();  // we want the top-left corner to be 0,0
 		
+		checkHover();
+		
 		dx = ((float) Mouse.getDX());
 		dy = -((float) Mouse.getDY());
 		if(inverted)
 			dy = -dy;
 
 		wheel = (float) Mouse.getDWheel();
+	}
+	
+	/**
+	 * Checks if the mouse is hovering over anything and sets it
+	 * as the currently selected button
+	 */
+	private static void checkHover(){
+		System.out.println("x " + x + " y " + y);
+		if(Game.gui == null)
+			return;
+		else{
+			// check if the mouse went off of the selected button
+			if(Game.gui.selectedButton != null && !Game.gui.selectedButton.contains(x,y)){
+				Game.gui.selectedButton.unselect();
+				Game.gui.selectedButton = null;
+			}
+			
+			// check every button for presses
+			Iterator<Button> it = Game.gui.getButtonIterator();
+			while (it.hasNext()) {
+				Button b = it.next();
+				
+				if (b != Game.gui.selectedButton && b.isActive() && b.isVisible() && b.contains(x, y)) {
+					Game.gui.selectedButton = b;
+					b.select();
+					System.out.println("selected");
+				}
+			}
+			return;
+		}
 	}
 	
 	/**

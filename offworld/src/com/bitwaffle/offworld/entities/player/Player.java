@@ -47,7 +47,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 	private final float JUMP_COOLDOWN = 0.5f;
 	/** How much force the player jumps with */
 	private final float JUMP_FORCE = 5.0f;
-	
+	/** Amount of force jetpack outputs */
 	private final float JETPACK_FORCE = 0.375f;
 	
 	/** What the player is aiming at */
