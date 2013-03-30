@@ -16,6 +16,7 @@ import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.input.controller.player.OuyaPlayerControllerListener;
 import com.bitwaffle.guts.input.controller.player.XboxPlayerControllerListener;
+import com.bitwaffle.guts.input.player.PlayerInputHandler;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.bitwaffle.offworld.entities.player.PlayerRenderer;
 import com.bitwaffle.offworld.rooms.Room1;
@@ -141,6 +142,8 @@ public class PhysicsHelper {
 			else if(con.getName().contains("XBOX 360"))
 				con.addListener(new XboxPlayerControllerListener(Game.players[0]));
 		}
+		
+		Game.inputMultiplexer.addProcessor(new PlayerInputHandler(Game.players[0]));
 		
 		playerBodyDef.position.set(position);
 		//SurfaceView.touchHandler.setPlayer(Game.player);

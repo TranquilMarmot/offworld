@@ -6,7 +6,6 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.TextButton;
-import com.bitwaffle.guts.gui.states.titlescreen.TitleScreen;
 
 public class OptionsButton extends TextButton {
 	private static final String TEXT = "Options";

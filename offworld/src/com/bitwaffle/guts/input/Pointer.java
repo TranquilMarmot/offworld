@@ -3,10 +3,7 @@ package com.bitwaffle.guts.input;
 import java.util.Iterator;
 
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.Render2D;
-import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.gui.button.Button;
-import com.bitwaffle.guts.util.MathHelper;
 
 /**
  * Each pointer can either be down or not down, and if it is down it's location is given by it's x and y values.
@@ -33,13 +30,10 @@ public class Pointer {
 	 */
 	public int pointerID;
 	
-	private InputHandler handler;
-
 	/**
 	 * @param handler TouchHandler this pointer originated from
 	 */
-	public Pointer(InputHandler handler){
-		this.handler = handler;
+	public Pointer(){
 		x = 0.0f;
 		y = 0.0f;
 		prevX = 0.0f;
@@ -60,14 +54,15 @@ public class Pointer {
 		this.x = x;
 		this.y = y;
 		this.isDown = true;
-
 		
-		if(!checkForButtonPresses() && Render2D.camera != null && Render2D.camera.currentMode() != Camera.Modes.FREE){
-			if(handler.player != null && !handler.player.isShooting())
-				handler.player.beginShooting(MathHelper.toWorldSpace(x, y, Render2D.camera));
-		}
+		checkForButtonPresses();
 	}
 
+	/**
+	 * Moves this pointer (drags selected button)
+	 * @param newX New X location of pointer
+	 * @param newY New Y location of pointer
+	 */
 	public void move(float newX, float newY){
 		this.prevX = this.x;
 		this.prevY = this.y;
@@ -77,13 +72,6 @@ public class Pointer {
 		if(buttonDown != null){
 			buttonDown.drag(this.x - this.prevX, this.y - this.prevY);
 			checkForButtonPresses();
-		} else if(Render2D.camera.currentMode() == Camera.Modes.FREE)
-			handler.panEvent(x, y, prevX, prevY);
-		else if(handler.player != null){
-			if(!handler.player.isShooting())
-				handler.player.beginShooting(MathHelper.toWorldSpace(x, y, Render2D.camera));
-			else
-				handler.player.setTarget(MathHelper.toWorldSpace(x, y, Render2D.camera));
 		}
 	}
 
@@ -103,8 +91,7 @@ public class Pointer {
 				buttonDown.slideRelease();
 
 			buttonDown = null;
-		} else if(handler.player != null && handler.player.isShooting())
-			handler.player.endShooting();
+		}
 	}
 
 	/**
@@ -114,7 +101,7 @@ public class Pointer {
 	 * then buttonDown will change to the new button
 	 * @return Whether or not a button was pressed
 	 */
-	private boolean checkForButtonPresses() {
+	protected boolean checkForButtonPresses() {
 		if(Game.gui == null)
 			return false;
 		else{

@@ -72,6 +72,9 @@ public abstract class Game implements ApplicationListener {
 	/** Used to know how much time has passed */
 	private long previousTime;
 	
+	/** Handles input processors */
+	public static InputMultiplexer inputMultiplexer;
+	
 	@Override
     public void create () {
     	random = new Random(this.getTime());
@@ -109,11 +112,11 @@ public abstract class Game implements ApplicationListener {
 	}
 	
 	protected void initInput(){
-		InputMultiplexer multiplexer = new InputMultiplexer();
+		inputMultiplexer = new InputMultiplexer();
 		input = new InputHandler();
-		multiplexer.addProcessor(new GestureDetector(new GestureHandler()));
-		multiplexer.addProcessor(input);
-		Gdx.input.setInputProcessor(multiplexer);
+		inputMultiplexer.addProcessor(new GestureDetector(new GestureHandler()));
+		inputMultiplexer.addProcessor(input);
+		Gdx.input.setInputProcessor(inputMultiplexer);
 	}
 
 	@Override

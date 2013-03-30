@@ -10,7 +10,6 @@ import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.entities.particles.ParticleEmitter;
 import com.bitwaffle.guts.graphics.EntityRenderer;
-import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.FirearmHolder;
@@ -74,12 +73,6 @@ public class Player extends BoxEntity implements FirearmHolder{
 	/** How fast the player has to be moving for the animation to be stepped */
 	private float minAnimationVelocity = 0.5f;
 	
-	/**
-	 *  Whether or not the player has just jumped, to know whether to jetpack or not
-	 *  (Player can only jetpack while in the air or after jumping off the ground) 
-	 */
-	private boolean justJumped = false;
-	
 	/** Particle emitter for jetpack */
 	private ParticleEmitter jetpackEmitter;
 	
@@ -118,6 +111,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 		bodyAnimation = new PlayerBodyAnimation(Game.resources.textures.getAnimation("player-body"), this);
 
 		jetpackEmitter = new ParticleEmitter(this.getLayer() - 1, new JetpackEmitterSettings(this));
+		jetpackEmitter.deactivate();
 	}
 	
 	@Override
@@ -171,19 +165,6 @@ public class Player extends BoxEntity implements FirearmHolder{
 		// add time to jump timer
 		jumpTimer += timeStep;
 		
-		// check for input TODO only do this if this player is being controlled by the keyboard! (maybe add special listener to multiplexer on creating a player with the keyboard)
-		if(!Game.gui.console.isOn()){
-			if(KeyBindings.CONTROL_RIGHT.isPressed())
-				movingRight = true;
-			//else
-			//	movingRight = false;
-			if(KeyBindings.CONTROL_LEFT.isPressed())
-				movingLeft = true;
-			//else
-			//	movingLeft = false;
-			checkForJumpInput();
-		}
-		
 		// apply forces based on toggles
 		if(movingLeft)
 			applyLeftForce();
@@ -191,31 +172,6 @@ public class Player extends BoxEntity implements FirearmHolder{
 			applyRightForce();
 		if(jetpackEnabled)
 			applyJetpackForce();
-	}
-	
-	/**
-	 * Checks if the jump key is pressed and acts accordingly
-	 */
-	private void checkForJumpInput(){
-		if(KeyBindings.CONTROL_JUMP.isPressed()){
-			/*
-			 * On first press of the button, can only jump
-			 * So it goes jump, then jetpack (can't just hold button
-			 * down to jetpack, have to press it twice)
-			 * OR the jetpack works if the player is just in the air
-			 * without pressing the button (i.e. falling off a ledge)
-			 */
-			if(!justJumped){
-				if(jump())
-					justJumped = true;
-				else if(jumpSensor.numContacts() <= 0)
-					applyJetpackForce();
-			}
-		} else {
-			// to know when the button is lifted
-			justJumped = false;
-			jetpackEmitter.deactivate();
-		}
 	}
 	
 	/**
@@ -425,10 +381,4 @@ public class Player extends BoxEntity implements FirearmHolder{
 		this.target.set(kryo.readObject(input, Vector2.class));
 	}
 	*/
-	
-	// FIXME temp
-	public void nextFrame(){
-		bodyAnimation.update(0.03f);
-		Game.out.println("Current frame: " + bodyAnimation.currentFrame());
-	}
 }

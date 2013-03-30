@@ -11,7 +11,6 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.util.MathHelper;
-import com.bitwaffle.offworld.entities.player.Player;
 
 public class InputHandler implements InputProcessor {
 	/** 
@@ -20,9 +19,6 @@ public class InputHandler implements InputProcessor {
 	 * in this array of the action's Pointer
 	 */
 	private ArrayList<Pointer> pointers;
-	
-	/** The player being controlled by this touch handler */
-	protected Player player;
 	
 	/** How many pointers are currently down */
 	protected int pointerCount;
@@ -33,10 +29,7 @@ public class InputHandler implements InputProcessor {
 	
 	public InputHandler(){
 		pointers = new ArrayList<Pointer>(3);
-	}
-	
-	public void setPlayer(Player player){
-		this.player = player;
+		pointerCount = 0;
 	}
 	
 	/**
@@ -84,13 +77,15 @@ public class InputHandler implements InputProcessor {
 			// special check for / key FIXME maybe a better way to do this? Not so bad but pretty hack-y
 			if(c == '/'){
 				Game.gui.console.openWithSlash();
-				return false;
+				return true;
 			}
 		} else if(Game.gui.console.isOn()){
 			// print character to console if it's on
 			if (!Character.isIdentifierIgnorable(c) &&
-					!(c == '`') && !(c == '\n') && !(c == '\r'))
+					!(c == '`') && !(c == '\n') && !(c == '\r')){
 				Game.gui.console.putCharacter(c);
+				return true;
+			}
 		}
 		return false;
 	}
@@ -99,7 +94,7 @@ public class InputHandler implements InputProcessor {
 	public boolean touchDown(int pointerX, int pointerY, int pointerID, int button) {
 		pointerCount++;
 		while(pointers.size() < pointerCount)
-			pointers.add(new Pointer(this));
+			pointers.add(new Pointer());
 		
 		pointers.get(pointerID).down(pointerID, pointerX, pointerY);
 		
@@ -149,16 +144,8 @@ public class InputHandler implements InputProcessor {
 			//tempFree = false;
 			Render2D.camera.setMode(Camera.Modes.FOLLOW);
 		}
-		if(player != null){
-			player.setTarget(MathHelper.toWorldSpace(screenX, screenY, Render2D.camera));
+		
 
-			// if there's no button being pressed but the mouse button is down, start shooting
-			if(/*buttonDown == null &&*/ mouseButton0){
-				if(Render2D.camera.currentMode() == Camera.Modes.FOLLOW || Render2D.camera.currentMode() == Camera.Modes.FREE)
-					player.beginShooting(MathHelper.toWorldSpace(screenX, screenY, Render2D.camera));
-			} else if(player.isShooting())
-				player.endShooting();
-		}
 		
 		if(!mouseButton0 && mouseButton1){
 			Vector2 previous = new Vector2(mouseWorldLoc); 

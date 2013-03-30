@@ -68,7 +68,6 @@ public class MouseManager {
 	 * as the currently selected button
 	 */
 	private static void checkHover(){
-		System.out.println("x " + x + " y " + y);
 		if(Game.gui == null)
 			return;
 		else{

@@ -6,7 +6,6 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.TextButton;
-import com.bitwaffle.guts.gui.states.titlescreen.TitleScreen;
 import com.bitwaffle.guts.physics.PhysicsHelper;
 
 public class StartGameButton extends TextButton {
@@ -31,7 +30,7 @@ public class StartGameButton extends TextButton {
 	protected void onRelease() {
 		PhysicsHelper.tempInit(Game.physics);
 		Game.gui.setCurrentState(GUI.States.NONE);
-		Game.input.setPlayer(Game.players[0]);
+		//Game.input.setPlayer(Game.players[0]);
 	}
 
 	@Override
