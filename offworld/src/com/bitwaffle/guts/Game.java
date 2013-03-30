@@ -9,9 +9,9 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.input.GestureDetector;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.gui.GUI;
-import com.bitwaffle.guts.input.GestureHandler;
-import com.bitwaffle.guts.input.InputHandler;
 import com.bitwaffle.guts.input.KeyBindings;
+import com.bitwaffle.guts.input.listeners.CameraGestureListener;
+import com.bitwaffle.guts.input.listeners.InputListener;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.Resources;
 import com.bitwaffle.offworld.entities.player.Player;
@@ -51,7 +51,7 @@ public abstract class Game implements ApplicationListener {
 	public static Random random;
 	
 	/** The input handler */
-	public static InputHandler input;
+	public static InputListener input;
 	
 	/** Where to print out info for the game (System.out by default, gets set to ConsoleOutputStream to print to console) */
 	public static PrintStream out = System.out;
@@ -113,8 +113,8 @@ public abstract class Game implements ApplicationListener {
 	
 	protected void initInput(){
 		inputMultiplexer = new InputMultiplexer();
-		input = new InputHandler();
-		inputMultiplexer.addProcessor(new GestureDetector(new GestureHandler()));
+		input = new InputListener();
+		inputMultiplexer.addProcessor(new GestureDetector(new CameraGestureListener()));
 		inputMultiplexer.addProcessor(input);
 		Gdx.input.setInputProcessor(inputMultiplexer);
 	}

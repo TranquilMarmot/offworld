@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.input;
+package com.bitwaffle.guts.input.listeners;
 
 import java.lang.reflect.Field;
 import java.util.Iterator;
@@ -10,9 +10,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.gui.button.Button;
+import com.bitwaffle.guts.input.Keys;
 import com.bitwaffle.guts.util.MathHelper;
 
-public class InputHandler implements InputProcessor {
+public class InputListener implements InputProcessor {
 	/** 
 	 * Array of pointers, gets expanded if necessary (if number of pointers down is > length)
 	 * Given a MotionEvent e,  calling e.getPointerId(e.getActionIndex()) will give you the index
@@ -20,7 +21,7 @@ public class InputHandler implements InputProcessor {
 	 */
 	private LinkedList<Pointer> pointers;
 	
-	public InputHandler(){
+	public InputListener(){
 		pointers = new LinkedList<Pointer>();
 	}
 	
@@ -137,7 +138,6 @@ public class InputHandler implements InputProcessor {
 				}
 			}
 		}
-		
 		
 		return false;
 	}

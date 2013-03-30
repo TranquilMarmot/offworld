@@ -1,8 +1,8 @@
-package com.bitwaffle.guts.input.player;
+package com.bitwaffle.guts.input.listeners.player;
 
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.camera.Camera;
-import com.bitwaffle.guts.input.Pointer;
+import com.bitwaffle.guts.input.listeners.Pointer;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.player.Player;
 

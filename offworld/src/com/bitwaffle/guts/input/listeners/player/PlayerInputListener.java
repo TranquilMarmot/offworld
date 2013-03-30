@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.input.player;
+package com.bitwaffle.guts.input.listeners.player;
 
 import java.util.LinkedList;
 
@@ -15,7 +15,7 @@ import com.bitwaffle.offworld.entities.player.Player;
  * 
  * @author TranquilMarmot
  */
-public class PlayerInputHandler implements InputProcessor {
+public class PlayerInputListener implements InputProcessor {
 	/** 
 	 * Array of pointers, gets expanded if necessary (if number of pointers down is > length)
 	 * Given a MotionEvent e,  calling e.getPointerId(e.getActionIndex()) will give you the index
@@ -26,7 +26,7 @@ public class PlayerInputHandler implements InputProcessor {
 	/** Player that this handler is handling */
 	private Player player;
 	
-	public PlayerInputHandler(Player player){
+	public PlayerInputListener(Player player){
 		this.player = player;
 		pointers = new LinkedList<PlayerPointer>();
 	}

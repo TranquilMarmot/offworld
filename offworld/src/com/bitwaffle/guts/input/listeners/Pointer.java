@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.input;
+package com.bitwaffle.guts.input.listeners;
 
 import java.util.Iterator;
 

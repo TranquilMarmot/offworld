@@ -1,11 +1,11 @@
-package com.bitwaffle.guts.input;
+package com.bitwaffle.guts.input.listeners;
 
 import com.badlogic.gdx.input.GestureDetector.GestureListener;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.camera.Camera;
 
-public class GestureHandler implements GestureListener {
+public class CameraGestureListener implements GestureListener {
 	/** How sensitive zoom is- the higher the value, the less sensitive */
 	public final float ZOOM_SENSITIVITY = 1500.0f;
 

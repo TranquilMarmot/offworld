@@ -2,7 +2,7 @@ package com.bitwaffle.guts.input;
 
 
 /**
- * This interface is used in {@link Keys} and {@link Buttons}, so that they can both be easily referenced in {@link KeyBindings}
+ * This interface is used in {@link Keys}, so that is can be referenced in {@link KeyBindings}
  * @author TranquilMarmot
  * @see Keys
  * @see Buttons
