@@ -40,7 +40,6 @@ public class PlayerPointer extends Pointer {
 	@Override
 	public void move(float newX, float newY){
 		super.move(newX,  newY);
-		System.out.println("in heeee");
 		
 		if(buttonDown == null){
 			if(!player.isShooting())

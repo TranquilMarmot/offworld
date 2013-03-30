@@ -1,9 +1,10 @@
 package com.bitwaffle.guts.input.player;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.player.Player;
@@ -20,34 +21,36 @@ public class PlayerInputHandler implements InputProcessor {
 	 * Given a MotionEvent e,  calling e.getPointerId(e.getActionIndex()) will give you the index
 	 * in this array of the action's Pointer
 	 */
-	private ArrayList<PlayerPointer> pointers;
-	
-	/** How many pointers are currently down */
-	protected int pointerCount;
+	private LinkedList<PlayerPointer> pointers;
 	
 	/** Player that this handler is handling */
 	private Player player;
 	
 	public PlayerInputHandler(Player player){
 		this.player = player;
-		pointers = new ArrayList<PlayerPointer>(3);
-		pointerCount = 0;
+		pointers = new LinkedList<PlayerPointer>();
 	}
 
 	@Override
 	public boolean keyDown(int keycode) {
+		if(Game.gui.console.isOn())
+			return false;
+		
 		switch(keycode){
 		
 		case Input.Keys.A:
+		case Input.Keys.LEFT:
 			player.moveLeft();
 			return true;
 			
 		case Input.Keys.D:
+		case Input.Keys.RIGHT:
 			player.moveRight();
 			return true;
 			
 		case Input.Keys.SPACE:
 		case Input.Keys.W:
+		case Input.Keys.UP:
 			if(player.getJumpSensor().numContacts() <= 0){
 				if(!player.jetpackEnabled())
 					player.enableJetpack();
@@ -65,15 +68,18 @@ public class PlayerInputHandler implements InputProcessor {
 		switch(keycode){
 		
 		case Input.Keys.A:
+		case Input.Keys.LEFT:
 			player.stopMovingLeft();
 			return true;
 			
 		case Input.Keys.D:
+		case Input.Keys.RIGHT:
 			player.stopMovingRight();
 			return true;
 			
 		case Input.Keys.SPACE:
 		case Input.Keys.W:
+		case Input.Keys.UP:
 			if(player.jetpackEnabled())
 				player.disableJetpack();
 			return true;
@@ -88,8 +94,7 @@ public class PlayerInputHandler implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int pointerX, int pointerY, int pointerID, int button) {
-		pointerCount++;
-		while(pointers.size() < pointerCount)
+		while(pointers.size() < pointerID + 1)
 			pointers.add(new PlayerPointer(player));
 		
 		pointers.get(pointerID).down(pointerID, pointerX, pointerY);
@@ -98,7 +103,6 @@ public class PlayerInputHandler implements InputProcessor {
 
 	@Override
 	public boolean touchUp(int pointerX, int pointerY, int pointerID, int button) {
-		pointerCount--;
 		pointers.get(pointerID).up(pointerX, pointerY);
 		return false;
 	}

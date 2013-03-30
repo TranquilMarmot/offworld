@@ -12,10 +12,6 @@ package com.bitwaffle.guts.input;
  *
  */
 public enum KeyBindings {
-	CONTROL_LEFT(new InputButton[]{Keys.A, Keys.DPAD_LEFT, Keys.LEFT}),
-	CONTROL_RIGHT(new InputButton[]{Keys.D, Keys.DPAD_RIGHT, Keys.RIGHT}),
-	CONTROL_JUMP(new InputButton[]{Keys.SPACE, Keys.W, Keys.DPAD_UP, Keys.UP, Keys.BUTTON_A}),
-
 	SYS_CAMERA_MODE(new InputButton[]{Keys.C}),
 	SYS_CHAT(new InputButton[]{Keys.T}),
 	SYS_PAUSE(new InputButton[]{Keys.ESCAPE, Keys.BACK, Keys.BUTTON_START}),

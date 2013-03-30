@@ -1,15 +1,15 @@
 package com.bitwaffle.guts.input;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
-import com.bitwaffle.guts.graphics.camera.Camera;
+import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.util.MathHelper;
 
 public class InputHandler implements InputProcessor {
@@ -18,18 +18,10 @@ public class InputHandler implements InputProcessor {
 	 * Given a MotionEvent e,  calling e.getPointerId(e.getActionIndex()) will give you the index
 	 * in this array of the action's Pointer
 	 */
-	private ArrayList<Pointer> pointers;
-	
-	/** How many pointers are currently down */
-	protected int pointerCount;
-	
-	private boolean mouseButton0, mouseButton1;
-	
-	private Vector2 mouseWorldLoc;
+	private LinkedList<Pointer> pointers;
 	
 	public InputHandler(){
-		pointers = new ArrayList<Pointer>(3);
-		pointerCount = 0;
+		pointers = new LinkedList<Pointer>();
 	}
 	
 	/**
@@ -92,32 +84,17 @@ public class InputHandler implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int pointerX, int pointerY, int pointerID, int button) {
-		pointerCount++;
-		while(pointers.size() < pointerCount)
+		while(pointers.size() < pointerID + 1)
 			pointers.add(new Pointer());
 		
 		pointers.get(pointerID).down(pointerID, pointerX, pointerY);
 		
-		if(button == Buttons.LEFT)
-			mouseButton0 = true;
-		else if(button == Buttons.RIGHT)
-			mouseButton1 = true;
-		//else if(button == Buttons.MIDDLE)
-		//	mouseMiddle = true;
 		return false;
 	}
 
 	@Override
 	public boolean touchUp(int pointerX, int pointerY, int pointerID, int button) {
-		pointerCount--;
 		pointers.get(pointerID).up(pointerX, pointerY);
-		
-		if(button == Buttons.LEFT)
-			mouseButton0 = false;
-		else if(button == Buttons.RIGHT)
-			mouseButton1 = false;
-		//else if(button == Buttons.MIDDLE)
-		//	mouseMiddle = true;
 		
 		return false;
 	}
@@ -130,6 +107,9 @@ public class InputHandler implements InputProcessor {
 
 	@Override
 	public boolean scrolled(int amount) {
+		if(!Game.gui.console.isOn())
+			Render2D.camera.setZoom(Render2D.camera.getZoom() - (amount / 250.0f));
+			
 		if(Game.gui.console.isOn()){
 			Game.gui.console.scroll(-amount);
 		}
@@ -138,28 +118,27 @@ public class InputHandler implements InputProcessor {
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		if(Render2D.camera.currentMode() == Camera.Modes.FOLLOW && mouseButton1/* && !tempFree*/){
-			Render2D.camera.setMode(Camera.Modes.FREE);
-		} else if(Render2D.camera.currentMode() == Camera.Modes.FREE && mouseButton1/* && tempFree*/){
-			//tempFree = false;
-			Render2D.camera.setMode(Camera.Modes.FOLLOW);
+		// check if the mouse hovers over any buttons and select them
+		if(Game.gui != null){
+			// check if the mouse went off of the selected button
+			if(Game.gui.selectedButton != null && !Game.gui.selectedButton.contains(screenX, screenY)){
+				Game.gui.selectedButton.unselect();
+				Game.gui.selectedButton = null;
+			}
+			
+			// check every button for presses
+			Iterator<Button> it = Game.gui.getButtonIterator();
+			while (it.hasNext()) {
+				Button b = it.next();
+				
+				if (b != Game.gui.selectedButton && b.isActive() && b.isVisible() && b.contains(screenX, screenY)) {
+					Game.gui.selectedButton = b;
+					b.select();
+				}
+			}
 		}
 		
-
 		
-		if(!mouseButton0 && mouseButton1){
-			Vector2 previous = new Vector2(mouseWorldLoc); 
-			Vector2 current = MathHelper.toWorldSpace(screenX, screenY, Render2D.camera);
-			//Vector2 previous = MathHelper.toWorldSpace(prevX, prevY, Render2D.camera);
-	
-			float dx = current.x - previous.x;
-			float dy = current.y - previous.y;
-	
-			Vector2 camLoc = Render2D.camera.getLocation();
-			camLoc.x += dx;
-			camLoc.y += dy;
-			Render2D.camera.setLocation(camLoc);
-		}
 		return false;
 	}
 	

@@ -10,7 +10,6 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.desktop.devmode.DevModeDisplay;
 import com.bitwaffle.guts.desktop.devmode.builder.Builder;
-import com.bitwaffle.guts.desktop.input.MouseManager;
 import com.bitwaffle.guts.input.KeyBindings;
 
 /**
@@ -48,8 +47,6 @@ public class DesktopGame extends Game {
 	@Override
 	protected void update(){
 		super.update();
-		
-		MouseManager.update();
 
 		// desktop has its own screenshot code
     	if(KeyBindings.SYS_SCREENSHOT.pressedOnce())
