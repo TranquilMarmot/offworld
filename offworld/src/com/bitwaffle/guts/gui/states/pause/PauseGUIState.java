@@ -21,6 +21,15 @@ public class PauseGUIState extends GUIState{
 	/** How big pause menu buttons are */
 	private float buttonRowWidth = 30.0f, buttonColHeight = 20.0f;
 	
+	/** Button to activate/deactivate debug mode */
+	private DebugButton debugButton;
+	/** Button to load saved game */
+	private LoadButton loadButton;
+	/** Button to go back to main menu */
+	private QuitButton quitButton;
+	/** Button to save game */
+	private SaveButton saveButton;
+	
 	public int buttonCols(){ return buttonCols; }
 	public int buttonRows(){ return buttonRows; }
 	public float buttonRowWidth(){ return buttonRowWidth; }
@@ -48,11 +57,24 @@ public class PauseGUIState extends GUIState{
 	public PauseGUIState(){
 		super();
 		
-		this.addButton(new DebugButton(this));
-		this.addButton(new LoadButton(this));
-		this.addButton(new SaveButton(this));
-		//this.addButton(new SwarmButton(this));
-		this.addButton(new QuitButton(this));
+		debugButton = new DebugButton(this);
+		loadButton = new LoadButton(this);
+		saveButton = new SaveButton(this);
+		quitButton = new QuitButton(this);
+		
+		debugButton.toLeft = quitButton;
+		debugButton.toDown = loadButton;
+		loadButton.toUp = debugButton;
+		loadButton.toLeft = saveButton;
+		saveButton.toRight = loadButton;
+		saveButton.toUp = quitButton;
+		quitButton.toRight = debugButton;
+		quitButton.toDown = saveButton;
+		
+		this.addButton(debugButton);
+		this.addButton(loadButton);
+		this.addButton(saveButton);
+		this.addButton(quitButton);
 		
 		// update to add buttons
 		this.update(1.0f/60.0f);

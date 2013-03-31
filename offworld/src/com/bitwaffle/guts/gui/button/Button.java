@@ -16,7 +16,20 @@ public abstract class Button extends GUIObject{
 	/** Whether or not the button is being held down */
 	private boolean isDown;
 	
+	/** 
+	 * Whether or not this button is currently selected.
+	 * When a mouse is being used, true when the mouse is hovering over the button.
+	 * When a controller is being used, true when this button is the currently selected item.
+	 */
 	private boolean isSelected;
+	
+	/**
+	 * For when a controller or keyboard is being used to navigate
+	 * through buttons. Indicates which button should be selected next
+	 * going in the given direction.
+	 * If no button exists in a given direction, it will be null.
+	 */
+	public Button toLeft, toRight, toUp, toDown;
 	
 	/**
 	 * Create a new button

@@ -297,4 +297,36 @@ public class GUI {
 		renderer.sendModelViewToShader();
 		obj.render(renderer, false, false);
 	}
+
+	public void selectRight() {
+		if(selectedButton != null && selectedButton.toRight != null){
+			selectedButton.unselect();
+			selectedButton = selectedButton.toRight;
+			selectedButton.select();
+		}
+	}
+	
+	public void selectLeft() {
+		if(selectedButton != null && selectedButton.toLeft != null){
+			selectedButton.unselect();
+			selectedButton = selectedButton.toLeft;
+			selectedButton.select();
+		}
+	}
+	
+	public void selectUp() {
+		if(selectedButton != null && selectedButton.toUp != null){
+			selectedButton.unselect();
+			selectedButton = selectedButton.toUp;
+			selectedButton.select();
+		}
+	}
+	
+	public void selectDown() {
+		if(selectedButton != null && selectedButton.toDown != null){
+			selectedButton.unselect();
+			selectedButton = selectedButton.toDown;
+			selectedButton.select();
+		}	
+	}
 }
