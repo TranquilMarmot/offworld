@@ -103,6 +103,9 @@ public class PlayerInputListener implements InputProcessor {
 
 	@Override
 	public boolean touchUp(int pointerX, int pointerY, int pointerID, int button) {
+		while(pointers.size() < pointerID + 1)
+			pointers.add(new PlayerPointer(player));
+		
 		pointers.get(pointerID).up(pointerX, pointerY);
 		return false;
 	}

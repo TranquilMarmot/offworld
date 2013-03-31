@@ -64,7 +64,8 @@ public class ConsoleInputListener implements InputProcessor {
 
 	@Override
 	public boolean scrolled(int amount) {
-		
+		if(Game.gui.console.isOn())
+			Game.gui.console.scroll(-amount);
 		return false;
 	}
 

@@ -5,21 +5,17 @@ import java.util.Random;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.input.GestureDetector;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.gui.GUI;
+import com.bitwaffle.guts.input.Input;
 import com.bitwaffle.guts.input.KeyBindings;
-import com.bitwaffle.guts.input.listeners.CameraGestureListener;
-import com.bitwaffle.guts.input.listeners.ConsoleInputListener;
-import com.bitwaffle.guts.input.listeners.InputListener;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.Resources;
 import com.bitwaffle.offworld.entities.player.Player;
 
 public abstract class Game implements ApplicationListener {
 	/** Current version of the game */
-	public static final String VERSION = "0.0.6.5 (pre-alpha)";
+	public static final String VERSION = "0.0.6.7 (pre-alpha)";
 	
 	/** Resource manager */
 	public static Resources resources;
@@ -51,9 +47,6 @@ public abstract class Game implements ApplicationListener {
 	/** Random generator */
 	public static Random random;
 	
-	/** The input handler */
-	public static InputListener input;
-	
 	/** Where to print out info for the game (System.out by default, gets set to ConsoleOutputStream to print to console) */
 	public static PrintStream out = System.out;
 	
@@ -73,8 +66,8 @@ public abstract class Game implements ApplicationListener {
 	/** Used to know how much time has passed */
 	private long previousTime;
 	
-	/** Handles input processors */
-	public static InputMultiplexer inputMultiplexer;
+	/** Handles all input to the game */
+	public static Input input;
 	
 	@Override
     public void create () {
@@ -85,7 +78,7 @@ public abstract class Game implements ApplicationListener {
 		initResources();
 		initRenderer();
         initGUI();
-        initInput();
+        input = new Input();
     }
 	
 	protected void initGDX(){
@@ -110,15 +103,6 @@ public abstract class Game implements ApplicationListener {
 	protected void initGUI(){
 		gui = new GUI();
 		gui.setCurrentState(GUI.States.TITLESCREEN);
-	}
-	
-	protected void initInput(){
-		inputMultiplexer = new InputMultiplexer();
-		input = new InputListener();
-		inputMultiplexer.addProcessor(new GestureDetector(new CameraGestureListener()));
-		inputMultiplexer.addProcessor(input);
-		inputMultiplexer.addProcessor(new ConsoleInputListener());
-		Gdx.input.setInputProcessor(inputMultiplexer);
 	}
 
 	@Override

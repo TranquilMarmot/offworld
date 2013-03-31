@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.input.listeners;
+package com.bitwaffle.guts.input.listeners.button;
 
 import java.util.Iterator;
 
@@ -11,7 +11,7 @@ import com.bitwaffle.guts.gui.button.Button;
  * 
  * @author TranquilMarmot
  */
-public class Pointer {
+public class ButtonPointer {
 	/** Location of pointer, if it's down */
 	public float x, y;
 
@@ -33,7 +33,7 @@ public class Pointer {
 	/**
 	 * @param handler TouchHandler this pointer originated from
 	 */
-	public Pointer(){
+	public ButtonPointer(){
 		x = 0.0f;
 		y = 0.0f;
 		prevX = 0.0f;

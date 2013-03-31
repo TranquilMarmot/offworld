@@ -2,11 +2,11 @@ package com.bitwaffle.guts.input.listeners.player;
 
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.camera.Camera;
-import com.bitwaffle.guts.input.listeners.Pointer;
+import com.bitwaffle.guts.input.listeners.button.ButtonPointer;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.player.Player;
 
-public class PlayerPointer extends Pointer {
+public class PlayerPointer extends ButtonPointer {
 	private Player player;
 
 	public PlayerPointer(Player player) {

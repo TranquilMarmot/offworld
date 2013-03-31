@@ -143,7 +143,10 @@ public class PhysicsHelper {
 				con.addListener(new XboxPlayerControllerListener(Game.players[0]));
 		}
 		
-		Game.inputMultiplexer.addProcessor(new PlayerInputListener(Game.players[0]));
+		// swap button press listener for player control listener
+		Game.input.multiplexer.removeProcessor(Game.input.buttonPressListener);
+		Game.input.multiplexer.addProcessor(new PlayerInputListener(Game.players[0]));
+		
 		
 		playerBodyDef.position.set(position);
 		//SurfaceView.touchHandler.setPlayer(Game.player);
