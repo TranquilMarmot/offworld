@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.input.GestureDetector;
 import com.bitwaffle.guts.input.listeners.CameraGestureListener;
 import com.bitwaffle.guts.input.listeners.ConsoleInputListener;
+import com.bitwaffle.guts.input.listeners.GUIInputListener;
 import com.bitwaffle.guts.input.listeners.KeyBindingListener;
 import com.bitwaffle.guts.input.listeners.button.ButtonInputListener;
 
@@ -32,20 +33,27 @@ public class Input {
 	/** Grabs things being typed and sends them to the console */
 	public ConsoleInputListener consoleInputListener;
 	
+	/** Handles iterating through GUI elements with the keyboard */
+	public GUIInputListener guiInputListener;
+	
 	/**
 	 * Initialize input and add default processors
 	 */
 	public Input(){
 		multiplexer = new InputMultiplexer();
 		
+		// initialize processors
 		keyBindingListener = new KeyBindingListener();
 		buttonPressListener = new ButtonInputListener();
+		guiInputListener = new GUIInputListener();
 		cameraInputListener = new CameraGestureListener();
 		cameraGestureListener = new GestureDetector(cameraInputListener);
 		consoleInputListener = new ConsoleInputListener();
 		
+		// add to multiplexer
 		multiplexer.addProcessor(keyBindingListener);
 		multiplexer.addProcessor(buttonPressListener);
+		multiplexer.addProcessor(guiInputListener);
 		multiplexer.addProcessor(cameraGestureListener);
 		multiplexer.addProcessor(cameraInputListener);
 		multiplexer.addProcessor(consoleInputListener);

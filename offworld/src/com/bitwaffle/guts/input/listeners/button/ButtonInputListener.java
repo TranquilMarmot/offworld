@@ -48,6 +48,9 @@ public class ButtonInputListener implements InputProcessor {
 
 	@Override
 	public boolean touchUp(int pointerX, int pointerY, int pointerID, int button) {
+		while(pointers.size() < pointerID + 1)
+			pointers.add(new ButtonPointer());
+		
 		pointers.get(pointerID).up(pointerX, pointerY);
 		
 		return false;
@@ -75,7 +78,7 @@ public class ButtonInputListener implements InputProcessor {
 				Game.gui.selectedButton = null;
 			}
 			
-			// check every button for presses
+			// check every button to see if it's selected
 			Iterator<Button> it = Game.gui.getButtonIterator();
 			while (it.hasNext()) {
 				Button b = it.next();

@@ -142,14 +142,24 @@ public class GUI {
 				selectedButton = buttons.getFirst();
 			else
 				selectedButton = buttons.get(index);
+			selectedButton.select();
 		}
-	
 	}
 	
 	
 	public void previousButton(){
-		
-	
+		if(selectedButton == null){
+			selectedButton = buttons.getLast();
+			selectedButton.select();
+		} else {
+			selectedButton.unselect();
+			int index = buttons.indexOf(selectedButton) - 1;
+			if(index < 0)
+				selectedButton = buttons.getLast();
+			else
+				selectedButton = buttons.get(index);
+			selectedButton.select();
+		}
 	}
 	
 	/**
