@@ -6,7 +6,14 @@ import com.bitwaffle.guts.input.listeners.button.ButtonPointer;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.player.Player;
 
+/**
+ * Since we don't want the player to shoot if a UI element is pressed,
+ * this extends ButtonPointer and only shoots if a button isn't pressed.
+ * 
+ * @author TranquilMarmot
+ */
 public class PlayerPointer extends ButtonPointer {
+	/** Player this pointer is controlling */
 	private Player player;
 
 	public PlayerPointer(Player player) {

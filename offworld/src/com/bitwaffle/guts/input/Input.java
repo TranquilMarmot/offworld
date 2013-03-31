@@ -3,7 +3,8 @@ package com.bitwaffle.guts.input;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.input.GestureDetector;
-import com.bitwaffle.guts.input.listeners.CameraGestureListener;
+import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.input.listeners.CameraInputListener;
 import com.bitwaffle.guts.input.listeners.ConsoleInputListener;
 import com.bitwaffle.guts.input.listeners.GUIInputListener;
 import com.bitwaffle.guts.input.listeners.KeyBindingListener;
@@ -28,7 +29,7 @@ public class Input {
 	public GestureDetector cameraGestureListener;
 	
 	/** Input listener for moving the camera around when it's in free mode */
-	public CameraGestureListener cameraInputListener; // TODO should this be added/removed every time the camera enters/exits free mode?
+	public CameraInputListener cameraInputListener; // TODO should this be added/removed every time the camera enters/exits free mode?
 	
 	/** Grabs things being typed and sends them to the console */
 	public ConsoleInputListener consoleInputListener;
@@ -46,7 +47,7 @@ public class Input {
 		keyBindingListener = new KeyBindingListener();
 		buttonPressListener = new ButtonInputListener();
 		guiInputListener = new GUIInputListener();
-		cameraInputListener = new CameraGestureListener();
+		cameraInputListener = new CameraInputListener(Render2D.camera);
 		cameraGestureListener = new GestureDetector(cameraInputListener);
 		consoleInputListener = new ConsoleInputListener();
 		

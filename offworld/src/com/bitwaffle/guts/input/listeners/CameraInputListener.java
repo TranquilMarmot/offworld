@@ -1,32 +1,39 @@
 package com.bitwaffle.guts.input.listeners;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.input.GestureDetector.GestureListener;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.util.MathHelper;
 
-public class CameraGestureListener implements GestureListener, InputProcessor {
+public class CameraInputListener implements GestureListener, InputProcessor {
+	/** Camera this listener is controlling */
+	private Camera camera;
+	
 	/** How sensitive zoom is- the higher the value, the less sensitive */
-	public final float ZOOM_SENSITIVITY = 1500.0f;
+	private final float ZOOM_SENSITIVITY = 1500.0f;
 
 	/** How much two fingers have to move from each other before zooming occurs */
-	public final float ZOOM_THRESHOLD = 3.0f;
+	private final float ZOOM_THRESHOLD = 3.0f;
+	
+	public CameraInputListener(Camera camera){
+		this.camera = camera;
+	}
 	
 	@Override
 	public boolean zoom(float prevSpacing, float spacing) {
-		if(Render2D.camera.currentMode() == Camera.Modes.FREE){
+		if(camera.currentMode() == Camera.Modes.FREE){
 			float ds = spacing - prevSpacing;
 
 			// only zoom if the amount is in the threshold
 			if(ds > ZOOM_THRESHOLD || ds < -ZOOM_THRESHOLD){
-				float zoom = Render2D.camera.getZoom();
+				float zoom = camera.getZoom();
 
 				zoom += (ds * zoom) / ZOOM_SENSITIVITY;
 
-				Render2D.camera.setZoom(zoom);
+				camera.setZoom(zoom);
 			}
 		}
 		return false;
@@ -58,6 +65,18 @@ public class CameraGestureListener implements GestureListener, InputProcessor {
 
 	@Override
 	public boolean pan(float x, float y, float deltaX, float deltaY) {
+		if(camera.currentMode() == Camera.Modes.FREE){
+			Vector2 current = MathHelper.toWorldSpace(x + deltaX, y + deltaY, camera);
+			Vector2 previous = MathHelper.toWorldSpace(x, y, camera);
+
+			float dx = current.x - previous.x;
+			float dy = current.y - previous.y;
+
+			Vector2 camLoc = camera.getLocation();
+			camLoc.x += dx;
+			camLoc.y += dy;
+			camera.setLocation(camLoc);
+		}
 
 		return false;
 	}
@@ -65,34 +84,19 @@ public class CameraGestureListener implements GestureListener, InputProcessor {
 	@Override
 	public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2,
 			Vector2 pointer1, Vector2 pointer2) {
-
+	
 		return false;
 	}
-	
-	/**
-	 * Screen is being "dragged" to change where the Render2D.camera is looking
-	 * @param curX X location being dragged to
-	 * @param curY Y location being dragged to
-	 * @param prevX Previous X location
-	 * @param prevY Previous Y location
-	 */
-	protected void panEvent(float curX, float curY, float prevX, float prevY) {
-		Vector2 current = MathHelper.toWorldSpace(curX, curY, Render2D.camera);
-		Vector2 previous = MathHelper.toWorldSpace(prevX, prevY, Render2D.camera);
-
-		float dx = current.x - previous.x;
-		float dy = current.y - previous.y;
-
-		Vector2 camLoc = Render2D.camera.getLocation();
-		camLoc.x += dx;
-		camLoc.y += dy;
-		Render2D.camera.setLocation(camLoc);
-	}
-	
-	// TODO move the camera around when it's in free mode
 
 	@Override
 	public boolean keyDown(int keycode) {
+		switch(keycode){
+		case Input.Keys.C:
+			if(camera.currentMode() == Camera.Modes.FOLLOW)
+				camera.setMode(Camera.Modes.FREE);
+			else if(camera.currentMode() == Camera.Modes.FREE)
+				camera.setMode(Camera.Modes.FOLLOW);
+		}
 		
 		return false;
 	}
@@ -136,7 +140,7 @@ public class CameraGestureListener implements GestureListener, InputProcessor {
 	@Override
 	public boolean scrolled(int amount) {
 		if(!Game.gui.console.isOn())
-			Render2D.camera.setZoom(Render2D.camera.getZoom() - (amount / 250.0f));
+			camera.setZoom(camera.getZoom() - (amount / 250.0f));
 		
 		return false;
 	}

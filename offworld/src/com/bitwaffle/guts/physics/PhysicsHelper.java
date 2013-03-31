@@ -145,7 +145,7 @@ public class PhysicsHelper {
 		
 		// swap button press listener for player control listener
 		Game.input.multiplexer.removeProcessor(Game.input.buttonPressListener);
-		Game.input.multiplexer.addProcessor(new PlayerInputListener(Game.players[0]));
+		Game.input.multiplexer.addProcessor(new PlayerInputListener(Game.players[0], Render2D.camera));
 		
 		
 		playerBodyDef.position.set(position);
