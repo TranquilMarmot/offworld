@@ -66,20 +66,6 @@ public class InputListener implements InputProcessor {
 
 	@Override
 	public boolean keyTyped(char c) {
-		if(!Game.gui.console.isOn()){
-			// special check for / key FIXME maybe a better way to do this? Not so bad but pretty hack-y
-			if(c == '/'){
-				Game.gui.console.openWithSlash();
-				return true;
-			}
-		} else if(Game.gui.console.isOn()){
-			// print character to console if it's on
-			if (!Character.isIdentifierIgnorable(c) &&
-					!(c == '`') && !(c == '\n') && !(c == '\r')){
-				Game.gui.console.putCharacter(c);
-				return true;
-			}
-		}
 		return false;
 	}
 

@@ -11,6 +11,7 @@ import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.input.listeners.CameraGestureListener;
+import com.bitwaffle.guts.input.listeners.ConsoleInputListener;
 import com.bitwaffle.guts.input.listeners.InputListener;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.Resources;
@@ -116,6 +117,7 @@ public abstract class Game implements ApplicationListener {
 		input = new InputListener();
 		inputMultiplexer.addProcessor(new GestureDetector(new CameraGestureListener()));
 		inputMultiplexer.addProcessor(input);
+		inputMultiplexer.addProcessor(new ConsoleInputListener());
 		Gdx.input.setInputProcessor(inputMultiplexer);
 	}
 
