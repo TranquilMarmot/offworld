@@ -48,6 +48,7 @@ public class TitleScreen extends GUIState {
 		super.gainCurrentState();
 		
 		Game.physics.addEntity(sandbox, false);
+		
 		Game.gui.selectedButton = startGameButton;
 		startGameButton.select();
 	}
