@@ -6,13 +6,13 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.TextButton;
-import com.bitwaffle.guts.gui.states.pause.PauseGUIState;
+import com.bitwaffle.guts.gui.states.pause.PauseState;
 
 public class QuitButton extends TextButton {
 	// offset of button from center
 	public static float xOffset = -200.0f, yOffset = -150.0f;
 
-	public QuitButton(PauseGUIState state) {
+	public QuitButton(PauseState state) {
 		super(
 				"Main Menu",
 				25.0f,

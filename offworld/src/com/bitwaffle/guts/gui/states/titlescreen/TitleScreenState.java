@@ -2,11 +2,12 @@ package com.bitwaffle.guts.gui.states.titlescreen;
 
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.passive.GLSLSandbox;
+import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
 import com.bitwaffle.guts.gui.states.titlescreen.buttons.OptionsButton;
 import com.bitwaffle.guts.gui.states.titlescreen.buttons.StartGameButton;
 
-public class TitleScreen extends GUIState {
+public class TitleScreenState extends GUIState {
 	/** Alpha values of buttons */
 	public static float activeAlpha = 0.8f, pressedAlpha = 0.95f;
 	
@@ -20,7 +21,7 @@ public class TitleScreen extends GUIState {
 	/** Fancy spinning pizza */
 	private SpinningPizza spinningPizza;
 	
-	public TitleScreen(){
+	public TitleScreenState(){
 		super();
 		
 		sandbox = new GLSLSandbox();
@@ -48,5 +49,25 @@ Game.physics.addEntity(sandbox, false);
 	@Override
 	protected void onLoseCurrentState() {
 		Game.physics.removeEntity(sandbox, false);
+	}
+
+	@Override
+	public Button initialLeftButton() {
+		return optionsButton;
+	}
+
+	@Override
+	public Button initialRightButton() {
+		return startGameButton;
+	}
+
+	@Override
+	public Button initialUpButton() {
+		return optionsButton;
+	}
+
+	@Override
+	public Button initialDownButton() {
+		return startGameButton;
 	}
 }

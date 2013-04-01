@@ -5,13 +5,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.gui.button.TextButton;
-import com.bitwaffle.guts.gui.states.pause.PauseGUIState;
+import com.bitwaffle.guts.gui.states.pause.PauseState;
 
 public class LoadButton extends TextButton {
 	// offset of button from center
 	public static float xOffset = 200.0f, yOffset = 150.0f;
 
-	public LoadButton(PauseGUIState state) {
+	public LoadButton(PauseState state) {
 		super(
 				"Load",
 				25.0f,

@@ -5,13 +5,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.gui.button.TextButton;
-import com.bitwaffle.guts.gui.states.pause.PauseGUIState;
+import com.bitwaffle.guts.gui.states.pause.PauseState;
 
 public class SaveButton extends TextButton {
 	// offset of button from center
 	public static float xOffset = -200.0f, yOffset = 150.0f;
 
-	public SaveButton(PauseGUIState state) {
+	public SaveButton(PauseState state) {
 		super(
 				"Save",
 				25.0f,

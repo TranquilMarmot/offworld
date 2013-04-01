@@ -11,10 +11,11 @@ import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.console.Console;
 import com.bitwaffle.guts.gui.hud.HUD;
+import com.bitwaffle.guts.gui.states.BlankState;
 import com.bitwaffle.guts.gui.states.GUIState;
-import com.bitwaffle.guts.gui.states.options.OptionsScreen;
-import com.bitwaffle.guts.gui.states.pause.PauseGUIState;
-import com.bitwaffle.guts.gui.states.titlescreen.TitleScreen;
+import com.bitwaffle.guts.gui.states.options.OptionsState;
+import com.bitwaffle.guts.gui.states.pause.PauseState;
+import com.bitwaffle.guts.gui.states.titlescreen.TitleScreenState;
 
 /**
  * Handles all GUI elements
@@ -29,10 +30,10 @@ public class GUI {
 	 * setCurrentState() method
 	 */
 	public enum States{
-		NONE(new GUIState(){ protected void onGainCurrentState() {} protected void onLoseCurrentState() {}}), // nothing
-		PAUSE(new PauseGUIState()),     // displayed when the game is paused
-		TITLESCREEN(new TitleScreen()), // the title screen
-		OPTIONS(new OptionsScreen());   // the options screen
+		NONE(new BlankState()), // nothing
+		PAUSE(new PauseState()),     // displayed when the game is paused
+		TITLESCREEN(new TitleScreenState()), // the title screen
+		OPTIONS(new OptionsState());   // the options screen
 		
 		// Each value in this enum basically acts as a wrapper to access a GUIState
 		GUIState state;
@@ -268,7 +269,9 @@ public class GUI {
 	 * Selects the button to the right of the currently selected button
 	 */
 	public void selectRight() {
-		if(selectedButton != null && selectedButton.toRight != null){
+		if(selectedButton == null){
+			selectedButton = currentState.initialRightButton();
+		} else if(selectedButton.toRight != null){
 			selectedButton.unselect();
 			selectedButton = selectedButton.toRight;
 			selectedButton.select();
@@ -279,7 +282,9 @@ public class GUI {
 	 * Selects the button to the left of the currently selected button
 	 */
 	public void selectLeft() {
-		if(selectedButton != null && selectedButton.toLeft != null){
+		if(selectedButton == null){
+			selectedButton = currentState.initialLeftButton();
+		} else if(selectedButton.toLeft != null){
 			selectedButton.unselect();
 			selectedButton = selectedButton.toLeft;
 			selectedButton.select();
@@ -290,7 +295,9 @@ public class GUI {
 	 * Selects the button above the currently selected button
 	 */
 	public void selectUp() {
-		if(selectedButton != null && selectedButton.toUp != null){
+		if(selectedButton == null){
+			selectedButton = currentState.initialUpButton();
+		} else if(selectedButton.toUp != null){
 			selectedButton.unselect();
 			selectedButton = selectedButton.toUp;
 			selectedButton.select();
@@ -301,10 +308,12 @@ public class GUI {
 	 * Selects the button below the selected button
 	 */
 	public void selectDown() {
-		if(selectedButton != null && selectedButton.toDown != null){
+		if(selectedButton == null){
+			selectedButton = currentState.initialDownButton();
+		} else if(selectedButton.toDown != null){
 			selectedButton.unselect();
 			selectedButton = selectedButton.toDown;
 			selectedButton.select();
-		}	
+		}
 	}
 }

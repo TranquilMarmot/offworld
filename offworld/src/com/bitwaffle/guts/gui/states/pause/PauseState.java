@@ -1,6 +1,7 @@
 package com.bitwaffle.guts.gui.states.pause;
 
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
 import com.bitwaffle.guts.gui.states.pause.buttons.DebugButton;
 import com.bitwaffle.guts.gui.states.pause.buttons.LoadButton;
@@ -12,7 +13,7 @@ import com.bitwaffle.guts.gui.states.pause.buttons.SaveButton;
  * 
  * @author TranquilMarmot
  */
-public class PauseGUIState extends GUIState{
+public class PauseState extends GUIState{
 	/** How many columns and rows each pause button has */
 	private int buttonCols = 2, buttonRows = 3;
 	
@@ -33,7 +34,7 @@ public class PauseGUIState extends GUIState{
 	public float buttonRowWidth(){ return buttonRowWidth; }
 	public float buttonColHeight(){ return buttonColHeight; }
 
-	public PauseGUIState(){
+	public PauseState(){
 		super();
 		
 		debugButton = new DebugButton(this);
@@ -70,5 +71,22 @@ public class PauseGUIState extends GUIState{
 	
 	@Override
 	protected void onLoseCurrentState() {
+	}
+	
+	@Override
+	public Button initialLeftButton() {
+		return quitButton;
+	}
+	@Override
+	public Button initialRightButton() {
+		return debugButton;
+	}
+	@Override
+	public Button initialUpButton() {
+		return quitButton;
+	}
+	@Override
+	public Button initialDownButton() {
+		return loadButton;
 	}
 }

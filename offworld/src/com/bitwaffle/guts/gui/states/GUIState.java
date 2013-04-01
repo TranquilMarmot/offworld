@@ -46,9 +46,39 @@ public abstract class GUIState {
 		objectsToAdd = new Stack<GUIObject>();
 	}
 	
-	public void setParentGUI(GUI gui){
-		this.gui = gui;
-	}
+	/**
+	 * Any actions to be performed when becoming the current state,
+	 * besides adding objects from the state. Usually want to set the
+	 * selected button to a button in this state.
+	 */
+	protected abstract void onGainCurrentState();
+	
+	
+	/**
+	 * Any actions to be performed when losing the current state,
+	 * besides removing objects from the state.
+	 */
+	protected abstract void onLoseCurrentState();
+	
+	/**
+	 * Initial button to go to when no button is selected and left is pressed.
+	 * Returning null is ok, it just won't go to any button.
+	 */
+	public abstract Button initialLeftButton();
+	
+	/** Initial button to go to when no button is selected and right is pressed. null ok. */
+	public abstract Button initialRightButton();
+	
+	/** Initial button to go to when no button is selected and up is pressed. null ok. */
+	public abstract Button initialUpButton();
+	
+	/** Initial button to go to when no button is selected and down is pressed. null ok. */
+	public abstract Button initialDownButton();
+	
+	/**
+	 * @param gui New GUI that this state is using
+	 */
+	public void setParentGUI(GUI gui){ this.gui = gui; }
 	
 	/**
 	 * Called when this state becomes the current state of a GUI
@@ -70,12 +100,6 @@ public abstract class GUIState {
 	}
 	
 	/**
-	 * Any actions to be performed when becoming the current state,
-	 * besides adding objects from the state.
-	 */
-	protected abstract void onGainCurrentState();
-	
-	/**
 	 * Called when this state gets removes from a GUI
 	 * @param gui GUI state is being removed from
 	 */
@@ -92,12 +116,6 @@ public abstract class GUIState {
 		
 		onLoseCurrentState();
 	}
-	
-	/**
-	 * Any actions to be performed when losing the current state,
-	 * besides removing objects from the state.
-	 */
-	protected abstract void onLoseCurrentState();
 	
 	/**
 	 * Hides all buttons owned by this manager
@@ -169,45 +187,23 @@ public abstract class GUIState {
 		}
 	}
 	
-	/**
-	 * @param o Object to add to GUI
-	 */
-	public void addObject(GUIObject o){
-		objectsToAdd.push(o);
-	}
+	/** @param o Object to add to GUI */
+	public void addObject(GUIObject o){ objectsToAdd.push(o); }
 	
-	/**
-	 * @param o Object to remove from GUI
-	 */
-	public void removeObject(GUIObject o){
-		objectsToAdd.push(o);
-	}
+	/** @param o Object to remove from GUI */
+	public void removeObject(GUIObject o){ objectsToAdd.push(o); }
 	
-	/**
-	 * @return An iterator that goes through every GUIObject currently in the GUI
-	 */
-	public Iterator<GUIObject> getObjectIterator(){
-		return objects.iterator();
-	}
+	/** @return An iterator that goes through every GUIObject currently in the GUI */
+	public Iterator<GUIObject> getObjectIterator(){ return objects.iterator(); }
 	
-	/**
-	 * @param b Button to add to GUI
-	 */
-	public void addButton(Button b){
-		buttonsToAdd.push(b);
-	}
+	/** @param b Button to add to GUI */
+	public void addButton(Button b){ buttonsToAdd.push(b); }
 	
-	/**
-	 * @param b Button to remove from GUI
-	 */
-	public void removeButton(Button b){
-		buttonsToRemove.push(b);
-	}
+	/** @param b Button to remove from GUI */
+	public void removeButton(Button b){ buttonsToRemove.push(b); }
 	
-	/**
-	 * @return Iterator that goes through every button currently in the GUI
-	 */
-	public Iterator<Button> getButtonIterator(){
-		return buttons.iterator();
-	}
+	/** @return Iterator that goes through every button currently in the GUI */
+	public Iterator<Button> getButtonIterator(){ return buttons.iterator(); }
+	
+	
 }
