@@ -1,11 +1,9 @@
 package com.bitwaffle.guts.input.listeners.button;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import com.badlogic.gdx.InputProcessor;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.gui.button.Button;
 
 public class ButtonInputListener implements InputProcessor {
 	/** 
@@ -71,24 +69,8 @@ public class ButtonInputListener implements InputProcessor {
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
 		// check if the mouse hovers over any buttons and select them
-		if(Game.gui != null){
-			// check if the mouse went off of the selected button
-			if(Game.gui.selectedButton != null && !Game.gui.selectedButton.contains(screenX, screenY)){
-				Game.gui.selectedButton.unselect();
-				Game.gui.selectedButton = null;
-			}
-			
-			// check every button to see if it's selected
-			Iterator<Button> it = Game.gui.getButtonIterator();
-			while (it.hasNext()) {
-				Button b = it.next();
-				
-				if (b != Game.gui.selectedButton && b.isActive() && b.isVisible() && b.contains(screenX, screenY)) {
-					Game.gui.selectedButton = b;
-					b.select();
-				}
-			}
-		}
+		if(Game.gui != null)
+			Game.gui.checkForButtonSelection(screenX, screenY);
 		
 		return false;
 	}

@@ -60,7 +60,12 @@ public class GUI {
 	/** Current state of the GUI (manages buttons and objects) */
 	protected GUIState currentState;
 	
-	public Button selectedButton;
+	/**
+	 * Currently selected button.
+	 * This is only really relevant to when the GUI is being used
+	 * by the keyboard or by a controller.
+	 */
+	private Button selectedButton;
 	
 	/**
 	 * Create a new GUI
@@ -263,6 +268,65 @@ public class GUI {
 		renderer.modelview.translate(obj.x, obj.y, 0.0f);
 		renderer.sendModelViewToShader();
 		obj.render(renderer, false, false);
+	}
+	
+	/**
+	 * Checks if the given point contains a button and, if it does,
+	 * sets that button as the selected button.
+	 * @param screenX X location of pointer
+	 * @param screenY Y location of pointer
+	 */
+	public void checkForButtonSelection(float screenX, float screenY){
+		// check if the mouse went off of the selected button
+		if(Game.gui.selectedButton != null && !Game.gui.selectedButton.contains(screenX, screenY)){
+			Game.gui.selectedButton.unselect();
+			Game.gui.selectedButton = null;
+		}
+		
+		// check every button to see if it's selected
+		Iterator<Button> it = Game.gui.getButtonIterator();
+		while (it.hasNext()) {
+			Button b = it.next();
+			
+			if (b != Game.gui.selectedButton && b.isActive() && b.isVisible() && b.contains(screenX, screenY)) {
+				Game.gui.selectedButton = b;
+				b.select();
+			}
+		}
+	}
+
+	/**
+	 * @return Whether or not a button is currently selected
+	 */
+	boolean hasSelectedButton(){
+		return selectedButton != null;
+	}
+	
+	/**
+	 * Press the selected button
+	 */
+	public void selectedButtonDown(){
+		if(selectedButton != null)
+			selectedButton.press();
+	}
+	
+	/**
+	 * Release the selected button
+	 */
+	public void selectedButtonUp(){
+		if(selectedButton != null)
+			selectedButton.release();
+	}
+	
+	/**
+	 * Set the selected button to a new button
+	 * @param newButton New button to be selected.
+	 */
+	public void setSelectedButton(Button newButton){
+		if(selectedButton != null)
+			selectedButton.unselect();
+		selectedButton = newButton;
+		selectedButton.select();
 	}
 
 	/**

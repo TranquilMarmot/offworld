@@ -137,25 +137,8 @@ public class PlayerInputListener implements InputProcessor {
 		if(camera.currentMode() == Camera.Modes.FOLLOW)
 			player.setTarget(MathHelper.toWorldSpace(screenX, screenY, Render2D.camera));
 		
-		// check if the mouse hovers over any buttons and select them
-		if(Game.gui != null){
-			// check if the mouse went off of the selected button
-			if(Game.gui.selectedButton != null && !Game.gui.selectedButton.contains(screenX, screenY)){
-				Game.gui.selectedButton.unselect();
-				Game.gui.selectedButton = null;
-			}
-			
-			// check every button to see if it's selected
-			Iterator<Button> it = Game.gui.getButtonIterator();
-			while (it.hasNext()) {
-				Button b = it.next();
-				
-				if (b != Game.gui.selectedButton && b.isActive() && b.isVisible() && b.contains(screenX, screenY)) {
-					Game.gui.selectedButton = b;
-					b.select();
-				}
-			}
-		}
+		if(Game.gui != null)
+			Game.gui.checkForButtonSelection(screenX, screenY);
 		
 		return false;
 	}

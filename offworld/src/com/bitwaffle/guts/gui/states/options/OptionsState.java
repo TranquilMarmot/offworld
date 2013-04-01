@@ -66,9 +66,7 @@ public class OptionsState extends GUIState {
 	protected void onGainCurrentState() {
 		Game.physics.addEntity(sandbox, false);
 		
-		Game.gui.selectedButton.unselect();
-		Game.gui.selectedButton = backButton;
-		Game.gui.selectedButton.select();
+		Game.gui.setSelectedButton(backButton);
 	}
 
 	@Override

@@ -24,10 +24,7 @@ public class GUIInputListener implements InputProcessor {
 				Game.gui.selectDown();
 				break;
 			case Input.Keys.ENTER:
-				if(Game.gui.selectedButton != null){
-					Game.gui.selectedButton.press();
-					Game.gui.selectedButton.release();
-				}
+				Game.gui.selectedButtonDown();
 				break;
 			}
 			return true;
@@ -38,6 +35,11 @@ public class GUIInputListener implements InputProcessor {
 
 	@Override
 	public boolean keyUp(int keycode) {
+		
+		switch(keycode){
+		case Input.Keys.ENTER:
+			Game.gui.selectedButtonUp();
+		}
 		
 		return false;
 	}

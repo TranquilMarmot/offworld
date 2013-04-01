@@ -65,8 +65,7 @@ public class PauseState extends GUIState{
 
 	@Override
 	protected void onGainCurrentState() {
-		Game.gui.selectedButton = quitButton;
-		quitButton.select();
+		Game.gui.setSelectedButton(quitButton);
 	}
 	
 	@Override

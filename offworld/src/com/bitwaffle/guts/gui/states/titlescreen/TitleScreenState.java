@@ -40,10 +40,9 @@ public class TitleScreenState extends GUIState {
 
 	@Override
 	protected void onGainCurrentState() {
-Game.physics.addEntity(sandbox, false);
+		Game.physics.addEntity(sandbox, false);
 		
-		Game.gui.selectedButton = startGameButton;
-		startGameButton.select();
+		Game.gui.setSelectedButton(startGameButton);
 	}
 
 	@Override
