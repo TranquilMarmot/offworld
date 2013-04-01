@@ -29,7 +29,7 @@ public class GUI {
 	 * setCurrentState() method
 	 */
 	public enum States{
-		NONE(new GUIState()),           // nothing
+		NONE(new GUIState(){ protected void onGainCurrentState() {} protected void onLoseCurrentState() {}}), // nothing
 		PAUSE(new PauseGUIState()),     // displayed when the game is paused
 		TITLESCREEN(new TitleScreen()), // the title screen
 		OPTIONS(new OptionsScreen());   // the options screen
@@ -126,40 +126,6 @@ public class GUI {
 		
 		for(Button butt : buttons)
 			butt.update(timeStep);
-	}
-	
-	/**
-	 * Moves on to the next button in the UI
-	 */
-	public void nextButton(){
-		if(selectedButton == null){
-			selectedButton = buttons.getFirst();
-			selectedButton.select();
-		} else {
-			selectedButton.unselect();
-			int index = buttons.indexOf(selectedButton) + 1;
-			if(index >= buttons.size())
-				selectedButton = buttons.getFirst();
-			else
-				selectedButton = buttons.get(index);
-			selectedButton.select();
-		}
-	}
-	
-	
-	public void previousButton(){
-		if(selectedButton == null){
-			selectedButton = buttons.getLast();
-			selectedButton.select();
-		} else {
-			selectedButton.unselect();
-			int index = buttons.indexOf(selectedButton) - 1;
-			if(index < 0)
-				selectedButton = buttons.getLast();
-			else
-				selectedButton = buttons.get(index);
-			selectedButton.select();
-		}
 	}
 	
 	/**
@@ -298,6 +264,9 @@ public class GUI {
 		obj.render(renderer, false, false);
 	}
 
+	/**
+	 * Selects the button to the right of the currently selected button
+	 */
 	public void selectRight() {
 		if(selectedButton != null && selectedButton.toRight != null){
 			selectedButton.unselect();
@@ -306,6 +275,9 @@ public class GUI {
 		}
 	}
 	
+	/**
+	 * Selects the button to the left of the currently selected button
+	 */
 	public void selectLeft() {
 		if(selectedButton != null && selectedButton.toLeft != null){
 			selectedButton.unselect();
@@ -314,6 +286,9 @@ public class GUI {
 		}
 	}
 	
+	/**
+	 * Selects the button above the currently selected button
+	 */
 	public void selectUp() {
 		if(selectedButton != null && selectedButton.toUp != null){
 			selectedButton.unselect();
@@ -322,6 +297,9 @@ public class GUI {
 		}
 	}
 	
+	/**
+	 * Selects the button below the selected button
+	 */
 	public void selectDown() {
 		if(selectedButton != null && selectedButton.toDown != null){
 			selectedButton.unselect();

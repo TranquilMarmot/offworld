@@ -54,18 +54,14 @@ public class OptionsScreen extends GUIState {
 		
 		sandbox = new GLSLSandbox("shaders/sandbox/wiggle.frag");
 	}
-
-	@Override
-	public void gainCurrentState(){
-		super.gainCurrentState();
-		
-		Game.physics.addEntity(sandbox, false);
-	}
 	
 	@Override
-	public void loseCurrentState(){
-		super.loseCurrentState();
-		
+	protected void onGainCurrentState() {
+		Game.physics.addEntity(sandbox, false);
+	}
+
+	@Override
+	protected void onLoseCurrentState() {
 		Game.physics.removeEntity(sandbox, false);
 	}
 }

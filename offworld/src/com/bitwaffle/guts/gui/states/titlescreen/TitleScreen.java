@@ -36,29 +36,17 @@ public class TitleScreen extends GUIState {
 		this.addButton(optionsButton);
 		this.addObject(spinningPizza);
 	}
-	
-	@Override
-	public void update(float timeStep){
-		super.update(timeStep);
-	}
-	
 
 	@Override
-	public void gainCurrentState(){
-		super.gainCurrentState();
-		
-		Game.physics.addEntity(sandbox, false);
+	protected void onGainCurrentState() {
+Game.physics.addEntity(sandbox, false);
 		
 		Game.gui.selectedButton = startGameButton;
 		startGameButton.select();
 	}
-	
+
 	@Override
-	public void loseCurrentState(){
-		super.loseCurrentState();
-		
+	protected void onLoseCurrentState() {
 		Game.physics.removeEntity(sandbox, false);
 	}
-	
-	
 }

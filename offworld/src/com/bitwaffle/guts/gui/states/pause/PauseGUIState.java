@@ -1,9 +1,6 @@
 package com.bitwaffle.guts.gui.states.pause;
 
-import java.util.Iterator;
-
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
 import com.bitwaffle.guts.gui.states.pause.buttons.DebugButton;
 import com.bitwaffle.guts.gui.states.pause.buttons.LoadButton;
@@ -35,26 +32,7 @@ public class PauseGUIState extends GUIState{
 	public int buttonRows(){ return buttonRows; }
 	public float buttonRowWidth(){ return buttonRowWidth; }
 	public float buttonColHeight(){ return buttonColHeight; }
-	
-	/**
-	 * Set the size of pause menu buttons
-	 * @param width New width of buttons
-	 * @param height New height of buttons
-	 */
-	public void setPauseMenuButtonSize(float width, float height){
-		//this.pauseMenuButtonWidth = width;
-		//this.pauseMenuButtonHeight = height;
-		
-		Iterator<Button> it = this.getButtonIterator();
-		while(it.hasNext()){
-			//Button butt = it.next();
-			
-			//if(butt instanceof RectangleButton)
-			//	((RectangleButton) butt).setSize(pauseMenuButtonWidth, pauseMenuButtonHeight);
-			// TODO
-		}
-	}
-	
+
 	public PauseGUIState(){
 		super();
 		
@@ -65,10 +43,13 @@ public class PauseGUIState extends GUIState{
 		
 		debugButton.toLeft = quitButton;
 		debugButton.toDown = loadButton;
+		
 		loadButton.toUp = debugButton;
 		loadButton.toLeft = saveButton;
+		
 		saveButton.toRight = loadButton;
 		saveButton.toUp = quitButton;
+		
 		quitButton.toRight = debugButton;
 		quitButton.toDown = saveButton;
 		
@@ -80,12 +61,14 @@ public class PauseGUIState extends GUIState{
 		// update to add buttons
 		this.update(1.0f/60.0f);
 	}
-	
+
 	@Override
-	public void gainCurrentState(){
-		super.gainCurrentState();
-		
+	protected void onGainCurrentState() {
 		Game.gui.selectedButton = quitButton;
 		quitButton.select();
+	}
+	
+	@Override
+	protected void onLoseCurrentState() {
 	}
 }

@@ -15,7 +15,7 @@ import com.bitwaffle.guts.gui.button.Button;
  * 
  * @author TranquilMarmot
  */
-public class GUIState {
+public abstract class GUIState {
 	/** GUI this state belongs to */
 	protected GUI gui;
 	/** Whether or not this state is the current state of the GUI */
@@ -65,7 +65,15 @@ public class GUIState {
 			gui.addObject(objs.next());
 		
 		this.isCurrentState = true;
+		
+		onGainCurrentState();
 	}
+	
+	/**
+	 * Any actions to be performed when becoming the current state,
+	 * besides adding objects from the state.
+	 */
+	protected abstract void onGainCurrentState();
 	
 	/**
 	 * Called when this state gets removes from a GUI
@@ -81,7 +89,15 @@ public class GUIState {
 			gui.removeObject(it2.next());
 		
 		this.isCurrentState = false;
+		
+		onLoseCurrentState();
 	}
+	
+	/**
+	 * Any actions to be performed when losing the current state,
+	 * besides removing objects from the state.
+	 */
+	protected abstract void onLoseCurrentState();
 	
 	/**
 	 * Hides all buttons owned by this manager
