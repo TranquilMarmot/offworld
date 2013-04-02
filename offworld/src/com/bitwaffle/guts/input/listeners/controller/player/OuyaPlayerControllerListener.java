@@ -1,19 +1,12 @@
 package com.bitwaffle.guts.input.listeners.controller.player;
 
-import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.mappings.Ouya;
-import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.offworld.entities.player.Player;
 
 public class OuyaPlayerControllerListener extends PlayerControllerListener {
 
 	public OuyaPlayerControllerListener(Player player) {
 		super(player);
-	}
-
-	@Override
-	protected KeyBindings getBinding(Controller controller, int buttonCode) {
-		return null;
 	}
 
 	@Override
@@ -27,8 +20,8 @@ public class OuyaPlayerControllerListener extends PlayerControllerListener {
 	}
 
 	@Override
-	protected float movementThreshold() {
-		return 0.25f;
+	protected boolean isOutsideMovementDeadzone(float value) {
+		return value > 0.25f || value < -0.25f;
 	}
 
 	@Override
@@ -52,22 +45,22 @@ public class OuyaPlayerControllerListener extends PlayerControllerListener {
 	}
 
 	@Override
-	protected boolean isPastJetpackTriggerThreshold(float value) {
+	protected boolean isOutsideJetpackTriggerDeadzone(float value) {
 		return value >= 0.5f;
 	}
 
 	@Override
-	protected boolean isPastShootingTriggerThreshold(float value) {
+	protected boolean isOutsideShootingTriggerDeadzone(float value) {
 		return value >= 0.5f;
 	}
 
 	@Override
-	protected boolean isAboveXAimThreshold(float value) {
+	protected boolean isOutsideXAimDeadzone(float value) {
 		return value > 0.05f || value < -0.05f;
 	}
 
 	@Override
-	protected boolean isAboveYAimThreshold(float value) {
+	protected boolean isOustdieYAimDeadzone(float value) {
 		return value > 0.05f || value < -0.05f;
 	}
 }

@@ -5,13 +5,12 @@ import com.badlogic.gdx.controllers.ControllerListener;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.offworld.entities.player.Player;
 
 /**
  * Handles all controller
+ * 
  * @author TranquilMarmot
- *
  */
 public abstract class PlayerControllerListener implements ControllerListener {
 	/** Player this controller is controlling */
@@ -30,15 +29,6 @@ public abstract class PlayerControllerListener implements ControllerListener {
 	@Override
 	public void disconnected(Controller controller){ System.out.println(controller.getName() + " disconnected"); }
 	
-	// TODO is this necessary?
-	protected abstract KeyBindings getBinding(Controller controller, int buttonCode);
-	
-	/**
-	 * @param buttonCode Button being pressed
-	 * @return Whether or not given button is jump button
-	 */
-	protected abstract boolean isJump(int buttonCode);
-	
 	@Override
 	public boolean buttonDown (Controller controller, int buttonCode){
 		if(isJump(buttonCode)){
@@ -53,6 +43,12 @@ public abstract class PlayerControllerListener implements ControllerListener {
 	public boolean buttonUp (Controller controller, int buttonCode){
 		return false;
 	}
+	
+	/**
+	 * @param buttonCode Button being pressed
+	 * @return Whether or not given button is jump button
+	 */
+	protected abstract boolean isJump(int buttonCode);
 	
 	/**
 	 * @param axisCode Axis being moved
@@ -70,13 +66,13 @@ public abstract class PlayerControllerListener implements ControllerListener {
 	 * @param value Axis value
 	 * @return Whether or not the player's X aim should be changed
 	 */
-	protected abstract boolean isAboveXAimThreshold(float value);
+	protected abstract boolean isOutsideXAimDeadzone(float value);
 	
 	/**
 	 * @param value Axis value
 	 * @return Whether or not the player's Y aim should be changed
 	 */
-	protected abstract boolean isAboveYAimThreshold(float value);
+	protected abstract boolean isOustdieYAimDeadzone(float value);
 	
 	/**
 	 * @param axisCode Axis being moved
@@ -99,19 +95,19 @@ public abstract class PlayerControllerListener implements ControllerListener {
 	protected abstract boolean isRTriggerAxis(int axisCode, float value);
 	
 	/** @return How much the thumbstuck has to move to move the player */
-	protected abstract float movementThreshold();
+	protected abstract boolean isOutsideMovementDeadzone(float value);
 	
 	/** @return Threshold for activating jetpack with trigger */
-	protected abstract boolean isPastJetpackTriggerThreshold(float value);
+	protected abstract boolean isOutsideJetpackTriggerDeadzone(float value);
 	
 	/** @return Threshold for activating shooting */
-	protected abstract boolean isPastShootingTriggerThreshold(float value);
+	protected abstract boolean isOutsideShootingTriggerDeadzone(float value);
 	
 	@Override
 	public boolean axisMoved (Controller controller, int axisCode, float value){
 		// check if it's the movement axis
 		if(isMovementAxis(axisCode)){
-			if(value < -movementThreshold() || value > movementThreshold()){
+			if(isOutsideMovementDeadzone(value)){
 				if(value > 0)
 					this.player.moveRight();
 				else if(value < 0)
@@ -123,14 +119,14 @@ public abstract class PlayerControllerListener implements ControllerListener {
 			return true;
 			
 		// check if aiming on X axis
-		} else if(isXAimAxis(axisCode) && isAboveXAimThreshold(value)){
+		} else if(isXAimAxis(axisCode) && isOutsideXAimDeadzone(value)){
 			float x = player.getLocation().x + value * 5.0f;
 			float y = player.getCurrentTarget().y;
 			player.setTarget(new Vector2(x, y));
 			return true;
 			
 		// check if aiming on Y axis
-		} else if(isYAimAxis(axisCode) && isAboveYAimThreshold(value)){
+		} else if(isYAimAxis(axisCode) && isOustdieYAimDeadzone(value)){
 			float x = player.getCurrentTarget().x;
 			float y = player.getLocation().y - value * 5.0f;
 			player.setTarget(new Vector2(x, y));
@@ -139,7 +135,7 @@ public abstract class PlayerControllerListener implements ControllerListener {
 		
 		// left trigger movement (jetpack)
 		} else if(isLTriggerAxis(axisCode, value)){
-			if(isPastJetpackTriggerThreshold(value))
+			if(isOutsideJetpackTriggerDeadzone(value))
 				player.enableJetpack();
 			else
 				player.disableJetpack();
@@ -148,7 +144,7 @@ public abstract class PlayerControllerListener implements ControllerListener {
 			
 		// right trigger movement (fire)
 		} else if(isRTriggerAxis(axisCode, value)){
-			if(isPastShootingTriggerThreshold(value))
+			if(isOutsideShootingTriggerDeadzone(value))
 				player.beginShooting();
 			else
 				player.endShooting();

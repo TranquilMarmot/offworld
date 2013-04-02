@@ -250,9 +250,8 @@ public class GUI {
 			while(it.hasNext()){
 				GUIObject obj = it.next();
 				
-				if(obj.isVisible()){
+				if(obj.isVisible())
 					renderObject(obj, renderer);
-				}
 			}
 		} catch(NullPointerException e){
 			Gdx.app.error(LOGTAG, "Got null gui object (ignoring)");
@@ -332,7 +331,7 @@ public class GUI {
 	/**
 	 * Selects the button to the right of the currently selected button
 	 */
-	public void selectRight() {
+	public void moveRight() {
 		if(selectedButton == null){
 			selectedButton = currentState.initialRightButton();
 		} else if(selectedButton.toRight != null){
@@ -345,7 +344,7 @@ public class GUI {
 	/**
 	 * Selects the button to the left of the currently selected button
 	 */
-	public void selectLeft() {
+	public void moveLeft() {
 		if(selectedButton == null){
 			selectedButton = currentState.initialLeftButton();
 		} else if(selectedButton.toLeft != null){
@@ -358,7 +357,7 @@ public class GUI {
 	/**
 	 * Selects the button above the currently selected button
 	 */
-	public void selectUp() {
+	public void moveUp() {
 		if(selectedButton == null){
 			selectedButton = currentState.initialUpButton();
 		} else if(selectedButton.toUp != null){
@@ -371,7 +370,7 @@ public class GUI {
 	/**
 	 * Selects the button below the selected button
 	 */
-	public void selectDown() {
+	public void moveDown() {
 		if(selectedButton == null){
 			selectedButton = currentState.initialDownButton();
 		} else if(selectedButton.toDown != null){

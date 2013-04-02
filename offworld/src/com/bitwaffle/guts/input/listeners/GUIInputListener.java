@@ -12,16 +12,16 @@ public class GUIInputListener implements InputProcessor {
 		if(!Game.gui.isCurrentState(GUI.States.NONE)){
 			switch(keycode){
 			case Input.Keys.RIGHT:
-				Game.gui.selectRight();
+				Game.gui.moveRight();
 				break;
 			case Input.Keys.LEFT:
-				Game.gui.selectLeft();
+				Game.gui.moveLeft();
 				break;
 			case Input.Keys.UP:
-				Game.gui.selectUp();
+				Game.gui.moveUp();
 				break;
 			case Input.Keys.DOWN:
-				Game.gui.selectDown();
+				Game.gui.moveDown();
 				break;
 			case Input.Keys.ENTER:
 				Game.gui.selectedButtonDown();
