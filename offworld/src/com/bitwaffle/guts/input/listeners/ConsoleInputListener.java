@@ -4,6 +4,11 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.bitwaffle.guts.gui.console.Console;
 
+/**
+ * Grabs keys being typed and sends them to a console
+ * 
+ * @author TranquilMarmot
+ */
 public class ConsoleInputListener implements InputProcessor {
 	
 	/** Console this listener is controlling */

@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.input.listeners.controller;
+package com.bitwaffle.guts.input.controller;
 
 public class XboxMappings {
 	public static final int BUTTON_A = 0;

@@ -1,7 +1,8 @@
 package com.bitwaffle.guts.gui.states.movement.buttons.left;
 
+import com.badlogic.gdx.Input;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.gui.states.movement.buttons.MovementButton;
-import com.bitwaffle.guts.input.KeyBindings;
 
 /**
  * Button to move left
@@ -13,16 +14,16 @@ public abstract class MoveLeftButton extends MovementButton {
 
 	@Override
 	protected void onRelease() {
-		KeyBindings.CONTROL_LEFT.release();
+		Game.input.multiplexer.keyUp(Input.Keys.A);
 	}
 	@Override
 	protected void onSlideRelease() {
-		KeyBindings.CONTROL_LEFT.release();
+		Game.input.multiplexer.keyUp(Input.Keys.A);
 	}
 	@Override
 	protected void onPress() {
 		//Game.vibration.vibrate(25);
-		KeyBindings.CONTROL_LEFT.press();
+		Game.input.multiplexer.keyDown(Input.Keys.A);
 	}
 	
 	@Override

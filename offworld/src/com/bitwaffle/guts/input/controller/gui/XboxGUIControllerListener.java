@@ -1,7 +1,7 @@
-package com.bitwaffle.guts.input.listeners.controller.gui;
+package com.bitwaffle.guts.input.controller.gui;
 
 import com.bitwaffle.guts.gui.GUI;
-import com.bitwaffle.guts.input.listeners.controller.XboxMappings;
+import com.bitwaffle.guts.input.controller.XboxMappings;
 
 public class XboxGUIControllerListener extends GUIControllerListener {
 	public XboxGUIControllerListener(GUI gui) {

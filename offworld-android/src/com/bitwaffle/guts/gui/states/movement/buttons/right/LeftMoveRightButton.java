@@ -33,4 +33,12 @@ public class LeftMoveRightButton extends MoveRightButton{
 		Game.resources.textures.getSubImage("rightarrow").render(renderer, this.width, this.height);
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 	}
+
+	@Override
+	protected void onSelect() {
+	}
+
+	@Override
+	protected void onUnselect() {
+	}
 }

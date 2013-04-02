@@ -1,5 +1,6 @@
 package com.bitwaffle.guts.gui.states.movement;
 
+import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
 import com.bitwaffle.guts.gui.states.movement.buttons.jump.LeftJumpButton;
 import com.bitwaffle.guts.gui.states.movement.buttons.jump.RightJumpButton;
@@ -36,5 +37,33 @@ public class MovementGUIState extends GUIState {
 		
 		// update to add all buttons
 		this.update(1.0f / 60.0f);
+	}
+
+	@Override
+	protected void onGainCurrentState() {
+	}
+
+	@Override
+	protected void onLoseCurrentState() {
+	}
+
+	@Override
+	public Button initialLeftButton() {
+		return null;
+	}
+
+	@Override
+	public Button initialRightButton() {
+		return null;
+	}
+
+	@Override
+	public Button initialUpButton() {
+		return null;
+	}
+
+	@Override
+	public Button initialDownButton() {
+		return null;
 	}
 }

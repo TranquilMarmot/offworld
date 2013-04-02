@@ -8,6 +8,11 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.util.MathHelper;
 
+/**
+ * Controls panning/zooming the camera
+ * 
+ * @author TranquilMarmot
+ */
 public class CameraInputListener implements GestureListener, InputProcessor {
 	/** Camera this listener is controlling */
 	private Camera camera;

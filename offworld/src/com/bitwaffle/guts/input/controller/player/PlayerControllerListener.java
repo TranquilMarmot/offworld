@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.input.listeners.controller.player;
+package com.bitwaffle.guts.input.controller.player;
 
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerListener;

@@ -1,7 +1,8 @@
 package com.bitwaffle.guts.gui.states.movement.buttons.jump;
 
+import com.badlogic.gdx.Input;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.gui.states.movement.buttons.MovementButton;
-import com.bitwaffle.guts.input.KeyBindings;
 
 /**
  * Button to jump
@@ -13,16 +14,16 @@ public abstract class JumpButton extends MovementButton {
 
 	@Override
 	protected void onRelease() {
-		KeyBindings.CONTROL_JUMP.release();
+		Game.input.multiplexer.keyUp(Input.Keys.SPACE);
 	}
 	@Override
 	protected void onSlideRelease() {
-		KeyBindings.CONTROL_JUMP.release();
+		Game.input.multiplexer.keyUp(Input.Keys.SPACE);
 	}
 	@Override
 	protected void onPress() {
 		//Game.vibration.vibrate(25);
-		KeyBindings.CONTROL_JUMP.press();
+		Game.input.multiplexer.keyDown(Input.Keys.SPACE);
 	}
 	
 	@Override

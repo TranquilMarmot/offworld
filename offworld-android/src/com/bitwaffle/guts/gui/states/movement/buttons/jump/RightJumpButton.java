@@ -32,5 +32,13 @@ public class RightJumpButton extends JumpButton{
 		Game.resources.textures.getSubImage("uparrow").render(renderer, this.width, this.height);
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 	}
+
+	@Override
+	protected void onSelect() {
+	}
+
+	@Override
+	protected void onUnselect() {
+	}
 	
 }

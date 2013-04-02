@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.input.listeners.controller.gui;
+package com.bitwaffle.guts.input.controller.gui;
 
 import com.badlogic.gdx.controllers.mappings.Ouya;
 import com.bitwaffle.guts.gui.GUI;
