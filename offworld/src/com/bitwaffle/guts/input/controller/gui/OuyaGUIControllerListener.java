@@ -29,4 +29,10 @@ public class OuyaGUIControllerListener extends GUIControllerListener {
 		return value > 0.25f || value < -0.25f;
 	}
 
+	@Override
+	protected boolean isPauseButton(int buttonCode) {
+		// TODO this needs to be handled elsewhere
+		return false;
+	}
+
 }

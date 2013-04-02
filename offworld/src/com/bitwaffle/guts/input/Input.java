@@ -2,9 +2,16 @@ package com.bitwaffle.guts.input;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.controllers.Controllers;
+import com.badlogic.gdx.controllers.mappings.Ouya;
 import com.badlogic.gdx.input.GestureDetector;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.input.controller.gui.OuyaGUIControllerListener;
+import com.bitwaffle.guts.input.controller.gui.XboxGUIControllerListener;
+import com.bitwaffle.guts.input.controller.player.OuyaPlayerControllerListener;
+import com.bitwaffle.guts.input.controller.player.XboxPlayerControllerListener;
 import com.bitwaffle.guts.input.listeners.CameraInputListener;
 import com.bitwaffle.guts.input.listeners.ConsoleInputListener;
 import com.bitwaffle.guts.input.listeners.gui.GUIInputListener;
@@ -49,6 +56,16 @@ public class Input {
 		multiplexer.addProcessor(consoleInputListener);
 		
 		Gdx.input.setInputProcessor(multiplexer);
+		
+		
+		// FIXME temp?
+		for(Controller con : Controllers.getControllers()){
+			if(con.getName().equals(Ouya.ID)){
+				con.addListener(new OuyaGUIControllerListener(Game.gui));
+			}else if(con.getName().contains("XBOX 360")){
+				con.addListener(new XboxGUIControllerListener(Game.gui));
+			}
+		}
 		
 	}
 }

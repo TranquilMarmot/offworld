@@ -4,6 +4,7 @@ import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerListener;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.math.Vector3;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.gui.GUI;
 
 public abstract class GUIControllerListener implements ControllerListener {
@@ -15,6 +16,8 @@ public abstract class GUIControllerListener implements ControllerListener {
 	protected abstract boolean isSelectYAxis(int axisCode);
 	
 	protected abstract boolean isOutsideSelectDeadzone(float value);
+	
+	protected abstract boolean isPauseButton(int buttonCode);
 	
 	/** GUI being controlled by this listener */
 	private GUI gui;
@@ -33,6 +36,9 @@ public abstract class GUIControllerListener implements ControllerListener {
 	public boolean buttonDown(Controller controller, int buttonCode) {
 		if(isConfirmButton(buttonCode)){
 			gui.selectedButtonDown();
+			return true;
+		} else if(isPauseButton(buttonCode)){
+			Game.togglePause();
 			return true;
 		}
 		
@@ -56,9 +62,9 @@ public abstract class GUIControllerListener implements ControllerListener {
 			else if(value < 0)
 				gui.moveLeft();
 		} else if(isSelectYAxis(axisCode) && isOutsideSelectDeadzone(value)){
-			if(value > 0)
+			if(value < 0)
 				gui.moveUp();
-			else if(value < 0)
+			else if(value > 0)
 				gui.moveDown();
 		}
 		return false;
@@ -70,9 +76,9 @@ public abstract class GUIControllerListener implements ControllerListener {
 			gui.moveUp();
 		else if(value == PovDirection.south)
 			gui.moveDown();
-		else if(value == PovDirection.east)
-			gui.moveLeft();
 		else if(value == PovDirection.west)
+			gui.moveLeft();
+		else if(value == PovDirection.east)
 			gui.moveRight();
 		
 		return false;

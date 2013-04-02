@@ -14,6 +14,8 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.camera.Camera;
+import com.bitwaffle.guts.input.controller.gui.OuyaGUIControllerListener;
+import com.bitwaffle.guts.input.controller.gui.XboxGUIControllerListener;
 import com.bitwaffle.guts.input.controller.player.OuyaPlayerControllerListener;
 import com.bitwaffle.guts.input.controller.player.XboxPlayerControllerListener;
 import com.bitwaffle.guts.input.listeners.player.PlayerInputListener;
@@ -137,10 +139,11 @@ public class PhysicsHelper {
 		
 		// TODO have each player press start
 		for(Controller con : Controllers.getControllers()){
-			if(con.getName().equals(Ouya.ID))
+			if(con.getName().equals(Ouya.ID)){
 				con.addListener(new OuyaPlayerControllerListener(Game.players[0]));
-			else if(con.getName().contains("XBOX 360"))
+			}else if(con.getName().contains("XBOX 360")){
 				con.addListener(new XboxPlayerControllerListener(Game.players[0]));
+			}
 		}
 		
 		// swap button press listener for player control listener

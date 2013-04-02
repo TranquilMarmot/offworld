@@ -28,4 +28,9 @@ public class XboxGUIControllerListener extends GUIControllerListener {
 		return value > 0.25f || value < -0.25f;
 	}
 
+	@Override
+	protected boolean isPauseButton(int buttonCode) {
+		return buttonCode == XboxMappings.BUTTON_START;
+	}
+
 }
