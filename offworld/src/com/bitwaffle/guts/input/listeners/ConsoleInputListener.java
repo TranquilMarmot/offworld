@@ -38,11 +38,6 @@ public class ConsoleInputListener implements InputProcessor {
 				console.scrollHistory(1);
 				return true;
 			}
-		} else if(keycode == Input.Keys.T){
-			if(!console.isOn()){
-				console.show();
-				console.autoClose = true;
-			}
 		}
 		
 		return false;
@@ -57,6 +52,11 @@ public class ConsoleInputListener implements InputProcessor {
 	@Override
 	public boolean keyTyped(char c) {
 		if(!console.isOn()){
+			if(c == 't'){
+				console.show();
+				console.autoClose = true;
+				return true;
+			}
 			// special check for / key
 			if(c == '/'){
 				console.openWithSlash();
