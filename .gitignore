@@ -16,3 +16,6 @@ offworld-desktop/bin/
 
 # screenshots
 screenshots/
+
+
+*.db

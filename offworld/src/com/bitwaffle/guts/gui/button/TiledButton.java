@@ -10,10 +10,10 @@ import com.bitwaffle.guts.graphics.Render2D;
  */
 public abstract class TiledButton extends RectangleButton {
 	/** Width/height of each column/row */
-	private float columnWidth, rowHeight;
+	protected float columnWidth, rowHeight;
 	
 	/** How many rows/columns this button has */
-	private int rows, columns;
+	protected int rows, columns;
 	
 	public TiledButton(float x, float y, int columns, int rows, float columnWidth, float rowHeight){
 		super(x, y, (columns * columnWidth), (rows * rowHeight));
