@@ -1,34 +1,30 @@
 package com.bitwaffle.guts.desktop.devmode.builder
 
-import java.awt.Frame
-import java.awt.event.WindowAdapter
-import java.awt.event.WindowEvent
+import java.awt.BorderLayout
 import java.awt.Label
-import com.bitwaffle.guts.Game
 import java.awt.Panel
-import com.bitwaffle.guts.input.Keys
-import com.bitwaffle.guts.gui.GUI
+import java.awt.event.ActionEvent
+import java.awt.event.ActionListener
+
+import com.badlogic.gdx.math.Vector2
+import com.bitwaffle.guts.Game
 import com.bitwaffle.guts.Game
 import com.bitwaffle.guts.desktop.devmode.DevModeDisplay
-import java.awt.BorderLayout
-import javax.swing.BoxLayout
-import java.io.PrintWriter
-import java.io.BufferedWriter
-import java.io.OutputStreamWriter
-import javax.swing.JButton
 import com.bitwaffle.guts.graphics.Render2D
 import com.bitwaffle.guts.graphics.camera.Camera
-import java.awt.event.ActionListener
-import java.awt.event.ActionEvent
-import com.bitwaffle.guts.physics.PhysicsHelper
+import com.bitwaffle.guts.gui.GUI
 import com.bitwaffle.offworld.entities.dynamic.BreakableRock
-import com.badlogic.gdx.math.Vector2
+
+import javax.swing.BoxLayout
+import javax.swing.JButton
 
 object Builder {
-	private val koonami: Array[Keys] = Array(
-		Keys.DPAD_UP, Keys.DPAD_UP, Keys.DPAD_DOWN, Keys.DPAD_DOWN,
+  /*
+	private val koonami: Array[Int] = Array(
+		Input.Keys.UP, Keys.DPAD_UP, Keys.DPAD_DOWN, Keys.DPAD_DOWN,
 		Keys.DPAD_LEFT, Keys.DPAD_RIGHT, Keys.DPAD_LEFT, Keys.DPAD_RIGHT,
 		Keys.B, Keys.A, Keys.ENTER)
+		*/
 	private var currentKey = 0
 	private var currentKeyDown = false
 
@@ -41,6 +37,7 @@ object Builder {
 	 */
 	def update {
 		if (Game.gui.isCurrentState(GUI.States.TITLESCREEN)) {
+		  /*
 			if (koonami(currentKey) isPressed) {
 				currentKeyDown = true
 			} else if (currentKeyDown && !(koonami(currentKey) isPressed)) {
@@ -51,6 +48,7 @@ object Builder {
 					enterDevMode
 				}
 			}
+			*/
 		}
 
 		numEntsLabel setText "Num Ents:    " + Game.physics.numEntities()

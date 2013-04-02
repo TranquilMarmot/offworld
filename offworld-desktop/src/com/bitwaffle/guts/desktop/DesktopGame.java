@@ -4,13 +4,11 @@ import org.lwjgl.Sys;
 import org.lwjgl.input.Mouse;
 
 import com.badlogic.gdx.Files.FileType;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.desktop.devmode.DevModeDisplay;
 import com.bitwaffle.guts.desktop.devmode.builder.Builder;
-import com.bitwaffle.guts.input.KeyBindings;
 
 /**
  * @author TranquilMarmot
@@ -48,14 +46,14 @@ public class DesktopGame extends Game {
 	protected void update(){
 		super.update();
 
-		// desktop has its own screenshot code
-    	if(KeyBindings.SYS_SCREENSHOT.pressedOnce())
-			Screenshot.takeScreenshot(windowWidth, windowHeight);
+		// desktop has its own screenshot code TODO
+    	//if(KeyBindings.SYS_SCREENSHOT.pressedOnce())
+		//	Screenshot.takeScreenshot(windowWidth, windowHeight);
     	
     	// FIXME get out of fullscreen too!!
-    	if(KeyBindings.SYS_FULLSCREEN.pressedOnce()){
-    		Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode());
-    	}
+    	//if(KeyBindings.SYS_FULLSCREEN.pressedOnce()){
+    	//	Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode());
+    	//}
     	
     	Builder.update();
 	}

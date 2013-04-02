@@ -135,8 +135,8 @@ public class PlayerInputListener implements InputProcessor {
 		if(camera.currentMode() == Camera.Modes.FOLLOW)
 			player.setTarget(MathHelper.toWorldSpace(screenX, screenY, Render2D.camera));
 		
-		if(Game.gui != null)
-			Game.gui.checkForButtonSelection(screenX, screenY);
+		//if(Game.gui != null)
+		//	Game.gui.checkForButtonSelection(screenX, screenY);
 		
 		return false;
 	}

@@ -48,6 +48,8 @@ public class TitleScreenState extends GUIState {
 	@Override
 	protected void onLoseCurrentState() {
 		Game.physics.removeEntity(sandbox, false);
+		
+		Game.gui.setSelectedButton(null);
 	}
 
 	@Override

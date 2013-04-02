@@ -1,12 +1,49 @@
 package com.bitwaffle.guts.input.listeners;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.gui.console.Console;
 
 public class ConsoleInputListener implements InputProcessor {
+	
+	/** Console this listener is controlling */
+	private Console console;
+	
+	public ConsoleInputListener(Console console){
+		this.console = console;
+	}
 
 	@Override
 	public boolean keyDown(int keycode) {
+		if(keycode == Input.Keys.GRAVE){
+				console.toggle();
+				return true;
+		} else if(keycode == Input.Keys.BACKSPACE){
+			if(console.isOn()){
+				console.backspace();
+				return true;
+			}
+		} else if(keycode == Input.Keys.ENTER){
+			if(console.isOn()){
+				console.submit();
+				return true;	
+			}
+		} else if(keycode == Input.Keys.UP){
+			if(console.isOn()){
+				console.scrollHistory(-1);
+				return true;
+			}
+		} else if(keycode == Input.Keys.DOWN){
+			if(console.isOn()){
+				console.scrollHistory(1);
+				return true;
+			}
+		} else if(keycode == Input.Keys.T){
+			if(!console.isOn()){
+				console.show();
+				console.autoClose = true;
+			}
+		}
 		
 		return false;
 	}
@@ -19,18 +56,18 @@ public class ConsoleInputListener implements InputProcessor {
 
 	@Override
 	public boolean keyTyped(char c) {
-		if(!Game.gui.console.isOn()){
+		if(!console.isOn()){
 			// special check for / key
 			if(c == '/'){
-				Game.gui.console.openWithSlash();
+				console.openWithSlash();
 				return true;
 			} else
 				return false;
-		} else if(Game.gui.console.isOn()){
+		} else if(console.isOn()){
 			// print character to console if it's on
 			if (!Character.isIdentifierIgnorable(c) &&
 					!(c == '`') && !(c == '\n') && !(c == '\r')){
-				Game.gui.console.putCharacter(c);
+				console.putCharacter(c);
 				return true;
 			} else
 				return false;
@@ -64,8 +101,8 @@ public class ConsoleInputListener implements InputProcessor {
 
 	@Override
 	public boolean scrolled(int amount) {
-		if(Game.gui.console.isOn())
-			Game.gui.console.scroll(-amount);
+		if(console.isOn())
+			console.scroll(-amount);
 		return false;
 	}
 

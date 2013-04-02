@@ -12,7 +12,6 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.font.BitmapFont;
 import com.bitwaffle.guts.gui.GUIObject;
-import com.bitwaffle.guts.input.KeyBindings;
 
 
 /**
@@ -73,7 +72,7 @@ public class Console extends GUIObject{
 	private int blinkInterval = 30;
 	
 	/** Whether or not to close the console when line is submitted */
-	private boolean autoClose = false;
+	public boolean autoClose = false;
 
 	/** Maximum alpha for console text */
 	private float textMaxAlpha = 0.9f;
@@ -203,6 +202,7 @@ public class Console extends GUIObject{
 	 * Checks for any input keys that control the console
 	 */
 	private void checkForButtonPresses(){
+		/*
 		if(KeyBindings.SYS_CONSOLE_TOGGLE.pressedOnce())
 			this.toggle();
 		
@@ -218,7 +218,7 @@ public class Console extends GUIObject{
 		
 		if(KeyBindings.SYS_CONSOLE_NEXT_COMMAND.pressedOnce() && this.isOn())
 			scrollHistory(1);
-		
+		*/
 		//if(KeyBindings.SYS_CONSOLE_SCROLL_DOWN.pressedOnce())
 		//	this.scrollDown(1); // TODO holding scrolldown
 		
@@ -232,11 +232,12 @@ public class Console extends GUIObject{
 			this.autoClose = true;
 		}
 		*/
-		
+		/*
 		if(KeyBindings.SYS_CHAT.pressedOnce()){
 			this.show();
 			this.autoClose = true;
 		}
+		*/
 	}
 	
 	public void openWithSlash(){

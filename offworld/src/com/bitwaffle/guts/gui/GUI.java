@@ -297,7 +297,7 @@ public class GUI {
 	/**
 	 * @return Whether or not a button is currently selected
 	 */
-	boolean hasSelectedButton(){
+	public boolean hasSelectedButton(){
 		return selectedButton != null;
 	}
 	
@@ -325,7 +325,8 @@ public class GUI {
 		if(selectedButton != null)
 			selectedButton.unselect();
 		selectedButton = newButton;
-		selectedButton.select();
+		if(selectedButton != null)
+			selectedButton.select();
 	}
 
 	/**

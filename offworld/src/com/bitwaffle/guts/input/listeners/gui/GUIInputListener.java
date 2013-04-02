@@ -1,11 +1,14 @@
-package com.bitwaffle.guts.input.listeners.button;
+package com.bitwaffle.guts.input.listeners.gui;
 
 import java.util.LinkedList;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.gui.GUI;
 
-public class ButtonInputListener implements InputProcessor {
+public class GUIInputListener implements InputProcessor {
+	
 	/** 
 	 * Array of pointers, gets expanded if necessary (if number of pointers down is > length)
 	 * Given a MotionEvent e,  calling e.getPointerId(e.getActionIndex()) will give you the index
@@ -13,24 +16,58 @@ public class ButtonInputListener implements InputProcessor {
 	 */
 	private LinkedList<ButtonPointer> pointers;
 	
-	public ButtonInputListener(){
+	/** GUI this listener is controlling */
+	private GUI gui;
+	
+	public GUIInputListener(GUI gui){
+		this.gui = gui;
 		pointers = new LinkedList<ButtonPointer>();
 	}
-	
+
 	@Override
 	public boolean keyDown(int keycode) {
-
+		if(!gui.isCurrentState(GUI.States.NONE)){
+			switch(keycode){
+			case Input.Keys.RIGHT:
+				gui.moveRight();
+				break;
+			case Input.Keys.LEFT:
+				gui.moveLeft();
+				break;
+			case Input.Keys.UP:
+				gui.moveUp();
+				break;
+			case Input.Keys.DOWN:
+				gui.moveDown();
+				break;
+			case Input.Keys.ENTER:
+				gui.selectedButtonDown();
+				break;
+			case Input.Keys.ESCAPE:
+				Game.togglePause();
+				break;
+			}
+			return true;
+		}
+		
 		return false;
 	}
 
 	@Override
 	public boolean keyUp(int keycode) {
-
+		
+		switch(keycode){
+		case Input.Keys.ENTER:
+			gui.selectedButtonUp();
+			return true;
+		}
+		
 		return false;
 	}
 
 	@Override
-	public boolean keyTyped(char c) {
+	public boolean keyTyped(char character) {
+		
 		return false;
 	}
 
@@ -50,7 +87,6 @@ public class ButtonInputListener implements InputProcessor {
 			pointers.add(new ButtonPointer());
 		
 		pointers.get(pointerID).up(pointerX, pointerY);
-		
 		return false;
 	}
 
@@ -61,17 +97,17 @@ public class ButtonInputListener implements InputProcessor {
 	}
 
 	@Override
-	public boolean scrolled(int amount) {
-			
-		return false;
-	}
-
-	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
 		// check if the mouse hovers over any buttons and select them
 		if(Game.gui != null)
 			Game.gui.checkForButtonSelection(screenX, screenY);
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(int amount) {
 		
 		return false;
 	}
+
 }

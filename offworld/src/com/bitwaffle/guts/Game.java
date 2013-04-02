@@ -8,7 +8,6 @@ import com.badlogic.gdx.Gdx;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.input.Input;
-import com.bitwaffle.guts.input.KeyBindings;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.Resources;
 import com.bitwaffle.offworld.entities.player.Player;
@@ -145,15 +144,6 @@ public abstract class Game implements ApplicationListener {
 			// GUI gets updated even if we're not paused
 			if(gui != null)
 				gui.update(FIXED_TIMESTEP);
-		}
-		
-    	// check for pause button press
-		if(KeyBindings.SYS_PAUSE.pressedOnce()){
-			if(gui.console.isOn())
-				gui.console.hide();
-			else{
-				togglePause();
-			}
 		}
 		
 		updateFPS(timeBeforeLoop);

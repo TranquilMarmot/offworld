@@ -3,12 +3,11 @@ package com.bitwaffle.guts.input;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.input.GestureDetector;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.input.listeners.CameraInputListener;
 import com.bitwaffle.guts.input.listeners.ConsoleInputListener;
-import com.bitwaffle.guts.input.listeners.GUIInputListener;
-import com.bitwaffle.guts.input.listeners.KeyBindingListener;
-import com.bitwaffle.guts.input.listeners.button.ButtonInputListener;
+import com.bitwaffle.guts.input.listeners.gui.GUIInputListener;
 
 /**
  * Handles the input multiplexer and instances of useful input processors.
@@ -18,12 +17,6 @@ import com.bitwaffle.guts.input.listeners.button.ButtonInputListener;
 public class Input {
 	/** The input multiplexer */
 	public InputMultiplexer multiplexer;
-	
-	/** Presses/releases things in the {@link Keys} enum */
-	public KeyBindingListener keyBindingListener;
-	
-	/** Listener for detecting UI button presses */
-	public ButtonInputListener buttonPressListener;
 	
 	/** Gesture detector for zooming/panning camera*/
 	public GestureDetector cameraGestureListener;
@@ -44,16 +37,12 @@ public class Input {
 		multiplexer = new InputMultiplexer();
 		
 		// initialize processors
-		keyBindingListener = new KeyBindingListener();
-		buttonPressListener = new ButtonInputListener();
-		guiInputListener = new GUIInputListener();
+		guiInputListener = new GUIInputListener(Game.gui);
 		cameraInputListener = new CameraInputListener(Render2D.camera);
 		cameraGestureListener = new GestureDetector(cameraInputListener);
-		consoleInputListener = new ConsoleInputListener();
+		consoleInputListener = new ConsoleInputListener(Game.gui.console);
 		
 		// add to multiplexer
-		multiplexer.addProcessor(keyBindingListener);
-		multiplexer.addProcessor(buttonPressListener);
 		multiplexer.addProcessor(guiInputListener);
 		multiplexer.addProcessor(cameraGestureListener);
 		multiplexer.addProcessor(cameraInputListener);
