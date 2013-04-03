@@ -30,12 +30,20 @@ public class Jetpack {
 	/** How fast the jetpack depletes/refuels */
 	private float depleteRate = 0.5f, rechargeRate = 0.4f;
 	
+	/** 
+	 * Whether or not the jetpack is recharging.
+	 * The jetpack only recharges once the player touches the ground and doesn't
+	 * stop charging til it hits 100 or the player uses the jetpack again.
+	 */
+	private boolean isRecharging;
+	
 	/**
 	 * @param player Player owning this jetpack
 	 */
 	public Jetpack(Player player){
 		this.player = player;
 		jetpackOn = false;
+		isRecharging = false;
 		
 		jetpackEmitter = new ParticleEmitter(player.getLayer() - 1, new JetpackEmitterSettings(player));
 		jetpackEmitter.deactivate();
@@ -49,12 +57,17 @@ public class Jetpack {
 		if(jetpackOn && fuel > 0.0f){
 			applyForce();
 			fuel -= depleteRate;
+			isRecharging = false;
 		}
 		
-		if(player.getJumpSensor().numContacts() > 0 && fuel < 100.0f){
+		if(isRecharging && fuel < 100.0f){
 			fuel += rechargeRate;
 			if(fuel > 100.0f)
 				fuel = 100.0f;
+		}
+		
+		if(player.getJumpSensor().numContacts() > 0){
+			isRecharging = true;
 		}
 		
 		if(fuel <= 0.0f){
