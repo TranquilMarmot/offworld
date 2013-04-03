@@ -18,7 +18,7 @@ import com.bitwaffle.guts.util.MathHelper;
  */
 public class Camera extends Entity {
 	/** Initial values for camera */
-	private static final float DEFAULT_CAMX = 1.0f, DEFAULT_CAMY = -30.0f, DEFAULT_CAMZ = 0.075f;
+	private static final float DEFAULT_CAMX = 1.0f, DEFAULT_CAMY = -30.0f, DEFAULT_CAMZ = 0.03f;
 	
 	/** Current zoom level of camera (smaller it is, the smaller everything will be rendered) */
 	private float zoom;

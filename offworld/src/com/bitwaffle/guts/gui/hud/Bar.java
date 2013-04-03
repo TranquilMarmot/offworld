@@ -43,15 +43,13 @@ public class Bar extends GUIObject {
 	
 	/**@param percent New percent for this bar to represent */
 	public void setPercent(float newPercent){
-		float oldPercent = percent;
 		this.percent = newPercent;
-		
 		float fillWidth = backgroundRenderer.totalWidth() * (percent / 100.0f);
 		
-		if((newPercent - oldPercent) < 0.0f){
+		if(fillWidth > fillRenderer.totalWidth()){
 			while(fillRenderer.totalWidth() < fillWidth)
 				fillRenderer.setColumnWidth(fillRenderer.columnWidth() + 0.01f);
-		} else if((newPercent - oldPercent) > 0.0f){
+		} else if(fillWidth < fillRenderer.totalWidth()){
 			while(fillRenderer.totalWidth() > fillWidth)
 				fillRenderer.setColumnWidth(fillRenderer.columnWidth() - 0.01f);
 		}

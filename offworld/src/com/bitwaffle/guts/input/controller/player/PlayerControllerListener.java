@@ -136,9 +136,9 @@ public abstract class PlayerControllerListener implements ControllerListener {
 		// left trigger movement (jetpack)
 		} else if(isLTriggerAxis(axisCode, value)){
 			if(isOutsideJetpackTriggerDeadzone(value))
-				player.enableJetpack();
+				player.jetpack.enable();
 			else
-				player.disableJetpack();
+				player.jetpack.disable();
 			
 			return true;
 			

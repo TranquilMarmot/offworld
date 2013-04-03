@@ -63,8 +63,8 @@ public class PlayerInputListener implements InputProcessor {
 		case Input.Keys.W:
 		case Input.Keys.UP:
 			if(player.getJumpSensor().numContacts() <= 0){
-				if(!player.jetpackEnabled())
-					player.enableJetpack();
+				if(!player.jetpack.isEnabled())
+					player.jetpack.enable();
 			} else 
 				player.jump();
 			return true;
@@ -91,8 +91,8 @@ public class PlayerInputListener implements InputProcessor {
 		case Input.Keys.SPACE:
 		case Input.Keys.W:
 		case Input.Keys.UP:
-			if(player.jetpackEnabled())
-				player.disableJetpack();
+			if(player.jetpack.isEnabled())
+				player.jetpack.disable();
 			return true;
 			
 		default:

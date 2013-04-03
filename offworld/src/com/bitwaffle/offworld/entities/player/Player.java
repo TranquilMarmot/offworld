@@ -8,7 +8,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.guts.entities.particles.ParticleEmitter;
 import com.bitwaffle.guts.graphics.EntityRenderer;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.interfaces.Firearm;
@@ -46,8 +45,6 @@ public class Player extends BoxEntity implements FirearmHolder{
 	private final float JUMP_COOLDOWN = 0.5f;
 	/** How much force the player jumps with */
 	private final float JUMP_FORCE = 5.0f;
-	/** Amount of force jetpack outputs */
-	private final float JETPACK_FORCE = 0.375f;
 	
 	/** What the player is aiming at */
 	private Vector2 target;
@@ -57,10 +54,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 	
 	/** Whether or not the player is moving left/right */
 	private boolean movingRight, movingLeft;
-	
-	/** Whether or not the player is using the jetpack */
-	private boolean jetpackEnabled;
-	
+
 	/** Describes which way the player is moving/facing */
 	private boolean facingRight = false;
 	
@@ -73,8 +67,8 @@ public class Player extends BoxEntity implements FirearmHolder{
 	/** How fast the player has to be moving for the animation to be stepped */
 	private float minAnimationVelocity = 0.5f;
 	
-	/** Particle emitter for jetpack */
-	private ParticleEmitter jetpackEmitter;
+	/** To infinity and yada yada */
+	public Jetpack jetpack;
 	
 	/**
 	 * Noargs constructor ONLY to be used with serialization!!!
@@ -103,15 +97,13 @@ public class Player extends BoxEntity implements FirearmHolder{
 	private void init(){
 		movingRight = false;
 		movingLeft = false;
-		jetpackEnabled = false;
 		
 		firearm = new Pistol(this, pistolDamage, pistolForce, pistolRange, pistolFiringRate);
 		target = new Vector2();
 		
 		bodyAnimation = new PlayerBodyAnimation(Game.resources.textures.getAnimation("player-body"), this);
-
-		jetpackEmitter = new ParticleEmitter(this.getLayer() - 1, new JetpackEmitterSettings(this));
-		jetpackEmitter.deactivate();
+		
+		jetpack = new Jetpack(this);
 	}
 	
 	@Override
@@ -135,8 +127,6 @@ public class Player extends BoxEntity implements FirearmHolder{
 	@Override
 	public void update(float timeStep){
 		super.update(timeStep);
-		
-		jetpackEmitter.update(timeStep);
 		
 		// update animation
 		if(body != null){
@@ -165,13 +155,13 @@ public class Player extends BoxEntity implements FirearmHolder{
 		// add time to jump timer
 		jumpTimer += timeStep;
 		
+		jetpack.update(timeStep);
+		
 		// apply forces based on toggles
 		if(movingLeft)
 			applyLeftForce();
 		if(movingRight)
 			applyRightForce();
-		if(jetpackEnabled)
-			applyJetpackForce();
 	}
 	
 	/**
@@ -198,33 +188,6 @@ public class Player extends BoxEntity implements FirearmHolder{
 			}
 		}
 		return false;
-	}
-	
-	/** Start using the jetpack */
-	public void enableJetpack(){ 
-		jetpackEnabled = true;
-		jetpackEmitter.activate();
-	}
-	
-	/** Stop using the jetpack */
-	public void disableJetpack(){
-		jetpackEnabled = false;
-		jetpackEmitter.deactivate();
-	}
-	
-	/** @return Whether or not the jetpack is being used */
-	public boolean jetpackEnabled(){ return jetpackEnabled; }
-	
-	/**
-	 * Activates the player's jetpack
-	 */
-	private void applyJetpackForce(){
-		Vector2 linVec = body.getLinearVelocity();
-		if(linVec.y <= maxVelocityX){
-			linVec.y += JETPACK_FORCE;
-			body.setLinearVelocity(linVec);
-			jetpackEmitter.activate();
-		}
 	}
 	
 	/**
@@ -381,4 +344,10 @@ public class Player extends BoxEntity implements FirearmHolder{
 		this.target.set(kryo.readObject(input, Vector2.class));
 	}
 	*/
+	
+	@Override
+	public void cleanup(){
+		super.cleanup();
+		jetpack.cleanup();
+	}
 }
