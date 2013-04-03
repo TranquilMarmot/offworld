@@ -82,7 +82,6 @@ public class MathHelper {
 		return degrees * PI / 180.0f;
 	}
 	
-	
 	/**
 	 * Convert a screen-space vector to a world-space vector
 	 * @param projection Projection matrix to use for conversion

@@ -2,6 +2,7 @@ package com.bitwaffle.offworld.entities.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
@@ -21,10 +22,13 @@ public class PlayerRenderer implements EntityRenderer {
 	 */
 	public static final float SCALE = 0.95f;
 	
+	private static Matrix4 tempMatrix = new Matrix4();
+	
 	@Override
 	public void render(Render2D renderer, Entity ent, boolean renderDebug){
 		Player player = (Player) ent;
 
+		tempMatrix.set(renderer.modelview);
 		if(renderDebug)
 			renderDebug(renderer, ent);
 		else{
@@ -72,6 +76,10 @@ public class PlayerRenderer implements EntityRenderer {
 			renderer.quad.render(SCALE, SCALE, facingRight, facingRight);
 			Gdx.gl20.glDisable(GL20.GL_BLEND);
 		}
+		
+		renderer.modelview.set(tempMatrix);
+		renderer.sendModelViewToShader();
+		player.jetpack.render(renderer);
 	}
 	
 	public void renderDebug(Render2D renderer, Entity ent){

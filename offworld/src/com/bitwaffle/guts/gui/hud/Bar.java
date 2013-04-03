@@ -65,11 +65,13 @@ public class Bar extends GUIObject {
 		renderer.program.setUniform("vColor", backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
 		backgroundRenderer.render(renderer);
 		
-		float amount = backgroundRenderer.totalWidth() - fillRenderer.totalWidth();
-		renderer.modelview.translate(-amount, 0.0f, 0.0f);
-		
-		renderer.program.setUniform("vColor", fillColor[0], fillColor[1], fillColor[2], fillColor[3]);
-		fillRenderer.render(renderer);
+		if(percent >= 1.0f){
+			float amount = backgroundRenderer.totalWidth() - fillRenderer.totalWidth();
+			renderer.modelview.translate(-amount, 0.0f, 0.0f);
+			
+			renderer.program.setUniform("vColor", fillColor[0], fillColor[1], fillColor[2], fillColor[3]);
+			fillRenderer.render(renderer);
+		}
 	}
 
 	@Override

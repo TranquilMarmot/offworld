@@ -3,6 +3,7 @@ package com.bitwaffle.offworld.entities.player;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.particles.ParticleEmitter;
+import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.gui.hud.JetpackBar;
 
 public class Jetpack {
@@ -48,7 +49,16 @@ public class Jetpack {
 		jetpackEmitter = new ParticleEmitter(player.getLayer() - 1, new JetpackEmitterSettings(player));
 		jetpackEmitter.deactivate();
 		jetpackBar = new JetpackBar(100.0f, 62.0f);
-		Game.gui.addObject(jetpackBar);
+		//Game.gui.addObject(jetpackBar);
+	}
+	
+	public void render(Render2D renderer){
+		if(fuel < 100.0f){
+			renderer.modelview.translate(0.0f, player.getHeight() + 1.0f, 0.0f);
+			renderer.modelview.scale(0.0005f /Render2D.camera.getZoom(), 0.0005f / Render2D.camera.getZoom(), 1.0f);
+			renderer.sendModelViewToShader();
+			jetpackBar.render(renderer, false, false);
+		}
 	}
 	
 	public void update(float timeStep){
@@ -66,15 +76,15 @@ public class Jetpack {
 				fuel = 100.0f;
 		}
 		
-		if(player.getJumpSensor().numContacts() > 0){
+		if(player.getJumpSensor().numContacts() > 0)
 			isRecharging = true;
-		}
 		
 		if(fuel <= 0.0f){
 			this.disable();
 		}
 		
 		jetpackBar.setPercent(fuel);
+		jetpackBar.update(timeStep);
 	}
 	
 	/**
