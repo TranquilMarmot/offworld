@@ -2,7 +2,6 @@ package com.bitwaffle.offworld.entities.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
@@ -22,13 +21,16 @@ public class PlayerRenderer implements EntityRenderer {
 	 */
 	public static final float SCALE = 0.95f;
 	
-	private static Matrix4 tempMatrix = new Matrix4();
+	private JetpackBar jetpackBar;
+	
+	public PlayerRenderer(){
+		jetpackBar = new JetpackBar(100.0f, 62.0f);
+	}
 	
 	@Override
 	public void render(Render2D renderer, Entity ent, boolean renderDebug){
 		Player player = (Player) ent;
 
-		tempMatrix.set(renderer.modelview);
 		if(renderDebug)
 			renderDebug(renderer, ent);
 		else{
@@ -75,11 +77,21 @@ public class PlayerRenderer implements EntityRenderer {
 			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 			renderer.quad.render(SCALE, SCALE, facingRight, facingRight);
 			Gdx.gl20.glDisable(GL20.GL_BLEND);
+			
+			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, -armAngle);
+			renderer.modelview.translate(facingRight ? -rArmLoc.x : rArmLoc.x, -rArmLoc.y, 0.0f);
 		}
 		
-		renderer.modelview.set(tempMatrix);
-		renderer.sendModelViewToShader();
-		player.jetpack.render(renderer);
+		// render the jetpack bar
+		if(player.jetpack.remainingFuel() < 100.0f){
+			renderer.sendModelViewToShader();
+			renderer.modelview.translate(0.0f, player.getHeight() + 1.0f, 0.0f);
+			renderer.modelview.scale(0.0005f /Render2D.camera.getZoom(), 0.0005f / Render2D.camera.getZoom(), 1.0f);
+			renderer.sendModelViewToShader();
+			jetpackBar.setPercent(player.jetpack.remainingFuel());
+			jetpackBar.update(1.0f / Game.currentFPS);
+			jetpackBar.render(renderer, false, false);
+		}
 	}
 	
 	public void renderDebug(Render2D renderer, Entity ent){

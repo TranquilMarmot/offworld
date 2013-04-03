@@ -1,4 +1,6 @@
-package com.bitwaffle.guts.gui.hud;
+package com.bitwaffle.offworld.entities.player;
+
+import com.bitwaffle.guts.gui.hud.Bar;
 
 public class JetpackBar extends Bar {
 	private static final int COLUMNS = 8;

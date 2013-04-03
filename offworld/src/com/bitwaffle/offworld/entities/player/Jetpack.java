@@ -1,11 +1,13 @@
 package com.bitwaffle.offworld.entities.player;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.particles.ParticleEmitter;
-import com.bitwaffle.guts.graphics.Render2D;
-import com.bitwaffle.guts.gui.hud.JetpackBar;
 
+/**
+ * Handles making the player fly through the air
+ * 
+ * @author TranquilMarmot
+ */
 public class Jetpack {
 	/** Amount of force jetpack outputs */
 	private final float JETPACK_FORCE = 0.375f;
@@ -21,9 +23,6 @@ public class Jetpack {
 	
 	/** Particle emitter for jetpack */
 	private ParticleEmitter jetpackEmitter;
-	
-	/** GUI bar representing this jetpack */
-	private JetpackBar jetpackBar;
 	
 	/** How much fuel is left in this jetpack. Should always be between 0 and 100 */
 	private float fuel = 100.0f;
@@ -48,28 +47,21 @@ public class Jetpack {
 		
 		jetpackEmitter = new ParticleEmitter(player.getLayer() - 1, new JetpackEmitterSettings(player));
 		jetpackEmitter.deactivate();
-		jetpackBar = new JetpackBar(100.0f, 62.0f);
-		//Game.gui.addObject(jetpackBar);
-	}
-	
-	public void render(Render2D renderer){
-		if(fuel < 100.0f){
-			renderer.modelview.translate(0.0f, player.getHeight() + 1.0f, 0.0f);
-			renderer.modelview.scale(0.0005f /Render2D.camera.getZoom(), 0.0005f / Render2D.camera.getZoom(), 1.0f);
-			renderer.sendModelViewToShader();
-			jetpackBar.render(renderer, false, false);
-		}
 	}
 	
 	public void update(float timeStep){
 		jetpackEmitter.update(timeStep);
 		
+		// apply force and drain fuel if the jetpack is on
 		if(jetpackOn && fuel > 0.0f){
 			applyForce();
 			fuel -= depleteRate;
 			isRecharging = false;
+			if(fuel <= 0.0f)
+				this.disable();
 		}
 		
+		// add fuel if jetpack is recharging
 		if(isRecharging && fuel < 100.0f){
 			fuel += rechargeRate;
 			if(fuel > 100.0f)
@@ -78,13 +70,11 @@ public class Jetpack {
 		
 		if(player.getJumpSensor().numContacts() > 0)
 			isRecharging = true;
-		
-		if(fuel <= 0.0f){
-			this.disable();
-		}
-		
-		jetpackBar.setPercent(fuel);
-		jetpackBar.update(timeStep);
+	}
+	
+	/** @return How much fuel the jetpack has left, as a percent */
+	public float remainingFuel(){
+		return fuel;
 	}
 	
 	/**
@@ -113,8 +103,4 @@ public class Jetpack {
 	
 	/** @return Whether or not the jetpack is being used */
 	public boolean isEnabled(){ return jetpackOn; }
-	
-	public void cleanup(){
-		Game.gui.removeObject(jetpackBar);
-	}
 }

@@ -344,10 +344,4 @@ public class Player extends BoxEntity implements FirearmHolder{
 		this.target.set(kryo.readObject(input, Vector2.class));
 	}
 	*/
-	
-	@Override
-	public void cleanup(){
-		super.cleanup();
-		jetpack.cleanup();
-	}
 }

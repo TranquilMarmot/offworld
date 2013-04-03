@@ -1,8 +1,8 @@
 package com.bitwaffle.guts.gui.hud;
 
 import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.graphics.shapes.TiledBox;
 import com.bitwaffle.guts.gui.GUIObject;
-import com.bitwaffle.guts.gui.TiledBoxRenderer;
 
 /**
  * A box with a percentage of it filled.
@@ -23,7 +23,7 @@ public class Bar extends GUIObject {
 	private float[] backgroundColor, fillColor;
 	
 	/** Box renderers */
-	private TiledBoxRenderer backgroundRenderer, fillRenderer;
+	private TiledBox backgroundRenderer, fillRenderer;
 	
 	public Bar(float x, float y, int columns, int rows, float columnWidth,
 			float rowHeight, float[] backgroundColor, float[] fillColor) {
@@ -31,10 +31,10 @@ public class Bar extends GUIObject {
 		this.backgroundColor = backgroundColor;
 		this.fillColor = fillColor;
 		
-		backgroundRenderer = new TiledBoxRenderer(columns, rows, columnWidth, rowHeight,
+		backgroundRenderer = new TiledBox(columns, rows, columnWidth, rowHeight,
 				BUTTON_CORNER, BUTTON_SEGMENT, BUTTON_SIDE, BUTTON_MIDDLE);
 		
-		fillRenderer = new TiledBoxRenderer(columns, rows, columnWidth, rowHeight,
+		fillRenderer = new TiledBox(columns, rows, columnWidth, rowHeight,
 				BUTTON_CORNER, BUTTON_SEGMENT, BUTTON_SIDE, BUTTON_MIDDLE);
 	}
 

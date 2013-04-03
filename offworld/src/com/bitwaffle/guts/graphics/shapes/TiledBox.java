@@ -1,10 +1,10 @@
-package com.bitwaffle.guts.gui;
+package com.bitwaffle.guts.graphics.shapes;
 
 import com.badlogic.gdx.math.Matrix4;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 
-public class TiledBoxRenderer {
+public class TiledBox {
 	/** Width/height of each column/row */
 	private float columnWidth, rowHeight;
 	
@@ -31,7 +31,7 @@ public class TiledBoxRenderer {
 	public float totalWidth(){ return this.columns * this.columnWidth; }
 	public float totalHeight(){ return this.rows * this.rowHeight; }
 	
-	public TiledBoxRenderer(int columns, int rows, float columnWidth, float rowHeight,
+	public TiledBox(int columns, int rows, float columnWidth, float rowHeight,
 			String cornerSubImage, String segmentSubImage, String sideSubImage, String middleSubImage){
 		this.rows = rows;
 		this.columns = columns;
@@ -85,12 +85,12 @@ public class TiledBoxRenderer {
 		}
 		
 		/* draw bottom row */
-		// bottom-right cornerl
+		// bottom-right corner
 		renderer.modelview.translate(0.0f, (rowHeight * 2.0f), 0.0f);
 		renderer.sendModelViewToShader();
 		Game.resources.textures.getSubImage(cornerSubImage).render(renderer, columnWidth, rowHeight, false, true);
 		
-		// top row segments
+		// bottom row segments
 		for(int i = 0; i < columns - 2; i++){
 			renderer.modelview.translate(-(columnWidth * 2.0f), 0.0f, 0.0f);
 			renderer.sendModelViewToShader();

@@ -1,7 +1,7 @@
 package com.bitwaffle.guts.gui.button;
 
 import com.bitwaffle.guts.graphics.Render2D;
-import com.bitwaffle.guts.gui.TiledBoxRenderer;
+import com.bitwaffle.guts.graphics.shapes.TiledBox;
 
 /**
  * A button that stretches in segments that can be any size
@@ -22,7 +22,7 @@ public abstract class TiledButton extends RectangleButton {
 	private int rows, columns;
 	
 	/** Used to render button */
-	public TiledBoxRenderer tiledBoxRenderer;
+	public TiledBox tiledBoxRenderer;
 	
 	public TiledButton(float x, float y, int columns, int rows, float columnWidth, float rowHeight){
 		super(x, y, (columns * columnWidth), (rows * rowHeight));
@@ -30,7 +30,7 @@ public abstract class TiledButton extends RectangleButton {
 		this.columns = columns;
 		this.columnWidth = columnWidth;
 		this.rowHeight = rowHeight;
-		tiledBoxRenderer = new TiledBoxRenderer(columns, rows, columnWidth, rowHeight,
+		tiledBoxRenderer = new TiledBox(columns, rows, columnWidth, rowHeight,
 				BUTTON_CORNER, BUTTON_SEGMENT, BUTTON_SIDE, BUTTON_MIDDLE);
 	}
 	
