@@ -30,17 +30,17 @@ public class DestroyableEntity extends DynamicEntity implements Health {
 	}
 
 	@Override
-	public void hurt(int amount) {
+	public void hurt(float amount) {
 		health -= amount;		
 		if(health <= 0)
 			Game.physics.removeEntity(this, true);
 	}
 
 	@Override
-	public void heal(int amount) { health += amount; }
+	public void heal(float amount) { health += amount; }
 	
 
 	@Override
-	public int currentHealth() { return health; }
+	public float currentHealth() { return health; }
 
 }

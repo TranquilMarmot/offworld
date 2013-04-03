@@ -12,6 +12,7 @@ import com.bitwaffle.guts.graphics.EntityRenderer;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.FirearmHolder;
+import com.bitwaffle.offworld.interfaces.Health;
 import com.bitwaffle.offworld.weapons.pistol.Pistol;
 
 /**
@@ -20,13 +21,16 @@ import com.bitwaffle.offworld.weapons.pistol.Pistol;
  * 
  * @author TranquilMarmot
  */
-public class Player extends BoxEntity implements FirearmHolder{
+public class Player extends BoxEntity implements FirearmHolder, Health{
 	/** The player's current firearm */
 	private Firearm firearm;
 	
 	// FIXME temp values
 	private int pistolDamage = 10;
 	private float pistolForce = 2000.0f, pistolRange = 25.0f, pistolFiringRate = 0.3f;
+	
+	/** Player's current health */
+	private float health;
 	
 	/** 
 	 * How fast the player can go on the X axis
@@ -95,6 +99,7 @@ public class Player extends BoxEntity implements FirearmHolder{
 	 * Init method only used in constructor
 	 */
 	private void init(){
+		health = 100.0f;
 		movingRight = false;
 		movingLeft = false;
 		
@@ -328,6 +333,15 @@ public class Player extends BoxEntity implements FirearmHolder{
 	public float getFirearmAngle(){
 		return getArmAngle();
 	}
+
+	@Override
+	public float currentHealth() { return health; }
+
+	@Override
+	public void hurt(float amount) { health -= amount; }
+
+	@Override
+	public void heal(float amount) { health += amount; }
 	
 	/*
 	@Override

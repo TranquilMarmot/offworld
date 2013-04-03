@@ -1,9 +1,11 @@
-package com.bitwaffle.guts.gui.hud;
+package com.bitwaffle.offworld.entities.player;
+
+import com.bitwaffle.guts.gui.hud.Bar;
 
 public class HealthBar extends Bar{
 	private static final int COLUMNS = 8;
 	private static final int ROWS = 2;
-	private static final float COLUMN_WIDTH = 15.0f;
+	private static final float COLUMN_WIDTH = 14.0f;
 	private static final float ROW_HEIGHT = 10.0F;
 	private static final float[] BG_COLOR = { 0.3f, 0.3f, 0.3f, 0.3f };
 	private static final float[] FILL_COLOR = { 0.0f, 1.0f, 0.0f, 1.0f};

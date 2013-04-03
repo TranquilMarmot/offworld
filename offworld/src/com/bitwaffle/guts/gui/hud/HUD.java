@@ -28,8 +28,6 @@ public class HUD extends GUIObject {
 	@SuppressWarnings("unused")
 	private boolean crosshairInGUI;
 	
-	private HealthBar healthBar;
-	
 	/**
 	 * @param gui GUI containing this HUD
 	 */
@@ -39,14 +37,12 @@ public class HUD extends GUIObject {
 		
 		cameraButton = new CameraButton();
 		consoleButton = new ConsoleButton();
-		healthBar = new HealthBar(125.0f, 22.0f);
+		
 		
 		//addCameraButton();
 		//addConsoleButton();
 		//addCrosshair();
 		gui.addObject(new DebugText());
-		gui.addObject(healthBar);
-		//gui.addObject(jetpackBar);
 	}
 
 	@Override

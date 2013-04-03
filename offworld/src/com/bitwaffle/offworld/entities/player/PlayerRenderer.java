@@ -2,6 +2,7 @@ package com.bitwaffle.offworld.entities.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
@@ -22,9 +23,14 @@ public class PlayerRenderer implements EntityRenderer {
 	public static final float SCALE = 0.95f;
 	
 	private JetpackBar jetpackBar;
+	private float jetpackBarYOffset = 2.35f, jetpackBarScale = 0.0005f;
+	
+	private HealthBar healthBar;
+	private float healthBarYOffset = 3.0f, healthBarScale = 0.0005f;
 	
 	public PlayerRenderer(){
 		jetpackBar = new JetpackBar(100.0f, 62.0f);
+		healthBar = new HealthBar(125.0f, 22.0f);
 	}
 	
 	@Override
@@ -82,15 +88,30 @@ public class PlayerRenderer implements EntityRenderer {
 			renderer.modelview.translate(facingRight ? -rArmLoc.x : rArmLoc.x, -rArmLoc.y, 0.0f);
 		}
 		
+		Matrix4 tempmat = new Matrix4();
+		tempmat.set(renderer.modelview);
+		if(player.currentHealth() < 100.0f){
+			renderer.modelview.translate(0.0f, healthBarYOffset, 0.0f);
+			renderer.modelview.scale(healthBarScale / Render2D.camera.getZoom(), healthBarScale / Render2D.camera.getZoom(), 1.0f);
+			renderer.sendModelViewToShader();
+			healthBar.setPercent(player.currentHealth());
+			healthBar.update(1.0f / Game.currentFPS);
+			healthBar.render(renderer, false, false);
+			renderer.modelview.set(tempmat);
+			//renderer.modelview.translate(0.0f, -healthBarYOffset, 0.0f);
+			//renderer.modelview.scale(-healthBarScale /Render2D.camera.getZoom(), -healthBarScale / Render2D.camera.getZoom(), 1.0f);
+		}
+		
 		// render the jetpack bar
 		if(player.jetpack.remainingFuel() < 100.0f){
-			renderer.sendModelViewToShader();
-			renderer.modelview.translate(0.0f, player.getHeight() + 1.0f, 0.0f);
-			renderer.modelview.scale(0.0005f /Render2D.camera.getZoom(), 0.0005f / Render2D.camera.getZoom(), 1.0f);
+			renderer.modelview.translate(0.0f, jetpackBarYOffset, 0.0f);
+			renderer.modelview.scale(jetpackBarScale /Render2D.camera.getZoom(), jetpackBarScale / Render2D.camera.getZoom(), 1.0f);
 			renderer.sendModelViewToShader();
 			jetpackBar.setPercent(player.jetpack.remainingFuel());
 			jetpackBar.update(1.0f / Game.currentFPS);
 			jetpackBar.render(renderer, false, false);
+			//renderer.modelview.scale(-(jetpackBarScale / Render2D.camera.getZoom()), -(jetpackBarScale / Render2D.camera.getZoom()), 1.0f);
+			//renderer.modelview.translate(0.0f, -jetpackBarYOffset, 0.0f);
 		}
 	}
 	

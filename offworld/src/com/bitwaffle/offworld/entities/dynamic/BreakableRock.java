@@ -41,7 +41,7 @@ public class BreakableRock extends DynamicEntity implements Health {
 	private float scale;
 	
 	/** How much health this rock has left */
-	private int health;
+	private float health;
 	
 	/** Color of this rock */
 	private float[] color;
@@ -123,7 +123,7 @@ public class BreakableRock extends DynamicEntity implements Health {
 	}
 
 	@Override
-	public void hurt(int amount) {
+	public void hurt(float amount) {
 		health -= amount;
 		
 		// if no more health, remove from world and add smaller rocks
@@ -178,8 +178,8 @@ public class BreakableRock extends DynamicEntity implements Health {
 	}
 
 	@Override
-	public void heal(int amount) { health += amount; }
+	public void heal(float amount) { health += amount; }
 	@Override
-	public int currentHealth() { return this.health; }
+	public float currentHealth() { return this.health; }
 	
 }
