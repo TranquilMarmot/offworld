@@ -20,10 +20,6 @@ public class CameraButton extends RectangleButton{
 				cameraButtonHeight,
 				cameraButtonWidth,
 				cameraButtonHeight);
-		
-		this.active[0] = 0.1f;
-		this.active[1] = 0.75f;
-		this.active[2] = 0.1f;
 	}
 
 	@Override

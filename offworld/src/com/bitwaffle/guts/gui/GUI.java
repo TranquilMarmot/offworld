@@ -333,51 +333,39 @@ public class GUI {
 	 * Selects the button to the right of the currently selected button
 	 */
 	public void moveRight() {
-		if(selectedButton == null){
-			selectedButton = currentState.initialRightButton();
-		} else if(selectedButton.toRight != null){
-			selectedButton.unselect();
-			selectedButton = selectedButton.toRight;
-			selectedButton.select();
-		}
+		if(selectedButton == null)
+			setSelectedButton(currentState.initialRightButton());
+		else if(selectedButton.toRight != null)
+			setSelectedButton(selectedButton.toRight);
 	}
 	
 	/**
 	 * Selects the button to the left of the currently selected button
 	 */
 	public void moveLeft() {
-		if(selectedButton == null){
-			selectedButton = currentState.initialLeftButton();
-		} else if(selectedButton.toLeft != null){
-			selectedButton.unselect();
-			selectedButton = selectedButton.toLeft;
-			selectedButton.select();
-		}
+		if(selectedButton == null)
+			setSelectedButton(currentState.initialLeftButton());
+		else if(selectedButton.toLeft != null)
+			setSelectedButton(selectedButton.toLeft);
 	}
 	
 	/**
 	 * Selects the button above the currently selected button
 	 */
 	public void moveUp() {
-		if(selectedButton == null){
-			selectedButton = currentState.initialUpButton();
-		} else if(selectedButton.toUp != null){
-			selectedButton.unselect();
-			selectedButton = selectedButton.toUp;
-			selectedButton.select();
-		}
+		if(selectedButton == null)
+			setSelectedButton(currentState.initialUpButton());
+		else if(selectedButton.toUp != null)
+			setSelectedButton(selectedButton.toUp);
 	}
 	
 	/**
 	 * Selects the button below the selected button
 	 */
 	public void moveDown() {
-		if(selectedButton == null){
-			selectedButton = currentState.initialDownButton();
-		} else if(selectedButton.toDown != null){
-			selectedButton.unselect();
-			selectedButton = selectedButton.toDown;
-			selectedButton.select();
-		}
+		if(selectedButton == null)
+			setSelectedButton(currentState.initialDownButton());
+		else if(selectedButton.toDown != null)
+			setSelectedButton(selectedButton.toDown);
 	}
 }

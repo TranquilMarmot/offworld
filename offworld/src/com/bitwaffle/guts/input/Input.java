@@ -10,8 +10,6 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.input.controller.gui.OuyaGUIControllerListener;
 import com.bitwaffle.guts.input.controller.gui.XboxGUIControllerListener;
-import com.bitwaffle.guts.input.controller.player.OuyaPlayerControllerListener;
-import com.bitwaffle.guts.input.controller.player.XboxPlayerControllerListener;
 import com.bitwaffle.guts.input.listeners.CameraInputListener;
 import com.bitwaffle.guts.input.listeners.ConsoleInputListener;
 import com.bitwaffle.guts.input.listeners.gui.GUIInputListener;

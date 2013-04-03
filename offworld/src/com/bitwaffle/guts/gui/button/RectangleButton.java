@@ -11,11 +11,6 @@ public abstract class RectangleButton extends Button {
 	/** width and height of button */
 	protected float width, height;
 	
-	// FIXME these are temporary-ish
-	protected float[] active = { 0.0f, 1.0f, 0.0f, 1.0f };
-	protected float[] disabled = { 0.3f, 0.3f, 0.3f, 1.0f };
-	protected float[] down = { 0.0f, 0.0f, 1.0f, 1.0f };
-	
 	/**
 	 * Create a new rectangular button
 	 * @param x X location of button
@@ -39,16 +34,7 @@ public abstract class RectangleButton extends Button {
 	}
 
 	@Override
-	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical) {
-		if(this.isDown())
-			renderer.program.setUniform("vColor", down[0], down[1], down[2], down[3]);
-		else if(this.isActive())
-			renderer.program.setUniform("vColor", active[0], active[1], active[2], active[3]);
-		else
-			renderer.program.setUniform("vColor", disabled[0], disabled[1], disabled[2], disabled[3]);
-		
-		renderer.quad.render(this.width, this.height, flipHorizontal, flipVertical);
-	}
+	public abstract void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical);
 	
 	/**
 	 * @return Width of button

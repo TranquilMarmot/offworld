@@ -29,9 +29,6 @@ public class ConsoleButton extends RectangleButton{
 				consoleButtonHeight,
 				consoleButtonWidth,
 				consoleButtonHeight);
-		this.active[0] = 0.1f;
-		this.active[1] = 0.75f;
-		this.active[2] = 0.1f;
 		
 		timeSinceTap = 0.0f;
 		firstTap = false;

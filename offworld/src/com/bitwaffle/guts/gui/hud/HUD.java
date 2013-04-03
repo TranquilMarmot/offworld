@@ -30,6 +30,8 @@ public class HUD extends GUIObject {
 	
 	private HealthBar healthBar;
 	
+	private JetpackBar jetpackBar;
+	
 	/**
 	 * @param gui GUI containing this HUD
 	 */
@@ -39,32 +41,34 @@ public class HUD extends GUIObject {
 		
 		cameraButton = new CameraButton();
 		consoleButton = new ConsoleButton();
-		healthBar = new HealthBar(125.0f, 100.0f);
+		healthBar = new HealthBar(125.0f, 22.0f);
+		jetpackBar = new JetpackBar(100.0f, 62.0f);
 		
-		addCameraButton();
-		addConsoleButton();
+		//addCameraButton();
+		//addConsoleButton();
 		//addCrosshair();
 		gui.addObject(new DebugText());
 		gui.addObject(healthBar);
+		gui.addObject(jetpackBar);
 	}
 
 	@Override
 	public void update(float timeStep) {
 		// remove buttons if game is paused
 		if(Game.isPaused()){
-			if(cameraButtonInGUI)
-				removeCameraButton();
-			if(consoleButtonInGUI)
-				removeConsoleButton();
+			//if(cameraButtonInGUI)
+			//	removeCameraButton();
+			//if(consoleButtonInGUI)
+			//	removeConsoleButton();
 			//if(crosshairInGUI)
 			//	removeCrosshair();
 			
 		// add buttons if game isn't paused
 		} else {
-			if(!cameraButtonInGUI)
-				addCameraButton();
-			if(!consoleButtonInGUI)
-				addConsoleButton();
+			//if(!cameraButtonInGUI)
+			//	addCameraButton();
+			//if(!consoleButtonInGUI)
+			//	addConsoleButton();
 			//if(!crosshairInGUI)
 			//	addCrosshair();
 		}
