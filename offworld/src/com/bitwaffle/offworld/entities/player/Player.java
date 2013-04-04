@@ -25,10 +25,6 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 	/** The player's current firearm */
 	private Firearm firearm;
 	
-	// FIXME temp values
-	private int pistolDamage = 10;
-	private float pistolForce = 2000.0f, pistolRange = 25.0f, pistolFiringRate = 0.3f;
-	
 	/** Player's current health */
 	private float health;
 	
@@ -65,11 +61,7 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 	/** Animation for player's legs */
 	protected PlayerBodyAnimation bodyAnimation;
 	
-	/** How fast the animation is played, depending on the player's linear velocity. Higher number means slower animation. */
-	private float animationSpeed = 10.0f;
-	
-	/** How fast the player has to be moving for the animation to be stepped */
-	private float minAnimationVelocity = 0.5f;
+
 	
 	/** To infinity and yada yada */
 	public Jetpack jetpack;
@@ -103,7 +95,8 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 		movingRight = false;
 		movingLeft = false;
 		
-		firearm = new Pistol(this, pistolDamage, pistolForce, pistolRange, pistolFiringRate);
+		// FIXME temp pistol
+		firearm = new Pistol(this);
 		target = new Vector2();
 		
 		bodyAnimation = new PlayerBodyAnimation(Game.resources.textures.getAnimation("player-body"), this);
@@ -122,33 +115,26 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 		jumpSensor = new JumpSensor(this);
 	}
 	
-	/**
-	 * @return The player's jump sensor
-	 */
-	public JumpSensor getJumpSensor(){
-		return jumpSensor;
-	}
-	
 	@Override
 	public void update(float timeStep){
 		super.update(timeStep);
+		bodyAnimation.update(timeStep);
+		jetpack.update(timeStep);
+		jumpTimer += timeStep;
+		facingRight = target.x >= this.location.x;
 		
-		// update animation
+		// apply forces based on toggles
+		if(movingLeft)
+			applyLeftForce();
+		if(movingRight)
+			applyRightForce();
+		
+		// update the location of the target so it moves with the player
 		if(body != null){
 			Vector2 linVec = body.getLinearVelocity();
-			if((linVec.x > minAnimationVelocity || linVec.x < -minAnimationVelocity)){
-				float animationStep = timeStep * (linVec.x / animationSpeed);
-				if(!facingRight) animationStep = -animationStep;
-				bodyAnimation.update(animationStep);
-			}
-			
-			// update the location of the target so it moves with the player
 			target.x += linVec.x * timeStep;
 			target.y += linVec.y * timeStep;
 		}
-		
-		// update which direction the player is facing
-		facingRight = target.x >= this.location.x;
 		
 		// update and shoot pistol
 		if(firearm != null){
@@ -156,17 +142,6 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 			if(this.isShooting)
 				firearm.shootAt(body.getWorld(), target);
 		}
-		
-		// add time to jump timer
-		jumpTimer += timeStep;
-		
-		jetpack.update(timeStep);
-		
-		// apply forces based on toggles
-		if(movingLeft)
-			applyLeftForce();
-		if(movingRight)
-			applyRightForce();
 	}
 	
 	/**
@@ -178,18 +153,14 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 			// if there's a contact, jump!
 			if(jumpSensor.numContacts() >= 1){
 				Vector2 linVec = body.getLinearVelocity();
-				// can only jump if the current vertical speed is within a certain range
-				if(linVec.y <= JUMP_FORCE && linVec.y >= -JUMP_FORCE){
-					//Game.vibration.vibrate(25);
-					Game.resources.sounds.getSound("jump").play();
-					// add force to current velocity and set it
-					linVec.y += JUMP_FORCE;
-					body.setLinearVelocity(linVec);
-					return true;
-				}
+				Game.resources.sounds.getSound("jump").play();
+				// add force to current velocity and set it
+				linVec.y += JUMP_FORCE;
+				body.setLinearVelocity(linVec);
 				
 				// don't forget to reset the timer
 				jumpTimer = 0.0f;
+				return true;
 			}
 		}
 		return false;
@@ -225,6 +196,9 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 		}
 	}
 	
+	/** @return The player's jump sensor */
+	public JumpSensor getJumpSensor(){ return jumpSensor; }
+	
 	/** Start moving right */
 	public void moveRight(){ movingRight = true; }
 	/** Start moving left */
@@ -238,42 +212,20 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 	/** @return Whether or not the player is moving left */
 	public boolean isMovingLeft(){ return movingLeft; }
 
-	/**
-	 * @return Whether or not the player is facing right
-	 */
-	public boolean isFacingRight(){
-		return facingRight;
-	}
+	/** @return Whether or not the player is facing right */
+	public boolean isFacingRight(){ return facingRight; }
 	
-	/**
-	 * Start shootin'!
-	 * @param target Target to start shooting at
-	 */
+	/** @param target Target to start shooting at */
 	public void beginShooting(Vector2 target){
 		this.setTarget(target);
 		beginShooting();
 	}
-	
-	/**
-	 * Start shootin'!
-	 */
-	public void beginShooting(){
-		isShooting = true;
-	}
-	
-	/**
-	 * Stop shooting
-	 */
-	public void endShooting(){
-		isShooting = false;
-	}
-	
-	/**
-	 * @return Whether or not the player is shooting
-	 */
-	public boolean isShooting(){
-		return isShooting;
-	}
+	/** Start shootin'! */
+	public void beginShooting(){ isShooting = true; }
+	/** Stop shooting */
+	public void endShooting(){ isShooting = false; }
+	/** @return Whether or not the player is shooting */
+	public boolean isShooting(){ return isShooting; }
 	
 	/**
 	 * Updates where the player is aiming
@@ -284,23 +236,13 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 			this.target.set(target);
 	}
 	
-	/**
-	 * @return The player's current weapon
-	 */
-	public Firearm getCurrentFirearm(){
-		return firearm;
-	}
+	/** @return The player's current weapon */
+	public Firearm getCurrentFirearm(){ return firearm; }
 	
-	/**
-	 * @return Where the player is aiming
-	 */
-	public Vector2 getCurrentTarget(){
-		return target;
-	}
+	/** @return Where the player is aiming */
+	public Vector2 getCurrentTarget(){ return target; }
 	
-	/**
-	 * @return The angle from the player to the player's target
-	 */
+	/** @return The angle from the player to the player's target */
 	public float getArmAngle(){
 		return MathHelper.angle(this.getLocation(), this.target);
 	}
@@ -325,14 +267,10 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 	}
 	
 	@Override
-	public DynamicEntity getFirearmOwningEntity(){
-		return this;
-	}
+	public DynamicEntity getFirearmOwningEntity(){ return this; }
 	
 	@Override
-	public float getFirearmAngle(){
-		return getArmAngle();
-	}
+	public float getFirearmAngle(){ return getArmAngle(); }
 
 	@Override
 	public float currentHealth() { return health; }

@@ -48,6 +48,7 @@ public class PlayerBodyAnimation extends Animation {
 			{-0.20940018f, 0.81147766f} // 31
 	};
 	
+	/** Names of subimages */
 	private static String jumpSubTex = "player-body-jump", airLeftSubTex = "player-body-inair-l", airRightSubTex = "player-body-inair-r";
 	
 	/** Offset of gun from right arm's shoulder */
@@ -55,6 +56,12 @@ public class PlayerBodyAnimation extends Animation {
 	
 	/** Offset of left arm from right arm's shoulder*/
 	private static final Vector2 lArmOffset = new Vector2(0.02f, 0.04f);
+	
+	/** How fast the animation is played, depending on the player's linear velocity. Higher number means slower animation. */
+	private float animationSpeed = 10.0f;
+	
+	/** How fast the player has to be moving for the animation to be stepped */
+	private float minAnimationVelocity = 0.5f;
 	
 	/** Player this animation belongs to */
 	private Player player;
@@ -89,6 +96,19 @@ public class PlayerBodyAnimation extends Animation {
 	 */
 	public Vector2 getGunOffset(){
 		return gunOffset;
+	}
+	
+	@Override
+	public void update(float timeStep){
+		if(player.body != null){
+			// update animation based on how fast the player is moving
+			Vector2 linVec = player.body.getLinearVelocity();
+			if((linVec.x > minAnimationVelocity || linVec.x < -minAnimationVelocity)){
+				float animationStep = timeStep * (linVec.x / animationSpeed);
+				if(!player.isFacingRight()) animationStep = -animationStep;
+				super.update(animationStep);
+			}	
+		}
 	}
 	
 	@Override

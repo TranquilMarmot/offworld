@@ -17,6 +17,9 @@ import com.bitwaffle.offworld.interfaces.FirearmHolder;
  * @author TranquilMarmot
  */
 public class Pistol implements Firearm {
+	private static int defaultDamage = 10;
+	private static float defaultForce = 2000.0f, defaultFiringRate = 0.3f;
+	
 	/** The owner of this pistol (where the shots come from) */
 	private FirearmHolder owner;
 	
@@ -32,19 +35,22 @@ public class Pistol implements Firearm {
 	/** How long the flash lives and a timer to know when to turn it off */
 	float muzzleFlashTTL = 0.1f, muzzleFlashLived; 
 	
+	public Pistol(FirearmHolder owner){
+		this(owner, defaultDamage, defaultForce, defaultFiringRate);
+	}
+	
 	/**
 	 * Create a new pistol
 	 * @param owner Owner of this pistol (where the shots come from)
 	 * @param damage How much damage this does when hitting stuff that implements the Health interface
 	 * @param force How much force this pistol exerts on stuff it hits
-	 * @param range How far the pistol can shoot
+	 * @param firingRate How fast the pistol can shoot
 	 */
-	public Pistol(FirearmHolder owner, int damage, float force, float range, float firingRate){
+	public Pistol(FirearmHolder owner, int damage, float force, float firingRate){
 		// TODO should probably also include an 'offset' Vector2 to represent the gun's actual location
 		this.owner = owner;
 		this.firingRate = firingRate;
 		timeSinceLastShot = 0.0f;
-		//callback = new ClosestHitRayCastCallback(owner.getLocation());
 		muzzleFlashLived = 0.0f;
 	}
 
