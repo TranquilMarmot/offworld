@@ -26,6 +26,11 @@ public class GUIInputListener implements InputProcessor {
 
 	@Override
 	public boolean keyDown(int keycode) {
+		if(keycode == Input.Keys.ESCAPE){
+			Game.togglePause();
+			return true;
+		}
+		
 		if(!gui.isCurrentState(GUI.States.NONE)){
 			switch(keycode){
 			case Input.Keys.RIGHT:
@@ -42,9 +47,6 @@ public class GUIInputListener implements InputProcessor {
 				break;
 			case Input.Keys.ENTER:
 				gui.selectedButtonDown();
-				break;
-			case Input.Keys.ESCAPE:
-				Game.togglePause();
 				break;
 			}
 			return true;
