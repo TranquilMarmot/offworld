@@ -1,9 +1,12 @@
 package com.bitwaffle.offworld.entities.player;
 
+import java.util.Stack;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.physics.CollisionFilters;
 
 /**
@@ -26,8 +29,8 @@ public class JumpSensor {
 	/** Sensor location, relative to player's center */
 	private float x, y;
 	
-	/** Current number of contacts sensor has with things */
-	private int numContacts;
+	/** Keeps track of what the player is standing on */
+	private Stack<DynamicEntity> contacts;
 
 	/**
 	 * Creates a new jump sensor fixture and adds it to the given player's body
@@ -53,28 +56,38 @@ public class JumpSensor {
 		fixture = player.body.createFixture(jumpSensorDef);
 		fixture.setUserData(this);
 		
-		numContacts = 0;
+		contacts = new Stack<DynamicEntity>();
 	}
 	
 	/**
 	 * Called by {@link ContactHandler} when sensor hits something
 	 */
-	public void beginContact(){
-		numContacts++;
+	public void beginContact(DynamicEntity ent){
+		contacts.push(ent);
 	}
 	
 	/**
 	 * Called by {@link ContactHandler} when sensor stops hitting something
 	 */
-	public void endContact(){
-		numContacts--;
+	public void endContact(DynamicEntity ent){
+		contacts.remove(ent);
 	}
 	
 	/**
 	 * @return Current number of contacts this sensor has with the world
 	 */
 	public int numContacts(){
-		return numContacts;
+		/*
+		 * If an entity is removed while the player is standing on it,
+		 * it never gets a chance to send an endContact() event to this sensor.
+		 * So, we have to check for any null bodies (body is null when the entity isn't
+		 * in the physics world) and remove them from the contact list.
+		 */
+		for(int i = 0; i < contacts.size(); i++)
+			if(contacts.get(i).body == null)
+				contacts.remove(i);
+		
+		return contacts.size();
 	}
 	
 	/**
