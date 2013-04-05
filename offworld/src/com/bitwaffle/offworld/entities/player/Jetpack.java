@@ -9,11 +9,11 @@ import com.bitwaffle.guts.entities.particles.ParticleEmitter;
  * @author TranquilMarmot
  */
 public class Jetpack {
-	/** Amount of force jetpack outputs */
-	private final float JETPACK_FORCE = 20.0f;
-	
 	/** Player this jetpack belongs to */
 	private Player player;
+	
+	/** Amount of force jetpack outputs */
+	private float upwardForce = 20.0f;
 	
 	/** Max speed the player can go on the Y axis */
 	private float maxVelocityY = 15.0f;
@@ -36,6 +36,17 @@ public class Jetpack {
 	/** How fast the jetpack fast recharges */
 	private float fastRechargeRate = 75.0f;
 	
+	/** How much fuel is left before the jetpack starts hovering */
+	private float hoverStartPercent = 50.0f;
+	
+	private float hoverDepleteRate = 20.0f;
+	
+	/** Whether or not the player is hovering (< hoverStartPercent fuel) */
+	private boolean isHovering;
+	
+	/** Force the jetpack outputs if it's hovering */
+	private float hoverForce = 8.8f;
+			
 	/**
 	 * @param player Player owning this jetpack
 	 */
@@ -55,10 +66,15 @@ public class Jetpack {
 	public void update(float timeStep){
 		jetpackEmitter.update(timeStep);
 		
+		isHovering = fuel < hoverStartPercent;
+		
 		// apply force and drain fuel if the jetpack is on
 		if(jetpackOn && fuel > 0.0f){
 			applyForce(timeStep);
-			fuel -= timeStep * depleteRate;
+			if(isHovering)
+				fuel -= timeStep * hoverDepleteRate;
+			else
+				fuel -= timeStep * depleteRate;
 			fastRecharging = false;
 			if(fuel <= 0.0f)
 				this.disable();
@@ -90,7 +106,10 @@ public class Jetpack {
 	private void applyForce(float timeStep){
 		Vector2 linVec = player.body.getLinearVelocity();
 		if(linVec.y <= maxVelocityY){
-			linVec.y += timeStep * JETPACK_FORCE;
+			if(isHovering)
+				linVec.y += timeStep * hoverForce;
+			else
+				linVec.y += timeStep * upwardForce;
 			player.body.setLinearVelocity(linVec);
 			jetpackEmitter.activate();
 		}
