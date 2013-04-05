@@ -56,7 +56,7 @@ public class Bar extends GUIObject {
 	}
 	
 	/** @return Current percent this bar is at */
-	public float currentPresent(){
+	public float currentPercent(){
 		return percent;
 	}
 	
@@ -72,6 +72,20 @@ public class Bar extends GUIObject {
 			renderer.program.setUniform("vColor", fillColor[0], fillColor[1], fillColor[2], fillColor[3]);
 			fillRenderer.render(renderer);
 		}
+	}
+	
+	public void setBackgroundColor(float r, float g, float b, float a){
+		backgroundColor[0] = r;
+		backgroundColor[1] = g;
+		backgroundColor[2] = b;
+		backgroundColor[3] = a;
+	}
+	
+	public void setFillColor(float r, float g, float b, float a){
+		fillColor[0] = r;
+		fillColor[1] = g;
+		fillColor[2] = b;
+		fillColor[3] = a;
 	}
 
 	@Override

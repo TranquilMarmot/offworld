@@ -28,7 +28,7 @@ public class Jetpack {
 	private float fuel = 100.0f;
 	
 	/** How fast the jetpack depletes/refuels */
-	private float depleteRate = 75.0f, rechargeRate = 20.0f;
+	private float depleteRate = 50.0f, rechargeRate = 20.0f;
 	
 	/** The jetpack charges faster after the player lands on the ground */
 	private boolean fastRecharging;
@@ -39,13 +39,13 @@ public class Jetpack {
 	/** How much fuel is left before the jetpack starts hovering */
 	private float hoverStartPercent = 50.0f;
 	
-	private float hoverDepleteRate = 20.0f;
+	private float hoverDepleteRate = 20.0f, hoverRechargeRate = 30.0f;
 	
 	/** Whether or not the player is hovering (< hoverStartPercent fuel) */
 	private boolean isHovering;
 	
 	/** Force the jetpack outputs if it's hovering */
-	private float hoverForce = 8.8f;
+	private float hoverForce = 10.0f;
 			
 	/**
 	 * @param player Player owning this jetpack
@@ -85,6 +85,8 @@ public class Jetpack {
 			// recharges faster after player lands
 			if(this.fastRecharging)
 				fuel += timeStep * fastRechargeRate;
+			else if(this.isHovering)
+				fuel += timeStep * hoverRechargeRate;
 			else
 				fuel += timeStep * rechargeRate;
 			if(fuel > 100.0f)

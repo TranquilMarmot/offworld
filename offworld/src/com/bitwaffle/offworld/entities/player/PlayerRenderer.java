@@ -98,20 +98,21 @@ public class PlayerRenderer implements EntityRenderer {
 			healthBar.update(1.0f / Game.currentFPS);
 			healthBar.render(renderer, false, false);
 			renderer.modelview.set(tempmat);
-			//renderer.modelview.translate(0.0f, -healthBarYOffset, 0.0f);
-			//renderer.modelview.scale(-healthBarScale /Render2D.camera.getZoom(), -healthBarScale / Render2D.camera.getZoom(), 1.0f);
 		}
 		
 		// render the jetpack bar
 		if(player.jetpack.remainingFuel() < 100.0f){
+			// FIXME magic numbers
+			if(player.jetpack.remainingFuel() < 50.0f)
+				jetpackBar.setFillColor(1.0f, 1.0f, 0.0f, 0.8f);
+			else
+				jetpackBar.setFillColor(0.0f, 0.0f, 1.0f, 0.8f);
 			renderer.modelview.translate(0.0f, jetpackBarYOffset, 0.0f);
 			renderer.modelview.scale(jetpackBarScale /Render2D.camera.getZoom(), jetpackBarScale / Render2D.camera.getZoom(), 1.0f);
 			renderer.sendModelViewToShader();
 			jetpackBar.setPercent(player.jetpack.remainingFuel());
 			jetpackBar.update(1.0f / Game.currentFPS);
 			jetpackBar.render(renderer, false, false);
-			//renderer.modelview.scale(-(jetpackBarScale / Render2D.camera.getZoom()), -(jetpackBarScale / Render2D.camera.getZoom()), 1.0f);
-			//renderer.modelview.translate(0.0f, -jetpackBarYOffset, 0.0f);
 		}
 	}
 	
