@@ -322,8 +322,11 @@ public class GUI {
 	 * @param newButton New button to be selected.
 	 */
 	public void setSelectedButton(Button newButton){
-		if(selectedButton != null)
+		if(selectedButton != null){
 			selectedButton.unselect();
+			if(selectedButton.isDown())
+				selectedButton.slideRelease();
+		}
 		selectedButton = newButton;
 		if(selectedButton != null)
 			selectedButton.select();

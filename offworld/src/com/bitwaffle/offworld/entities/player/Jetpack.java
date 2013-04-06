@@ -24,7 +24,7 @@ public class Jetpack {
 	/** Particle emitter for jetpack */
 	private ParticleEmitter jetpackEmitter;
 	
-	/** How much fuel is left in this jetpack. Should always be between 0 and 100 */
+	/** How much fuel is left in this jetpack. Should always be between 0 and 100. */
 	private float fuel = 100.0f;
 	
 	/** How fast the jetpack depletes/refuels */
@@ -40,7 +40,7 @@ public class Jetpack {
 	private float hoverStartPercent = 30.0f;
 	
 	/** How fast the jetpack depletes/recharges when hovering */
-	private float hoverDepleteRate = 20.0f, hoverRechargeRate = 30.0f;
+	private float hoverDepleteRate = 10.0f, hoverRechargeRate = 30.0f;
 	
 	/** Whether or not the player is hovering (< hoverStartPercent fuel) */
 	private boolean isHovering;
@@ -59,7 +59,7 @@ public class Jetpack {
 	}
 	
 	/**
-	 * MUST be called every time the owning player's update method is called!
+	 * Must be called every time the owning player's update method is called
 	 * @param timeStep Amount of time passed, in seconds
 	 */
 	public void update(float timeStep){
@@ -81,7 +81,6 @@ public class Jetpack {
 		
 		// add fuel if jetpack is recharging
 		if(fuel < 100.0f && !jetpackOn){
-			// recharges faster after player lands
 			if(this.fastRecharging)
 				fuel += timeStep * fastRechargeRate;
 			else if(this.isHovering)
@@ -92,17 +91,17 @@ public class Jetpack {
 				fuel = 100.0f;
 		}
 		
+		// recharges faster after the player hits the ground
 		if(player.getJumpSensor().numContacts() > 0)
 			fastRecharging = true;
 	}
 	
 	/** @return How much fuel the jetpack has left, as a percent */
-	public float remainingFuel(){
-		return fuel;
-	}
+	public float remainingFuel(){ return fuel; }
 	
 	/**
 	 * Activates the player's jetpack
+	 * @param timeStep Amount of time passed, in seconds
 	 */
 	private void applyForce(float timeStep){
 		Vector2 linVec = player.body.getLinearVelocity();
