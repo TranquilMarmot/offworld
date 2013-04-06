@@ -26,7 +26,7 @@ public class GUIInputListener implements InputProcessor {
 
 	@Override
 	public boolean keyDown(int keycode) {
-		if(keycode == Input.Keys.ESCAPE){
+		if(keycode == Input.Keys.ESCAPE && !Game.gui.isCurrentState(GUI.States.TITLESCREEN) && !Game.gui.isCurrentState(GUI.States.OPTIONS)){
 			Game.togglePause();
 			return true;
 		}
