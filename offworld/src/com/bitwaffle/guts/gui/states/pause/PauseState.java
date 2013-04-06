@@ -70,6 +70,7 @@ public class PauseState extends GUIState{
 	
 	@Override
 	protected void onLoseCurrentState() {
+		Game.gui.setSelectedButton(null);
 	}
 	
 	@Override

@@ -129,7 +129,7 @@ public class PhysicsHelper {
 		playerFixture.filter.categoryBits = CollisionFilters.PLAYER;
 		playerFixture.filter.maskBits = CollisionFilters.EVERYTHING;
 		
-		Game.players[0] = new Player(new PlayerRenderer(), 6, playerBodyDef, width, height, playerFixture);
+		Game.players[0] = new Player(6, playerBodyDef, width, height, playerFixture);
 		physics.addEntity(Game.players[0], false);
 		Render2D.camera.setTarget(Game.players[0]);
 		Render2D.camera.setMode(Camera.Modes.FOLLOW);

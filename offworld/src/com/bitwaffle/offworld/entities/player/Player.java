@@ -11,6 +11,7 @@ import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.EntityRenderer;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.player.render.PlayerBodyAnimation;
+import com.bitwaffle.offworld.entities.player.render.PlayerRenderer;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.FirearmHolder;
 import com.bitwaffle.offworld.interfaces.Health;
@@ -80,9 +81,9 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 	 * @param height Height of player
 	 * @param fixtureDef Definition for player's fixture
 	 */
-	public Player(EntityRenderer renderer, int layer, BodyDef bodyDef, float width, float height,
+	public Player(int layer, BodyDef bodyDef, float width, float height,
 			FixtureDef fixtureDef) {
-		super(renderer, layer, bodyDef, width, height, fixtureDef);
+		super(new PlayerRenderer(), layer, bodyDef, width, height, fixtureDef);
 		init();
 	}
 	

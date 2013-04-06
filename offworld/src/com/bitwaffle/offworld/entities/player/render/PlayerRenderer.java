@@ -24,15 +24,12 @@ public class PlayerRenderer implements EntityRenderer {
 	public static final float SCALE = 0.95f;
 	
 	private JetpackBar jetpackBar;
-	private float jetpackBarYOffset = 2.35f, jetpackBarScale = 0.0005f;
-	private float[] jetpackFillColor = {0.0f, 0.0f, 1.0f, 0.8f };
-	private float[] jetpackHoverFillColor = {1.0f, 1.0f, 0.0f, 0.8f };
 	
 	private HealthBar healthBar;
 	private float healthBarYOffset = 3.0f, healthBarScale = 0.0005f;
 	
 	public PlayerRenderer(){
-		jetpackBar = new JetpackBar(100.0f, 62.0f);
+		jetpackBar = new JetpackBar();
 		healthBar = new HealthBar(125.0f, 22.0f);
 	}
 	
@@ -102,19 +99,7 @@ public class PlayerRenderer implements EntityRenderer {
 			renderer.modelview.set(tempmat);
 		}
 		
-		// render the jetpack bar
-		if(player.jetpack.remainingFuel() < 100.0f){
-			if(player.jetpack.remainingFuel() < player.jetpack.hoverStartPercent())
-				jetpackBar.setFillColor(jetpackHoverFillColor[0], jetpackHoverFillColor[1], jetpackHoverFillColor[2], jetpackHoverFillColor[3]);
-			else
-				jetpackBar.setFillColor(jetpackFillColor[0], jetpackFillColor[1], jetpackFillColor[2], jetpackFillColor[3]);
-			renderer.modelview.translate(0.0f, jetpackBarYOffset, 0.0f);
-			renderer.modelview.scale(jetpackBarScale /Render2D.camera.getZoom(), jetpackBarScale / Render2D.camera.getZoom(), 1.0f);
-			renderer.sendModelViewToShader();
-			jetpackBar.setPercent(player.jetpack.remainingFuel());
-			jetpackBar.update(1.0f / Game.currentFPS);
-			jetpackBar.render(renderer, false, false);
-		}
+		jetpackBar.render(renderer, player.jetpack);
 	}
 	
 	public void renderDebug(Render2D renderer, Entity ent){
@@ -140,9 +125,7 @@ public class PlayerRenderer implements EntityRenderer {
 		renderer.quad.render(sensor.getWidth(), sensor.getHeight());
 		
 		
-		/*
-		 * Render a box where the player's current target is (under the finger)
-		 */
+		//Render a box where the player's current target is (under the finger)
 		boolean shooting = player.isShooting();
 		Vector2 targetLoc = player.getCurrentTarget();
 		
