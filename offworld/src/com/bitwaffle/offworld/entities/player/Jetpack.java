@@ -37,8 +37,9 @@ public class Jetpack {
 	private float fastRechargeRate = 75.0f;
 	
 	/** How much fuel is left before the jetpack starts hovering */
-	private float hoverStartPercent = 50.0f;
+	private float hoverStartPercent = 30.0f;
 	
+	/** How fast the jetpack depletes/recharges when hovering */
 	private float hoverDepleteRate = 20.0f, hoverRechargeRate = 30.0f;
 	
 	/** Whether or not the player is hovering (< hoverStartPercent fuel) */
@@ -47,9 +48,7 @@ public class Jetpack {
 	/** Force the jetpack outputs if it's hovering */
 	private float hoverForce = 10.0f;
 			
-	/**
-	 * @param player Player owning this jetpack
-	 */
+	/** @param player Player owning this jetpack */
 	public Jetpack(Player player){
 		this.player = player;
 		jetpackOn = false;
@@ -131,4 +130,7 @@ public class Jetpack {
 	
 	/** @return Whether or not the jetpack is being used */
 	public boolean isEnabled(){ return jetpackOn; }
+	
+	/** @return Percent that jeptack starts to hover at */
+	public float hoverStartPercent(){ return hoverStartPercent; }
 }

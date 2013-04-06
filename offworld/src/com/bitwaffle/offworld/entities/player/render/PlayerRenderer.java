@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.entities.player;
+package com.bitwaffle.offworld.entities.player.render;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -8,6 +8,8 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.graphics.EntityRenderer;
 import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.offworld.entities.player.JumpSensor;
+import com.bitwaffle.offworld.entities.player.Player;
 
 /**
  * Renders the player
@@ -16,14 +18,15 @@ import com.bitwaffle.guts.graphics.Render2D;
  */
 public class PlayerRenderer implements EntityRenderer {
 	private static float[] color = new float[]{1.0f, 1.0f, 1.0f, 1.0f};
+	private static Matrix4 tempmat = new Matrix4();
 	
-	/**
-	 * Scale to draw arms at (should be half of scale that body animation is at)
-	 */
+	/** Scale to draw arms at (should be half of scale that body animation is at) */
 	public static final float SCALE = 0.95f;
 	
 	private JetpackBar jetpackBar;
 	private float jetpackBarYOffset = 2.35f, jetpackBarScale = 0.0005f;
+	private float[] jetpackFillColor = {0.0f, 0.0f, 1.0f, 0.8f };
+	private float[] jetpackHoverFillColor = {1.0f, 1.0f, 0.0f, 0.8f };
 	
 	private HealthBar healthBar;
 	private float healthBarYOffset = 3.0f, healthBarScale = 0.0005f;
@@ -44,9 +47,9 @@ public class PlayerRenderer implements EntityRenderer {
 			
 			float armAngle = player.getArmAngle();
 			boolean facingRight = player.isFacingRight();
-			Vector2 rArmLoc = player.bodyAnimation.getCurrentRShoulderLocation();
-			Vector2 lArmLoc = player.bodyAnimation.getCurrentLShoulderLocation();
-			Vector2 gunOffset = player.bodyAnimation.getGunOffset();
+			Vector2 rArmLoc = player.getBodyAnimation().getCurrentRShoulderLocation();
+			Vector2 lArmLoc = player.getBodyAnimation().getCurrentLShoulderLocation();
+			Vector2 gunOffset = player.getBodyAnimation().getGunOffset();
 			
 			// draw left arm
 			renderer.modelview.translate(facingRight ? lArmLoc.x : -lArmLoc.x, lArmLoc.y, 0.0f);
@@ -64,8 +67,7 @@ public class PlayerRenderer implements EntityRenderer {
 			renderer.modelview.translate(facingRight ? -lArmLoc.x : lArmLoc.x, -lArmLoc.y, 0.0f);
 			renderer.sendModelViewToShader();
 			
-			player.bodyAnimation.renderCurrentFrame(renderer, !facingRight, false);
-
+			player.getBodyAnimation().renderCurrentFrame(renderer, !facingRight, false);
 			
 			// draw gun
 			renderer.modelview.translate(facingRight ? rArmLoc.x : -rArmLoc.x, rArmLoc.y, 0.0f);
@@ -88,7 +90,7 @@ public class PlayerRenderer implements EntityRenderer {
 			renderer.modelview.translate(facingRight ? -rArmLoc.x : rArmLoc.x, -rArmLoc.y, 0.0f);
 		}
 		
-		Matrix4 tempmat = new Matrix4();
+		// render the health bar
 		tempmat.set(renderer.modelview);
 		if(player.currentHealth() < 100.0f){
 			renderer.modelview.translate(0.0f, healthBarYOffset, 0.0f);
@@ -102,11 +104,10 @@ public class PlayerRenderer implements EntityRenderer {
 		
 		// render the jetpack bar
 		if(player.jetpack.remainingFuel() < 100.0f){
-			// FIXME magic numbers
-			if(player.jetpack.remainingFuel() < 50.0f)
-				jetpackBar.setFillColor(1.0f, 1.0f, 0.0f, 0.8f);
+			if(player.jetpack.remainingFuel() < player.jetpack.hoverStartPercent())
+				jetpackBar.setFillColor(jetpackHoverFillColor[0], jetpackHoverFillColor[1], jetpackHoverFillColor[2], jetpackHoverFillColor[3]);
 			else
-				jetpackBar.setFillColor(0.0f, 0.0f, 1.0f, 0.8f);
+				jetpackBar.setFillColor(jetpackFillColor[0], jetpackFillColor[1], jetpackFillColor[2], jetpackFillColor[3]);
 			renderer.modelview.translate(0.0f, jetpackBarYOffset, 0.0f);
 			renderer.modelview.scale(jetpackBarScale /Render2D.camera.getZoom(), jetpackBarScale / Render2D.camera.getZoom(), 1.0f);
 			renderer.sendModelViewToShader();

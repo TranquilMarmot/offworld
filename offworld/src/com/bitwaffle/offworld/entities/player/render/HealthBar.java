@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.entities.player;
+package com.bitwaffle.offworld.entities.player.render;
 
 import com.bitwaffle.guts.gui.hud.Bar;
 

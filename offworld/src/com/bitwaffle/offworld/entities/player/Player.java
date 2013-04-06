@@ -10,6 +10,7 @@ import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.EntityRenderer;
 import com.bitwaffle.guts.util.MathHelper;
+import com.bitwaffle.offworld.entities.player.render.PlayerBodyAnimation;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.FirearmHolder;
 import com.bitwaffle.offworld.interfaces.Health;
@@ -60,8 +61,6 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 	
 	/** Animation for player's legs */
 	protected PlayerBodyAnimation bodyAnimation;
-	
-
 	
 	/** To infinity and yada yada */
 	public Jetpack jetpack;
@@ -198,6 +197,8 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 	
 	/** @return The player's jump sensor */
 	public JumpSensor getJumpSensor(){ return jumpSensor; }
+	
+	public PlayerBodyAnimation getBodyAnimation(){ return bodyAnimation; }
 	
 	/** Start moving right */
 	public void moveRight(){ movingRight = true; }

@@ -18,7 +18,7 @@ import com.bitwaffle.guts.input.controller.player.OuyaPlayerControllerListener;
 import com.bitwaffle.guts.input.controller.player.XboxPlayerControllerListener;
 import com.bitwaffle.guts.input.listeners.player.PlayerInputListener;
 import com.bitwaffle.offworld.entities.player.Player;
-import com.bitwaffle.offworld.entities.player.PlayerRenderer;
+import com.bitwaffle.offworld.entities.player.render.PlayerRenderer;
 import com.bitwaffle.offworld.rooms.Room1;
 
 /**

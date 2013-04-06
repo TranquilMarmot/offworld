@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.entities.player;
+package com.bitwaffle.offworld.entities.player.render;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.animation.Animation;
+import com.bitwaffle.offworld.entities.player.Player;
 
 public class PlayerBodyAnimation extends Animation {
 	/** 
