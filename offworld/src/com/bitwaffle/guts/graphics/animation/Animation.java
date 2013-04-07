@@ -42,7 +42,14 @@ public class Animation {
 	 * @param other Animation to copy
 	 */
 	public Animation(Animation other){
-		this(other.parts);
+		this(copyParts(other));
+	}
+	
+	private static AnimationPart[] copyParts(Animation src){
+		AnimationPart[] copy = new AnimationPart[src.parts.length];
+		for(int i = 0; i < copy.length; i++)
+			copy[i] = new AnimationPart(src.parts[i]);
+		return copy;
 	}
 	
 	/**

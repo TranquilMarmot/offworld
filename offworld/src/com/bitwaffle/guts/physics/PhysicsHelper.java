@@ -1,8 +1,5 @@
 package com.bitwaffle.guts.physics;
 
-import com.badlogic.gdx.controllers.Controller;
-import com.badlogic.gdx.controllers.Controllers;
-import com.badlogic.gdx.controllers.mappings.Ouya;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -14,11 +11,8 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.camera.Camera;
-import com.bitwaffle.guts.input.controller.player.OuyaPlayerControllerListener;
-import com.bitwaffle.guts.input.controller.player.XboxPlayerControllerListener;
 import com.bitwaffle.guts.input.listeners.player.PlayerInputListener;
 import com.bitwaffle.offworld.entities.player.Player;
-import com.bitwaffle.offworld.entities.player.render.PlayerRenderer;
 import com.bitwaffle.offworld.rooms.Room1;
 
 /**
@@ -134,17 +128,21 @@ public class PhysicsHelper {
 		Render2D.camera.setTarget(Game.players[0]);
 		Render2D.camera.setMode(Camera.Modes.FOLLOW);
 		Render2D.camera.setLocation(Game.players[0].getLocation());
-		
 		// TODO have each player press start
+		/*
+		Game.players[1] = new Player(6, playerBodyDef, width, height, playerFixture);
+		physics.addEntity(Game.players[1], false);
+		
 		for(Controller con : Controllers.getControllers()){
 			if(con.getName().equals(Ouya.ID)){
-				con.addListener(new OuyaPlayerControllerListener(Game.players[0]));
+				con.addListener(new OuyaPlayerControllerListener(Game.players[1]));
 			}else if(con.getName().contains("XBOX 360")){
-				con.addListener(new XboxPlayerControllerListener(Game.players[0]));
+				con.addListener(new XboxPlayerControllerListener(Game.players[1]));
 			}
 		}
+		*/
 		
-		// swap button press listener for player control listener
+		// add player control listener
 		Game.input.multiplexer.addProcessor(new PlayerInputListener(Game.players[0], Render2D.camera));
 		
 		

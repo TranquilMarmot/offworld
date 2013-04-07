@@ -32,6 +32,12 @@ public class AnimationPart {
 		this.frames = frames;
 		this.xScale = xScale;
 		this.yScale = yScale;
+		currentFrame = 0;
+		timeOnFrame = 0.0f;
+	}
+	
+	public AnimationPart(AnimationPart other){
+		this(other.frames, other.xScale, other.yScale);
 	}
 	
 	/**
@@ -100,7 +106,6 @@ public class AnimationPart {
 	 * @param flipVertical Whether or not to flip the frame vertically
 	 */
 	public void renderCurrentFrame(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
-		// bind given texture
 		frames[currentFrame].render(renderer, xScale, yScale, !flipHorizontal, !flipVertical);
 	}
 	

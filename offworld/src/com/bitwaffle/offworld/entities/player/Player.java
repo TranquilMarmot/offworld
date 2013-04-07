@@ -8,7 +8,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.EntityRenderer;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.player.render.PlayerBodyAnimation;
 import com.bitwaffle.offworld.entities.player.render.PlayerRenderer;
