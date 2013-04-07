@@ -313,7 +313,7 @@ public class GUI {
 	 * Release the selected button
 	 */
 	public void selectedButtonUp(){
-		if(selectedButton != null)
+		if(selectedButton != null && selectedButton.isDown())
 			selectedButton.release();
 	}
 	
