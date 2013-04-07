@@ -1,8 +1,6 @@
 package com.bitwaffle.guts.net;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.IOException;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.net.Socket;
@@ -13,9 +11,6 @@ public class Client {
 	private static final com.badlogic.gdx.Net.Protocol PROTOCOL = com.badlogic.gdx.Net.Protocol.TCP;
 	
 	public Socket socket;
-	
-	private PrintWriter out;
-	private BufferedReader in;
 	
 	public Client(String host){
 		SocketHints hints = new SocketHints();
@@ -32,13 +27,13 @@ public class Client {
 		//hints.trafficClass ??
 		
 		socket = Gdx.net.newClientSocket(PROTOCOL, host, DEFAULT_PORT, hints);
-		
-		out = new PrintWriter(socket.getOutputStream());
-		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	}
 	
 	public void send(String message){
-		out.print(message);
-		out.flush();
+		try {
+			socket.getOutputStream().write(message.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

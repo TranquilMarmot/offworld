@@ -17,14 +17,14 @@ public class NetConsoleCommands {
 				
 				switch(command){
 				case "start":
-					startCommand();
+				case "begin":
+					Game.net.startServer();
+					break;
+				case "end":
+					Game.net.server.endServer();
 					break;
 				}
 			}
-		}
-		
-		private void startCommand(){
-			Game.net.startServer();
 		}
 
 		@Override
@@ -45,6 +45,8 @@ public class NetConsoleCommands {
 				
 				switch(command){
 				case "start":
+				case "connect":
+				case "begin":
 					Game.net.startClient(toker.nextToken());
 					break;
 				case "send":

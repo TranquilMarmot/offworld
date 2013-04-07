@@ -51,7 +51,7 @@ public abstract class Game implements ApplicationListener {
 	public static PrintStream out = System.out;
 	
 	/** Current frames per second (at the moment, counts rendering and physics updates per second) */
-	public static volatile int currentFPS = 60;
+	public static int currentFPS = 60;
 	/** Used to count up to a second for FPS */
 	private long counter;
 	/** Used to count frames for FPS */
