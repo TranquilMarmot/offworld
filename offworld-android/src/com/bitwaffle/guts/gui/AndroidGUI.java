@@ -17,10 +17,10 @@ public class AndroidGUI extends GUI {
 	@Override
 	protected void checkState(){
 		// check if we need to switch between the pause menu and the movement keys
-		if(currentState != States.TITLESCREEN.state && currentState != States.OPTIONS.state){
-			if(Game.isPaused() && currentState != States.PAUSE.state)
+		if(!isCurrentState(States.TITLESCREEN) && !isCurrentState(States.OPTIONS.state)){
+			if(Game.isPaused() && !isCurrentState(States.PAUSE))
 				setCurrentState(States.PAUSE);
-			else if(!Game.isPaused() && currentState != movementState)
+			else if(!Game.isPaused() && !isCurrentState(movementState))
 				setCurrentState(movementState);
 		}
 	}

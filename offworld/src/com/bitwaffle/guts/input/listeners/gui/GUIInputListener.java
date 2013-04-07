@@ -48,6 +48,9 @@ public class GUIInputListener implements InputProcessor {
 			case Input.Keys.ENTER:
 				gui.selectedButtonDown();
 				break;
+			case Input.Keys.BACKSPACE:
+				gui.goToPreviousState();
+				break;
 			}
 			return true;
 		}

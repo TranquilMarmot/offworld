@@ -6,6 +6,7 @@ import java.util.StringTokenizer;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.net.NetConsoleCommands;
 import com.bitwaffle.guts.physics.PhysicsHelper;
 
 
@@ -48,8 +49,8 @@ public enum ConsoleCommands {
 	log(new SetLoggingCommand()),
 	logging(log, true),
 	
-	//server(new NetConsoleCommands.ServerCommand()),
-	//client(new NetConsoleCommands.ClientCommand()),
+	server(new NetConsoleCommands.ServerCommand()),
+	client(new NetConsoleCommands.ClientCommand()),
 	
 	init(new InitCommand());
 

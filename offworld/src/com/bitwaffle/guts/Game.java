@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.input.Input;
+import com.bitwaffle.guts.net.Net;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.Resources;
 import com.bitwaffle.offworld.entities.player.Player;
@@ -68,6 +69,8 @@ public abstract class Game implements ApplicationListener {
 	/** Handles all input to the game */
 	public static Input input;
 	
+	public static Net net;
+	
 	@Override
     public void create () {
     	random = new Random(this.getTime());
@@ -78,6 +81,8 @@ public abstract class Game implements ApplicationListener {
 		initRenderer();
         initGUI();
         input = new Input();
+        
+        net = new Net();
     }
 	
 	protected void initGDX(){
@@ -147,6 +152,8 @@ public abstract class Game implements ApplicationListener {
 		}
 		
 		updateFPS(timeBeforeLoop);
+		
+		net.update();
     }
     
 	/**

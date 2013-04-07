@@ -25,8 +25,8 @@ import com.bitwaffle.guts.gui.states.titlescreen.TitleScreenState;
 public class GUI {
 	private static final String LOGTAG = "GUI";
 	/**
-	 * States for the GUI. Optionally, you can create your own
-	 * GUIState and make it the current state through the
+	 * States for the GUI. Anything can extend
+	 * GUIState and be made the current state through the
 	 * setCurrentState() method
 	 */
 	public enum States{
@@ -48,28 +48,29 @@ public class GUI {
 	public Console console;
 	
 	/** List of all GUI objects */
-	protected ArrayList<GUIObject> objects;
+	private ArrayList<GUIObject> objects;
 	/** Used to add/remove GUI objects and avoid ConcurrentModificationExceptions */
 	private Stack<GUIObject> objectsToAdd, objectsToRemove;
 	
 	/** Anything that can be clicked/pressed */
-	protected LinkedList<Button> buttons;
+	private LinkedList<Button> buttons;
 	/** Used to add/remove GUI objects and avoid ConcurrentModificationExceptions */
 	private Stack<Button> buttonsToAdd, buttonsToRemove;
 	
 	/** Current state of the GUI (manages buttons and objects) */
-	protected GUIState currentState;
+	private GUIState currentState;
+	
+	/** For when the back button is pressed, goes back to previous state*/
+	private Stack<GUIState> stateStack;
 	
 	/**
 	 * Currently selected button.
-	 * This is only really relevant to when the GUI is being used
+	 * This is only relevant to when the GUI is being used
 	 * by the keyboard or by a controller.
 	 */
 	private Button selectedButton;
 	
-	/**
-	 * Create a new GUI
-	 */
+	/** Create a new GUI */
 	public GUI(){		
 		objects = new ArrayList<GUIObject>();
 		objectsToRemove = new Stack<GUIObject>();
@@ -81,7 +82,9 @@ public class GUI {
 		
 		console = new Console();
 		
-		// All of the GUI states 
+		stateStack = new Stack<GUIState>();
+		
+		// Set GUI states to belong to this GUI
 		for(States s : States.values())
 			s.setParentGUI(this);
 		
@@ -103,9 +106,7 @@ public class GUI {
 		console.update(timeStep);
 	}
 	
-	/**
-	 * Checks the state of the GUI and changes it if necessary
-	 */
+	/** Checks the state of the GUI and changes it if necessary */
 	protected void checkState(){
 		// check if we need to switch between the pause menu and the movement keys
 		if(currentState != States.TITLESCREEN.state && currentState != States.OPTIONS.state){
@@ -170,41 +171,32 @@ public class GUI {
 		return objects.iterator();
 	}
 	
-	/**
-	 * @param b Button to add to GUI
-	 */
-	public void addButton(Button b){
+	/** @param b Button to add to GUI */
+	public void addButton(Button b){ 
 		buttonsToAdd.push(b);
 	}
 	
-	/**
-	 * @param b Button to remove from GUI
-	 */
+	/** @param b Button to remove from GUI */
 	public void removeButton(Button b){
 		buttonsToRemove.push(b);
 	}
 	
-	/**
-	 * @return Iterator that goes through every button currently in the GUI
-	 */
+	/** @return Iterator that goes through every button currently in the GUI */
 	public Iterator<Button> getButtonIterator(){
 		return buttons.iterator();
 	}
 	
-	/**
-	 * Set the current state of the GUI
-	 * @param newState New state to use
-	 */
+	/** @param newState New state to use for GUI */
 	public void setCurrentState(States newState){
 		setCurrentState(newState.state);
 	}
 	
-	/**
-	 * @param newState New state to set GUI to
-	 */
+	/** @param newState New state to set GUI to */
 	public void setCurrentState(GUIState newState){
-		if(currentState != null)
+		if(currentState != null){
 			currentState.loseCurrentState();
+			stateStack.push(currentState);
+		}
 		
 		if(newState != null)
 			 newState.gainCurrentState();
@@ -212,21 +204,26 @@ public class GUI {
 		currentState = newState;
 	}
 	
-	/**
-	 * Checks if the given state in the enum is the current state
-	 * @param state State to check for
-	 * @return Whether or not the given state is the curent state
-	 */
-	public boolean isCurrentState(States state){
-		return currentState == state.state;
+	/** Go to the previous state in the stack */
+	public void goToPreviousState(){
+		if(!stateStack.isEmpty()){
+			System.out.println("doo it");
+			if(currentState != null)
+				currentState.loseCurrentState();
+			
+			currentState = stateStack.pop();
+			currentState.gainCurrentState();
+		}
 	}
 	
 	/**
-	 * @return Whether the given state is the current state
+	 * @param state State from GUI.States
+	 * @return Whether or not the given state is the curent state
 	 */
-	public boolean isCurrentState(GUIState state){
-		return currentState == state;
-	}
+	public boolean isCurrentState(States state){ return currentState == state.state; }
+	
+	/** @return Whether the given state is the current state */
+	public boolean isCurrentState(GUIState state){ return currentState == state; }
 	
 	/**
 	 * Draw the GUI
@@ -236,9 +233,7 @@ public class GUI {
 		renderer.setUpProjectionScreenCoords();
 		renderObjects(getObjectIterator(), renderer);
 		renderObjects(getButtonIterator(), renderer);
-		
-		if(console.isVisible())
-			console.render(renderer, false, false);
+		console.render(renderer, false, false);
 	}
 	
 	/**
@@ -277,18 +272,18 @@ public class GUI {
 	 */
 	public void checkForButtonSelection(float screenX, float screenY){
 		// check if the mouse went off of the selected button
-		if(Game.gui.selectedButton != null && !Game.gui.selectedButton.contains(screenX, screenY)){
-			Game.gui.selectedButton.unselect();
-			Game.gui.selectedButton = null;
+		if(selectedButton != null && !selectedButton.contains(screenX, screenY)){
+			selectedButton.unselect();
+			selectedButton = null;
 		}
 		
 		// check every button to see if it's selected
-		Iterator<Button> it = Game.gui.getButtonIterator();
+		Iterator<Button> it = getButtonIterator();
 		while (it.hasNext()) {
 			Button b = it.next();
 			
-			if (b != Game.gui.selectedButton && b.isActive() && b.isVisible() && b.contains(screenX, screenY)) {
-				Game.gui.selectedButton = b;
+			if (b != selectedButton && b.isActive() && b.isVisible() && b.contains(screenX, screenY)) {
+				selectedButton = b;
 				b.select();
 			}
 		}
@@ -332,9 +327,7 @@ public class GUI {
 			selectedButton.select();
 	}
 
-	/**
-	 * Selects the button to the right of the currently selected button
-	 */
+	/** Selects the button to the right of the currently selected button */
 	public void moveRight() {
 		if(selectedButton == null)
 			setSelectedButton(currentState.initialRightButton());
@@ -342,9 +335,7 @@ public class GUI {
 			setSelectedButton(selectedButton.toRight);
 	}
 	
-	/**
-	 * Selects the button to the left of the currently selected button
-	 */
+	/** Selects the button to the left of the currently selected button */
 	public void moveLeft() {
 		if(selectedButton == null)
 			setSelectedButton(currentState.initialLeftButton());
@@ -352,9 +343,7 @@ public class GUI {
 			setSelectedButton(selectedButton.toLeft);
 	}
 	
-	/**
-	 * Selects the button above the currently selected button
-	 */
+	/** Selects the button above the currently selected button */
 	public void moveUp() {
 		if(selectedButton == null)
 			setSelectedButton(currentState.initialUpButton());
@@ -362,9 +351,7 @@ public class GUI {
 			setSelectedButton(selectedButton.toUp);
 	}
 	
-	/**
-	 * Selects the button below the selected button
-	 */
+	/** Selects the button below the selected button */
 	public void moveDown() {
 		if(selectedButton == null)
 			setSelectedButton(currentState.initialDownButton());

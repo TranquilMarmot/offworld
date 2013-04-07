@@ -523,24 +523,26 @@ public class Console extends GUIObject{
 	 * @param flipVertical Inherited from GUIObject (ignored)
 	 */
 	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical) {
-		// where to draw the console (x stays at its given location)
-		//float drawY = (Game.windowHeight) + y;
-		//float drawX = (BitmapFont.FONT_GLYPH_WIDTH  * scale) + x + 2.5f;
+		if(this.isVisible()){
+			// where to draw the console (x stays at its given location)
+			//float drawY = (Game.windowHeight) + y;
+			//float drawX = (BitmapFont.FONT_GLYPH_WIDTH  * scale) + x + 2.5f;
 
-		Gdx.gl20.glEnable(GL20.GL_BLEND);
-		
-		if(this.consoleAlpha > 0.0f)
-			drawBackgroundBox(renderer);
-		
-		if (consoleOn){
-			drawInputBox(renderer);
-			renderInput(renderer);
+			Gdx.gl20.glEnable(GL20.GL_BLEND);
+			
+			if(this.consoleAlpha > 0.0f)
+				drawBackgroundBox(renderer);
+			
+			if (consoleOn){
+				drawInputBox(renderer);
+				renderInput(renderer);
+			}
+			
+			if(this.textAlpha > 0.0f)
+				renderScrollback(renderer);
+			
+			Gdx.gl20.glDisable(GL20.GL_BLEND);	
 		}
-		
-		if(this.textAlpha > 0.0f)
-			renderScrollback(renderer);
-		
-		Gdx.gl20.glDisable(GL20.GL_BLEND);
 	}
 	
 	/**
