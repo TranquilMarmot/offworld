@@ -1,5 +1,10 @@
 package com.bitwaffle.guts.entities;
 
+import java.io.OutputStream;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.EntityRenderer;
@@ -89,6 +94,26 @@ public class Entity {
 	 */
 	public int getLayer(){
 		return layer;
+	}
+	
+	public JSONObject sendToClient(OutputStream out){
+		try {
+			JSONObject obj = new JSONObject();
+			obj.put("layer", this.layer);
+			
+			return obj;
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public void createFromServer(JSONObject obj){
+		try{
+			this.layer = obj.getInt("layer");
+		} catch(JSONException e){
+			e.printStackTrace();
+		}
 	}
 	
 	/*

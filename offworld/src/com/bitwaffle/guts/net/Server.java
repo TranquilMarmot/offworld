@@ -17,6 +17,10 @@ import com.badlogic.gdx.net.Socket;
 import com.badlogic.gdx.net.SocketHints;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.offworld.entities.player.Player;
+import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.KryoException;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
 
 public class Server {
 	private static final int DEFAULT_PORT = 42042;
@@ -24,14 +28,18 @@ public class Server {
 	
 	private ServerSocket socket;
 	
-	private ArrayList<Socket> connections;
+	private ArrayList<ServerConnection> connections;
 	
 	private ConcurrentLinkedQueue<Socket> newConnections;
 	
 	private volatile boolean acceptingConnections;
 	
+	private Kryo kryo;
+	private Output output;
+	private Input input;
+	
 	public Server(){
-		connections = new ArrayList<Socket>();
+		connections = new ArrayList<ServerConnection>();
 		newConnections = new ConcurrentLinkedQueue<Socket>();
 		
 		startServer();
@@ -89,9 +97,48 @@ public class Server {
 	public void update(){
 		while(!newConnections.isEmpty()){
 			Game.out.println("New connection!");
-			connections.add(newConnections.poll());
+			connections.add(new ServerConnection(newConnections.poll()));
 		}
 		
+		for(int i = 0; i < connections.size(); i++){
+			ServerConnection con = connections.get(i);
+			try {
+				if(con.input.available() > 0){
+					int playerNum = con.input.readInt();
+					boolean left = con.input.readBoolean();
+					boolean right = con.input.readBoolean();
+					float aimX = con.input.readFloat();
+					float aimY = con.input.readFloat();
+					boolean jetpack = con.input.readBoolean();
+					float x = con.input.readFloat();
+					float y = con.input.readFloat();
+					Player p = Game.players[playerNum];
+					
+					if(left)
+						p.moveLeft();
+					else
+						p.stopMovingLeft();
+					
+					if(right)
+						p.moveRight();
+					else
+						p.stopMovingRight();
+					
+					p.setTarget(new Vector2(aimX, aimY));
+					
+					if(jetpack)
+						p.jetpack.enable();
+					else
+						p.jetpack.disable();
+					
+					p.body.setTransform(new Vector2(x, y), 0.0f);
+				}
+			} catch (KryoException | IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		/*
 		for(int i = 0; i < connections.size(); i++){
 			String read = readString(connections.get(i));
 			if(!read.equals("")){
@@ -132,6 +179,7 @@ public class Server {
 				}	
 			}
 		}
+		*/
 	}
 	
 	private String readString(Socket con){
