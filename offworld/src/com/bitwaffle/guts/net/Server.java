@@ -10,11 +10,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.net.ServerSocket;
 import com.badlogic.gdx.net.ServerSocketHints;
 import com.badlogic.gdx.net.Socket;
 import com.badlogic.gdx.net.SocketHints;
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.offworld.entities.player.Player;
 
 public class Server {
 	private static final int DEFAULT_PORT = 42042;
@@ -102,9 +104,28 @@ public class Server {
 					float aimX = (float)playerInfo.getDouble("aimX");
 					float aimY = (float)playerInfo.getDouble("aimY");
 					boolean jetpack = playerInfo.getBoolean("jpak");
+					float x = (float)playerInfo.getDouble("x");
+					float y = (float)playerInfo.getDouble("y");
 					
+					Player p = Game.players[playerNum];
+					if(left)
+						p.moveLeft();
+					else
+						p.stopMovingLeft();
 					
-					System.out.println(left + " " + right);
+					if(right)
+						p.moveRight();
+					else
+						p.stopMovingRight();
+					
+					p.setTarget(new Vector2(aimX, aimY));
+					
+					if(jetpack)
+						p.jetpack.enable();
+					else
+						p.jetpack.disable();
+					
+					p.body.setTransform(new Vector2(x, y), 0.0f);
 				} catch (JSONException e) {
 					//e.printStackTrace();
 					Game.out.println("didn't get full json object");

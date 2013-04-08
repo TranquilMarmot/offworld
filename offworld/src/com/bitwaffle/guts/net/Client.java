@@ -1,6 +1,7 @@
 package com.bitwaffle.guts.net;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.net.Socket;
 import com.badlogic.gdx.net.SocketHints;
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.offworld.entities.player.Player;
 
 public class Client {
@@ -53,6 +55,8 @@ public class Client {
 			playerInfo.put("aimX", (double)player.getCurrentTarget().x);
 			playerInfo.put("aimY", (double)player.getCurrentTarget().y);
 			playerInfo.put("jpak", player.jetpack.isEnabled());
+			playerInfo.put("x", (double)player.body.getPosition().x);
+			playerInfo.put("y", (double)player.body.getPosition().y);
 			
 			JSONObject test = new JSONObject();
 			test.put("player", playerInfo);
@@ -65,6 +69,7 @@ public class Client {
 	public void update(){
 		if(socket.isConnected()){
 			sendPlayerData(0);
+			
 		}
 	}
 }
