@@ -13,10 +13,8 @@ public class ServerConnection {
 	
 	public ServerConnection(Socket socket){
 		this.socket = socket;
-		output = new Output();
-		output.setOutputStream(socket.getOutputStream());
-		input = new Input();
-		input.setInputStream(socket.getInputStream());
+		output = new Output(socket.getOutputStream());
+		input = new Input(socket.getInputStream());
 	}
 	
 	

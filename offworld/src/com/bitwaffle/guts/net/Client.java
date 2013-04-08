@@ -38,10 +38,8 @@ public class Client {
 		//hints.trafficClass ??
 		
 		socket = Gdx.net.newClientSocket(PROTOCOL, host, DEFAULT_PORT, hints);
-		input = new Input();
-		input.setInputStream(socket.getInputStream());
-		output = new Output();
-		output.setOutputStream(socket.getOutputStream());
+		input = new Input(socket.getInputStream());
+		output = new Output(socket.getOutputStream());
 	}
 	
 	public void send(String message){
@@ -63,28 +61,7 @@ public class Client {
 		output.writeBoolean(player.jetpack.isEnabled());
 		output.writeFloat(player.body.getPosition().x);
 		output.writeFloat(player.body.getPosition().y);
-		
-	}
-	
-	public void sendPlayerDataOld(int playerNumber){
-		try {
-			JSONObject playerInfo = new JSONObject();
-			Player player = Game.players[playerNumber];
-			playerInfo.put("n", playerNumber);
-			playerInfo.put("l", player.isMovingLeft() ? 1 : 0);
-			playerInfo.put("r", player.isMovingRight() ? 1 : 0);
-			playerInfo.put("aX", (double)player.getCurrentTarget().x);
-			playerInfo.put("aY", (double)player.getCurrentTarget().y);
-			playerInfo.put("j", player.jetpack.isEnabled() ? 1 : 0);
-			playerInfo.put("x", (double)player.body.getPosition().x);
-			playerInfo.put("y", (double)player.body.getPosition().y);
-			
-			JSONObject test = new JSONObject();
-			test.put("player", playerInfo);
-			send(test.toString());
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+		output.flush();
 	}
 	
 	public void update(){

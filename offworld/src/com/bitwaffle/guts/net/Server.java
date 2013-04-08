@@ -34,10 +34,6 @@ public class Server {
 	
 	private volatile boolean acceptingConnections;
 	
-	private Kryo kryo;
-	private Output output;
-	private Input input;
-	
 	public Server(){
 		connections = new ArrayList<ServerConnection>();
 		newConnections = new ConcurrentLinkedQueue<Socket>();
@@ -103,96 +99,43 @@ public class Server {
 		for(int i = 0; i < connections.size(); i++){
 			ServerConnection con = connections.get(i);
 			try {
-				if(con.input.available() > 0){
-					int playerNum = con.input.readInt();
-					boolean left = con.input.readBoolean();
-					boolean right = con.input.readBoolean();
-					float aimX = con.input.readFloat();
-					float aimY = con.input.readFloat();
-					boolean jetpack = con.input.readBoolean();
-					float x = con.input.readFloat();
-					float y = con.input.readFloat();
-					Player p = Game.players[playerNum];
-					
-					if(left)
-						p.moveLeft();
-					else
-						p.stopMovingLeft();
-					
-					if(right)
-						p.moveRight();
-					else
-						p.stopMovingRight();
-					
-					p.setTarget(new Vector2(aimX, aimY));
-					
-					if(jetpack)
-						p.jetpack.enable();
-					else
-						p.jetpack.disable();
-					
-					p.body.setTransform(new Vector2(x, y), 0.0f);
-				}
+				if(con.input.available() > 0)
+					readPlayerData(con);
 			} catch (KryoException | IOException e) {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	
+	private void readPlayerData(ServerConnection con){
+		int playerNum = con.input.readInt();
+		boolean left = con.input.readBoolean();
+		boolean right = con.input.readBoolean();
+		float aimX = con.input.readFloat();
+		float aimY = con.input.readFloat();
+		boolean jetpack = con.input.readBoolean();
+		float x = con.input.readFloat();
+		float y = con.input.readFloat();
+		Player p = Game.players[playerNum];
 		
-		/*
-		for(int i = 0; i < connections.size(); i++){
-			String read = readString(connections.get(i));
-			if(!read.equals("")){
-				try {
-					JSONObject obj = new JSONObject(read);
-					JSONObject playerInfo = obj.getJSONObject("player");
-					int playerNum = playerInfo.getInt("n");
-					boolean left = playerInfo.getInt("l") == 1;
-					boolean right = playerInfo.getInt("r") == 1;
-					float aimX = (float)playerInfo.getDouble("aX");
-					float aimY = (float)playerInfo.getDouble("aY");
-					boolean jetpack = playerInfo.getInt("j") == 1;
-					float x = (float)playerInfo.getDouble("x");
-					float y = (float)playerInfo.getDouble("y");
-					
-					Player p = Game.players[playerNum];
-					if(left)
-						p.moveLeft();
-					else
-						p.stopMovingLeft();
-					
-					if(right)
-						p.moveRight();
-					else
-						p.stopMovingRight();
-					
-					p.setTarget(new Vector2(aimX, aimY));
-					
-					if(jetpack)
-						p.jetpack.enable();
-					else
-						p.jetpack.disable();
-					
-					p.body.setTransform(new Vector2(x, y), 0.0f);
-				} catch (JSONException e) {
-					//e.printStackTrace();
-					Game.out.println("didn't get full json object");
-				}	
-			}
-		}
-		*/
+		if(left)
+			p.moveLeft();
+		else
+			p.stopMovingLeft();
+		
+		if(right)
+			p.moveRight();
+		else
+			p.stopMovingRight();
+		
+		p.setTarget(new Vector2(aimX, aimY));
+		
+		if(jetpack)
+			p.jetpack.enable();
+		else
+			p.jetpack.disable();
+		
+		p.body.setTransform(new Vector2(x, y), 0.0f);
 	}
-	
-	private String readString(Socket con){
-		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-		String read = "";
-		try{
-			while(in.ready())
-				read += (char)in.read();
-		} catch(IOException e){
-			e.printStackTrace();
-		}
-		return read;
-	}
-	
-	
 }
