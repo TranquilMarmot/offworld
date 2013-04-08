@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.net.ServerSocket;
 import com.badlogic.gdx.net.ServerSocketHints;
@@ -88,20 +91,38 @@ public class Server {
 		}
 		
 		for(int i = 0; i < connections.size(); i++){
-			Socket con = connections.get(i);
-			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-			String wat = "";
-			try{
-				while(in.ready()){
-					char c = (char)in.read();
-					wat += c;
-				}
-				if(!wat.equals(""))
-					Game.out.println(wat);
-			} catch(IOException e){
-				e.printStackTrace();
+			String read = readString(connections.get(i));
+			if(!read.equals("")){
+				try {
+					JSONObject obj = new JSONObject(read);
+					JSONObject playerInfo = obj.getJSONObject("player");
+					int playerNum = playerInfo.getInt("num");
+					boolean left = playerInfo.getBoolean("left");
+					boolean right = playerInfo.getBoolean("right");
+					float aimX = (float)playerInfo.getDouble("aimX");
+					float aimY = (float)playerInfo.getDouble("aimY");
+					boolean jetpack = playerInfo.getBoolean("jpak");
+					
+					
+					System.out.println(left + " " + right);
+				} catch (JSONException e) {
+					//e.printStackTrace();
+					Game.out.println("didn't get full json object");
+				}	
 			}
 		}
+	}
+	
+	private String readString(Socket con){
+		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		String read = "";
+		try{
+			while(in.ready())
+				read += (char)in.read();
+		} catch(IOException e){
+			e.printStackTrace();
+		}
+		return read;
 	}
 	
 	

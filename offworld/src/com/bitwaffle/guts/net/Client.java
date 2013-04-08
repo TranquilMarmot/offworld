@@ -2,9 +2,14 @@ package com.bitwaffle.guts.net;
 
 import java.io.IOException;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.net.Socket;
 import com.badlogic.gdx.net.SocketHints;
+import com.bitwaffle.guts.Game;
+import com.bitwaffle.offworld.entities.player.Player;
 
 public class Client {
 	private static final int DEFAULT_PORT = 42042;
@@ -32,8 +37,34 @@ public class Client {
 	public void send(String message){
 		try {
 			socket.getOutputStream().write(message.getBytes());
+			socket.getOutputStream().flush();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void sendPlayerData(int playerNumber){
+		try {
+			JSONObject playerInfo = new JSONObject();
+			Player player = Game.players[playerNumber];
+			playerInfo.put("num", playerNumber);
+			playerInfo.put("left", player.isMovingLeft());
+			playerInfo.put("right", player.isMovingRight());
+			playerInfo.put("aimX", (double)player.getCurrentTarget().x);
+			playerInfo.put("aimY", (double)player.getCurrentTarget().y);
+			playerInfo.put("jpak", player.jetpack.isEnabled());
+			
+			JSONObject test = new JSONObject();
+			test.put("player", playerInfo);
+			send(test.toString());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void update(){
+		if(socket.isConnected()){
+			sendPlayerData(0);
 		}
 	}
 }

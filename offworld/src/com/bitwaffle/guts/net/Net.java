@@ -18,6 +18,8 @@ public class Net {
 	public void update(){
 		if(server != null)
 			server.update();
+		if(client != null)
+			client.update();
 	}
 	
 	public void send(String msg){
