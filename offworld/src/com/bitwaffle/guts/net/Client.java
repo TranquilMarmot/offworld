@@ -54,8 +54,8 @@ public class Client {
 	public void sendPlayerData(int playerNumber){
 		Player player = Game.players[playerNumber];
 		output.writeInt(playerNumber);
-		output.writeBoolean(player.isMovingLeft());
-		output.writeBoolean(player.isMovingRight());
+		//output.writeBoolean(player.isMovingLeft());
+		//output.writeBoolean(player.isMovingRight());
 		output.writeFloat(player.getCurrentTarget().x);
 		output.writeFloat(player.getCurrentTarget().y);
 		output.writeBoolean(player.jetpack.isEnabled());

@@ -110,8 +110,8 @@ public class Server {
 	
 	private void readPlayerData(ServerConnection con){
 		int playerNum = con.input.readInt();
-		boolean left = con.input.readBoolean();
-		boolean right = con.input.readBoolean();
+		//boolean left = con.input.readBoolean();
+		//boolean right = con.input.readBoolean();
 		float aimX = con.input.readFloat();
 		float aimY = con.input.readFloat();
 		boolean jetpack = con.input.readBoolean();
@@ -119,6 +119,7 @@ public class Server {
 		float y = con.input.readFloat();
 		Player p = Game.players[playerNum];
 		
+		/*
 		if(left)
 			p.moveLeft();
 		else
@@ -128,6 +129,7 @@ public class Server {
 			p.moveRight();
 		else
 			p.stopMovingRight();
+		*/
 		
 		p.setTarget(new Vector2(aimX, aimY));
 		
@@ -137,5 +139,6 @@ public class Server {
 			p.jetpack.disable();
 		
 		p.body.setTransform(new Vector2(x, y), 0.0f);
+		p.setLocation(new Vector2(x, y));
 	}
 }
