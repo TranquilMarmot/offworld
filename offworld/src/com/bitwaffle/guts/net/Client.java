@@ -1,7 +1,6 @@
 package com.bitwaffle.guts.net;
 
 import java.io.IOException;
-import java.util.Iterator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,7 +9,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.net.Socket;
 import com.badlogic.gdx.net.SocketHints;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.offworld.entities.player.Player;
 
 public class Client {
@@ -49,12 +47,12 @@ public class Client {
 		try {
 			JSONObject playerInfo = new JSONObject();
 			Player player = Game.players[playerNumber];
-			playerInfo.put("num", playerNumber);
-			playerInfo.put("left", player.isMovingLeft());
-			playerInfo.put("right", player.isMovingRight());
-			playerInfo.put("aimX", (double)player.getCurrentTarget().x);
-			playerInfo.put("aimY", (double)player.getCurrentTarget().y);
-			playerInfo.put("jpak", player.jetpack.isEnabled());
+			playerInfo.put("n", playerNumber);
+			playerInfo.put("l", player.isMovingLeft() ? 1 : 0);
+			playerInfo.put("r", player.isMovingRight() ? 1 : 0);
+			playerInfo.put("aX", (double)player.getCurrentTarget().x);
+			playerInfo.put("aY", (double)player.getCurrentTarget().y);
+			playerInfo.put("j", player.jetpack.isEnabled() ? 1 : 0);
 			playerInfo.put("x", (double)player.body.getPosition().x);
 			playerInfo.put("y", (double)player.body.getPosition().y);
 			

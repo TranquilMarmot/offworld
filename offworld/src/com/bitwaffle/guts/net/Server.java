@@ -98,12 +98,12 @@ public class Server {
 				try {
 					JSONObject obj = new JSONObject(read);
 					JSONObject playerInfo = obj.getJSONObject("player");
-					int playerNum = playerInfo.getInt("num");
-					boolean left = playerInfo.getBoolean("left");
-					boolean right = playerInfo.getBoolean("right");
-					float aimX = (float)playerInfo.getDouble("aimX");
-					float aimY = (float)playerInfo.getDouble("aimY");
-					boolean jetpack = playerInfo.getBoolean("jpak");
+					int playerNum = playerInfo.getInt("n");
+					boolean left = playerInfo.getInt("l") == 1;
+					boolean right = playerInfo.getInt("r") == 1;
+					float aimX = (float)playerInfo.getDouble("aX");
+					float aimY = (float)playerInfo.getDouble("aY");
+					boolean jetpack = playerInfo.getInt("j") == 1;
 					float x = (float)playerInfo.getDouble("x");
 					float y = (float)playerInfo.getDouble("y");
 					
