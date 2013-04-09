@@ -165,6 +165,16 @@ public class Physics {
 	}
 	
 	/**
+	 * Get an entity from a given layer with a given hash
+	 * @param layer Layer to get entity from
+	 * @param hash Hash of entity to get
+	 * @return Entity at given layer with given hash
+	 */
+	public Entity getEntity(int layer, int hash){
+		return entities.getEntity(layer, hash);
+	}
+	
+	/**
 	 * Completely clears the physics world, getting rid of EVERYTHING
 	 * Use with caution! Can easily cause ConcurrentModificationExceptions
 	 * if something is using an iterator from this physics class.
