@@ -1,18 +1,21 @@
 package com.bitwaffle.guts.net;
 
+import com.bitwaffle.guts.net.client.GameClient;
+import com.bitwaffle.guts.net.server.GameServer;
+
 public class Net {
-	public Server server;
+	public GameServer server;
 	
-	public Client client;
+	public GameClient client;
 	
 	public void startServer(){
 		if(server == null)
-			server = new Server();
+			server = new GameServer();
 	}
 	
 	public void startClient(String host){
 		if(client == null)
-			client = new Client(host);
+			client = new GameClient(host);
 	}
 	
 	public void update(){

@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.net;
+package com.bitwaffle.guts.net.server;
 
 import com.badlogic.gdx.net.Socket;
 import com.esotericsoftware.kryo.io.Input;

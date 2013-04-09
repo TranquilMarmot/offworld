@@ -132,6 +132,7 @@ class HelpCommand implements Command{
 				Game.out.println("HELP for " + command + ":");
 				command.help();
 			} catch(IllegalArgumentException e){
+				e.printStackTrace();
 				Game.out.println("Command not found! (" + commStr + ")");
 			}
 		} else{
