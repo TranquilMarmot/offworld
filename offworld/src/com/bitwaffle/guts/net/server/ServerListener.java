@@ -59,6 +59,7 @@ public class ServerListener extends Listener {
 		public void updateEntity() {
 			Player player = Game.players[reply.playerNumber];
 			player.body.setTransform(new Vector2(reply.x, reply.y), 0);
+			player.body.setLinearVelocity(reply.dx, reply.dy);
 			player.setTarget(new Vector2(reply.aimX, reply.aimY));
 
 			if (reply.jetpack)

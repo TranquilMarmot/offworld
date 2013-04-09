@@ -5,6 +5,8 @@ public class PlayerInfoReply {
 	
 	public float x, y;
 	
+	public float dx, dy;
+	
 	public float aimX, aimY;
 	
 	public boolean jetpack;

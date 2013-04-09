@@ -38,6 +38,8 @@ public class ClientListener extends Listener {
 		Player player = Game.players[reply.playerNumber];
 		reply.x = player.body.getPosition().x;
 		reply.y = player.body.getPosition().y;
+		reply.dx = player.body.getLinearVelocity().x;
+		reply.dy = player.body.getLinearVelocity().y;
 		reply.aimX = player.getCurrentTarget().x;
 		reply.aimY = player.getCurrentTarget().y;
 		reply.jetpack = player.jetpack.isEnabled();
