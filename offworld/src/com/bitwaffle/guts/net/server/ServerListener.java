@@ -3,7 +3,6 @@ package com.bitwaffle.guts.net.server;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.net.messages.PlayerInfoReply;
-import com.bitwaffle.guts.net.messages.PlayerInfoRequest;
 import com.bitwaffle.guts.net.messages.SomeReply;
 import com.bitwaffle.guts.net.messages.SomeRequest;
 import com.bitwaffle.guts.physics.EntityUpdateRequest;
@@ -11,14 +10,16 @@ import com.bitwaffle.offworld.entities.player.Player;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
+/**
+ * Handles sending/receiving objects from the server
+ * 
+ * @author TranquilMarmot
+ */
 public class ServerListener extends Listener {
 
 	@Override
 	public void connected(Connection connection) {
 		super.connected(connection);
-		PlayerInfoRequest req = new PlayerInfoRequest();
-		req.playerNumber = 0;
-		connection.sendTCP(req);
 	}
 
 	@Override
@@ -38,16 +39,13 @@ public class ServerListener extends Listener {
 			connection.sendTCP(response);
 		} else if (object instanceof PlayerInfoReply) {
 			PlayerInfoReply reply = (PlayerInfoReply) object;
-
 			Game.physics.addEntityUpdateRequest(new PlayerUpdateRequest(reply));
-
-			//Game.out.println("set player values, sending request");
-			PlayerInfoRequest req = new PlayerInfoRequest();
-			req.playerNumber = reply.playerNumber;
-			//connection.sendTCP(req);
 		}
 	}
 
+	/**
+	 * Updates a player based on some data from a client
+	 */
 	private class PlayerUpdateRequest implements EntityUpdateRequest {
 		private PlayerInfoReply reply;
 

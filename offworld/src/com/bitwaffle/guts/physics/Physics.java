@@ -51,6 +51,13 @@ public class Physics {
 	 */
 	private Stack<DynamicEntity> toInitialize;
 	
+	/**
+	 * Since box2D doesn't play well with threads (see comment on toInitialize stack),
+	 * entities have to be updated from the thread that physics is running in.
+	 * Requests can be added from any thread, and every tick this queue is emptied
+	 * and runs all requests.
+	 * There is no guarantee that the requests will be handled in the order they are added.
+	 */
 	private ConcurrentLinkedQueue<EntityUpdateRequest> updateRequests;
 	
 	
@@ -128,6 +135,36 @@ public class Physics {
 	}
 	
 	/**
+	 * Add a passive Entity to the Entities list
+	 * @param ent Entity to add
+	 * @param addToCurrentRoom Whether or not to add the entity to the current room as well (if added, it gets removed on room change)
+	 */
+	public void addEntity(Entity ent, boolean addToCurrentRoom){
+		entities.addEntity(ent);
+		
+		// add to current room as well, if told to
+		if(addToCurrentRoom && currentRoom != null)
+			currentRoom.addEntity(ent);
+		
+		// DynamicEntity needs to be initialized when it's added
+		if(ent instanceof DynamicEntity)
+			toInitialize.push((DynamicEntity)ent);
+	}
+	
+	/**
+	 * Directly remove an entity from the world
+	 * @param ent Entity to remove from world
+	 * @param removeFromCurrentRoom Whether or not to remove the entity from the current room as well (generally, yes)
+	 */
+	public void removeEntity(Entity ent, boolean removeFromCurrentRoom){
+		entities.removeEntity(ent);
+		
+		// remove from current room as well
+		if(removeFromCurrentRoom && currentRoom != null)
+			currentRoom.removeEntity(ent);
+	}
+	
+	/**
 	 * Completely clears the physics world, getting rid of EVERYTHING
 	 * Use with caution! Can easily cause ConcurrentModificationExceptions
 	 * if something is using an iterator from this physics class.
@@ -142,6 +179,10 @@ public class Physics {
 	 * clears all the lists inside of entities.
 	 */
 	private void clearEntities(){
+		// handle any pending requests before deleting everything FIXME is this necessary?
+		while(!updateRequests.isEmpty())
+			updateRequests.poll().updateEntity();
+		
 		// get rid of the current room
 		if(currentRoom != null){
 			currentRoom.removeFromWorld(this);
@@ -165,52 +206,9 @@ public class Physics {
 			Game.players[i] = null;
 	}
 	
-	/**
-	 * Directly remove an entity from the world
-	 * @param ent Entity to remove from world
-	 * @param removeFromCurrentRoom Whether or not to remove the entity from the current room as well (generally, yes)
-	 */
-	public void removeEntity(Entity ent, boolean removeFromCurrentRoom){
-		entities.removeEntity(ent);
-		
-		// remove from current room as well
-		if(removeFromCurrentRoom && currentRoom != null)
-			currentRoom.removeEntity(ent);
-	}
-	
-	/**
-	 * Add a passive Entity to the Entities list
-	 * @param ent Entity to add
-	 * @param addToCurrentRoom Whether or not to add the entity to the current room as well (if added, it gets removed on room change)
-	 */
-	public void addEntity(Entity ent, boolean addToCurrentRoom){
-		entities.addEntity(ent);
-		
-		// add to current room as well, if told to
-		if(addToCurrentRoom && currentRoom != null)
-			currentRoom.addEntity(ent);
-		
-		// DynamicEntity needs to be initialized when it's added
-		if(ent instanceof DynamicEntity)
-			toInitialize.push((DynamicEntity)ent);
-	}
-	
+	/** @param request Request to add */
 	public void addEntityUpdateRequest(EntityUpdateRequest request){
 		updateRequests.add(request);
-	}
-	
-	/**
-	 * @return Current number of dynamic entities
-	 */
-	public int numEntities(){
-		return entities.numEntities();
-	}
-	
-	/**
-	 * @return List of every iterator for every entity in the world
-	 */
-	public Iterator<Entity>[] getAllIterators(){
-		return entities.getAllIterators();
 	}
 	
 	/**
@@ -219,6 +217,21 @@ public class Physics {
 	 */
 	public void renderAll(Render2D renderer){
 		entities.renderAll(renderer);
+	}
+	
+	/** @return Current number of dynamic entities */
+	public int numEntities(){ 
+		return entities.numEntities();
+	}
+	
+	/** @return Whether or not there are any entities in the world */
+	public boolean entitiesExist() {
+		return numEntities() > 0;
+	}
+	
+	/** @return List of every iterator for every entity in the world */
+	public Iterator<Entity>[] getAllIterators(){
+		return entities.getAllIterators();
 	}
 	
 	/**
@@ -243,12 +256,5 @@ public class Physics {
 	 */
 	public void rayCast(RayCastCallback callback, Vector2 point1, Vector2 point2){
 		world.rayCast(callback, point1, point2);
-	}
-
-	/**
-	 * @return Whether or not there are any entities in the world
-	 */
-	public boolean entitiesExist() {
-		return entities.numEntities() > 0;
 	}
 }

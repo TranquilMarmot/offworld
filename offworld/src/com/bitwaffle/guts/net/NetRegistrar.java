@@ -1,19 +1,26 @@
 package com.bitwaffle.guts.net;
 
 import com.bitwaffle.guts.net.messages.PlayerInfoReply;
-import com.bitwaffle.guts.net.messages.PlayerInfoRequest;
 import com.bitwaffle.guts.net.messages.SomeReply;
 import com.bitwaffle.guts.net.messages.SomeRequest;
 import com.esotericsoftware.kryo.Kryo;
 
+/**
+ * Registers all the objects that are used for networking.
+ * Classes must be registered in the same order on the server AND
+ * the client in order for things to work.
+ * 
+ * @author TranquilMarmot
+ */
 public class NetRegistrar {
-	
-	
-	
+	/**
+	 * Registers classes for the given Kryo instance
+	 * @param kryo Kryo being used to communicate between client/server
+	 */
 	public static void registerClasses(Kryo kryo){
 		kryo.register(SomeRequest.class);
 		kryo.register(SomeReply.class);
-		kryo.register(PlayerInfoRequest.class);
+		
 		kryo.register(PlayerInfoReply.class);
 	}
 }

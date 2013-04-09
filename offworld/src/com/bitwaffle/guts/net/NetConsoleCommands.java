@@ -5,7 +5,15 @@ import java.util.StringTokenizer;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.gui.console.Command;
 
+/**
+ * Commands for fiddling with console stuff.
+ * 
+ * @author TranquilMarmot
+ */
 public class NetConsoleCommands {
+	/**
+	 * Server commands
+	 */
 	public static class ServerCommand implements Command{
 
 		@Override
@@ -15,8 +23,10 @@ public class NetConsoleCommands {
 			else{
 				String command = toker.nextToken();
 				
+				// start server
 				if(command.equals("start") || command.equals("begin"))
 					Game.net.startServer();
+				// end server
 				else if(command.equals("end"))
 					Game.net.server.endServer();
 			}
@@ -29,6 +39,9 @@ public class NetConsoleCommands {
 		
 	}
 	
+	/**
+	 * Client commands
+	 */
 	public static class ClientCommand implements Command {
 
 		@Override
@@ -38,23 +51,13 @@ public class NetConsoleCommands {
 			else{
 				String command = toker.nextToken();
 				
+				// start client
 				if(command.equals("start") || command.equals("connect") || command.equals("begin"))
 					Game.net.startClient(toker.nextToken());
+				
+				// send simple message
 				else if(command.equals("send"))
 					Game.net.send(toker.nextToken());
-				
-				/*
-				switch(command){
-				case "start":
-				case "connect":
-				case "begin":
-					Game.net.startClient(toker.nextToken());
-					break;
-				case "send":
-					Game.net.send(toker.nextToken());
-					break;
-				}
-				*/
 			}
 		}
 
