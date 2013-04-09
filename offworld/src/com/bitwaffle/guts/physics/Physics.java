@@ -2,6 +2,7 @@ package com.bitwaffle.guts.physics;
 
 import java.util.Iterator;
 import java.util.Stack;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactFilter;
@@ -50,6 +51,8 @@ public class Physics {
 	 */
 	private Stack<DynamicEntity> toInitialize;
 	
+	private ConcurrentLinkedQueue<EntityUpdateRequest> updateRequests;
+	
 	
 	/**
 	 * Initialized physics
@@ -60,6 +63,7 @@ public class Physics {
 		
 		entities = new Entities();
 		toInitialize = new Stack<DynamicEntity>();
+		updateRequests = new ConcurrentLinkedQueue<EntityUpdateRequest>();
 		
 		// initialize the world
 		initWorld();
@@ -108,6 +112,9 @@ public class Physics {
 		// initialize any entities that need intialization
 		while(!toInitialize.isEmpty())
 			toInitialize.pop().init(world);
+		
+		while(!updateRequests.isEmpty())
+			updateRequests.poll().updateEntity();
 
 		// this makes everything move around
 		world.step(timeStep, velocityIterations, positionIterations);
@@ -186,6 +193,10 @@ public class Physics {
 		// DynamicEntity needs to be initialized when it's added
 		if(ent instanceof DynamicEntity)
 			toInitialize.push((DynamicEntity)ent);
+	}
+	
+	public void addEntityUpdateRequest(EntityUpdateRequest request){
+		updateRequests.add(request);
 	}
 	
 	/**

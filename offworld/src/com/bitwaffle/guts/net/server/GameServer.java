@@ -3,17 +3,14 @@ package com.bitwaffle.guts.net.server;
 import java.io.IOException;
 
 import com.bitwaffle.guts.net.NetRegistrar;
-import com.bitwaffle.guts.net.messages.PlayerInfoRequest;
-import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Server;
 
 public class GameServer {
-	private static final int DEFAULT_UDP_PORT = 42042, DEFAULT_TCP_PORT = 42042;
+	private static final int DEFAULT_UDP_PORT = 42042, DEFAULT_TCP_PORT = 42024;
 	
 	private Server server;
 	
 	public GameServer(){
-		//connections = new ArrayList<ServerConnection>();
 		startServer();
 	}
 	
@@ -38,10 +35,6 @@ public class GameServer {
 	}
 	
 	public void update(){
-		for(Connection connection : server.getConnections()){
-			PlayerInfoRequest req = new PlayerInfoRequest();
-			req.playerNumber = 0;
-			connection.sendTCP(req);
-		}
+		
 	}
 }

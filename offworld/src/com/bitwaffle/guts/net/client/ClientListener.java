@@ -43,7 +43,7 @@ public class ClientListener extends Listener {
 		reply.jetpack = player.jetpack.isEnabled();
 		reply.shooting = player.isShooting();
 		
-		connection.sendTCP(reply);
+		connection.sendUDP(reply);
 	}
 	
 	@Override
