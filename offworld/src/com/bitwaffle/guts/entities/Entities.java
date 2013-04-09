@@ -13,37 +13,46 @@ import com.bitwaffle.guts.graphics.Render2D;
  * @author TranquilMarmot
  */
 public class Entities {
-	/**
-	 * Had to make a custom class so that the ArrayLists could be shoved into
-	 * an array
-	 */
+	/** Number of layers of entities we have */
+	public static final int NUM_LAYERS = 10;
+	
+	/** Custom class so that HashMaps can be put in an array */
 	@SuppressWarnings("serial")
 	private class EntityHashMap extends HashMap<Integer, Entity>{}
 	
 	/** List of lists to keep track of everything */
 	private EntityHashMap[] layers;
 	
-	/** Used when adding/removing entities to avoid ConcurrentModificationException to ArrayLists */
-	private Stack<Entity> toAdd, toRemove;
+	/** Used when adding entities to avoid ConcurrentModificationException */
+	private Stack<EntityAddRequest> toAdd;
 	
-	/** Number of layers of entities we have */
-	public static final int NUM_LAYERS = 10;
+	/** Used when removing entities to avoid ConcurrentModificationException */
+	private Stack<EntityRemoveRequest> toRemove;
 	
 	public Entities(){
 		layers = new EntityHashMap[NUM_LAYERS];
 		for(int i = 0; i < layers.length; i++)
 			layers[i] = new EntityHashMap();
 		
-		toAdd = new Stack<Entity>();
-		toRemove = new Stack<Entity>();
+		toAdd = new Stack<EntityAddRequest>();
+		toRemove = new Stack<EntityRemoveRequest>();
 	}
 	
 	/**
 	 * Add an entity to be rendered/updated
-	 * @param ent
+	 * @param ent Entity to add
 	 */
 	public void addEntity(Entity ent){
-		toAdd.add(ent);
+		addEntity(ent, ent.hashCode());
+	}
+	
+	/**
+	 * Add an entity with a specific hash value
+	 * @param ent Entity to add
+	 * @param hash Hash to add entity with
+	 */
+	public void addEntity(Entity ent, int hash){
+		toAdd.add(new EntityAddRequest(ent, hash));
 	}
 	
 	/**
@@ -51,8 +60,26 @@ public class Entities {
 	 * @param ent
 	 */
 	public void removeEntity(Entity ent){
+		removeEntity(ent, ent.hashCode());
+	}
+	
+	/**
+	 * Remove an entity with a specific hash value
+	 * @param ent Entity to remove
+	 * @param hash Hash of entity to remove
+	 */
+	public void removeEntity(Entity ent, int hash){
 		if(!toRemove.contains(ent))
-			toRemove.add(ent);
+			toRemove.add(new EntityRemoveRequest(ent.getLayer(), hash));
+	}
+	
+	/**
+	 * @param layer Layer to get entity from
+	 * @param hash Hash of entity to get
+	 * @return Entity from given layer with given hash
+	 */
+	public Entity getEntity(int layer, int hash){
+		return layers[layer].get(hash);
 	}
 	
 	/**
@@ -62,7 +89,7 @@ public class Entities {
 	public void update(float timeStep){
 		// check for any entities to be added
 		while(!toAdd.isEmpty())
-			init(toAdd.pop());
+			handleAddRequest(toAdd.pop());
 		
 		// update all entities
 		for(EntityHashMap list : layers)
@@ -70,15 +97,15 @@ public class Entities {
 		
 		// check for any entities to be removed
 		while(!toRemove.isEmpty())
-			cleanup(toRemove.pop());
+			handleRemoveRequest(toRemove.pop());
 	}
 	
 	/**
-	 * Does it's best to remove an entity from the game and free up any memory
-	 * entity may have allocated
-	 * @param ent Entity to get rid of
+	 * Remove an entity
+	 * @param req Entity remove request
 	 */
-	private void cleanup(Entity ent){
+	private void handleRemoveRequest(EntityRemoveRequest req){
+		Entity ent = layers[req.layer].get(req.hash);
 		ent.cleanup();
 		
 		int layer = ent.getLayer();
@@ -91,15 +118,15 @@ public class Entities {
 	}
 	
 	/**
-	 * Initialize an entity (that is, add it to the proper layer list)
-	 * @param ent Entity to add
+	 * Initialize an entity
+	 * @param req Entity add request
 	 */
-	private void init(Entity ent){
-		int layer = ent.getLayer();
+	private void handleAddRequest(EntityAddRequest req){
+		int layer = req.ent.getLayer();
 		if(layer > NUM_LAYERS)
 			layer = NUM_LAYERS;
 		
-		layers[layer].put(ent.hashCode(), ent);
+		layers[layer].put(req.hash, req.ent);
 	}
 	
 	/**
