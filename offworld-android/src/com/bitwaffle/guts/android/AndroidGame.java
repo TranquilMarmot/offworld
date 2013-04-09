@@ -17,7 +17,7 @@ public class AndroidGame extends Game {
 	protected void initGUI(){
 		// android has it's own GUI
 		gui = new AndroidGUI();
-		gui.setCurrentState(GUI.States.TITLESCREEN);
+		gui.setCurrentState(GUI.States.TITLESCREEN);//
 	}
 	
 	@Override

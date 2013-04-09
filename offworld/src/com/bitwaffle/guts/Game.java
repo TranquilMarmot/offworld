@@ -24,7 +24,7 @@ public abstract class Game implements ApplicationListener {
 	protected Render2D render2D;
 	
 	/** The graphical user interface */
-	public static GUI gui;
+	public static GUI gui;//
 	
 	/** Physics world */
 	public static Physics physics;

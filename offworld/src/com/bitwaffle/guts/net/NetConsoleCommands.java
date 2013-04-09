@@ -15,15 +15,10 @@ public class NetConsoleCommands {
 			else{
 				String command = toker.nextToken();
 				
-				switch(command){
-				case "start":
-				case "begin":
+				if(command.equals("start") || command.equals("begin"))
 					Game.net.startServer();
-					break;
-				case "end":
+				else if(command.equals("end"))
 					Game.net.server.endServer();
-					break;
-				}
 			}
 		}
 
@@ -43,6 +38,12 @@ public class NetConsoleCommands {
 			else{
 				String command = toker.nextToken();
 				
+				if(command.equals("start") || command.equals("connect") || command.equals("begin"))
+					Game.net.startClient(toker.nextToken());
+				else if(command.equals("send"))
+					Game.net.send(toker.nextToken());
+				
+				/*
 				switch(command){
 				case "start":
 				case "connect":
@@ -53,6 +54,7 @@ public class NetConsoleCommands {
 					Game.net.send(toker.nextToken());
 					break;
 				}
+				*/
 			}
 		}
 

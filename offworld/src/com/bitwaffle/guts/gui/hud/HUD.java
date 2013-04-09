@@ -40,7 +40,7 @@ public class HUD extends GUIObject {
 		
 		
 		//addCameraButton();
-		//addConsoleButton();
+		addConsoleButton();
 		//addCrosshair();
 		gui.addObject(new DebugText());
 	}
@@ -51,8 +51,8 @@ public class HUD extends GUIObject {
 		if(Game.isPaused()){
 			//if(cameraButtonInGUI)
 			//	removeCameraButton();
-			//if(consoleButtonInGUI)
-			//	removeConsoleButton();
+			if(consoleButtonInGUI)
+				removeConsoleButton();
 			//if(crosshairInGUI)
 			//	removeCrosshair();
 			
@@ -60,8 +60,8 @@ public class HUD extends GUIObject {
 		} else {
 			//if(!cameraButtonInGUI)
 			//	addCameraButton();
-			//if(!consoleButtonInGUI)
-			//	addConsoleButton();
+			if(!consoleButtonInGUI)
+				addConsoleButton();
 			//if(!crosshairInGUI)
 			//	addCrosshair();
 		}
