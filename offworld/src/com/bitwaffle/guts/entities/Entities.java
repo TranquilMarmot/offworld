@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.entities;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Stack;
 
@@ -18,10 +18,10 @@ public class Entities {
 	 * an array
 	 */
 	@SuppressWarnings("serial")
-	private class EntityArrayList extends ArrayList<Entity>{}
+	private class EntityHashMap extends HashMap<Integer, Entity>{}
 	
 	/** List of lists to keep track of everything */
-	private EntityArrayList[] layers;
+	private EntityHashMap[] layers;
 	
 	/** Used when adding/removing entities to avoid ConcurrentModificationException to ArrayLists */
 	private Stack<Entity> toAdd, toRemove;
@@ -30,9 +30,9 @@ public class Entities {
 	public static final int NUM_LAYERS = 10;
 	
 	public Entities(){
-		layers = new EntityArrayList[NUM_LAYERS];
+		layers = new EntityHashMap[NUM_LAYERS];
 		for(int i = 0; i < layers.length; i++)
-			layers[i] = new EntityArrayList();
+			layers[i] = new EntityHashMap();
 		
 		toAdd = new Stack<Entity>();
 		toRemove = new Stack<Entity>();
@@ -65,14 +65,12 @@ public class Entities {
 			init(toAdd.pop());
 		
 		// update all entities
-		for(EntityArrayList list : layers)
+		for(EntityHashMap list : layers)
 			updateEntityArrayList(list, timeStep);
 		
 		// check for any entities to be removed
-		while(!toRemove.isEmpty()){
-			Entity ent = toRemove.pop();
-			cleanup(ent);
-		}
+		while(!toRemove.isEmpty())
+			cleanup(toRemove.pop());
 	}
 	
 	/**
@@ -87,7 +85,7 @@ public class Entities {
 		if(layer > NUM_LAYERS)
 			layer = NUM_LAYERS;
 		
-		layers[layer].remove(ent);
+		layers[layer].remove(ent.hashCode());
 		
 		ent = null;
 	}
@@ -101,7 +99,7 @@ public class Entities {
 		if(layer > NUM_LAYERS)
 			layer = NUM_LAYERS;
 		
-		layers[layer].add(ent);
+		layers[layer].put(ent.hashCode(), ent);
 	}
 	
 	/**
@@ -109,8 +107,8 @@ public class Entities {
 	 * @param list List to update
 	 * @param timeStep 
 	 */
-	private void updateEntityArrayList(EntityArrayList list, float timeStep){
-		for(Entity ent : list)
+	private void updateEntityArrayList(EntityHashMap list, float timeStep){
+		for(Entity ent : list.values())
 			if(ent != null)
 				ent.update(timeStep);
 	}
@@ -120,15 +118,15 @@ public class Entities {
 	 * @param renderer Renderer to render entities with
 	 */
 	public void renderAll(Render2D renderer){
-		for(EntityArrayList l : layers)
-			renderer.renderEntities(l.iterator());
+		for(EntityHashMap l : layers)
+			renderer.renderEntities(l.values().iterator());
 	}
 	
 	/**
 	 * Clear every entity from this list
 	 */
 	public void clear(){
-		for(EntityArrayList l : layers)
+		for(EntityHashMap l : layers)
 			l.clear();
 	}
 	
@@ -137,7 +135,7 @@ public class Entities {
 	 */
 	public int numEntities(){
 		int count = 0;
-		for(EntityArrayList l : layers)
+		for(EntityHashMap l : layers)
 			count += l.size();
 		return count;
 	}
@@ -150,7 +148,7 @@ public class Entities {
 		Iterator<Entity>[] its = new Iterator[NUM_LAYERS];
 		
 		for(int i = 0; i < NUM_LAYERS; i++)
-			its[i] = layers[i].iterator();
+			its[i] = layers[i].values().iterator();
 		
 		return its;
 	}
