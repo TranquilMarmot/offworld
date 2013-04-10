@@ -196,9 +196,9 @@ class ListCommand implements Command{
 				int layer = ent.getLayer();
 				if(layerFilter != null){
 					if(layer == layerFilter)
-						Game.out.println(ent.getClass().getCanonicalName() + " | x: " + loc.x + " y: " + loc.y + " angle: " + ent.getAngle() + " layer: " + ent.getLayer());
+						Game.out.println(ent.getClass().getCanonicalName() + " | x: " + loc.x + " y: " + loc.y + " l: " + ent.getLayer() + " h: " + ent.hashCode());
 				} else{
-					Game.out.println(ent.getClass().getCanonicalName() + " | x: " + loc.x + " y: " + loc.y + " angle: " + ent.getAngle() + " layer: " + ent.getLayer());
+					Game.out.println(ent.getClass().getCanonicalName() + " | x: " + loc.x + " y: " + loc.y + " l: " + ent.getLayer() + " h: " + ent.hashCode());
 				}
 			}
 		}

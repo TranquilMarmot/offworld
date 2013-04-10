@@ -20,7 +20,7 @@ public class BreakableRockCreator implements EntityUpdateRequest {
 				req.scale,
 				new float[]{ req.r, req.g, req.b, req.a},
 				req.layer);
-		Game.physics.addEntity(rock, true);
+		Game.physics.addEntity(rock, req.hash, true);
 	}
 
 }

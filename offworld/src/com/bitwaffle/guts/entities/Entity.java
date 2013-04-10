@@ -1,10 +1,5 @@
 package com.bitwaffle.guts.entities;
 
-import java.io.OutputStream;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.EntityRenderer;
@@ -31,6 +26,10 @@ public class Entity {
 	/** What layer the entity gets rendered on */
 	private int layer;
 	
+	/** Hash value for entity */
+	private Integer hash;
+	
+	/** No-args constructor for serialization only! */
 	public Entity(){
 		renderer = null;
 		location = new Vector2();
@@ -96,24 +95,20 @@ public class Entity {
 		return layer;
 	}
 	
-	public JSONObject sendToClient(OutputStream out){
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put("layer", this.layer);
-			
-			return obj;
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return null;
+	/**
+	 * Set the hash code for this entity
+	 * @param newHash New hash code
+	 */
+	public void setHashCode(int newHash){
+		this.hash = newHash;
 	}
 	
-	public void createFromServer(JSONObject obj){
-		try{
-			this.layer = obj.getInt("layer");
-		} catch(JSONException e){
-			e.printStackTrace();
-		}
+	@Override
+	public int hashCode(){
+		// use default hash if none has been given
+		if(hash == null)
+			hash = super.hashCode();
+		return hash;
 	}
 	
 	/*

@@ -18,5 +18,6 @@ public class EntityAddRequest {
 	public EntityAddRequest(Entity ent, int hash){
 		this.ent = ent;
 		this.hash = hash;
+		ent.setHashCode(hash);
 	}
 }
