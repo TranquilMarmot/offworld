@@ -101,7 +101,7 @@ public class PlayerBodyAnimation extends Animation {
 	
 	@Override
 	public void update(float timeStep){
-		if(player.body != null){
+		if(player.body != null && player.getJumpSensor().numContacts() > 0){
 			// update animation based on how fast the player is moving
 			Vector2 linVec = player.body.getLinearVelocity();
 			if((linVec.x > minAnimationVelocity || linVec.x < -minAnimationVelocity)){
