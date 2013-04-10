@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.net.messages;
+package com.bitwaffle.guts.net.messages.entity;
 
 public class EntityUpdateMessage {
 	public int layer;

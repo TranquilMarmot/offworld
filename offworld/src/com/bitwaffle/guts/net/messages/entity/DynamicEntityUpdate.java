@@ -1,0 +1,24 @@
+package com.bitwaffle.guts.net.messages.entity;
+
+import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.physics.EntityUpdateRequest;
+
+public class DynamicEntityUpdate implements EntityUpdateRequest {
+	private DynamicEntityUpdateMessage message;
+	
+	public DynamicEntityUpdate(DynamicEntityUpdateMessage message){
+		this.message = message;
+	}
+
+	@Override
+	public void updateEntity() {
+		DynamicEntity ent = (DynamicEntity)(Game.physics.getEntity(message.layer, message.hash));
+		if(ent != null){
+			ent.body.setTransform(new Vector2(message.x, message.y), message.angle);
+			ent.body.setLinearVelocity(message.dx, message.dy);
+			ent.body.setAngularVelocity(message.da);
+		}
+	}
+}

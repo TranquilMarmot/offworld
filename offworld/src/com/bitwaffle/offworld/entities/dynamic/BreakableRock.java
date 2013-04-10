@@ -25,6 +25,8 @@ public class BreakableRock extends DynamicEntity implements Health {
 	
 	/** Possible rocks */
 	private static String[] rockNames = {"rock1", "rock2", "rock3", "rock4"};
+	/** Name of rock */
+	public String chosenName;
 	/** @return Random name from rockNames array */
 	private static String getRandomName(){ return rockNames[Game.random.nextInt(rockNames.length)]; }
 	
@@ -96,6 +98,7 @@ public class BreakableRock extends DynamicEntity implements Health {
 		this.health = 20;
 		this.scale = scale;
 		this.color = color;
+		this.chosenName = name;
 	}
 	
 	/**
@@ -121,6 +124,12 @@ public class BreakableRock extends DynamicEntity implements Health {
 		fixtDef.shape = Game.resources.polygons.get(name).getShape(scale);
 		return fixtDef;
 	}
+	
+	/** @return Scale of this rock */
+	public float getScale(){ return scale; }
+	
+	/** @return Color of this rock */
+	public float[] getColor(){ return color; }
 
 	@Override
 	public void hurt(float amount) {

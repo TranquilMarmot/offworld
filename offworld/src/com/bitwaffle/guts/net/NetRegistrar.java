@@ -3,6 +3,9 @@ package com.bitwaffle.guts.net;
 import com.bitwaffle.guts.net.messages.PlayerUpdateMessage;
 import com.bitwaffle.guts.net.messages.SomeReply;
 import com.bitwaffle.guts.net.messages.SomeRequest;
+import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateRequest;
+import com.bitwaffle.guts.net.messages.entity.DynamicEntityUpdateMessage;
+import com.bitwaffle.guts.net.messages.entity.EntityUpdateMessage;
 import com.esotericsoftware.kryo.Kryo;
 
 /**
@@ -22,5 +25,8 @@ public class NetRegistrar {
 		kryo.register(SomeReply.class);
 		
 		kryo.register(PlayerUpdateMessage.class);
+		kryo.register(BreakableRockCreateRequest.class);
+		kryo.register(DynamicEntityUpdateMessage.class);
+		kryo.register(EntityUpdateMessage.class);
 	}
 }

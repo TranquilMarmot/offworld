@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.net.messages;
+package com.bitwaffle.guts.net.messages.entity;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;

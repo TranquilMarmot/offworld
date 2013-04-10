@@ -2,6 +2,8 @@ package com.bitwaffle.guts.net.client;
 
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.net.messages.SomeReply;
+import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateRequest;
+import com.bitwaffle.guts.net.messages.entity.BreakableRockCreator;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
@@ -27,6 +29,9 @@ public class ClientListener extends Listener {
 		if (object instanceof SomeReply) {
 			SomeReply response = (SomeReply) object;
 			Game.out.println(response.wat);
+		} else if(object instanceof BreakableRockCreateRequest){
+			BreakableRockCreateRequest req = (BreakableRockCreateRequest)object;
+			Game.physics.addEntityUpdateRequest(new BreakableRockCreator(req));
 		}
 	}
 	

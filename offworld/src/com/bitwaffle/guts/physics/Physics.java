@@ -134,13 +134,17 @@ public class Physics {
 			currentRoom.update(timeStep);
 	}
 	
+	public void addEntity(Entity ent, boolean addToCurrentRoom){
+		this.addEntity(ent, ent.hashCode(), addToCurrentRoom);
+	}
+	
 	/**
 	 * Add a passive Entity to the Entities list
 	 * @param ent Entity to add
 	 * @param addToCurrentRoom Whether or not to add the entity to the current room as well (if added, it gets removed on room change)
 	 */
-	public void addEntity(Entity ent, boolean addToCurrentRoom){
-		entities.addEntity(ent);
+	public void addEntity(Entity ent, int hash, boolean addToCurrentRoom){
+		entities.addEntity(ent, hash);
 		
 		// add to current room as well, if told to
 		if(addToCurrentRoom && currentRoom != null)
@@ -151,13 +155,17 @@ public class Physics {
 			toInitialize.push((DynamicEntity)ent);
 	}
 	
+	public void removeEntity(Entity ent, boolean removeFromCurrentRoom){
+		this.removeEntity(ent, ent.hashCode(), removeFromCurrentRoom);
+	}
+	
 	/**
 	 * Directly remove an entity from the world
 	 * @param ent Entity to remove from world
 	 * @param removeFromCurrentRoom Whether or not to remove the entity from the current room as well (generally, yes)
 	 */
-	public void removeEntity(Entity ent, boolean removeFromCurrentRoom){
-		entities.removeEntity(ent);
+	public void removeEntity(Entity ent, int hash, boolean removeFromCurrentRoom){
+		entities.removeEntity(ent, hash);
 		
 		// remove from current room as well
 		if(removeFromCurrentRoom && currentRoom != null)
