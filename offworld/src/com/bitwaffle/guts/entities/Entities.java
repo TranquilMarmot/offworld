@@ -106,15 +106,17 @@ public class Entities {
 	 */
 	private void handleRemoveRequest(EntityRemoveRequest req){
 		Entity ent = layers[req.layer].get(req.hash);
-		ent.cleanup();
-		
-		int layer = ent.getLayer();
-		if(layer > NUM_LAYERS)
-			layer = NUM_LAYERS;
-		
-		layers[layer].remove(ent.hashCode());
-		
-		ent = null;
+		if(ent != null){
+			ent.cleanup();
+			
+			int layer = ent.getLayer();
+			if(layer > NUM_LAYERS)
+				layer = NUM_LAYERS;
+			
+			layers[layer].remove(ent.hashCode());
+			
+			ent = null;
+		}
 	}
 	
 	/**

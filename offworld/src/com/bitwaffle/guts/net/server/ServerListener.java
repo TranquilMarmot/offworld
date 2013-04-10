@@ -2,7 +2,7 @@ package com.bitwaffle.guts.net.server;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.net.messages.PlayerInfoReply;
+import com.bitwaffle.guts.net.messages.PlayerUpdateMessage;
 import com.bitwaffle.guts.net.messages.SomeReply;
 import com.bitwaffle.guts.net.messages.SomeRequest;
 import com.bitwaffle.guts.physics.EntityUpdateRequest;
@@ -37,8 +37,8 @@ public class ServerListener extends Listener {
 			SomeReply response = new SomeReply();
 			response.wat = "Thanks!";
 			connection.sendTCP(response);
-		} else if (object instanceof PlayerInfoReply) {
-			PlayerInfoReply reply = (PlayerInfoReply) object;
+		} else if (object instanceof PlayerUpdateMessage) {
+			PlayerUpdateMessage reply = (PlayerUpdateMessage) object;
 			Game.physics.addEntityUpdateRequest(new PlayerUpdateRequest(reply));
 		}
 	}
@@ -47,9 +47,9 @@ public class ServerListener extends Listener {
 	 * Updates a player based on some data from a client
 	 */
 	private class PlayerUpdateRequest implements EntityUpdateRequest {
-		private PlayerInfoReply reply;
+		private PlayerUpdateMessage reply;
 
-		public PlayerUpdateRequest(PlayerInfoReply reply) {
+		public PlayerUpdateRequest(PlayerUpdateMessage reply) {
 			this.reply = reply;
 		}
 

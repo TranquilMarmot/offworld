@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.net.NetRegistrar;
-import com.bitwaffle.guts.net.messages.PlayerInfoReply;
+import com.bitwaffle.guts.net.messages.PlayerUpdateMessage;
 import com.bitwaffle.guts.net.messages.SomeRequest;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.esotericsoftware.kryonet.Client;
@@ -23,6 +23,10 @@ public class GameClient {
 
 	/** The actual client */
 	private Client client;
+	
+	private int ticksSinceLastUpdate = 0;
+	
+	private int playerUpdateSpeed = 3;
 
 	/**
 	 * @param host Host to connect to
@@ -50,13 +54,18 @@ public class GameClient {
 
 	public void update() {
 		// temporary, just send player data
-		if (client.isConnected()) {
-			sendPlayerInfoReply(client, 0);
+		ticksSinceLastUpdate++;
+		
+		if(ticksSinceLastUpdate > playerUpdateSpeed){
+			if (client.isConnected()) {
+				sendPlayerInfoReply(client, 0);
+			}
+			ticksSinceLastUpdate = 0;
 		}
 	}
 	
 	public void sendPlayerInfoReply(Connection connection, int playerNumber){
-		PlayerInfoReply reply = new PlayerInfoReply();
+		PlayerUpdateMessage reply = new PlayerUpdateMessage();
 		reply.playerNumber = playerNumber;
 		Player player = Game.players[reply.playerNumber];
 		reply.x = player.body.getPosition().x;
