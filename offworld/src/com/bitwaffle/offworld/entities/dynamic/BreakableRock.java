@@ -136,7 +136,7 @@ public class BreakableRock extends DynamicEntity implements Health {
 		health -= amount;
 		
 		// if no more health, remove from world and add smaller rocks
-		if(health <= 0){
+		if(Game.net.server != null && health <= 0){
 			float newScale = this.scale * SPLIT_SIZE;
 			float checkDist = newScale * CHECK_DISTANCE;
 			

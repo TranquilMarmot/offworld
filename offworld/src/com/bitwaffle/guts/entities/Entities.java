@@ -69,8 +69,12 @@ public class Entities {
 	 * @param hash Hash of entity to remove
 	 */
 	public void removeEntity(Entity ent, int hash){
-		if(!toRemove.contains(ent))
-			toRemove.add(new EntityRemoveRequest(ent.getLayer(), hash));
+		if(!toRemove.contains(ent)){
+			EntityRemoveRequest req = new EntityRemoveRequest();
+			req.hash = hash;
+			req.layer = ent.getLayer();
+			toRemove.add(req);
+		}
 	}
 	
 	/**

@@ -117,8 +117,12 @@ public class Physics {
 	 */
 	public void update(float timeStep){
 		// initialize any entities that need intialization
-		while(!toInitialize.isEmpty())
-			toInitialize.pop().init(world);
+		while(!toInitialize.isEmpty()){
+			DynamicEntity ent = toInitialize.pop();
+			ent.init(world);
+			if(Game.net.server != null)
+				Game.net.server.entityAddedNotification(ent);
+		}
 		
 		while(!updateRequests.isEmpty())
 			updateRequests.poll().updateEntity();
@@ -170,6 +174,9 @@ public class Physics {
 		// remove from current room as well
 		if(removeFromCurrentRoom && currentRoom != null)
 			currentRoom.removeEntity(ent);
+		
+		if(Game.net.server != null)
+			Game.net.server.entityRemovedNotification(ent);
 	}
 	
 	/**

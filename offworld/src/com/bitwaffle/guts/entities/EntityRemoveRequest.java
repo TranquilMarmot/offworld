@@ -10,13 +10,4 @@ public class EntityRemoveRequest {
 	public int layer;
 	/** Hash of entity being removed */
 	public int hash;
-	
-	/**
-	 * @param layer Layer to remove entity from
-	 * @param hash Hash of entity being removed
-	 */
-	public EntityRemoveRequest(int layer, int hash){
-		this.layer = layer;
-		this.hash = hash;
-	}
 }
