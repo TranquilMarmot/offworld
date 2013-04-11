@@ -1,13 +1,16 @@
 package com.bitwaffle.guts.net.client;
 
+import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.EntityRemoveRequest;
+import com.bitwaffle.guts.net.messages.PlayerCreateMessage;
 import com.bitwaffle.guts.net.messages.SomeReply;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateRequest;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreator;
 import com.bitwaffle.guts.net.messages.entity.DynamicEntityUpdate;
 import com.bitwaffle.guts.net.messages.entity.DynamicEntityUpdateMessage;
+import com.bitwaffle.guts.physics.PhysicsHelper;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
@@ -17,6 +20,12 @@ import com.esotericsoftware.kryonet.Listener;
  * @author TranquilMarmot
  */
 public class ClientListener extends Listener {
+	
+	private GameClient client;
+	
+	public ClientListener(GameClient client){
+		this.client = client;
+	}
 	
 	@Override
 	public void connected(Connection connection){
@@ -45,6 +54,10 @@ public class ClientListener extends Listener {
 			EntityRemoveRequest req = (EntityRemoveRequest)object;
 			Entity ent = Game.physics.getEntity(req.layer, req.hash);
 			Game.physics.removeEntity(ent, req.hash, true); // FIXME dont know whether or not to remove from room here
+		} else if(object instanceof PlayerCreateMessage){
+			PlayerCreateMessage msg = (PlayerCreateMessage)object;
+			PhysicsHelper.initPlayer(Game.physics, new Vector2(msg.x, msg.y), msg.playerNumber);
+			client.setPlayerNumber(msg.playerNumber);
 		}
 	}
 	

@@ -101,7 +101,7 @@ public class PhysicsHelper {
 	 * @param physics Physics world to initialize
 	 */
 	public static void tempInit(Physics physics){
-		initPlayer(physics, new Vector2(1.0f, 6.0f));
+		//initPlayer(physics, new Vector2(1.0f, 6.0f));
 		Room1 r1 = new Room1();
 		physics.setCurrentRoom(r1);
 	}
@@ -111,7 +111,7 @@ public class PhysicsHelper {
 	 * Initializes the player
 	 * @param physics
 	 */
-	private static void initPlayer(Physics physics, Vector2 position){
+	public static void initPlayer(Physics physics, Vector2 position, int playerNumber){
 		float width = 0.52062f, height = 1.8034f;
 		
 		BodyDef playerBodyDef = new BodyDef();
@@ -128,11 +128,11 @@ public class PhysicsHelper {
 		playerFixture.filter.categoryBits = CollisionFilters.PLAYER;
 		playerFixture.filter.maskBits = CollisionFilters.EVERYTHING;
 		
-		Game.players[0] = new Player(6, playerBodyDef, width, height, playerFixture);
-		physics.addEntity(Game.players[0], false);
-		Render2D.camera.setTarget(Game.players[0]);
+		Game.players[playerNumber] = new Player(6, playerBodyDef, width, height, playerFixture);
+		physics.addEntity(Game.players[playerNumber], false);
+		Render2D.camera.setTarget(Game.players[playerNumber]);
 		Render2D.camera.setMode(Camera.Modes.FOLLOW);
-		Render2D.camera.setLocation(Game.players[0].getLocation());
+		Render2D.camera.setLocation(Game.players[playerNumber].getLocation());
 		// TODO have each player press start
 		/*
 		Game.players[1] = new Player(6, playerBodyDef, width, height, playerFixture);
@@ -149,14 +149,14 @@ public class PhysicsHelper {
 		
 		for(Controller con : Controllers.getControllers()){
 			if(con.getName().equals(Ouya.ID)){
-				con.addListener(new OuyaPlayerControllerListener(Game.players[0]));
+				con.addListener(new OuyaPlayerControllerListener(Game.players[playerNumber]));
 			}else if(con.getName().contains("XBOX 360")){
-				con.addListener(new XboxPlayerControllerListener(Game.players[0]));
+				con.addListener(new XboxPlayerControllerListener(Game.players[playerNumber]));
 			}
 		}
 		
 		// add player control listener
-		Game.input.multiplexer.addProcessor(new PlayerInputListener(Game.players[0], Render2D.camera));
+		Game.input.multiplexer.addProcessor(new PlayerInputListener(Game.players[playerNumber], Render2D.camera));
 		
 		
 		playerBodyDef.position.set(position);

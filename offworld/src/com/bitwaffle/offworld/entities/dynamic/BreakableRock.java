@@ -160,7 +160,7 @@ public class BreakableRock extends DynamicEntity implements Health {
 					
 					boolean done = false;
 					while(!done){
-						// grab random locatidon and remove it
+						// grab random location and remove it
 						int index = Game.random.nextInt(directions.size());
 						Vector2 checkLoc = directions.get(index);
 						directions.remove(index);

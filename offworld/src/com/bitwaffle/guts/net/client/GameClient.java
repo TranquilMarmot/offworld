@@ -26,7 +26,9 @@ public class GameClient {
 	
 	private int ticksSinceLastUpdate = 0;
 	
-	private int playerUpdateSpeed = 3;
+	private int playerUpdateSpeed = 2;
+	
+	private int playerNumber = -1;
 
 	/**
 	 * @param host Host to connect to
@@ -36,7 +38,7 @@ public class GameClient {
 
 		NetRegistrar.registerClasses(client.getKryo());
 		
-		client.addListener(new ClientListener());
+		client.addListener(new ClientListener(this));
 		client.start();
 		try {
 			client.connect(12000, host, DEFAULT_TCP_PORT, DEFAULT_UDP_PORT);
@@ -51,14 +53,17 @@ public class GameClient {
 		req.wat = message;
 		client.sendTCP(req);
 	}
+	
+	public void setPlayerNumber(int number){ this.playerNumber = number; }
+	public int playerNumber(){ return this.playerNumber; }
 
 	public void update() {
 		// temporary, just send player data
 		ticksSinceLastUpdate++;
 		
 		if(ticksSinceLastUpdate > playerUpdateSpeed){
-			if (client.isConnected()) {
-				sendPlayerInfoReply(client, 0);
+			if (client.isConnected() && playerNumber >= 0) {
+				sendPlayerInfoReply(client, playerNumber);
 			}
 			ticksSinceLastUpdate = 0;
 		}

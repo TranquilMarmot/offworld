@@ -1,6 +1,7 @@
 package com.bitwaffle.guts.net;
 
 import com.bitwaffle.guts.entities.EntityRemoveRequest;
+import com.bitwaffle.guts.net.messages.PlayerCreateMessage;
 import com.bitwaffle.guts.net.messages.PlayerUpdateMessage;
 import com.bitwaffle.guts.net.messages.SomeReply;
 import com.bitwaffle.guts.net.messages.SomeRequest;
@@ -30,5 +31,6 @@ public class NetRegistrar {
 		kryo.register(DynamicEntityUpdateMessage.class);
 		kryo.register(EntityUpdateMessage.class);
 		kryo.register(EntityRemoveRequest.class);
+		kryo.register(PlayerCreateMessage.class);
 	}
 }

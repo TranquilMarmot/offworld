@@ -6,11 +6,13 @@ import java.util.Iterator;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.net.messages.PlayerCreateMessage;
 import com.bitwaffle.guts.net.messages.PlayerUpdateMessage;
 import com.bitwaffle.guts.net.messages.SomeReply;
 import com.bitwaffle.guts.net.messages.SomeRequest;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateRequest;
 import com.bitwaffle.guts.physics.EntityUpdateRequest;
+import com.bitwaffle.guts.physics.PhysicsHelper;
 import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.esotericsoftware.kryonet.Connection;
@@ -33,6 +35,21 @@ public class ServerListener extends Listener {
 	@Override
 	public void connected(Connection connection) {
 		super.connected(connection);
+		
+		int playerNum = -1;
+		for(int i = 0; i < Game.players.length; i++){
+			if(Game.players[i] == null){
+				playerNum = i;
+				PhysicsHelper.initPlayer(Game.physics, new Vector2(1.0f, 16.0f), playerNum);
+				PlayerCreateMessage msg = new PlayerCreateMessage();
+				msg.playerNumber = playerNum;
+				msg.x = 1.0f;
+				msg.y = 16.0f;
+				connection.sendTCP(msg);
+				break;
+				
+			}
+		}
 		
 		server.connections.put(connection, new ServerConnection(connection));
 		
