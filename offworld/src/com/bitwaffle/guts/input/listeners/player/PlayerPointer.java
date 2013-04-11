@@ -3,6 +3,7 @@ package com.bitwaffle.guts.input.listeners.player;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.camera.Camera;
+import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.player.Player;
 
@@ -29,14 +30,16 @@ public class PlayerPointer {
 	}
 
 	public void up(float x, float y){
-		if(player != null && player.isShooting())
+		Button buttonAt = Game.gui.buttonAt(x, y);
+		if(player != null && player.isShooting() && (buttonAt == null || !buttonAt.isDown()))
 			player.endShooting();
 	}
 	
 	public void move(float x, float y){
-		if(!player.isShooting() && (Game.gui.buttonAt(x, y) == null))
-			player.beginShooting(MathHelper.toWorldSpace(x, y, Render2D.camera));
-		else
+		Button buttonAt = Game.gui.buttonAt(x, y);
+		if(player.isShooting() && (buttonAt == null || !buttonAt.isDown()))
 			player.setTarget(MathHelper.toWorldSpace(x, y, Render2D.camera));
+		else if(buttonAt == null)
+			player.beginShooting(MathHelper.toWorldSpace(x, y, Render2D.camera));
 	}
 }
