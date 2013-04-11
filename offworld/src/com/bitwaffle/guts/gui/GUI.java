@@ -265,6 +265,24 @@ public class GUI {
 	}
 	
 	/**
+	 * Checks for a button at the given screen coordinates.
+	 * Returns null if no button.
+	 * @param screenX X screen location
+	 * @param screenY Y screen location
+	 * @return Button at location, null if no button
+	 */
+	public Button buttonAt(float screenX, float screenY) {
+		// check every button
+		Iterator<Button> it = getButtonIterator();
+		while (it.hasNext()) {
+			Button b = it.next();
+			if (b.isActive() && b.isVisible() && b.contains(screenX, screenY)) 
+				return b;
+		}
+		return null;
+	}
+	
+	/**
 	 * Checks if the given point contains a button and, if it does,
 	 * sets that button as the selected button.
 	 * @param screenX X location of pointer
@@ -277,15 +295,11 @@ public class GUI {
 			selectedButton = null;
 		}
 		
-		// check every button to see if it's selected
-		Iterator<Button> it = getButtonIterator();
-		while (it.hasNext()) {
-			Button b = it.next();
-			
-			if (b != selectedButton && b.isActive() && b.isVisible() && b.contains(screenX, screenY)) {
-				selectedButton = b;
-				b.select();
-			}
+		// check if there's a button at the given spot
+		Button b = buttonAt(screenX, screenY);
+		if(b != null && b != selectedButton){
+			selectedButton = b;
+			b.select();
 		}
 	}
 

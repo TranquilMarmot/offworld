@@ -3,10 +3,13 @@ package com.bitwaffle.guts.net.server;
 import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.EntityRemoveRequest;
 import com.bitwaffle.guts.net.NetRegistrar;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateRequest;
+import com.bitwaffle.guts.physics.PhysicsHelper;
 import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Server;
@@ -25,6 +28,8 @@ public class GameServer {
 	public GameServer(){
 		connections = new ConcurrentHashMap<Connection, ServerConnection>();
 		server = new Server();
+		
+		PhysicsHelper.initPlayer(Game.physics, new Vector2(1.0f, 5.0f), 0, true);
 		
 		NetRegistrar.registerClasses(server.getKryo());
 		
