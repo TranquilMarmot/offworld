@@ -3,9 +3,9 @@ package com.bitwaffle.guts.net.messages.entity;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.guts.physics.EntityUpdateRequest;
+import com.bitwaffle.guts.physics.PhysicsUpdateRequest;
 
-public class DynamicEntityUpdate implements EntityUpdateRequest {
+public class DynamicEntityUpdate implements PhysicsUpdateRequest {
 	private DynamicEntityUpdateMessage message;
 	
 	public DynamicEntityUpdate(DynamicEntityUpdateMessage message){
@@ -13,7 +13,7 @@ public class DynamicEntityUpdate implements EntityUpdateRequest {
 	}
 
 	@Override
-	public void updateEntity() {
+	public void doRequest() {
 		DynamicEntity ent = (DynamicEntity)(Game.physics.getEntity(message.layer, message.hash));
 		if(ent != null){
 			ent.body.setTransform(new Vector2(message.x, message.y), message.angle);

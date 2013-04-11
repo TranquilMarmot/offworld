@@ -2,13 +2,13 @@ package com.bitwaffle.guts.net.messages;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.physics.EntityUpdateRequest;
+import com.bitwaffle.guts.physics.PhysicsUpdateRequest;
 import com.bitwaffle.offworld.entities.player.Player;
 
 /**
  * Updates a player based on some data from a client
  */
-public class PlayerUpdateRequest implements EntityUpdateRequest {
+public class PlayerUpdateRequest implements PhysicsUpdateRequest {
 	private PlayerUpdateMessage reply;
 
 	public PlayerUpdateRequest(PlayerUpdateMessage reply) {
@@ -16,7 +16,7 @@ public class PlayerUpdateRequest implements EntityUpdateRequest {
 	}
 
 	@Override
-	public void updateEntity() {
+	public void doRequest() {
 		Player player = Game.players[reply.playerNumber];
 		player.body.setTransform(new Vector2(reply.x, reply.y), 0);
 		player.body.setLinearVelocity(reply.dx, reply.dy);

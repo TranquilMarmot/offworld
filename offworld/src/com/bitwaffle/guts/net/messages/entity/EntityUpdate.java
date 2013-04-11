@@ -3,9 +3,9 @@ package com.bitwaffle.guts.net.messages.entity;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.physics.EntityUpdateRequest;
+import com.bitwaffle.guts.physics.PhysicsUpdateRequest;
 
-public class EntityUpdate implements EntityUpdateRequest {
+public class EntityUpdate implements PhysicsUpdateRequest {
 	
 	private EntityUpdateMessage msg;
 	
@@ -14,7 +14,7 @@ public class EntityUpdate implements EntityUpdateRequest {
 	}
 	
 	@Override
-	public void updateEntity(){
+	public void doRequest(){
 		Entity ent = Game.physics.getEntity(msg.layer, msg.hash);
 		ent.setLocation(new Vector2(msg.x, msg.y));
 		ent.setAngle(msg.angle);

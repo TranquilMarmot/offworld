@@ -48,10 +48,10 @@ public class ClientListener extends Listener {
 			Game.out.println(response.wat);
 		} else if(object instanceof BreakableRockCreateRequest){
 			BreakableRockCreateRequest req = (BreakableRockCreateRequest)object;
-			Game.physics.addEntityUpdateRequest(new BreakableRockCreator(req));
+			Game.physics.addUpdateRequest(new BreakableRockCreator(req));
 		} else if(object instanceof DynamicEntityUpdateMessage){
 			DynamicEntityUpdateMessage req = (DynamicEntityUpdateMessage)object;
-			Game.physics.addEntityUpdateRequest(new DynamicEntityUpdate(req));
+			Game.physics.addUpdateRequest(new DynamicEntityUpdate(req));
 		} else if(object instanceof EntityRemoveRequest){
 			EntityRemoveRequest req = (EntityRemoveRequest)object;
 			Entity ent = Game.physics.getEntity(req.layer, req.hash);
@@ -63,7 +63,7 @@ public class ClientListener extends Listener {
 				client.setPlayerNumber(msg.playerNumber);
 		} else if(object instanceof PlayerUpdateMessage){
 			PlayerUpdateMessage msg = (PlayerUpdateMessage)object;
-			Game.physics.addEntityUpdateRequest(new PlayerUpdateRequest(msg));
+			Game.physics.addUpdateRequest(new PlayerUpdateRequest(msg));
 		}
 	}
 	

@@ -58,7 +58,7 @@ public class Physics {
 	 * and runs all requests.
 	 * There is no guarantee that the requests will be handled in the order they are added.
 	 */
-	private ConcurrentLinkedQueue<EntityUpdateRequest> updateRequests;
+	private ConcurrentLinkedQueue<PhysicsUpdateRequest> updateRequests;
 	
 	
 	/**
@@ -70,7 +70,7 @@ public class Physics {
 		
 		entities = new Entities();
 		toInitialize = new Stack<DynamicEntity>();
-		updateRequests = new ConcurrentLinkedQueue<EntityUpdateRequest>();
+		updateRequests = new ConcurrentLinkedQueue<PhysicsUpdateRequest>();
 		
 		// initialize the world
 		initWorld();
@@ -125,7 +125,7 @@ public class Physics {
 		}
 		
 		while(!updateRequests.isEmpty())
-			updateRequests.poll().updateEntity();
+			updateRequests.poll().doRequest();
 
 		// this makes everything move around
 		world.step(timeStep, velocityIterations, positionIterations);
@@ -206,7 +206,7 @@ public class Physics {
 	private void clearEntities(){
 		// handle any pending requests before deleting everything FIXME is this necessary?
 		while(!updateRequests.isEmpty())
-			updateRequests.poll().updateEntity();
+			updateRequests.poll().doRequest();
 		
 		// get rid of the current room
 		if(currentRoom != null){
@@ -232,7 +232,7 @@ public class Physics {
 	}
 	
 	/** @param request Request to add */
-	public void addEntityUpdateRequest(EntityUpdateRequest request){
+	public void addUpdateRequest(PhysicsUpdateRequest request){
 		updateRequests.add(request);
 	}
 	

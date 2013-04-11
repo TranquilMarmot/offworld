@@ -2,10 +2,10 @@ package com.bitwaffle.guts.net.messages.entity;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.physics.EntityUpdateRequest;
+import com.bitwaffle.guts.physics.PhysicsUpdateRequest;
 import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
 
-public class BreakableRockCreator implements EntityUpdateRequest {
+public class BreakableRockCreator implements PhysicsUpdateRequest {
 	BreakableRockCreateRequest req;
 
 	public BreakableRockCreator(BreakableRockCreateRequest req) {
@@ -13,7 +13,7 @@ public class BreakableRockCreator implements EntityUpdateRequest {
 	}
 
 	@Override
-	public void updateEntity() {
+	public void doRequest() {
 		BreakableRock rock = new BreakableRock(
 				req.name,
 				new Vector2(req.x, req.y),

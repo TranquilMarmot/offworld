@@ -10,10 +10,10 @@ package com.bitwaffle.guts.physics;
  * 
  * @author TranquilMarmot
  */
-public interface EntityUpdateRequest {
+public interface PhysicsUpdateRequest {
 	/**
 	 * Does whatever you want. Can interact with the physics world.
 	 * Will only get run one time, then the request will be removed.
 	 */
-	public void updateEntity();
+	public void doRequest();
 }

@@ -1,18 +1,14 @@
 package com.bitwaffle.guts.net.server;
 
-import java.util.Iterator;
-
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.net.messages.EntityRoomInfoSender;
 import com.bitwaffle.guts.net.messages.PlayerCreateMessage;
 import com.bitwaffle.guts.net.messages.PlayerUpdateMessage;
 import com.bitwaffle.guts.net.messages.PlayerUpdateRequest;
 import com.bitwaffle.guts.net.messages.SomeReply;
 import com.bitwaffle.guts.net.messages.SomeRequest;
-import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateRequest;
 import com.bitwaffle.guts.physics.PhysicsHelper;
-import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -39,7 +35,7 @@ public class ServerListener extends Listener {
 		
 		server.connections.put(connection, servcon);
 		
-		sendRoomEntityInfo(connection);
+		Game.physics.addUpdateRequest(new EntityRoomInfoSender(connection));
 	}
 	
 	private void playerJoined(Connection connection){
@@ -64,42 +60,21 @@ public class ServerListener extends Listener {
 				for(ServerConnection con : server.connections.values()){
 					msg.takeControl = false;
 					con.connection().sendTCP(msg);
-					
-					if(con.playerNumber() >= 0){
-						msg.playerNumber = con.playerNumber();
-						Player p = Game.players[con.playerNumber()];
-						msg.x = p.body.getPosition().x;
-						msg.y = p.body.getPosition().y;
-						connection.sendTCP(msg);
-					}
 				}
 				break;
-				
 			}
 		}
-	}
-	
-	private void sendRoomEntityInfo(Connection connection){
-		for(Iterator<Entity> it : Game.physics.getAllIterators()){
-			while(it.hasNext()){
-				Entity ent = it.next();
-				if(ent instanceof BreakableRock){
-					BreakableRock rock = (BreakableRock)ent;
-					BreakableRockCreateRequest req = new BreakableRockCreateRequest();
-					req.layer = rock.getLayer();
-					req.hash = rock.hashCode();
-					req.name = rock.chosenName;
-					req.x = rock.body.getPosition().x;
-					req.y = rock.body.getPosition().y;
-					req.scale = rock.getScale();
-					float[] color = rock.getColor();
-					req.r = color[0];
-					req.g = color[1];
-					req.b = color[2];
-					req.a = color[3];
-					
-					connection.sendTCP(req);
-				}
+		
+		// send any existing players to connecting player
+		for(int i = 0; i < Game.players.length; i++){
+			if(Game.players[i] != null && i != playerNum){
+				PlayerCreateMessage msg = new PlayerCreateMessage();
+				msg.playerNumber = i;
+				Player p = Game.players[i];
+				msg.x = p.body.getPosition().x;
+				msg.y = p.body.getPosition().y;
+				msg.takeControl = false;
+				connection.sendTCP(msg);
 			}
 		}
 	}
@@ -123,7 +98,7 @@ public class ServerListener extends Listener {
 			connection.sendTCP(response);
 		} else if (object instanceof PlayerUpdateMessage) {
 			PlayerUpdateMessage reply = (PlayerUpdateMessage) object;
-			Game.physics.addEntityUpdateRequest(new PlayerUpdateRequest(reply));
+			Game.physics.addUpdateRequest(new PlayerUpdateRequest(reply));
 			for(ServerConnection con : server.connections.values()){
 				if(con.connection() != connection)
 					con.connection().sendUDP(reply);
