@@ -15,28 +15,19 @@ public abstract class JumpButton extends MovementButton {
 
 	@Override
 	protected void onRelease() {
-		//Game.input.multiplexer.keyUp(Input.Keys.SPACE);
-		
-		for(InputProcessor proc : Game.input.multiplexer.getProcessors()){
+		for(InputProcessor proc : Game.input.multiplexer.getProcessors())
 			proc.keyUp(Input.Keys.SPACE);
-		}
 	}
 	@Override
 	protected void onSlideRelease() {
-		//Game.input.multiplexer.keyUp(Input.Keys.SPACE);
-		
-		for(InputProcessor proc : Game.input.multiplexer.getProcessors()){
+		for(InputProcessor proc : Game.input.multiplexer.getProcessors())
 			proc.keyUp(Input.Keys.SPACE);
-		}
 	}
 	@Override
 	protected void onPress() {
 		//Game.vibration.vibrate(25);
-		//Game.input.multiplexer.keyDown(Input.Keys.SPACE);
-		
-		for(InputProcessor proc : Game.input.multiplexer.getProcessors()){
+		for(InputProcessor proc : Game.input.multiplexer.getProcessors())
 			proc.keyDown(Input.Keys.SPACE);
-		}
 	}
 	
 	@Override
