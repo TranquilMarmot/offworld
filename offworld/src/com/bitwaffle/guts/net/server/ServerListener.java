@@ -7,10 +7,10 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.net.messages.PlayerCreateMessage;
 import com.bitwaffle.guts.net.messages.PlayerUpdateMessage;
+import com.bitwaffle.guts.net.messages.PlayerUpdateRequest;
 import com.bitwaffle.guts.net.messages.SomeReply;
 import com.bitwaffle.guts.net.messages.SomeRequest;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateRequest;
-import com.bitwaffle.guts.physics.EntityUpdateRequest;
 import com.bitwaffle.guts.physics.PhysicsHelper;
 import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
 import com.bitwaffle.offworld.entities.player.Player;
@@ -35,18 +35,32 @@ public class ServerListener extends Listener {
 		super.connected(connection);
 		
 		ServerConnection servcon = new ServerConnection(connection);
+		playerJoined(connection);
+		
+		server.connections.put(connection, servcon);
+		
+		sendRoomEntityInfo(connection);
+	}
+	
+	private void playerJoined(Connection connection){
+		// figure out which player this is
 		int playerNum = -1;
 		for(int i = 0; i < Game.players.length; i++){
+			// assign to first null slot
 			if(Game.players[i] == null){
 				playerNum = i;
+				// create the player on the server
 				PhysicsHelper.initPlayer(Game.physics, new Vector2(1.0f, 16.0f), playerNum, false);
+
+				// create the player on the client
 				PlayerCreateMessage msg = new PlayerCreateMessage();
 				msg.playerNumber = playerNum;
 				msg.x = 1.0f;
 				msg.y = 16.0f;
-				msg.takeControl = true;
+				msg.takeControl = true; // tells the client to take control of the player
 				connection.sendTCP(msg);
 				
+				// create player on previously connected clients
 				for(ServerConnection con : server.connections.values()){
 					msg.takeControl = false;
 					con.connection().sendTCP(msg);
@@ -63,10 +77,6 @@ public class ServerListener extends Listener {
 				
 			}
 		}
-		
-		server.connections.put(connection, servcon);
-		
-		sendRoomEntityInfo(connection);
 	}
 	
 	private void sendRoomEntityInfo(Connection connection){
@@ -115,42 +125,10 @@ public class ServerListener extends Listener {
 			PlayerUpdateMessage reply = (PlayerUpdateMessage) object;
 			Game.physics.addEntityUpdateRequest(new PlayerUpdateRequest(reply));
 			for(ServerConnection con : server.connections.values()){
-				if(con.connection() != connection){
-					Game.out.println("proliferating request");
+				if(con.connection() != connection)
 					con.connection().sendUDP(reply);
-				}
 			}
 		}
-	}
-
-	/**
-	 * Updates a player based on some data from a client
-	 */
-	private class PlayerUpdateRequest implements EntityUpdateRequest {
-		private PlayerUpdateMessage reply;
-
-		public PlayerUpdateRequest(PlayerUpdateMessage reply) {
-			this.reply = reply;
-		}
-
-		@Override
-		public void updateEntity() {
-			Player player = Game.players[reply.playerNumber];
-			player.body.setTransform(new Vector2(reply.x, reply.y), 0);
-			player.body.setLinearVelocity(reply.dx, reply.dy);
-			player.setTarget(new Vector2(reply.aimX, reply.aimY));
-
-			if (reply.jetpack)
-				player.jetpack.enable();
-			else
-				player.jetpack.disable();
-
-			if (reply.shooting)
-				player.beginShooting();
-			else
-				player.endShooting();
-		}
-
 	}
 
 	@Override

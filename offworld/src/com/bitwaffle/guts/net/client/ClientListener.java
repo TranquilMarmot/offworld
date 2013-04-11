@@ -5,6 +5,8 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.EntityRemoveRequest;
 import com.bitwaffle.guts.net.messages.PlayerCreateMessage;
+import com.bitwaffle.guts.net.messages.PlayerUpdateMessage;
+import com.bitwaffle.guts.net.messages.PlayerUpdateRequest;
 import com.bitwaffle.guts.net.messages.SomeReply;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateRequest;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreator;
@@ -57,7 +59,11 @@ public class ClientListener extends Listener {
 		} else if(object instanceof PlayerCreateMessage){
 			PlayerCreateMessage msg = (PlayerCreateMessage)object;
 			PhysicsHelper.initPlayer(Game.physics, new Vector2(msg.x, msg.y), msg.playerNumber, msg.takeControl);
-			client.setPlayerNumber(msg.playerNumber);
+			if(msg.takeControl)
+				client.setPlayerNumber(msg.playerNumber);
+		} else if(object instanceof PlayerUpdateMessage){
+			PlayerUpdateMessage msg = (PlayerUpdateMessage)object;
+			Game.physics.addEntityUpdateRequest(new PlayerUpdateRequest(msg));
 		}
 	}
 	
