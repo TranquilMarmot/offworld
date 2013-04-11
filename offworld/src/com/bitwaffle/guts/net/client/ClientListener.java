@@ -4,6 +4,10 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.net.messages.SomeReply;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateRequest;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreator;
+import com.bitwaffle.guts.net.messages.entity.DynamicEntityUpdate;
+import com.bitwaffle.guts.net.messages.entity.DynamicEntityUpdateMessage;
+import com.bitwaffle.guts.net.messages.entity.EntityUpdateMessage;
+import com.bitwaffle.guts.physics.EntityUpdateRequest;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
@@ -32,6 +36,9 @@ public class ClientListener extends Listener {
 		} else if(object instanceof BreakableRockCreateRequest){
 			BreakableRockCreateRequest req = (BreakableRockCreateRequest)object;
 			Game.physics.addEntityUpdateRequest(new BreakableRockCreator(req));
+		} else if(object instanceof DynamicEntityUpdateMessage){
+			DynamicEntityUpdateMessage req = (DynamicEntityUpdateMessage)object;
+			Game.physics.addEntityUpdateRequest(new DynamicEntityUpdate(req));
 		}
 	}
 	

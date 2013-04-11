@@ -33,7 +33,7 @@ public class Room1 extends Room {
 		//this.addEntity(getEntity("intro-underground-background", 3, new float[]{0.0196078431372549f,0.196078431372549f, 0.4274509803921569f, 1.0f});
 		
 		// add random rocks
-		for(int i = 0; i < 0; i++){
+		for(int i = 0; i < 10; i++){
     		float rockX = Game.random.nextFloat() * 10.0f - 50.0f;
     		if(rockX < 1.0f) rockX = 1.0f;
     		float rockY = Game.random.nextFloat() * 150.0f + 15.0f;

@@ -23,17 +23,18 @@ import com.esotericsoftware.kryonet.Listener;
  */
 public class ServerListener extends Listener {
 	
-	private HashMap<Connection, ServerConnection> connections;
+	private GameServer server;
 	
-	public ServerListener(){
-		connections = new HashMap<Connection, ServerConnection>();
+	public ServerListener(GameServer server){
+		this.server = server;
+		server.connections = new HashMap<Connection, ServerConnection>();
 	}
 
 	@Override
 	public void connected(Connection connection) {
 		super.connected(connection);
 		
-		connections.put(connection, new ServerConnection(connection));
+		server.connections.put(connection, new ServerConnection(connection));
 		
 		sendRoomEntityInfo(connection);
 	}
@@ -67,7 +68,7 @@ public class ServerListener extends Listener {
 	public void disconnected(Connection connection) {
 		super.disconnected(connection);
 		
-		connections.remove(connection);
+		server.connections.remove(connection);
 	}
 
 	@Override

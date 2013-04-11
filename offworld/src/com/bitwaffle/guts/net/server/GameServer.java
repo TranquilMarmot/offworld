@@ -1,8 +1,10 @@
 package com.bitwaffle.guts.net.server;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import com.bitwaffle.guts.net.NetRegistrar;
+import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Server;
 
 public class GameServer {
@@ -14,12 +16,15 @@ public class GameServer {
 	/** The actual server */
 	private Server server;
 	
+	protected HashMap<Connection, ServerConnection> connections;
+	
 	public GameServer(){
+		connections = new HashMap<Connection, ServerConnection>();
 		server = new Server();
 		
 		NetRegistrar.registerClasses(server.getKryo());
 		
-		server.addListener(new ServerListener());
+		server.addListener(new ServerListener(this));
 		server.start();
 		
 		try {
@@ -35,6 +40,7 @@ public class GameServer {
 	}
 	
 	public void update(){
-		
+		for(ServerConnection con : connections.values())
+			con.update();
 	}
 }
