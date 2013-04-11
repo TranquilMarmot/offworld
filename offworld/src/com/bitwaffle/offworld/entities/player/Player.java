@@ -4,10 +4,12 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.BoxEntity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.physics.CollisionFilters;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.player.render.PlayerBodyAnimation;
 import com.bitwaffle.offworld.entities.player.render.PlayerRenderer;
@@ -23,6 +25,8 @@ import com.bitwaffle.offworld.weapons.pistol.Pistol;
  * @author TranquilMarmot
  */
 public class Player extends BoxEntity implements FirearmHolder, Health{
+	private static final float WIDTH = 0.52062f, HEIGHT = 1.8034f;
+	
 	/** The player's current firearm */
 	private Firearm firearm;
 	
@@ -80,10 +84,31 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 	 * @param height Height of player
 	 * @param fixtureDef Definition for player's fixture
 	 */
-	public Player(int layer, BodyDef bodyDef, float width, float height,
-			FixtureDef fixtureDef) {
-		super(new PlayerRenderer(), layer, bodyDef, width, height, fixtureDef);
+	public Player(int layer, Vector2 location) {
+		super(new PlayerRenderer(), layer, getBodyDef(location), WIDTH, HEIGHT, getFixtureDef());
 		init();
+	}
+	
+	private static BodyDef getBodyDef(Vector2 location){
+		BodyDef playerBodyDef = new BodyDef();
+		playerBodyDef.type = BodyDef.BodyType.DynamicBody;
+		playerBodyDef.position.set(location);
+		
+		return playerBodyDef;
+	}
+	
+	private static FixtureDef getFixtureDef(){
+		FixtureDef playerFixture = new FixtureDef();
+		PolygonShape boxShape = new PolygonShape();
+		boxShape.setAsBox(WIDTH, HEIGHT);
+		playerFixture.shape = boxShape;
+		
+		playerFixture.density = 1.0f;
+		playerFixture.friction = 0.3f;
+		playerFixture.restitution = 0.0f;
+		playerFixture.filter.categoryBits = CollisionFilters.PLAYER;
+		playerFixture.filter.maskBits = CollisionFilters.EVERYTHING;
+		return playerFixture;
 	}
 	
 	/**

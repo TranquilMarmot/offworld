@@ -56,7 +56,7 @@ public class ClientListener extends Listener {
 			Game.physics.removeEntity(ent, req.hash, true); // FIXME dont know whether or not to remove from room here
 		} else if(object instanceof PlayerCreateMessage){
 			PlayerCreateMessage msg = (PlayerCreateMessage)object;
-			PhysicsHelper.initPlayer(Game.physics, new Vector2(msg.x, msg.y), msg.playerNumber);
+			PhysicsHelper.initPlayer(Game.physics, new Vector2(msg.x, msg.y), msg.playerNumber, msg.takeControl);
 			client.setPlayerNumber(msg.playerNumber);
 		}
 	}

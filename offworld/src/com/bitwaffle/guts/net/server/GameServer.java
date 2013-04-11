@@ -1,7 +1,7 @@
 package com.bitwaffle.guts.net.server;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.EntityRemoveRequest;
@@ -20,10 +20,10 @@ public class GameServer {
 	/** The actual server */
 	private Server server;
 	
-	protected HashMap<Connection, ServerConnection> connections;
+	protected ConcurrentHashMap<Connection, ServerConnection> connections;
 	
 	public GameServer(){
-		connections = new HashMap<Connection, ServerConnection>();
+		connections = new ConcurrentHashMap<Connection, ServerConnection>();
 		server = new Server();
 		
 		NetRegistrar.registerClasses(server.getKryo());

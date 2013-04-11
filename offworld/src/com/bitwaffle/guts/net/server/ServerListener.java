@@ -1,6 +1,5 @@
 package com.bitwaffle.guts.net.server;
 
-import java.util.HashMap;
 import java.util.Iterator;
 
 import com.badlogic.gdx.math.Vector2;
@@ -29,29 +28,43 @@ public class ServerListener extends Listener {
 	
 	public ServerListener(GameServer server){
 		this.server = server;
-		server.connections = new HashMap<Connection, ServerConnection>();
 	}
 
 	@Override
 	public void connected(Connection connection) {
 		super.connected(connection);
 		
+		ServerConnection servcon = new ServerConnection(connection);
 		int playerNum = -1;
 		for(int i = 0; i < Game.players.length; i++){
 			if(Game.players[i] == null){
 				playerNum = i;
-				PhysicsHelper.initPlayer(Game.physics, new Vector2(1.0f, 16.0f), playerNum);
+				PhysicsHelper.initPlayer(Game.physics, new Vector2(1.0f, 16.0f), playerNum, false);
 				PlayerCreateMessage msg = new PlayerCreateMessage();
 				msg.playerNumber = playerNum;
 				msg.x = 1.0f;
 				msg.y = 16.0f;
+				msg.takeControl = true;
 				connection.sendTCP(msg);
+				
+				for(ServerConnection con : server.connections.values()){
+					msg.takeControl = false;
+					con.connection().sendTCP(msg);
+					
+					if(con.playerNumber() >= 0){
+						msg.playerNumber = con.playerNumber();
+						Player p = Game.players[con.playerNumber()];
+						msg.x = p.body.getPosition().x;
+						msg.y = p.body.getPosition().y;
+						connection.sendTCP(msg);
+					}
+				}
 				break;
 				
 			}
 		}
 		
-		server.connections.put(connection, new ServerConnection(connection));
+		server.connections.put(connection, servcon);
 		
 		sendRoomEntityInfo(connection);
 	}
@@ -101,6 +114,12 @@ public class ServerListener extends Listener {
 		} else if (object instanceof PlayerUpdateMessage) {
 			PlayerUpdateMessage reply = (PlayerUpdateMessage) object;
 			Game.physics.addEntityUpdateRequest(new PlayerUpdateRequest(reply));
+			for(ServerConnection con : server.connections.values()){
+				if(con.connection() != connection){
+					Game.out.println("proliferating request");
+					con.connection().sendUDP(reply);
+				}
+			}
 		}
 	}
 
