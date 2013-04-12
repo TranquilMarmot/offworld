@@ -30,13 +30,12 @@ public abstract class Room {
 	private boolean isCurrentRoom;
 	
 	/**
-	 * Create a new room.
 	 * Info on the room's location is used to keep the camera
 	 * inside of the room (the camera may never leave the room) 
-	 * @param roomX X location of room
-	 * @param roomY Y location of room
-	 * @param roomWidth Width of room
-	 * @param roomHeight Height of room
+	 * @param roomX X location of room center
+	 * @param roomY Y location of room center
+	 * @param roomWidth Width of room from center
+	 * @param roomHeight Height of room from center
 	 */
 	public Room(float roomX, float roomY, float roomWidth, float roomHeight){
 		this.roomX = roomX;
@@ -61,26 +60,13 @@ public abstract class Room {
 			entities.add(entitiesToAdd.pop());
 	}
 	
-	/**
-	 * Add an entity from this room
-	 * @param ent Entity to add
-	 */
-	protected void addEntity(Entity ent){
-		entitiesToAdd.push(ent);
-	}
+	/** Add an entity to this room */
+	protected void addEntity(Entity ent){ entitiesToAdd.push(ent); }
 	
-	/**
-	 * Remove an entity from this room
-	 * @param ent Entity to remove
-	 */
-	protected void removeEntity(Entity ent){
-		entitiesToRemove.push(ent);
-	}
+	/** Remove an entity from this room */
+	protected void removeEntity(Entity ent){ entitiesToRemove.push(ent); }
 	
-	/**
-	 * Add this room to a world
-	 * @param physics World to add room to
-	 */
+	/** Add this room to a world */
 	public void addToWorld(Physics physics){
 		// clear the toAdd/toRemove stacks
 		this.update(1.0f / 60.0f);
@@ -95,10 +81,7 @@ public abstract class Room {
 		onAddToWorld(physics);
 	}
 	
-	/**
-	 * Remove this room from a world
-	 * @param physics World to remove room from
-	 */
+	/** Remove this room from a world */
 	public void removeFromWorld(Physics physics){
 		// clear the toAdd/toRemove stacks
 		this.update(1.0f / 60.0f);
@@ -141,7 +124,5 @@ public abstract class Room {
 	public float getRoomHeight(){ return roomHeight; }
 
 	/** @return Number of entities in this room*/
-	public int numEntities() { 
-		return entities.size();
-	}
+	public int numEntities() { return entities.size(); }
 }

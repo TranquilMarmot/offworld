@@ -24,9 +24,4 @@ public class Net {
 		if(client != null)
 			client.update();
 	}
-	
-	public void send(String msg){
-		if(client != null)
-			client.send(msg);
-	}
 }

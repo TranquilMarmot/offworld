@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateRequest;
+import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateMessage;
 import com.bitwaffle.guts.physics.PhysicsUpdateRequest;
 import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
 import com.esotericsoftware.kryonet.Connection;
@@ -23,7 +23,7 @@ public class EntityRoomInfoSender implements PhysicsUpdateRequest {
 				Entity ent = it.next();
 				if(ent instanceof BreakableRock){
 					BreakableRock rock = (BreakableRock)ent;
-					BreakableRockCreateRequest req = new BreakableRockCreateRequest();
+					BreakableRockCreateMessage req = new BreakableRockCreateMessage();
 					req.layer = rock.getLayer();
 					req.hash = rock.hashCode();
 					req.name = rock.chosenName;

@@ -5,11 +5,11 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.physics.PhysicsUpdateRequest;
 
-public class EntityUpdate implements PhysicsUpdateRequest {
+public class EntityUpdateRequest implements PhysicsUpdateRequest {
 	
 	private EntityUpdateMessage msg;
 	
-	public EntityUpdate(EntityUpdateMessage msg){
+	public EntityUpdateRequest(EntityUpdateMessage msg){
 		this.msg = msg;
 	}
 	

@@ -35,6 +35,7 @@ public class ServerConnection {
 			for(Iterator<Entity> it : Game.physics.getAllIterators()){
 				while(it.hasNext()){
 					Entity ent = it.next();
+					// TODO send other entities, too- make method in entity class?!
 					if(ent instanceof BreakableRock){
 						BreakableRock rock = (BreakableRock) ent;
 						if(rock.body != null){

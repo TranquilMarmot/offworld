@@ -54,10 +54,6 @@ public class NetConsoleCommands {
 				// start client
 				if(command.equals("start") || command.equals("connect") || command.equals("begin"))
 					Game.net.startClient(toker.nextToken());
-				
-				// send simple message
-				else if(command.equals("send"))
-					Game.net.send(toker.nextToken());
 			}
 		}
 

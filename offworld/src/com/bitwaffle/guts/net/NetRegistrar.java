@@ -3,9 +3,7 @@ package com.bitwaffle.guts.net;
 import com.bitwaffle.guts.entities.EntityRemoveRequest;
 import com.bitwaffle.guts.net.messages.PlayerCreateMessage;
 import com.bitwaffle.guts.net.messages.PlayerUpdateMessage;
-import com.bitwaffle.guts.net.messages.SomeReply;
-import com.bitwaffle.guts.net.messages.SomeRequest;
-import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateRequest;
+import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateMessage;
 import com.bitwaffle.guts.net.messages.entity.DynamicEntityUpdateMessage;
 import com.bitwaffle.guts.net.messages.entity.EntityUpdateMessage;
 import com.esotericsoftware.kryo.Kryo;
@@ -23,11 +21,8 @@ public class NetRegistrar {
 	 * @param kryo Kryo being used to communicate between client/server
 	 */
 	public static void registerClasses(Kryo kryo){
-		kryo.register(SomeRequest.class);
-		kryo.register(SomeReply.class);
-		
 		kryo.register(PlayerUpdateMessage.class);
-		kryo.register(BreakableRockCreateRequest.class);
+		kryo.register(BreakableRockCreateMessage.class);
 		kryo.register(DynamicEntityUpdateMessage.class);
 		kryo.register(EntityUpdateMessage.class);
 		kryo.register(EntityRemoveRequest.class);

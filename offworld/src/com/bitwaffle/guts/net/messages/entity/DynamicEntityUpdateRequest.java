@@ -5,10 +5,10 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.physics.PhysicsUpdateRequest;
 
-public class DynamicEntityUpdate implements PhysicsUpdateRequest {
+public class DynamicEntityUpdateRequest implements PhysicsUpdateRequest {
 	private DynamicEntityUpdateMessage message;
 	
-	public DynamicEntityUpdate(DynamicEntityUpdateMessage message){
+	public DynamicEntityUpdateRequest(DynamicEntityUpdateMessage message){
 		this.message = message;
 	}
 
