@@ -34,9 +34,7 @@ public class Quad {
 	/** Used to preserve modelview between draws */
 	private Matrix4 oldModelview;
 	
-	/**
-	 * Position coordinates (quad is scaled when drawn)
-	 */
+	/** Position coordinates (quad is scaled when drawn) */
 	private static float[] coords = {
 		-1.0f, -1.0f, 0.0f,
 		1.0f, -1.0f, 0.0f,
@@ -47,9 +45,7 @@ public class Quad {
 		-1.0f, -1.0f, 0.0f
 	};
 	
-	/**
-	 * Texture coordinates
-	 */
+	/** Texture coordinates */
 	private static float[] defaultTexCoords = {
 		0.0f, 0.0f,
 		1.0f, 0.0f,
@@ -63,10 +59,7 @@ public class Quad {
 	/** Handles to send data to when drawing */
 	private int positionHandle, texCoordHandle;
 	
-	/**
-	 * Create a new quad (there should only be one at a time)
-	 * @param renderer What will be rendering this quad
-	 */
+	/** Create a new quad (there should only be one at a time) */
 	public Quad(Render2D renderer){
 		this.renderer = renderer;
 		
@@ -85,7 +78,6 @@ public class Quad {
 	}
 	
 	/**
-	 * Draw a quad
 	 * @param width Width of quad, from center
 	 * @param height Height of quad, from center
 	 */
@@ -94,11 +86,8 @@ public class Quad {
 	}
 	
 	/**
-	 * Draw a quad, with optional flipping
 	 * @param width Width of quad, from center
 	 * @param height Height of quad, from center
-	 * @param flipHorizontal Whether or not to flip the image horizontally
-	 * @param flipVertical Whether or not to flip the image vertically
 	 */
 	public void render(float width, float height, boolean flipHorizontal, boolean flipVertical){
 		this.render(width, height, flipHorizontal, flipVertical, defaultTexBuffer);
@@ -106,11 +95,9 @@ public class Quad {
 	}
 	
 	/**
-	 * Draw a quad, with optional flipping
 	 * @param width Width of quad, from center
 	 * @param height Height of quad, from center
-	 * @param flipHorizontal Whether or not to flip the image horizontally
-	 * @param flipVertical Whether or not to flip the image vertically
+	 * @param texCoords Texture coordinates to use for rendering
 	 */
 	public void render(float width, float height, boolean flipHorizontal, boolean flipVertical, Buffer texCoords){
 		// set position info

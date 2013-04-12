@@ -34,9 +34,7 @@ public class GLSLSandbox extends Entity {
 	/** What does all the rendering */
 	private SandboxRenderer renderer;
 	
-	/**
-	 * Create a new GLSL sandbox, with the default fragment shader
-	 */
+	/** Create a new GLSL sandbox, with the default fragment shader */
 	public GLSLSandbox() {
 		this(DEFAULT_FRAG_SHADER);
 	}
@@ -115,9 +113,7 @@ public class GLSLSandbox extends Entity {
 			time += timeStep;
 		}
 		
-		/**
-		 * Initializes the vertex and fragment shaders and then links them to the program
-		 */
+		/** Initializes the vertex and fragment shaders and then links them to the program */
 		private void initShaders(String fragShader) {
 			GLSLShader vert = new GLSLShader(GLSLShader.ShaderTypes.VERTEX);
 			GLSLShader frag = new GLSLShader(GLSLShader.ShaderTypes.FRAGMENT);
@@ -145,9 +141,7 @@ public class GLSLSandbox extends Entity {
 				Gdx.app.error(LOGTAG, "Error linking program!\n" + program.log());
 		}
 		
-		/**
-		 * Initializes the Quad used for rendering
-		 */
+		/** Initializes the Quad used for rendering */
 		private void initQuad(){
 			positionHandle = program.getAttribLocation("position");
 			

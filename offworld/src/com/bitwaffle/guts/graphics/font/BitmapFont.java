@@ -51,39 +51,20 @@ public class BitmapFont {
 	/** Array of every character for this font */
 	FontChar[] chars;
 	
-	/**
-	 * Create a new font
-	 * @param imagePath Path to image in assets folder
-	 * @param FONT_CELL_WIDTH Width of each cell
-	 * @param FONT_CELL_HEIGHT Height of each cell
-	 * @param FONT_GLYPH_WIDTH Width of each glyph
-	 * @param FONT_GLYPH_HEIGHT How far apart each glyph is (typically, same as FONT_GLYPH_WIDTH)
-	 */
 	public BitmapFont(){
-		//try{
-			// intialize texture
-			//InputStream in = Game.resources.openAsset(FONT_LOCATION);
-			//Bitmap bitmap = BitmapFactory.decodeStream(in);
-			//Texture texture = TextureLoader.getTexture("PNG", in);
-			Texture texture = new Texture(Game.resources.getFileHandle(FONT_LOCATION));
-			texHandle = texture.getTextureObjectHandle();
-			
-			// find out how many rows and columns we have and initialize the character array
-			int numRows = texture.getWidth() / FONT_CELL_WIDTH;
-			int numCols = texture.getHeight() / FONT_CELL_HEIGHT;
-			chars = new FontChar[numRows * numCols];
-			
-			// go through each row/column and create its character
-			for(int row = 0; row < numRows; row++)
-				for(int col = 0; col < numCols; col++)
-					chars[(numCols * col) + row] = initFontChar(texture, row, col);
-			
-			// clean up after ourselves
-			//in.close();
-			
-		//} catch(IOException e){
-		//	e.printStackTrace();
-		//}
+		// intialize texture
+		Texture texture = new Texture(Game.resources.getFileHandle(FONT_LOCATION));
+		texHandle = texture.getTextureObjectHandle();
+		
+		// find out how many rows and columns we have and initialize the character array
+		int numRows = texture.getWidth() / FONT_CELL_WIDTH;
+		int numCols = texture.getHeight() / FONT_CELL_HEIGHT;
+		chars = new FontChar[numRows * numCols];
+		
+		// go through each row/column and create its character
+		for(int row = 0; row < numRows; row++)
+			for(int col = 0; col < numCols; col++)
+				chars[(numCols * col) + row] = initFontChar(texture, row, col);
 	}
 	
 	/**
@@ -117,39 +98,18 @@ public class BitmapFont {
 		return new FontChar(buff);
 	}
 	
-	/**
-	 * Draw a string!
-	 * @param text Text to draw
-	 * @param renderer What to draw text with
-	 * @param x X location of text
-	 * @param y Y location of text
-	 */
+	/** Draw a string! */
 	public void drawString(String text, Render2D renderer, float x, float y){
 		this.drawString(text, renderer, x, y, 1.0f);
 	}
 	
-	/**
-	 * Draw a string!
-	 * @param text Text to draw
-	 * @param renderer What to draw text with
-	 * @param x X location of text
-	 * @param y Y location of text
-	 * @param scale Scale to draw text at
-	 */
+	/** Draw a string! */
 	public void drawString(String text, Render2D renderer, float x, float y, float scale){
 		// draw white text by default
 		this.drawString(text, renderer, x, y, scale, new float[]{1.0f, 1.0f, 1.0f, 1.0f});
 	}
 	
-	/**
-	 * Draw a string!
-	 * @param text Text to draw
-	 * @param renderer What to draw text with
-	 * @param x X location of text
-	 * @param y Y location of text
-	 * @param scale Scale to draw text at
-	 * @param color Color to draw font in- must have at least 4 elements, between 0 and 1
-	 */
+	/** Draw a string! */
 	public void drawString(String text, Render2D renderer, float x, float y, float scale, float[] color){
 		// bind the font texture and set the color
 		Gdx.gl20.glBindTexture(GL20.GL_TEXTURE_2D, texHandle);
@@ -190,21 +150,12 @@ public class BitmapFont {
 		}
 	}
 	
-	/**
-	 * Get the width of a string
-	 * @param string String to check width of
-	 * @return Width of string
-	 */
+	/** Get the width of a string */
 	public float stringWidth(String string){
 		return stringWidth(string, 1.0f);
 	}
 	
-	/**
-	 * Get the width of a string, with scaling
-	 * @param string String to check width of
-	 * @param scale Scale string is being drawn at
-	 * @return Width of string
-	 */
+	/** Get the width of a string, with scaling */
 	public float stringWidth(String string, float scale){
 		// at the end of the longest line, that's where I will always be
 		int longestLine = 0;
@@ -221,21 +172,12 @@ public class BitmapFont {
 		return (longestLine - 1) * FONT_GLYPH_WIDTH * scale;
 	}
 	
-	/**
-	 * Get the height of a string
-	 * @param string String to check height of
-	 * @return Height of string
-	 */
+	/** Get the height of a string  */
 	public float stringHeight(String string){
 		return stringHeight(string, 1.0f);
 	}
 	
-	/**
-	 * Get the height of a string, with scaling
-	 * @param string String to check height of
-	 * @param scale Scale string is being drawn at
-	 * @return Height of string
-	 */
+	/** Get the height of a string, with scaling  */
 	public float stringHeight(String string, float scale){
 		int numLines = new StringTokenizer(string, "\n").countTokens();
 		return numLines * FONT_GLYPH_HEIGHT * scale;

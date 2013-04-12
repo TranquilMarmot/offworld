@@ -18,7 +18,7 @@ public class PolygonRenderer implements EntityRenderer {
 	/** Polygon that this renderer is rendering */
 	private Polygon poly;
 	
-	/** Color to use to render polygon */
+	/** Color to use to render polygon, 4 floats, rgba */
 	private float[] color;
 	
 	/** Handles for where to send info when drawing - must be [r,g,b,a] */
@@ -30,26 +30,14 @@ public class PolygonRenderer implements EntityRenderer {
 	/** Info on coordinates */
 	private static final int COORDS_PER_VERTEX = 3, COORDS_PER_TEXCOORD = 2;
 	
-	/**
-	 * @param poly Polygon to render
-	 */
 	public PolygonRenderer(Polygon poly){
 		this(poly, 1.0f, new float[]{1.0f, 1.0f, 1.0f, 1.0f});
 	}
 	
-	/**
-	 * @param poly Polygon to render
-	 * @param color Color to render polygon in
-	 */
 	public PolygonRenderer(Polygon poly, float[] color){
 		this(poly, 1.0f, color);
 	}
 	
-	/**
-	 * @param poly Polygon to render
-	 * @param scale Scale to render polygon at
-	 * @param color Color to render polygon in
-	 */
 	public PolygonRenderer(Polygon poly, float scale, float[] color){
 		this.poly = poly;
 		this.color = color;

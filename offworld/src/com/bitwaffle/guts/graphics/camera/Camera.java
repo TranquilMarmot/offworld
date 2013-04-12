@@ -38,36 +38,18 @@ public class Camera extends Entity {
 	/** Whether or not to keep the camera within Physics.getCurrentRoom */
 	private boolean boundsCheck = true;
 	
-	/**
-	 * Different camera modes
-	 */
+	/** Different camera modes */
 	public static enum Modes{
 		FOLLOW(new FollowMode(100.0f, 0.0f, -0.3f, 2.25f, 1.0f)),
 		FREE(new FreeMode());
 		
 		private CameraMode mode;
-		private Modes(CameraMode mode){
-			this.mode = mode;
-		}
-		
-		public void update(float timeStep){
-			mode.update(timeStep);
-		}
-		
-		public void setCamera(Camera camera){
-			mode.setCamera(camera);
-		}
-		
-		public CameraMode getMode(){
-			return mode;
-		}
+		private Modes(CameraMode mode){ this.mode = mode; }
+		public void update(float timeStep){ mode.update(timeStep); } 
+		public void setCamera(Camera camera){ mode.setCamera(camera); }
+		public CameraMode getMode(){ return mode; }
 	}
 	
-	/**
-	 * Create a new camera
-	 * @param location Initial location to put camera at
-	 * @param zoom Initial zoom to put camera at
-	 */
 	public Camera(){
 		super();
 		projection = new Matrix4();
@@ -92,10 +74,7 @@ public class Camera extends Entity {
 		}
 	}
 	
-	/**
-	 * Set the camera to follow a new entity
-	 * @param entity New target to follow
-	 */
+	/** Set the camera to follow a new entity */
 	public void setTarget(DynamicEntity entity){
 		((FollowMode)Modes.FOLLOW.getMode()).setTarget(entity);
 	}
@@ -105,10 +84,7 @@ public class Camera extends Entity {
 		return ((FollowMode)Modes.FOLLOW.getMode()).getTarget();
 	}
 	
-	/**
-	 * Set the mode of the camera
-	 * @param newMode Mode from Camera.Modes
-	 */
+	/** Set the mode of the camera */
 	public void setMode(Modes newMode){ this.currentMode = newMode; }
 	
 	/** @return Current mode of camera, from Camera.Modes */
@@ -117,10 +93,6 @@ public class Camera extends Entity {
 	/** @return Current zoom level of this camera */
 	public float getZoom(){ return zoom; }
 	
-	/**
-	 * Set the zoom level
-	 * @param newZoom New zoom level
-	 */
 	public void setZoom(float newZoom){
 		float oldZoom = this.zoom;
 		
@@ -195,10 +167,7 @@ public class Camera extends Entity {
 		return new Vector2(-(this.location.x) + worldWindowSize.x, -(this.location.y) + worldWindowSize.y);
 	}
 	
-	/**
-	 * Keeps the camera within the bounds of a given room
-	 * @param r Room to keep camera inside of
-	 */
+	/** @param r Room to keep camera inside of */
 	private void boundsCheck(Room r){
 		Vector2 center = getWorldCenterPoint();
 		

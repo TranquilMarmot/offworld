@@ -29,20 +29,14 @@ public class SoundManager {
 		this.sounds.put(soundName, sound);
 	}
 	
-	/**
-	 * Get rid of a sound
-	 * @param soundName Sound to dispose of
-	 */
+	/** Get rid of a sound */
 	public void disposeSound(String soundName){
 		sounds.get(soundName).dispose();
 		sounds.remove(soundName);
 	}
 	
 
-	/**
-	 * Get a sound to play
-	 * @param soundName Name of sound to get
-	 */
+	/** Get a sound to play */
 	public Sound getSound(String soundName){
 		return this.sounds.get(soundName);
 	}

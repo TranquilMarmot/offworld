@@ -16,21 +16,14 @@ public class CircleEntity extends DynamicEntity {
 	/** Radius of the entity's circle */
 	private float radius;
 	
-	/**
-	 * No-args constructor for kryo only!
-	 */
+	/** No-args constructor for kryo only! */
 	public CircleEntity(){
 		super();
 		color = new float[4];
 	}
 	
 	/**
-	 * Create a new circle-shaped entity
-	 * @param renderer Renderer to use to render circle
-	 * @param radius Radius of circle
-	 * @param bodyDef Body definition
-	 * @param density Density of entity
-	 * @param color Color to use when rendering entity
+	 * @param color Color to use when rendering entity, 4 floats, rgba
 	 */
 	public CircleEntity(EntityRenderer renderer, int layer, float radius, BodyDef bodyDef, float density, float[] color){
 		super(renderer, layer, bodyDef, getCircleShape(radius), density);
@@ -38,22 +31,14 @@ public class CircleEntity extends DynamicEntity {
 		this.color = color;
 	}
 	
-	/**
-	 * @param radius Radius to use for shape
-	 * @return Circle shape with given radius
-	 */
+	/** @return Circle shape with given radius */
 	private static CircleShape getCircleShape(float radius){
 		CircleShape circ = new CircleShape();
 		circ.setRadius(radius);
 		return circ;
 	}
 	
-	/**
-	 * @return Radius of circle
-	 */
-	public float getRadius(){
-		return this.radius;
-	}
+	public float getRadius(){ return this.radius; }
 	
 	/*
 	@Override

@@ -8,7 +8,7 @@ import com.bitwaffle.guts.graphics.Render2D;
  * @author TranquilMarmot
  */
 public abstract class RectangleButton extends Button {
-	/** width and height of button */
+	/** Width and height of button */
 	protected float width, height;
 	
 	/**
@@ -36,25 +36,8 @@ public abstract class RectangleButton extends Button {
 	@Override
 	public abstract void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical);
 	
-	/**
-	 * @return Width of button
-	 */
-	public float getWidth(){
-		return width;
-	}
-	
-	/**
-	 * @return Height of button
-	 */
-	public float getHeight(){
-		return height;
-	}
-	
-	/**
-	 * Set the size of a button
-	 * @param width New width
-	 * @param height New height
-	 */
+	public float getWidth(){ return width; }
+	public float getHeight(){ return height; }
 	public void setSize(float width, float height){
 		this.width = width;
 		this.height = height;

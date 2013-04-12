@@ -57,9 +57,7 @@ public abstract class Button extends GUIObject{
 	 * @param point Point to check for
 	 * @return Whether or not the given point lies within the button
 	 */
-	public boolean contains(Vector2 point){
-		return this.contains(point.x, point.y);
-	}
+	public boolean contains(Vector2 point){ return this.contains(point.x, point.y); }
 	
 	/** Press the button! This sets isDown to true. */
 	public void press(){
@@ -94,19 +92,13 @@ public abstract class Button extends GUIObject{
 	/** What to do when a finger pressed the button down, but then slid off of it, rather than just releasing (generally, nothing) */
 	protected abstract void onSlideRelease();
 	
-	/**
-	 * @return Whether or not a button is currently being held down
-	 */
+	/** @return Whether or not a button is currently being held down */
 	public boolean isDown(){ return isDown;}
 	
-	/**
-	 * What to do when this button is selected
-	 */
+	/** What to do when this button is selected */
 	protected abstract void onSelect();
 	
-	/**
-	 * Selects a button (generally, changes button rendering to tell if it's selected)
-	 */
+	/** Selects a button (generally, changes button rendering to tell if it's selected) */
 	public void select(){
 		if(this.isActive){
 			this.isSelected = true;
@@ -114,14 +106,10 @@ public abstract class Button extends GUIObject{
 		}
 	}
 	
-	/**
-	 * What to do when a button is un-seleceted
-	 */
+	/** What to do when a button is un-seleceted */
 	protected abstract void onUnselect();
 	
-	/**
-	 * Unselects a button
-	 */
+	/** Unselects a button */
 	public void unselect(){
 		if(this.isActive){
 			this.isSelected = false;
@@ -129,27 +117,15 @@ public abstract class Button extends GUIObject{
 		}
 	}
 	
-	public boolean isSelected(){
-		return isSelected;
-	}
+	public boolean isSelected(){ return isSelected; }
 	
-	/**
-	 * Deactivate a button
-	 */
-	public void deactivate(){
-		isActive = false;
-	}
+	/** Deactivate a button */
+	public void deactivate(){ isActive = false; }
 	
-	/**
-	 * Activate a button
-	 */
-	public void activate() {
-		isActive = true;
-	}
+	/** Activate a button */
+	public void activate() { isActive = true; }
 	
-	/**
-	 * @return Whether or not a button is active
-	 */
+	/** @return Whether or not a button is active */
 	public boolean isActive(){ return isActive; }
 	
 
@@ -166,19 +142,9 @@ public abstract class Button extends GUIObject{
 	}
 	
 	
-	/**
-	 * Notify a button that it's being dragged
-	 * @param dx Amount of drag on X axis
-	 * @param dy Amount of drag on Y axis
-	 */
-	public void drag(float dx, float dy) {
-		this.onDrag(dx, dy);
-	}
+	/** Notify a button that it's being dragged */
+	public void drag(float dx, float dy) { this.onDrag(dx, dy); }
 	
-	/**
-	 * What to do when a button is dragged
-	 * @param dx Length of drag on X axis
-	 * @param dy Length of drag on Y axis
-	 */
+	/** What to do when a button is dragged */
 	protected abstract void onDrag(float dx, float dy);
 }

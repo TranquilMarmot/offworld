@@ -6,8 +6,6 @@ package com.bitwaffle.guts.gui.button;
  * @author TranquilMarmot
  */
 public interface BooleanButton {
-	/**
-	 * @return State of the button
-	 */
+	/** @return State of the button */
 	public boolean getButtonState();
 }

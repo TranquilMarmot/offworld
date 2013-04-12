@@ -5,7 +5,6 @@ import java.nio.Buffer;
 import com.bitwaffle.guts.graphics.Render2D;
 
 /**
- * A character in a font
  * Each character keeps track of it's own texture
  * coordinates within the font texture.
  * 
@@ -19,20 +18,12 @@ public class FontChar {
 	 */
 	private Buffer texCoordBuff;
 	
-	/**
-	 * Create a new font character
-	 * @param texCoordBuff Buffer containing texture coordinates for character
-	 */
+	/** @param texCoordBuff Buffer containing texture coordinates for character */
 	public FontChar(Buffer texCoordBuff){
 		this.texCoordBuff = texCoordBuff;
 	}
 	
-	/**
-	 * Draw a character
-	 * @param renderer Renderer to use for drawing
-	 * @param width Width of character
-	 * @param height Height of character
-	 */
+	/** Draw a character */
 	public void draw(Render2D renderer, float width, float height){
 		renderer.quad.render(width, height, false, false, texCoordBuff);
 	}

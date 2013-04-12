@@ -7,9 +7,7 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.gui.button.RectangleButton;
 
-/**
- * Button to do text input to console
- */
+/** Button to do text input to console */
 public class ConsoleButton extends RectangleButton{
 	/** How large the console button is */
 	public static float consoleButtonWidth = 32.0f, consoleButtonHeight = 32.0f;

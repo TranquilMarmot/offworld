@@ -4,6 +4,7 @@ import java.util.StringTokenizer;
 
 /**
  * Every command class should implement this and override the issue() function to carry out a command
+ * 
  * @author TranquilMarmot
  */
 public interface Command{
@@ -14,8 +15,6 @@ public interface Command{
 	public void issue(StringTokenizer toker);
 	
 	
-	/**
-	 * This should print out any help info about the command to the console
-	 */
+	/** This should print out any help info about the command to the console */
 	public void help();
 }

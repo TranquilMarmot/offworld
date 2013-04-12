@@ -58,7 +58,6 @@ public class Polygon {
 	
 
 	/**
-	 * Create a new polygon
 	 * @param textureNames List of names of textures to use for render parts
 	 * @param vertices List of vertex buffers to use for rendering parts
 	 * @param texCoords List of texture coordinates to use for rendering parts
@@ -93,71 +92,33 @@ public class Polygon {
 		return vertBuffers.size();
 	}
 	
-	/**
-	 * Get a vertex buffer for a render part
-	 * @param index Index of render part to get buffer for
-	 * @return Buffer for given render part
-	 */
-	public Buffer getVertexBuffer(int index){
-		return vertBuffers.get(index);
-	}
+	/** Get a vertex buffer for a render part */
+	public Buffer getVertexBuffer(int index){ return vertBuffers.get(index); }
 	
-	/**
-	 * Get a texture coordinate buffer for a render part
-	 * @param index Index of render part to get buffer for
-	 * @return Buffer for given render part
-	 */
-	public Buffer getTexCoordBuffer(int index){
-		return texCoordBuffers.get(index);
-	}
+	/** Get a texture coordinate buffer for a render part */
+	public Buffer getTexCoordBuffer(int index){return texCoordBuffers.get(index); }
 	
-	/**
-	 * Get the number of indices needed to draw a given render part
-	 * @param index Index of render part to get index count for
-	 * @return Number of indices to use to draw given render part
-	 */
-	public int getNumIndices(int index){
-		return numIndices.get(index);
-	}
+	/** Get the number of indices needed to draw a given render part */
+	public int getNumIndices(int index){ return numIndices.get(index); }
 	
-	/**
-	 * Get the name of a texture to use for a given render part
-	 * @param index Index of render part to get texture name for
-	 * @return Name of texture to use for index part
-	 */
-	public String getTextureName(int index){
-		return textureNames.get(index);
-	}
+	/**Get the name of a texture to use for a given render part */
+	public String getTextureName(int index){ return textureNames.get(index); }
 	
-	/**
-	 * @return Buffer filled with indices to use for debug rendering
-	 */
-	public Buffer getDebugVertBuffer(){
-		return debugVertBuffer;
-	}
+	/** @return Buffer filled with indices to use for debug rendering */
+	public Buffer getDebugVertBuffer(){ return debugVertBuffer; }
 	
-	/**
-	 * @return Buffer filled with texture coordinates to use for debug rendering
-	 */
-	public Buffer getDebugTexCoordBuffer(){
-		return debugTexCoordBuffer;
-	}
+	/** @return Buffer filled with texture coordinates to use for debug rendering */
+	public Buffer getDebugTexCoordBuffer(){ return debugTexCoordBuffer; }
 	
-	/**
-	 * @return Number of indices to use for debug rendering
-	 */
-	public int getDebugVertexCount(){
-		return debugVertexCount;
-	}
+	/** @return Number of indices to use for debug rendering */
+	public int getDebugVertexCount(){ return debugVertexCount; }
 	
 	/** @return  Shape to use for this polygon*/
-	public Shape getShape(){
-		return getShape(1.0f);
-	}
+	public Shape getShape(){ return getShape(1.0f); }
 	
 	/** 
 	 * @param scale Scale to get shape at
-	 * @return Shape to use for this polygon
+	 * @return Shape to use for this polygon, at given scale
 	 */
 	public Shape getShape(float scale){
 		Vector2[] scaledGeom = geometry;

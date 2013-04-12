@@ -30,20 +30,12 @@ public class DynamicEntity extends Entity {
 	private float density;
 	private boolean isInitialized = false;
 	
-	/**
-	 * No-args constructor for kryo only!
-	 */
+	/** No-args constructor for kryo only! */
 	public DynamicEntity(){
 		super();
 	}
 	
-	/**
-	 * Create a new DynmicEntity with one fixture
-	 * @param renderer Renderer to use to draw entity
-	 * @param layer Layer to draw entity on
-	 * @param bodyDef Body definition
-	 * @param fixtureDef Fixture definition
-	 */
+	/** Create a new DynmicEntity with one fixture */
 	public DynamicEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, FixtureDef fixtureDef){
 		super(renderer, layer);
 		
@@ -52,13 +44,7 @@ public class DynamicEntity extends Entity {
 		fixtureDefs.add(fixtureDef);
 	}
 	
-	/**
-	 * Create a new DynmicEntity with multiple fixtures
-	 * @param renderer Renderer to use to draw entity
-	 * @param layer Layer to draw entity on
-	 * @param bodyDef Body definition
-	 * @param fixtureDefs Fixture definition list
-	 */
+	/** Create a new DynmicEntity with multiple fixtures */
 	public DynamicEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, ArrayList<FixtureDef> fixtureDefs){
 		super(renderer, layer);
 		
@@ -66,13 +52,7 @@ public class DynamicEntity extends Entity {
 		this.fixtureDefs = fixtureDefs;
 	}
 	
-	/**
-	 * Create a new DynamicEntity with a single shape and given density
-	 * @param bodyDef Body definition 
-	 * @param layer Layer to draw entity on
-	 * @param shape Shape of entity
-	 * @param density Density of entity
-	 */
+	/** Create a new DynamicEntity with a single shape and given density */
 	public DynamicEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, Shape shape, float density){
 		super(renderer, layer);
 		
@@ -81,10 +61,7 @@ public class DynamicEntity extends Entity {
 		this.density = density;
 	}
 	
-	/**
-	 * Create a new DynamicEntity
-	 * @param body Body that this entity is using
-	 */
+	/** Create a new DynamicEntity from a body */
 	public DynamicEntity(EntityRenderer renderer, int layer, Body body){
 		super(renderer, layer);
 		this.body = body;
@@ -92,10 +69,7 @@ public class DynamicEntity extends Entity {
 		this.isInitialized = true;
 	}
 	
-	/**
-	 * Initialize this DynamicEntity and add it to the Physics world
-	 * @param world Physics world to put this Entity into
-	 */
+	/** Initialize this DynamicEntity and add it to the Physics world */
 	public void init(World world){
 		// only initialize if not intiialized
 		if(!this.isInitialized){
@@ -127,15 +101,12 @@ public class DynamicEntity extends Entity {
 		}
 	}
 	
-	/**
-	 * @return Whether or not this DynamicEntity has been added to the Physics world yet
-	 */
-	public boolean isInitialized(){
-		return this.isInitialized;
-	}
+	/** @return Whether or not this DynamicEntity has been added to the Physics world yet */
+	public boolean isInitialized(){ return this.isInitialized; }
 	
 	@Override
 	public void update(float timeStep){
+		// update the location and angle variables
 		if(this.isInitialized && body.isAwake()){
 			this.location.set(body.getPosition());
 			this.angle = body.getAngle();

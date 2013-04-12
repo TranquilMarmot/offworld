@@ -60,14 +60,7 @@ public class Physics {
 	 */
 	private ConcurrentLinkedQueue<PhysicsUpdateRequest> updateRequests;
 	
-	
-	/**
-	 * Initialized physics
-	 */
 	public Physics(){
-		// load natvies before doing anything (this is important!)
-		//GdxNativesLoader.load();
-		
 		entities = new Entities();
 		toInitialize = new Stack<DynamicEntity>();
 		updateRequests = new ConcurrentLinkedQueue<PhysicsUpdateRequest>();
@@ -105,16 +98,12 @@ public class Physics {
 	}
 	
 	
-	/**
-	 * @return The current room
-	 */
+	/** @return The current room */
 	public Room currentRoom(){
 		return currentRoom;
 	}
 	
-	/**
-	 * Steps the physics simulation and updates every entity's location
-	 */
+	/** Steps the physics simulation and updates every entity's location */
 	public void update(float timeStep){
 		// initialize any entities that need intialization
 		while(!toInitialize.isEmpty()){

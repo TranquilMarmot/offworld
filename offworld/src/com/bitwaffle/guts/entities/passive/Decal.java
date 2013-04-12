@@ -14,19 +14,12 @@ public class Decal extends Entity{
 	/** How long the decal lives and a timer */
 	float timeToLive, timeLived;
 	
-	/**
-	 * Blank constructor for serialization
-	 */
+	/** Blank constructor for serialization */
 	public Decal(){
 		super();
 	}
 	
 	/**
-	 * Create a new decal
-	 * @param renderer Renderer to render decal with
-	 * @param layer Which layer to render the decal on
-	 * @param location Location of decal
-	 * @param rotation Rotation of decal
 	 * @param timeToLive How long the decal will live for
 	 */
 	public Decal(EntityRenderer renderer, int layer, Vector2 location, float rotation, float timeToLive){

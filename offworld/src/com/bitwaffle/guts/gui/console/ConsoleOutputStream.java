@@ -45,9 +45,7 @@ class ConsoleOutputStream extends OutputStream{
 			logStream = getLogStream();
 	}
 	
-	/**
-	 * @return OutputStream that will write to log file
-	 */
+	/** @return OutputStream that will write to log file */
 	private FileOutputStream getLogStream(){
 		try{
 			// make sure logs directory exists
@@ -66,9 +64,7 @@ class ConsoleOutputStream extends OutputStream{
 	}
 	
 	@Override
-	/**
-	 * Writes a characater (or chaarcters) to the output stream
-	 */
+	/** Writes a characater (or chaarcters) to the output stream */
 	public void write(int wat) throws IOException {
 		// get chars from int
 		char[] chars = null;
@@ -109,9 +105,7 @@ class ConsoleOutputStream extends OutputStream{
 	/** @return Whether or not the console is writing to a log right now */
 	public boolean isWritingToLog(){ return writeToLog; }
 	
-	/**
-	 * @return A string representing the current time, used for logging
-	 */
+	/** @return A string representing the current time, used for logging */
 	private static String getCurrentTime(){
 		// instantiating a gergorian calendar sets it to the current time and date
 		Calendar calendar = new GregorianCalendar();
@@ -125,9 +119,7 @@ class ConsoleOutputStream extends OutputStream{
 		return String.format("%02d.%02d.%02d" + am_pm, hours, minutes, seconds);
 	}
 	
-	/**
-	 * @return A string representing the current date, used for logging
-	 */
+	/** @return A string representing the current date, used for logging */
 	private static String getCurrentDate(){
 		// instantiating a gergorian calendar sets it to the current time and date
 		Calendar calendar = new GregorianCalendar();
@@ -139,6 +131,8 @@ class ConsoleOutputStream extends OutputStream{
 		/*
 		 * Format the string to match mm.dd.yy NOTE:
 		 * This won't work properly past the year 2100.
+		 * Nick Achatz made me put in this comment, in case
+		 * anyone past the year 2100 wants to thank him.
 		 */
 		return String.format("%02d.%02d.%d", month, day, year - 2000);
 	}

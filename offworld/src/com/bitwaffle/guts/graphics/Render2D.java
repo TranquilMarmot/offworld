@@ -56,10 +56,6 @@ public class Render2D {
 	/** How many steps to take when constructing circle's geometry (lower numbers == more vertices) */
 	private static final float CIRCLE_STEP = 15.0f;
 
-	/**
-	 * Create a new 2D renderer
-	 * @param context Context for things being rendered
-	 */
 	public Render2D() {
 		Gdx.gl.glViewport(0, 0, Game.windowWidth, Game.windowHeight);
 		Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -70,16 +66,13 @@ public class Render2D {
 		modelview = new Matrix4();
 		
 		camera = new Camera();
-		//SurfaceView.touchHandler.setCamera(camera);
 		
 		quad = new Quad(this);
 		circle = new Circle(this, CIRCLE_STEP);
 		font = new BitmapFont();
 	}
 
-	/**
-	 * Initializes the vertex and fragment shaders and then links them to the program
-	 */
+	/** Initializes the vertex and fragment shaders and then links them to the program */
 	private void initShaders() {
 		GLSLShader vert = new GLSLShader(GLSLShader.ShaderTypes.VERTEX);
 		GLSLShader frag = new GLSLShader(GLSLShader.ShaderTypes.FRAGMENT);
@@ -105,10 +98,7 @@ public class Render2D {
 			Gdx.app.error(LOGTAG, "Error linking program!\n" + program.log());
 	}
 
-	/**
-	 * Renders the 2D scene
-	 * and updates the GUI and camera
-	 */
+	/** Renders the 2D scene and updates the GUI and camera */
 	public void renderScene() {
     	// clear the screen
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT /*| Gdx.gl20.GL_DEPTH_BUFFER_BIT*/);
@@ -123,10 +113,7 @@ public class Render2D {
 		Game.gui.render(this);
 	}
 	
-	/**
-	 * Sets up the projection matrix with an orthographic projection
-	 * for drawing things in world coordinates
-	 */
+	/** Sets up the projection matrix with an orthographic projection for drawing things in world coordinates */
 	public void setUpProjectionWorldCoords(){
 		projection.idt();
 		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1);
@@ -134,10 +121,7 @@ public class Render2D {
 		program.setUniformMatrix4f("Projection", projection);
 	}
 	
-	/**
-	 * Sets up the projection matrix with an orthographic projection
-	 * for drawing things in screen coordinates
-	 */
+	/** Sets up the projection matrix with an orthographic projection for drawing things in screen coordinates */
 	public void setUpProjectionScreenCoords(){
 		projection.idt();
 		MathHelper.orthoM(projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
@@ -145,10 +129,7 @@ public class Render2D {
 		program.setUniformMatrix4f("Projection", projection);
 	}
 	
-	/**
-	 * Renders every entity in the given iterator
-	 * @param it Iterator that goes through Entity objects needing to be rendered
-	 */
+	/** @param it Iterator that goes through Entity objects needing to be rendered */
 	public void renderEntities(Iterator<? extends Entity> it){
 		while(it.hasNext()){
 			try{
@@ -163,10 +144,7 @@ public class Render2D {
 		}
 	}
 	
-	/**
-	 * Prepares the modelview matrix to render an entity
-	 * @param ent Entity to prepare to render
-	 */
+	/** Prepares the modelview matrix to render an entity */
 	public void prepareToRenderEntity(Entity ent){
 		Vector2 loc = ent.getLocation();
 		float angle = MathHelper.toDegrees(ent.getAngle());
@@ -179,9 +157,7 @@ public class Render2D {
 		this.sendModelViewToShader();
 	}
 	
-	/**
-	 * Translates the modelview matrix to represent the camera's location
-	 */
+	/** Translates the modelview matrix to represent the camera's location */
 	public void translateModelViewToCamera(){
 		Vector2 cameraLoc = camera.getLocation();
 		float cameraAngle = camera.getAngle();
@@ -192,9 +168,7 @@ public class Render2D {
 		modelview.rotate(0.0f, 0.0f, 1.0f, cameraAngle);
 	}
 	
-	/**
-	 * Sends the current modelview matrix to the shader
-	 */
+	/** Sends the current modelview matrix to the shader */
 	public void sendModelViewToShader(){
 		program.setUniformMatrix4f("ModelView", modelview);
 	}

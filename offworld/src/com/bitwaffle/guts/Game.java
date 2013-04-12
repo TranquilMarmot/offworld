@@ -13,6 +13,11 @@ import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.Resources;
 import com.bitwaffle.offworld.entities.player.Player;
 
+/**
+ * Base game class.
+ * 
+ * @author TranquilMarmot
+ */
 public abstract class Game implements ApplicationListener {
 	/** Current version of the game */
 	public static final String VERSION = "0.0.6.8 (pre-alpha)";

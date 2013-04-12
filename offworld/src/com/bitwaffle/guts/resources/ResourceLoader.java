@@ -191,51 +191,32 @@ public class ResourceLoader {
 	 * @param magFilter Mag filter to use when loading
 	 */
 	private static Texture initTexture(String path, int minFilter, int magFilter){
-		//try{
-			//InputStream in = Game.resources.openAsset(path);
-			// TODO have texture wrapping be an option somewhere
-			Gdx.gl20.glTexParameteri(GL20.GL_TEXTURE_2D, GL20.GL_TEXTURE_WRAP_S, GL20.GL_CLAMP_TO_EDGE);
-			Gdx.gl20.glTexParameteri(GL20.GL_TEXTURE_2D, GL20.GL_TEXTURE_WRAP_T, GL20.GL_CLAMP_TO_EDGE);
-			
-			
-			Texture texture = new Texture(Game.resources.getFileHandle(path));
-			
-			TextureFilter min = TextureFilter.Linear, mag = TextureFilter.Linear;
-			if(minFilter == GL20.GL_LINEAR)
-				min = TextureFilter.Linear;
-			else if(minFilter == GL20.GL_NEAREST)
-				min = TextureFilter.Nearest;
-			
-			if(magFilter == GL20.GL_LINEAR)
-				mag = TextureFilter.Linear;
-			else if(magFilter == GL20.GL_NEAREST)
-				mag = TextureFilter.Nearest;
-			
-			
-			texture.setFilter(min, mag);
-			
-			
-			//Texture texture = TextureLoader.getTexture("PNG", in, minFilter);
-			//in.close();
-			//int handle = texture.getTextureID();
-			
-			return texture;
-		//} catch(IOException e){
-		//	Gdx.app.error(LOGTAG, "Error initializing texture (path: " + path + ")");
-		//	e.printStackTrace();
-		//}
+		// TODO have texture wrapping be an option somewhere
+		Gdx.gl20.glTexParameteri(GL20.GL_TEXTURE_2D, GL20.GL_TEXTURE_WRAP_S, GL20.GL_CLAMP_TO_EDGE);
+		Gdx.gl20.glTexParameteri(GL20.GL_TEXTURE_2D, GL20.GL_TEXTURE_WRAP_T, GL20.GL_CLAMP_TO_EDGE);
 		
-		//return -1;
+		
+		Texture texture = new Texture(Game.resources.getFileHandle(path));
+		
+		TextureFilter min = TextureFilter.Linear, mag = TextureFilter.Linear;
+		if(minFilter == GL20.GL_LINEAR)
+			min = TextureFilter.Linear;
+		else if(minFilter == GL20.GL_NEAREST)
+			min = TextureFilter.Nearest;
+		
+		if(magFilter == GL20.GL_LINEAR)
+			mag = TextureFilter.Linear;
+		else if(magFilter == GL20.GL_NEAREST)
+			mag = TextureFilter.Nearest;
+		
+		
+		texture.setFilter(min, mag);
+		
+		return texture;
 	}
 	
 	/**
 	 * Gets the texture coordinates for a sub-image
-	 * @param xOffset Xoffset into source image in pixels
-	 * @param yOffset Y offset into source image in pixels
-	 * @param subImageWidth Width of sub-image
-	 * @param subImageHeight Height of sub-image
-	 * @param sourceWidth Width of source image
-	 * @param sourceHeight Height of source image
 	 * @return FloatBuffer containing texture coordinates to render sub-image with a Quad
 	 */
 	private static Buffer getSubImageTexCoords(int xOffset, int yOffset, int subImageWidth, int subImageHeight, int sourceWidth, int sourceHeight){
@@ -261,9 +242,7 @@ public class ResourceLoader {
 		return buff;
 	}
 	
-	/**
-	 * @param arr Array of sprite sheet objects to parse
-	 */
+	/** @param arr Array of sprite sheet objects to parse */
 	private static void parseSpriteSheetArray(JSONArray arr){
 		try{
 			for(int i = 0; i < arr.length(); i++){
@@ -275,13 +254,6 @@ public class ResourceLoader {
 				
 				Texture sheetTexture = initTexture(imagePath, minFilter, magFilter);
 				
-				// load entire sheet
-				//InputStream sheetIn = Game.resources.openAsset(imagePath);
-				//Texture sheetTexture = TextureLoader.getTexture("PNG", sheetIn, minFilter);
-				//sheetIn.close();
-				//int sheetHandle = sheetTexture.getTextureID();
-				
-				//Texture sheetTexture = new Texture(Game.resources.getFileHandle(imagePath));
 				int sheetHandle = sheetTexture.getTextureObjectHandle();
 				
 				JSONArray spritesArr = sheetObj.getJSONArray("sprites");
@@ -308,15 +280,10 @@ public class ResourceLoader {
 		} catch(JSONException e){
 			Gdx.app.error(LOGTAG, "Error parsing spritesheet array in resource file!");
 			e.printStackTrace();
-		}// catch (IOException e) {
-			//Gdx.app.error(LOGTAG, "Error loading texture for sprite sheet!");
-		//	e.printStackTrace();
-		//}
+		}
 	}
 	
-	/**
-	 * @param arr Array of animations to parse
-	 */
+	/** @param arr Array of animations to parse */
 	private static void parseAnimationArray(JSONArray arr){
 		try{
 			for(int i = 0; i < arr.length(); i++){
@@ -370,9 +337,7 @@ public class ResourceLoader {
 		}
 	}
 	
-	/**
-	 * @param arr Array of sounds to initialize
-	 */
+	/** @param arr Array of sounds to initialize */
 	private static void parseSoundArray(JSONArray arr){
 		try{
 			for(int i = 0; i < arr.length(); i++){
@@ -389,9 +354,7 @@ public class ResourceLoader {
 		}
 	}
 	
-	/**
-	 * @param arr Array of polygons to initialize
-	 */
+	/** @param arr Array of polygons to initialize */
 	private static void parsePolygonArray(JSONArray arr){
 		try{
 			for(int i = 0; i < arr.length(); i++){
@@ -444,8 +407,6 @@ public class ResourceLoader {
 					shapeType = Polygon.Types.LOOP;
 				else if(typeStr.equalsIgnoreCase("CHAIN"))
 					shapeType = Polygon.Types.CHAIN;
-				//else
-				//	Log.e(LOGTAG, "ERROR! Got unkown polygon shape type (got " + typeStr + ")");
 				
 				Polygon poly = PolygonLoader.loadPolygon(xScale, yScale, renderObjLocs, textureNames, geomPath, shapeType, debugPath);
 				Game.resources.polygons.addPolygon(polyName, poly);
@@ -456,10 +417,7 @@ public class ResourceLoader {
 		}
 	}
 	
-	/**
-	 * Load entity info from a JSON array
-	 * @param arr Array to load info from
-	 */
+	/** @param arr Array to load info from */
 	private static void parseEntityInfoArray(JSONArray arr){
 		try{
 			for(int i = 0; i < arr.length(); i++){

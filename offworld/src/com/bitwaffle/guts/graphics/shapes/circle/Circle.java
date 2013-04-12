@@ -20,7 +20,7 @@ public class Circle {
 	/** Buffers to hold data */
 	private Buffer vertBuffer, texBuffer;
 	
-	/** Info on coordinate */
+	/** Info on coordinates for drawing */
 	private static final int COORDS_PER_VERTEX = 3, COORDS_PER_TEXCOORD = 2;
 	
 	/** Handles to send data to when drawing */
@@ -29,11 +29,7 @@ public class Circle {
 	/** Number of indices in circle */
 	private int numIndices;
 	
-	/**
-	 * Create a new circle for rendering
-	 * @param renderer Renderer that will be rendering this circle
-	 * @param step How much to increase the angle between each vertex (lower means more vertices, must be between 0.1 and 90.0)
-	 */
+	/** @param step How much to increase the angle between each vertex (lower means more vertices, must be between 0.1 and 90.0) */
 	public Circle(Render2D renderer, float step){
 		this.renderer = renderer;
 		
@@ -87,12 +83,6 @@ public class Circle {
 		texCoordHandle = renderer.program.getAttribLocation("vTexCoord");
 	}
 	
-	/**
-	 * Render this circle
-	 * @param radius Radius to render at
-	 * @param flipHorizontal Whether or not to flip horizontally
-	 * @param flipVertical Whether or not to flip vertically
-	 */
 	public void render(float radius, boolean flipHorizontal, boolean flipVertical){
 		// set position info
 		Gdx.gl20.glEnableVertexAttribArray(positionHandle);

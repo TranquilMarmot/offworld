@@ -14,9 +14,10 @@ import com.bitwaffle.guts.graphics.Render2D;
  * @author TranquilMarmot
  */
 public class CircleRenderer implements EntityRenderer {
-	
+	/** Color to render at, rgba */
 	private float[] color;
 	
+	/** Name of texture to bind */
 	private String textureName;
 	
 	public CircleRenderer(String textureName, float[] color){

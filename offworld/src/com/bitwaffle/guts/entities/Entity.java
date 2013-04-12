@@ -54,21 +54,10 @@ public class Entity {
 		this.angle = angle;
 	}
 	
-	/**
-	 * Set an entity's location
-	 * @param newLocation New location for entity
-	 */
-	public void setLocation(Vector2 newLocation){
-		location.set(newLocation);
-	}
-	
-	/**
-	 * Set an entity'a angle
-	 * @param newAngle New angle for entity
-	 */
-	public void setAngle(float newAngle){
-		this.angle = newAngle;
-	}
+	/** Set an entity's location */
+	public void setLocation(Vector2 newLocation){ location.set(newLocation); }
+	/** Set an entity'a angle */
+	public void setAngle(float newAngle){ this.angle = newAngle; }
 	
 	/** @return Current location of entity */
 	public Vector2 getLocation(){ return location; }
@@ -76,29 +65,23 @@ public class Entity {
 	public float getAngle(){ return /*MathHelper.toRadians(*/angle/*)*/; }
 	
 	/**
-	 * Updates the entity- this can pretty much do anything and
-	 * is called every frame
+	 * Updates the entity- this can pretty much do anything and is called every frame
 	 * @param timeStep How much time has passed since last update (in seconds)
 	 */
 	public void update(float timeStep){}
 	
 	/**
 	 * Clean up any resources this entity may have allocated
-	 * (called right before the entity gets removed)
+	 * (called right before the entity gets removed from the world)
 	 */
 	public void cleanup(){}
 	
-	/**
-	 * @return Which layer this entity resides on
-	 */
+	/** @return Which layer this entity resides on */
 	public int getLayer(){
 		return layer;
 	}
 	
-	/**
-	 * Set the hash code for this entity
-	 * @param newHash New hash code
-	 */
+	/** Set the hash code for this entity */
 	public void setHashCode(int newHash){
 		this.hash = newHash;
 	}

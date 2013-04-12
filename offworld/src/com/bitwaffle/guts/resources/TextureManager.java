@@ -25,36 +25,21 @@ public class TextureManager {
 	/** Keeps track of animations */
 	private HashMap<String, Animation> animations;
 	
-	/**
-	 * Create a new texture manager
-	 */
+	/** Create a new texture manager */
 	public TextureManager(){
 		textures = new HashMap<String, Integer>();
 		animations = new HashMap<String, Animation>();
 		subImages = new HashMap<String, SubImage>();
 	}
 	
-	/**
-	 * Bind a texture to GL_TEXTURE_2D
-	 * @param textureName Name of texture from XML resource file
-	 */
+	/** Bind a texture to GL_TEXTURE_2D */
 	public void bindTexture(String textureName){
 		Gdx.gl20.glBindTexture(GL20.GL_TEXTURE_2D, textures.get(textureName));
 	}
 	
-	/**
-	 * @param subImage SubImage to get
-	 * @return SubImage, for to render with
-	 */
-	public SubImage getSubImage(String subImage){
-		return subImages.get(subImage);
-	}
+	public SubImage getSubImage(String subImage){ return subImages.get(subImage); }
 	
-	/**
-	 * Get the handle for a texture
-	 * @param textureName Name of texture from XML resource file
-	 * @return Handle of texture (if it exists)
-	 */
+	/** Get the handle for a texture */
 	public int getTextureHandle(String textureName){
 		return textures.get(textureName);
 	}

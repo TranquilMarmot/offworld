@@ -96,32 +96,18 @@ public enum ConsoleCommands {
 		this(command, false);
 	}
 	
-	/**
-	 * Issues a command
-	 * @param toker StringTokenizer at the first arg for the command (calling toker.nextToken() will return the command's args[1]- the command itself is at args[0])
+	/** @param toker StringTokenizer at the first arg for the command 
+	 * Calling toker.nextToken() will return the command's args[1]- the command itself is at args[0]
 	 */
-	public void issue(StringTokenizer toker){
-		function.issue(toker);
-	}
+	public void issue(StringTokenizer toker){ function.issue(toker); }
 	
-	/**
-	 * Prints out help for the command
-	 */
-	public void help(){
-		function.help();
-	}
+	/** Prints out help for the command */
+	public void help(){ function.help(); }
 	
-	/**
-	 * @return Whether or not to list this function
-	 */
-	public boolean hidden(){
-		return hidden;
-	}
+	/** @return Whether or not to list this function */
+	public boolean hidden(){ return hidden; }
 }
 
-/**
- * 
- */
 class HelpCommand implements Command{
 	@Override
 	public void issue(StringTokenizer toker){
@@ -152,9 +138,7 @@ class HelpCommand implements Command{
 	}
 }
 
-/**
- * Clear the console
- */
+/** Clear the console */
 class ClearCommand implements Command{
 	@Override
 	public void issue(StringTokenizer toker) {
@@ -168,9 +152,7 @@ class ClearCommand implements Command{
 	}
 }
 
-/**
- * List dynamic entitites, static entities, or lights
- */
+/** List dynamic entitites, static entities, or lights */
 class ListCommand implements Command{
 	@Override
 	public void issue(StringTokenizer toker){
@@ -213,9 +195,7 @@ class ListCommand implements Command{
 	
 }
 
-/**
- * Print out how many entities there are
- */
+/** Print out how many entities there are */
 class NumberCommand implements Command{
 	@Override
 	public void issue(StringTokenizer toker){
@@ -229,11 +209,7 @@ class NumberCommand implements Command{
 	}
 }
 
-/**
- * 99 bottles of beer on the wall, 99 bottles of beer!
- * @author nate
- *
- */
+/** 99 bottles of beer on the wall, 99 bottles of beer! */
 class BeerCommand implements Command{
 	@Override
 	public void issue(StringTokenizer toker){
@@ -255,13 +231,7 @@ class BeerCommand implements Command{
 	}
 }
 
-/**
- * Change values for the camera-
- * zoom - how zoomed in/out the camera is
- * yoffset - camera offset on y axis
- * xoffset - camera offset on x axis
- * follow - tell the camera to follow an entity, either the player or the name of an entity type from Entities.dynamicEntities
- */
+/** Change values for the camera */
 class CameraCommand implements Command{
 	@Override
 	public void issue(StringTokenizer toker){
@@ -275,9 +245,7 @@ class CameraCommand implements Command{
 	}
 }
 
-/**
- * Quit the game
- */
+/** Quit the game */
 class QuitCommand implements Command{
 	@Override
 	public void issue(StringTokenizer toker){
@@ -291,9 +259,7 @@ class QuitCommand implements Command{
 	}
 }
 
-/**
- * Mutes/unmutes audio
- */
+/** Mutes/unmutes audio */
 class MuteCommand implements Command{
 	@Override
 	public void issue(StringTokenizer toker) {

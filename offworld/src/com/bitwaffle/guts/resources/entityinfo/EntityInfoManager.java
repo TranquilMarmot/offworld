@@ -5,6 +5,11 @@ import java.util.HashMap;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
+/**
+ * Manages entity body and fixture definitions
+ * 
+ * @author TranquilMarmot
+ */
 public class EntityInfoManager {
 	/** Info about entities */
 	private HashMap<String, EntityInfo> info;

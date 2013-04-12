@@ -11,7 +11,7 @@ public abstract class CircleButton extends Button{
 	/** Radius of circle button */
 	private float radius;
 	
-	// FIXME these are temporary-ish
+	// FIXME these are temporary
 	protected float[] active = { 0.0f, 1.0f, 0.0f, 1.0f };
 	protected float[] disabled = { 0.3f, 0.3f, 0.3f, 1.0f };
 	protected float[] down = { 0.0f, 0.0f, 1.0f, 1.0f };

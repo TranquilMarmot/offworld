@@ -45,6 +45,7 @@ public class Animation {
 		this(copyParts(other));
 	}
 	
+	/** Copy parts from one animation into a new parts array */
 	private static AnimationPart[] copyParts(Animation src){
 		AnimationPart[] copy = new AnimationPart[src.parts.length];
 		for(int i = 0; i < copy.length; i++)
@@ -52,16 +53,16 @@ public class Animation {
 		return copy;
 	}
 	
-	/**
-	 * @return Total number of frames in this animation
-	 */
+	/** @return Total number of frames in this animation */
 	public int totalFrames(){
+		// sum of all frames in all parts
 		int count = 0;
 		for(AnimationPart part : parts)
 			count += part.numFrames();
 		return count;
 	}
 	
+	/** @return Current frame this animation is on, out of totalFrames() frame */
 	public int currentFrame(){
 		int count = 0;
 		for(int i = 0; i < currentPart; i++)
@@ -69,10 +70,7 @@ public class Animation {
 		return count + parts[currentPart].currentFrame();
 	}
 	
-	/**
-	 * Update this animation
-	 * @param timeStep Time to advance animation by, in seconds
-	 */
+	/** @param timeStep Time to advance animation by, in seconds */
 	public void update(float timeStep){
 		// update the current part
 		parts[currentPart].update(timeStep);
@@ -95,10 +93,7 @@ public class Animation {
 		}
 	}
 	
-	/**
-	 * Draw the current frame of this animation
-	 * @param renderer Renderer to use for drawing
-	 */
+	/** Draw the current frame of this animation */
 	public void renderCurrentFrame(Render2D renderer){
 		parts[currentPart].renderCurrentFrame(renderer, false, false);
 	}

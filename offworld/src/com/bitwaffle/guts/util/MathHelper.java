@@ -19,8 +19,14 @@ public class MathHelper {
 	/** No pie jokes here */
 	public static final float PI = 3.141592653589793238462f;
 	
+	/** Temporary use float[] */
 	private static float[] outPoint = new float[4];
-	private static Matrix4 projection = new Matrix4(), view = new Matrix4(); // (no 'model' since we're not looking at anything specific)
+	
+	/**
+	 * Temporary matrices for calculations
+	 * No 'model' since we're not looking at anything specific.
+	 */
+	private static Matrix4 projection = new Matrix4(), view = new Matrix4(); 
 	
 	/**
 	 * Find an angle between two vectors

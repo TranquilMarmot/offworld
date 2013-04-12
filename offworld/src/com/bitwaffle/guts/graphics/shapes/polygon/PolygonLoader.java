@@ -34,22 +34,14 @@ public class PolygonLoader {
 	private ArrayList<Vector2> vertices, textureCoords;
 	
 	/**
-	 * Load a polygon
 	 * @param renderObjLoc Location of obj file to use for rendering
 	 * @param collisiionObjLoc Location of obj file to use for geometry
-	 * @param xScale X scale to load polygon in at
-	 * @param yScale Y scale to load polygon in at
 	 * @return Polygon object containing necessary data for physics and rendering
 	 */
 	public static Polygon loadPolygon(float xScale, float yScale, ArrayList<String> renderObjLocs, ArrayList<String> textureNames, String collisiionObjLoc, Polygon.Types shapeType, String debugObjLoc){
 		return new PolygonLoader(xScale, yScale).loadPolygon(renderObjLocs, textureNames, collisiionObjLoc, shapeType, debugObjLoc);
 	}
 	
-	/**
-	 * Create a new polygon loader
-	 * @param xScale X scale to load polygon in at
-	 * @param yScale Y scale to load polygon in at
-	 */
 	private PolygonLoader(float xScale, float yScale){
 		this.xScale = xScale;
 		this.yScale = yScale;
@@ -246,12 +238,7 @@ public class PolygonLoader {
 		list.add(tri2);
 	}
 	
-	/**
-	 * Steps through the given indices and adds their corresponding vertices to a buffer
-	 * @param vertices List of all vertices
-	 * @param vertexIndices List of indices to call in vertices
-	 * @return Buffer filled with vertices
-	 */
+	/** Steps through the given indices and adds their corresponding vertices to a buffer */
 	private Buffer putVerticesIntoBuffer(){
 		// 9, since there's three vertices per index and three floats per vertex
 		// then * 4 since there's 4 bytes/float
@@ -285,12 +272,7 @@ public class PolygonLoader {
 		return buff;
 	}
 	
-	/**
-	 * Steps through the given indices and adds their corresponding vertices to a buffer
-	 * @param textureCoords List of all texture coordinates
-	 * @param textureIndices List of indices to call in coordinates
-	 * @return Buffer with with texture coordinates
-	 */
+	/** Steps through the given indices and adds their corresponding vertices to a buffer */
 	private Buffer putTextureCoordsIntoBuffer(){
 		// 6, since there's three vertices per index and two floats per vertex (no Z for texture)
 		// then * 4 since there's 4 bytes/float
@@ -327,8 +309,6 @@ public class PolygonLoader {
 	 * Parses an obj file with geometry data in it.
 	 * NOTE:
 	 * Geometry data in obj file MUST be in counter-clockwise draw order
-	 * @param collisionObjLoc Location of obj file
-	 * @return Shape from obj file
 	 */
 	private Vector2[] parseCollisionObj(String collisionObjLoc){
 		try{

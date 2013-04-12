@@ -7,9 +7,7 @@ import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.gui.button.RectangleButton;
 
-/**
- * Button to change camera modes
- */
+/** Button to change camera modes */
 public class CameraButton extends RectangleButton{
 	/** How large the camera button is */
 	public static float cameraButtonWidth = 32.0f, cameraButtonHeight = 32.0f;

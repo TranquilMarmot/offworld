@@ -9,6 +9,11 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.physics.CollisionFilters;
 
+/**
+ * Poops out particles
+ * 
+ * @author TranquilMarmot
+ */
 public class ParticleEmitter extends Entity{
 	/** Settings being used by this emitter */
 	public EmitterSettings settings;
@@ -22,11 +27,6 @@ public class ParticleEmitter extends Entity{
 	/** Number of particles that this emitter has created */
 	private int numParticlesOut;
 	
-	/**
-	 * Create a new particle emitter
-	 * @param layer Layer to emit particles on
-	 * @param settings Settings to use for emitters
-	 */
 	public ParticleEmitter(int layer, EmitterSettings settings){
 		super(null, layer, new Vector2(settings.offset().x + settings.attached().getLocation().x, settings.offset().y + settings.attached().getLocation().y));
 		this.settings = settings;
@@ -36,9 +36,7 @@ public class ParticleEmitter extends Entity{
 		numParticlesOut = 0;
 	}
 	
-	/** 
-	 * @return Body def for particle, based on current settings
-	 */
+	/** @return Body def for particle, based on current settings */
 	private BodyDef getParticleBodyDef(){
 		BodyDef def = new BodyDef();
 		
@@ -46,16 +44,13 @@ public class ParticleEmitter extends Entity{
 		def.allowSleep = false;
 		def.awake = true;
 		def.type = BodyType.DynamicBody;
-		//particleDef.angularDamping =
 		def.linearVelocity.set(settings.particleForce().x, settings.particleForce().y);
 		def.position.set(settings.offset().x + settings.attached().getLocation().x, settings.offset().y + settings.attached().getLocation().y);
 		
 		return def;
 	}
 	
-	/**
-	 * @return Fixture def for particle, based on current settings
-	 */
+	/** @return Fixture def for particle, based on current settings */
 	private FixtureDef getParticleFixtureDef(){
 		FixtureDef def = new FixtureDef();
 		
@@ -67,8 +62,6 @@ public class ParticleEmitter extends Entity{
 		def.restitution = settings.particleRestitution();
 		PolygonShape particleBox = new PolygonShape();
 		particleBox.setAsBox(settings.particleWidth(), settings.particleHeight());
-		//CircleShape circ = new CircleShape();
-		//circ.setRadius(settings.particleWidth);
 		def.shape = particleBox;
 		
 		return def;
@@ -109,25 +102,15 @@ public class ParticleEmitter extends Entity{
 		}
 	}
 	
-	/**
-	 * Deactivate this emitter so it no longer releases particles
-	 */
-	public void deactivate(){
-		this.active = false;
-	}
+	/** Deactivate this emitter so it no longer releases particles */
+	public void deactivate(){ this.active = false; }
 	
-	/**
-	 * Activate this emitter
-	 */
-	public void activate(){
-		this.active = true;
-	}
+	/** Activate this emitter */
+	public void activate(){ this.active = true; }	
 	
 	/**
 	 * Called by particles when they die so the emitter knows how
 	 * many particles it has out
 	 */
-	protected void notifyOfParticleDeath(){
-		numParticlesOut--;
-	}
+	protected void notifyOfParticleDeath(){ numParticlesOut--; }
 }

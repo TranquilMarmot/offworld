@@ -4,6 +4,11 @@ import com.badlogic.gdx.math.Matrix4;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 
+/**
+ * A box that tiles a given segment, side and middle subimages to create a box.
+ * 
+ * @author TranquilMarmot
+ */
 public class TiledBox {
 	/** Width/height of each column/row */
 	private float columnWidth, rowHeight;

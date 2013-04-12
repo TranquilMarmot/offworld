@@ -1,5 +1,10 @@
 package com.bitwaffle.guts.graphics.camera.modes;
 
+/**
+ * Camera mode that mostly gets controlled by outside forces
+ * 
+ * @author TranquilMarmot
+ */
 public class FreeMode extends CameraMode {
 	@Override
 	public void update(float timeStep){

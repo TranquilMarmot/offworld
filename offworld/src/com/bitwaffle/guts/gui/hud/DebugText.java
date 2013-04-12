@@ -6,11 +6,13 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.gui.GUIObject;
 
+/**
+ * Just draws simple info to the screen
+ * 
+ * @author TranquilMarmot
+ */
 public class DebugText extends GUIObject {
-
-	public DebugText() {
-		super(0.0f, 0.0f);
-	}
+	public DebugText() { super(0.0f, 0.0f); }
 
 	@Override
 	public void render(Render2D renderer, boolean flipHorizontal,
@@ -28,14 +30,10 @@ public class DebugText extends GUIObject {
 		String fps = Game.currentFPS + " FPS";
 		renderer.font.drawString(fps, renderer, Game.windowWidth - renderer.font.stringWidth(fps, tscale), renderer.font.stringHeight(fps, tscale) * 4, tscale, debugTextColor);
 		
-		/*
-		String ents = Game.physics.numEntities() + " ents";
-		renderer.font.drawString(ents, renderer, Game.windowWidth - renderer.font.stringWidth(ents, tscale), renderer.font.stringHeight(ents, tscale) * 6, tscale, debugTextColor);
-		*/
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 		
 		
-		// draw pause text FIXME temp
+		// draw pause text
 		if(Game.isPaused()){
 			String pauseString = "Hello. This is a message to let you know that\nthe game is paused. Have a nice day.";
 			float scale = 0.75f;

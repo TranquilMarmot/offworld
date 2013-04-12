@@ -38,10 +38,7 @@ public class Entities {
 		toRemove = new Stack<EntityRemoveRequest>();
 	}
 	
-	/**
-	 * Add an entity to be rendered/updated
-	 * @param ent Entity to add
-	 */
+	/** Add an entity to be rendered/updated */
 	public void addEntity(Entity ent){
 		addEntity(ent, ent.hashCode());
 	}
@@ -55,10 +52,7 @@ public class Entities {
 		toAdd.add(new EntityAddRequest(ent, hash));
 	}
 	
-	/**
-	 * Remove an entity from being rendered/updated
-	 * @param ent
-	 */
+	/** Remove an entity from being rendered/updated */
 	public void removeEntity(Entity ent){
 		removeEntity(ent, ent.hashCode());
 	}
@@ -77,18 +71,14 @@ public class Entities {
 		}
 	}
 	
-	/**
-	 * @param layer Layer to get entity from
-	 * @param hash Hash of entity to get
-	 * @return Entity from given layer with given hash
-	 */
+	/** Get an entity from a given layer/hash */
 	public Entity getEntity(int layer, int hash){
 		return layers[layer].get(hash);
 	}
 	
 	/**
 	 * Update every entity
-	 * @param timeStep Amount of time passed since last update
+	 * @param timeStep Amount of time passed since last update, in seconds
 	 */
 	public void update(float timeStep){
 		// check for any entities to be added
@@ -104,10 +94,7 @@ public class Entities {
 			handleRemoveRequest(toRemove.pop());
 	}
 	
-	/**
-	 * Remove an entity
-	 * @param req Entity remove request
-	 */
+	/** Add a request to remove an entity from the world */
 	private void handleRemoveRequest(EntityRemoveRequest req){
 		Entity ent = layers[req.layer].get(req.hash);
 		if(ent != null){
@@ -123,10 +110,7 @@ public class Entities {
 		}
 	}
 	
-	/**
-	 * Initialize an entity
-	 * @param req Entity add request
-	 */
+	/** Initialize an entity in the physics world */
 	private void handleAddRequest(EntityAddRequest req){
 		int layer = req.ent.getLayer();
 		if(layer > NUM_LAYERS)
@@ -136,9 +120,8 @@ public class Entities {
 	}
 	
 	/**
-	 * Update a list of entities. Removes any where removeFlag is true
-	 * @param list List to update
-	 * @param timeStep 
+	 * Update a list of entities
+	 * @param timeStep Time passed since last update, in seconds
 	 */
 	private void updateEntityArrayList(EntityHashMap list, float timeStep){
 		for(Entity ent : list.values())
@@ -146,26 +129,19 @@ public class Entities {
 				ent.update(timeStep);
 	}
 	
-	/**
-	 * Renders every entity
-	 * @param renderer Renderer to render entities with
-	 */
+	/** Renders every entity in this Entities */
 	public void renderAll(Render2D renderer){
 		for(EntityHashMap l : layers)
 			renderer.renderEntities(l.values().iterator());
 	}
 	
-	/**
-	 * Clear every entity from this list
-	 */
+	/** Clear every entity from this list */
 	public void clear(){
 		for(EntityHashMap l : layers)
 			l.clear();
 	}
 	
-	/**
-	 * @return Total number of entities
-	 */
+	/** @return Total number of entities */
 	public int numEntities(){
 		int count = 0;
 		for(EntityHashMap l : layers)
@@ -173,9 +149,7 @@ public class Entities {
 		return count;
 	}
 	
-	/**
-	 * @return An array containing an iterator for each layer
-	 */
+	/** @return An array containing an iterator for each layer */
 	public Iterator<Entity>[] getAllIterators(){
 		@SuppressWarnings("unchecked")  //can't have a generic array
 		Iterator<Entity>[] its = new Iterator[NUM_LAYERS];

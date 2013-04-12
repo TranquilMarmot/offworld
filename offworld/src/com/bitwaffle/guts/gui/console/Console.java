@@ -151,14 +151,8 @@ public class Console extends GUIObject{
 		out = new PrintStream(outputStream);
 	}
 	
-	/**
-	 * Update the console
-	 */
+	/** Update the console */
 	public void update(float timeStep) {
-		// check for any button presses
-		checkForButtonPresses();
-		
-		
 		this.x = BitmapFont.FONT_GLYPH_WIDTH * scale;
 		this.y = Game.windowHeight ;
 		
@@ -176,6 +170,7 @@ public class Console extends GUIObject{
 		
 	}
 	
+	/** Fades out the text on a per-frame basic */
 	private void fadeText(){
 		if (textAlpha > textMinAlpha
 				&& textFadeDelayTimer >= textFadeDelay) {
@@ -187,6 +182,7 @@ public class Console extends GUIObject{
 		}
 	}
 	
+	/** Fade the background on a per-frame basis */
 	private void fadeBackground(){
 		if(consoleAlpha > consoleMinAlpha
 		&& consoleFadeDelayTimer >= consoleFadeDelay){
@@ -198,48 +194,7 @@ public class Console extends GUIObject{
 		}
 	}
 	
-	/**
-	 * Checks for any input keys that control the console
-	 */
-	private void checkForButtonPresses(){
-		/*
-		if(KeyBindings.SYS_CONSOLE_TOGGLE.pressedOnce())
-			this.toggle();
-		
-		if(KeyBindings.SYS_CONSOLE_BACKSPACE.pressedOnce())
-			this.backspace(); // TODO holding backspace
-		
-		if(KeyBindings.SYS_CONSOLE_SUBMIT.pressedOnce())
-			this.submit();
-		
-		if(KeyBindings.SYS_CONSOLE_PREVIOUS_COMMAND.pressedOnce() && this.isOn())
-			scrollHistory(-1);
-			
-		
-		if(KeyBindings.SYS_CONSOLE_NEXT_COMMAND.pressedOnce() && this.isOn())
-			scrollHistory(1);
-		*/
-		//if(KeyBindings.SYS_CONSOLE_SCROLL_DOWN.pressedOnce())
-		//	this.scrollDown(1); // TODO holding scrolldown
-		
-		//if(KeyBindings.SYS_CONSOLE_SCROLL_UP.pressedOnce())
-		//	this.scrollUp(1); // TODO holding scrollup
-		
-		/*
-		if(KeyBindings.SYS_COMMAND.pressedOnce()){
-			this.show();
-			this.input = "/";
-			this.autoClose = true;
-		}
-		*/
-		/*
-		if(KeyBindings.SYS_CHAT.pressedOnce()){
-			this.show();
-			this.autoClose = true;
-		}
-		*/
-	}
-	
+	/** Opens the console with a slash and closes on submission */
 	public void openWithSlash(){
 		this.show();
 		this.input = "/";
@@ -429,6 +384,7 @@ public class Console extends GUIObject{
 			scroll += amount;
 	}
 	
+	/** Scroll through lines in console. Negative values ok. */
 	public void scroll(int amount){
 		this.wake();
 		scroll += amount;

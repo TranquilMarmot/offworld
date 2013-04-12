@@ -22,11 +22,7 @@ public class AnimationPart {
 	private float xScale, yScale;
 	
 	/**
-	 * Create a new animation
-	 * @param sheetName Name of texture to bind for this animation part
 	 * @param frames Array of frames to loop through
-	 * @param xScale X scale to render frames at
-	 * @param yScale Y scale to render frames at
 	 */
 	public AnimationPart(Frame[] frames, float xScale, float yScale) {
 		this.frames = frames;
@@ -36,12 +32,12 @@ public class AnimationPart {
 		timeOnFrame = 0.0f;
 	}
 	
+	/** Copy constructor */
 	public AnimationPart(AnimationPart other){
 		this(other.frames, other.xScale, other.yScale);
 	}
 	
 	/**
-	 * Update an animation.
 	 * Goes on to next frame if timeOnFrame >= currentFrame's length,
 	 * or the previous frame if timeOnFrame <= -currentFrame's length
 	 * @param timeStep How much time to advance animation by. Can be positive or negative (to play an animation backwards).
@@ -82,45 +78,28 @@ public class AnimationPart {
 		return (this.currentFrame == 0) && (this.timeOnFrame <= -frames[currentFrame].getLength());
 	}
 	
-	/**
-	 * Resets this animation part for its next loop, setting the current frame to the first frame.
-	 */
+	/** Resets this animation part for its next loop, setting the current frame to the first frame. */
 	public void goToBeginning(){
 		this.currentFrame = 0;
 		this.timeOnFrame = 0.0f;
 	}
 	
-	/**
-	 * Resets this animation part for its next loop, setting the current frame to the final frame.
-	 */
+	/**Resets this animation part for its next loop, setting the current frame to the final frame. */
 	public void goToEnd(){
 		this.currentFrame = frames.length - 1;
 		this.timeOnFrame = 0.0f;
 	}
 	
 	
-	/**
-	 * Draw the current frame of this animation, with optional flipping
-	 * @param renderer Renderer to use for drawing
-	 * @param flipHorizontal Whether or not to flip the frame horizontally
-	 * @param flipVertical Whether or not to flip the frame vertically
-	 */
+	/** Draw the current frame of this animation, with optional flipping */
 	public void renderCurrentFrame(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
 		frames[currentFrame].render(renderer, xScale, yScale, !flipHorizontal, !flipVertical);
 	}
 	
-	/**
-	 * @return How many frames this animation part has
-	 */
-	public int numFrames(){
-		return frames.length;
-	}
+	/** @return How many frames this animation part has */
+	public int numFrames(){ return frames.length; }
 	
-	/**
-	 * @return Current frame this part is on
-	 */
-	public int currentFrame(){
-		return currentFrame;
-	}
+	/** @return Current frame this part is on */
+	public int currentFrame(){ return currentFrame; }
 
 }

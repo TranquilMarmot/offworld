@@ -6,7 +6,7 @@ import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.util.MathHelper;
 
 /**
- * Used for rendering an image that takes up the entire screen
+ * Used for rendering an image that takes up the entire screen.
  * 
  * @author TranquilMarmot
  */

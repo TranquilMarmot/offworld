@@ -32,23 +32,17 @@ public class GLSLShader {
 	/** String that will contain any errors */
 	private String logString;
 	
-	/**
-	 * Create a new shader
-	 * @param type Type of shader
-	 * @see ShaderTypes
-	 */
+	/** @see ShaderTypes */
 	public GLSLShader(ShaderTypes type){
 		handle = Gdx.gl20.glCreateShader(type.getGLInt());
 		
-		if(handle == 0){
+		if(handle == 0)
 			Gdx.app.error(LOGTAG, "Error creating shader handle!");
-		}
 	}
 	
 	/**
 	 * Compiles a shader from an InputStream
 	 * @param stream Stream to compile from (should be a plaintext file)
-	 * @return Whether or not the shader compiled successfully
 	 */
 	public boolean compileShaderFromStream(InputStream stream){
 		try{
@@ -67,11 +61,7 @@ public class GLSLShader {
 		}
 	}
 	
-	/**
-	 * Compile a shader from a String
-	 * @param source String containing source code for shader
-	 * @return Whether or not the shader compiled correctly
-	 */
+	/** Compile a shader from a String */
 	public boolean compileShaderFromString(String source){
 		Gdx.gl20.glShaderSource(handle, source);
 		Gdx.gl20.glCompileShader(handle);
@@ -82,13 +72,9 @@ public class GLSLShader {
 		return /*result == Gdx.Gdx.gl20.GL_TRUE || result == 16 ||*/ logString.equals("") || logString.equals("Success.\n") || logString.contains("0 errors");
 	}
 	
-	/**
-	 * @return String containing any errors
-	 */
+	/** @return String containing any errors */
 	public String log() { return logString; }
 	
-	/**
-	 * @return Handle for shader
-	 */
+	/** @return Handle for shader */
 	public int getHandle() { return handle; }
 }

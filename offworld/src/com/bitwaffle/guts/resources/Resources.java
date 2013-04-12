@@ -14,30 +14,15 @@ import com.bitwaffle.guts.resources.entityinfo.EntityInfoManager;
  * @author TranquilMarmot
  */
 public class Resources {	
-	/** Texture manager */
 	public TextureManager textures;
-	
-	/** Sound manager */
 	public SoundManager sounds;
-	
-	/** Polygon manager */
 	public PolygonManager polygons;
-	
-	/** Entity info manager */
 	public EntityInfoManager entityInfo;
 	
 	/** Whether or not resources have been initialized */
 	public boolean init = false;
 	
-	/**
-	 * Create a new resource manager that must have its init() method called
-	 * @param assetMan Asset manager to get assets from
-	 */
-	public Resources(){}
-	
-	/**
-	 * This must be called AFTER OpenGL has been initialized
-	 */
+	/** This must be called AFTER OpenGL has been initialized */
 	public void init(){
 		textures = new TextureManager();
 		sounds = new SoundManager();
