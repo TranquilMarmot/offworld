@@ -70,8 +70,8 @@ public class PlayerBodyAnimation extends Animation {
 	/**
 	 * @param animation Source animation
 	 */
-	public PlayerBodyAnimation(Animation animation, Player player) {
-		super(animation);
+	public PlayerBodyAnimation(Player player) {
+		super(Game.resources.textures.getAnimation("player-body"));
 		this.player = player;
 	}
 	

@@ -25,6 +25,7 @@ import com.bitwaffle.offworld.weapons.pistol.Pistol;
  * @author TranquilMarmot
  */
 public class Player extends BoxEntity implements FirearmHolder, Health{
+	/** Size of player's hitbox */
 	private static final float WIDTH = 0.52062f, HEIGHT = 1.8034f;
 	
 	/** The player's current firearm */
@@ -123,7 +124,7 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 		firearm = new Pistol(this);
 		target = new Vector2();
 		
-		bodyAnimation = new PlayerBodyAnimation(Game.resources.textures.getAnimation("player-body"), this);
+		bodyAnimation = new PlayerBodyAnimation(this);
 		
 		jetpack = new Jetpack(this);
 	}

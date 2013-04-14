@@ -41,6 +41,7 @@ public class ResourceLoader {
 	 * @param resourceFile File to load resources from
 	 */
 	public static void loadResourceFile(String resourceFile){
+		System.out.println("loading " + resourceFile);
     	try {
 			InputStream stream = Game.resources.openAsset(resourceFile);
 

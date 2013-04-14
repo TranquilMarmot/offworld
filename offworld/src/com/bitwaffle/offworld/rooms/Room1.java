@@ -12,6 +12,7 @@ import com.bitwaffle.guts.graphics.shapes.polygon.PolygonRenderer;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.physics.Room;
 import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
+import com.bitwaffle.offworld.entities.enemies.bat.Bat;
 
 public class Room1 extends Room {
 	/** Bounds of room */
@@ -56,6 +57,9 @@ public class Room1 extends Room {
     		Game.physics.addEntity(ent, true);
     		*/
 		}
+		
+		Bat bat = new Bat(4, new Vector2(100, 6));
+		this.addEntity(bat);
 		
 		// create walls
 		//makeWalls();
