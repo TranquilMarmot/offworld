@@ -68,7 +68,7 @@ public class PlayerBodyAnimation extends Animation {
 	private Player player;
 	
 	/**
-	 * @param animation Source animation
+	 * @param sleepAnimation Source animation
 	 */
 	public PlayerBodyAnimation(Player player) {
 		super(Game.resources.textures.getAnimation("player-body"));

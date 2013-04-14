@@ -13,13 +13,16 @@ import com.bitwaffle.offworld.interfaces.Health;
  * @author TranquilMarmot
  */
 public class Bat extends DynamicEntity implements Health {
-	protected BatSleepAnimation animation;
+	protected BatSleepAnimation sleepAnimation;
 	
 	private float health;
+	
+	private boolean sleeping;
 
 	public Bat(int layer, Vector2 location){
 		super(new BatRenderer(), layer, getBodyDef(location), getFixtureDef());
-		animation = new BatSleepAnimation(this);
+		sleepAnimation = new BatSleepAnimation(this);
+		sleeping = true;
 	}
 	
 	private static BodyDef getBodyDef(Vector2 location){
@@ -27,6 +30,7 @@ public class Bat extends DynamicEntity implements Health {
 		def.position.set(location);
 		
 		def.type = BodyDef.BodyType.DynamicBody;
+		def.fixedRotation = true;
 		
 		return def;
 	}
@@ -35,7 +39,7 @@ public class Bat extends DynamicEntity implements Health {
 		FixtureDef def = new FixtureDef();
 		
 		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(0.78f, 1.5f);
+		shape.setAsBox(0.78f, 1.35f);
 		def.shape = shape;
 		
 		def.density = 1.0f;
@@ -46,9 +50,13 @@ public class Bat extends DynamicEntity implements Health {
 	@Override
 	public void update(float timeStep){
 		super.update(timeStep);
-		animation.update(timeStep);
+		sleepAnimation.update(timeStep);
+		
+		if(sleeping){
+			Vector2 linVec = this.body.getLinearVelocity();
+			this.body.setLinearVelocity(0.0f, 1.0f);
+		}
 	}
-	
 	
 	
 	@Override

@@ -16,7 +16,7 @@ public class BatRenderer implements EntityRenderer {
 		Gdx.gl20.glEnable(GL20.GL_BLEND);
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		
-		bat.animation.renderCurrentFrame(renderer);
+		bat.sleepAnimation.renderCurrentFrame(renderer);
 		
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 	}

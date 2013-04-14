@@ -58,7 +58,7 @@ public class Room1 extends Room {
     		*/
 		}
 		
-		Bat bat = new Bat(4, new Vector2(100, 6));
+		Bat bat = new Bat(4, new Vector2(70.0f, 19.0f));
 		this.addEntity(bat);
 		
 		// create walls
