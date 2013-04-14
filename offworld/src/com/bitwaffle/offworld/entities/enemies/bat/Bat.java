@@ -7,6 +7,11 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.offworld.interfaces.Health;
 
+/**
+ * Ey batty bwoy what a gwan seen? Irie star.
+ * 
+ * @author TranquilMarmot
+ */
 public class Bat extends DynamicEntity implements Health {
 	protected BatSleepAnimation animation;
 	
@@ -30,7 +35,7 @@ public class Bat extends DynamicEntity implements Health {
 		FixtureDef def = new FixtureDef();
 		
 		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(2.0f, 3.0f);
+		shape.setAsBox(0.78f, 1.5f);
 		def.shape = shape;
 		
 		def.density = 1.0f;
