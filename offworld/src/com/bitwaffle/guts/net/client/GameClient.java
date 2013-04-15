@@ -119,7 +119,8 @@ public class GameClient extends Listener {
 		else if(object instanceof EntityRemoveRequest){
 			EntityRemoveRequest req = (EntityRemoveRequest)object;
 			Entity ent = Game.physics.getEntity(req.layer, req.hash);
-			Game.physics.removeEntity(ent, req.hash, true); // FIXME dont know whether or not to remove from room here
+			if(ent != null)
+				Game.physics.removeEntity(ent, req.hash, true); // FIXME dont know whether or not to remove from room here
 		}
 		
 		// new player (can set to be controlled by this client)
