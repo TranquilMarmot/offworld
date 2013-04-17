@@ -18,7 +18,7 @@ public class Entities {
 	
 	/** Custom class so that HashMaps can be put in an array */
 	@SuppressWarnings("serial")
-	private class EntityHashMap extends HashMap<Integer, Entity>{}
+	public class EntityHashMap extends HashMap<Integer, Entity>{}
 	
 	/** List of lists to keep track of everything */
 	private EntityHashMap[] layers;
@@ -129,11 +129,8 @@ public class Entities {
 				ent.update(timeStep);
 	}
 	
-	/** Renders every entity in this Entities */
-	public void renderAll(Render2D renderer){
-		for(EntityHashMap l : layers)
-			renderer.renderEntities(l.values().iterator());
-	}
+	/** @return The array containing each layer of entities */
+	public EntityHashMap[] getLayers(){ return layers; }
 	
 	/** Clear every entity from this list */
 	public void clear(){

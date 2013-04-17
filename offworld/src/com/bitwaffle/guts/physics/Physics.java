@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entities;
+import com.bitwaffle.guts.entities.Entities.EntityHashMap;
 import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.Render2D;
@@ -225,12 +226,9 @@ public class Physics {
 		updateRequests.add(request);
 	}
 	
-	/**
-	 * Renders everything in the world
-	 * @param renderer Renderer to use to render
-	 */
-	public void renderAll(Render2D renderer){
-		entities.renderAll(renderer);
+	/** @return Array containing each layer of entities */
+	public EntityHashMap[] getLayers(){
+		return entities.getLayers();
 	}
 	
 	/** @return Current number of dynamic entities */
