@@ -88,9 +88,7 @@ public class Polygon {
 	 * getNumIndices, getTextureName to get rendering data.
 	 * @return How many parts there are to rendering this polygon
 	 */
-	public int getNumRenderParts(){
-		return vertBuffers.size();
-	}
+	public int getNumRenderParts(){ return vertBuffers.size(); }
 	
 	/** Get a vertex buffer for a render part */
 	public Buffer getVertexBuffer(int index){ return vertBuffers.get(index); }

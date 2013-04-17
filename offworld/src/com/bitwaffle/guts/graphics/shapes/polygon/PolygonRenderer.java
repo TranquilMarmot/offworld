@@ -21,7 +21,7 @@ public class PolygonRenderer implements EntityRenderer {
 	/** Color to use to render polygon, 4 floats, rgba */
 	private float[] color;
 	
-	/** Handles for where to send info when drawing - must be [r,g,b,a] */
+	/** Handles for where to send info when drawing */
 	private Integer positionHandle, texCoordHandle;
 	
 	/** Scale to render polygon at */

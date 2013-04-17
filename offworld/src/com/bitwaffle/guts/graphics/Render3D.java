@@ -10,6 +10,7 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.camera.Camera3D;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.glsl.GLSLShader;
+import com.bitwaffle.guts.graphics.model.Material;
 
 public class Render3D {
 private static final String LOGTAG = "Render3D";
@@ -79,10 +80,10 @@ private static final String LOGTAG = "Render3D";
 	 * @param mat Material to use
 	 */
 	public void setCurrentMaterial(Material mat){
-		program.setUniform("Material.Kd" , mat.getKd());
-		program.setUniform("Material.Ka", mat.getKa());
-		program.setUniform("Material.Ks", mat.getKs());
-		program.setUniform("Material.Shininess", mat.getShininess());
+		program.setUniform("Material.Kd", mat.kd()[0], mat.kd()[1], mat.kd()[2], mat.kd()[3]);
+		program.setUniform("Material.Ka", mat.ka()[0], mat.ka()[1], mat.ka()[2], mat.ka()[3]);
+		program.setUniform("Material.Ks", mat.ks()[0], mat.ks()[1], mat.ks()[2], mat.ks()[3]);
+		program.setUniform("Material.Shininess", mat.shininess());
 	}
 
 	/**
@@ -93,5 +94,11 @@ private static final String LOGTAG = "Render3D";
 		program.setUniform("Material.Ka", DEFAULT_KA[0], DEFAULT_KA[1], DEFAULT_KA[2], DEFAULT_KA[3]);
 		program.setUniform("Material.Ks", DEFAULT_KS[0], DEFAULT_KS[1], DEFAULT_KS[2], DEFAULT_KS[3]);
 		program.setUniform("Material.Shininess", DEFAULT_SHINY);
+	}
+	
+	public void setUp3DRender(){
+		program.use();
+		
+		useDefaultMaterial();
 	}
 }
