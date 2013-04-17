@@ -6,6 +6,7 @@ import java.util.Random;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.graphics.Render3D;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.input.Input;
 import com.bitwaffle.guts.net.Net;
@@ -28,8 +29,11 @@ public abstract class Game implements ApplicationListener {
 	/** 2D Renderer */
 	protected Render2D render2D;
 	
+	/** 3D Renderer */
+	protected Render3D render3D;
+	
 	/** The graphical user interface */
-	public static GUI gui;//
+	public static GUI gui;
 	
 	/** Physics world */
 	public static Physics physics;
@@ -107,6 +111,7 @@ public abstract class Game implements ApplicationListener {
 	
 	protected void initRenderer(){
 		render2D = new Render2D();
+		render3D = new Render3D();
 	}
 	
 	protected void initGUI(){

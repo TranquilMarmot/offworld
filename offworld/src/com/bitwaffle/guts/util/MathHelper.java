@@ -197,47 +197,85 @@ public class MathHelper {
 	 * @param far How far things can get
 	 */
 	public static void orthoM(Matrix4 m,
-	        float left, float right, float bottom, float top,
-	        float near, float far) {
-	        if (left == right) {
-	            throw new IllegalArgumentException("left == right");
-	        }
-	        if (bottom == top) {
-	            throw new IllegalArgumentException("bottom == top");
-	        }
-	        if (near == far) {
-	            throw new IllegalArgumentException("near == far");
-	        }
+			float left, float right, float bottom, float top,
+			float near, float far) {
+		
+		if (left == right)
+			throw new IllegalArgumentException("left == right");
+		if (bottom == top)
+			throw new IllegalArgumentException("bottom == top");
+		if (near == far)
+			throw new IllegalArgumentException("near == far");
+	        
+		m.idt();
 
-	        final float 
-    		r_width  = 1.0f / (right - left),
-    		r_height = 1.0f / (top - bottom),
-    		r_depth  = 1.0f / (far - near),
-    		x =  2.0f * (r_width),
-    		y =  2.0f * (r_height),
-    		z = -2.0f * (r_depth),
-    		tx = -(right + left) * r_width,
-    		ty = -(top + bottom) * r_height,
-    		tz = -(far + near) * r_depth;
+		final float 
+			r_width  = 1.0f / (right - left),
+			r_height = 1.0f / (top - bottom),
+			r_depth  = 1.0f / (far - near),
+			x =  2.0f * (r_width),
+			y =  2.0f * (r_height),
+			z = -2.0f * (r_depth),
+			tx = -(right + left) * r_width,
+			ty = -(top + bottom) * r_height,
+			tz = -(far + near) * r_depth;
 	        
-	        float[] arr = new float[16];
-	        arr[Matrix4.M00] = x;
-	        arr[Matrix4.M11] = y;
-	        arr[Matrix4.M22] = z;
-	        arr[Matrix4.M03] = tx;
-	        arr[Matrix4.M13] = ty;
-	        arr[Matrix4.M23] = tz;
-	        arr[Matrix4.M33] = 1.0f;
-	        arr[Matrix4.M10] = 0.0f;
-	        arr[Matrix4.M20] = 0.0f;
-	        arr[Matrix4.M30] = 0.0f;
-	        arr[Matrix4.M01] = 0.0f;
-	        arr[Matrix4.M21] = 0.0f;
-	        arr[Matrix4.M31] = 0.0f;
-	        arr[Matrix4.M02] = 0.0f;
-	        arr[Matrix4.M12] = 0.0f;
-	        arr[Matrix4.M32] = 0.0f;
+		float[] arr = new float[16];
+        arr[Matrix4.M00] = x;
+        arr[Matrix4.M11] = y;
+        arr[Matrix4.M22] = z;
+        arr[Matrix4.M03] = tx;
+        arr[Matrix4.M13] = ty;
+        arr[Matrix4.M23] = tz;
+        arr[Matrix4.M33] = 1.0f;
+        arr[Matrix4.M10] = 0.0f;
+        arr[Matrix4.M20] = 0.0f;
+        arr[Matrix4.M30] = 0.0f;
+        arr[Matrix4.M01] = 0.0f;
+        arr[Matrix4.M21] = 0.0f;
+        arr[Matrix4.M31] = 0.0f;
+        arr[Matrix4.M02] = 0.0f;
+        arr[Matrix4.M12] = 0.0f;
+        arr[Matrix4.M32] = 0.0f;
 	        
-	        m.set(arr);
+	    m.set(arr);
 	 }
+
+	public static void perspective(Matrix4 mat, float fovy, float aspect, float zNear, float zFar){
+		mat.idt();
+		
+		float sine, cotangent, deltaZ;
+		float radians = fovy / 2 * PI / 180;
+
+		deltaZ = zFar - zNear;
+		sine = (float) Math.sin((double)radians);
+
+		if ((deltaZ == 0) || (sine == 0) || (aspect == 0))
+			return;
+
+		cotangent = (float) Math.cos(radians) / sine;
+		
+		float[] arr = new float[16];
+        arr[Matrix4.M00] = cotangent / aspect;
+        arr[Matrix4.M01] = 0.0f;
+        arr[Matrix4.M02] = 0.0f;
+        arr[Matrix4.M03] = 0.0f;
+
+        arr[Matrix4.M10] = 0.0f;
+        arr[Matrix4.M11] = cotangent;
+        arr[Matrix4.M12] = 0.0f;
+        arr[Matrix4.M13] = 0.0f;
+
+        arr[Matrix4.M20] = 0.0f;
+        arr[Matrix4.M21] = 0.0f;
+        arr[Matrix4.M22] = -(zFar + zNear) / deltaZ;
+        arr[Matrix4.M23] = -1.0f;
+
+        arr[Matrix4.M30] = 0.0f;
+        arr[Matrix4.M31] = 0.0f;
+        arr[Matrix4.M32] = -2.0f * zNear * zFar / deltaZ;
+        arr[Matrix4.M33] = 0.0f;
+
+		mat.set(arr);
+	}
 }
