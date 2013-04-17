@@ -114,12 +114,14 @@ public class PhysicsHelper {
 	public static void initPlayer(Physics physics, Vector2 position, int playerNumber, boolean takeControl){
 		Game.players[playerNumber] = new Player(6, position);
 		physics.addEntity(Game.players[playerNumber], false);
-		Render2D.camera.setTarget(Game.players[playerNumber]);
-		Render2D.camera.setMode(Camera.Modes.FOLLOW);
-		Render2D.camera.setLocation(Game.players[playerNumber].getLocation());
+	
 		// TODO have each player press start
 		
-		if(takeControl){
+		if(takeControl){	
+			Render2D.camera.setTarget(Game.players[playerNumber]);
+			Render2D.camera.setMode(Camera.Modes.FOLLOW);
+			Render2D.camera.setLocation(Game.players[playerNumber].getLocation());
+			
 			for(Controller con : Controllers.getControllers()){
 				if(con.getName().equals(Ouya.ID)){
 					con.addListener(new OuyaPlayerControllerListener(Game.players[playerNumber]));

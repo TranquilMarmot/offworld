@@ -14,15 +14,16 @@ import com.bitwaffle.offworld.interfaces.Health;
  */
 public class Bat extends DynamicEntity implements Health {
 	protected BatSleepAnimation sleepAnimation;
+	protected BatFlyAnimation flyAnimation;
 	
 	private float health;
 	
-	private boolean sleeping;
+	private boolean sleeping = false;
 
 	public Bat(int layer, Vector2 location){
 		super(new BatRenderer(), layer, getBodyDef(location), getFixtureDef());
 		sleepAnimation = new BatSleepAnimation(this);
-		sleeping = true;
+		flyAnimation = new BatFlyAnimation();
 	}
 	
 	private static BodyDef getBodyDef(Vector2 location){
@@ -51,13 +52,15 @@ public class Bat extends DynamicEntity implements Health {
 	public void update(float timeStep){
 		super.update(timeStep);
 		sleepAnimation.update(timeStep);
+		flyAnimation.update(timeStep);
 		
 		if(sleeping){
-			Vector2 linVec = this.body.getLinearVelocity();
+			//Vector2 linVec = this.body.getLinearVelocity();
 			this.body.setLinearVelocity(0.0f, 1.0f);
 		}
 	}
 	
+	public boolean isSleeping(){ return sleeping; }
 	
 	@Override
 	public float currentHealth() { return health; }
