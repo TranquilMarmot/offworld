@@ -98,7 +98,7 @@ public class Circle {
         	renderer.modelview.rotate(0.0f, 1.0f, 0.0f, 180.0f);
         if(flipVertical)
         	renderer.modelview.rotate(0.0f, 0.0f, 1.0f, 180.0f);
-        renderer.sendModelViewToShader();
+        renderer.sendMatrixToShader();
 
         // actually draw the circle
         Gdx.gl20.glDrawArrays(GL20.GL_TRIANGLE_FAN, 0, numIndices);

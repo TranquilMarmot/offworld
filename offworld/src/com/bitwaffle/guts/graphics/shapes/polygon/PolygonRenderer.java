@@ -64,7 +64,7 @@ public class PolygonRenderer implements EntityRenderer {
 	        // only scale if necessary
 	        if(scale != 1.0f){
 		        renderer.modelview.scale(scale, scale, 1.0f);
-		        renderer.sendModelViewToShader();
+		        renderer.sendMatrixToShader();
 	        }
 	        
 			Gdx.gl20.glEnableVertexAttribArray(positionHandle);
@@ -103,7 +103,7 @@ public class PolygonRenderer implements EntityRenderer {
 	        // only scale if necessary
 	        if(scale != 1.0f){
 		        renderer.modelview.scale(scale, scale, 1.0f);
-		        renderer.sendModelViewToShader();
+		        renderer.sendMatrixToShader();
 	        }
 			
 			// bind blank texture

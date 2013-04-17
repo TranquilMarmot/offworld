@@ -79,7 +79,7 @@ public class JetpackBar extends Bar {
 			
 			renderer.modelview.translate(0.0f, yOffset, 0.0f);
 			renderer.modelview.scale(scale /Render2D.camera.getZoom(), scale / Render2D.camera.getZoom(), 1.0f);
-			renderer.sendModelViewToShader();
+			renderer.sendMatrixToShader();
 			
 			super.render(renderer, false, false);
 			

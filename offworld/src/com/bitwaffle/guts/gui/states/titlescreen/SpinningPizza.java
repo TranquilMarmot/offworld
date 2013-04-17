@@ -40,7 +40,7 @@ public class SpinningPizza extends GUIObject {
 			boolean flipVertical) {
 		oldModelview.set(renderer.modelview);
 		renderer.modelview.rotate(0.0f, 0.0f, 1.0f, pizzaAngle);
-		renderer.sendModelViewToShader();
+		renderer.sendMatrixToShader();
 		
 		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
 		Game.resources.textures.bindTexture("mainmenupizza");
@@ -48,7 +48,7 @@ public class SpinningPizza extends GUIObject {
 		
 		
 		renderer.modelview.set(oldModelview);
-		renderer.sendModelViewToShader();
+		renderer.sendMatrixToShader();
 		Game.resources.textures.bindTexture("mainmenubanner");
 		renderer.quad.render(pizzaSize + 5.0f, pizzaSize + 5.0f);
 		

@@ -5,6 +5,9 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.offworld.entities.enemies.bat.render.BatFlyAnimation;
+import com.bitwaffle.offworld.entities.enemies.bat.render.BatRenderer;
+import com.bitwaffle.offworld.entities.enemies.bat.render.BatSleepAnimation;
 import com.bitwaffle.offworld.interfaces.Health;
 
 /**
@@ -25,7 +28,7 @@ public class Bat extends DynamicEntity implements Health {
 	public Bat(int layer, Vector2 location){
 		super(new BatRenderer(), layer, getBodyDef(location), getFixtureDef());
 		sleepAnimation = new BatSleepAnimation(this);
-		flyAnimation = new BatFlyAnimation();
+		flyAnimation = new BatFlyAnimation(this);
 	}
 	
 	private static BodyDef getBodyDef(Vector2 location){
@@ -66,6 +69,9 @@ public class Bat extends DynamicEntity implements Health {
 	}
 	
 	public boolean isSleeping(){ return sleeping; }
+	
+	public BatFlyAnimation getFlyAnimation(){ return flyAnimation; }
+	public BatSleepAnimation getSleepAnimation(){ return sleepAnimation; }
 	
 	@Override
 	public float currentHealth() { return health; }

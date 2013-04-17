@@ -1,7 +1,6 @@
-uniform mat4 ModelView;
-uniform mat4 Projection;
+precision mediump float;
 
-precision highp float;
+uniform mat4 MVP;
 
 attribute vec4 vPosition;
 attribute vec2 vTexCoord;
@@ -9,7 +8,6 @@ attribute vec2 vTexCoord;
 varying vec2 vTexCoordOut;
 
 void main() {
-	mat4 mvp =   Projection * ModelView; 
-	gl_Position = mvp * vPosition;
+	gl_Position = MVP * vPosition;
 	vTexCoordOut = vTexCoord;
 }

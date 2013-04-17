@@ -51,7 +51,7 @@ public class PlayerRenderer implements EntityRenderer {
 			// draw left arm
 			renderer.modelview.translate(facingRight ? lArmLoc.x : -lArmLoc.x, lArmLoc.y, 0.0f);
 			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
-			renderer.sendModelViewToShader();
+			renderer.sendMatrixToShader();
 			Game.resources.textures.bindTexture("player-arm");
 			// enable blending so alpha doesn't show up white
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
@@ -62,7 +62,7 @@ public class PlayerRenderer implements EntityRenderer {
 			// draw body
 			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, -armAngle);
 			renderer.modelview.translate(facingRight ? -lArmLoc.x : lArmLoc.x, -lArmLoc.y, 0.0f);
-			renderer.sendModelViewToShader();
+			renderer.sendMatrixToShader();
 			
 			player.getBodyAnimation().renderCurrentFrame(renderer, !facingRight, false);
 			
@@ -70,12 +70,12 @@ public class PlayerRenderer implements EntityRenderer {
 			renderer.modelview.translate(facingRight ? rArmLoc.x : -rArmLoc.x, rArmLoc.y, 0.0f);
 			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
 			renderer.modelview.translate(gunOffset.x, facingRight ? gunOffset.y : -gunOffset.y, 0.0f);
-			renderer.sendModelViewToShader();
+			renderer.sendMatrixToShader();
 			player.getCurrentFirearm().render(renderer);
 			
 			// draw right arm
 			renderer.modelview.translate(-gunOffset.x, facingRight ? -gunOffset.y : gunOffset.y, 0.0f);
-			renderer.sendModelViewToShader();
+			renderer.sendMatrixToShader();
 			Game.resources.textures.bindTexture("player-arm");
 			// enable blending so alpha doesn't show up white
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
@@ -92,7 +92,7 @@ public class PlayerRenderer implements EntityRenderer {
 		if(player.currentHealth() < 100.0f){
 			renderer.modelview.translate(0.0f, healthBarYOffset, 0.0f);
 			renderer.modelview.scale(healthBarScale / Render2D.camera.getZoom(), healthBarScale / Render2D.camera.getZoom(), 1.0f);
-			renderer.sendModelViewToShader();
+			renderer.sendMatrixToShader();
 			healthBar.setPercent(player.currentHealth());
 			healthBar.update(1.0f / Game.currentFPS);
 			healthBar.render(renderer, false, false);

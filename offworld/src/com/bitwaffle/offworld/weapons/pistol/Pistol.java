@@ -102,11 +102,11 @@ public class Pistol implements Firearm {
 		if(muzzleFlash){
 			Matrix4 temp = renderer.modelview.cpy();
 			renderer.modelview.translate(0.6f, facingRight ? 0.09f : -0.09f, 0.0f);
-			renderer.sendModelViewToShader();
+			renderer.sendMatrixToShader();
 			Game.resources.textures.getSubImage("muzzleflash").render(renderer, 0.25f, 0.25f, facingRight, facingRight);
 			
 			renderer.modelview.set(temp);
-			renderer.sendModelViewToShader();
+			renderer.sendMatrixToShader();
 		}
 		
 		Game.resources.textures.getSubImage("pistol").render(renderer, 0.25f, 0.25f, !facingRight, facingRight);

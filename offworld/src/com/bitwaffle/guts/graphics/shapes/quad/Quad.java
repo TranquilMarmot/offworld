@@ -117,7 +117,7 @@ public class Quad {
         	renderer.modelview.rotate(0.0f, 1.0f, 0.0f, 180.0f);
         if(flipVertical)
         	renderer.modelview.rotate(0.0f, 0.0f, 1.0f,  180.0f);
-        renderer.sendModelViewToShader();
+        renderer.sendMatrixToShader();
 
         // actually draw the quad
         Gdx.gl20.glDrawArrays(GL20.GL_TRIANGLES, 0, NUM_INDICES);

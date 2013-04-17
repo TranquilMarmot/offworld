@@ -1,7 +1,8 @@
-package com.bitwaffle.offworld.entities.enemies.bat;
+package com.bitwaffle.offworld.entities.enemies.bat.render;
 
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.animation.Animation;
+import com.bitwaffle.offworld.entities.enemies.bat.Bat;
 
 public class BatSleepAnimation extends Animation {
 	

@@ -260,7 +260,7 @@ public class GUI {
 	public void renderObject(GUIObject obj, Render2D renderer){
 		renderer.modelview.idt();
 		renderer.modelview.translate(obj.x, obj.y, 0.0f);
-		renderer.sendModelViewToShader();
+		renderer.sendMatrixToShader();
 		obj.render(renderer, false, false);
 	}
 	

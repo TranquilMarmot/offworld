@@ -140,7 +140,7 @@ public class BitmapFont {
 			renderer.modelview.idt();
 			renderer.modelview.translate(x + xOffset, y + ((BitmapFont.FONT_GLYPH_HEIGHT * 2.0f) * scale * lineNum), 0.0f);
 			renderer.modelview.scale(scale, scale, 1.0f);
-			renderer.sendModelViewToShader();
+			renderer.sendMatrixToShader();
 			
 			// draw character
 			chars[index].draw(renderer, FONT_GLYPH_WIDTH * 2.0f, FONT_GLYPH_HEIGHT * 2.0f);

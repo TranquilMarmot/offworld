@@ -574,7 +574,7 @@ public class Console extends GUIObject{
 		renderer.modelview.idt();
 		renderer.modelview.translate(boxX, boxY, 0.0f);
 		renderer.modelview.scale(scale, scale, 1.0f);
-		renderer.sendModelViewToShader();
+		renderer.sendMatrixToShader();
 		
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		renderer.quad.render(boxWidth, boxHeight);
@@ -601,7 +601,7 @@ public class Console extends GUIObject{
 		renderer.modelview.idt();
 		renderer.modelview.translate(boxX, boxY, 0.0f);
 		renderer.modelview.scale(scale, scale, 1.0f);
-		renderer.sendModelViewToShader();
+		renderer.sendMatrixToShader();
 		
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		renderer.quad.render(boxWidth, boxHeight);

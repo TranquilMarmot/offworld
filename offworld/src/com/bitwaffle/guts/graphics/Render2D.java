@@ -42,7 +42,7 @@ public class Render2D {
 	public GLSLProgram program;
 	
 	/** The modelview and projection matrices*/
-	public Matrix4 modelview, projection;
+	public Matrix4 modelview, projection, mvp;
 	
 	/** Grumpy wizards make toxic brew for the evil Queen and Jack */
 	public BitmapFont font;
@@ -64,6 +64,7 @@ public class Render2D {
 		
 		projection = new Matrix4();
 		modelview = new Matrix4();
+		mvp = new Matrix4();
 		
 		camera = new Camera();
 		
@@ -117,16 +118,12 @@ public class Render2D {
 	public void setUpProjectionWorldCoords(){
 		projection.idt();
 		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1);
-		
-		program.setUniformMatrix4f("Projection", projection);
 	}
 	
 	/** Sets up the projection matrix with an orthographic projection for drawing things in screen coordinates */
 	public void setUpProjectionScreenCoords(){
 		projection.idt();
 		MathHelper.orthoM(projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
-		
-		program.setUniformMatrix4f("Projection", projection);
 	}
 	
 	/** @param it Iterator that goes through Entity objects needing to be rendered */
@@ -154,7 +151,7 @@ public class Render2D {
 		this.translateModelViewToCamera();
 		modelview.translate(loc.x, loc.y, 0.0f);
 		modelview.rotate(0.0f, 0.0f, 1.0f, angle);
-		this.sendModelViewToShader();
+		this.sendMatrixToShader();
 	}
 	
 	/** Translates the modelview matrix to represent the camera's location */
@@ -169,7 +166,9 @@ public class Render2D {
 	}
 	
 	/** Sends the current modelview matrix to the shader */
-	public void sendModelViewToShader(){
-		program.setUniformMatrix4f("ModelView", modelview);
+	public void sendMatrixToShader(){
+		mvp.set(projection);
+		mvp.mul(modelview);
+		program.setUniformMatrix4f("MVP", mvp);
 	}
 }

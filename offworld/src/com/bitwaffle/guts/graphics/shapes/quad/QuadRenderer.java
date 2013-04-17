@@ -69,7 +69,7 @@ public class QuadRenderer implements EntityRenderer {
 		} else {
 			renderer.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
 			renderer.modelview.scale(xScale, yScale, 1.0f);
-			renderer.sendModelViewToShader();
+			renderer.sendMatrixToShader();
 			
 			// TODO maybe make blending options somewhere? per renderer?
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
@@ -91,7 +91,7 @@ public class QuadRenderer implements EntityRenderer {
 	private void renderDebug(Render2D renderer, Entity ent){
 		renderer.program.setUniform("vColor", 0.0f, 1.0f, 1.0f, 0.4f);
 		renderer.modelview.scale(xScale, yScale, 1.0f);
-		renderer.sendModelViewToShader();
+		renderer.sendMatrixToShader();
 		
 		Game.resources.textures.bindTexture("blank");
 		
