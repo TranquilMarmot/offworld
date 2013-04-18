@@ -2,12 +2,13 @@ package com.bitwaffle.guts.graphics.model;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
+import com.bitwaffle.guts.Game;
 
 
 /**
@@ -83,7 +84,7 @@ public class ModelLoader {
 		
 		try{
 			// open the .obj file
-			BufferedReader reader = new BufferedReader(new FileReader(directory + name + ".obj"));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(Game.resources.openAsset(directory + name + ".obj")));
 			
 			// current line
 			String line;
@@ -201,7 +202,7 @@ public class ModelLoader {
 		// material list
 		MaterialList list = new MaterialList();
 		try{
-			BufferedReader reader = new BufferedReader(new FileReader(file));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(Game.resources.openAsset(file)));
 			
 			// current line
 			String line;
