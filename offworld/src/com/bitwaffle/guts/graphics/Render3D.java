@@ -98,9 +98,9 @@ private static final String LOGTAG = "Render3D";
 	 * @param mat Material to use
 	 */
 	public void setCurrentMaterial(Material mat){
-		program.setUniform("Material.Kd", mat.kd()[0], mat.kd()[1], mat.kd()[2], mat.kd()[3]);
-		program.setUniform("Material.Ka", mat.ka()[0], mat.ka()[1], mat.ka()[2], mat.ka()[3]);
-		program.setUniform("Material.Ks", mat.ks()[0], mat.ks()[1], mat.ks()[2], mat.ks()[3]);
+		program.setUniform("Material.Kd", mat.kd()[0], mat.kd()[1], mat.kd()[2]);
+		program.setUniform("Material.Ka", mat.ka()[0], mat.ka()[1], mat.ka()[2]);
+		program.setUniform("Material.Ks", mat.ks()[0], mat.ks()[1], mat.ks()[2]);
 		program.setUniform("Material.Shininess", mat.shininess());
 	}
 
@@ -108,9 +108,9 @@ private static final String LOGTAG = "Render3D";
 	 * Set the current material to the default material
 	 */
 	public void useDefaultMaterial(){
-		program.setUniform("Material.Kd" , DEFAULT_KD[0], DEFAULT_KD[1], DEFAULT_KD[2], DEFAULT_KD[3]);
-		program.setUniform("Material.Ka", DEFAULT_KA[0], DEFAULT_KA[1], DEFAULT_KA[2], DEFAULT_KA[3]);
-		program.setUniform("Material.Ks", DEFAULT_KS[0], DEFAULT_KS[1], DEFAULT_KS[2], DEFAULT_KS[3]);
+		program.setUniform("Material.Kd" , DEFAULT_KD[0], DEFAULT_KD[1], DEFAULT_KD[2]);
+		program.setUniform("Material.Ka", DEFAULT_KA[0], DEFAULT_KA[1], DEFAULT_KA[2]);
+		program.setUniform("Material.Ks", DEFAULT_KS[0], DEFAULT_KS[1], DEFAULT_KS[2]);
 		program.setUniform("Material.Shininess", DEFAULT_SHINY);
 	}
 	
@@ -123,7 +123,6 @@ private static final String LOGTAG = "Render3D";
 		MathHelper.perspective(projection, fov, aspect, 1.0f, drawDistance);
 		
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
-		Gdx.gl20.glEnable(GL20.GL_DEPTH_TEST);
 		
 		modelview.idt();
 	}

@@ -230,7 +230,6 @@ public class GUI {
 	 * @param renderer
 	 */
 	public void render(Render2D renderer) {
-		renderer.setUpProjectionScreenCoords();
 		renderObjects(getObjectIterator(), renderer);
 		renderObjects(getButtonIterator(), renderer);
 		console.render(renderer, false, false);

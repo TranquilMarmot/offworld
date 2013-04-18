@@ -7,6 +7,7 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.Render3D;
+import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.input.Input;
 import com.bitwaffle.guts.net.Net;
@@ -27,10 +28,12 @@ public abstract class Game implements ApplicationListener {
 	public static Resources resources;
 	
 	/** 2D Renderer */
-	protected Render2D render2D;
+	//protected Render2D render2D;
 	
 	/** 3D Renderer */
-	protected Render3D render3D;
+	//protected Render3D render3D;
+	
+	protected Renderer renderer;
 	
 	/** The graphical user interface */
 	public static GUI gui;
@@ -110,8 +113,9 @@ public abstract class Game implements ApplicationListener {
 	}
 	
 	protected void initRenderer(){
-		render2D = new Render2D();
-		render3D = new Render3D();
+		//render2D = new Render2D();
+		//render3D = new Render3D();
+		renderer = new Renderer();
 	}
 	
 	protected void initGUI(){
@@ -124,7 +128,8 @@ public abstract class Game implements ApplicationListener {
 		// update everything
 		update();
 		// render the scene
-		render2D.renderScene();
+		//render2D.renderScene();
+		renderer.renderScene();
     }
     
     protected void update(){

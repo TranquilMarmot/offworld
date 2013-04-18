@@ -99,23 +99,6 @@ public class Render2D {
 		if (!program.link())
 			Gdx.app.error(LOGTAG, "Error linking program!\n" + program.log());
 	}
-
-	/** Renders the scene and updates the GUI and camera */
-	public void renderScene() {
-    	// clear the screen
-        Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-		
-		program.use();
-		
-		if(Game.physics.entitiesExist()){
-			setUpProjectionOrthoWorldCoords();
-			EntityLayer[] layers = Game.physics.getLayers();
-			for(EntityLayer l : layers)
-				renderEntities(l.entities2D.values().iterator());
-		}
-		
-		Game.gui.render(this);
-	}
 	
 	/** Sets up the projection matrix with an orthographic projection for drawing things in world coordinates */
 	public void setUpProjectionOrthoWorldCoords(){
