@@ -15,6 +15,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.BufferUtils;
@@ -23,6 +24,8 @@ import com.bitwaffle.guts.graphics.SubImage;
 import com.bitwaffle.guts.graphics.animation.Animation;
 import com.bitwaffle.guts.graphics.animation.AnimationPart;
 import com.bitwaffle.guts.graphics.animation.Frame;
+import com.bitwaffle.guts.graphics.model.Model;
+import com.bitwaffle.guts.graphics.model.ModelLoader;
 import com.bitwaffle.guts.graphics.shapes.polygon.Polygon;
 import com.bitwaffle.guts.graphics.shapes.polygon.PolygonLoader;
 import com.bitwaffle.guts.physics.CollisionFilters;
@@ -120,6 +123,10 @@ public class ResourceLoader {
 			JSONArray ents = resources.optJSONArray("entities");
 			if(ents != null)
 				parseEntityInfoArray(ents);
+			
+			JSONArray models = resources.optJSONArray("models");
+			if(models != null)
+				parseModelArray(models);
 			
 		} catch (JSONException e) {
 			Gdx.app.error(LOGTAG, "Got invalid resources file! Doesn't begin with \"resources\" object!");
@@ -414,6 +421,39 @@ public class ResourceLoader {
 			}
 		} catch(JSONException e){
 			Gdx.app.error(LOGTAG, "Error parsing geometry array in resource file!");
+			e.printStackTrace();
+		}
+	}
+	
+	private static void parseModelArray(JSONArray arr){
+		try{
+			for(int i = 0; i < arr.length(); i++){
+				JSONObject modelObj = arr.getJSONObject(i);
+				
+				String modelName = modelObj.getString("name");
+				String texture = modelObj.getString("texture");
+				String directory = modelObj.getString("dir");
+				
+				float xScale = (float)modelObj.optDouble("xScale");
+				if(xScale == Float.NaN)
+					xScale = 1.0f;
+				
+				float yScale = (float)modelObj.optDouble("yScale");
+				if(yScale == Float.NaN)
+					yScale = 1.0f;
+				
+				float zScale = (float)modelObj.optDouble("zScale");
+				if(zScale == Float.NaN)
+					zScale = 1.0f;
+				
+				
+				Model m = ModelLoader.loadObjFile(directory, new Vector3(xScale, yScale, zScale), texture);
+				
+				Game.resources.models.addModel(modelName, m);
+				
+			}
+		} catch(JSONException e){
+			Gdx.app.error(LOGTAG, "Error parsing entity info array in resource file!");
 			e.printStackTrace();
 		}
 	}

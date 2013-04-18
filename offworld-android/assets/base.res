@@ -27,6 +27,10 @@
 		{
 			"name": "bat",
 			"path": "entities/enemies/bat/bat.res"
+		},
+		{
+			"name": "diamond",
+			"path": "entities/diamond/diamond.res"
 		}
 	],
 	

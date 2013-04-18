@@ -134,7 +134,7 @@ public class ModelLoader {
 					//org.lwjgl.util.vector.Vector3 rotated = QuaternionHelper.rotateVectorByQuaternion(new org.lwjgl.util.vector.Vector3(x, y, z), rotation);
 
 					//builder.addNormal(new Vector3(rotated.x, rotated.y, rotated.z));
-					builder.addVertex(new float[]{x, y, z});
+					builder.addNormal(new float[]{x, y, z});
 				}
 
 				// texture coord

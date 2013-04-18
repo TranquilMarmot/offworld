@@ -34,4 +34,9 @@ public class PolygonManager {
 	public Polygon get(String polygonName) {
 		return polygons.get(polygonName);
 	}
+	
+	public void remove(String polygonName){
+		// TODO cleanup here?
+		polygons.remove(polygonName);
+	}
 }

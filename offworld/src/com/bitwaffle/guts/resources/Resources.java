@@ -18,6 +18,7 @@ public class Resources {
 	public SoundManager sounds;
 	public PolygonManager polygons;
 	public EntityInfoManager entityInfo;
+	public ModelManager models;
 	
 	/** Whether or not resources have been initialized */
 	public boolean init = false;
@@ -28,6 +29,7 @@ public class Resources {
 		sounds = new SoundManager();
 		polygons = new PolygonManager();
 		entityInfo = new EntityInfoManager();
+		models = new ModelManager();
 		
 		// load base resource file (loads vital resources)
 		ResourceLoader.loadResourceFile("base.res");
