@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Matrix3;
 import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdx.math.Vector3;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.camera.Camera3D;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
@@ -38,14 +38,16 @@ private static final String LOGTAG = "Render3D";
 	public GLSLProgram program;
 	
 	/** The modelview and projection matrices*/
-	public Matrix4 modelview, projection, mvp;
+	public Matrix4 modelview, projection;
+	
+	private Matrix3 normal;
 	
 	public Render3D(){
 		initShaders();
 		
 		projection = new Matrix4();
 		modelview = new Matrix4();
-		mvp = new Matrix4();
+		normal = new Matrix3();
 		
 		camera = new Camera3D();
 	}
@@ -100,5 +102,12 @@ private static final String LOGTAG = "Render3D";
 		program.use();
 		
 		useDefaultMaterial();
+	}
+	
+	public void sendMatrixToShader(){
+		normal.set(modelview);
+		program.setUniform("ModelViewMatrix", modelview);
+		program.setUniform("ProjectionMatrix", projection);
+		program.setUniform("NormalMatrix", normal);
 	}
 }

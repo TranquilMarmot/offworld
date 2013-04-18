@@ -170,6 +170,6 @@ public class Render2D {
 	public void sendMatrixToShader(){
 		mvp.set(projection);
 		mvp.mul(modelview);
-		program.setUniformMatrix4f("MVP", mvp);
+		program.setUniform("MVP", mvp);
 	}
 }
