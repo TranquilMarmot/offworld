@@ -27,7 +27,7 @@ public class Model {
 	private Buffer coordBuffer, texBuffer, normBuffer;
 	
 	/** Handles for where to send info when drawing */
-	private Integer positionHandle, texCoordHandle, normHandle;
+	private Integer positionHandle = -1, texCoordHandle = -1, normHandle = -1;
 	
 	/** Info on coordinates */
 	private static final int COORDS_PER_VERTEX = 3, COORDS_PER_TEXCOORD = 2;
@@ -66,12 +66,12 @@ public class Model {
 	 */
 	public void render(Render3D renderer){
 		// grab handles if we don't have them
-		if(positionHandle == null)
-			positionHandle = renderer.program.getAttribLocation("Position");
-		if(texCoordHandle == null)
-			texCoordHandle = renderer.program.getAttribLocation("TexCoord");
-		if(normHandle == null)
-			normHandle = renderer.program.getAttribLocation("Normal");
+		if(positionHandle == -1)
+			positionHandle = renderer.program.getAttribLocation("VertexPosition");
+		if(texCoordHandle == -1)
+			texCoordHandle = renderer.program.getAttribLocation("VertexTexCoord");
+		if(normHandle == -1)
+			normHandle = renderer.program.getAttribLocation("VertexNormal");
 		
 		// TODO
 		//GL30.glBindVertexArray(vaoHandle);

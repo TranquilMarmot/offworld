@@ -14,9 +14,11 @@ public class Entity3D {
 	
 	private int layer;
 	
-	public Entity3D(Entity3DRenderer renderer, int layer){
+	public Entity3D(Entity3DRenderer renderer, int layer, Vector3 location, Quaternion rotation){
 		this.renderer = renderer;
 		this.layer = layer;
+		this.location = location;
+		this.rotation = rotation;
 	}
 	
 	public void update(float timeStep) {}

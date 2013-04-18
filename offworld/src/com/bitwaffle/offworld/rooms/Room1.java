@@ -1,12 +1,16 @@
 package com.bitwaffle.offworld.rooms;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities3d.Entity3D;
+import com.bitwaffle.guts.entities.entities3d.Entity3DModelRenderer;
 import com.bitwaffle.guts.graphics.shapes.polygon.Polygon;
 import com.bitwaffle.guts.graphics.shapes.polygon.PolygonRenderer;
 import com.bitwaffle.guts.physics.Physics;
@@ -60,6 +64,11 @@ public class Room1 extends Room {
 		
 		Bat bat = new Bat(4, new Vector2(70.0f, 19.0f));
 		this.addEntity(bat);
+		
+		Vector3 diLoc = new Vector3(3.0f, 6.0f, 0.0f);
+		Quaternion diQuat = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
+		Entity3D di = new Entity3D(new Entity3DModelRenderer(Game.resources.models.getModel("diamond")), 6, diLoc, diQuat);
+		this.addEntity(di);
 		
 		// create walls
 		//makeWalls();

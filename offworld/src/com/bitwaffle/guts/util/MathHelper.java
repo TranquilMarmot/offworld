@@ -257,23 +257,23 @@ public class MathHelper {
 		
 		float[] arr = new float[16];
         arr[Matrix4.M00] = cotangent / aspect;
-        arr[Matrix4.M01] = 0.0f;
-        arr[Matrix4.M02] = 0.0f;
-        arr[Matrix4.M03] = 0.0f;
-
         arr[Matrix4.M10] = 0.0f;
-        arr[Matrix4.M11] = cotangent;
-        arr[Matrix4.M12] = 0.0f;
-        arr[Matrix4.M13] = 0.0f;
-
         arr[Matrix4.M20] = 0.0f;
-        arr[Matrix4.M21] = 0.0f;
-        arr[Matrix4.M22] = -(zFar + zNear) / deltaZ;
-        arr[Matrix4.M23] = -1.0f;
-
         arr[Matrix4.M30] = 0.0f;
+
+        arr[Matrix4.M01] = 0.0f;
+        arr[Matrix4.M11] = cotangent;
+        arr[Matrix4.M21] = 0.0f;
         arr[Matrix4.M31] = 0.0f;
-        arr[Matrix4.M32] = -2.0f * zNear * zFar / deltaZ;
+
+        arr[Matrix4.M02] = 0.0f;
+        arr[Matrix4.M12] = 0.0f;
+        arr[Matrix4.M22] = -(zFar + zNear) / deltaZ;
+        arr[Matrix4.M32] = -1.0f;
+
+        arr[Matrix4.M03] = 0.0f;
+        arr[Matrix4.M13] = 0.0f;
+        arr[Matrix4.M23] = -2.0f * zNear * zFar / deltaZ;
         arr[Matrix4.M33] = 0.0f;
 
 		mat.set(arr);
