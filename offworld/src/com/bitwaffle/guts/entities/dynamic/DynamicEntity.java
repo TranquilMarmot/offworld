@@ -9,16 +9,16 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.graphics.EntityRenderer;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer;
 import com.bitwaffle.guts.physics.Physics;
 
 /**
- * An {@link Entity} that can interact with the {@link Physics} world.
+ * An {@link Entity2D} that can interact with the {@link Physics} world.
  * 
  * @author TranquilMarmot
  */
-public class DynamicEntity extends Entity {
+public class DynamicEntity extends Entity2D {
 	private static String LOGTAG = "DynamicEntity";
 	/** Body that's in the Physics world */
 	public Body body;
@@ -36,7 +36,7 @@ public class DynamicEntity extends Entity {
 	}
 	
 	/** Create a new DynmicEntity with one fixture */
-	public DynamicEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, FixtureDef fixtureDef){
+	public DynamicEntity(Entity2DRenderer renderer, int layer, BodyDef bodyDef, FixtureDef fixtureDef){
 		super(renderer, layer);
 		
 		this.bodyDef = bodyDef;
@@ -45,7 +45,7 @@ public class DynamicEntity extends Entity {
 	}
 	
 	/** Create a new DynmicEntity with multiple fixtures */
-	public DynamicEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, ArrayList<FixtureDef> fixtureDefs){
+	public DynamicEntity(Entity2DRenderer renderer, int layer, BodyDef bodyDef, ArrayList<FixtureDef> fixtureDefs){
 		super(renderer, layer);
 		
 		this.bodyDef = bodyDef;
@@ -53,7 +53,7 @@ public class DynamicEntity extends Entity {
 	}
 	
 	/** Create a new DynamicEntity with a single shape and given density */
-	public DynamicEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, Shape shape, float density){
+	public DynamicEntity(Entity2DRenderer renderer, int layer, BodyDef bodyDef, Shape shape, float density){
 		super(renderer, layer);
 		
 		this.bodyDef = bodyDef;
@@ -62,7 +62,7 @@ public class DynamicEntity extends Entity {
 	}
 	
 	/** Create a new DynamicEntity from a body */
-	public DynamicEntity(EntityRenderer renderer, int layer, Body body){
+	public DynamicEntity(Entity2DRenderer renderer, int layer, Body body){
 		super(renderer, layer);
 		this.body = body;
 		body.setUserData(this);

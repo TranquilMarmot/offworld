@@ -8,11 +8,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.graphics.EntityRenderer;
-import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.glsl.GLSLShader;
+import com.bitwaffle.guts.graphics.render.Render2D;
 
 /**
  * This is a port of a Javascript/HTML5/WebGL sandbox that can be found
@@ -23,7 +23,7 @@ import com.bitwaffle.guts.graphics.glsl.GLSLShader;
  * 
  * @author TranquilMarmot
  */
-public class GLSLSandbox extends Entity {
+public class GLSLSandbox extends Entity2D {
 	public static final String LOGTAG = "GLSLSandbox";
 	
 	/** Vertex shader to load on init */
@@ -57,7 +57,7 @@ public class GLSLSandbox extends Entity {
 	@Override
 	public void cleanup() {}
 	
-	private class SandboxRenderer implements EntityRenderer{
+	private class SandboxRenderer implements Entity2DRenderer{
 		/** Number of coordinates per vertex */
 		private static final int COORDS_PER_VERTEX = 3;
 		
@@ -86,7 +86,7 @@ public class GLSLSandbox extends Entity {
 		}
 		
 		@Override
-		public void render(Render2D renderer, Entity ent, boolean renderDebug) {
+		public void render(Render2D renderer, Entity2D ent, boolean renderDebug) {
 			// use program and set uniforms
 			program.use();
 			program.setUniform("time", time);

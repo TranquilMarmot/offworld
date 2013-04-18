@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics.camera;
+package com.bitwaffle.guts.graphics.render.camera;
 
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;

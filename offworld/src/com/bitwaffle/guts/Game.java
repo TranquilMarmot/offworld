@@ -5,9 +5,9 @@ import java.util.Random;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.bitwaffle.guts.graphics.Render2D;
-import com.bitwaffle.guts.graphics.Render3D;
-import com.bitwaffle.guts.graphics.Renderer;
+import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.graphics.render.Render3D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.input.Input;
 import com.bitwaffle.guts.net.Net;

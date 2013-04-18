@@ -14,7 +14,7 @@ public class DynamicEntityUpdateRequest implements PhysicsUpdateRequest {
 
 	@Override
 	public void doRequest() {
-		DynamicEntity ent = (DynamicEntity)(Game.physics.getEntity(message.layer, message.hash));
+		DynamicEntity ent = (DynamicEntity)(Game.physics.get2DEntity(message.layer, message.hash));
 		if(ent != null){
 			ent.body.setTransform(new Vector2(message.x, message.y), message.angle);
 			ent.body.setLinearVelocity(message.dx, message.dy);

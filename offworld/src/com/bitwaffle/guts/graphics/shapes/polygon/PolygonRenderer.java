@@ -5,16 +5,16 @@ import java.nio.Buffer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.graphics.EntityRenderer;
-import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer;
+import com.bitwaffle.guts.graphics.render.Render2D;
 
 /**
  * Renders a {@link Polygon}
  * 
  * @author TranquilMarmot
  */
-public class PolygonRenderer implements EntityRenderer {
+public class PolygonRenderer implements Entity2DRenderer {
 	/** Polygon that this renderer is rendering */
 	private Polygon poly;
 	
@@ -46,7 +46,7 @@ public class PolygonRenderer implements EntityRenderer {
 	
 	
 	@Override
-	public void render(Render2D renderer, Entity ent, boolean renderDebug) {
+	public void render(Render2D renderer, Entity2D ent, boolean renderDebug) {
 		// grab handles if we don't have them
 		if(positionHandle == null)
 			positionHandle = renderer.program.getAttribLocation("vPosition");
@@ -92,7 +92,7 @@ public class PolygonRenderer implements EntityRenderer {
 		}
 	}
 	
-	private void renderDebug(Render2D renderer, Entity ent){
+	private void renderDebug(Render2D renderer, Entity2D ent){
 		Buffer debugVertBuffer = poly.getDebugVertBuffer(), debugTexCoordBuffer = poly.getDebugTexCoordBuffer();
 		if(debugVertBuffer != null && debugTexCoordBuffer != null){
 			Gdx.gl20.glEnable(GL20.GL_BLEND);

@@ -2,7 +2,7 @@ package com.bitwaffle.guts.entities.particles
 
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity
 import com.badlogic.gdx.math.Vector2
-import com.bitwaffle.guts.graphics.EntityRenderer
+import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer
 
 /** Settings for a particle emitter */
 trait EmitterSettings {
@@ -41,5 +41,5 @@ trait EmitterSettings {
 	def particleForce: Vector2
 	
 	/** Renderer to use for each particle */
-	def particleRenderer: EntityRenderer
+	def particleRenderer: Entity2DRenderer
 }

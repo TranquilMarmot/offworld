@@ -2,7 +2,7 @@ package com.bitwaffle.guts.graphics.shapes;
 
 import com.badlogic.gdx.math.Matrix4;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.graphics.render.Render2D;
 
 /**
  * A box that tiles a given segment, side and middle subimages to create a box.

@@ -1,8 +1,8 @@
-package com.bitwaffle.guts.entities;
+package com.bitwaffle.guts.entities.entities2d;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.guts.entities.Entities;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.EntityRenderer;
 
 /**
  * Base Entity class. Every frame, each Entity that is in an Entities list has its <code>update()</code>
@@ -13,9 +13,9 @@ import com.bitwaffle.guts.graphics.EntityRenderer;
  * @author TranquilMarmot
  * @see DynamicEntity
  */
-public class Entity {
+public class Entity2D {
 	/** EntityRenderer used to draw this entity */
-	public EntityRenderer renderer;
+	public Entity2DRenderer renderer;
 	
 	/** Current location of entity */
 	protected Vector2 location;
@@ -30,26 +30,26 @@ public class Entity {
 	private Integer hash;
 	
 	/** No-args constructor for serialization only! */
-	public Entity(){
+	public Entity2D(){
 		renderer = null;
 		location = new Vector2();
 		layer = Entities.NUM_LAYERS / 2;
 		angle = 0.0f;
 	}
 	
-	public Entity(EntityRenderer renderer, int layer){
+	public Entity2D(Entity2DRenderer renderer, int layer){
 		this.renderer = renderer;
 		this.layer = layer;
 		location = new Vector2();
 		angle = 0.0f;
 	}
 	
-	public Entity(EntityRenderer renderer, int layer, Vector2 location){
+	public Entity2D(Entity2DRenderer renderer, int layer, Vector2 location){
 		this(renderer, layer);
 		this.location = location;
 	}
 	
-	public Entity(EntityRenderer renderer, int layer, Vector2 location, float angle){
+	public Entity2D(Entity2DRenderer renderer, int layer, Vector2 location, float angle){
 		this(renderer, layer, location);
 		this.angle = angle;
 	}

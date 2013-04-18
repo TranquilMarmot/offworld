@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.entities.EntityRemoveRequest;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity2DRemoveRequest;
 import com.bitwaffle.guts.net.NetRegistrar;
 import com.bitwaffle.guts.net.messages.PlayerCreateMessage;
 import com.bitwaffle.guts.net.messages.PlayerUpdateMessage;
@@ -116,9 +116,9 @@ public class GameClient extends Listener {
 		}
 		
 		// entity removed from game
-		else if(object instanceof EntityRemoveRequest){
-			EntityRemoveRequest req = (EntityRemoveRequest)object;
-			Entity ent = Game.physics.getEntity(req.layer, req.hash);
+		else if(object instanceof Entity2DRemoveRequest){
+			Entity2DRemoveRequest req = (Entity2DRemoveRequest)object;
+			Entity2D ent = Game.physics.get2DEntity(req.layer, req.hash);
 			if(ent != null)
 				Game.physics.removeEntity(ent, req.hash, true); // FIXME dont know whether or not to remove from room here
 		}

@@ -2,7 +2,7 @@ package com.bitwaffle.guts.graphics.font;
 
 import java.nio.Buffer;
 
-import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.graphics.render.Render2D;
 
 /**
  * Each character keeps track of it's own texture

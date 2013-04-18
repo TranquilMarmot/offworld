@@ -3,7 +3,7 @@ package com.bitwaffle.guts.gui.states.pause.buttons;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.TextButton;
 import com.bitwaffle.guts.gui.states.pause.PauseState;

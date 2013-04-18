@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics;
+package com.bitwaffle.guts.graphics.render;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -19,9 +19,8 @@ public class Renderer {
 	public void renderScene(){
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		
-		EntityLayer[] arr = Game.physics.getLayers();
-		
-		for(EntityLayer layer : arr){
+		for(int i = 0; i < Game.physics.numLayers(); i++){
+			EntityLayer layer = Game.physics.getLayer(i);
 			// render 2D entities for layer
 			Gdx.gl20.glDisable(GL20.GL_DEPTH_TEST);
 			render2D.program.use();

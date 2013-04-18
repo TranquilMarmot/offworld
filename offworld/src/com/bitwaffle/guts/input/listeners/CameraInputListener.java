@@ -5,7 +5,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.input.GestureDetector.GestureListener;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.camera.Camera;
+import com.bitwaffle.guts.graphics.render.camera.Camera;
 import com.bitwaffle.guts.util.MathHelper;
 
 /**

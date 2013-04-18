@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.BufferUtils;
-import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.graphics.render.Render2D;
 
 /**
  * A circle for rendering

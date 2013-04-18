@@ -4,6 +4,7 @@ import java.nio.Buffer;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.bitwaffle.guts.graphics.render.Render2D;
 
 /**
  * A sub-image within a larger texture

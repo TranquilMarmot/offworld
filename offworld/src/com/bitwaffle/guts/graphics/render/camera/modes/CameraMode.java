@@ -1,6 +1,6 @@
-package com.bitwaffle.guts.graphics.camera.modes;
+package com.bitwaffle.guts.graphics.render.camera.modes;
 
-import com.bitwaffle.guts.graphics.camera.Camera;
+import com.bitwaffle.guts.graphics.render.camera.Camera;
 
 /**
  * The camera always has a current mode assigned to it.

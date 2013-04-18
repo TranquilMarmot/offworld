@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.EntityRenderer;
+import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer;
 import com.bitwaffle.guts.graphics.shapes.polygon.PolygonRenderer;
 import com.bitwaffle.guts.physics.callbacks.FirstHitRayCastCallback;
 import com.bitwaffle.offworld.interfaces.Health;
@@ -55,7 +55,7 @@ public class BreakableRock extends DynamicEntity implements Health {
 	 * @param bodyDef
 	 * @param fixtureDef
 	 */
-	private BreakableRock(EntityRenderer renderer, int layer, BodyDef bodyDef, FixtureDef fixtureDef){
+	private BreakableRock(Entity2DRenderer renderer, int layer, BodyDef bodyDef, FixtureDef fixtureDef){
 		super(renderer, layer, bodyDef, fixtureDef);
 	}
 	

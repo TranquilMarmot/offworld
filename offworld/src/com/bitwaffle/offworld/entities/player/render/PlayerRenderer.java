@@ -5,9 +5,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.graphics.EntityRenderer;
-import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer;
+import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.offworld.entities.player.JumpSensor;
 import com.bitwaffle.offworld.entities.player.Player;
 
@@ -16,7 +16,7 @@ import com.bitwaffle.offworld.entities.player.Player;
  * 
  * @author TranquilMarmot
  */
-public class PlayerRenderer implements EntityRenderer {
+public class PlayerRenderer implements Entity2DRenderer {
 	private static float[] color = new float[]{1.0f, 1.0f, 1.0f, 1.0f};
 	private static Matrix4 tempmat = new Matrix4();
 	
@@ -34,7 +34,7 @@ public class PlayerRenderer implements EntityRenderer {
 	}
 	
 	@Override
-	public void render(Render2D renderer, Entity ent, boolean renderDebug){
+	public void render(Render2D renderer, Entity2D ent, boolean renderDebug){
 		Player player = (Player) ent;
 
 		if(renderDebug)
@@ -102,7 +102,7 @@ public class PlayerRenderer implements EntityRenderer {
 		jetpackBar.render(renderer, player.jetpack);
 	}
 	
-	public void renderDebug(Render2D renderer, Entity ent){
+	public void renderDebug(Render2D renderer, Entity2D ent){
 		Player player = (Player) ent;
 		Game.resources.textures.bindTexture("blank");
 

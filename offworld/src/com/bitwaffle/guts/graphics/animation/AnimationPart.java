@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.graphics.animation;
 
-import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.graphics.render.Render2D;
 
 /**
  * Generally, each AnimationPart corresponds to a sprite sheet

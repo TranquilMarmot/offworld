@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
 import com.bitwaffle.guts.physics.CollisionFilters;
 
 /**
@@ -14,7 +14,7 @@ import com.bitwaffle.guts.physics.CollisionFilters;
  * 
  * @author TranquilMarmot
  */
-public class ParticleEmitter extends Entity{
+public class ParticleEmitter extends Entity2D{
 	/** Settings being used by this emitter */
 	public EmitterSettings settings;
 	

@@ -9,8 +9,8 @@ import java.util.StringTokenizer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.graphics.font.BitmapFont;
+import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.GUIObject;
 
 

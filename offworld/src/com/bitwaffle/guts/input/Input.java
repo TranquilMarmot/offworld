@@ -7,7 +7,7 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.mappings.Ouya;
 import com.badlogic.gdx.input.GestureDetector;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.input.controller.gui.OuyaGUIControllerListener;
 import com.bitwaffle.guts.input.controller.gui.XboxGUIControllerListener;
 import com.bitwaffle.guts.input.listeners.CameraInputListener;

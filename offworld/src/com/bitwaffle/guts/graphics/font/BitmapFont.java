@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.graphics.render.Render2D;
 
 /**
  * Pack my box with five dozen liquor jugs!

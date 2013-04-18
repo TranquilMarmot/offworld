@@ -2,7 +2,7 @@ package com.bitwaffle.offworld.entities.player.render;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.hud.Bar;
 import com.bitwaffle.offworld.entities.player.Jetpack;
 

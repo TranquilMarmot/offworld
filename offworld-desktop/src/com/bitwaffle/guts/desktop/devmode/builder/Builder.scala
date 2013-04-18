@@ -10,8 +10,8 @@ import com.badlogic.gdx.math.Vector2
 import com.bitwaffle.guts.Game
 import com.bitwaffle.guts.Game
 import com.bitwaffle.guts.desktop.devmode.DevModeDisplay
-import com.bitwaffle.guts.graphics.Render2D
-import com.bitwaffle.guts.graphics.camera.Camera
+import com.bitwaffle.guts.graphics.render.Render2D
+import com.bitwaffle.guts.graphics.render.camera.Camera
 import com.bitwaffle.guts.gui.GUI
 import com.bitwaffle.offworld.entities.dynamic.BreakableRock
 

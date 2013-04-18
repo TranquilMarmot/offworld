@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
-import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities3d.Entity3D;
 
 /**
  * A room represents a set of entities in a physics world. When a room is set
@@ -21,10 +22,14 @@ public abstract class Room {
 	private float roomWidth, roomHeight;
 	
 	/** List of entities in this room */
-	private ArrayList<Entity> entities;
+	private ArrayList<Entity2D> entities2D;
+	
+	private ArrayList<Entity3D> entities3D;
 	
 	/** Used to avoid ConcurrentModificationException */
-	private Stack<Entity> entitiesToRemove, entitiesToAdd;
+	private Stack<Entity2D> entitiesToRemove2D, entitiesToAdd2D;
+	
+	private Stack<Entity3D> entitiesToRemove3D, entitiesToAdd3D;
 	
 	/** Whether or not this room object is the current room */
 	private boolean isCurrentRoom;
@@ -44,9 +49,13 @@ public abstract class Room {
 		this.roomWidth = roomWidth;
 		this.roomHeight = roomHeight;
 		
-		entities = new ArrayList<Entity>();
-		entitiesToRemove = new Stack<Entity>();
-		entitiesToAdd = new Stack<Entity>();
+		entities2D = new ArrayList<Entity2D>();
+		entitiesToRemove2D = new Stack<Entity2D>();
+		entitiesToAdd2D = new Stack<Entity2D>();
+		
+		entities3D = new ArrayList<Entity3D>();
+		entitiesToRemove3D = new Stack<Entity3D>();
+		entitiesToAdd3D = new Stack<Entity3D>();
 	}
 	
 	/**
@@ -54,27 +63,43 @@ public abstract class Room {
 	 * @param timeStep Unused
 	 */
 	public void update(float timeStep){
-		while(!entitiesToRemove.isEmpty())
-			entities.remove(entitiesToRemove.pop());
-		while(!entitiesToAdd.isEmpty())
-			entities.add(entitiesToAdd.pop());
+		while(!entitiesToRemove2D.isEmpty())
+			entities2D.remove(entitiesToRemove2D.pop());
+		while(!entitiesToAdd2D.isEmpty())
+			entities2D.add(entitiesToAdd2D.pop());
+		
+		while(!entitiesToRemove3D.isEmpty())
+			entities3D.remove(entitiesToRemove3D.pop());
+		while(!entitiesToAdd3D.isEmpty())
+			entities3D.add(entitiesToAdd3D.pop());
 	}
 	
 	/** Add an entity to this room */
-	protected void addEntity(Entity ent){ entitiesToAdd.push(ent); }
+	protected void addEntity(Entity2D ent){ entitiesToAdd2D.push(ent); }
 	
 	/** Remove an entity from this room */
-	protected void removeEntity(Entity ent){ entitiesToRemove.push(ent); }
+	protected void removeEntity(Entity2D ent){ entitiesToRemove2D.push(ent); }
+	
+	/** Add an entity to this room */
+	protected void addEntity(Entity3D ent){ entitiesToAdd3D.push(ent); }
+	
+	/** Remove an entity from this room */
+	protected void removeEntity(Entity3D ent){ entitiesToRemove3D.push(ent); }
 	
 	/** Add this room to a world */
 	public void addToWorld(Physics physics){
 		// clear the toAdd/toRemove stacks
 		this.update(1.0f / 60.0f);
 		
-		Iterator<Entity> it = entities.iterator();
-		while(it.hasNext())
+		Iterator<Entity2D> it2d = entities2D.iterator();
+		while(it2d.hasNext())
 			// don't add entities to room since.. well, they're already in here
-			physics.addEntity(it.next(), false);
+			physics.addEntity(it2d.next(), false);
+		
+		Iterator<Entity3D> it3d = entities3D.iterator();
+		while(it3d.hasNext())
+			// don't add entities to room since.. well, they're already in here
+			physics.addEntity(it3d.next(), false);
 		
 		this.isCurrentRoom = true;
 		
@@ -86,9 +111,13 @@ public abstract class Room {
 		// clear the toAdd/toRemove stacks
 		this.update(1.0f / 60.0f);
 		
-		Iterator<Entity> it = entities.iterator();
-		while(it.hasNext())
-			physics.removeEntity(it.next(), false);
+		Iterator<Entity2D> it2d = entities2D.iterator();
+		while(it2d.hasNext())
+			physics.removeEntity(it2d.next(), false);
+		
+		Iterator<Entity3D> it3d = entities3D.iterator();
+		while(it3d.hasNext())
+			physics.removeEntity(it3d.next(), false);
 		
 		this.isCurrentRoom = false;
 		
@@ -124,5 +153,5 @@ public abstract class Room {
 	public float getRoomHeight(){ return roomHeight; }
 
 	/** @return Number of entities in this room*/
-	public int numEntities() { return entities.size(); }
+	public int numEntities() { return entities2D.size(); }
 }

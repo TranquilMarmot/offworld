@@ -1,6 +1,5 @@
 package com.bitwaffle.guts.physics;
 
-import java.util.Iterator;
 import java.util.Stack;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -11,9 +10,10 @@ import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entities;
-import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.EntityLayer;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities3d.Entity3D;
 import com.bitwaffle.guts.physics.callbacks.FirstHitQueryCallback;
 
 /**
@@ -127,7 +127,7 @@ public class Physics {
 			currentRoom.update(timeStep);
 	}
 	
-	public void addEntity(Entity ent, boolean addToCurrentRoom){
+	public void addEntity(Entity2D ent, boolean addToCurrentRoom){
 		this.addEntity(ent, ent.hashCode(), addToCurrentRoom);
 	}
 	
@@ -136,7 +136,7 @@ public class Physics {
 	 * @param ent Entity to add
 	 * @param addToCurrentRoom Whether or not to add the entity to the current room as well (if added, it gets removed on room change)
 	 */
-	public void addEntity(Entity ent, int hash, boolean addToCurrentRoom){
+	public void addEntity(Entity2D ent, int hash, boolean addToCurrentRoom){
 		entities.addEntity(ent, hash);
 		
 		// add to current room as well, if told to
@@ -148,7 +148,18 @@ public class Physics {
 			toInitialize.push((DynamicEntity)ent);
 	}
 	
-	public void removeEntity(Entity ent, boolean removeFromCurrentRoom){
+	public void addEntity(Entity3D ent, int hash, boolean addToCurrentRoom){
+		entities.addEntity(ent, hash);
+		
+		if(addToCurrentRoom && currentRoom != null)
+			currentRoom.addEntity(ent);
+	}
+	
+	public void addEntity(Entity3D ent, boolean addToCurrentRoom){
+		addEntity(ent, ent.hashCode(), addToCurrentRoom);
+	}
+	
+	public void removeEntity(Entity2D ent, boolean removeFromCurrentRoom){
 		this.removeEntity(ent, ent.hashCode(), removeFromCurrentRoom);
 	}
 	
@@ -157,7 +168,7 @@ public class Physics {
 	 * @param ent Entity to remove from world
 	 * @param removeFromCurrentRoom Whether or not to remove the entity from the current room as well (generally, yes)
 	 */
-	public void removeEntity(Entity ent, int hash, boolean removeFromCurrentRoom){
+	public void removeEntity(Entity2D ent, int hash, boolean removeFromCurrentRoom){
 		entities.removeEntity(ent, hash);
 		
 		// remove from current room as well
@@ -168,14 +179,32 @@ public class Physics {
 			Game.net.server.entityRemovedNotification(ent);
 	}
 	
+	public void removeEntity(Entity3D ent, int hash, boolean removeFromCurrentRoom){
+		entities.removeEntity(ent, hash);
+		
+		if(removeFromCurrentRoom && currentRoom != null)
+			currentRoom.removeEntity(ent);
+		
+		if(Game.net.server != null)
+			Game.net.server.entityRemovedNotification(ent);
+	}
+	
+	public void removeEntity(Entity3D ent, boolean removeFromCurrentRoom){
+		removeEntity(ent, ent.hashCode(), removeFromCurrentRoom);
+	}
+	
 	/**
 	 * Get an entity from a given layer with a given hash
 	 * @param layer Layer to get entity from
 	 * @param hash Hash of entity to get
 	 * @return Entity at given layer with given hash
 	 */
-	public Entity getEntity(int layer, int hash){
-		return entities.getEntity(layer, hash);
+	public Entity2D get2DEntity(int layer, int hash){
+		return entities.layers[layer].entities2D.get(hash);
+	}
+	
+	public Entity3D get3DEntity(int layer, int hash){
+		return entities.layers[layer].entities3D.get(hash);
 	}
 	
 	/**
@@ -203,10 +232,13 @@ public class Physics {
 			currentRoom = null;
 		}
 		
-		// remove every entity, so that cleanup() gets called
-		for(Iterator<Entity> it : entities.getAllIterators()){
-			while(it.hasNext())
-				this.removeEntity(it.next(), false);
+
+		
+		for(EntityLayer layer : entities.layers){
+			for(Entity2D ent : layer.entities2D.values())
+				this.removeEntity(ent, false);
+			for(Entity3D ent : layer.entities3D.values())
+				this.removeEntity(ent, false);
 		}
 		
 		// update so entities actually get removed/have cleanup() called
@@ -225,11 +257,6 @@ public class Physics {
 		updateRequests.add(request);
 	}
 	
-	/** @return Array containing each layer of entities */
-	public EntityLayer[] getLayers(){
-		return entities.getLayers();
-	}
-	
 	/** @return Current number of dynamic entities */
 	public int numEntities(){ 
 		return entities.numEntities();
@@ -240,9 +267,12 @@ public class Physics {
 		return numEntities() > 0;
 	}
 	
-	/** @return List of every iterator for every entity in the world */
-	public Iterator<Entity>[] getAllIterators(){
-		return entities.getAllIterators();
+	public EntityLayer getLayer(int layer){
+		return entities.layers[layer];
+	}
+	
+	public int numLayers(){
+		return Entities.NUM_LAYERS;
 	}
 	
 	/**

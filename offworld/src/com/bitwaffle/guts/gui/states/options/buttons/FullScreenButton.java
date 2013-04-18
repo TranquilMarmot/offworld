@@ -1,7 +1,7 @@
 package com.bitwaffle.guts.gui.states.options.buttons;
 
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.gui.button.BooleanButton;
 import com.bitwaffle.guts.gui.button.CircleButton;
 

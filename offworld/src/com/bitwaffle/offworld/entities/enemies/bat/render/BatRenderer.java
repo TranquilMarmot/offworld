@@ -2,15 +2,15 @@ package com.bitwaffle.offworld.entities.enemies.bat.render;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.graphics.EntityRenderer;
-import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer;
+import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.offworld.entities.enemies.bat.Bat;
 
-public class BatRenderer implements EntityRenderer {
+public class BatRenderer implements Entity2DRenderer {
 
 	@Override
-	public void render(Render2D renderer, Entity ent, boolean renderDebug) {
+	public void render(Render2D renderer, Entity2D ent, boolean renderDebug) {
 		Bat bat = (Bat) ent;
 		
 		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);

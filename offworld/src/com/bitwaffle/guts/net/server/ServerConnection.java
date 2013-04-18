@@ -3,7 +3,8 @@ package com.bitwaffle.guts.net.server;
 import java.util.Iterator;
 
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.entities.EntityLayer;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
 import com.bitwaffle.guts.net.messages.entity.DynamicEntityUpdateMessage;
 import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
 import com.esotericsoftware.kryonet.Connection;
@@ -32,9 +33,10 @@ public class ServerConnection {
 	public void update(){
 		ticksSinceLastUpdate++;
 		if(ticksSinceLastUpdate > updateFrequency){
-			for(Iterator<Entity> it : Game.physics.getAllIterators()){
-				while(it.hasNext()){
-					Entity ent = it.next();
+			for(int l = 0; l < Game.physics.numLayers(); l++){
+				EntityLayer layer = Game.physics.getLayer(l);
+				
+				for(Entity2D ent : layer.entities2D.values()){
 					// TODO send other entities, too- make method in entity class?!
 					if(ent instanceof BreakableRock){
 						BreakableRock rock = (BreakableRock) ent;

@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics.camera.modes;
+package com.bitwaffle.guts.graphics.render.camera.modes;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;

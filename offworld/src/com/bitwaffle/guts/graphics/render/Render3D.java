@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics;
+package com.bitwaffle.guts.graphics.render;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,12 +11,12 @@ import com.badlogic.gdx.math.Matrix3;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Quaternion;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.graphics.camera.Camera3D;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities3d.Entity3D;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.glsl.GLSLShader;
 import com.bitwaffle.guts.graphics.model.Material;
-import com.bitwaffle.guts.threed.Entity3D;
+import com.bitwaffle.guts.graphics.render.camera.Camera3D;
 import com.bitwaffle.guts.util.MathHelper;
 
 public class Render3D {

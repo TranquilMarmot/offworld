@@ -3,17 +3,17 @@ package com.bitwaffle.guts.graphics.shapes.circle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.CircleEntity;
-import com.bitwaffle.guts.graphics.EntityRenderer;
-import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer;
+import com.bitwaffle.guts.graphics.render.Render2D;
 
 /**
  * Renders an {@link CircleEntity}
  * 
  * @author TranquilMarmot
  */
-public class CircleRenderer implements EntityRenderer {
+public class CircleRenderer implements Entity2DRenderer {
 	/** Color to render at, rgba */
 	private float[] color;
 	
@@ -25,7 +25,7 @@ public class CircleRenderer implements EntityRenderer {
 		this.color = color;
 	}
 	
-	public void render(Render2D renderer, Entity ent, boolean renderDebug) {
+	public void render(Render2D renderer, Entity2D ent, boolean renderDebug) {
 		CircleEntity circ = (CircleEntity) ent;
 		
 		if(renderDebug)
@@ -37,7 +37,7 @@ public class CircleRenderer implements EntityRenderer {
 		}
 	}
 
-	public void renderDebug(Render2D renderer, Entity ent) {
+	public void renderDebug(Render2D renderer, Entity2D ent) {
 		CircleEntity circ = (CircleEntity) ent;
 		Game.resources.textures.bindTexture("blank");
 		

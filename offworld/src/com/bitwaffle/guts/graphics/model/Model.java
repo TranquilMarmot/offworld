@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.Render3D;
+import com.bitwaffle.guts.graphics.render.Render3D;
 
 /**
  * This class defines a 3D model. A model is a set of vertices to draw, what texture to use when drawing them,

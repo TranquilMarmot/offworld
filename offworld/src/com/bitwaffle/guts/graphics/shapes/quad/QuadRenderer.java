@@ -3,10 +3,10 @@ package com.bitwaffle.guts.graphics.shapes.quad;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entity;
-import com.bitwaffle.guts.graphics.EntityRenderer;
-import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer;
 import com.bitwaffle.guts.graphics.SubImage;
+import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.resources.TextureManager;
 
 /**
@@ -14,7 +14,7 @@ import com.bitwaffle.guts.resources.TextureManager;
  * 
  * @author TranquilMarmot
  */
-public class QuadRenderer implements EntityRenderer {
+public class QuadRenderer implements Entity2DRenderer {
 	/** Name of texture to use for this quad */
 	private String textureName;
 	
@@ -61,7 +61,7 @@ public class QuadRenderer implements EntityRenderer {
 	}
 
 	@Override
-	public void render(Render2D renderer, Entity ent, boolean renderDebug) {
+	public void render(Render2D renderer, Entity2D ent, boolean renderDebug) {
 		if(renderDebug){
 			// only render is told to render in debug mode
 			if(hasDebug)
@@ -88,7 +88,7 @@ public class QuadRenderer implements EntityRenderer {
 		}
 	}
 	
-	private void renderDebug(Render2D renderer, Entity ent){
+	private void renderDebug(Render2D renderer, Entity2D ent){
 		renderer.program.setUniform("vColor", 0.0f, 1.0f, 1.0f, 0.4f);
 		renderer.modelview.scale(xScale, yScale, 1.0f);
 		renderer.sendMatrixToShader();

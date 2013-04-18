@@ -5,8 +5,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
 import com.bitwaffle.guts.graphics.shapes.polygon.Polygon;
 import com.bitwaffle.guts.graphics.shapes.polygon.PolygonRenderer;
 import com.bitwaffle.guts.physics.Physics;
@@ -75,9 +75,9 @@ public class Room1 extends Room {
 	}
 	
 	@SuppressWarnings("unused")
-	private Entity getEntity(String name, int layer, float[] color){
+	private Entity2D getEntity(String name, int layer, float[] color){
 		Polygon poly = Game.resources.polygons.get(name);
-		Entity ent = new Entity(new PolygonRenderer(poly, color), layer);
+		Entity2D ent = new Entity2D(new PolygonRenderer(poly, color), layer);
 		return ent;
 	}
 	

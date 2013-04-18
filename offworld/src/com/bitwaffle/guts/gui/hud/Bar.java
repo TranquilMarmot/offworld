@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.gui.hud;
 
-import com.bitwaffle.guts.graphics.Render2D;
+import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.graphics.shapes.TiledBox;
 import com.bitwaffle.guts.gui.GUIObject;
 

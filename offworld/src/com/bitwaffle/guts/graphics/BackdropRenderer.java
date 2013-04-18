@@ -2,7 +2,9 @@ package com.bitwaffle.guts.graphics;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer;
+import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.util.MathHelper;
 
 /**
@@ -10,7 +12,7 @@ import com.bitwaffle.guts.util.MathHelper;
  * 
  * @author TranquilMarmot
  */
-public class BackdropRenderer implements EntityRenderer{
+public class BackdropRenderer implements Entity2DRenderer{
 	/** Size of window (saved so that world size is only calculated when it changes) */
 	private float windowWidth = 0.0f, windowHeight = 0.0f;
 	
@@ -29,7 +31,7 @@ public class BackdropRenderer implements EntityRenderer{
 		this.color = color;
 	}
 	
-	public void render(Render2D renderer, Entity ent, boolean renderDebug){
+	public void render(Render2D renderer, Entity2D ent, boolean renderDebug){
 		if(windowWidth != Game.windowWidth || windowHeight != Game.windowHeight){
 			windowWidth = Game.windowWidth;
 			windowHeight = Game.windowHeight;

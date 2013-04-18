@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics;
+package com.bitwaffle.guts.graphics.render;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,12 +10,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.entities.EntityLayer;
-import com.bitwaffle.guts.graphics.camera.Camera;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
 import com.bitwaffle.guts.graphics.font.BitmapFont;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.glsl.GLSLShader;
+import com.bitwaffle.guts.graphics.render.camera.Camera;
 import com.bitwaffle.guts.graphics.shapes.circle.Circle;
 import com.bitwaffle.guts.graphics.shapes.quad.Quad;
 import com.bitwaffle.guts.util.MathHelper;
@@ -111,10 +111,10 @@ public class Render2D {
 	}
 	
 	/** @param it Iterator that goes through Entity objects needing to be rendered */
-	public void renderEntities(Iterator<? extends Entity> it){
+	public void renderEntities(Iterator<? extends Entity2D> it){
 		while(it.hasNext()){
 			try{
-				Entity ent = it.next();
+				Entity2D ent = it.next();
 				if(ent != null && ent.renderer != null){
 					prepareToRenderEntity(ent);
 					ent.renderer.render(this, ent, drawDebug);
@@ -126,7 +126,7 @@ public class Render2D {
 	}
 	
 	/** Prepares the modelview matrix to render an entity */
-	public void prepareToRenderEntity(Entity ent){
+	public void prepareToRenderEntity(Entity2D ent){
 		Vector2 loc = ent.getLocation();
 		float angle = MathHelper.toDegrees(ent.getAngle());
 		

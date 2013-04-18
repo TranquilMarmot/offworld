@@ -3,7 +3,8 @@ package com.bitwaffle.guts.net.messages;
 import java.util.Iterator;
 
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.entities.EntityLayer;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateMessage;
 import com.bitwaffle.guts.physics.PhysicsUpdateRequest;
 import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
@@ -18,9 +19,10 @@ public class EntityRoomInfoSender implements PhysicsUpdateRequest {
 
 	@Override
 	public void doRequest() {
-		for(Iterator<Entity> it : Game.physics.getAllIterators()){
-			while(it.hasNext()){
-				Entity ent = it.next();
+		for(int l = 0; l < Game.physics.numLayers(); l++){
+			EntityLayer layer = Game.physics.getLayer(l);
+			
+			for(Entity2D ent : layer.entities2D.values()){
 				if(ent instanceof BreakableRock){
 					BreakableRock rock = (BreakableRock)ent;
 					BreakableRockCreateMessage req = new BreakableRockCreateMessage();
