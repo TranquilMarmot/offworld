@@ -65,7 +65,7 @@ public class Room1 extends Room {
 		Bat bat = new Bat(4, new Vector2(70.0f, 19.0f));
 		this.addEntity(bat);
 		
-		Vector3 diLoc = new Vector3(3.0f, 6.0f, 0.0f);
+		Vector3 diLoc = new Vector3(0.0f, 0.0f, 0.0f);
 		Quaternion diQuat = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
 		Entity3D di = new Entity3D(new Entity3DModelRenderer(Game.resources.models.getModel("diamond")), 6, diLoc, diQuat);
 		this.addEntity(di);

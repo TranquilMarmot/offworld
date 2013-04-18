@@ -284,27 +284,27 @@ public class ModelBuilder {
 			tempTex[texInd + 0] = firstTex[0];
 			tempTex[texInd + 1] = firstTex[1];
 			
-			float[] secondVert = vertices.get(triVerts[0]);
+			float[] secondVert = vertices.get(triVerts[1]);
 			tempVerts[ind + 3] = secondVert[0];
 			tempVerts[ind + 4] = secondVert[1];
 			tempVerts[ind + 5] = secondVert[2];
-			float[] secondNorm = normals.get(triNorms[0]);
+			float[] secondNorm = normals.get(triNorms[1]);
 			tempNorms[ind + 3] = secondNorm[0];
 			tempNorms[ind + 4] = secondNorm[1];
 			tempNorms[ind + 5] = secondNorm[2];
-			float[] secondTex = textureCoords.get(triTex[0]);
+			float[] secondTex = textureCoords.get(triTex[1]);
 			tempTex[texInd + 2] = secondTex[0];
 			tempTex[texInd + 3] = secondTex[1];
 			
-			float[] thirdVert = vertices.get(triVerts[0]);
+			float[] thirdVert = vertices.get(triVerts[2]);
 			tempVerts[ind + 6] = thirdVert[0];
 			tempVerts[ind + 7] = thirdVert[1];
 			tempVerts[ind + 8] = thirdVert[2];
-			float[] thirdNorm = normals.get(triNorms[0]);
+			float[] thirdNorm = normals.get(triNorms[2]);
 			tempNorms[ind + 6] = thirdNorm[0];
 			tempNorms[ind + 7] = thirdNorm[1];
 			tempNorms[ind + 8] = thirdNorm[2];
-			float[] thirdTex = textureCoords.get(triTex[0]);
+			float[] thirdTex = textureCoords.get(triTex[2]);
 			tempTex[texInd + 4] = thirdTex[0];
 			tempTex[texInd + 5] = thirdTex[1];
 		}
@@ -313,14 +313,17 @@ public class ModelBuilder {
 		BufferUtils.copy(tempNorms, normBuffer, tempNorms.length, 0);
 		BufferUtils.copy(tempTex, texBuffer, tempTex.length, 0);
 		
+		for(float f : tempVerts)
+			System.out.println(f);
+		
 		// be kind, please rewind()!
 		vertBuffer.rewind();
 		normBuffer.rewind();
 		texBuffer.rewind();
 		
 		// handles for filling buffer objects
-		IntBuffer vboHandles = BufferUtils.newIntBuffer(3);
-		Gdx.gl20.glGenBuffers(3, vboHandles);
+		//IntBuffer vboHandles = BufferUtils.newIntBuffer(3);
+		//Gdx.gl20.glGenBuffers(3, vboHandles);
 		//GL15.glGenBuffers(vboHandles);
 		
 		// actually fill the buffers

@@ -2,6 +2,7 @@ package com.bitwaffle.guts.graphics.render;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
@@ -10,6 +11,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix3;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Quaternion;
+import com.badlogic.gdx.math.Vector3;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.entities2d.Entity2D;
 import com.bitwaffle.guts.entities.entities3d.Entity3D;
@@ -24,8 +26,8 @@ private static final String LOGTAG = "Render3D";
 	
 	/** Default shaders to use */
 	private static final String
-		VERTEX_SHADER = "shaders/3d.vert",
-		FRAGMENT_SHADER = "shaders/3d.frag";
+		VERTEX_SHADER = "shaders/3d-simple.vert",
+		FRAGMENT_SHADER = "shaders/3d-simple.frag";
 	
 	/** Default materials */
 	private static final float[]
@@ -36,10 +38,10 @@ private static final String LOGTAG = "Render3D";
 	private static final float DEFAULT_SHINY = 50.0f;
 	
 	/** Whether or not to call every entity's debug drawing method */
-	public static boolean drawDebug = false;
+	public boolean drawDebug = false;
 	
 	/** Camera for describing how the scene should be looked at */
-	public static Camera3D camera;
+	public Camera3D camera;
 	
 	/** The program to use for 2D rendering */
 	public GLSLProgram program;
@@ -56,6 +58,8 @@ private static final String LOGTAG = "Render3D";
 	/** Draw distance and field-of-view to use for rendering */
 	public static float drawDistance = 3000000.0f, fov =  45.0f;
 	
+	private ArrayList<Light> lights;
+	
 	public Render3D(){
 		initShaders();
 		
@@ -64,6 +68,11 @@ private static final String LOGTAG = "Render3D";
 		oldModelview = new Matrix4();
 		normal = new Matrix3();
 		tempMatrixArr = new float[16];
+		
+		lights = new ArrayList<Light>();
+		Vector3 lightLoc = new Vector3(0.0f, 0.0f, 0.0f);
+		Vector3 lightIntensity = new Vector3(0.9f, 0.9f, 0.9f);
+		lights.add(new Light(lightLoc, lightIntensity));
 		
 		camera = new Camera3D();
 	}
@@ -117,14 +126,16 @@ private static final String LOGTAG = "Render3D";
 	public void setUp3DRender(){
 		program.use();
 		
-		useDefaultMaterial();
+		//useDefaultMaterial();
+		//setUpLights();
 		
 		float aspect = (float) Game.windowWidth / (float) Game.windowHeight;
 		MathHelper.perspective(projection, fov, aspect, 1.0f, drawDistance);
 		
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 		
-		modelview.idt();
+		//System.out.println("Modelview:\n" + modelview);
+		//System.out.println("Projection:\n" + projection);
 	}
 	
 	/**
@@ -135,20 +146,22 @@ private static final String LOGTAG = "Render3D";
 		// translate to the camera's location
 		//modelview.translate(new Vector3(Entities.camera.xOffset, Entities.camera.yOffset, -Entities.camera.zoom));
 		
-		modelview.translate(camera.location());
+		modelview.translate(camera.location().x, camera.location().y, -camera.location().z);
 
 		// reverse the camera's quaternion (we want to look OUT from the camera)
 		Quaternion reverse = camera.rotation().conjugate();
 		//Matrix4f.mul(modelview, QuaternionHelper.toMatrix(reverse), modelview);
 		reverse.toMatrix(tempMatrixArr);
 		modelview = modelview.mul(new Matrix4(tempMatrixArr));
+		
+		//System.out.println(reverse);
 	}
 	
 	public void sendMatrixToShader(){
 		normal.set(modelview);
 		program.setUniform("ModelViewMatrix", modelview);
 		program.setUniform("ProjectionMatrix", projection);
-		program.setUniform("NormalMatrix", normal);
+		//program.setUniform("NormalMatrix", normal);
 	}
 	
 	public void renderEntities(Iterator<Entity3D> it){
@@ -177,11 +190,36 @@ private static final String LOGTAG = "Render3D";
 		modelview.translate(transX, transY, transZ);
 		ent.rotation().toMatrix(tempMatrixArr);
 		modelview = modelview.mul(new Matrix4(tempMatrixArr));
+		//System.out.println(modelview);
 		
 		sendMatrixToShader();
 		ent.renderer.render(this, ent);
 		
 		
 		modelview.set(oldModelview);
+	}
+	
+	/**
+	 * Sets up lights for rendering
+	 */
+	private void setUpLights(){
+		// FIXME only one light supported right now!
+		if(lights.size() > 1)
+			System.out.println("More than one light! Multiple lighting not yet implemented.");
+		Light l = lights.iterator().next();
+		float transX = camera.location().x - l.location().x;
+		float transY = camera.location().y - l.location().y;
+		float transZ = camera.location().z - l.location().z;
+		
+		// crazy quaternion and vector math to get the light into world coordinates
+		//Quaternion reverse = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
+		//Quaternion.negate(camera.rotation(), reverse);
+		//Vector3f rotated = QuaternionHelper.rotateVectorByQuaternion(new Vector3f(transX, transY, transZ), reverse);
+		
+		// set uniforms
+		program.setUniform("Light.LightPosition", transX, transY, transZ, 0.0f);
+		//program.setUniform("Light.LightPosition", new Vector4f(rotated.x, rotated.y, rotated.z, 0.0f));
+		program.setUniform("Light.LightIntensity", l.intensity().x, l.intensity().y, l.intensity().z);
+		program.setUniform("Light.LightEnabled", true);
 	}
 }

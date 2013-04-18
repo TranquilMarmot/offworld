@@ -244,16 +244,15 @@ public class MathHelper {
 	public static void perspective(Matrix4 mat, float fovy, float aspect, float zNear, float zFar){
 		mat.idt();
 		
-		float sine, cotangent, deltaZ;
 		float radians = fovy / 2 * PI / 180;
 
-		deltaZ = zFar - zNear;
-		sine = (float) Math.sin((double)radians);
+		float deltaZ = zFar - zNear;
+		float sine = (float) Math.sin((double)radians);
 
 		if ((deltaZ == 0) || (sine == 0) || (aspect == 0))
 			return;
 
-		cotangent = (float) Math.cos(radians) / sine;
+		float cotangent = (float) Math.cos(radians) / sine;
 		
 		float[] arr = new float[16];
         arr[Matrix4.M00] = cotangent / aspect;

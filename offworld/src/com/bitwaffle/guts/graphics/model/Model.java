@@ -88,16 +88,16 @@ public class Model {
 		
 		Gdx.gl20.glEnableVertexAttribArray(positionHandle);
         Gdx.gl20.glEnableVertexAttribArray(texCoordHandle);
-        Gdx.gl20.glEnableVertexAttribArray(normHandle);
+        //Gdx.gl20.glEnableVertexAttribArray(normHandle);
         
 		Gdx.gl20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GL20.GL_FLOAT, false, 0, coordBuffer);
         Gdx.gl20.glVertexAttribPointer(texCoordHandle, COORDS_PER_TEXCOORD, GL20.GL_FLOAT, false, 0, texBuffer);
-        Gdx.gl20.glVertexAttribPointer(normHandle, COORDS_PER_VERTEX, GL20.GL_FLOAT, false, 0, normBuffer);
+       // Gdx.gl20.glVertexAttribPointer(normHandle, COORDS_PER_VERTEX, GL20.GL_FLOAT, false, 0, normBuffer);
 		
 		Game.resources.textures.bindTexture(texture);
 		
 		for(ModelPart p : parts){
-			renderer.setCurrentMaterial(p.getMaterial());
+			//renderer.setCurrentMaterial(p.getMaterial());
 			p.draw();
 		}
 	}

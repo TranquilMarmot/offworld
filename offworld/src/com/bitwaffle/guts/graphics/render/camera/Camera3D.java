@@ -8,12 +8,16 @@ public class Camera3D {
 	
 	private Quaternion rotation;
 	
+	private float rot;
+	
 	public Camera3D(){
-		location = new Vector3(0.0f, 0.0f, 0.0f);
+		location = new Vector3(0.0f, 0.0f, -3.0f);
 		rotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
+		rotation.idt();
 	}
 	
 	public Vector3 location(){
+		location.z -= 0.5f;
 		return location;
 	}
 	
