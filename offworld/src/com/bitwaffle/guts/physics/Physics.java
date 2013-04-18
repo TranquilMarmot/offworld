@@ -11,10 +11,9 @@ import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.Entities;
-import com.bitwaffle.guts.entities.Entities.EntityHashMap;
 import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.entities.EntityLayer;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.Render2D;
 import com.bitwaffle.guts.physics.callbacks.FirstHitQueryCallback;
 
 /**
@@ -227,7 +226,7 @@ public class Physics {
 	}
 	
 	/** @return Array containing each layer of entities */
-	public EntityHashMap[] getLayers(){
+	public EntityLayer[] getLayers(){
 		return entities.getLayers();
 	}
 	

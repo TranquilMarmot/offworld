@@ -16,12 +16,8 @@ public class Entities {
 	/** Number of layers of entities we have */
 	public static final int NUM_LAYERS = 10;
 	
-	/** Custom class so that HashMaps can be put in an array */
-	@SuppressWarnings("serial")
-	public class EntityHashMap extends HashMap<Integer, Entity>{}
-	
 	/** List of lists to keep track of everything */
-	private EntityHashMap[] layers;
+	private EntityLayer[] layers;
 	
 	/** Used when adding entities to avoid ConcurrentModificationException */
 	private Stack<EntityAddRequest> toAdd;
@@ -30,9 +26,9 @@ public class Entities {
 	private Stack<EntityRemoveRequest> toRemove;
 	
 	public Entities(){
-		layers = new EntityHashMap[NUM_LAYERS];
+		layers = new EntityLayer[NUM_LAYERS];
 		for(int i = 0; i < layers.length; i++)
-			layers[i] = new EntityHashMap();
+			layers[i] = new EntityLayer();
 		
 		toAdd = new Stack<EntityAddRequest>();
 		toRemove = new Stack<EntityRemoveRequest>();
@@ -73,7 +69,7 @@ public class Entities {
 	
 	/** Get an entity from a given layer/hash */
 	public Entity getEntity(int layer, int hash){
-		return layers[layer].get(hash);
+		return layers[layer].entities2D.get(hash);
 	}
 	
 	/**
@@ -86,7 +82,7 @@ public class Entities {
 			handleAddRequest(toAdd.pop());
 		
 		// update all entities
-		for(EntityHashMap list : layers)
+		for(EntityLayer list : layers)
 			updateEntityArrayList(list, timeStep);
 		
 		// check for any entities to be removed
@@ -96,7 +92,7 @@ public class Entities {
 	
 	/** Add a request to remove an entity from the world */
 	private void handleRemoveRequest(EntityRemoveRequest req){
-		Entity ent = layers[req.layer].get(req.hash);
+		Entity ent = layers[req.layer].entities2D.get(req.hash);
 		if(ent != null){
 			ent.cleanup();
 			
@@ -104,7 +100,7 @@ public class Entities {
 			if(layer > NUM_LAYERS)
 				layer = NUM_LAYERS;
 			
-			layers[layer].remove(ent.hashCode());
+			layers[layer].entities2D.remove(ent.hashCode());
 			
 			ent = null;
 		}
@@ -116,33 +112,33 @@ public class Entities {
 		if(layer > NUM_LAYERS)
 			layer = NUM_LAYERS;
 		
-		layers[layer].put(req.hash, req.ent);
+		layers[layer].entities2D.put(req.hash, req.ent);
 	}
 	
 	/**
 	 * Update a list of entities
 	 * @param timeStep Time passed since last update, in seconds
 	 */
-	private void updateEntityArrayList(EntityHashMap list, float timeStep){
-		for(Entity ent : list.values())
+	private void updateEntityArrayList(EntityLayer list, float timeStep){
+		for(Entity ent : list.entities2D.values())
 			if(ent != null)
 				ent.update(timeStep);
 	}
 	
 	/** @return The array containing each layer of entities */
-	public EntityHashMap[] getLayers(){ return layers; }
+	public EntityLayer[] getLayers(){ return layers; }
 	
 	/** Clear every entity from this list */
 	public void clear(){
-		for(EntityHashMap l : layers)
-			l.clear();
+		for(EntityLayer l : layers)
+			l.entities2D.clear();
 	}
 	
 	/** @return Total number of entities */
 	public int numEntities(){
 		int count = 0;
-		for(EntityHashMap l : layers)
-			count += l.size();
+		for(EntityLayer l : layers)
+			count += l.entities2D.size();
 		return count;
 	}
 	
@@ -152,7 +148,7 @@ public class Entities {
 		Iterator<Entity>[] its = new Iterator[NUM_LAYERS];
 		
 		for(int i = 0; i < NUM_LAYERS; i++)
-			its[i] = layers[i].values().iterator();
+			its[i] = layers[i].entities2D.values().iterator();
 		
 		return its;
 	}

@@ -2,6 +2,8 @@ package com.bitwaffle.guts.graphics;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -9,10 +11,13 @@ import com.badlogic.gdx.math.Matrix3;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Quaternion;
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.entities.Entity;
 import com.bitwaffle.guts.graphics.camera.Camera3D;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.glsl.GLSLShader;
 import com.bitwaffle.guts.graphics.model.Material;
+import com.bitwaffle.guts.threed.Entity3D;
+import com.bitwaffle.guts.util.MathHelper;
 
 public class Render3D {
 private static final String LOGTAG = "Render3D";
@@ -42,14 +47,23 @@ private static final String LOGTAG = "Render3D";
 	/** The modelview and projection matrices*/
 	public Matrix4 modelview, projection;
 	
+	private Matrix4 oldModelview;
+	
 	private Matrix3 normal;
+	
+	private float[] tempMatrixArr;
+	
+	/** Draw distance and field-of-view to use for rendering */
+	public static float drawDistance = 3000000.0f, fov =  45.0f;
 	
 	public Render3D(){
 		initShaders();
 		
 		projection = new Matrix4();
 		modelview = new Matrix4();
+		oldModelview = new Matrix4();
 		normal = new Matrix3();
+		tempMatrixArr = new float[16];
 		
 		camera = new Camera3D();
 	}
@@ -106,6 +120,7 @@ private static final String LOGTAG = "Render3D";
 		useDefaultMaterial();
 		
 		float aspect = (float) Game.windowWidth / (float) Game.windowHeight;
+		MathHelper.perspective(projection, fov, aspect, 1.0f, drawDistance);
 		
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 		Gdx.gl20.glEnable(GL20.GL_DEPTH_TEST);
@@ -116,7 +131,8 @@ private static final String LOGTAG = "Render3D";
 	/**
 	 * Transforms the ModelView matrix to represent the camera's location and rotation
 	 */
-	private void transformToCamera(){
+	private void translateModelviewToCamera(){
+		modelview.idt();
 		// translate to the camera's location
 		//modelview.translate(new Vector3(Entities.camera.xOffset, Entities.camera.yOffset, -Entities.camera.zoom));
 		
@@ -125,9 +141,8 @@ private static final String LOGTAG = "Render3D";
 		// reverse the camera's quaternion (we want to look OUT from the camera)
 		Quaternion reverse = camera.rotation().conjugate();
 		//Matrix4f.mul(modelview, QuaternionHelper.toMatrix(reverse), modelview);
-		float[] tmp = new float[16];
-		reverse.toMatrix(tmp);
-		Matrix4 tempMat = new Matrix4(tmp);
+		reverse.toMatrix(tempMatrixArr);
+		modelview = modelview.mul(new Matrix4(tempMatrixArr));
 	}
 	
 	public void sendMatrixToShader(){
@@ -135,5 +150,39 @@ private static final String LOGTAG = "Render3D";
 		program.setUniform("ModelViewMatrix", modelview);
 		program.setUniform("ProjectionMatrix", projection);
 		program.setUniform("NormalMatrix", normal);
+	}
+	
+	public void renderEntities(Iterator<Entity3D> it){
+		translateModelviewToCamera();
+		
+		while(it.hasNext()){
+			try{
+				Entity3D ent = it.next();
+				if(ent != null && ent.renderer != null){
+					prepareToRenderEntity(ent);
+					ent.renderer.render(this, ent);
+				}
+			} catch(ConcurrentModificationException e){
+				break;
+			}
+		}
+	}
+	
+	public void prepareToRenderEntity(Entity3D ent){
+		float transX = camera.location().x - ent.location().x;
+		float transY = camera.location().y - ent.location().y;
+		float transZ = camera.location().z - ent.location().z;
+		
+		oldModelview.set(modelview);
+		
+		modelview.translate(transX, transY, transZ);
+		ent.rotation().toMatrix(tempMatrixArr);
+		modelview = modelview.mul(new Matrix4(tempMatrixArr));
+		
+		sendMatrixToShader();
+		ent.renderer.render(this, ent);
+		
+		
+		modelview.set(oldModelview);
 	}
 }

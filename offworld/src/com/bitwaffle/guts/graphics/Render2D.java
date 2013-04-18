@@ -10,8 +10,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entities.EntityHashMap;
 import com.bitwaffle.guts.entities.Entity;
+import com.bitwaffle.guts.entities.EntityLayer;
 import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.graphics.font.BitmapFont;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
@@ -109,9 +109,9 @@ public class Render2D {
 		
 		if(Game.physics.entitiesExist()){
 			setUpProjectionOrthoWorldCoords();
-			EntityHashMap[] layers = Game.physics.getLayers();
-			for(EntityHashMap l : layers)
-				renderEntities(l.values().iterator());
+			EntityLayer[] layers = Game.physics.getLayers();
+			for(EntityLayer l : layers)
+				renderEntities(l.entities2D.values().iterator());
 		}
 		
 		Game.gui.render(this);

@@ -16,4 +16,12 @@ public class Entity3D extends Entity {
 	public Entity3D(Entity3DRenderer renderer){
 		this.renderer = renderer;
 	}
+	
+	public Vector3 location(){
+		return location;
+	}
+	
+	public Quaternion rotation(){
+		return rotation;
+	}
 }
