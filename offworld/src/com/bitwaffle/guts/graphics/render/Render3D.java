@@ -26,8 +26,8 @@ private static final String LOGTAG = "Render3D";
 	
 	/** Default shaders to use */
 	private static final String
-		VERTEX_SHADER = "shaders/3d-simple.vert",
-		FRAGMENT_SHADER = "shaders/3d-simple.frag";
+		VERTEX_SHADER = "shaders/3d.vert",
+		FRAGMENT_SHADER = "shaders/3d.frag";
 	
 	/** Default materials */
 	private static final float[]
@@ -56,7 +56,7 @@ private static final String LOGTAG = "Render3D";
 	private float[] tempMatrixArr;
 	
 	/** Draw distance and field-of-view to use for rendering */
-	public static float drawDistance = 3000000.0f, fov =  45.0f;
+	public static float drawDistance = 1000.0f, fov =  45.0f;
 	
 	private ArrayList<Light> lights;
 	
@@ -70,7 +70,7 @@ private static final String LOGTAG = "Render3D";
 		tempMatrixArr = new float[16];
 		
 		lights = new ArrayList<Light>();
-		Vector3 lightLoc = new Vector3(0.0f, 0.0f, 0.0f);
+		Vector3 lightLoc = new Vector3(0.0f, 10.0f, -1000.0f);
 		Vector3 lightIntensity = new Vector3(0.9f, 0.9f, 0.9f);
 		lights.add(new Light(lightLoc, lightIntensity));
 		
@@ -126,16 +126,13 @@ private static final String LOGTAG = "Render3D";
 	public void setUp3DRender(){
 		program.use();
 		
-		//useDefaultMaterial();
-		//setUpLights();
+		useDefaultMaterial();
+		setUpLights();
 		
 		float aspect = (float) Game.windowWidth / (float) Game.windowHeight;
 		MathHelper.perspective(projection, fov, aspect, 1.0f, drawDistance);
 		
-		Gdx.gl20.glDisable(GL20.GL_BLEND);
-		
-		//System.out.println("Modelview:\n" + modelview);
-		//System.out.println("Projection:\n" + projection);
+		Gdx.gl20.glDisable(GL20.GL_BLEND); 
 	}
 	
 	/**
@@ -146,7 +143,7 @@ private static final String LOGTAG = "Render3D";
 		// translate to the camera's location
 		//modelview.translate(new Vector3(Entities.camera.xOffset, Entities.camera.yOffset, -Entities.camera.zoom));
 		
-		modelview.translate(camera.location().x, camera.location().y, -camera.location().z);
+		modelview = modelview.translate(camera.location().x, camera.location().y, camera.location().z);
 
 		// reverse the camera's quaternion (we want to look OUT from the camera)
 		Quaternion reverse = camera.rotation().conjugate();
@@ -161,7 +158,7 @@ private static final String LOGTAG = "Render3D";
 		normal.set(modelview);
 		program.setUniform("ModelViewMatrix", modelview);
 		program.setUniform("ProjectionMatrix", projection);
-		//program.setUniform("NormalMatrix", normal);
+		program.setUniform("NormalMatrix", normal);
 	}
 	
 	public void renderEntities(Iterator<Entity3D> it){
