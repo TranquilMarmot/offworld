@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix3;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Quaternion;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.camera.Camera3D;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
@@ -102,6 +104,30 @@ private static final String LOGTAG = "Render3D";
 		program.use();
 		
 		useDefaultMaterial();
+		
+		float aspect = (float) Game.windowWidth / (float) Game.windowHeight;
+		
+		Gdx.gl20.glDisable(GL20.GL_BLEND);
+		Gdx.gl20.glEnable(GL20.GL_DEPTH_TEST);
+		
+		modelview.idt();
+	}
+	
+	/**
+	 * Transforms the ModelView matrix to represent the camera's location and rotation
+	 */
+	private void transformToCamera(){
+		// translate to the camera's location
+		//modelview.translate(new Vector3(Entities.camera.xOffset, Entities.camera.yOffset, -Entities.camera.zoom));
+		
+		modelview.translate(camera.location());
+
+		// reverse the camera's quaternion (we want to look OUT from the camera)
+		Quaternion reverse = camera.rotation().conjugate();
+		//Matrix4f.mul(modelview, QuaternionHelper.toMatrix(reverse), modelview);
+		float[] tmp = new float[16];
+		reverse.toMatrix(tmp);
+		Matrix4 tempMat = new Matrix4(tmp);
 	}
 	
 	public void sendMatrixToShader(){

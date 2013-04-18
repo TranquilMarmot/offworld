@@ -12,4 +12,12 @@ public class Camera3D {
 		location = new Vector3(0.0f, 0.0f, 0.0f);
 		rotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
 	}
+	
+	public Vector3 location(){
+		return location;
+	}
+	
+	public Quaternion rotation(){
+		return rotation;
+	}
 }
