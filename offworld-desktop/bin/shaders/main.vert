@@ -1,5 +1,3 @@
-precision mediump float;
-
 uniform mat4 MVP;
 
 attribute vec4 vPosition;

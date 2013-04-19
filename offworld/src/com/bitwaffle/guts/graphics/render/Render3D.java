@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
+import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix3;
@@ -13,7 +14,6 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity2D;
 import com.bitwaffle.guts.entities.entities3d.Entity3D;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.glsl.GLSLShader;
@@ -77,7 +77,7 @@ private static final String LOGTAG = "Render3D";
 		camera = new Camera3D();
 	}
 	
-	private void initShaders(){
+	private void initShaders(){			
 		GLSLShader vert = new GLSLShader(GLSLShader.ShaderTypes.VERTEX);
 		GLSLShader frag = new GLSLShader(GLSLShader.ShaderTypes.FRAGMENT);
 		try {

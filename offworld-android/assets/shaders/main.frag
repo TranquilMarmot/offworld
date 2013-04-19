@@ -1,5 +1,3 @@
-precision highp float;
-
 uniform vec4 vColor;
 
 varying vec2 vTexCoordOut;

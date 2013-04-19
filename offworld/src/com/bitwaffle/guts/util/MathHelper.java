@@ -20,7 +20,7 @@ public class MathHelper {
 	public static final float PI = 3.141592653589793238462f;
 	
 	/** Temporary use float[] */
-	private static float[] outPoint = new float[4];
+	private static float[] outPoint = new float[4], normalizedInPoint = new float[4];
 	
 	/**
 	 * Temporary matrices for calculations
@@ -71,8 +71,6 @@ public class MathHelper {
 	/**
 	 * Convert radians to degrees- with floats!
 	 * (AKA Why the hell does everything in java.lang.Math use doubles?)
-	 * @param radians radians
-	 * @return degrees
 	 */
 	public static float toDegrees(float radians){
 		return radians * 180.0f / PI;
@@ -81,8 +79,6 @@ public class MathHelper {
 	/**
 	 * Convert degrees to radians- with floats!
 	 * (AKA Why the hell does everything in java.lang.Math use doubles?)
-	 * @param degrees degrees
-	 * @return radians
 	 */
 	public static float toRadians(float degrees){
 		return degrees * PI / 180.0f;
@@ -90,28 +86,26 @@ public class MathHelper {
 	
 	/**
 	 * Convert a screen-space vector to a world-space vector
+	 * @param out Vector to put result into
 	 * @param projection Projection matrix to use for conversion
-	 * @param view View matrix to use for conversion
+	 * @param view View matrix to use for conversion (basically, matrix translated to camera)
 	 * @param screenX X of screen space vector 
 	 * @param screenY Y of screen space vector
-	 * @return Screen-space coordinate translated to world-space
 	 */
 	public static void toWorldSpace(Vector2 out, Matrix4 projection, Matrix4 view, float screenX, float screenY){
-		// screen-space touch point, normalized
-		float[] normalizedInPoint = new float[4];			
-		
-		// multiply view and projection and invert (basically, GLUUnproject)
-		Matrix4 compoundMatrix = projection.cpy();
-		compoundMatrix.mul(view);
-		compoundMatrix = compoundMatrix.inv();
-
 		// compensate for Y 0 being on the bottom in OpenGL (touch point 0 is on the top)
 		float oglTouchY = (float)Game.windowHeight - screenY;
+		
 		// create our normalized vector
 		normalizedInPoint[0] = ((screenX * 2.0f) / (float)Game.windowWidth) - 1.0f;
 		normalizedInPoint[1] = ((oglTouchY * 2.0f) / (float)Game.windowHeight) - 1.0f;
 		normalizedInPoint[2] = 0.0f; // because everything is drawn at 0 (between -1 and 1)
 		normalizedInPoint[3] = 1.0f;
+		
+		// multiply view and projection and invert (basically, GLUUnproject)
+		Matrix4 compoundMatrix = projection.cpy();
+		compoundMatrix.mul(view);
+		compoundMatrix = compoundMatrix.inv();
 		
 		// multiply normalized point by our inverted view-projection matrix
 		multiplyVectorByMatrix(outPoint, normalizedInPoint, compoundMatrix);
@@ -124,9 +118,9 @@ public class MathHelper {
 	}
 	
 	/**
-	 * Simply creates a new vector and calls the toWorldSpace method with it.
-	 * It's preferred that you re-use the same vector with each call but
-	 * do what you gotta do
+	 * Creates a new vector and calls the toWorldSpace method with it.
+	 * It's preferred that you re-use the same vector with each call to minimize
+	 * memory allocations but do what you gotta do.
 	 */
 	public static Vector2 toWorldSpace(float screenX, float screenY, Camera camera){
 		Vector2 result = new Vector2();
@@ -138,7 +132,7 @@ public class MathHelper {
 	 * Multiply a 4-element vector by a 4x4 matrix
 	 * @param dest Where to put the result (must have length of 4)
 	 * @param inPoint Vector to multiply
-	 * @param matrix Matrix to multiply vector y
+	 * @param matrix Matrix to multiply vector by
 	 */
 	public static void multiplyVectorByMatrix(float[] dest, float[] inPoint, Matrix4 matrix){
 		if(dest.length != 4)
@@ -153,10 +147,10 @@ public class MathHelper {
 	/**
 	 * Convert a screen-spcae vector to a world-space vector,
 	 * with a camera offset/zoom
+	 * @param out Vector to put result into
 	 * @param screenX X of screen space vector
 	 * @param screenY Y of screen space vector
 	 * @param camera Camera to translate to
-	 * @return Screen-space coordinate translated to world-space
 	 */
 	public static void toWorldSpace(Vector2 out, float screenX, float screenY, Camera camera){
 		// create the projection matrix (mimics Render2D's "setUpProjectionWorldCoords" method)
@@ -177,7 +171,7 @@ public class MathHelper {
 	}
 	
 	/**
-	 * Convert a screen-space vector to a world-space vector
+	 * Convert a screen-space vector to a world-space vector, using no camera.
 	 * @param screenX X of screen space vector 
 	 * @param screenY Y of screen space vector
 	 * @return Screen-space coordinate translated to world-space
@@ -187,14 +181,9 @@ public class MathHelper {
 	}
 	
 	/**
-	 * Set up an orthographic view on a matrix
+	 * Set up an orthographic view on a matrix.
+	 * See http://www.opengl.org/sdk/docs/man2/xhtml/glOrtho.xml for more info.
 	 * @param m Target matrix
-	 * @param left Left size
-	 * @param right Right size
-	 * @param bottom Bottom size
-	 * @param top Top size
-	 * @param near How close things can get
-	 * @param far How far things can get
 	 */
 	public static void orthoM(Matrix4 m,
 			float left, float right, float bottom, float top,
@@ -241,10 +230,15 @@ public class MathHelper {
 	    m.set(arr);
 	 }
 
+	/**
+	 * Set up a perspective view on a matrix
+	 * See http://www.opengl.org/sdk/docs/man2/xhtml/gluPerspective.xml for more info
+	 * @param mat Target matrix
+	 */
 	public static void perspective(Matrix4 mat, float fovy, float aspect, float zNear, float zFar){
 		mat.idt();
 		
-		float radians = fovy / 2 * PI / 180;
+		float radians = (fovy / 2.0f) * (PI / 180.0f);
 
 		float deltaZ = zFar - zNear;
 		float sine = (float) Math.sin((double)radians);
@@ -252,7 +246,7 @@ public class MathHelper {
 		if ((deltaZ == 0) || (sine == 0) || (aspect == 0))
 			return;
 
-		float cotangent = (float) Math.cos(radians) / sine;
+		float cotangent = ((float)Math.cos((double)radians)) / sine;
 		
 		float[] arr = new float[16];
         arr[Matrix4.M00] = cotangent / aspect;

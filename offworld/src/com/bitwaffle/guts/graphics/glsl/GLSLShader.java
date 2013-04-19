@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.graphics.GL20;
 
 /**
@@ -15,6 +16,12 @@ import com.badlogic.gdx.graphics.GL20;
  */
 public class GLSLShader {
 	private static final String LOGTAG = "GLSLShader";
+	
+	/**
+	 * OpenGL ES requires some extra definitions in the shader.
+	 * This gets prepended to any shaders being sent to an OpenGL ES context.
+	 */
+	private static final String GLES_PREFIX = "#define mediump float\n\n";
 	
 	/** All the different types of shaders */
 	public enum ShaderTypes {
@@ -45,9 +52,14 @@ public class GLSLShader {
 	 * @param stream Stream to compile from (should be a plaintext file)
 	 */
 	public boolean compileShaderFromStream(InputStream stream){
+		String prefix = "";
+		ApplicationType type = Gdx.app.getType();
+		if(type == ApplicationType.Android || type == ApplicationType.iOS || type == ApplicationType.WebGL)
+			prefix = GLES_PREFIX;
+		
 		try{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stream), 8);
-			String source = "";
+			String source = prefix;
 			String line;
 			while ((line = reader.readLine()) != null) {
 				source += line + "\n";
