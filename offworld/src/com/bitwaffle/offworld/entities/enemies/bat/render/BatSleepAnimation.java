@@ -6,11 +6,11 @@ import com.bitwaffle.offworld.entities.enemies.bat.Bat;
 
 public class BatSleepAnimation extends Animation {
 	
-	private Bat bat;
+	//private Bat bat;
 
 	public BatSleepAnimation(Bat bat) {
 		super(Game.resources.textures.getAnimation("bat-sleep"));
-		this.bat = bat;
+		//this.bat = bat;
 	}
 
 }

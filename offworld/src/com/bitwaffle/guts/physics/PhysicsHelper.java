@@ -12,8 +12,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.render.Render2D;
-import com.bitwaffle.guts.graphics.render.camera.Camera;
+import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D;
 import com.bitwaffle.guts.input.controller.player.OuyaPlayerControllerListener;
 import com.bitwaffle.guts.input.controller.player.XboxPlayerControllerListener;
 import com.bitwaffle.guts.input.listeners.player.PlayerInputListener;
@@ -118,9 +117,9 @@ public class PhysicsHelper {
 		// TODO have each player press start
 		
 		if(takeControl){	
-			Render2D.camera.setTarget(Game.players[playerNumber]);
-			Render2D.camera.setMode(Camera.Modes.FOLLOW);
-			Render2D.camera.setLocation(Game.players[playerNumber].getLocation());
+			Game.renderer.render2D.camera.setTarget(Game.players[playerNumber]);
+			Game.renderer.render2D.camera.setMode(Camera2D.Modes.FOLLOW);
+			Game.renderer.render2D.camera.setLocation(Game.players[playerNumber].getLocation());
 			
 			for(Controller con : Controllers.getControllers()){
 				if(con.getName().equals(Ouya.ID)){
@@ -131,7 +130,7 @@ public class PhysicsHelper {
 			}
 			
 			// add player control listener
-			Game.input.multiplexer.addProcessor(new PlayerInputListener(Game.players[playerNumber], Render2D.camera));
+			Game.input.multiplexer.addProcessor(new PlayerInputListener(Game.players[playerNumber], Game.renderer.render2D.camera));
 		}
 	}
 }

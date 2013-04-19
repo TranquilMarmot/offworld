@@ -5,8 +5,6 @@ import java.util.Random;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.bitwaffle.guts.graphics.render.Render2D;
-import com.bitwaffle.guts.graphics.render.Render3D;
 import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.input.Input;
@@ -27,13 +25,7 @@ public abstract class Game implements ApplicationListener {
 	/** Resource manager */
 	public static Resources resources;
 	
-	/** 2D Renderer */
-	//protected Render2D render2D;
-	
-	/** 3D Renderer */
-	//protected Render3D render3D;
-	
-	protected Renderer renderer;
+	public static Renderer renderer;
 	
 	/** The graphical user interface */
 	public static GUI gui;
@@ -41,7 +33,7 @@ public abstract class Game implements ApplicationListener {
 	/** Physics world */
 	public static Physics physics;
 	
-	/** Local players */
+	/** List of players */
 	public static Player[] players = new Player[4];
 	
 	/** Whether or not the game is paused */
@@ -157,8 +149,10 @@ public abstract class Game implements ApplicationListener {
 				if(physics != null)
 					physics.update(FIXED_TIMESTEP);
 			
-				if(Render2D.camera != null)
-					Render2D.camera.update(FIXED_TIMESTEP);
+				if(renderer.render2D.camera != null)
+					renderer.render2D.camera.update(FIXED_TIMESTEP);
+				if(renderer.render3D.camera != null)
+					renderer.render3D.camera.update(FIXED_TIMESTEP);
 			}
 			
 			// GUI gets updated even if we're not paused

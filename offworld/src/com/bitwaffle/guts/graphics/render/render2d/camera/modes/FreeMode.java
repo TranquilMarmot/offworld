@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics.render.camera.modes;
+package com.bitwaffle.guts.graphics.render.render2d.camera.modes;
 
 /**
  * Camera mode that mostly gets controlled by outside forces

@@ -1,8 +1,7 @@
 package com.bitwaffle.guts.input.listeners.player;
 
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.Render2D;
-import com.bitwaffle.guts.graphics.render.camera.Camera;
+import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.player.Player;
@@ -23,10 +22,10 @@ public class PlayerPointer {
 	}
 	
 	public void down(int pointerID, float x, float y){
-		if(Render2D.camera != null && Render2D.camera.currentMode() == Camera.Modes.FOLLOW && 
+		if(Game.renderer.render2D.camera != null && Game.renderer.render2D.camera.currentMode() == Camera2D.Modes.FOLLOW && 
 			player != null && !player.isShooting()
 			&& !Game.gui.hasSelectedButton() && (Game.gui.buttonAt(x, y) == null))
-				player.beginShooting(MathHelper.toWorldSpace(x, y, Render2D.camera));
+				player.beginShooting(MathHelper.toWorldSpace(x, y, Game.renderer.render2D.camera));
 	}
 
 	public void up(float x, float y){
@@ -38,8 +37,8 @@ public class PlayerPointer {
 	public void move(float x, float y){
 		Button buttonAt = Game.gui.buttonAt(x, y);
 		if(player.isShooting() && (buttonAt == null || !buttonAt.isDown()))
-			player.setTarget(MathHelper.toWorldSpace(x, y, Render2D.camera));
+			player.setTarget(MathHelper.toWorldSpace(x, y, Game.renderer.render2D.camera));
 		else if(buttonAt == null)
-			player.beginShooting(MathHelper.toWorldSpace(x, y, Render2D.camera));
+			player.beginShooting(MathHelper.toWorldSpace(x, y, Game.renderer.render2D.camera));
 	}
 }

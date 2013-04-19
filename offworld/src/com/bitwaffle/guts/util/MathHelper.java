@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.camera.Camera;
+import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D;
 
 /**
  * Any math functions not found in Android's FloatMath or 
@@ -122,7 +122,7 @@ public class MathHelper {
 	 * It's preferred that you re-use the same vector with each call to minimize
 	 * memory allocations but do what you gotta do.
 	 */
-	public static Vector2 toWorldSpace(float screenX, float screenY, Camera camera){
+	public static Vector2 toWorldSpace(float screenX, float screenY, Camera2D camera){
 		Vector2 result = new Vector2();
 		toWorldSpace(result, screenX, screenY, camera);
 		return result;
@@ -152,7 +152,7 @@ public class MathHelper {
 	 * @param screenY Y of screen space vector
 	 * @param camera Camera to translate to
 	 */
-	public static void toWorldSpace(Vector2 out, float screenX, float screenY, Camera camera){
+	public static void toWorldSpace(Vector2 out, float screenX, float screenY, Camera2D camera){
 		// create the projection matrix (mimics Render2D's "setUpProjectionWorldCoords" method)
 		projection.idt();
 		orthoM(projection, 0, Game.aspect, 0, 1, -1, 1);

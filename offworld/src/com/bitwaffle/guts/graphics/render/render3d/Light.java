@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics.render;
+package com.bitwaffle.guts.graphics.render.render3d;
 
 import com.badlogic.gdx.math.Vector3;
 

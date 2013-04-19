@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics.model;
+package com.bitwaffle.guts.graphics.shapes.model;
 
 
 /**

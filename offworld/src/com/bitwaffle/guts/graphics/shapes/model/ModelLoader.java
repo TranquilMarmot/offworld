@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics.model;
+package com.bitwaffle.guts.graphics.shapes.model;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

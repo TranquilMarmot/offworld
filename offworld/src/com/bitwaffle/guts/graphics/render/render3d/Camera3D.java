@@ -1,10 +1,9 @@
-package com.bitwaffle.guts.graphics.render.camera;
+package com.bitwaffle.guts.graphics.render.render3d;
 
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.Render2D;
 
 public class Camera3D {
 	private Vector3 location;
@@ -20,10 +19,10 @@ public class Camera3D {
 		rotation.idt();
 	}
 	
-	public void update(){
+	public void update(float timeStep){
 		//this.location.x += 0.0005;
 		if(Game.players[0] != null){
-			Vector2 camLoc = Render2D.camera.getLocation();
+			Vector2 camLoc = Game.renderer.render2D.camera.getLocation();
 			this.location.x = camLoc.x;
 			this.location.y = camLoc.y;
 			System.out.println("cam3d loc: " + this.location);

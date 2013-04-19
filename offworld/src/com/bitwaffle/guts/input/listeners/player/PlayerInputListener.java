@@ -5,8 +5,7 @@ import java.util.LinkedList;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.Render2D;
-import com.bitwaffle.guts.graphics.render.camera.Camera;
+import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.player.Player;
 
@@ -28,7 +27,7 @@ public class PlayerInputListener implements InputProcessor {
 	private Player player;
 	
 	/** Camera following player */
-	private Camera camera;
+	private Camera2D camera;
 	
 	/**
 	 * Create a new listener to control the player with
@@ -36,7 +35,7 @@ public class PlayerInputListener implements InputProcessor {
 	 * @param player Player this listener is controlling
 	 * @param camera Camera following player
 	 */
-	public PlayerInputListener(Player player, Camera camera){
+	public PlayerInputListener(Player player, Camera2D camera){
 		this.player = player;
 		this.camera = camera;
 		pointers = new LinkedList<PlayerPointer>();
@@ -108,7 +107,7 @@ public class PlayerInputListener implements InputProcessor {
 		while(pointers.size() < pointerID + 1)
 			pointers.add(new PlayerPointer(player));
 		
-		if(Render2D.camera.currentMode() == Camera.Modes.FOLLOW)
+		if(Game.renderer.render2D.camera.currentMode() == Camera2D.Modes.FOLLOW)
 			pointers.get(pointerID).down(pointerID, pointerX, pointerY);
 		
 		return false;
@@ -125,15 +124,15 @@ public class PlayerInputListener implements InputProcessor {
 
 	@Override
 	public boolean touchDragged(int pointerX, int pointerY, int pointerID) {
-		if(camera.currentMode() == Camera.Modes.FOLLOW)
+		if(camera.currentMode() == Camera2D.Modes.FOLLOW)
 			pointers.get(pointerID).move(pointerX, pointerY);
 		return false;
 	}
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		if(camera.currentMode() == Camera.Modes.FOLLOW)
-			player.setTarget(MathHelper.toWorldSpace(screenX, screenY, Render2D.camera));
+		if(camera.currentMode() == Camera2D.Modes.FOLLOW)
+			player.setTarget(MathHelper.toWorldSpace(screenX, screenY, Game.renderer.render2D.camera));
 		
 		return false;
 	}

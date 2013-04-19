@@ -1,6 +1,6 @@
-package com.bitwaffle.guts.graphics.render.camera.modes;
+package com.bitwaffle.guts.graphics.render.render2d.camera.modes;
 
-import com.bitwaffle.guts.graphics.render.camera.Camera;
+import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D;
 
 /**
  * The camera always has a current mode assigned to it.
@@ -9,9 +9,9 @@ import com.bitwaffle.guts.graphics.render.camera.Camera;
  * @author TranquilMarmot
  */
 public abstract class CameraMode {
-	protected Camera camera;
+	protected Camera2D camera;
 	
 	public abstract void update(float timeStep);
 	
-	public void setCamera(Camera camera){ this.camera = camera; }
+	public void setCamera(Camera2D camera){ this.camera = camera; }
 }

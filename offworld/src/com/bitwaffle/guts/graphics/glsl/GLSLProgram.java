@@ -1,11 +1,14 @@
 package com.bitwaffle.guts.graphics.glsl;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.FloatBuffer;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Matrix3;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.BufferUtils;
+import com.bitwaffle.guts.Game;
 
 /**
  * A convenience class for handling shader programs
@@ -45,6 +48,36 @@ public class GLSLProgram {
 		mat3buff = BufferUtils.newFloatBuffer(9);
 	}
 	
+	/**
+	 * Create a program from a given vertex and fragment shader.
+	 * @param logtag Tag to use for logging any errors that occur
+	 * @return Program with shaders attached and linked, will print any error messages
+	 */
+	public static GLSLProgram getProgram(String vertexShader, String fragmentShader, String logtag){
+		GLSLShader vert = new GLSLShader(GLSLShader.ShaderTypes.VERTEX);
+		GLSLShader frag = new GLSLShader(GLSLShader.ShaderTypes.FRAGMENT);
+		try {
+			InputStream vertexStream = Game.resources.openAsset(vertexShader);
+			if (!vert.compileShaderFromStream(vertexStream))
+				Gdx.app.error(logtag, "Error compiling vertex shader! Result: " + vert.log());
+			vertexStream.close();
+			
+			InputStream fragmentStream = Game.resources.openAsset(fragmentShader);
+			if (!frag.compileShaderFromStream(fragmentStream))
+				Gdx.app.error(logtag, "Error compiling fragment shader! Result: " + frag.log());
+			fragmentStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		GLSLProgram program = new GLSLProgram();
+		program.addShader(vert);
+		program.addShader(frag);
+		if (!program.link())
+			Gdx.app.error(logtag, "Error linking program!\n" + program.log());
+		return program;
+	}
+	
+	/** Attaches a shader to this program */
 	public void addShader(GLSLShader shader){
 		Gdx.gl20.glAttachShader(handle, shader.getHandle());
 	}
@@ -132,7 +165,7 @@ public class GLSLProgram {
 			Gdx.app.error(LOGTAG, "Uniform variable " + name + " not found!");
 	}
 	
-	/** Set a uniform matrix from an array */
+	/** Set a uniform matrix */
 	public void setUniform(String name, Matrix4 m){
 		int loc = getUniformLocation(name);
 		mat4buff.clear();
@@ -147,6 +180,7 @@ public class GLSLProgram {
 			Gdx.app.error(LOGTAG, "Uniform variable " + name + " not found!");
 	}
 	
+	/** Set a uniform matrix */
 	public void setUniform(String name, Matrix3 m) {
 		int loc = getUniformLocation(name);
 		mat3buff.clear();

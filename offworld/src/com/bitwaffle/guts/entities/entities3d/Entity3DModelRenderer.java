@@ -1,7 +1,7 @@
 package com.bitwaffle.guts.entities.entities3d;
 
-import com.bitwaffle.guts.graphics.model.Model;
-import com.bitwaffle.guts.graphics.render.Render3D;
+import com.bitwaffle.guts.graphics.render.render3d.Render3D;
+import com.bitwaffle.guts.graphics.shapes.model.Model;
 
 public class Entity3DModelRenderer implements Entity3DRenderer {
 	

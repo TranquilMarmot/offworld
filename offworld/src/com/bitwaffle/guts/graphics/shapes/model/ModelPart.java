@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics.model;
+package com.bitwaffle.guts.graphics.shapes.model;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL11;

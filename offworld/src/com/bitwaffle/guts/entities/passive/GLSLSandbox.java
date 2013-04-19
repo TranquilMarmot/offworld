@@ -12,7 +12,7 @@ import com.bitwaffle.guts.entities.entities2d.Entity2D;
 import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.glsl.GLSLShader;
-import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.graphics.render.render2d.Render2D;
 
 /**
  * This is a port of a Javascript/HTML5/WebGL sandbox that can be found

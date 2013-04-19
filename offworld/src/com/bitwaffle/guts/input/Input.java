@@ -7,7 +7,6 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.mappings.Ouya;
 import com.badlogic.gdx.input.GestureDetector;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.Render2D;
 import com.bitwaffle.guts.input.controller.gui.OuyaGUIControllerListener;
 import com.bitwaffle.guts.input.controller.gui.XboxGUIControllerListener;
 import com.bitwaffle.guts.input.listeners.CameraInputListener;
@@ -43,7 +42,7 @@ public class Input {
 		
 		// initialize processors
 		guiInputListener = new GUIInputListener(Game.gui);
-		cameraInputListener = new CameraInputListener(Render2D.camera);
+		cameraInputListener = new CameraInputListener(Game.renderer.render2D.camera);
 		cameraGestureListener = new GestureDetector(cameraInputListener);
 		consoleInputListener = new ConsoleInputListener(Game.gui.console);
 		

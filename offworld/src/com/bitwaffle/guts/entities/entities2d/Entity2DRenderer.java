@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.entities.entities2d;
 
-import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.graphics.render.render2d.Render2D;
 
 /**Interface for rendering entities */
 public interface Entity2DRenderer {

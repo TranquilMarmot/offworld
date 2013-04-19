@@ -3,7 +3,7 @@ package com.bitwaffle.guts.gui.states.pause.buttons;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.graphics.render.render2d.Render2D;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.TextButton;
 import com.bitwaffle.guts.gui.states.pause.PauseState;
@@ -37,7 +37,7 @@ public class QuitButton extends TextButton {
 		for(int i = 0; i < Game.players.length; i++)
 			Game.players[i] = null;
 		
-		Render2D.camera.setTarget(null);
+		Game.renderer.render2D.camera.setTarget(null);
 		
 		Game.gui.setCurrentState(GUI.States.TITLESCREEN);
 		if(Game.isPaused())

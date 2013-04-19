@@ -1,12 +1,9 @@
-package com.bitwaffle.guts.graphics.render;
+package com.bitwaffle.guts.graphics.render.render3d;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
-import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix3;
@@ -16,9 +13,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.entities3d.Entity3D;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
-import com.bitwaffle.guts.graphics.glsl.GLSLShader;
-import com.bitwaffle.guts.graphics.model.Material;
-import com.bitwaffle.guts.graphics.render.camera.Camera3D;
+import com.bitwaffle.guts.graphics.shapes.model.Material;
 import com.bitwaffle.guts.util.MathHelper;
 
 public class Render3D {
@@ -56,12 +51,13 @@ private static final String LOGTAG = "Render3D";
 	private float[] tempMatrixArr;
 	
 	/** Draw distance and field-of-view to use for rendering */
-	public static float drawDistance = 1000.0f, fov =  45.0f;
+	public static float drawDistance = 1000.0f;
 	
+	/** List of lights */
 	private ArrayList<Light> lights;
 	
 	public Render3D(){
-		initShaders();
+		program = GLSLProgram.getProgram(VERTEX_SHADER, FRAGMENT_SHADER, LOGTAG);
 		
 		projection = new Matrix4();
 		modelview = new Matrix4();
@@ -75,31 +71,6 @@ private static final String LOGTAG = "Render3D";
 		lights.add(new Light(lightLoc, lightIntensity));
 		
 		camera = new Camera3D();
-	}
-	
-	private void initShaders(){			
-		GLSLShader vert = new GLSLShader(GLSLShader.ShaderTypes.VERTEX);
-		GLSLShader frag = new GLSLShader(GLSLShader.ShaderTypes.FRAGMENT);
-		try {
-			InputStream vertexStream = Game.resources.openAsset(VERTEX_SHADER);
-			if (!vert.compileShaderFromStream(vertexStream))
-				Gdx.app.error(LOGTAG, "Error compiling vertex shader! Result: "
-						+ vert.log());
-			vertexStream.close();
-			
-			InputStream fragmentStream = Game.resources.openAsset(FRAGMENT_SHADER);
-			if (!frag.compileShaderFromStream(fragmentStream))
-				Gdx.app.error(LOGTAG, "Error compiling fragment shader! Result: "
-						+ frag.log());
-			fragmentStream.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		program = new GLSLProgram();
-		program.addShader(vert);
-		program.addShader(frag);
-		if (!program.link())
-			Gdx.app.error(LOGTAG, "Error linking program!\n" + program.log());
 	}
 	
 	/**
@@ -129,9 +100,8 @@ private static final String LOGTAG = "Render3D";
 		useDefaultMaterial();
 		setUpLights();
 		
-		float aspect = (float) Game.windowWidth / (float) Game.windowHeight;
 		//MathHelper.perspective(projection, fov, aspect, 1.0f, drawDistance);
-		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1000);
+		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, drawDistance);
 		
 		Gdx.gl20.glDisable(GL20.GL_BLEND); 
 	}
@@ -141,23 +111,16 @@ private static final String LOGTAG = "Render3D";
 	 */
 	private void translateModelviewToCamera(){
 		modelview.idt();
-		// translate to the camera's location
-		//modelview.translate(new Vector3(Entities.camera.xOffset, Entities.camera.yOffset, -Entities.camera.zoom));
 		
-		//modelview = modelview.scale(camera.scale(), camera.scale(), camera.scale());
-		
-		modelview = modelview.scale(Render2D.camera.getZoom(), Render2D.camera.getZoom(), Render2D.camera.getZoom());
-		//modelview = modelview.scale(0.25f, 0.25f, 0.25f);
+		float zoom = Game.renderer.render2D.camera.getZoom();
+		modelview = modelview.scale(zoom, zoom, zoom);
 		
 		modelview = modelview.translate(camera.location());
 
 		// reverse the camera's quaternion (we want to look OUT from the camera)
 		Quaternion reverse = camera.rotation().conjugate();
-		//Matrix4f.mul(modelview, QuaternionHelper.toMatrix(reverse), modelview);
 		reverse.toMatrix(tempMatrixArr);
 		modelview = modelview.mul(new Matrix4(tempMatrixArr));
-		
-		//System.out.println(reverse);
 	}
 	
 	public void sendMatrixToShader(){

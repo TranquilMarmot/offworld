@@ -1,21 +1,16 @@
-package com.bitwaffle.guts.graphics.render;
+package com.bitwaffle.guts.graphics.render.render2d;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.EntityLayer;
 import com.bitwaffle.guts.entities.entities2d.Entity2D;
 import com.bitwaffle.guts.graphics.font.BitmapFont;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
-import com.bitwaffle.guts.graphics.glsl.GLSLShader;
-import com.bitwaffle.guts.graphics.render.camera.Camera;
+import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D;
 import com.bitwaffle.guts.graphics.shapes.circle.Circle;
 import com.bitwaffle.guts.graphics.shapes.quad.Quad;
 import com.bitwaffle.guts.util.MathHelper;
@@ -37,7 +32,7 @@ public class Render2D {
 	public static boolean drawDebug = false;
 	
 	/** Camera for describing how the scene should be looked at */
-	public static Camera camera;
+	public Camera2D camera;
 	
 	/** The program to use for 2D rendering */
 	public GLSLProgram program;
@@ -61,43 +56,17 @@ public class Render2D {
 		Gdx.gl.glViewport(0, 0, Game.windowWidth, Game.windowHeight);
 		Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		
-		initShaders();
+		program = GLSLProgram.getProgram(VERTEX_SHADER, FRAGMENT_SHADER, LOGTAG);
 		
 		projection = new Matrix4();
 		modelview = new Matrix4();
 		mvp = new Matrix4();
 		
-		camera = new Camera();
+		camera = new Camera2D();
 		
 		quad = new Quad(this);
 		circle = new Circle(this, CIRCLE_STEP);
 		font = new BitmapFont();
-	}
-
-	/** Initializes the vertex and fragment shaders and then links them to the program */
-	private void initShaders() {
-		GLSLShader vert = new GLSLShader(GLSLShader.ShaderTypes.VERTEX);
-		GLSLShader frag = new GLSLShader(GLSLShader.ShaderTypes.FRAGMENT);
-		try {
-			InputStream vertexStream = Game.resources.openAsset(VERTEX_SHADER);
-			if (!vert.compileShaderFromStream(vertexStream))
-				Gdx.app.error(LOGTAG, "Error compiling vertex shader! Result: "
-						+ vert.log());
-			vertexStream.close();
-			
-			InputStream fragmentStream = Game.resources.openAsset(FRAGMENT_SHADER);
-			if (!frag.compileShaderFromStream(fragmentStream))
-				Gdx.app.error(LOGTAG, "Error compiling fragment shader! Result: "
-						+ frag.log());
-			fragmentStream.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		program = new GLSLProgram();
-		program.addShader(vert);
-		program.addShader(frag);
-		if (!program.link())
-			Gdx.app.error(LOGTAG, "Error linking program!\n" + program.log());
 	}
 	
 	/** Sets up the projection matrix with an orthographic projection for drawing things in world coordinates */

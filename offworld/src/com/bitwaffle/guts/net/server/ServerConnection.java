@@ -1,7 +1,5 @@
 package com.bitwaffle.guts.net.server;
 
-import java.util.Iterator;
-
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.EntityLayer;
 import com.bitwaffle.guts.entities.entities2d.Entity2D;

@@ -5,7 +5,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.input.GestureDetector.GestureListener;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.camera.Camera;
+import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D;
 import com.bitwaffle.guts.util.MathHelper;
 
 /**
@@ -15,7 +15,7 @@ import com.bitwaffle.guts.util.MathHelper;
  */
 public class CameraInputListener implements GestureListener, InputProcessor {
 	/** Camera this listener is controlling */
-	private Camera camera;
+	private Camera2D camera;
 	
 	/** How sensitive zoom is- the higher the value, the less sensitive */
 	private final float ZOOM_SENSITIVITY = 1500.0f;
@@ -23,13 +23,13 @@ public class CameraInputListener implements GestureListener, InputProcessor {
 	/** How much two fingers have to move from each other before zooming occurs */
 	private final float ZOOM_THRESHOLD = 3.0f;
 	
-	public CameraInputListener(Camera camera){
+	public CameraInputListener(Camera2D camera){
 		this.camera = camera;
 	}
 	
 	@Override
 	public boolean zoom(float prevSpacing, float spacing) {
-		if(camera.currentMode() == Camera.Modes.FREE){
+		if(camera.currentMode() == Camera2D.Modes.FREE){
 			float ds = spacing - prevSpacing;
 
 			// only zoom if the amount is in the threshold
@@ -70,7 +70,7 @@ public class CameraInputListener implements GestureListener, InputProcessor {
 
 	@Override
 	public boolean pan(float x, float y, float deltaX, float deltaY) {
-		if(camera.currentMode() == Camera.Modes.FREE){
+		if(camera.currentMode() == Camera2D.Modes.FREE){
 			Vector2 current = MathHelper.toWorldSpace(x + deltaX, y + deltaY, camera);
 			Vector2 previous = MathHelper.toWorldSpace(x, y, camera);
 
@@ -97,10 +97,10 @@ public class CameraInputListener implements GestureListener, InputProcessor {
 	public boolean keyDown(int keycode) {
 		switch(keycode){
 		case Input.Keys.C:
-			if(camera.currentMode() == Camera.Modes.FOLLOW)
-				camera.setMode(Camera.Modes.FREE);
-			else if(camera.currentMode() == Camera.Modes.FREE)
-				camera.setMode(Camera.Modes.FOLLOW);
+			if(camera.currentMode() == Camera2D.Modes.FOLLOW)
+				camera.setMode(Camera2D.Modes.FREE);
+			else if(camera.currentMode() == Camera2D.Modes.FREE)
+				camera.setMode(Camera2D.Modes.FOLLOW);
 		}
 		
 		return false;

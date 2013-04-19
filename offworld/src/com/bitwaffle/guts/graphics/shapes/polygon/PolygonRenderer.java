@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.entities2d.Entity2D;
 import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer;
-import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.graphics.render.render2d.Render2D;
 
 /**
  * Renders a {@link Polygon}

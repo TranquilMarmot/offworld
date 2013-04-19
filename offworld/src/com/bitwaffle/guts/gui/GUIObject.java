@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.gui;
 
-import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.graphics.render.render2d.Render2D;
 
 /**
  * Everything that the GUI uses should extend this class.

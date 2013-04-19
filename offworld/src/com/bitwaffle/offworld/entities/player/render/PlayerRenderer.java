@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.entities2d.Entity2D;
 import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer;
-import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.graphics.render.render2d.Render2D;
 import com.bitwaffle.offworld.entities.player.JumpSensor;
 import com.bitwaffle.offworld.entities.player.Player;
 
@@ -91,7 +91,10 @@ public class PlayerRenderer implements Entity2DRenderer {
 		tempmat.set(renderer.modelview);
 		if(player.currentHealth() < 100.0f){
 			renderer.modelview.translate(0.0f, healthBarYOffset, 0.0f);
-			renderer.modelview.scale(healthBarScale / Render2D.camera.getZoom(), healthBarScale / Render2D.camera.getZoom(), 1.0f);
+			renderer.modelview.scale(
+					healthBarScale / Game.renderer.render2D.camera.getZoom(),
+					healthBarScale / Game.renderer.render2D.camera.getZoom(),
+					1.0f);
 			renderer.sendMatrixToShader();
 			healthBar.setPercent(player.currentHealth());
 			healthBar.update(1.0f / Game.currentFPS);

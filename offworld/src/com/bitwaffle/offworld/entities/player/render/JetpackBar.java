@@ -2,7 +2,8 @@ package com.bitwaffle.offworld.entities.player.render;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.graphics.render.render2d.Render2D;
 import com.bitwaffle.guts.gui.hud.Bar;
 import com.bitwaffle.offworld.entities.player.Jetpack;
 
@@ -78,7 +79,7 @@ public class JetpackBar extends Bar {
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			
 			renderer.modelview.translate(0.0f, yOffset, 0.0f);
-			renderer.modelview.scale(scale /Render2D.camera.getZoom(), scale / Render2D.camera.getZoom(), 1.0f);
+			renderer.modelview.scale(scale / Game.renderer.render2D.camera.getZoom(), scale / Game.renderer.render2D.camera.getZoom(), 1.0f);
 			renderer.sendMatrixToShader();
 			
 			super.render(renderer, false, false);

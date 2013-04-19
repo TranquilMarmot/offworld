@@ -2,7 +2,7 @@ package com.bitwaffle.guts.gui.states.titlescreen;
 
 import com.badlogic.gdx.math.Matrix4;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.graphics.render.render2d.Render2D;
 import com.bitwaffle.guts.gui.GUIObject;
 
 public class SpinningPizza extends GUIObject {

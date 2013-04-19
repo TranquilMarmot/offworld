@@ -4,7 +4,7 @@ import com.bitwaffle.guts.entities.particles.EmitterSettings
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity
 import com.badlogic.gdx.math.Vector2
 import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer
-import com.bitwaffle.guts.graphics.render.Render2D
+import com.bitwaffle.guts.graphics.render.render2d.Render2D
 import com.bitwaffle.guts.entities.entities2d.Entity2D
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.GL20

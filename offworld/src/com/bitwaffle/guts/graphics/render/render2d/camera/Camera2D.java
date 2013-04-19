@@ -1,13 +1,13 @@
-package com.bitwaffle.guts.graphics.render.camera;
+package com.bitwaffle.guts.graphics.render.render2d.camera;
 
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.entities.entities2d.Entity2D;
-import com.bitwaffle.guts.graphics.render.camera.modes.CameraMode;
-import com.bitwaffle.guts.graphics.render.camera.modes.FollowMode;
-import com.bitwaffle.guts.graphics.render.camera.modes.FreeMode;
+import com.bitwaffle.guts.graphics.render.render2d.camera.modes.CameraMode;
+import com.bitwaffle.guts.graphics.render.render2d.camera.modes.FollowMode;
+import com.bitwaffle.guts.graphics.render.render2d.camera.modes.FreeMode;
 import com.bitwaffle.guts.physics.Room;
 import com.bitwaffle.guts.util.MathHelper;
 
@@ -16,7 +16,7 @@ import com.bitwaffle.guts.util.MathHelper;
  * 
  * @author TranquilMarmot
  */
-public class Camera extends Entity2D {
+public class Camera2D extends Entity2D {
 	/** Initial values for camera */
 	private static final float DEFAULT_CAMX = 1.0f, DEFAULT_CAMY = -30.0f, DEFAULT_CAMZ = 0.03f;
 	
@@ -46,11 +46,11 @@ public class Camera extends Entity2D {
 		private CameraMode mode;
 		private Modes(CameraMode mode){ this.mode = mode; }
 		public void update(float timeStep){ mode.update(timeStep); } 
-		public void setCamera(Camera camera){ mode.setCamera(camera); }
+		public void setCamera(Camera2D camera){ mode.setCamera(camera); }
 		public CameraMode getMode(){ return mode; }
 	}
 	
-	public Camera(){
+	public Camera2D(){
 		super();
 		projection = new Matrix4();
 		view = new Matrix4();

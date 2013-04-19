@@ -1,7 +1,7 @@
 package com.bitwaffle.guts.gui.button;
 
 import com.bitwaffle.guts.graphics.font.BitmapFont;
-import com.bitwaffle.guts.graphics.render.Render2D;
+import com.bitwaffle.guts.graphics.render.render2d.Render2D;
 
 /**
  * A button that displays text
