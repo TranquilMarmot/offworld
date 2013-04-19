@@ -102,12 +102,12 @@ public class Render2D {
 	
 	/** Sets up the projection matrix with an orthographic projection for drawing things in world coordinates */
 	public void setUpProjectionOrthoWorldCoords(){
-		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1);
+		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1000);
 	}
 	
 	/** Sets up the projection matrix with an orthographic projection for drawing things in screen coordinates */
 	public void setUpProjectionScreenCoords(){
-		MathHelper.orthoM(projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
+		MathHelper.orthoM(projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1000);
 	}
 	
 	/** @param it Iterator that goes through Entity objects needing to be rendered */

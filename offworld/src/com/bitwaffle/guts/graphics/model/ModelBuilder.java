@@ -251,10 +251,6 @@ public class ModelBuilder {
 	 * @return The vertex array object handle
 	 */
 	private Model fillVertexArray(ArrayList<ModelPart> modelParts, String texture){
-		// get a handle for a VAO
-		//int vaoHandle = GL30.glGenVertexArrays();
-		//GL30.glBindVertexArray(vaoHandle);
-		
 		// create buffers and fill them with data
 		ByteBuffer vertBuffer = BufferUtils.newByteBuffer(vertexIndices.size() * 9 * 4);
 		ByteBuffer normBuffer = BufferUtils.newByteBuffer(normalIndices.size() * 9 * 4);
@@ -282,7 +278,7 @@ public class ModelBuilder {
 			tempNorms[ind + 2] = firstNorm[2];
 			float[] firstTex = textureCoords.get(triTex[0]);
 			tempTex[texInd + 0] = firstTex[0];
-			tempTex[texInd + 1] = firstTex[1];
+			tempTex[texInd + 1] = 1.0f - firstTex[1];
 			
 			float[] secondVert = vertices.get(triVerts[1]);
 			tempVerts[ind + 3] = secondVert[0];
@@ -294,7 +290,7 @@ public class ModelBuilder {
 			tempNorms[ind + 5] = secondNorm[2];
 			float[] secondTex = textureCoords.get(triTex[1]);
 			tempTex[texInd + 2] = secondTex[0];
-			tempTex[texInd + 3] = secondTex[1];
+			tempTex[texInd + 3] = 1.0f - secondTex[1];
 			
 			float[] thirdVert = vertices.get(triVerts[2]);
 			tempVerts[ind + 6] = thirdVert[0];
@@ -306,49 +302,19 @@ public class ModelBuilder {
 			tempNorms[ind + 8] = thirdNorm[2];
 			float[] thirdTex = textureCoords.get(triTex[2]);
 			tempTex[texInd + 4] = thirdTex[0];
-			tempTex[texInd + 5] = thirdTex[1];
+			tempTex[texInd + 5] = 1.0f - thirdTex[1];
 		}
 		
 		BufferUtils.copy(tempVerts, vertBuffer, tempVerts.length, 0);
 		BufferUtils.copy(tempNorms, normBuffer, tempNorms.length, 0);
 		BufferUtils.copy(tempTex, texBuffer, tempTex.length, 0);
 		
-		for(float f : tempVerts)
-			System.out.println(f);
-		
 		// be kind, please rewind()!
 		vertBuffer.rewind();
 		normBuffer.rewind();
 		texBuffer.rewind();
 		
-		// handles for filling buffer objects
-		//IntBuffer vboHandles = BufferUtils.newIntBuffer(3);
-		//Gdx.gl20.glGenBuffers(3, vboHandles);
-		//GL15.glGenBuffers(vboHandles);
-		
-		// actually fill the buffers
-		/*
-		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vboHandles.get(0));
-		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertBuffer, GL15.GL_STATIC_DRAW);
-		GL20.glVertexAttribPointer(0, 3, GL11.GL_FLOAT, false, 0, 0L);
-		GL20.glEnableVertexAttribArray(0);
-		
-		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vboHandles.get(1));
-		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, normBuffer, GL15.GL_STATIC_DRAW);
-		GL20.glVertexAttribPointer(1, 3, GL11.GL_FLOAT, false, 0, 0L);
-		GL20.glEnableVertexAttribArray(1);
-		
-		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vboHandles.get(2));
-		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, texBuffer, GL15.GL_STATIC_DRAW);
-		GL20.glVertexAttribPointer(2, 2, GL11.GL_FLOAT, false, 0, 0L);
-		GL20.glEnableVertexAttribArray(2);
-		
-		GL30.glBindVertexArray(0);
-		
-		return vaoHandle;
-		*/
-		
-		return new Model(vertBuffer, normBuffer, texBuffer, modelParts, texture);
+		return new Model(vertBuffer, texBuffer, normBuffer, modelParts, texture);
 	}
 	
 	/**

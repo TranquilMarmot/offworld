@@ -3,24 +3,34 @@ package com.bitwaffle.guts.graphics.render.camera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Quaternion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.graphics.render.Render2D;
 
 public class Camera3D {
 	private Vector3 location;
 	
 	private Quaternion rotation;
 	
-	private float rot;
+	private float scale;
 	
 	public Camera3D(){
-		location = new Vector3(0.0f, 0.0f, -1.0f);
+		location = new Vector3(0.0f, 0.0f, 0.0f);
 		rotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
+		scale = 0.5f;
 		rotation.idt();
 	}
 	
 	public void update(){
-
-			
+		//this.location.x += 0.0005;
+		if(Game.players[0] != null){
+			Vector2 camLoc = Render2D.camera.getLocation();
+			this.location.x = camLoc.x;
+			this.location.y = camLoc.y;
+			System.out.println("cam3d loc: " + this.location);
+		}
+		
 	}
 	
 	public Vector3 location(){
@@ -32,5 +42,9 @@ public class Camera3D {
 	
 	public Quaternion rotation(){
 		return rotation;
+	}
+	
+	public float scale(){
+		return scale;
 	}
 }

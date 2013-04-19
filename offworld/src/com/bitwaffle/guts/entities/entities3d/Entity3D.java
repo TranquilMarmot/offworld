@@ -3,7 +3,9 @@ package com.bitwaffle.guts.entities.entities3d;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Quaternion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.bitwaffle.guts.Game;
 
 public class Entity3D {
 	public Entity3DRenderer renderer;
@@ -11,7 +13,7 @@ public class Entity3D {
 	protected Vector3 location;
 	
 	protected Quaternion rotation;
-	private float rot = 0.0f; // FIXME temp
+	private float yrot = 0.0f, xrot = 0.0f; // FIXME temp
 	
 	private Integer hash;
 	
@@ -25,17 +27,25 @@ public class Entity3D {
 	}
 	
 	public void update(float timeStep) {
-		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-			rotation.setEulerAngles(0.0f, rot, 0.0f);
-			rot -= 0.85f;
+		if(Gdx.input.isKeyPressed(Input.Keys.UP))		
+			yrot -= 0.85f;
+		
+		if(Gdx.input.isKeyPressed(Input.Keys.LEFT))			
+			xrot -= 0.85f;
+		
+		rotation.setEulerAngles(xrot, yrot, 0.0f);
+		
+		if(Game.players[0] != null){
+			Vector2 playerLoc = Game.players[0].getLocation();
+			this.location.x = playerLoc.x;
+			this.location.y = playerLoc.y;
+			System.out.println("ent loc: " + location);
 		}
 	}
 	
 	public void cleanup(){}
 	
 	public Vector3 location(){
-		//location.z -= 0.5f;
-		System.out.println(location);
 		return location;
 	}
 	

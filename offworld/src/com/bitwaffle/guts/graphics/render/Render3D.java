@@ -130,7 +130,8 @@ private static final String LOGTAG = "Render3D";
 		setUpLights();
 		
 		float aspect = (float) Game.windowWidth / (float) Game.windowHeight;
-		MathHelper.perspective(projection, fov, aspect, 1.0f, drawDistance);
+		//MathHelper.perspective(projection, fov, aspect, 1.0f, drawDistance);
+		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1000);
 		
 		Gdx.gl20.glDisable(GL20.GL_BLEND); 
 	}
@@ -143,7 +144,12 @@ private static final String LOGTAG = "Render3D";
 		// translate to the camera's location
 		//modelview.translate(new Vector3(Entities.camera.xOffset, Entities.camera.yOffset, -Entities.camera.zoom));
 		
-		modelview = modelview.translate(camera.location().x, camera.location().y, camera.location().z);
+		//modelview = modelview.scale(camera.scale(), camera.scale(), camera.scale());
+		
+		modelview = modelview.scale(Render2D.camera.getZoom(), Render2D.camera.getZoom(), Render2D.camera.getZoom());
+		//modelview = modelview.scale(0.25f, 0.25f, 0.25f);
+		
+		modelview = modelview.translate(camera.location());
 
 		// reverse the camera's quaternion (we want to look OUT from the camera)
 		Quaternion reverse = camera.rotation().conjugate();
@@ -163,6 +169,8 @@ private static final String LOGTAG = "Render3D";
 	
 	public void renderEntities(Iterator<Entity3D> it){
 		translateModelviewToCamera();
+		
+		program.setUniform("Light.LightEnabled", true);
 		
 		while(it.hasNext()){
 			try{

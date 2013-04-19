@@ -73,25 +73,13 @@ public class Model {
 		if(normHandle == -1)
 			normHandle = renderer.program.getAttribLocation("VertexNormal");
 		
-		// TODO
-		//GL30.glBindVertexArray(vaoHandle);
-		
-		// loop through each part, set its material and draw
-		/*
-		for(ModelPart p : parts){
-			Render3D.setCurrentMaterial(p.getMaterial());
-			p.draw();
-		}
-		
-		GL30.glBindVertexArray(0);
-		*/
-		
 		Gdx.gl20.glEnableVertexAttribArray(positionHandle);
-        Gdx.gl20.glEnableVertexAttribArray(texCoordHandle);
-        Gdx.gl20.glEnableVertexAttribArray(normHandle);
-        
 		Gdx.gl20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GL20.GL_FLOAT, false, 0, coordBuffer);
+		
+        Gdx.gl20.glEnableVertexAttribArray(texCoordHandle);
         Gdx.gl20.glVertexAttribPointer(texCoordHandle, COORDS_PER_TEXCOORD, GL20.GL_FLOAT, false, 0, texBuffer);
+        
+        Gdx.gl20.glEnableVertexAttribArray(normHandle);
         Gdx.gl20.glVertexAttribPointer(normHandle, COORDS_PER_VERTEX, GL20.GL_FLOAT, false, 0, normBuffer);
 		
 		Game.resources.textures.bindTexture(texture);
@@ -100,6 +88,10 @@ public class Model {
 			renderer.setCurrentMaterial(p.getMaterial());
 			p.draw();
 		}
+		
+		Gdx.gl20.glDisableVertexAttribArray(positionHandle);
+        Gdx.gl20.glDisableVertexAttribArray(texCoordHandle);
+        Gdx.gl20.glDisableVertexAttribArray(normHandle);
 	}
 
 	/**

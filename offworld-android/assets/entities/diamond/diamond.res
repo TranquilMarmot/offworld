@@ -13,9 +13,9 @@
 			"name": "diamond",
 			"texture": "diamond",
 			"dir": "entities/diamond",
-			"xScale": 1.0,
-			"yScale": 1.0,
-			"zScale": 1.0
+			"xScale": 4.0,
+			"yScale": 4.0,
+			"zScale": 4.0
 		}
 	]
 }}
