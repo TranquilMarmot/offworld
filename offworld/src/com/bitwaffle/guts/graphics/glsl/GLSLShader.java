@@ -52,6 +52,7 @@ public class GLSLShader {
 	 * @param stream Stream to compile from (should be a plaintext file)
 	 */
 	public boolean compileShaderFromStream(InputStream stream){
+		// check if we're using OpenGL ES 
 		String prefix = "";
 		ApplicationType type = Gdx.app.getType();
 		if(type == ApplicationType.Android || type == ApplicationType.iOS || type == ApplicationType.WebGL)
@@ -61,9 +62,8 @@ public class GLSLShader {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stream), 8);
 			String source = prefix;
 			String line;
-			while ((line = reader.readLine()) != null) {
+			while ((line = reader.readLine()) != null)
 				source += line + "\n";
-			}
 			reader.close();
 			stream.close();
 			return compileShaderFromString(source);

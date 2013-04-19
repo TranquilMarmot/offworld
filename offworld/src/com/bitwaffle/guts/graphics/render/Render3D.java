@@ -70,7 +70,7 @@ private static final String LOGTAG = "Render3D";
 		tempMatrixArr = new float[16];
 		
 		lights = new ArrayList<Light>();
-		Vector3 lightLoc = new Vector3(0.0f, 10.0f, -1000.0f);
+		Vector3 lightLoc = new Vector3(0.0f, 10.0f, -10.0f);
 		Vector3 lightIntensity = new Vector3(0.9f, 0.9f, 0.9f);
 		lights.add(new Light(lightLoc, lightIntensity));
 		
@@ -186,13 +186,9 @@ private static final String LOGTAG = "Render3D";
 	}
 	
 	public void prepareToRenderEntity(Entity3D ent){
-		float transX = camera.location().x - ent.location().x;
-		float transY = camera.location().y - ent.location().y;
-		float transZ = camera.location().z - ent.location().z;
-		
 		oldModelview.set(modelview);
 		
-		modelview.translate(transX, transY, transZ);
+		modelview.translate(ent.location());
 		ent.rotation().toMatrix(tempMatrixArr);
 		modelview = modelview.mul(new Matrix4(tempMatrixArr));
 		//System.out.println(modelview);
