@@ -20,14 +20,12 @@ public class Camera3D {
 	}
 	
 	public void update(float timeStep){
-		//this.location.x += 0.0005;
-		if(Game.players[0] != null){
+		if(Game.renderer.render2D.camera != null){
 			Vector2 camLoc = Game.renderer.render2D.camera.getLocation();
 			this.location.x = camLoc.x;
 			this.location.y = camLoc.y;
-			System.out.println("cam3d loc: " + this.location);
+			this.scale = Game.renderer.render2D.camera.getZoom();
 		}
-		
 	}
 	
 	public Vector3 location(){

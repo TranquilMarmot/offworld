@@ -2,7 +2,9 @@ package com.bitwaffle.guts.util;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D;
 
@@ -270,5 +272,163 @@ public class MathHelper {
         arr[Matrix4.M33] = 0.0f;
 
 		mat.set(arr);
+	}
+	
+	/**
+	 * Rotates a vector by a quaternion
+	 * 
+	 * @param vector
+	 *            The vector to rotate
+	 * @param quat
+	 *            The quaternion to rotate the vector by
+	 * @return Rotate vector
+	 */
+	public static Vector3 rotateVectorByQuaternion(Vector3 vector,
+			Quaternion quat) {
+		Quaternion vecQuat = new Quaternion(vector.x, vector.y, vector.z, 0.0f);
+
+		Quaternion quatNegate = quat.conjugate();
+
+		Quaternion resQuat = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
+		resQuat = vecQuat.mul(quatNegate);
+		resQuat = quat.mul(resQuat);
+
+		return new Vector3(resQuat.x, resQuat.y, resQuat.z);
+	}
+
+	/**
+	 * Converts a quaternion to good ol' euler angles
+	 * 
+	 * @param quat
+	 *            The quaternion to convert
+	 * @return A vector containing the three euler angles
+	 */
+	public static Vector3 getEulerAnglesFromQuaternion(Quaternion quat) {
+		float xn = (2 * ((quat.x * quat.y) + (quat.z * quat.w)))
+				/ (1 - (2 * ((quat.y * quat.y) + (quat.z * quat.z))));
+		float x = (float) (Math.atan((double) xn));
+
+		float yn = 2 * ((quat.x * quat.z) - (quat.w * quat.y));
+		float y = (float) (Math.asin((double) yn));
+
+		float zn = (2 * ((quat.x * quat.w) + (quat.y * quat.z)))
+				/ (1 - (2 * ((quat.z * quat.z) + (quat.w * quat.w))));
+		float z = (float) (Math.atan((double) zn));
+
+		float oneEightyOverPI = 180.0f / PI;
+		x *= oneEightyOverPI;
+		y *= oneEightyOverPI;
+		z *= oneEightyOverPI;
+
+		return new Vector3(x, y, z);
+	}
+	
+	/**
+	 * Rotate a quaternion by a vector
+	 * @param quat Quaternion to rotate
+	 * @param amount Amount to rotate quaternion by
+	 * @return Rotated quaternion
+	 */
+	public static Quaternion rotate(Quaternion quat, Vector3 amount){
+		Quaternion ret = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
+		
+		ret = rotateX(quat, amount.x);
+		ret = rotateY(ret, amount.y);
+		ret = rotateZ(ret, amount.z);
+		
+		return ret;
+	}
+
+	/**
+	 * Rotate a quaternion along it's x axis a certain amount
+	 * 
+	 * @param amount
+	 *            Amount to rotate the quaternion
+	 * @return Rotated quaternion
+	 */
+	public static Quaternion rotateX(Quaternion quat, float amount) {
+		double radHalfAngle = Math.toRadians((double) amount) / 2.0;
+		float sinVal = (float) Math.sin(radHalfAngle);
+		float cosVal = (float) Math.cos(radHalfAngle);
+		Quaternion rot = new Quaternion(sinVal, 0.0f, 0.0f, cosVal);
+		return quat.mul(rot);
+	}
+
+	/**
+	 * Rotate a quaternion along it's y axis a certain amount
+	 * 
+	 * @param amount
+	 *            Amount to rotate the quaternion
+	 * @return Rotated quaternion
+	 */
+	public static Quaternion rotateY(Quaternion quat, float amount) {
+		double radHalfAngle = Math.toRadians((double) amount) / 2.0;
+		float sinVal = (float) Math.sin(radHalfAngle);
+		float cosVal = (float) Math.cos(radHalfAngle);
+		Quaternion rot = new Quaternion(0.0f, sinVal, 0.0f, cosVal);
+		return quat.mul(rot);
+	}
+
+	/**
+	 * Rotate a quaternion along it's z axis a certain amount
+	 * 
+	 * @param amount
+	 *            Amount to rotate the quaternion
+	 * @return Rotated quaternion
+	 */
+	public static Quaternion rotateZ(Quaternion quat, float amount) {
+		double radHalfAngle = Math.toRadians((double) amount) / 2.0;
+		float sinVal = (float) Math.sin(radHalfAngle);
+		float cosVal = (float) Math.cos(radHalfAngle);
+		Quaternion rot = new Quaternion(0.0f, 0.0f, sinVal, cosVal);
+		return quat.mul(rot);
+	}
+
+	/**
+	 * Moves the given vector a certain amount along the rotation of the given
+	 * quaternion
+	 * 
+	 * @param quat
+	 *            Rotation to use for movement
+	 * @param vec
+	 *            Vector to add to
+	 * @param amount
+	 *            Amount to add to the vector
+	 */
+	public static Vector3 moveX(Quaternion quat, Vector3 vec, float amount) {
+		Vector3 multi = rotateVectorByQuaternion(new Vector3(amount, 0.0f,0.0f), quat);
+		return vec.add(multi);
+	}
+
+	/**
+	 * Moves the given vector a certain amount along the rotation of the given
+	 * quaternion
+	 * 
+	 * @param quat
+	 *            Rotation to use for movement
+	 * @param vec
+	 *            Vector to add to
+	 * @param amount
+	 *            Amount to add to the vector
+	 */
+	public static Vector3 moveY(Quaternion quat, Vector3 vec, float amount) {
+		Vector3 multi = rotateVectorByQuaternion(new Vector3(0.0f, amount,0.0f), quat);
+		return vec.add(multi);
+	}
+
+	/**
+	 * Moves the given vector a certain amount along the rotation of the given
+	 * quaternion
+	 * 
+	 * @param quat
+	 *            Rotation to use for movement
+	 * @param vec
+	 *            Vector to add to
+	 * @param amount
+	 *            Amount to add to the vector
+	 */
+	public static Vector3 moveZ(Quaternion quat, Vector3 vec, float amount) {
+		Vector3 multi = rotateVectorByQuaternion(new Vector3(0.0f, 0.0f,amount), quat);
+		return vec.add(multi);
 	}
 }
