@@ -13,7 +13,7 @@ import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
  * @author TranquilMarmot
  * @see DynamicEntity
  */
-public class Entity2D {
+public class Entity {
 	/** EntityRenderer used to draw this entity */
 	public EntityRenderer renderer;
 	
@@ -30,26 +30,26 @@ public class Entity2D {
 	private Integer hash;
 	
 	/** No-args constructor for serialization only! */
-	public Entity2D(){
+	public Entity(){
 		renderer = null;
 		location = new Vector2();
 		layer = Entities.NUM_LAYERS / 2;
 		angle = 0.0f;
 	}
 	
-	public Entity2D(EntityRenderer renderer, int layer){
+	public Entity(EntityRenderer renderer, int layer){
 		this.renderer = renderer;
 		this.layer = layer;
 		location = new Vector2();
 		angle = 0.0f;
 	}
 	
-	public Entity2D(EntityRenderer renderer, int layer, Vector2 location){
+	public Entity(EntityRenderer renderer, int layer, Vector2 location){
 		this(renderer, layer);
 		this.location = location;
 	}
 	
-	public Entity2D(EntityRenderer renderer, int layer, Vector2 location, float angle){
+	public Entity(EntityRenderer renderer, int layer, Vector2 location, float angle){
 		this(renderer, layer, location);
 		this.angle = angle;
 	}

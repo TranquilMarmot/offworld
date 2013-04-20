@@ -9,16 +9,16 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity;
 import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
 import com.bitwaffle.guts.physics.Physics;
 
 /**
- * An {@link Entity2D} that can interact with the {@link Physics} world.
+ * An {@link Entity} that can interact with the {@link Physics} world.
  * 
  * @author TranquilMarmot
  */
-public class DynamicEntity extends Entity2D {
+public class DynamicEntity extends Entity {
 	private static String LOGTAG = "DynamicEntity";
 	/** Body that's in the Physics world */
 	public Body body;

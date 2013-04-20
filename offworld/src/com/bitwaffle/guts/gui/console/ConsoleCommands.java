@@ -4,8 +4,8 @@ import java.util.StringTokenizer;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.EntityLayer;
-import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.Entities.EntityHashMap;
+import com.bitwaffle.guts.entities.entities2d.Entity;
 import com.bitwaffle.guts.net.NetConsoleCommands;
 import com.bitwaffle.guts.physics.PhysicsHelper;
 
@@ -181,10 +181,9 @@ class ListCommand implements Command{
 	}
 	
 	private static void printLayer(int l){
-		EntityLayer layer = Game.physics.getLayer(l);
+		EntityHashMap layer = Game.physics.getLayer(l);
 		
-		Game.out.println("2D Entities:");
-		for(Entity2D ent : layer.entities2D.values()){
+		for(Entity ent : layer.values()){
 			Vector2 loc = ent.getLocation();
 			Game.out.println(ent.getClass().getCanonicalName() + " | x: " + loc.x + " y: " + loc.y + " l: " + ent.getLayer() + " h: " + ent.hashCode());
 		}

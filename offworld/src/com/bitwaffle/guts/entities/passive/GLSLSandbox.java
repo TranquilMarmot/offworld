@@ -8,7 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity;
 import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.glsl.GLSLShader;
@@ -23,7 +23,7 @@ import com.bitwaffle.guts.graphics.render.Renderer;
  * 
  * @author TranquilMarmot
  */
-public class GLSLSandbox extends Entity2D {
+public class GLSLSandbox extends Entity {
 	public static final String LOGTAG = "GLSLSandbox";
 	
 	/** Vertex shader to load on init */
@@ -86,7 +86,7 @@ public class GLSLSandbox extends Entity2D {
 		}
 		
 		@Override
-		public void render(Renderer renderer, Entity2D ent, boolean renderDebug) {
+		public void render(Renderer renderer, Entity ent, boolean renderDebug) {
 			// use program and set uniforms
 			program.use();
 			program.setUniform("time", time);

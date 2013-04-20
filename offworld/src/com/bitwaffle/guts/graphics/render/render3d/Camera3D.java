@@ -28,18 +28,15 @@ public class Camera3D {
 		}
 	}
 	
-	public Vector3 location(){
-		//location.z -= 0.5f;
-		//location.x += 0.000005f;
-		//System.out.println(location);
+	public Vector3 getLocation(){
 		return location;
 	}
 	
-	public Quaternion rotation(){
+	public Quaternion getRotation(){
 		return rotation;
 	}
 	
-	public float scale(){
+	public float getScale(){
 		return scale;
 	}
 }

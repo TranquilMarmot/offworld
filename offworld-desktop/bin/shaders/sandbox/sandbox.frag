@@ -1,5 +1,3 @@
-precision mediump float;
-
 uniform vec2 resolution;
 uniform sampler2D texture;
 

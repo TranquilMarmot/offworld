@@ -2,7 +2,7 @@ package com.bitwaffle.guts.entities.passive;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity;
 import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
 
 /**
@@ -10,7 +10,7 @@ import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
  * 
  * @author TranquilMarmot
  */
-public class Decal extends Entity2D{
+public class Decal extends Entity{
 	/** How long the decal lives and a timer */
 	float timeToLive, timeLived;
 	

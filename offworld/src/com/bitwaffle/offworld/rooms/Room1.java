@@ -8,8 +8,8 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.guts.entities.entities2d.Entity2D;
-import com.bitwaffle.guts.entities.entities3d.Entity3DModelRenderer;
+import com.bitwaffle.guts.entities.entities2d.Entity;
+import com.bitwaffle.guts.graphics.shapes.model.ModelRenderer;
 import com.bitwaffle.guts.graphics.shapes.polygon.Polygon;
 import com.bitwaffle.guts.graphics.shapes.polygon.PolygonRenderer;
 import com.bitwaffle.guts.physics.Physics;
@@ -85,6 +85,10 @@ public class Room1 extends Room {
 		this.addEntity(di);
 		*/
 		
+		Entity di = new Entity(new ModelRenderer(Game.resources.models.getModel("diamond")), 6);
+		di.setLocation(new Vector2(3.0f, 6.0f));
+		this.addEntity(di);
+		
 		
 		// create walls
 		//makeWalls();
@@ -100,9 +104,9 @@ public class Room1 extends Room {
 	}
 	
 	@SuppressWarnings("unused")
-	private Entity2D getEntity(String name, int layer, float[] color){
+	private Entity getEntity(String name, int layer, float[] color){
 		Polygon poly = Game.resources.polygons.get(name);
-		Entity2D ent = new Entity2D(new PolygonRenderer(poly, color), layer);
+		Entity ent = new Entity(new PolygonRenderer(poly, color), layer);
 		return ent;
 	}
 	

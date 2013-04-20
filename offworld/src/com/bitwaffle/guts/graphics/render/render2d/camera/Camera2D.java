@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity;
 import com.bitwaffle.guts.graphics.render.render2d.camera.modes.CameraMode;
 import com.bitwaffle.guts.graphics.render.render2d.camera.modes.FollowMode;
 import com.bitwaffle.guts.graphics.render.render2d.camera.modes.FreeMode;
@@ -16,7 +16,7 @@ import com.bitwaffle.guts.util.MathHelper;
  * 
  * @author TranquilMarmot
  */
-public class Camera2D extends Entity2D {
+public class Camera2D extends Entity {
 	/** Initial values for camera */
 	private static final float DEFAULT_CAMX = 1.0f, DEFAULT_CAMY = -30.0f, DEFAULT_CAMZ = 0.03f;
 	

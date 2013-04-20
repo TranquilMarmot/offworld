@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity;
 import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
 import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.graphics.render.render2d.Render2D;
@@ -35,7 +35,7 @@ public class PlayerRenderer implements EntityRenderer {
 	}
 	
 	@Override
-	public void render(Renderer renderer, Entity2D ent, boolean renderDebug){
+	public void render(Renderer renderer, Entity ent, boolean renderDebug){
 		Player player = (Player) ent;
 
 		if(renderDebug)
@@ -106,7 +106,7 @@ public class PlayerRenderer implements EntityRenderer {
 		jetpackBar.render(renderer.render2D, player.jetpack);
 	}
 	
-	public void renderDebug(Renderer renderer, Entity2D ent){
+	public void renderDebug(Renderer renderer, Entity ent){
 		Player player = (Player) ent;
 		Game.resources.textures.bindTexture("blank");
 

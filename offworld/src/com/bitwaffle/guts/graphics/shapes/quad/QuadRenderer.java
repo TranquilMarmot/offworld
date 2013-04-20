@@ -3,7 +3,7 @@ package com.bitwaffle.guts.graphics.shapes.quad;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity;
 import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
 import com.bitwaffle.guts.graphics.SubImage;
 import com.bitwaffle.guts.graphics.render.Renderer;
@@ -61,7 +61,7 @@ public class QuadRenderer implements EntityRenderer {
 	}
 
 	@Override
-	public void render(Renderer renderer, Entity2D ent, boolean renderDebug) {
+	public void render(Renderer renderer, Entity ent, boolean renderDebug) {
 		if(renderDebug){
 			// only render is told to render in debug mode
 			if(hasDebug)
@@ -88,7 +88,7 @@ public class QuadRenderer implements EntityRenderer {
 		}
 	}
 	
-	private void renderDebug(Renderer renderer, Entity2D ent){
+	private void renderDebug(Renderer renderer, Entity ent){
 		renderer.render2D.program.setUniform("vColor", 0.0f, 1.0f, 1.0f, 0.4f);
 		renderer.render2D.modelview.scale(xScale, yScale, 1.0f);
 		renderer.render2D.sendMatrixToShader();

@@ -1,18 +1,17 @@
 package com.bitwaffle.guts.graphics.render.render3d;
 
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix3;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Quaternion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity2D;
-import com.bitwaffle.guts.entities.entities2d.Entity3D;
+import com.bitwaffle.guts.entities.entities2d.Entity;
+import com.bitwaffle.guts.entities.entities2d.EntityRenderer3D;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.shapes.model.Material;
 import com.bitwaffle.guts.util.MathHelper;
@@ -114,10 +113,10 @@ private static final String LOGTAG = "Render3D";
 		float zoom = Game.renderer.render2D.camera.getZoom();
 		modelview = modelview.scale(zoom, zoom, zoom);
 		
-		modelview = modelview.translate(camera.location());
+		modelview = modelview.translate(camera.getLocation());
 
 		// reverse the camera's quaternion (we want to look OUT from the camera)
-		Quaternion reverse = camera.rotation().conjugate();
+		Quaternion reverse = camera.getRotation().conjugate();
 		reverse.toMatrix(tempMatrixArr);
 		modelview = modelview.mul(new Matrix4(tempMatrixArr));
 	}
@@ -129,15 +128,16 @@ private static final String LOGTAG = "Render3D";
 		program.setUniform("NormalMatrix", normal);
 	}
 	
-	public void prepareToRenderEntity(Entity3D ent){
-		Vector3 loc = ent.get3DLocation();
-		Quaternion rot = ent.getRotation();
+	public void prepareToRenderEntity(Entity ent){
+		Vector2 entLoc = ent.getLocation();
+		
+		EntityRenderer3D rend = (EntityRenderer3D) ent.renderer;
 		
 		modelview.idt();
 		translateModelviewToCamera();
 		
-		modelview.translate(loc);
-		rot.toMatrix(tempMatrixArr);
+		modelview.translate(new Vector3(entLoc.x, entLoc.y, rend.z));
+		rend.rotation.toMatrix(tempMatrixArr);
 		modelview = modelview.mul(new Matrix4(tempMatrixArr));
 		
 		sendMatrixToShader();
@@ -152,18 +152,13 @@ private static final String LOGTAG = "Render3D";
 		if(lights.size() > 1)
 			System.out.println("More than one light! Multiple lighting not yet implemented.");
 		Light l = lights.iterator().next();
-		float transX = camera.location().x - l.location().x;
-		float transY = camera.location().y - l.location().y;
-		float transZ = camera.location().z - l.location().z;
 		
 		// crazy quaternion and vector math to get the light into world coordinates
-		//Quaternion reverse = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
-		//Quaternion.negate(camera.rotation(), reverse);
-		//Vector3f rotated = QuaternionHelper.rotateVectorByQuaternion(new Vector3f(transX, transY, transZ), reverse);
+		Quaternion reverse = new Quaternion(camera.getRotation()).conjugate();
+		Vector3 rotated = MathHelper.rotateVectorByQuaternion(l.location(), reverse);
 		
 		// set uniforms
-		program.setUniform("Light.LightPosition", transX, transY, transZ, 0.0f);
-		//program.setUniform("Light.LightPosition", new Vector4f(rotated.x, rotated.y, rotated.z, 0.0f));
+		program.setUniform("Light.LightPosition", rotated.x, rotated.y, rotated.z, 0.0f);
 		program.setUniform("Light.LightIntensity", l.intensity().x, l.intensity().y, l.intensity().z);
 		program.setUniform("Light.LightEnabled", true);
 	}

@@ -1,9 +1,10 @@
 package com.bitwaffle.guts.entities;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Stack;
 
-import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity;
 import com.bitwaffle.guts.entities.entities2d.EntityAddRequest;
 import com.bitwaffle.guts.entities.entities2d.EntityRemoveRequest;
 
@@ -14,11 +15,14 @@ import com.bitwaffle.guts.entities.entities2d.EntityRemoveRequest;
  * @author TranquilMarmot
  */
 public class Entities {
+	@SuppressWarnings("serial")
+	public class EntityHashMap extends HashMap<Integer, Entity>{};
+	
 	/** Number of layers of entities we have */
 	public static final int NUM_LAYERS = 10;
 	
 	/** List of lists to keep track of everything */
-	public EntityLayer[] layers;
+	public EntityHashMap[] layers;
 	
 	/** Used when adding entities to avoid ConcurrentModificationException */
 	private Stack<EntityAddRequest> toAdd2D;
@@ -27,16 +31,16 @@ public class Entities {
 	private Stack<EntityRemoveRequest> toRemove2D;
 	
 	public Entities(){
-		layers = new EntityLayer[NUM_LAYERS];
+		layers = new EntityHashMap[NUM_LAYERS];
 		for(int i = 0; i < layers.length; i++)
-			layers[i] = new EntityLayer();
+			layers[i] = new EntityHashMap();
 		
 		toAdd2D = new Stack<EntityAddRequest>();
 		toRemove2D = new Stack<EntityRemoveRequest>();
 	}
 	
 	/** Add an entity to be rendered/updated */
-	public void addEntity(Entity2D ent){
+	public void addEntity(Entity ent){
 		addEntity(ent, ent.hashCode());
 	}
 	
@@ -45,12 +49,12 @@ public class Entities {
 	 * @param ent Entity to add
 	 * @param hash Hash to add entity with
 	 */
-	public void addEntity(Entity2D ent, int hash){
+	public void addEntity(Entity ent, int hash){
 		toAdd2D.add(new EntityAddRequest(ent, hash));
 	}
 	
 	/** Remove an entity from being rendered/updated */
-	public void removeEntity(Entity2D ent){
+	public void removeEntity(Entity ent){
 		removeEntity(ent, ent.hashCode());
 	}
 	
@@ -59,7 +63,7 @@ public class Entities {
 	 * @param ent Entity to remove
 	 * @param hash Hash of entity to remove
 	 */
-	public void removeEntity(Entity2D ent, int hash){
+	public void removeEntity(Entity ent, int hash){
 		EntityRemoveRequest req = new EntityRemoveRequest();
 		req.hash = hash;
 		req.layer = ent.getLayer();
@@ -76,7 +80,7 @@ public class Entities {
 			handleAddRequest(toAdd2D.pop());
 		
 		// update all entities
-		for(EntityLayer list : layers)
+		for(EntityHashMap list : layers)
 			updateLayer(list, timeStep);
 		
 		// check for any entities to be removed
@@ -86,11 +90,11 @@ public class Entities {
 	
 	/** Add a request to remove an entity from the world */
 	private void handleRemoveRequest(EntityRemoveRequest req){
-		Entity2D ent = layers[req.layer].entities2D.get(req.hash);
+		Entity ent = layers[req.layer].get(req.hash);
 		if(ent != null){
 			ent.cleanup();
 			
-			layers[req.layer].entities2D.remove(ent.hashCode());
+			layers[req.layer].remove(ent.hashCode());
 			
 			ent = null;
 		}
@@ -102,42 +106,42 @@ public class Entities {
 		if(layer > NUM_LAYERS)
 			layer = NUM_LAYERS;
 		
-		layers[layer].entities2D.put(req.hash, req.ent);
+		layers[layer].put(req.hash, req.ent);
 	}
 	
 	/**
 	 * Update a list of entities
 	 * @param timeStep Time passed since last update, in seconds
 	 */
-	private void updateLayer(EntityLayer list, float timeStep){
-		for(Entity2D ent : list.entities2D.values())
+	private void updateLayer(EntityHashMap list, float timeStep){
+		for(Entity ent : list.values())
 			if(ent != null)
 				ent.update(timeStep);
 	}
 	
 	/** Clear every entity from this list */
 	public void clear(){
-		for(EntityLayer l : layers){
-			l.entities2D.clear();
+		for(EntityHashMap l : layers){
+			l.clear();
 		}
 	}
 	
 	/** @return Total number of entities */
 	public int numEntities(){
 		int count = 0;
-		for(EntityLayer l : layers){
-			count += l.entities2D.size();
+		for(EntityHashMap l : layers){
+			count += l.size();
 		}
 		return count;
 	}
 	
 	/** @return An array containing an iterator for each layer */
-	public Iterator<Entity2D>[] getAll2DIterators(){
+	public Iterator<Entity>[] getAll2DIterators(){
 		@SuppressWarnings("unchecked")  //can't have a generic array
-		Iterator<Entity2D>[] its = new Iterator[NUM_LAYERS];
+		Iterator<Entity>[] its = new Iterator[NUM_LAYERS];
 		
 		for(int i = 0; i < NUM_LAYERS; i++)
-			its[i] = layers[i].entities2D.values().iterator();
+			its[i] = layers[i].values().iterator();
 		
 		return its;
 	}

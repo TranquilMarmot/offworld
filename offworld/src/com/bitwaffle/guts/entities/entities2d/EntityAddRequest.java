@@ -7,11 +7,11 @@ package com.bitwaffle.guts.entities.entities2d;
  */
 public class EntityAddRequest {
 	/** Entity being added */
-	public Entity2D ent;
+	public Entity ent;
 	/** Hash to add entity with */
 	public int hash;
 	
-	public EntityAddRequest(Entity2D ent, int hash){
+	public EntityAddRequest(Entity ent, int hash){
 		this.ent = ent;
 		this.hash = hash;
 		ent.setHashCode(hash);

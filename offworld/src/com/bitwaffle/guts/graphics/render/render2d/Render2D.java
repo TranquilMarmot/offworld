@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity;
 import com.bitwaffle.guts.graphics.font.BitmapFont;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D;
@@ -82,7 +82,7 @@ public class Render2D {
 	}
 	
 	/** Prepares the modelview matrix to render an entity */
-	public void prepareToRenderEntity(Entity2D ent){
+	public void prepareToRenderEntity(Entity ent){
 		Vector2 loc = ent.getLocation();
 		float angle = MathHelper.toDegrees(ent.getAngle());
 		

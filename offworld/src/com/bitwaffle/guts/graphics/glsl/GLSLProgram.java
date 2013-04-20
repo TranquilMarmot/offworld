@@ -24,7 +24,7 @@ public class GLSLProgram {
 	/** Whether or not the program has been linked */
 	private boolean linked;
 	
-	/** Contains any error info if any methods return false */
+	/** Contains any debug info if any methods return false */
 	private String logString;
 	
 	/** Used to store matrix before sending it to opengl */
@@ -50,8 +50,8 @@ public class GLSLProgram {
 	
 	/**
 	 * Create a program from a given vertex and fragment shader.
-	 * @param logtag Tag to use for logging any errors that occur
-	 * @return Program with shaders attached and linked, will print any error messages
+	 * @param logtag Tag to use for logging any debugs that occur
+	 * @return Program with shaders attached and linked, will print any debug messages
 	 */
 	public static GLSLProgram getProgram(String vertexShader, String fragmentShader, String logtag){
 		GLSLShader vert = new GLSLShader(GLSLShader.ShaderTypes.VERTEX);
@@ -59,12 +59,12 @@ public class GLSLProgram {
 		try {
 			InputStream vertexStream = Game.resources.openAsset(vertexShader);
 			if (!vert.compileShaderFromStream(vertexStream))
-				Gdx.app.error(logtag, "Error compiling vertex shader! Result: " + vert.log());
+				Gdx.app.debug(logtag, "Error compiling vertex shader! Result: " + vert.log());
 			vertexStream.close();
 			
 			InputStream fragmentStream = Game.resources.openAsset(fragmentShader);
 			if (!frag.compileShaderFromStream(fragmentStream))
-				Gdx.app.error(logtag, "Error compiling fragment shader! Result: " + frag.log());
+				Gdx.app.debug(logtag, "Error compiling fragment shader! Result: " + frag.log());
 			fragmentStream.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -73,7 +73,7 @@ public class GLSLProgram {
 		program.addShader(vert);
 		program.addShader(frag);
 		if (!program.link())
-			Gdx.app.error(logtag, "Error linking program!\n" + program.log());
+			Gdx.app.debug(logtag, "Error linking program!\n" + program.log());
 		return program;
 	}
 	
@@ -82,7 +82,7 @@ public class GLSLProgram {
 		Gdx.gl20.glAttachShader(handle, shader.getHandle());
 	}
 	
-	/** @return Whether or not the program successfully linked. If false is returned, then log() will return the error message. */
+	/** @return Whether or not the program successfully linked. If false is returned, then log() will return the debug message. */
 	public boolean link(){
 		if(linked)
 			return true;
@@ -93,7 +93,7 @@ public class GLSLProgram {
 		
 		logString = Gdx.gl20.glGetProgramInfoLog(handle);
 		
-		// check for any errors while linking
+		// check for any debugs while linking
 		linked = /*linkStatus == GL20.GL_TRUE || linkStatus == 54 || linkStatus == 16 || */logString.equals("") || logString.contains("Link was successful.\n");
 		
 		return linked;
@@ -114,7 +114,7 @@ public class GLSLProgram {
 		Gdx.gl20.glUseProgram(handle);
 	}
 	
-	/** If any method returns false, this will return an error string */
+	/** If any method returns false, this will return an debug string */
 	public String log() { return logString; }
 	
 	/** @return Handle for this program */
@@ -144,7 +144,7 @@ public class GLSLProgram {
 		if(loc >= 0)
 			Gdx.gl20.glUniform2f(loc, x, y);
 		else
-			Gdx.app.error(LOGTAG, "Uniform variable " + name + " not found!");
+			Gdx.app.debug(LOGTAG, "Uniform variable " + name + " not found!");
 	}
 	
 	/** Set a 3f uniform */
@@ -153,7 +153,7 @@ public class GLSLProgram {
 		if(loc >= 0)
 			Gdx.gl20.glUniform3f(loc, x, y, z);
 		else
-			Gdx.app.error(LOGTAG, "Uniform variable " + name + " not found!");
+			Gdx.app.debug(LOGTAG, "Uniform variable " + name + " not found!");
 	}
 	
 	/** Set a 4f uniform */
@@ -162,7 +162,7 @@ public class GLSLProgram {
 		if(loc >= 0)
 			Gdx.gl20.glUniform4f(loc, x, y, z, w);
 		else
-			Gdx.app.error(LOGTAG, "Uniform variable " + name + " not found!");
+			Gdx.app.debug(LOGTAG, "Uniform variable " + name + " not found!");
 	}
 	
 	/** Set a uniform matrix */
@@ -177,7 +177,7 @@ public class GLSLProgram {
 		if(loc >= 0)
 			Gdx.gl20.glUniformMatrix4fv(loc, 1, false, mat4buff);
 		else
-			Gdx.app.error(LOGTAG, "Uniform variable " + name + " not found!");
+			Gdx.app.debug(LOGTAG, "Uniform variable " + name + " not found!");
 	}
 	
 	/** Set a uniform matrix */
@@ -192,7 +192,7 @@ public class GLSLProgram {
 		if(loc >= 0)
 			Gdx.gl20.glUniformMatrix3fv(loc, 1, false, mat3buff);
 		else 
-			Gdx.app.error(LOGTAG, "Uniform variable " + name + " not found!");
+			Gdx.app.debug(LOGTAG, "Uniform variable " + name + " not found!");
 		
 	}
 	
@@ -202,7 +202,7 @@ public class GLSLProgram {
 		if(loc >= 0)
 			Gdx.gl20.glUniform1f(loc, val);
 		else
-			Gdx.app.error(LOGTAG, "Uniform variable " + name + " not found!");
+			Gdx.app.debug(LOGTAG, "Uniform variable " + name + " not found!");
 	}
 	
 	/** Set a single integer uniform */
@@ -211,7 +211,7 @@ public class GLSLProgram {
 		if(loc >= 0)
 			Gdx.gl20.glUniform1i(loc, val);
 		else
-			Gdx.app.error(LOGTAG, "Uniform variable " + name + " not found!");
+			Gdx.app.debug(LOGTAG, "Uniform variable " + name + " not found!");
 	}
 	
 	/** Set a single boolean uniform */
@@ -220,6 +220,6 @@ public class GLSLProgram {
 		if(loc >= 0)
 			Gdx.gl20.glUniform1i(loc, val ? 1 : 0);
 		else
-			Gdx.app.error(LOGTAG, "Uniform variable " + name + " not found!");
+			Gdx.app.debug(LOGTAG, "Uniform variable " + name + " not found!");
 	}
 }

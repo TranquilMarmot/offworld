@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.graphics.GL20;
+import com.esotericsoftware.minlog.Log;
 
 /**
  * Convenience class for handling shaders
@@ -21,7 +22,7 @@ public class GLSLShader {
 	 * OpenGL ES requires some extra definitions in the shader.
 	 * This gets prepended to any shaders being sent to an OpenGL ES context.
 	 */
-	private static final String GLES_PREFIX = "#define mediump float\n\n";
+	private static final String GLES_PREFIX = "precision mediump float;\n\n";
 	
 	/** All the different types of shaders */
 	public enum ShaderTypes {
@@ -57,6 +58,9 @@ public class GLSLShader {
 		ApplicationType type = Gdx.app.getType();
 		if(type == ApplicationType.Android || type == ApplicationType.iOS || type == ApplicationType.WebGL)
 			prefix = GLES_PREFIX;
+		
+		Log.set(Log.LEVEL_ERROR);
+		Log.error("WAT", prefix);
 		
 		try{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stream), 8);

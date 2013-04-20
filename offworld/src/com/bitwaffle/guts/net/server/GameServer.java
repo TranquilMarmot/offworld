@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity;
 import com.bitwaffle.guts.entities.entities2d.EntityRemoveRequest;
 import com.bitwaffle.guts.net.NetRegistrar;
 import com.bitwaffle.guts.net.messages.EntityRoomInfoSender;
@@ -95,7 +95,7 @@ public class GameServer extends Listener {
 		connection.sendUDP(reply);
 	}
 
-	public void entityAddedNotification(Entity2D ent) {
+	public void entityAddedNotification(Entity ent) {
 		// TODO things other than rocks- maybe method in entity?
 		if(ent instanceof BreakableRock){
 			BreakableRock rock = (BreakableRock) ent;
@@ -116,7 +116,7 @@ public class GameServer extends Listener {
 		}
 	}
 
-	public void entityRemovedNotification(Entity2D ent) {
+	public void entityRemovedNotification(Entity ent) {
 		// TODO test this on things besides rocks
 		EntityRemoveRequest req = new EntityRemoveRequest();
 		req.layer = ent.getLayer();

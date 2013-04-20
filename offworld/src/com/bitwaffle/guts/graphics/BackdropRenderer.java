@@ -2,7 +2,7 @@ package com.bitwaffle.guts.graphics;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity;
 import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
 import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.util.MathHelper;
@@ -31,7 +31,7 @@ public class BackdropRenderer implements EntityRenderer{
 		this.color = color;
 	}
 	
-	public void render(Renderer renderer, Entity2D ent, boolean renderDebug){
+	public void render(Renderer renderer, Entity ent, boolean renderDebug){
 		if(windowWidth != Game.windowWidth || windowHeight != Game.windowHeight){
 			windowWidth = Game.windowWidth;
 			windowHeight = Game.windowHeight;

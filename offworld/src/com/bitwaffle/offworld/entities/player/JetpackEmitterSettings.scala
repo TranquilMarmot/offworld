@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2
 import com.bitwaffle.guts.entities.entities2d.EntityRenderer
 import com.bitwaffle.guts.graphics.render.Renderer
 import com.bitwaffle.guts.graphics.render.render2d.Render2D
-import com.bitwaffle.guts.entities.entities2d.Entity2D
+import com.bitwaffle.guts.entities.entities2d.Entity
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.GL20
 import com.bitwaffle.guts.entities.particles.Particle
@@ -39,7 +39,7 @@ class JetpackEmitterSettings(attachedTo: DynamicEntity) extends EmitterSettings 
 	
 	
 	def particleRenderer = new EntityRenderer {
-		override def render(renderer: Renderer, ent: Entity2D, debug: Boolean){
+		override def render(renderer: Renderer, ent: Entity, debug: Boolean){
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 			
@@ -56,7 +56,7 @@ class JetpackEmitterSettings(attachedTo: DynamicEntity) extends EmitterSettings 
 			}
 		}
 		
-		def renderDebug(renderer: Render2D, ent: Entity2D){
+		def renderDebug(renderer: Render2D, ent: Entity){
 			val p = ent.asInstanceOf[Particle]
 			
 			renderer.program.setUniform("vColor", 0.0f, 1.0f, 1.0f, 0.4f);

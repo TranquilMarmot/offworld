@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
-import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity;
 
 /**
  * A room represents a set of entities in a physics world. When a room is set
@@ -21,10 +21,10 @@ public abstract class Room {
 	private float roomWidth, roomHeight;
 	
 	/** List of entities in this room */
-	private ArrayList<Entity2D> entities2D;
+	private ArrayList<Entity> entities2D;
 	
 	/** Used to avoid ConcurrentModificationException */
-	private Stack<Entity2D> entitiesToRemove2D, entitiesToAdd2D;
+	private Stack<Entity> entitiesToRemove2D, entitiesToAdd2D;
 	
 	/** Whether or not this room object is the current room */
 	private boolean isCurrentRoom;
@@ -44,9 +44,9 @@ public abstract class Room {
 		this.roomWidth = roomWidth;
 		this.roomHeight = roomHeight;
 		
-		entities2D = new ArrayList<Entity2D>();
-		entitiesToRemove2D = new Stack<Entity2D>();
-		entitiesToAdd2D = new Stack<Entity2D>();
+		entities2D = new ArrayList<Entity>();
+		entitiesToRemove2D = new Stack<Entity>();
+		entitiesToAdd2D = new Stack<Entity>();
 	}
 	
 	/**
@@ -61,17 +61,17 @@ public abstract class Room {
 	}
 	
 	/** Add an entity to this room */
-	protected void addEntity(Entity2D ent){ entitiesToAdd2D.push(ent); }
+	protected void addEntity(Entity ent){ entitiesToAdd2D.push(ent); }
 	
 	/** Remove an entity from this room */
-	protected void removeEntity(Entity2D ent){ entitiesToRemove2D.push(ent); }
+	protected void removeEntity(Entity ent){ entitiesToRemove2D.push(ent); }
 	
 	/** Add this room to a world */
 	public void addToWorld(Physics physics){
 		// clear the toAdd/toRemove stacks
 		this.update(1.0f / 60.0f);
 		
-		Iterator<Entity2D> it2d = entities2D.iterator();
+		Iterator<Entity> it2d = entities2D.iterator();
 		while(it2d.hasNext())
 			// don't add entities to room since.. well, they're already in here
 			physics.addEntity(it2d.next(), false);
@@ -86,7 +86,7 @@ public abstract class Room {
 		// clear the toAdd/toRemove stacks
 		this.update(1.0f / 60.0f);
 		
-		Iterator<Entity2D> it2d = entities2D.iterator();
+		Iterator<Entity> it2d = entities2D.iterator();
 		while(it2d.hasNext())
 			physics.removeEntity(it2d.next(), false);
 		
