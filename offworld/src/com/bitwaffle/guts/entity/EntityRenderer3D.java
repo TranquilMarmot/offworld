@@ -1,5 +1,6 @@
 package com.bitwaffle.guts.entity;
 
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Quaternion;
 import com.bitwaffle.guts.graphics.render.Renderer;
 
@@ -15,10 +16,10 @@ public abstract class EntityRenderer3D implements EntityRenderer {
 	public float z;
 	
 	/** Rotation of entity */
-	public Quaternion rotation;
+	public Matrix4 rotation;
 	
 	public EntityRenderer3D(){
-		rotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
+		rotation = new Matrix4();
 		z = 0.0f;
 	}
 	

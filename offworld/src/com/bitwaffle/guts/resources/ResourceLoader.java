@@ -25,6 +25,7 @@ import com.bitwaffle.guts.graphics.animation.Animation;
 import com.bitwaffle.guts.graphics.animation.AnimationPart;
 import com.bitwaffle.guts.graphics.animation.Frame;
 import com.bitwaffle.guts.graphics.shapes.model.Model;
+import com.bitwaffle.guts.graphics.shapes.model.ModelPolygon;
 import com.bitwaffle.guts.graphics.shapes.model.ObjParser;
 import com.bitwaffle.guts.graphics.shapes.polygon.Polygon;
 import com.bitwaffle.guts.graphics.shapes.polygon.PolygonLoader;
@@ -370,33 +371,6 @@ public class ResourceLoader {
 				
 				String polyName = polyObj.getString("name");
 				
-				ArrayList<String> renderObjLocs = new ArrayList<String>();
-				ArrayList<String> textureNames = new ArrayList<String>();
-				
-				JSONArray renderArr = polyObj.optJSONArray("render");
-				if(renderArr != null){
-					for(int j = 0; j < renderArr.length(); j++){
-						JSONObject renderObj = renderArr.getJSONObject(j);
-						String renderPath = renderObj.getString("render");
-						renderObjLocs.add(renderPath);
-						
-						String texName = renderObj.getString("texture");
-						textureNames.add(texName);
-						
-					}
-				} else{
-					String singleRenderPath = polyObj.optString("render");
-					renderObjLocs.add(singleRenderPath);
-					String polyTex = polyObj.getString("texture");
-					textureNames.add(polyTex);
-				}
-				
-				
-				
-				String geomPath = polyObj.optString("geom");
-				String debugPath = polyObj.optString("debug");
-				
-				
 				float xScale, yScale;
 				double polyScale = polyObj.optDouble("scale");
 				if(polyScale == Double.NaN){
@@ -415,6 +389,41 @@ public class ResourceLoader {
 					shapeType = Polygon.Types.LOOP;
 				else if(typeStr.equalsIgnoreCase("CHAIN"))
 					shapeType = Polygon.Types.CHAIN;
+				
+				String geomPath = polyObj.optString("geom");
+				String debugPath = polyObj.optString("debug");
+				
+				ArrayList<String> renderObjLocs = new ArrayList<String>();
+				ArrayList<String> textureNames = new ArrayList<String>();
+				
+				JSONArray renderArr = polyObj.optJSONArray("render");
+				String model = polyObj.optString("model");
+				
+				// polygon with a model attached to it (loaded seperately)
+				if(!(model.equals(""))){
+					ModelPolygon poly = PolygonLoader.loadModelPolygon(xScale, yScale, model, geomPath, shapeType, debugPath);
+					Game.resources.polygons.addPolygon(polyName, poly);
+					return;
+					
+				// array of rendering objects
+				} else if(renderArr != null){
+					for(int j = 0; j < renderArr.length(); j++){
+						JSONObject renderObj = renderArr.getJSONObject(j);
+						String renderPath = renderObj.getString("render");
+						renderObjLocs.add(renderPath);
+						
+						String texName = renderObj.getString("texture");
+						textureNames.add(texName);
+						
+					}
+					
+				// single render object
+				} else {
+					String singleRenderPath = polyObj.optString("render");
+					renderObjLocs.add(singleRenderPath);
+					String polyTex = polyObj.getString("texture");
+					textureNames.add(polyTex);
+				}
 				
 				Polygon poly = PolygonLoader.loadPolygon(xScale, yScale, renderObjLocs, textureNames, geomPath, shapeType, debugPath);
 				Game.resources.polygons.addPolygon(polyName, poly);

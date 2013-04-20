@@ -26,7 +26,8 @@
 			"geom": "entities/diamond/diamond-geom.obj",
 			"debug": "entities/diamond/diamond-debug.obj",
 			"type": "polygon",
-			"texture": "diamond"
+			"texture": "diamond",
+			"scale": 4.0
 		}
 	]
 }}

@@ -9,7 +9,8 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.shapes.model.ModelRenderer;
+import com.bitwaffle.guts.graphics.shapes.model.ModelPolygon;
+import com.bitwaffle.guts.graphics.shapes.model.ModelPolygonRenderer;
 import com.bitwaffle.guts.graphics.shapes.polygon.Polygon;
 import com.bitwaffle.guts.graphics.shapes.polygon.PolygonRenderer;
 import com.bitwaffle.guts.physics.Physics;
@@ -65,29 +66,22 @@ public class Room1 extends Room {
 		this.addEntity(bat);
 		
 		
+		ModelPolygon diamondModel = (ModelPolygon)Game.resources.polygons.get("diamond");
 		
 		
 		BodyDef diamondBody = new BodyDef();
 		diamondBody.type = BodyType.DynamicBody;
 		diamondBody.position.set(3.0f, 6.0f);
-		diamondBody.angle = 30.0f;
+		diamondBody.angle = 0.0f;
+		diamondBody.angularVelocity = 1.0f;
+		diamondBody.fixedRotation = false;
 		
 		FixtureDef diamondFixture = new FixtureDef();
-		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(1.0f, 1.0f);
-		diamondFixture.shape = shape;
-		diamondFixture.density = 1.0f;
+		diamondFixture.shape = diamondModel.getShape();
+		diamondFixture.density = 2.0f;
 		
-		/*
-		DynamicEntity diamond = new DynamicEntity(null, 6, diamondBody, diamondFixture);
-		DynamicEntity3D di = new DynamicEntity3D(new Entity3DModelRenderer(Game.resources.models.getModel("diamond")), diamond);
+		DynamicEntity diamond = new DynamicEntity(new ModelPolygonRenderer(diamondModel), 6, diamondBody, diamondFixture);
 		this.addEntity(diamond);
-		this.addEntity(di);
-		*/
-		
-		Entity di = new Entity(new ModelRenderer(Game.resources.models.getModel("diamond")), 6);
-		di.setLocation(new Vector2(3.0f, 6.0f));
-		this.addEntity(di);
 		
 		
 		// create walls

@@ -74,7 +74,7 @@ public class Render3D {
 		tempMatrixArr = new float[16];
 		
 		lights = new ArrayList<Light>();
-		Vector3 lightLoc = new Vector3(0.0f, 10.0f, -10.0f);
+		Vector3 lightLoc = new Vector3(0.0f, 0.0f, 10.0f);
 		Vector3 lightIntensity = new Vector3(0.9f, 0.9f, 0.9f);
 		lights.add(new Light(lightLoc, lightIntensity));
 		
@@ -152,8 +152,12 @@ public class Render3D {
 		translateModelviewToCamera();
 		
 		renderer.modelview.translate(new Vector3(entLoc.x, entLoc.y, rend.z));
-		rend.rotation.toMatrix(tempMatrixArr);
-		renderer.modelview = renderer.modelview.mul(new Matrix4(tempMatrixArr));
+		
+		//renderer.modelview.rotate(0.0f, 0.0f, 1.0f, MathHelper.toDegrees(ent.getAngle()));
+		
+		//Quaternion reverse = new Quaternion(rend.rotation).conjugate();
+		//rend.rotation.toMatrix(tempMatrixArr);
+		renderer.modelview = renderer.modelview.mul(rend.rotation);
 		
 		sendMatrixToShader();
 	}
@@ -173,7 +177,8 @@ public class Render3D {
 		Vector3 rotated = MathHelper.rotateVectorByQuaternion(l.location(), reverse);
 		
 		// set uniforms
-		program.setUniform("Light.LightPosition", rotated.x, rotated.y, rotated.z, 0.0f);
+		//program.setUniform("Light.LightPosition", rotated.x, rotated.y, rotated.z, 0.0f);
+		program.setUniform("Light.LightPosition", l.location().x, l.location().y, l.location().z, 0.0f);
 		program.setUniform("Light.LightIntensity", l.intensity().x, l.intensity().y, l.intensity().z);
 		program.setUniform("Light.LightEnabled", true);
 	}

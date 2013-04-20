@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -11,7 +12,9 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.entity.EntityRenderer;
+import com.bitwaffle.guts.entity.EntityRenderer3D;
 import com.bitwaffle.guts.physics.Physics;
+import com.bitwaffle.guts.util.MathHelper;
 
 /**
  * An {@link Entity} that can interact with the {@link Physics} world.
@@ -29,6 +32,8 @@ public class DynamicEntity extends Entity {
 	private Shape shape;
 	private float density;
 	private boolean isInitialized = false;
+	
+	private float accum = 0.0f; //FIXME super temp
 	
 	/** No-args constructor for kryo only! */
 	public DynamicEntity(){
@@ -110,6 +115,22 @@ public class DynamicEntity extends Entity {
 		if(this.isInitialized && body.isAwake()){
 			this.location.set(body.getPosition());
 			this.angle = body.getAngle();
+			
+			if(this.renderer instanceof EntityRenderer3D){
+				EntityRenderer3D rend3D = (EntityRenderer3D) this.renderer;
+				
+				rend3D.rotation.idt();
+				rend3D.rotation.rotate(0.0f, 0.0f, 1.0f, MathHelper.toDegrees(this.getAngle()));
+				rend3D.rotation.rotate(0.0f, 1.0f, 0.0f, accum += timeStep * 100.0f);
+				
+				//Vector3 angles = MathHelper.getEulerAnglesFromQuaternion(rend3D.rotation);
+				//angles.z = MathHelper.toDegrees(this.getAngle());
+				//rend3D.rotation.setEulerAngles(0.0f, accum += timeStep * 100.0f, MathHelper.toDegrees(this.getAngle()));
+				
+				
+				//rend3D.rotation.setFromAxis(0.0f, 0.0f, 1.0f, MathHelper.toDegrees(this.getAngle()));
+				//rend3D.rotation.setEulerAngles(0.0f, 0.0f, MathHelper.toDegrees(this.getAngle()));
+			}
 		}
 	}
 	

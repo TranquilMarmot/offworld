@@ -12,6 +12,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.graphics.shapes.model.ModelPolygon;
+import com.bitwaffle.guts.graphics.shapes.polygon.Polygon.Types;
 
 /**
  * Loads in obj files to create Polygons
@@ -354,5 +356,29 @@ public class PolygonLoader {
 		}
 		
 		return null;
+	}
+	
+	public static ModelPolygon loadModelPolygon(float xScale, float yScale, String model, String geomPath, Types shapeType, String debugPath){
+		return new PolygonLoader(xScale, yScale).loadModelPolygon(model, geomPath, shapeType, debugPath);
+	}
+
+	public ModelPolygon loadModelPolygon(String model, String collisionObjLoc,
+			Types shapeType, String debugPath) {
+		
+		Buffer debugVertexBuffer = null, debugTexCoordBuffer = null;
+		int debugCount = -1;
+		if(!debugPath.equals("")){
+			parseRenderObj(debugPath);
+			
+			debugVertexBuffer = putVerticesIntoBuffer();
+			debugTexCoordBuffer = putTextureCoordsIntoBuffer();
+			debugCount = count;
+		}
+		
+		Vector2[] geom = null;
+		if(!collisionObjLoc.equals(""))
+			geom = parseCollisionObj(collisionObjLoc);
+		
+		return new ModelPolygon(model, geom, shapeType, debugVertexBuffer, debugTexCoordBuffer, debugCount);
 	}
 }

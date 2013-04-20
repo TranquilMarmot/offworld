@@ -62,19 +62,25 @@ public class Polygon {
 	 * @param vertices List of vertex buffers to use for rendering parts
 	 * @param texCoords List of texture coordinates to use for rendering parts
 	 * @param numIndices List of number of indices to use for rendering parts
+	 */
+	public Polygon(ArrayList<String> textureNames, ArrayList<Buffer> vertices, ArrayList<Buffer> texCoords, ArrayList<Integer> numIndices,
+	               Vector2[] geometry, Types type,
+	               Buffer debugVertBuffer, Buffer debugTexCoordBuffer, int debugCount){
+		this(geometry, type, debugVertBuffer, debugTexCoordBuffer, debugCount);
+		this.textureNames = textureNames;
+		this.vertBuffers = vertices;
+		this.texCoordBuffers = texCoords;
+		this.numIndices = numIndices;
+	}
+	
+	/**
 	 * @param geometry Array of geometry to use for physics data
 	 * @param type Type (from Polygon.Types) of shape in the geometry
 	 * @param debugVertBuffer Buffer full of vertices to use to render debug info
 	 * @param debugTexCoordBuffer Buffer full of texture coordinates to use to render debug info
 	 * @param debugCount Number of indices that debug rendering has
 	 */
-	public Polygon(ArrayList<String> textureNames, ArrayList<Buffer> vertices, ArrayList<Buffer> texCoords, ArrayList<Integer> numIndices,
-	               Vector2[] geometry, Types type,
-	               Buffer debugVertBuffer, Buffer debugTexCoordBuffer, int debugCount){
-		this.textureNames = textureNames;
-		this.vertBuffers = vertices;
-		this.texCoordBuffers = texCoords;
-		this.numIndices = numIndices;
+	public Polygon(Vector2[] geometry, Types type, Buffer debugVertBuffer, Buffer debugTexCoordBuffer, int debugCount){
 		this.geometry = geometry;
 		this.geometryType = type;
 		this.debugVertBuffer = debugVertBuffer;
