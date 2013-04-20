@@ -17,5 +17,16 @@
 			"yScale": 4.0,
 			"zScale": 4.0
 		}
+	],
+	
+	"polygons": [
+		{
+			"name": "diamond",
+			"model": "diamond",
+			"geom": "entities/diamond/diamond-geom.obj",
+			"debug": "entities/diamond/diamond-debug.obj",
+			"type": "polygon",
+			"texture": "diamond"
+		}
 	]
 }}
