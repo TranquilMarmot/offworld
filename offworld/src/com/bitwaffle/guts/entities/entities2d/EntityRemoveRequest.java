@@ -5,7 +5,7 @@ package com.bitwaffle.guts.entities.entities2d;
  * 
  * @author TranquilMarmot
  */
-public class Entity2DRemoveRequest {
+public class EntityRemoveRequest {
 	/** Layer to remove entity from */
 	public int layer;
 	/** Hash of entity being removed */

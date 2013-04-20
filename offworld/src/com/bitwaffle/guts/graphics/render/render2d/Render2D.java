@@ -1,9 +1,7 @@
 package com.bitwaffle.guts.graphics.render.render2d;
 
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
@@ -69,29 +67,18 @@ public class Render2D {
 		font = new BitmapFont();
 	}
 	
-	/** Sets up the projection matrix with an orthographic projection for drawing things in world coordinates */
-	public void setUpProjectionOrthoWorldCoords(){
+	public void switchTo2DWorldCoords(){
+		program.use();
+		Gdx.gl20.glDisable(GL20.GL_DEPTH_TEST);
+		
 		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1000);
 	}
 	
-	/** Sets up the projection matrix with an orthographic projection for drawing things in screen coordinates */
-	public void setUpProjectionScreenCoords(){
+	public void switchTo2DScreenCoords(){
+		program.use();
+		Gdx.gl20.glDisable(GL20.GL_DEPTH_TEST);
+		
 		MathHelper.orthoM(projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1000);
-	}
-	
-	/** @param it Iterator that goes through Entity objects needing to be rendered */
-	public void renderEntities(Iterator<? extends Entity2D> it){
-		while(it.hasNext()){
-			try{
-				Entity2D ent = it.next();
-				if(ent != null && ent.renderer != null){
-					prepareToRenderEntity(ent);
-					ent.renderer.render(this, ent, drawDebug);
-				}
-			} catch(ConcurrentModificationException e){
-				break;
-			}
-		}
 	}
 	
 	/** Prepares the modelview matrix to render an entity */

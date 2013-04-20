@@ -5,15 +5,15 @@ import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.CircleEntity;
 import com.bitwaffle.guts.entities.entities2d.Entity2D;
-import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
+import com.bitwaffle.guts.graphics.render.Renderer;
 
 /**
  * Renders an {@link CircleEntity}
  * 
  * @author TranquilMarmot
  */
-public class CircleRenderer implements Entity2DRenderer {
+public class CircleRenderer implements EntityRenderer {
 	/** Color to render at, rgba */
 	private float[] color;
 	
@@ -25,19 +25,19 @@ public class CircleRenderer implements Entity2DRenderer {
 		this.color = color;
 	}
 	
-	public void render(Render2D renderer, Entity2D ent, boolean renderDebug) {
+	public void render(Renderer renderer, Entity2D ent, boolean renderDebug) {
 		CircleEntity circ = (CircleEntity) ent;
 		
 		if(renderDebug)
 			renderDebug(renderer, ent);
 		else{
-			renderer.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
+			renderer.render2D.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
 			Game.resources.textures.bindTexture(textureName);
-			renderer.circle.render(circ.getRadius(), false, false);
+			renderer.render2D.circle.render(circ.getRadius(), false, false);
 		}
 	}
 
-	public void renderDebug(Render2D renderer, Entity2D ent) {
+	public void renderDebug(Renderer renderer, Entity2D ent) {
 		CircleEntity circ = (CircleEntity) ent;
 		Game.resources.textures.bindTexture("blank");
 		
@@ -47,11 +47,11 @@ public class CircleRenderer implements Entity2DRenderer {
 		col[2] = 0.0f;
 		col[3] = 0.2f;
 		
-		renderer.program.setUniform("vColor", col[0], col[1], col[2], col[3]);
+		renderer.render2D.program.setUniform("vColor", col[0], col[1], col[2], col[3]);
 		
 		Gdx.gl20.glEnable(GL20.GL_BLEND);
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_DST_COLOR);
-		renderer.circle.render(circ.getRadius(), false, false);
+		renderer.render2D.circle.render(circ.getRadius(), false, false);
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 	}
 }

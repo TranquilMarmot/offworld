@@ -15,7 +15,7 @@ import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
  */
 public class Entity2D {
 	/** EntityRenderer used to draw this entity */
-	public Entity2DRenderer renderer;
+	public EntityRenderer renderer;
 	
 	/** Current location of entity */
 	protected Vector2 location;
@@ -37,19 +37,19 @@ public class Entity2D {
 		angle = 0.0f;
 	}
 	
-	public Entity2D(Entity2DRenderer renderer, int layer){
+	public Entity2D(EntityRenderer renderer, int layer){
 		this.renderer = renderer;
 		this.layer = layer;
 		location = new Vector2();
 		angle = 0.0f;
 	}
 	
-	public Entity2D(Entity2DRenderer renderer, int layer, Vector2 location){
+	public Entity2D(EntityRenderer renderer, int layer, Vector2 location){
 		this(renderer, layer);
 		this.location = location;
 	}
 	
-	public Entity2D(Entity2DRenderer renderer, int layer, Vector2 location, float angle){
+	public Entity2D(EntityRenderer renderer, int layer, Vector2 location, float angle){
 		this(renderer, layer, location);
 		this.angle = angle;
 	}

@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.net;
 
-import com.bitwaffle.guts.entities.entities2d.Entity2DRemoveRequest;
+import com.bitwaffle.guts.entities.entities2d.EntityRemoveRequest;
 import com.bitwaffle.guts.net.messages.PlayerCreateMessage;
 import com.bitwaffle.guts.net.messages.PlayerUpdateMessage;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateMessage;
@@ -25,7 +25,7 @@ public class NetRegistrar {
 		kryo.register(BreakableRockCreateMessage.class);
 		kryo.register(DynamicEntityUpdateMessage.class);
 		kryo.register(EntityUpdateMessage.class);
-		kryo.register(Entity2DRemoveRequest.class);
+		kryo.register(EntityRemoveRequest.class);
 		kryo.register(PlayerCreateMessage.class);
 	}
 }

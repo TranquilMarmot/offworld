@@ -3,11 +3,9 @@ package com.bitwaffle.guts.gui.console;
 import java.util.StringTokenizer;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.EntityLayer;
 import com.bitwaffle.guts.entities.entities2d.Entity2D;
-import com.bitwaffle.guts.entities.entities3d.Entity3D;
 import com.bitwaffle.guts.net.NetConsoleCommands;
 import com.bitwaffle.guts.physics.PhysicsHelper;
 
@@ -189,13 +187,6 @@ class ListCommand implements Command{
 		for(Entity2D ent : layer.entities2D.values()){
 			Vector2 loc = ent.getLocation();
 			Game.out.println(ent.getClass().getCanonicalName() + " | x: " + loc.x + " y: " + loc.y + " l: " + ent.getLayer() + " h: " + ent.hashCode());
-		}
-		
-		Game.out.println("3D Entities:");
-		for(Entity3D ent : layer.entities3D.values()){
-			Vector3 loc = ent.location();
-			Game.out.println(ent.getClass().getCanonicalName() + " | x: " + loc.x + " y: " + loc.y + " z: " + loc.z + " l: " + ent.getLayer() + " h: " + ent.hashCode());
-			
 		}
 	}
 	

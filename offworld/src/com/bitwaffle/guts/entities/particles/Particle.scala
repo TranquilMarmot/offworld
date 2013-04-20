@@ -2,7 +2,7 @@ package com.bitwaffle.guts.entities.particles
 
 import com.bitwaffle.guts.entities.dynamic.BoxEntity
 import com.badlogic.gdx.physics.box2d.BodyDef
-import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer
+import com.bitwaffle.guts.entities.entities2d.EntityRenderer
 import com.badlogic.gdx.physics.box2d.FixtureDef
 import com.bitwaffle.guts.Game
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity
@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Vector2
 
 /** A particle that comes from an emitter */
 class Particle(
-		renderer: Entity2DRenderer,
+		renderer: EntityRenderer,
 		layer: Int,
 		bodyDef: BodyDef,
 		width: Float, height: Float,

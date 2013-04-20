@@ -3,7 +3,8 @@ package com.bitwaffle.offworld.entities.player
 import com.bitwaffle.guts.entities.particles.EmitterSettings
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity
 import com.badlogic.gdx.math.Vector2
-import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer
+import com.bitwaffle.guts.entities.entities2d.EntityRenderer
+import com.bitwaffle.guts.graphics.render.Renderer
 import com.bitwaffle.guts.graphics.render.render2d.Render2D
 import com.bitwaffle.guts.entities.entities2d.Entity2D
 import com.badlogic.gdx.Gdx
@@ -37,20 +38,20 @@ class JetpackEmitterSettings(attachedTo: DynamicEntity) extends EmitterSettings 
 	def particleRestitution = 0.2f
 	
 	
-	def particleRenderer = new Entity2DRenderer {
-		override def render(renderer: Render2D, ent: Entity2D, debug: Boolean){
+	def particleRenderer = new EntityRenderer {
+		override def render(renderer: Renderer, ent: Entity2D, debug: Boolean){
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 			
-			if(debug) renderDebug(renderer, ent)
+			if(debug) renderDebug(renderer.render2D, ent)
 			else{
 				val p = ent.asInstanceOf[Particle]
 				
-				renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 0.75f);
+				renderer.render2D.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 0.75f);
 				//Gdx.gl20.glEnable(GL20.GL_BLEND);
 				//Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_SRC_ALPHA);
 				Game.resources.textures.bindTexture("particle-fire");
-				renderer.quad.render(p.getWidth, p.getHeight);
+				renderer.render2D.quad.render(p.getWidth, p.getHeight);
 				//Gdx.gl20.glDisable(GL20.GL_BLEND);
 			}
 		}

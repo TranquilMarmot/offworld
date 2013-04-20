@@ -6,15 +6,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.entities2d.Entity2D;
-import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
+import com.bitwaffle.guts.graphics.render.Renderer;
 
 /**
  * Renders a {@link Polygon}
  * 
  * @author TranquilMarmot
  */
-public class PolygonRenderer implements Entity2DRenderer {
+public class PolygonRenderer implements EntityRenderer {
 	/** Polygon that this renderer is rendering */
 	private Polygon poly;
 	
@@ -46,25 +46,25 @@ public class PolygonRenderer implements Entity2DRenderer {
 	
 	
 	@Override
-	public void render(Render2D renderer, Entity2D ent, boolean renderDebug) {
+	public void render(Renderer renderer, Entity2D ent, boolean renderDebug) {
 		// grab handles if we don't have them
 		if(positionHandle == null)
-			positionHandle = renderer.program.getAttribLocation("vPosition");
+			positionHandle = renderer.render2D.program.getAttribLocation("vPosition");
 		if(texCoordHandle == null)
-			texCoordHandle = renderer.program.getAttribLocation("vTexCoord");
+			texCoordHandle = renderer.render2D.program.getAttribLocation("vTexCoord");
 		
 		if(renderDebug)
 			renderDebug(renderer, ent);
 		else{
-			renderer.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
+			renderer.render2D.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
 			
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 	        
 	        // only scale if necessary
 	        if(scale != 1.0f){
-		        renderer.modelview.scale(scale, scale, 1.0f);
-		        renderer.sendMatrixToShader();
+		        renderer.render2D.modelview.scale(scale, scale, 1.0f);
+		        renderer.render2D.sendMatrixToShader();
 	        }
 	        
 			Gdx.gl20.glEnableVertexAttribArray(positionHandle);
@@ -92,18 +92,18 @@ public class PolygonRenderer implements Entity2DRenderer {
 		}
 	}
 	
-	private void renderDebug(Render2D renderer, Entity2D ent){
+	private void renderDebug(Renderer renderer, Entity2D ent){
 		Buffer debugVertBuffer = poly.getDebugVertBuffer(), debugTexCoordBuffer = poly.getDebugTexCoordBuffer();
 		if(debugVertBuffer != null && debugTexCoordBuffer != null){
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_DST_COLOR);
 			
-			renderer.program.setUniform("vColor", 0.0f, 1.0f, 1.0f, 0.4f);
+			renderer.render2D.program.setUniform("vColor", 0.0f, 1.0f, 1.0f, 0.4f);
 			
 	        // only scale if necessary
 	        if(scale != 1.0f){
-		        renderer.modelview.scale(scale, scale, 1.0f);
-		        renderer.sendMatrixToShader();
+		        renderer.render2D.modelview.scale(scale, scale, 1.0f);
+		        renderer.render2D.sendMatrixToShader();
 	        }
 			
 			// bind blank texture

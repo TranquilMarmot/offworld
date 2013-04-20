@@ -13,7 +13,6 @@ import com.bitwaffle.guts.entities.Entities;
 import com.bitwaffle.guts.entities.EntityLayer;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.entities.entities2d.Entity2D;
-import com.bitwaffle.guts.entities.entities3d.Entity3D;
 import com.bitwaffle.guts.physics.callbacks.FirstHitQueryCallback;
 
 /**
@@ -148,17 +147,6 @@ public class Physics {
 			toInitialize.push((DynamicEntity)ent);
 	}
 	
-	public void addEntity(Entity3D ent, int hash, boolean addToCurrentRoom){
-		entities.addEntity(ent, hash);
-		
-		if(addToCurrentRoom && currentRoom != null)
-			currentRoom.addEntity(ent);
-	}
-	
-	public void addEntity(Entity3D ent, boolean addToCurrentRoom){
-		addEntity(ent, ent.hashCode(), addToCurrentRoom);
-	}
-	
 	public void removeEntity(Entity2D ent, boolean removeFromCurrentRoom){
 		this.removeEntity(ent, ent.hashCode(), removeFromCurrentRoom);
 	}
@@ -179,20 +167,6 @@ public class Physics {
 			Game.net.server.entityRemovedNotification(ent);
 	}
 	
-	public void removeEntity(Entity3D ent, int hash, boolean removeFromCurrentRoom){
-		entities.removeEntity(ent, hash);
-		
-		if(removeFromCurrentRoom && currentRoom != null)
-			currentRoom.removeEntity(ent);
-		
-		if(Game.net.server != null)
-			Game.net.server.entityRemovedNotification(ent);
-	}
-	
-	public void removeEntity(Entity3D ent, boolean removeFromCurrentRoom){
-		removeEntity(ent, ent.hashCode(), removeFromCurrentRoom);
-	}
-	
 	/**
 	 * Get an entity from a given layer with a given hash
 	 * @param layer Layer to get entity from
@@ -201,10 +175,6 @@ public class Physics {
 	 */
 	public Entity2D get2DEntity(int layer, int hash){
 		return entities.layers[layer].entities2D.get(hash);
-	}
-	
-	public Entity3D get3DEntity(int layer, int hash){
-		return entities.layers[layer].entities3D.get(hash);
 	}
 	
 	/**
@@ -236,8 +206,6 @@ public class Physics {
 		
 		for(EntityLayer layer : entities.layers){
 			for(Entity2D ent : layer.entities2D.values())
-				this.removeEntity(ent, false);
-			for(Entity3D ent : layer.entities3D.values())
 				this.removeEntity(ent, false);
 		}
 		

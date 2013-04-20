@@ -3,7 +3,7 @@ package com.bitwaffle.guts.entities.passive;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.entities2d.Entity2D;
-import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer;
+import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
 
 /**
  * A decal that disappears after a certain time period
@@ -22,7 +22,7 @@ public class Decal extends Entity2D{
 	/**
 	 * @param timeToLive How long the decal will live for
 	 */
-	public Decal(Entity2DRenderer renderer, int layer, Vector2 location, float rotation, float timeToLive){
+	public Decal(EntityRenderer renderer, int layer, Vector2 location, float rotation, float timeToLive){
 		super(renderer, layer, location, rotation);
 		this.timeToLive = timeToLive;
 		timeLived = 0.0f;

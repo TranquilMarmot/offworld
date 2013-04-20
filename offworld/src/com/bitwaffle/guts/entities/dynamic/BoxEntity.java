@@ -3,7 +3,7 @@ package com.bitwaffle.guts.entities.dynamic;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.bitwaffle.guts.entities.entities2d.Entity2DRenderer;
+import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
 import com.bitwaffle.guts.physics.CollisionFilters;
 
 /**
@@ -26,7 +26,7 @@ public class BoxEntity extends DynamicEntity {
 	 * @param height Height for rendering
 	 * @param color Color of box, 4 floats, rgba
 	 */
-	public BoxEntity(Entity2DRenderer renderer, int layer, BodyDef bodyDef, float width, float height, FixtureDef fixtureDef){
+	public BoxEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, float width, float height, FixtureDef fixtureDef){
 		super(renderer, layer, bodyDef, fixtureDef);
 		this.width = width;
 		this.height = height;
@@ -38,7 +38,7 @@ public class BoxEntity extends DynamicEntity {
 	 * @param density How dense the box is
 	 * @param color Color of box, 4 floats, rgba
 	 */
-	public BoxEntity(Entity2DRenderer renderer, int layer, BodyDef bodyDef, float width, float height, float density){
+	public BoxEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, float width, float height, float density){
 		super(renderer, layer, bodyDef, getBoxShape(width, height, density));
 		this.width = width;
 		this.height = height;

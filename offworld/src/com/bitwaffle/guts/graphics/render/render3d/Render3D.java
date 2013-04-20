@@ -11,7 +11,8 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities3d.Entity3D;
+import com.bitwaffle.guts.entities.entities2d.Entity2D;
+import com.bitwaffle.guts.entities.entities2d.Entity3D;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.shapes.model.Material;
 import com.bitwaffle.guts.util.MathHelper;
@@ -44,8 +45,6 @@ private static final String LOGTAG = "Render3D";
 	/** The modelview and projection matrices*/
 	public Matrix4 modelview, projection;
 	
-	private Matrix4 oldModelview;
-	
 	private Matrix3 normal;
 	
 	private float[] tempMatrixArr;
@@ -61,7 +60,6 @@ private static final String LOGTAG = "Render3D";
 		
 		projection = new Matrix4();
 		modelview = new Matrix4();
-		oldModelview = new Matrix4();
 		normal = new Matrix3();
 		tempMatrixArr = new float[16];
 		
@@ -94,7 +92,7 @@ private static final String LOGTAG = "Render3D";
 		program.setUniform("Material.Shininess", DEFAULT_SHINY);
 	}
 	
-	public void setUp3DRender(){
+	public void switchTo3DRender(){
 		program.use();
 		
 		useDefaultMaterial();
@@ -103,6 +101,7 @@ private static final String LOGTAG = "Render3D";
 		//MathHelper.perspective(projection, fov, aspect, 1.0f, drawDistance);
 		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, drawDistance);
 		
+		Gdx.gl20.glEnable(GL20.GL_DEPTH_TEST);
 		Gdx.gl20.glDisable(GL20.GL_BLEND); 
 	}
 	
@@ -130,38 +129,20 @@ private static final String LOGTAG = "Render3D";
 		program.setUniform("NormalMatrix", normal);
 	}
 	
-	public void renderEntities(Iterator<Entity3D> it){
+	public void prepareToRenderEntity(Entity3D ent){
+		Vector3 loc = ent.get3DLocation();
+		Quaternion rot = ent.getRotation();
+		
+		modelview.idt();
 		translateModelviewToCamera();
 		
-		program.setUniform("Light.LightEnabled", true);
-		
-		while(it.hasNext()){
-			try{
-				Entity3D ent = it.next();
-				if(ent != null && ent.renderer != null){
-					prepareToRenderEntity(ent);
-					ent.renderer.render(this, ent);
-				}
-			} catch(ConcurrentModificationException e){
-				break;
-			}
-		}
-	}
-	
-	public void prepareToRenderEntity(Entity3D ent){
-		oldModelview.set(modelview);
-		
-		modelview.translate(ent.location());
-		ent.rotation().toMatrix(tempMatrixArr);
+		modelview.translate(loc);
+		rot.toMatrix(tempMatrixArr);
 		modelview = modelview.mul(new Matrix4(tempMatrixArr));
-		//System.out.println(modelview);
 		
 		sendMatrixToShader();
-		ent.renderer.render(this, ent);
-		
-		
-		modelview.set(oldModelview);
 	}
+	
 	
 	/**
 	 * Sets up lights for rendering

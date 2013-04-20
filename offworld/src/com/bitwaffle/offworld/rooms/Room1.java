@@ -9,7 +9,6 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
 import com.bitwaffle.guts.entities.entities2d.Entity2D;
-import com.bitwaffle.guts.entities.entities3d.DynamicEntity3D;
 import com.bitwaffle.guts.entities.entities3d.Entity3DModelRenderer;
 import com.bitwaffle.guts.graphics.shapes.polygon.Polygon;
 import com.bitwaffle.guts.graphics.shapes.polygon.PolygonRenderer;
@@ -79,10 +78,12 @@ public class Room1 extends Room {
 		diamondFixture.shape = shape;
 		diamondFixture.density = 1.0f;
 		
+		/*
 		DynamicEntity diamond = new DynamicEntity(null, 6, diamondBody, diamondFixture);
 		DynamicEntity3D di = new DynamicEntity3D(new Entity3DModelRenderer(Game.resources.models.getModel("diamond")), diamond);
 		this.addEntity(diamond);
 		this.addEntity(di);
+		*/
 		
 		
 		// create walls

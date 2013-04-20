@@ -5,13 +5,13 @@ package com.bitwaffle.guts.entities.entities2d;
  * 
  * @author TranquilMarmot
  */
-public class Entity2DAddRequest {
+public class EntityAddRequest {
 	/** Entity being added */
 	public Entity2D ent;
 	/** Hash to add entity with */
 	public int hash;
 	
-	public Entity2DAddRequest(Entity2D ent, int hash){
+	public EntityAddRequest(Entity2D ent, int hash){
 		this.ent = ent;
 		this.hash = hash;
 		ent.setHashCode(hash);
