@@ -149,10 +149,10 @@ public abstract class Game implements ApplicationListener {
 				if(physics != null)
 					physics.update(FIXED_TIMESTEP);
 			
-				if(renderer.render2D.camera != null)
-					renderer.render2D.camera.update(FIXED_TIMESTEP);
-				if(renderer.render3D.camera != null)
-					renderer.render3D.camera.update(FIXED_TIMESTEP);
+				if(renderer.r2D.camera != null)
+					renderer.r2D.camera.update(FIXED_TIMESTEP);
+				if(renderer.r3D.camera != null)
+					renderer.r3D.camera.update(FIXED_TIMESTEP);
 			}
 			
 			// GUI gets updated even if we're not paused

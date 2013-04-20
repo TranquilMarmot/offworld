@@ -2,7 +2,7 @@ package com.bitwaffle.offworld.interfaces;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 
 /**
  * Something that can shoot at other things
@@ -26,5 +26,5 @@ public interface Firearm {
 	
 	public Vector2 getTipOffset();
 	
-	public void render(Render2D renderer);
+	public void render(Renderer renderer);
 }

@@ -3,7 +3,7 @@ package com.bitwaffle.guts.gui.states.titlescreen.buttons;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.TextButton;
 import com.bitwaffle.guts.physics.PhysicsHelper;
@@ -55,7 +55,7 @@ public class StartGameButton extends TextButton {
 	protected void onDrag(float dx, float dy){}
 	
 	@Override
-	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
+	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
 		Gdx.gl20.glEnable(GL20.GL_BLEND);
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_SRC_COLOR);
 		
@@ -67,7 +67,7 @@ public class StartGameButton extends TextButton {
 			a = 1.0f;
 		else if(this.isSelected())
 			a = 0.75f;
-		renderer.program.setUniform("vColor", r, g, b, a);
+		renderer.r2D.setColor(r, g, b, a);
 
 		super.renderBackground(renderer, flipHorizontal, flipVertical);		
 		super.renderText(renderer, flipHorizontal, flipVertical);

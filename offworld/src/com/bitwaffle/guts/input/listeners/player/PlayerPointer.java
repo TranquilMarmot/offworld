@@ -22,10 +22,10 @@ public class PlayerPointer {
 	}
 	
 	public void down(int pointerID, float x, float y){
-		if(Game.renderer.render2D.camera != null && Game.renderer.render2D.camera.currentMode() == Camera2D.Modes.FOLLOW && 
+		if(Game.renderer.r2D.camera != null && Game.renderer.r2D.camera.currentMode() == Camera2D.Modes.FOLLOW && 
 			player != null && !player.isShooting()
 			&& !Game.gui.hasSelectedButton() && (Game.gui.buttonAt(x, y) == null))
-				player.beginShooting(MathHelper.toWorldSpace(x, y, Game.renderer.render2D.camera));
+				player.beginShooting(MathHelper.toWorldSpace(x, y, Game.renderer.r2D.camera));
 	}
 
 	public void up(float x, float y){
@@ -37,8 +37,8 @@ public class PlayerPointer {
 	public void move(float x, float y){
 		Button buttonAt = Game.gui.buttonAt(x, y);
 		if(player.isShooting() && (buttonAt == null || !buttonAt.isDown()))
-			player.setTarget(MathHelper.toWorldSpace(x, y, Game.renderer.render2D.camera));
+			player.setTarget(MathHelper.toWorldSpace(x, y, Game.renderer.r2D.camera));
 		else if(buttonAt == null)
-			player.beginShooting(MathHelper.toWorldSpace(x, y, Game.renderer.render2D.camera));
+			player.beginShooting(MathHelper.toWorldSpace(x, y, Game.renderer.r2D.camera));
 	}
 }

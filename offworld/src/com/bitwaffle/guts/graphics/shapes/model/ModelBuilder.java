@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.BufferUtils;
  * {@link Model} from calling <code>makeModel</code>
  * 
  * @author TranquilMarmot
- * @see ModelLoader
+ * @see ObjParser
  */
 public class ModelBuilder {
 	/** the vertices of the model */
@@ -35,9 +35,7 @@ public class ModelBuilder {
 	/** max and min values for the model being built */
 	public float maxX, minX, maxY, minY, maxZ, minZ = 0.0f;
 	
-	/**
-	 * See {@link ModelPart}
-	 */
+	/** See {@link ModelPart} */
 	private int currentIndex = 0, count = 0;
 	/** material to use for current ModelPart*/
 	private Material currentMaterial;
@@ -48,9 +46,6 @@ public class ModelBuilder {
 	/** Whether or not we're in the middle of making a ModelPart (endModelPart hasn't been called after beginModelPart) */
 	private boolean makingModelPart = false;
 
-	/**
-	 * ModelBuilder initializer
-	 */
 	public ModelBuilder() {
 		/*
 		 * We have to add a blank element to the beginning of each list, as the obj
@@ -75,12 +70,7 @@ public class ModelBuilder {
 		modelParts = new ArrayList<ModelPart>();
 	}
 
-	/**
-	 * Add a vertex to the model being built
-	 * 
-	 * @param vertex
-	 *            The vertex to add
-	 */
+	/** Add a vertex to the model being built */
 	public void addVertex(float[] vertex) {
 		// check for max and min values
 		if(vertex[0] > maxX)
@@ -104,8 +94,6 @@ public class ModelBuilder {
 	/**
 	 * Add vertex indices to the model being built. Automatically splits quads
 	 * into triangles for simplicity.
-	 * 
-	 * @param indices The indices to add
 	 */
 	public void addVertexIndices(int[] indices) {
 		// add if it's just a triangle
@@ -147,17 +135,11 @@ public class ModelBuilder {
 			// increase the count of indices for the current model part by 6 (two triangle)
 			count += 6;
 		} else {
-			System.out
-					.println("Error! Array not a triangle or a quad! (ModelBuilder)");
+			System.out.println("Error! Array not a triangle or a quad! (ModelBuilder)");
 		}
 	}
 
-	/**
-	 * Add a normal to the model being built.
-	 * 
-	 * @param vertex
-	 *            The vertex to add
-	 */
+	/** Add a normal to the model being built. */
 	public void addNormal(float[] vertex) {
 		normals.add(vertex);
 	}
@@ -165,8 +147,6 @@ public class ModelBuilder {
 	/**
 	 * Add normal indices to the model being built. Automatically splits quads
 	 * into triangles for simplicity.
-	 * 
-	 * @param indices The indices to add
 	 */
 	public void addNormalIndices(int[] indices) {
 		// add if it's just a triangle
@@ -188,15 +168,11 @@ public class ModelBuilder {
 
 			normalIndices.add(tri2);
 		} else {
-			System.out
-					.println("Error! Array not a triangle or a quad! (ModelBuilder)");
+			System.out.println("Error! Array not a triangle or a quad! (ModelBuilder)");
 		}
 	}
 
-	/**
-	 * Add texture coordinates to the model being built. Only 2D texture coordinates are supported right now.
-	 * @param point The texture coordinates to add
-	 */
+	/** Add texture coordinates to the model being built. Only 2D texture coordinates are supported right now. */
 	public void addTextureCoords(float[] point) {
 		textureCoords.add(point);
 	}
@@ -204,7 +180,6 @@ public class ModelBuilder {
 	/**
 	 * Add texture coordinate indices to the model being built. Automatically splits quads
 	 * into triangles for simplicity.
-	 * @param indices The indices to add
 	 */
 	public void addTetxureIndices(int[] indices) {
 		if (indices.length == 3)
@@ -224,8 +199,7 @@ public class ModelBuilder {
 
 			textureIndices.add(tri2);
 		} else {
-			System.out
-					.println("Error! Array not a triangle or a quad! (ModelBuilder)");
+			System.out.println("Error! Array not a triangle or a quad! (ModelBuilder)");
 		}
 	}
 
@@ -238,14 +212,7 @@ public class ModelBuilder {
 		if(makingModelPart){
 			endModelPart();
 		}
-		return fillVertexArray(modelParts, texture);
-	}
-	
-	/**
-	 * Fills an array buffer with the given data
-	 * @return The vertex array object handle
-	 */
-	private Model fillVertexArray(ArrayList<ModelPart> modelParts, String texture){
+		
 		// create buffers and fill them with data
 		ByteBuffer vertBuffer = BufferUtils.newByteBuffer(vertexIndices.size() * 9 * 4);
 		ByteBuffer normBuffer = BufferUtils.newByteBuffer(normalIndices.size() * 9 * 4);
@@ -328,9 +295,7 @@ public class ModelBuilder {
 		makingModelPart = true;
 	}
 	
-	/**
-	 * Ends the current model part
-	 */
+	/** Ends the current model part */
 	public void endModelPart(){
 		// add the model part
 		modelParts.add(new ModelPart(currentMaterial, currentIndex, count));
@@ -343,9 +308,7 @@ public class ModelBuilder {
 		makingModelPart = false;
 	}
 	
-	/**
-	 * @return Whether or not a model part is being made right now
-	 */
+	/** @return Whether or not a model part is being made right now */
 	public boolean isMakingModelPart(){
 		return makingModelPart;
 	}

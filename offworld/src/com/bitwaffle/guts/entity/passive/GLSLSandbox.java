@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.entities.passive;
+package com.bitwaffle.guts.entity.passive;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,8 +8,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity;
-import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
+import com.bitwaffle.guts.entity.Entity;
+import com.bitwaffle.guts.entity.EntityRenderer;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.glsl.GLSLShader;
 import com.bitwaffle.guts.graphics.render.Renderer;
@@ -103,7 +103,7 @@ public class GLSLSandbox extends Entity {
 			Gdx.gl20.glDisableVertexAttribArray(positionHandle);
 			
 			// go back to normal renderer program
-			renderer.render2D.program.use();
+			renderer.r2D.program.use();
 		}
 		
 		/**

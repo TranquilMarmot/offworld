@@ -1,8 +1,8 @@
-package com.bitwaffle.guts.entities.dynamic;
+package com.bitwaffle.guts.entity.dynamic;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
+import com.bitwaffle.guts.entity.EntityRenderer;
 
 /**
  * A circle-shaped {@link DynamicEntity}

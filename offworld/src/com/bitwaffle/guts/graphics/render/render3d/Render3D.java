@@ -10,19 +10,31 @@ import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity;
-import com.bitwaffle.guts.entities.entities2d.EntityRenderer3D;
+import com.bitwaffle.guts.entity.Entity;
+import com.bitwaffle.guts.entity.EntityRenderer3D;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
+import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.graphics.shapes.model.Material;
 import com.bitwaffle.guts.util.MathHelper;
 
+/**
+ * Handles rendering things in THREEEE DIMMEEEENSIONS!
+ * 
+ * @author TranquilMarmot
+ */
 public class Render3D {
-private static final String LOGTAG = "Render3D";
+	private static final String LOGTAG = "Render3D";
 	
-	/** Default shaders to use */
+	/** Shader files to use */
 	private static final String
 		VERTEX_SHADER = "shaders/3d.vert",
 		FRAGMENT_SHADER = "shaders/3d.frag";
+	
+	/** Names of attributes in shaders */
+	private static final String
+		POSITION_ATTRIB = "VertexPosition",
+		TEXCOORD_ATTRIB = "VertexTexCoord",
+		NORMAL_ATTRIB = "VertexNormal";
 	
 	/** Default materials */
 	private static final float[]
@@ -32,8 +44,8 @@ private static final String LOGTAG = "Render3D";
 	/** Default shininess of material */
 	private static final float DEFAULT_SHINY = 50.0f;
 	
-	/** Whether or not to call every entity's debug drawing method */
-	public boolean drawDebug = false;
+	/** Renderer owning this 3D renderer */
+	private Renderer renderer;
 	
 	/** Camera for describing how the scene should be looked at */
 	public Camera3D camera;
@@ -41,11 +53,10 @@ private static final String LOGTAG = "Render3D";
 	/** The program to use for 2D rendering */
 	public GLSLProgram program;
 	
-	/** The modelview and projection matrices*/
-	public Matrix4 modelview, projection;
-	
+	/** Matrix for normal calculations (same as modelview, without rotations) */
 	private Matrix3 normal;
 	
+	/** Temporary array for storing matrix data */
 	private float[] tempMatrixArr;
 	
 	/** Draw distance and field-of-view to use for rendering */
@@ -54,11 +65,11 @@ private static final String LOGTAG = "Render3D";
 	/** List of lights */
 	private ArrayList<Light> lights;
 	
-	public Render3D(){
+	public Render3D(Renderer renderer){
+		this.renderer = renderer;
+		
 		program = GLSLProgram.getProgram(VERTEX_SHADER, FRAGMENT_SHADER, LOGTAG);
 		
-		projection = new Matrix4();
-		modelview = new Matrix4();
 		normal = new Matrix3();
 		tempMatrixArr = new float[16];
 		
@@ -70,10 +81,13 @@ private static final String LOGTAG = "Render3D";
 		camera = new Camera3D();
 	}
 	
-	/**
-	 * Sets the current material being used for rendering
-	 * @param mat Material to use
-	 */
+	public int getVertexPositionHandle(){ return program.getAttribLocation(POSITION_ATTRIB); }
+	
+	public int getVertexNormalHandle(){ return program.getAttribLocation(NORMAL_ATTRIB); }
+	
+	public int getTexCoordHandle(){ return program.getAttribLocation(TEXCOORD_ATTRIB); }
+	
+	/** Sets the current material being used for rendering */
 	public void setCurrentMaterial(Material mat){
 		program.setUniform("Material.Kd", mat.kd()[0], mat.kd()[1], mat.kd()[2]);
 		program.setUniform("Material.Ka", mat.ka()[0], mat.ka()[1], mat.ka()[2]);
@@ -98,7 +112,7 @@ private static final String LOGTAG = "Render3D";
 		setUpLights();
 		
 		//MathHelper.perspective(projection, fov, aspect, 1.0f, drawDistance);
-		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, drawDistance);
+		MathHelper.orthoM(renderer.projection, 0, Game.aspect, 0, 1, -1, drawDistance);
 		
 		Gdx.gl20.glEnable(GL20.GL_DEPTH_TEST);
 		Gdx.gl20.glDisable(GL20.GL_BLEND); 
@@ -108,23 +122,24 @@ private static final String LOGTAG = "Render3D";
 	 * Transforms the ModelView matrix to represent the camera's location and rotation
 	 */
 	private void translateModelviewToCamera(){
-		modelview.idt();
+		renderer.modelview.idt();
 		
-		float zoom = Game.renderer.render2D.camera.getZoom();
-		modelview = modelview.scale(zoom, zoom, zoom);
+		float zoom = Game.renderer.r2D.camera.getZoom();
+		renderer.modelview = renderer.modelview.scale(zoom, zoom, zoom);
 		
-		modelview = modelview.translate(camera.getLocation());
+		renderer.modelview = renderer.modelview.translate(camera.getLocation());
 
 		// reverse the camera's quaternion (we want to look OUT from the camera)
 		Quaternion reverse = camera.getRotation().conjugate();
 		reverse.toMatrix(tempMatrixArr);
-		modelview = modelview.mul(new Matrix4(tempMatrixArr));
+		renderer.modelview = renderer.modelview.mul(new Matrix4(tempMatrixArr));
 	}
 	
+	/** Sends the matrices to the shader */
 	public void sendMatrixToShader(){
-		normal.set(modelview);
-		program.setUniform("ModelViewMatrix", modelview);
-		program.setUniform("ProjectionMatrix", projection);
+		normal.set(renderer.modelview);
+		program.setUniform("ModelViewMatrix", renderer.modelview);
+		program.setUniform("ProjectionMatrix", renderer.projection);
 		program.setUniform("NormalMatrix", normal);
 	}
 	
@@ -133,12 +148,12 @@ private static final String LOGTAG = "Render3D";
 		
 		EntityRenderer3D rend = (EntityRenderer3D) ent.renderer;
 		
-		modelview.idt();
+		renderer.modelview.idt();
 		translateModelviewToCamera();
 		
-		modelview.translate(new Vector3(entLoc.x, entLoc.y, rend.z));
+		renderer.modelview.translate(new Vector3(entLoc.x, entLoc.y, rend.z));
 		rend.rotation.toMatrix(tempMatrixArr);
-		modelview = modelview.mul(new Matrix4(tempMatrixArr));
+		renderer.modelview = renderer.modelview.mul(new Matrix4(tempMatrixArr));
 		
 		sendMatrixToShader();
 	}

@@ -2,8 +2,8 @@ package com.bitwaffle.guts.graphics;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity;
-import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
+import com.bitwaffle.guts.entity.Entity;
+import com.bitwaffle.guts.entity.EntityRenderer;
 import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.util.MathHelper;
 
@@ -38,13 +38,13 @@ public class BackdropRenderer implements EntityRenderer{
 			MathHelper.toWorldSpace(worldSize, windowWidth / 2, windowHeight / 2);
 		}
 		
-		renderer.render2D.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
+		renderer.r2D.setColor(color);
 		
-		renderer.render2D.modelview.idt();
-		renderer.render2D.modelview.translate(worldSize.x, worldSize.y, 0.0f);
-		renderer.render2D.sendMatrixToShader();
+		renderer.modelview.idt();
+		renderer.modelview.translate(worldSize.x, worldSize.y, 0.0f);
+		renderer.r2D.sendMatrixToShader();
 		
 		Game.resources.textures.bindTexture(textureName);
-		renderer.render2D.quad.render(worldSize.x, worldSize.y, true, true);
+		renderer.r2D.quad.render(worldSize.x, worldSize.y, true, true);
 	}
 }

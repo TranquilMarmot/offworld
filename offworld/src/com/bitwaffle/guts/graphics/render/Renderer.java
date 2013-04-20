@@ -5,10 +5,10 @@ import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.Matrix4;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entities.EntityHashMap;
-import com.bitwaffle.guts.entities.entities2d.Entity;
-import com.bitwaffle.guts.entities.entities2d.EntityRenderer3D;
+import com.bitwaffle.guts.entity.Entity;
+import com.bitwaffle.guts.entity.EntityRenderer3D;
 import com.bitwaffle.guts.graphics.render.render2d.Render2D;
 import com.bitwaffle.guts.graphics.render.render3d.Render3D;
 
@@ -18,57 +18,62 @@ import com.bitwaffle.guts.graphics.render.render3d.Render3D;
  * @author TranquilMarmot
  */
 public class Renderer {
-	public Render2D render2D;
-	public Render3D render3D;
+	public Matrix4 modelview, projection;
 	
-	public boolean renderDebug = false;
+	/** 2D Renderer */
+	public Render2D r2D;
+	
+	/** 2D Renderer */
+	public Render3D r3D;
+	
+	/** Whether or not debug is being rendered */
+	public static boolean renderDebug = false;
 	
 	public Renderer(){
-		render2D = new Render2D();
-		render3D = new Render3D();
+		Gdx.gl.glViewport(0, 0, Game.windowWidth, Game.windowHeight);
+		Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		
+		modelview = new Matrix4();
+		projection = new Matrix4();
+		
+		r2D = new Render2D(this);
+		r3D = new Render3D(this);
 	}
 	
+	/** Renders the entire scene- every entity and every GUI object */
 	public void renderScene(){
 		// clear color and depth buffers
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		
 		// render each layer
-		for(int i = 0; i < Game.physics.numLayers(); i++){
-			EntityHashMap layer = Game.physics.getLayer(i);
-			
-			// render 2D entities for layer
-			render2D.switchTo2DWorldCoords();
-			renderEntities(layer.values().iterator());
-			
-			// render 3D entities for layer
-			/*
-			Gdx.gl20.glEnable(GL20.GL_DEPTH_TEST);
-			render3D.program.use();
-			render3D.setUp3DRender();
-			render3D.renderEntities(layer.entities3D.values().iterator());
-			*/
-		}
+		for(int i = 0; i < Game.physics.numLayers(); i++)
+			renderEntities(Game.physics.getLayer(i).values().iterator());
 		
-		Gdx.gl20.glDisable(GL20.GL_DEPTH_TEST);
-		render2D.program.use();
-		render2D.switchTo2DScreenCoords();
-		render2D.sendMatrixToShader();
-		Game.gui.render(render2D);
+		// render GUI
+		r2D.switchTo2DScreenCoords();
+		Game.gui.render(this);
 	}
 	
+	/**
+	 * Renders every entity in an iterator, switching between 2D and 3D modes as necessary.
+	 * Any renderers extending EntityRenderer3D get drawn in 3D mode.
+	 */
 	private void renderEntities(Iterator<Entity> it){
 		while(it.hasNext()){
 			try{
 				Entity ent = it.next();
 				
 				if(ent != null && ent.renderer != null){
+					// 3D renderer
 					if(ent.renderer instanceof EntityRenderer3D){
-						render3D.switchTo3DRender();
-						render3D.prepareToRenderEntity(ent);
+						r3D.switchTo3DRender();
+						r3D.prepareToRenderEntity(ent);
 						ent.renderer.render(this, ent, renderDebug);
+						
+					// 2D renderer
 					} else {
-						render2D.switchTo2DWorldCoords();
-						render2D.prepareToRenderEntity(ent);
+						r2D.switchTo2DWorldCoords();
+						r2D.prepareToRenderEntity(ent);
 						ent.renderer.render(this, ent, renderDebug);
 					}
 				}

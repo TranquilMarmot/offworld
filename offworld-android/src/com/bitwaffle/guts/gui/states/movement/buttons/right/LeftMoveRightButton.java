@@ -3,7 +3,7 @@ package com.bitwaffle.guts.gui.states.movement.buttons.right;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.gui.states.movement.MovementGUIState;
 
 /**
@@ -26,8 +26,8 @@ public class LeftMoveRightButton extends MoveRightButton{
 	}
 	
 	@Override
-	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
-		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, this.isDown() ? MovementGUIState.pressedAlpha : MovementGUIState.activeAlpha);
+	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
+		renderer.r2D.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, this.isDown() ? MovementGUIState.pressedAlpha : MovementGUIState.activeAlpha);
 		Gdx.gl20.glEnable(GL20.GL_BLEND);
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_DST_COLOR);
 		Game.resources.textures.getSubImage("rightarrow").render(renderer, this.width, this.height);

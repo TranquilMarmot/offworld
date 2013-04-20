@@ -4,8 +4,7 @@ import java.io.IOException;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity;
-import com.bitwaffle.guts.entities.entities2d.EntityRemoveRequest;
+import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.net.NetRegistrar;
 import com.bitwaffle.guts.net.messages.PlayerCreateMessage;
 import com.bitwaffle.guts.net.messages.PlayerUpdateMessage;
@@ -14,6 +13,7 @@ import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateMessage;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateRequest;
 import com.bitwaffle.guts.net.messages.entity.DynamicEntityUpdateMessage;
 import com.bitwaffle.guts.net.messages.entity.DynamicEntityUpdateRequest;
+import com.bitwaffle.guts.physics.Entities.EntityRemoveRequest;
 import com.bitwaffle.guts.physics.PhysicsHelper;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.esotericsoftware.kryonet.Client;

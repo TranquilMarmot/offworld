@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 
 /**
  * Pack my box with five dozen liquor jugs!
@@ -99,21 +99,21 @@ public class BitmapFont {
 	}
 	
 	/** Draw a string! */
-	public void drawString(String text, Render2D renderer, float x, float y){
+	public void drawString(String text, Renderer renderer, float x, float y){
 		this.drawString(text, renderer, x, y, 1.0f);
 	}
 	
 	/** Draw a string! */
-	public void drawString(String text, Render2D renderer, float x, float y, float scale){
+	public void drawString(String text, Renderer renderer, float x, float y, float scale){
 		// draw white text by default
 		this.drawString(text, renderer, x, y, scale, new float[]{1.0f, 1.0f, 1.0f, 1.0f});
 	}
 	
 	/** Draw a string! */
-	public void drawString(String text, Render2D renderer, float x, float y, float scale, float[] color){
+	public void drawString(String text, Renderer renderer, float x, float y, float scale, float[] color){
 		// bind the font texture and set the color
 		Gdx.gl20.glBindTexture(GL20.GL_TEXTURE_2D, texHandle);
-		renderer.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
+		renderer.r2D.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
 		
 		// this gets advanced with every character drawn and reset to 0 on newlines
 		float xOffset = FONT_GLYPH_WIDTH * scale;
@@ -140,10 +140,10 @@ public class BitmapFont {
 			renderer.modelview.idt();
 			renderer.modelview.translate(x + xOffset, y + ((BitmapFont.FONT_GLYPH_HEIGHT * 2.0f) * scale * lineNum), 0.0f);
 			renderer.modelview.scale(scale, scale, 1.0f);
-			renderer.sendMatrixToShader();
+			renderer.r2D.sendMatrixToShader();
 			
 			// draw character
-			chars[index].draw(renderer, FONT_GLYPH_WIDTH * 2.0f, FONT_GLYPH_HEIGHT * 2.0f);
+			chars[index].draw(renderer.r2D, FONT_GLYPH_WIDTH * 2.0f, FONT_GLYPH_HEIGHT * 2.0f);
 			
 			// advance to next char
 			xOffset += FONT_GLYPH_WIDTH * scale;

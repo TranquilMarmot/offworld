@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.animation.Animation;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.offworld.entities.player.Player;
 
 public class PlayerBodyAnimation extends Animation {
@@ -113,7 +113,7 @@ public class PlayerBodyAnimation extends Animation {
 	}
 	
 	@Override
-	public void renderCurrentFrame(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
+	public void renderCurrentFrame(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
 		if(player.getJumpSensor().numContacts() > 0)
 			super.renderCurrentFrame(renderer, flipHorizontal, flipVertical);
 		else{

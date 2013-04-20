@@ -1,7 +1,7 @@
 package com.bitwaffle.guts.gui.button;
 
 import com.bitwaffle.guts.graphics.font.BitmapFont;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 
 /**
  * A button that displays text
@@ -38,18 +38,18 @@ public abstract class TextButton extends TiledButton {
 	}
 	
 	@Override
-	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
+	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
 		renderBackground(renderer, flipHorizontal, flipVertical);
 		renderText(renderer, flipHorizontal, flipVertical);
 	}
 	
-	public void renderBackground(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
+	public void renderBackground(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
 		super.render(renderer, flipHorizontal, flipVertical);
 	}
 	
-	public void renderText(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
-		float stringWidth = renderer.font.stringWidth(text, textScale) - (BitmapFont.FONT_GLYPH_WIDTH * textScale);
-		float stringHeight = renderer.font.stringHeight(text, textScale);
+	public void renderText(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
+		float stringWidth = renderer.r2D.font.stringWidth(text, textScale) - (BitmapFont.FONT_GLYPH_WIDTH * textScale);
+		float stringHeight = renderer.r2D.font.stringHeight(text, textScale);
 		
 		// FIXME I don't... wat? I was having issues centering the text... this sort of works
 		if(stringHeight == (BitmapFont.FONT_GLYPH_HEIGHT * textScale))
@@ -58,7 +58,7 @@ public abstract class TextButton extends TiledButton {
 			stringHeight -= ((BitmapFont.FONT_GLYPH_HEIGHT * textScale) * 2.0f);
 		
 		
-		renderer.font.drawString(text, renderer, x - (stringWidth / 2.0f), y - (stringHeight / 2.0f), textScale, textColor);
+		renderer.r2D.font.drawString(text, renderer, x - (stringWidth / 2.0f), y - (stringHeight / 2.0f), textScale, textColor);
 	}
 
 }

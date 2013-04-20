@@ -20,11 +20,11 @@ public class Camera3D {
 	}
 	
 	public void update(float timeStep){
-		if(Game.renderer.render2D.camera != null){
-			Vector2 camLoc = Game.renderer.render2D.camera.getLocation();
+		if(Game.renderer.r2D.camera != null){
+			Vector2 camLoc = Game.renderer.r2D.camera.getLocation();
 			this.location.x = camLoc.x;
 			this.location.y = camLoc.y;
-			this.scale = Game.renderer.render2D.camera.getZoom();
+			this.scale = Game.renderer.r2D.camera.getZoom();
 		}
 	}
 	

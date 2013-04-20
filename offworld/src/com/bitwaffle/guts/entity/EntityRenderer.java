@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.entities.entities2d;
+package com.bitwaffle.guts.entity;
 
 import com.bitwaffle.guts.graphics.render.Renderer;
 

@@ -42,7 +42,7 @@ public class Input {
 		
 		// initialize processors
 		guiInputListener = new GUIInputListener(Game.gui);
-		cameraInputListener = new CameraInputListener(Game.renderer.render2D.camera);
+		cameraInputListener = new CameraInputListener(Game.renderer.r2D.camera);
 		cameraGestureListener = new GestureDetector(cameraInputListener);
 		consoleInputListener = new ConsoleInputListener(Game.gui.console);
 		

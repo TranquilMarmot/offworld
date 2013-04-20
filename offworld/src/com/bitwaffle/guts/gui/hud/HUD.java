@@ -1,7 +1,7 @@
 package com.bitwaffle.guts.gui.hud;
 
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.GUIObject;
 
@@ -93,7 +93,7 @@ public class HUD extends GUIObject {
 	}
 	
 	@Override
-	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical) {}
+	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical) {}
 	
 	@Override
 	public void cleanup() {

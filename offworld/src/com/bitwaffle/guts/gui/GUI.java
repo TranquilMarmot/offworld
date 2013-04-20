@@ -7,7 +7,7 @@ import java.util.Stack;
 
 import com.badlogic.gdx.Gdx;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.console.Console;
 import com.bitwaffle.guts.gui.hud.HUD;
@@ -229,7 +229,7 @@ public class GUI {
 	 * Draw the GUI
 	 * @param renderer
 	 */
-	public void render(Render2D renderer) {
+	public void render(Renderer renderer) {
 		renderObjects(getObjectIterator(), renderer);
 		renderObjects(getButtonIterator(), renderer);
 		console.render(renderer, false, false);
@@ -239,7 +239,7 @@ public class GUI {
 	 * @param objects GUI Objects to render
 	 * @param renderer Renderer to use
 	 */
-	private void renderObjects(Iterator<? extends GUIObject> it, Render2D renderer){
+	private void renderObjects(Iterator<? extends GUIObject> it, Renderer renderer){
 		try{
 			while(it.hasNext()){
 				GUIObject obj = it.next();
@@ -256,10 +256,10 @@ public class GUI {
 	 * @param obj GUI Object to render
 	 * @param renderer Renderer to use
 	 */
-	public void renderObject(GUIObject obj, Render2D renderer){
+	public void renderObject(GUIObject obj, Renderer renderer){
 		renderer.modelview.idt();
 		renderer.modelview.translate(obj.x, obj.y, 0.0f);
-		renderer.sendMatrixToShader();
+		renderer.r2D.sendMatrixToShader();
 		obj.render(renderer, false, false);
 	}
 	

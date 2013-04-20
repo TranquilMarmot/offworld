@@ -5,14 +5,14 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity;
-import com.bitwaffle.guts.entities.entities2d.EntityRemoveRequest;
+import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.net.NetRegistrar;
 import com.bitwaffle.guts.net.messages.EntityRoomInfoSender;
 import com.bitwaffle.guts.net.messages.PlayerCreateMessage;
 import com.bitwaffle.guts.net.messages.PlayerUpdateMessage;
 import com.bitwaffle.guts.net.messages.PlayerUpdateRequest;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateMessage;
+import com.bitwaffle.guts.physics.Entities.EntityRemoveRequest;
 import com.bitwaffle.guts.physics.PhysicsHelper;
 import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
 import com.bitwaffle.offworld.entities.player.Player;
@@ -118,9 +118,7 @@ public class GameServer extends Listener {
 
 	public void entityRemovedNotification(Entity ent) {
 		// TODO test this on things besides rocks
-		EntityRemoveRequest req = new EntityRemoveRequest();
-		req.layer = ent.getLayer();
-		req.hash = ent.hashCode();
+		EntityRemoveRequest req = new EntityRemoveRequest(ent.getLayer(), ent.hashCode());
 		for(ServerConnection con : connections.values())
 			con.connection().sendTCP(req);	
 	}

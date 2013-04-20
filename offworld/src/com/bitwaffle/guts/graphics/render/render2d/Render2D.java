@@ -5,9 +5,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity;
+import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.graphics.font.BitmapFont;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
+import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D;
 import com.bitwaffle.guts.graphics.shapes.circle.Circle;
 import com.bitwaffle.guts.graphics.shapes.quad.Quad;
@@ -21,13 +22,20 @@ import com.bitwaffle.guts.util.MathHelper;
 public class Render2D {
 	private static final String LOGTAG = "Render2D";
 	
-	/** Vertex shader to load on init */
-	private static final String VERTEX_SHADER = "shaders/main.vert";
-	/** Fragment shader to load on init */
-	private static final String FRAGMENT_SHADER = "shaders/main.frag";
+	/** Shader files */
+	private static final String
+		VERTEX_SHADER = "shaders/main.vert",
+		FRAGMENT_SHADER = "shaders/main.frag";
+			
+	/** Names of attributes and uniforms in shaders */
+	private static final String
+		POSITION_ATTRIB = "vPosition",
+		TEXCOORD_ATTRIB = "vTexCoord",
+		MVP_UNIFORM = "MVP",
+		COLOR_UNIFORM = "vColor";
 	
-	/** Whether or not to call every entity's debug drawing method */
-	public static boolean drawDebug = false;
+	/** Renderer owning this 2D renderer */
+	private Renderer renderer;
 	
 	/** Camera for describing how the scene should be looked at */
 	public Camera2D camera;
@@ -36,7 +44,7 @@ public class Render2D {
 	public GLSLProgram program;
 	
 	/** The modelview and projection matrices*/
-	public Matrix4 modelview, projection, mvp;
+	private Matrix4 mvp;
 	
 	/** Grumpy wizards make toxic brew for the evil Queen and Jack */
 	public BitmapFont font;
@@ -50,35 +58,47 @@ public class Render2D {
 	/** How many steps to take when constructing circle's geometry (lower numbers == more vertices) */
 	private static final float CIRCLE_STEP = 15.0f;
 
-	public Render2D() {
-		Gdx.gl.glViewport(0, 0, Game.windowWidth, Game.windowHeight);
-		Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	/** @param renderer Renderer owning this Render2D instance */
+	public Render2D(Renderer renderer) {
+		this.renderer = renderer;
 		
 		program = GLSLProgram.getProgram(VERTEX_SHADER, FRAGMENT_SHADER, LOGTAG);
-		
-		projection = new Matrix4();
-		modelview = new Matrix4();
 		mvp = new Matrix4();
-		
 		camera = new Camera2D();
 		
-		quad = new Quad(this);
-		circle = new Circle(this, CIRCLE_STEP);
+		quad = new Quad(renderer);
+		circle = new Circle(renderer, CIRCLE_STEP);
 		font = new BitmapFont();
 	}
 	
+	/** @return Handle for vertex position shader attribute */
+	public int getVertexPositionHandle(){ return program.getAttribLocation(POSITION_ATTRIB); }
+	
+	/** @return Handle for vertex texture coordinate shader attribute */
+	public int getTexCoordHandle(){ return program.getAttribLocation(TEXCOORD_ATTRIB); }
+	
+	public void setColor(float[] color){
+		setColor(color[0], color[1], color[2], color[3]);
+	}
+	
+	public void setColor(float r, float g, float b, float a){
+		renderer.r2D.program.setUniform(COLOR_UNIFORM, r, g, b, a);
+	}
+	
+	/** Change the projection matrix to render in world coords */
 	public void switchTo2DWorldCoords(){
 		program.use();
 		Gdx.gl20.glDisable(GL20.GL_DEPTH_TEST);
 		
-		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1000);
+		MathHelper.orthoM(renderer.projection, 0, Game.aspect, 0, 1, -1, 1000);
 	}
 	
+	/** Change the projection matrix to render in screen coords (for GUI) */
 	public void switchTo2DScreenCoords(){
 		program.use();
 		Gdx.gl20.glDisable(GL20.GL_DEPTH_TEST);
 		
-		MathHelper.orthoM(projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1000);
+		MathHelper.orthoM(renderer.projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
 	}
 	
 	/** Prepares the modelview matrix to render an entity */
@@ -87,10 +107,10 @@ public class Render2D {
 		float angle = MathHelper.toDegrees(ent.getAngle());
 		
 		// mainpulate the modelview matrix to draw the entity
-		modelview.idt();
+		renderer.modelview.idt();
 		this.translateModelViewToCamera();
-		modelview.translate(loc.x, loc.y, 0.0f);
-		modelview.rotate(0.0f, 0.0f, 1.0f, angle);
+		renderer.modelview.translate(loc.x, loc.y, 0.0f);
+		renderer.modelview.rotate(0.0f, 0.0f, 1.0f, angle);
 		this.sendMatrixToShader();
 	}
 	
@@ -100,15 +120,17 @@ public class Render2D {
 		float cameraAngle = camera.getAngle();
 		float cameraZoom = camera.getZoom();
 		
-		modelview.scale(cameraZoom, cameraZoom, 1.0f);
-		modelview.translate(cameraLoc.x, cameraLoc.y, 0.0f);
-		modelview.rotate(0.0f, 0.0f, 1.0f, cameraAngle);
+		renderer.modelview.scale(cameraZoom, cameraZoom, 1.0f);
+		renderer.modelview.translate(cameraLoc.x, cameraLoc.y, 0.0f);
+		renderer.modelview.rotate(0.0f, 0.0f, 1.0f, cameraAngle);
 	}
 	
 	/** Sends the current modelview matrix to the shader */
 	public void sendMatrixToShader(){
-		mvp.set(projection);
-		mvp.mul(modelview);
-		program.setUniform("MVP", mvp);
+		mvp.set(renderer.projection);
+		mvp.mul(renderer.modelview);
+		program.setUniform(MVP_UNIFORM, mvp);
 	}
+	
+
 }

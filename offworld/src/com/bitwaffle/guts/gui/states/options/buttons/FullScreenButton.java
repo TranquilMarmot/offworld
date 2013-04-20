@@ -1,7 +1,7 @@
 package com.bitwaffle.guts.gui.states.options.buttons;
 
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.gui.button.BooleanButton;
 import com.bitwaffle.guts.gui.button.CircleButton;
 
@@ -51,10 +51,10 @@ public class FullScreenButton extends CircleButton implements BooleanButton{
 	}
 
 	@Override
-	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
-		renderer.program.setUniform("vColor", 0.3f, 1.0f, 0.3f, 0.5f);
+	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
+		renderer.r2D.setColor(0.3f, 1.0f, 0.3f, 0.5f);
 		Game.resources.textures.bindTexture("circlebutton");
-		renderer.circle.render(this.getRadius(), flipHorizontal, flipVertical);
+		renderer.r2D.circle.render(this.getRadius(), flipHorizontal, flipVertical);
 	}
 
 

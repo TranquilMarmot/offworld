@@ -25,7 +25,7 @@ import com.bitwaffle.guts.graphics.animation.Animation;
 import com.bitwaffle.guts.graphics.animation.AnimationPart;
 import com.bitwaffle.guts.graphics.animation.Frame;
 import com.bitwaffle.guts.graphics.shapes.model.Model;
-import com.bitwaffle.guts.graphics.shapes.model.ModelLoader;
+import com.bitwaffle.guts.graphics.shapes.model.ObjParser;
 import com.bitwaffle.guts.graphics.shapes.polygon.Polygon;
 import com.bitwaffle.guts.graphics.shapes.polygon.PolygonLoader;
 import com.bitwaffle.guts.physics.CollisionFilters;
@@ -447,7 +447,7 @@ public class ResourceLoader {
 					zScale = 1.0f;
 				
 				
-				Model m = ModelLoader.loadObjFile(directory, new Vector3(xScale, yScale, zScale), texture);
+				Model m = ObjParser.loadObjFile(directory, new Vector3(xScale, yScale, zScale), texture);
 				
 				Game.resources.models.addModel(modelName, m);
 				

@@ -10,7 +10,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.font.BitmapFont;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.gui.GUIObject;
 
 
@@ -478,7 +478,7 @@ public class Console extends GUIObject{
 	 * @param flipHorizontal Inherited from GUIObject (ignored)
 	 * @param flipVertical Inherited from GUIObject (ignored)
 	 */
-	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical) {
+	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical) {
 		if(this.isVisible()){
 			// where to draw the console (x stays at its given location)
 			//float drawY = (Game.windowHeight) + y;
@@ -508,7 +508,7 @@ public class Console extends GUIObject{
 	 * @param drawY
 	 *             Y location to draw everything at
 	 */
-	private void renderScrollback(Render2D renderer){
+	private void renderScrollback(Renderer renderer){
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
 		// figure out how many lines to print out
@@ -531,7 +531,7 @@ public class Console extends GUIObject{
 			int line = text.size() - (i + scroll);
 
 			// draw the string, going up on the y axis by how tall each line is
-			renderer.font.drawString(text.get(i), renderer, this.x, this.y - ((BitmapFont.FONT_GLYPH_HEIGHT * 2.0f) * scale * line), scale, textColor);
+			renderer.r2D.font.drawString(text.get(i), renderer, this.x, this.y - ((BitmapFont.FONT_GLYPH_HEIGHT * 2.0f) * scale * line), scale, textColor);
 		}
 	}
 	
@@ -544,13 +544,13 @@ public class Console extends GUIObject{
 	 * @param drawY
 	 *             Y location to draw text at
 	 */
-	private void renderInput(Render2D renderer){
+	private void renderInput(Renderer renderer){
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		// draw the blinking cursor
 		String toPrint = "> " + input;
 		if (blink)
 			toPrint += "_";
-		renderer.font.drawString(toPrint, renderer, this.x , this.y , scale, new float[]{0.0f, 1.0f, 0.0f, this.textAlpha});
+		renderer.r2D.font.drawString(toPrint, renderer, this.x , this.y , scale, new float[]{0.0f, 1.0f, 0.0f, this.textAlpha});
 	}
 	
 	/**
@@ -558,11 +558,11 @@ public class Console extends GUIObject{
 	 * @param renderer
 	 *             Renderer to draw box with
 	 */
-	private void drawInputBox(Render2D renderer){
+	private void drawInputBox(Renderer renderer){
 		Game.resources.textures.bindTexture("blank");
 		
 		float[] color = { 0.0f, 0.0f, 0.0f, inputBoxAlpha };
-		renderer.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
+		renderer.r2D.setColor(color);
 		
 		float boxWidth = (numCols * BitmapFont.FONT_GLYPH_WIDTH * scale) * 2.0f;
 		float boxHeight = (BitmapFont.FONT_GLYPH_HEIGHT * scale) * 2.0f;
@@ -574,10 +574,10 @@ public class Console extends GUIObject{
 		renderer.modelview.idt();
 		renderer.modelview.translate(boxX, boxY, 0.0f);
 		renderer.modelview.scale(scale, scale, 1.0f);
-		renderer.sendMatrixToShader();
+		renderer.r2D.sendMatrixToShader();
 		
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		renderer.quad.render(boxWidth, boxHeight);
+		renderer.r2D.quad.render(boxWidth, boxHeight);
 	}
 	
 	/**
@@ -585,11 +585,11 @@ public class Console extends GUIObject{
 	 * @param renderer
 	 *             Renderer to draw box with
 	 */
-	private void drawBackgroundBox(Render2D renderer){
+	private void drawBackgroundBox(Renderer renderer){
 		Game.resources.textures.bindTexture("blank");
 		
 		float[] color = { 0.0f, 0.0f, 0.0f, consoleAlpha };
-		renderer.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
+		renderer.r2D.setColor(color);
 		
 		float boxWidth = (numCols * BitmapFont.FONT_GLYPH_WIDTH * scale) * 2.0f;
 		float boxHeight = (numRows * BitmapFont.FONT_GLYPH_HEIGHT * scale) * 2.0f;
@@ -601,10 +601,10 @@ public class Console extends GUIObject{
 		renderer.modelview.idt();
 		renderer.modelview.translate(boxX, boxY, 0.0f);
 		renderer.modelview.scale(scale, scale, 1.0f);
-		renderer.sendMatrixToShader();
+		renderer.r2D.sendMatrixToShader();
 		
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		renderer.quad.render(boxWidth, boxHeight);
+		renderer.r2D.quad.render(boxWidth, boxHeight);
 	}
 
 	@Override

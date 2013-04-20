@@ -1,7 +1,5 @@
 package com.bitwaffle.guts.graphics.shapes.model;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL11;
 
 /**
  * Defines a section of a {@link Model} with a specific {@link Material}
@@ -13,7 +11,7 @@ import com.badlogic.gdx.graphics.GL11;
  * @see Model
  * @see Material
  * @see ModelBuilder
- * @see ModelLoader
+ * @see ObjParser
  */
 public class ModelPart {
 	/** {@link Material} to use for the model part*/
@@ -34,18 +32,12 @@ public class ModelPart {
 		this.count = count;
 	}
 	
-	/**
-	 * @return Material to use
-	 */
-	public Material getMaterial(){
-		return material;
-	}
+	/** @return Material to use for this part */
+	public Material getMaterial(){ return material; }
 	
-	/**
-	 * Draw the model part
-	 */
-	public void draw(){
-		// draw them triangles
-		Gdx.gl20.glDrawArrays(GL11.GL_TRIANGLES, startIndex, count);
-	}
+	/** @return Start index of first coordinate in this part */
+	public int startIndex(){ return startIndex; }
+	
+	/** @return Number of indices in this part */
+	public int count(){ return count; }
 }

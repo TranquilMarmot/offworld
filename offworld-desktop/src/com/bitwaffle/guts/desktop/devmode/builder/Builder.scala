@@ -85,7 +85,7 @@ object Builder {
 		val cameraButt = new JButton("Camera")
 		cameraButt.addActionListener(new ActionListener(){
 			override def actionPerformed(e: ActionEvent){
-				Game.renderer.render2D.camera.setMode(Camera2D.Modes.FREE)
+				Game.renderer.r2D.camera.setMode(Camera2D.Modes.FREE)
 			}
 		})
 		leftTools add cameraButt

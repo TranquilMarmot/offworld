@@ -3,9 +3,9 @@ package com.bitwaffle.guts.graphics.shapes.circle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.dynamic.CircleEntity;
-import com.bitwaffle.guts.entities.entities2d.Entity;
-import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
+import com.bitwaffle.guts.entity.Entity;
+import com.bitwaffle.guts.entity.EntityRenderer;
+import com.bitwaffle.guts.entity.dynamic.CircleEntity;
 import com.bitwaffle.guts.graphics.render.Renderer;
 
 /**
@@ -31,9 +31,9 @@ public class CircleRenderer implements EntityRenderer {
 		if(renderDebug)
 			renderDebug(renderer, ent);
 		else{
-			renderer.render2D.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
+			renderer.r2D.setColor(color);
 			Game.resources.textures.bindTexture(textureName);
-			renderer.render2D.circle.render(circ.getRadius(), false, false);
+			renderer.r2D.circle.render(circ.getRadius(), false, false);
 		}
 	}
 
@@ -47,11 +47,11 @@ public class CircleRenderer implements EntityRenderer {
 		col[2] = 0.0f;
 		col[3] = 0.2f;
 		
-		renderer.render2D.program.setUniform("vColor", col[0], col[1], col[2], col[3]);
+		renderer.r2D.setColor(col);
 		
 		Gdx.gl20.glEnable(GL20.GL_BLEND);
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_DST_COLOR);
-		renderer.render2D.circle.render(circ.getRadius(), false, false);
+		renderer.r2D.circle.render(circ.getRadius(), false, false);
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 	}
 }

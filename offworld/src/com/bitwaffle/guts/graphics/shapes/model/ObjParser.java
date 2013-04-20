@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 import com.badlogic.gdx.math.Quaternion;
@@ -32,7 +33,7 @@ import com.bitwaffle.guts.Game;
  * @see ModelPart
  *
  */
-public class ModelLoader {
+public class ObjParser {
 	public static Model loadObjFile(String directory, String texture){
 		return loadObjFile(directory, new Vector3(1.0f, 1.0f, 1.0f), new Vector3(0.0f, 0.0f, 0.0f), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), texture);
 	}
@@ -80,7 +81,7 @@ public class ModelLoader {
 		String name = directory.substring(lastSlash);
 		
 		// get a list of materials
-		MaterialList materials = null;
+		HashMap<String, Material> materials = null;
 		
 		try{
 			// open the .obj file
@@ -147,15 +148,11 @@ public class ModelLoader {
 				
 				// new material
 				if(line.startsWith("usemtl")){
-					// end the current material if we're on one
-					//if(builder.isMakingModelPart())
-					//	builder.endModelPart();
-					
 					if(materials == null)
 						materials = loadMaterialList(directory + name + ".mtl");
 					
 					String mat = toker.nextToken();
-					builder.startModelPart(materials.getMaterial(mat));
+					builder.startModelPart(materials.get(mat));
 				}
 
 				// face
@@ -198,9 +195,9 @@ public class ModelLoader {
 	 * @param .mtl file to load MaterialList from
 	 * @return List of materials from .mtl file
 	 */
-	private static MaterialList loadMaterialList(String file) throws FileNotFoundException{
+	private static HashMap<String,Material> loadMaterialList(String file) throws FileNotFoundException{
 		// material list
-		MaterialList list = new MaterialList();
+		HashMap<String, Material> list = new HashMap<String, Material>();
 		try{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(Game.resources.openAsset(file)));
 			
@@ -255,7 +252,7 @@ public class ModelLoader {
 				// add material to list if it's loaded
 				if(materialLoaded){
 					Material mat = new Material(Ka, Kd, Ks, Shininess);
-					list.addMaterial(name, mat);
+					list.put(name, mat);
 				}
 			}
 			

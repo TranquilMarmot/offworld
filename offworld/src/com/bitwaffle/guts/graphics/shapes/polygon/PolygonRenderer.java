@@ -5,8 +5,8 @@ import java.nio.Buffer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity;
-import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
+import com.bitwaffle.guts.entity.Entity;
+import com.bitwaffle.guts.entity.EntityRenderer;
 import com.bitwaffle.guts.graphics.render.Renderer;
 
 /**
@@ -20,9 +20,6 @@ public class PolygonRenderer implements EntityRenderer {
 	
 	/** Color to use to render polygon, 4 floats, rgba */
 	private float[] color;
-	
-	/** Handles for where to send info when drawing */
-	private Integer positionHandle, texCoordHandle;
 	
 	/** Scale to render polygon at */
 	private float scale;
@@ -47,24 +44,21 @@ public class PolygonRenderer implements EntityRenderer {
 	
 	@Override
 	public void render(Renderer renderer, Entity ent, boolean renderDebug) {
-		// grab handles if we don't have them
-		if(positionHandle == null)
-			positionHandle = renderer.render2D.program.getAttribLocation("vPosition");
-		if(texCoordHandle == null)
-			texCoordHandle = renderer.render2D.program.getAttribLocation("vTexCoord");
+		int positionHandle = renderer.r2D.getVertexPositionHandle();
+		int texCoordHandle = renderer.r2D.getTexCoordHandle();
 		
 		if(renderDebug)
 			renderDebug(renderer, ent);
 		else{
-			renderer.render2D.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
+			renderer.r2D.setColor(color);
 			
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 	        
 	        // only scale if necessary
 	        if(scale != 1.0f){
-		        renderer.render2D.modelview.scale(scale, scale, 1.0f);
-		        renderer.render2D.sendMatrixToShader();
+		        renderer.modelview.scale(scale, scale, 1.0f);
+		        renderer.r2D.sendMatrixToShader();
 	        }
 	        
 			Gdx.gl20.glEnableVertexAttribArray(positionHandle);
@@ -95,15 +89,18 @@ public class PolygonRenderer implements EntityRenderer {
 	private void renderDebug(Renderer renderer, Entity ent){
 		Buffer debugVertBuffer = poly.getDebugVertBuffer(), debugTexCoordBuffer = poly.getDebugTexCoordBuffer();
 		if(debugVertBuffer != null && debugTexCoordBuffer != null){
+			int positionHandle = renderer.r2D.getVertexPositionHandle();
+			int texCoordHandle = renderer.r2D.getTexCoordHandle();
+			
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_DST_COLOR);
 			
-			renderer.render2D.program.setUniform("vColor", 0.0f, 1.0f, 1.0f, 0.4f);
+			renderer.r2D.setColor(0.0f, 1.0f, 1.0f, 0.4f);
 			
 	        // only scale if necessary
 	        if(scale != 1.0f){
-		        renderer.render2D.modelview.scale(scale, scale, 1.0f);
-		        renderer.render2D.sendMatrixToShader();
+		        renderer.modelview.scale(scale, scale, 1.0f);
+		        renderer.r2D.sendMatrixToShader();
 	        }
 			
 			// bind blank texture

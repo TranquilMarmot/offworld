@@ -4,7 +4,7 @@ import java.nio.Buffer;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 
 /**
  * A sub-image within a larger texture
@@ -49,24 +49,24 @@ public class SubImage {
 	public float getPixelHeight(){ return this.pixelHeight; }
 	
 	/** Renders this subimage */
-	public void render(Render2D renderer){ this.render(renderer, 1.0f, 1.0f); }
+	public void render(Renderer renderer){ this.render(renderer, 1.0f, 1.0f); }
 	
 
 	/** Renders this subimage at a given scale */
-	public void render(Render2D renderer, float xScale, float yScale){
+	public void render(Renderer renderer, float xScale, float yScale){
 		this.render(renderer, xScale, yScale, false, false);
 	}
 	
 	/** Renders this subimage */
-	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
+	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
 		this.render(renderer, 1.0f, 1.0f, flipHorizontal, flipVertical);
 	}
 	
 
 	/** Renders this subimage */
-	public void render(Render2D renderer,  float xScale, float yScale, boolean flipHorizontal, boolean flipVertical){
+	public void render(Renderer renderer,  float xScale, float yScale, boolean flipHorizontal, boolean flipVertical){
 		Gdx.gl20.glBindTexture(GL20.GL_TEXTURE_2D, sheetHandle);
-		renderer.quad.render(getRenderWidth() * xScale, getRenderHeight() * yScale, flipHorizontal, flipVertical, texCoords);
+		renderer.r2D.quad.render(getRenderWidth() * xScale, getRenderHeight() * yScale, flipHorizontal, flipVertical, texCoords);
 	}
 
 }

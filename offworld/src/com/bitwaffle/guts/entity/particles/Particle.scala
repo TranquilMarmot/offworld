@@ -1,11 +1,11 @@
-package com.bitwaffle.guts.entities.particles
+package com.bitwaffle.guts.entity.particles
 
-import com.bitwaffle.guts.entities.dynamic.BoxEntity
+import com.bitwaffle.guts.entity.dynamic.BoxEntity
 import com.badlogic.gdx.physics.box2d.BodyDef
-import com.bitwaffle.guts.entities.entities2d.EntityRenderer
+import com.bitwaffle.guts.entity.EntityRenderer
 import com.badlogic.gdx.physics.box2d.FixtureDef
 import com.bitwaffle.guts.Game
-import com.bitwaffle.guts.entities.dynamic.DynamicEntity
+import com.bitwaffle.guts.entity.dynamic.DynamicEntity
 import com.badlogic.gdx.physics.box2d.World
 import com.badlogic.gdx.math.Vector2
 

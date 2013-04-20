@@ -1,9 +1,9 @@
-package com.bitwaffle.guts.entities.passive;
+package com.bitwaffle.guts.entity.passive;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity;
-import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
+import com.bitwaffle.guts.entity.Entity;
+import com.bitwaffle.guts.entity.EntityRenderer;
 
 /**
  * A decal that disappears after a certain time period

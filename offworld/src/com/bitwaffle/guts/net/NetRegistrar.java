@@ -1,11 +1,11 @@
 package com.bitwaffle.guts.net;
 
-import com.bitwaffle.guts.entities.entities2d.EntityRemoveRequest;
 import com.bitwaffle.guts.net.messages.PlayerCreateMessage;
 import com.bitwaffle.guts.net.messages.PlayerUpdateMessage;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateMessage;
 import com.bitwaffle.guts.net.messages.entity.DynamicEntityUpdateMessage;
 import com.bitwaffle.guts.net.messages.entity.EntityUpdateMessage;
+import com.bitwaffle.guts.physics.Entities.EntityRemoveRequest;
 import com.esotericsoftware.kryo.Kryo;
 
 /**

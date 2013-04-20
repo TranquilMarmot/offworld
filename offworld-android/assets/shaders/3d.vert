@@ -15,7 +15,6 @@ void main()
 {
     TexCoord = vec2(VertexTexCoord.x, VertexTexCoord.y);
     Normal = normalize(NormalMatrix * VertexNormal);
-	//Normal = VertexNormal;
     Position = vec3(ModelViewMatrix * vec4(VertexPosition,1.0));
 
 	mat4 MVP = ProjectionMatrix * ModelViewMatrix;

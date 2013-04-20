@@ -1,8 +1,8 @@
-package com.bitwaffle.guts.entities.entities2d;
+package com.bitwaffle.guts.entity;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.guts.entities.Entities;
-import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
+import com.bitwaffle.guts.physics.Entities;
 
 /**
  * Base Entity class. Every frame, each Entity that is in an Entities list has its <code>update()</code>
@@ -62,7 +62,7 @@ public class Entity {
 	/** @return Current location of entity */
 	public Vector2 getLocation(){ return location; }
 	/** @return Current angle of entity */
-	public float getAngle(){ return /*MathHelper.toRadians(*/angle/*)*/; }
+	public float getAngle(){ return angle; }
 	
 	/**
 	 * Updates the entity- this can pretty much do anything and is called every frame
@@ -77,14 +77,10 @@ public class Entity {
 	public void cleanup(){}
 	
 	/** @return Which layer this entity resides on */
-	public int getLayer(){
-		return layer;
-	}
+	public int getLayer(){ return layer; }
 	
 	/** Set the hash code for this entity */
-	public void setHashCode(int newHash){
-		this.hash = newHash;
-	}
+	public void setHashCode(int newHash){ this.hash = newHash; }
 	
 	@Override
 	public int hashCode(){
@@ -96,7 +92,7 @@ public class Entity {
 	
 	/*
 	public void read(Kryo kryo, Input input){
-		//this.renderer = Renderers.values()[input.readInt()].renderer; TODO serialize renderers
+		//this.renderer = Renderers.values()[input.readInt()].renderer;
 		this.layer = input.readInt();
 		this.location.set(kryo.readObject(input, Vector2.class));
 		this.angle = input.readFloat();

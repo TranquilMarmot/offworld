@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.gui.button;
 
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.graphics.shapes.TiledBox;
 
 /**
@@ -35,19 +35,15 @@ public abstract class TiledButton extends RectangleButton {
 	}
 	
 	@Override
-	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
+	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
 		tiledBoxRenderer.render(renderer);
 	}
 	
 	@Override
-	public float getWidth(){
-		return columnWidth * columns;
-	}
+	public float getWidth(){ return columnWidth * columns; }
 	
 	@Override
-	public float getHeight(){
-		return rowHeight * rows;
-	}
+	public float getHeight(){ return rowHeight * rows; }
 	
 	public void setColumns(int columns){
 		this.columns = columns;

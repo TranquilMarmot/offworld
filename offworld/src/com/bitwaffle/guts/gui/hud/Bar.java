@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.gui.hud;
 
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.graphics.shapes.TiledBox;
 import com.bitwaffle.guts.gui.GUIObject;
 
@@ -61,15 +61,15 @@ public class Bar extends GUIObject {
 	}
 	
 	@Override
-	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
-		renderer.program.setUniform("vColor", backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
+	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
+		renderer.r2D.setColor(backgroundColor);
 		backgroundRenderer.render(renderer);
 		
 		if(percent >= 1.0f){
 			float amount = backgroundRenderer.totalWidth() - fillRenderer.totalWidth();
 			renderer.modelview.translate(-amount, 0.0f, 0.0f);
 			
-			renderer.program.setUniform("vColor", fillColor[0], fillColor[1], fillColor[2], fillColor[3]);
+			renderer.r2D.setColor(fillColor);
 			fillRenderer.render(renderer);
 		}
 	}

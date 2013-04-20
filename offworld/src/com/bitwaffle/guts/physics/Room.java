@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
-import com.bitwaffle.guts.entities.entities2d.Entity;
+import com.bitwaffle.guts.entity.Entity;
 
 /**
  * A room represents a set of entities in a physics world. When a room is set

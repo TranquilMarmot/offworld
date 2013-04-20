@@ -5,10 +5,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity;
-import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
+import com.bitwaffle.guts.entity.Entity;
+import com.bitwaffle.guts.entity.EntityRenderer;
 import com.bitwaffle.guts.graphics.render.Renderer;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
 import com.bitwaffle.offworld.entities.player.JumpSensor;
 import com.bitwaffle.offworld.entities.player.Player;
 
@@ -41,7 +40,7 @@ public class PlayerRenderer implements EntityRenderer {
 		if(renderDebug)
 			renderDebug(renderer, ent);
 		else{
-			renderer.render2D.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
+			renderer.r2D.setColor(color);
 			
 			float armAngle = player.getArmAngle();
 			boolean facingRight = player.isFacingRight();
@@ -50,60 +49,60 @@ public class PlayerRenderer implements EntityRenderer {
 			Vector2 gunOffset = player.getBodyAnimation().getGunOffset();
 			
 			// draw left arm
-			renderer.render2D.modelview.translate(facingRight ? lArmLoc.x : -lArmLoc.x, lArmLoc.y, 0.0f);
-			renderer.render2D.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
-			renderer.render2D.sendMatrixToShader();
+			renderer.modelview.translate(facingRight ? lArmLoc.x : -lArmLoc.x, lArmLoc.y, 0.0f);
+			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
+			renderer.r2D.sendMatrixToShader();
 			Game.resources.textures.bindTexture("player-arm");
 			// enable blending so alpha doesn't show up white
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-			renderer.render2D.quad.render(SCALE, SCALE, facingRight, facingRight);
+			renderer.r2D.quad.render(SCALE, SCALE, facingRight, facingRight);
 			Gdx.gl20.glDisable(GL20.GL_BLEND);
 			
 			// draw body
-			renderer.render2D.modelview.rotate(0.0f, 0.0f, 1.0f, -armAngle);
-			renderer.render2D.modelview.translate(facingRight ? -lArmLoc.x : lArmLoc.x, -lArmLoc.y, 0.0f);
-			renderer.render2D.sendMatrixToShader();
+			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, -armAngle);
+			renderer.modelview.translate(facingRight ? -lArmLoc.x : lArmLoc.x, -lArmLoc.y, 0.0f);
+			renderer.r2D.sendMatrixToShader();
 			
-			player.getBodyAnimation().renderCurrentFrame(renderer.render2D, !facingRight, false);
+			player.getBodyAnimation().renderCurrentFrame(renderer, !facingRight, false);
 			
 			// draw gun
-			renderer.render2D.modelview.translate(facingRight ? rArmLoc.x : -rArmLoc.x, rArmLoc.y, 0.0f);
-			renderer.render2D.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
-			renderer.render2D.modelview.translate(gunOffset.x, facingRight ? gunOffset.y : -gunOffset.y, 0.0f);
-			renderer.render2D.sendMatrixToShader();
-			player.getCurrentFirearm().render(renderer.render2D);
+			renderer.modelview.translate(facingRight ? rArmLoc.x : -rArmLoc.x, rArmLoc.y, 0.0f);
+			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
+			renderer.modelview.translate(gunOffset.x, facingRight ? gunOffset.y : -gunOffset.y, 0.0f);
+			renderer.r2D.sendMatrixToShader();
+			player.getCurrentFirearm().render(renderer);
 			
 			// draw right arm
-			renderer.render2D.modelview.translate(-gunOffset.x, facingRight ? -gunOffset.y : gunOffset.y, 0.0f);
-			renderer.render2D.sendMatrixToShader();
+			renderer.modelview.translate(-gunOffset.x, facingRight ? -gunOffset.y : gunOffset.y, 0.0f);
+			renderer.r2D.sendMatrixToShader();
 			Game.resources.textures.bindTexture("player-arm");
 			// enable blending so alpha doesn't show up white
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-			renderer.render2D.quad.render(SCALE, SCALE, facingRight, facingRight);
+			renderer.r2D.quad.render(SCALE, SCALE, facingRight, facingRight);
 			Gdx.gl20.glDisable(GL20.GL_BLEND);
 			
-			renderer.render2D.modelview.rotate(0.0f, 0.0f, 1.0f, -armAngle);
-			renderer.render2D.modelview.translate(facingRight ? -rArmLoc.x : rArmLoc.x, -rArmLoc.y, 0.0f);
+			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, -armAngle);
+			renderer.modelview.translate(facingRight ? -rArmLoc.x : rArmLoc.x, -rArmLoc.y, 0.0f);
 		}
 		
 		// render the health bar
-		tempmat.set(renderer.render2D.modelview);
+		tempmat.set(renderer.modelview);
 		if(player.currentHealth() < 100.0f){
-			renderer.render2D.modelview.translate(0.0f, healthBarYOffset, 0.0f);
-			renderer.render2D.modelview.scale(
-					healthBarScale / Game.renderer.render2D.camera.getZoom(),
-					healthBarScale / Game.renderer.render2D.camera.getZoom(),
+			renderer.modelview.translate(0.0f, healthBarYOffset, 0.0f);
+			renderer.modelview.scale(
+					healthBarScale / Game.renderer.r2D.camera.getZoom(),
+					healthBarScale / Game.renderer.r2D.camera.getZoom(),
 					1.0f);
-			renderer.render2D.sendMatrixToShader();
+			renderer.r2D.sendMatrixToShader();
 			healthBar.setPercent(player.currentHealth());
 			healthBar.update(1.0f / Game.currentFPS);
-			healthBar.render(renderer.render2D, false, false);
-			renderer.render2D.modelview.set(tempmat);
+			healthBar.render(renderer, false, false);
+			renderer.modelview.set(tempmat);
 		}
 		
-		jetpackBar.render(renderer.render2D, player.jetpack);
+		jetpackBar.render(renderer, player.jetpack);
 	}
 	
 	public void renderDebug(Renderer renderer, Entity ent){
@@ -116,17 +115,17 @@ public class PlayerRenderer implements EntityRenderer {
 		col[2] = 0.0f;
 		col[3] = 0.2f;
 
-		renderer.render2D.program.setUniform("vColor", col[0], col[1], col[2], col[3]);
+		renderer.r2D.setColor(col);
 
 		Gdx.gl20.glEnable(GL20.GL_BLEND);
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_DST_COLOR);
-		renderer.render2D.quad.render(player.getWidth(), player.getHeight());
+		renderer.r2D.quad.render(player.getWidth(), player.getHeight());
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 		
 		// render player's jump sensor box
 		JumpSensor sensor = player.getJumpSensor();
-		renderer.render2D.modelview.translate(sensor.getX(), sensor.getY(), 0.0f);
-		renderer.render2D.quad.render(sensor.getWidth(), sensor.getHeight());
+		renderer.modelview.translate(sensor.getX(), sensor.getY(), 0.0f);
+		renderer.r2D.quad.render(sensor.getWidth(), sensor.getHeight());
 		
 		
 		//Render a box where the player's current target is (under the finger)
@@ -134,15 +133,15 @@ public class PlayerRenderer implements EntityRenderer {
 		Vector2 targetLoc = player.getCurrentTarget();
 		
 		// the box is given a different color based on whether or not the player is shooting
-		renderer.render2D.program.setUniform("vColor", shooting ? 0.25f : 0.0f, 0.0f, shooting ? 0.75f : 1.0f, 0.75f);
+		renderer.r2D.setColor(shooting ? 0.25f : 0.0f, 0.0f, shooting ? 0.75f : 1.0f, 0.75f);
 		Gdx.gl20.glEnable(GL20.GL_BLEND); // enable blending for some swell transparency
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_DST_COLOR);
 
 		// reset the modelview and translate it to the right spot
-		renderer.render2D.modelview.idt();
-		renderer.render2D.translateModelViewToCamera();
-		renderer.render2D.modelview.translate(targetLoc.x, targetLoc.y, 0.0f);
-		renderer.render2D.quad.render(0.75f, 0.75f);
+		renderer.modelview.idt();
+		renderer.r2D.translateModelViewToCamera();
+		renderer.modelview.translate(targetLoc.x, targetLoc.y, 0.0f);
+		renderer.r2D.quad.render(0.75f, 0.75f);
 		
 		Gdx.gl20.glDisable(GL20.GL_BLEND); // don't forget to turn blending back off!
 	}

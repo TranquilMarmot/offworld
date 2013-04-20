@@ -9,10 +9,9 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entities;
-import com.bitwaffle.guts.entities.Entities.EntityHashMap;
-import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.guts.entities.entities2d.Entity;
+import com.bitwaffle.guts.entity.Entity;
+import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
+import com.bitwaffle.guts.physics.Entities.EntityHashMap;
 import com.bitwaffle.guts.physics.callbacks.FirstHitQueryCallback;
 
 /**
@@ -82,26 +81,6 @@ public class Physics {
 		world.setContactFilter((ContactFilter) handler);
 	}
 	
-	/**
-	 * Set the current room in the Physics world
-	 * @param newRoom New room
-	 */
-	public void setCurrentRoom(Room newRoom){
-		if(currentRoom != null)
-			currentRoom.removeFromWorld(this);
-		
-		if(newRoom != null)
-			newRoom.addToWorld(this);
-		
-		currentRoom = newRoom;
-	}
-	
-	
-	/** @return The current room */
-	public Room currentRoom(){
-		return currentRoom;
-	}
-	
 	/** Steps the physics simulation and updates every entity's location */
 	public void update(float timeStep){
 		// initialize any entities that need intialization
@@ -126,13 +105,33 @@ public class Physics {
 			currentRoom.update(timeStep);
 	}
 	
+	/**
+	 * Set the current room in the Physics world
+	 * @param newRoom New room
+	 */
+	public void setCurrentRoom(Room newRoom){
+		if(currentRoom != null)
+			currentRoom.removeFromWorld(this);
+		
+		if(newRoom != null)
+			newRoom.addToWorld(this);
+		
+		currentRoom = newRoom;
+	}
+	
+	/** @return The current room */
+	public Room currentRoom(){ return currentRoom; }
+	
+	/**
+	 * Add an Entity to the Entities list
+	 * @param addToCurrentRoom Whether or not to add the entity to the current room as well (if added, it gets removed on room change)
+	 */
 	public void addEntity(Entity ent, boolean addToCurrentRoom){
 		this.addEntity(ent, ent.hashCode(), addToCurrentRoom);
 	}
 	
 	/**
-	 * Add a passive Entity to the Entities list
-	 * @param ent Entity to add
+	 * Add an Entity to the Entities list with a specific hash
 	 * @param addToCurrentRoom Whether or not to add the entity to the current room as well (if added, it gets removed on room change)
 	 */
 	public void addEntity(Entity ent, int hash, boolean addToCurrentRoom){
@@ -147,13 +146,17 @@ public class Physics {
 			toInitialize.push((DynamicEntity)ent);
 	}
 	
+	
+	/**
+	 * Remove an entity from the world
+	 * @param removeFromCurrentRoom Whether or not to remove the entity from the current room as well (generally, yes)
+	 */
 	public void removeEntity(Entity ent, boolean removeFromCurrentRoom){
 		this.removeEntity(ent, ent.hashCode(), removeFromCurrentRoom);
 	}
 	
 	/**
-	 * Directly remove an entity from the world
-	 * @param ent Entity to remove from world
+	 * Remove an entity from the world with a specific hash
 	 * @param removeFromCurrentRoom Whether or not to remove the entity from the current room as well (generally, yes)
 	 */
 	public void removeEntity(Entity ent, int hash, boolean removeFromCurrentRoom){
@@ -167,18 +170,13 @@ public class Physics {
 			Game.net.server.entityRemovedNotification(ent);
 	}
 	
-	/**
-	 * Get an entity from a given layer with a given hash
-	 * @param layer Layer to get entity from
-	 * @param hash Hash of entity to get
-	 * @return Entity at given layer with given hash
-	 */
+	/** Get an entity from a given layer with a given hash */
 	public Entity get2DEntity(int layer, int hash){
 		return entities.layers[layer].get(hash);
 	}
 	
 	/**
-	 * Completely clears the physics world, getting rid of EVERYTHING
+	 * Completely clears the physics world, getting rid of EVERYTHING.
 	 * Use with caution! Can easily cause ConcurrentModificationExceptions
 	 * if something is using an iterator from this physics class.
 	 */
@@ -226,22 +224,16 @@ public class Physics {
 	}
 	
 	/** @return Current number of dynamic entities */
-	public int numEntities(){ 
-		return entities.numEntities();
-	}
+	public int numEntities(){  return entities.numEntities(); }
 	
 	/** @return Whether or not there are any entities in the world */
-	public boolean entitiesExist() {
-		return numEntities() > 0;
-	}
+	public boolean entitiesExist() { return numEntities() > 0; }
 	
-	public EntityHashMap getLayer(int layer){
-		return entities.layers[layer];
-	}
+	/** Get a layer's hash map */
+	public EntityHashMap getLayer(int layer){ return entities.layers[layer]; }
 	
-	public int numLayers(){
-		return Entities.NUM_LAYERS;
-	}
+	/** Total number of layers */
+	public int numLayers(){ return Entities.NUM_LAYERS; }
 	
 	/**
 	 * Query the world's AABB for the first entity found in the given bounding box

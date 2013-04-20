@@ -1,12 +1,10 @@
-package com.bitwaffle.guts.entities;
+package com.bitwaffle.guts.physics;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Stack;
 
-import com.bitwaffle.guts.entities.entities2d.Entity;
-import com.bitwaffle.guts.entities.entities2d.EntityAddRequest;
-import com.bitwaffle.guts.entities.entities2d.EntityRemoveRequest;
+import com.bitwaffle.guts.entity.Entity;
 
 /**
  * Handles keeping track of which entities to render and handles
@@ -17,6 +15,33 @@ import com.bitwaffle.guts.entities.entities2d.EntityRemoveRequest;
 public class Entities {
 	@SuppressWarnings("serial")
 	public class EntityHashMap extends HashMap<Integer, Entity>{};
+	
+	/** Request to add entity to world */
+	public static class EntityAddRequest{
+		/** Entity being added */
+		public Entity ent;
+		/** Hash to add entity with */
+		public int hash;
+		
+		public EntityAddRequest(Entity ent, int hash){
+			this.ent = ent;
+			this.hash = hash;
+			ent.setHashCode(hash);
+		}
+	}
+	
+	/** Request to remove entity from world */
+	public static class EntityRemoveRequest{
+		/** Layer to remove entity from */
+		public int layer;
+		/** Hash of entity being removed */
+		public int hash;
+		
+		public EntityRemoveRequest(int layer, int hash){
+			this.layer = layer;
+			this.hash = hash;
+		}
+	}
 	
 	/** Number of layers of entities we have */
 	public static final int NUM_LAYERS = 10;
@@ -58,16 +83,9 @@ public class Entities {
 		removeEntity(ent, ent.hashCode());
 	}
 	
-	/**
-	 * Remove an entity with a specific hash value
-	 * @param ent Entity to remove
-	 * @param hash Hash of entity to remove
-	 */
+	/** Remove an entity with a specific hash value */
 	public void removeEntity(Entity ent, int hash){
-		EntityRemoveRequest req = new EntityRemoveRequest();
-		req.hash = hash;
-		req.layer = ent.getLayer();
-		toRemove2D.add(req);
+		toRemove2D.add(new EntityRemoveRequest(ent.getLayer(), hash));
 	}
 	
 	/**
@@ -100,7 +118,7 @@ public class Entities {
 		}
 	}
 	
-	/** Initialize an entity in the physics world */
+	/** Add an entity to be rendered */
 	private void handleAddRequest(EntityAddRequest req){
 		int layer = req.ent.getLayer();
 		if(layer > NUM_LAYERS)

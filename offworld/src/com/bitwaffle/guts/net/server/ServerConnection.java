@@ -1,9 +1,9 @@
 package com.bitwaffle.guts.net.server;
 
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entities.EntityHashMap;
-import com.bitwaffle.guts.entities.entities2d.Entity;
+import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.net.messages.entity.DynamicEntityUpdateMessage;
+import com.bitwaffle.guts.physics.Entities.EntityHashMap;
 import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
 import com.esotericsoftware.kryonet.Connection;
 

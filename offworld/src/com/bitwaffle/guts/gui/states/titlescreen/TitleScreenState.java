@@ -1,7 +1,7 @@
 package com.bitwaffle.guts.gui.states.titlescreen;
 
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.passive.GLSLSandbox;
+import com.bitwaffle.guts.entity.passive.GLSLSandbox;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
 import com.bitwaffle.guts.gui.states.titlescreen.buttons.OptionsButton;

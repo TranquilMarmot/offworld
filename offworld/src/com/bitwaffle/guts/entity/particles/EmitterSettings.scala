@@ -1,8 +1,8 @@
-package com.bitwaffle.guts.entities.particles
+package com.bitwaffle.guts.entity.particles
 
-import com.bitwaffle.guts.entities.dynamic.DynamicEntity
+import com.bitwaffle.guts.entity.dynamic.DynamicEntity
 import com.badlogic.gdx.math.Vector2
-import com.bitwaffle.guts.entities.entities2d.EntityRenderer
+import com.bitwaffle.guts.entity.EntityRenderer
 
 /** Settings for a particle emitter */
 trait EmitterSettings {

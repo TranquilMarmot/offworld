@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.BufferUtils;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 
 /**
  * A circle for rendering
@@ -15,7 +15,7 @@ import com.bitwaffle.guts.graphics.render.render2d.Render2D;
  */
 public class Circle {
 	/** What will be rendering this circle */
-	private Render2D renderer;
+	private Renderer renderer;
 	
 	/** Buffers to hold data */
 	private Buffer vertBuffer, texBuffer;
@@ -23,14 +23,11 @@ public class Circle {
 	/** Info on coordinates for drawing */
 	private static final int COORDS_PER_VERTEX = 3, COORDS_PER_TEXCOORD = 2;
 	
-	/** Handles to send data to when drawing */
-	private int positionHandle, texCoordHandle;
-	
 	/** Number of indices in circle */
 	private int numIndices;
 	
 	/** @param step How much to increase the angle between each vertex (lower means more vertices, must be between 0.1 and 90.0) */
-	public Circle(Render2D renderer, float step){
+	public Circle(Renderer renderer, float step){
 		this.renderer = renderer;
 		
 		// temporary lists
@@ -77,13 +74,12 @@ public class Circle {
 		BufferUtils.copy(texarr, vertBuffer, vertarr.length, 0);
 		texBuffer.rewind();
 		texCoords.clear();
-		
-		// get handles for rendering
-		positionHandle = renderer.program.getAttribLocation("vPosition");
-		texCoordHandle = renderer.program.getAttribLocation("vTexCoord");
 	}
 	
 	public void render(float radius, boolean flipHorizontal, boolean flipVertical){
+		int positionHandle = renderer.r2D.getVertexPositionHandle();
+		int texCoordHandle = renderer.r2D.getTexCoordHandle();
+		
 		// set position info
 		Gdx.gl20.glEnableVertexAttribArray(positionHandle);
         Gdx.gl20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GL20.GL_FLOAT, false, 0, vertBuffer);
@@ -98,7 +94,7 @@ public class Circle {
         	renderer.modelview.rotate(0.0f, 1.0f, 0.0f, 180.0f);
         if(flipVertical)
         	renderer.modelview.rotate(0.0f, 0.0f, 1.0f, 180.0f);
-        renderer.sendMatrixToShader();
+        renderer.r2D.sendMatrixToShader();
 
         // actually draw the circle
         Gdx.gl20.glDrawArrays(GL20.GL_TRIANGLE_FAN, 0, numIndices);

@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.entities.dynamic;
+package com.bitwaffle.guts.entity.dynamic;
 
 import java.util.ArrayList;
 
@@ -9,8 +9,8 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.bitwaffle.guts.entities.entities2d.Entity;
-import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
+import com.bitwaffle.guts.entity.Entity;
+import com.bitwaffle.guts.entity.EntityRenderer;
 import com.bitwaffle.guts.physics.Physics;
 
 /**

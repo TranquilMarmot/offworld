@@ -1,7 +1,7 @@
 package com.bitwaffle.offworld.interfaces;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 
 public interface FirearmHolder {
 	public Vector2 getFirearmLocation();

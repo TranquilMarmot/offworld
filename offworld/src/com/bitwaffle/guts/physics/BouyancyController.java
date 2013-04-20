@@ -2,7 +2,7 @@ package com.bitwaffle.guts.physics;
 
 import java.util.ArrayList;
 
-import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 
 public class BouyancyController {
 	// see here http://personal.boristhebrave.com/project/b2buoyancycontroller

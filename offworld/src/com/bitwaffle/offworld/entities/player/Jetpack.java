@@ -1,7 +1,7 @@
 package com.bitwaffle.offworld.entities.player;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.guts.entities.particles.ParticleEmitter;
+import com.bitwaffle.guts.entity.particles.ParticleEmitter;
 
 /**
  * Handles making the player fly through the air

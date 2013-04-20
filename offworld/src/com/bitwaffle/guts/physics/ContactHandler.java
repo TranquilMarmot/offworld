@@ -6,8 +6,8 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
-import com.bitwaffle.guts.entities.particles.Particle;
+import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
+import com.bitwaffle.guts.entity.particles.Particle;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.bitwaffle.offworld.weapons.pistol.PistolBullet;
 

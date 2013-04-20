@@ -2,7 +2,7 @@ package com.bitwaffle.guts.net.messages.entity;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.physics.PhysicsUpdateRequest;
 
 public class DynamicEntityUpdateRequest implements PhysicsUpdateRequest {

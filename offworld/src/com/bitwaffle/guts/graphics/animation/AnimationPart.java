@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.graphics.animation;
 
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 
 /**
  * Generally, each AnimationPart corresponds to a sprite sheet
@@ -92,7 +92,7 @@ public class AnimationPart {
 	
 	
 	/** Draw the current frame of this animation, with optional flipping */
-	public void renderCurrentFrame(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
+	public void renderCurrentFrame(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
 		frames[currentFrame].render(renderer, xScale, yScale, !flipHorizontal, !flipVertical);
 	}
 	

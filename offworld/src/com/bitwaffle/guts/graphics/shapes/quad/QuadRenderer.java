@@ -3,8 +3,8 @@ package com.bitwaffle.guts.graphics.shapes.quad;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity;
-import com.bitwaffle.guts.entities.entities2d.EntityRenderer;
+import com.bitwaffle.guts.entity.Entity;
+import com.bitwaffle.guts.entity.EntityRenderer;
 import com.bitwaffle.guts.graphics.SubImage;
 import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.resources.TextureManager;
@@ -67,9 +67,9 @@ public class QuadRenderer implements EntityRenderer {
 			if(hasDebug)
 				renderDebug(renderer, ent);
 		} else {
-			renderer.render2D.program.setUniform("vColor", color[0], color[1], color[2], color[3]);
-			renderer.render2D.modelview.scale(xScale, yScale, 1.0f);
-			renderer.render2D.sendMatrixToShader();
+			renderer.r2D.setColor(color);
+			renderer.modelview.scale(xScale, yScale, 1.0f);
+			renderer.r2D.sendMatrixToShader();
 			
 			// TODO maybe make blending options somewhere? per renderer?
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
@@ -77,11 +77,11 @@ public class QuadRenderer implements EntityRenderer {
 			
 			// subimage has a special call that binds texture and draws it with special coords
 			if(isSubImage)
-				Game.resources.textures.getSubImage(textureName).render(renderer.render2D, width, height);
+				Game.resources.textures.getSubImage(textureName).render(renderer, width, height);
 			
 			else{
 				Game.resources.textures.bindTexture(textureName);
-				renderer.render2D.quad.render(width, height);
+				renderer.r2D.quad.render(width, height);
 			}
 			
 			Gdx.gl20.glDisable(GL20.GL_BLEND);
@@ -89,17 +89,17 @@ public class QuadRenderer implements EntityRenderer {
 	}
 	
 	private void renderDebug(Renderer renderer, Entity ent){
-		renderer.render2D.program.setUniform("vColor", 0.0f, 1.0f, 1.0f, 0.4f);
-		renderer.render2D.modelview.scale(xScale, yScale, 1.0f);
-		renderer.render2D.sendMatrixToShader();
+		renderer.r2D.setColor(0.0f, 1.0f, 1.0f, 0.4f);
+		renderer.modelview.scale(xScale, yScale, 1.0f);
+		renderer.r2D.sendMatrixToShader();
 		
 		Game.resources.textures.bindTexture("blank");
 		
 		if(isSubImage){
 			SubImage sub = Game.resources.textures.getSubImage(textureName);
-			renderer.render2D.quad.render(sub.getRenderWidth() * width, sub.getRenderHeight() * width);
+			renderer.r2D.quad.render(sub.getRenderWidth() * width, sub.getRenderHeight() * width);
 		} else{
-			renderer.render2D.quad.render(width, height);
+			renderer.r2D.quad.render(width, height);
 		}
 	}
 }

@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.graphics.animation;
 
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 
 /**
  * Moving pictures! Like magic!
@@ -94,7 +94,7 @@ public class Animation {
 	}
 	
 	/** Draw the current frame of this animation */
-	public void renderCurrentFrame(Render2D renderer){
+	public void renderCurrentFrame(Renderer renderer){
 		parts[currentPart].renderCurrentFrame(renderer, false, false);
 	}
 	
@@ -104,7 +104,7 @@ public class Animation {
 	 * @param width Width of entity
 	 * @param height Height of entity
 	 */
-	public void renderCurrentFrame(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
+	public void renderCurrentFrame(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
 		parts[currentPart].renderCurrentFrame(renderer, flipHorizontal, flipVertical);
 	}
 }

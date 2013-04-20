@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.entities.particles;
+package com.bitwaffle.guts.entity.particles;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.entities2d.Entity;
+import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.physics.CollisionFilters;
 
 /**

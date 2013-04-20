@@ -4,10 +4,10 @@ import java.util.StringTokenizer;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.Entities.EntityHashMap;
-import com.bitwaffle.guts.entities.entities2d.Entity;
+import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.net.NetConsoleCommands;
 import com.bitwaffle.guts.physics.PhysicsHelper;
+import com.bitwaffle.guts.physics.Entities.EntityHashMap;
 
 
 /**

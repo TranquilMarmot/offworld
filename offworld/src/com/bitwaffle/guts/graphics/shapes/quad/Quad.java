@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.utils.BufferUtils;
+import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.graphics.render.render2d.Render2D;
 
 /**
@@ -20,7 +21,7 @@ import com.bitwaffle.guts.graphics.render.render2d.Render2D;
  */
 public class Quad {
 	/** What will be rendering this quad */
-	private Render2D renderer;
+	private Renderer renderer;
 	
 	/** Buffers to hold data */
 	private Buffer vertBuffer, defaultTexBuffer;
@@ -56,11 +57,8 @@ public class Quad {
 		0.0f, 0.0f
 	};
 	
-	/** Handles to send data to when drawing */
-	private int positionHandle, texCoordHandle;
-	
 	/** Create a new quad (there should only be one at a time) */
-	public Quad(Render2D renderer){
+	public Quad(Renderer renderer){
 		this.renderer = renderer;
 		
 		vertBuffer = BufferUtils.newByteBuffer(coords.length * 4);
@@ -70,9 +68,6 @@ public class Quad {
 		defaultTexBuffer = BufferUtils.newByteBuffer(defaultTexCoords.length * 4);
 		BufferUtils.copy(defaultTexCoords, defaultTexBuffer, defaultTexCoords.length, 0);
 		defaultTexBuffer.rewind();
-		
-		positionHandle = renderer.program.getAttribLocation("vPosition");
-		texCoordHandle = renderer.program.getAttribLocation("vTexCoord");
 		
 		oldModelview = new Matrix4();
 	}
@@ -100,6 +95,9 @@ public class Quad {
 	 * @param texCoords Texture coordinates to use for rendering
 	 */
 	public void render(float width, float height, boolean flipHorizontal, boolean flipVertical, Buffer texCoords){
+		int positionHandle = renderer.r2D.getVertexPositionHandle();
+		int texCoordHandle = renderer.r2D.getTexCoordHandle();
+		
 		// set position info
 		Gdx.gl20.glEnableVertexAttribArray(positionHandle);
         Gdx.gl20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX, GL20.GL_FLOAT, false, 0, vertBuffer);
@@ -117,7 +115,7 @@ public class Quad {
         	renderer.modelview.rotate(0.0f, 1.0f, 0.0f, 180.0f);
         if(flipVertical)
         	renderer.modelview.rotate(0.0f, 0.0f, 1.0f,  180.0f);
-        renderer.sendMatrixToShader();
+        renderer.r2D.sendMatrixToShader();
 
         // actually draw the quad
         Gdx.gl20.glDrawArrays(GL20.GL_TRIANGLES, 0, NUM_INDICES);

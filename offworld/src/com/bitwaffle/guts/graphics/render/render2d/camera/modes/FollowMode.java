@@ -2,7 +2,7 @@ package com.bitwaffle.guts.graphics.render.render2d.camera.modes;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entities.dynamic.DynamicEntity;
+import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 
 /**
  * Camera mode that follows a {@link DynamicEntity}

@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.gui.button;
 
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 
 /**
  * A box-shaped button
@@ -34,7 +34,7 @@ public abstract class RectangleButton extends Button {
 	}
 
 	@Override
-	public abstract void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical);
+	public abstract void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical);
 	
 	public float getWidth(){ return width; }
 	public float getHeight(){ return height; }

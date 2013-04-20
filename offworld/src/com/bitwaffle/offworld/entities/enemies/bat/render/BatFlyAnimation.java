@@ -3,7 +3,7 @@ package com.bitwaffle.offworld.entities.enemies.bat.render;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.animation.Animation;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.offworld.entities.enemies.bat.Bat;
 
 public class BatFlyAnimation extends Animation {
@@ -29,7 +29,7 @@ public class BatFlyAnimation extends Animation {
 	}
 	
 	@Override
-	public void renderCurrentFrame(Render2D renderer, boolean flipHorizontal, boolean flipVertical){
+	public void renderCurrentFrame(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
 		Vector2 linVec = bat.body.getLinearVelocity();
 		
 		if(linVec.x < -VELOCITY_THRESHOLD){

@@ -5,10 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Application.ApplicationType;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.esotericsoftware.minlog.Log;
 
 /**
  * Convenience class for handling shaders
@@ -58,9 +57,6 @@ public class GLSLShader {
 		ApplicationType type = Gdx.app.getType();
 		if(type == ApplicationType.Android || type == ApplicationType.iOS || type == ApplicationType.WebGL)
 			prefix = GLES_PREFIX;
-		
-		Log.set(Log.LEVEL_ERROR);
-		Log.error("WAT", prefix);
 		
 		try{
 			BufferedReader reader = new BufferedReader(new InputStreamReader(stream), 8);

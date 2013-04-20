@@ -107,7 +107,7 @@ public class PlayerInputListener implements InputProcessor {
 		while(pointers.size() < pointerID + 1)
 			pointers.add(new PlayerPointer(player));
 		
-		if(Game.renderer.render2D.camera.currentMode() == Camera2D.Modes.FOLLOW)
+		if(Game.renderer.r2D.camera.currentMode() == Camera2D.Modes.FOLLOW)
 			pointers.get(pointerID).down(pointerID, pointerX, pointerY);
 		
 		return false;
@@ -132,7 +132,7 @@ public class PlayerInputListener implements InputProcessor {
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
 		if(camera.currentMode() == Camera2D.Modes.FOLLOW)
-			player.setTarget(MathHelper.toWorldSpace(screenX, screenY, Game.renderer.render2D.camera));
+			player.setTarget(MathHelper.toWorldSpace(screenX, screenY, Game.renderer.r2D.camera));
 		
 		return false;
 	}

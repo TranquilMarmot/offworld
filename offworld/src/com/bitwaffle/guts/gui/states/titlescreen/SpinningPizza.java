@@ -2,7 +2,7 @@ package com.bitwaffle.guts.gui.states.titlescreen;
 
 import com.badlogic.gdx.math.Matrix4;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.gui.GUIObject;
 
 public class SpinningPizza extends GUIObject {
@@ -36,21 +36,21 @@ public class SpinningPizza extends GUIObject {
 	}
 
 	@Override
-	public void render(Render2D renderer, boolean flipHorizontal,
+	public void render(Renderer renderer, boolean flipHorizontal,
 			boolean flipVertical) {
 		oldModelview.set(renderer.modelview);
 		renderer.modelview.rotate(0.0f, 0.0f, 1.0f, pizzaAngle);
-		renderer.sendMatrixToShader();
+		renderer.r2D.sendMatrixToShader();
 		
-		renderer.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, 1.0f);
+		renderer.r2D.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 		Game.resources.textures.bindTexture("mainmenupizza");
-		renderer.quad.render(pizzaSize, pizzaSize);
+		renderer.r2D.quad.render(pizzaSize, pizzaSize);
 		
 		
 		renderer.modelview.set(oldModelview);
-		renderer.sendMatrixToShader();
+		renderer.r2D.sendMatrixToShader();
 		Game.resources.textures.bindTexture("mainmenubanner");
-		renderer.quad.render(pizzaSize + 5.0f, pizzaSize + 5.0f);
+		renderer.r2D.quad.render(pizzaSize + 5.0f, pizzaSize + 5.0f);
 		
 	}
 

@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.gui.button;
 
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 
 /**
  * A circle-shaped button
@@ -35,15 +35,15 @@ public abstract class CircleButton extends Button{
 	}
 	
 	@Override
-	public void render(Render2D renderer, boolean flipHorizontal, boolean flipVertical) {
+	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical) {
 		if(this.isDown())
-			renderer.program.setUniform("vColor", down[0], down[1], down[2], down[3]);
+			renderer.r2D.setColor(down);
 		else if(this.isActive())
-			renderer.program.setUniform("vColor", active[0], active[1], active[2], active[3]);
+			renderer.r2D.setColor(active);
 		else
-			renderer.program.setUniform("vColor", disabled[0], disabled[1], disabled[2], disabled[3]);
+			renderer.r2D.setColor(disabled);
 		
-		renderer.circle.render(this.radius, flipHorizontal, flipVertical);
+		renderer.r2D.circle.render(this.radius, flipHorizontal, flipVertical);
 	}
 	
 	@Override

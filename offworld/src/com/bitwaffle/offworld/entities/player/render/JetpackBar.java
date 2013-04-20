@@ -3,7 +3,7 @@ package com.bitwaffle.offworld.entities.player.render;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.render2d.Render2D;
+import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.gui.hud.Bar;
 import com.bitwaffle.offworld.entities.player.Jetpack;
 
@@ -46,7 +46,7 @@ public class JetpackBar extends Bar {
 		this.setPercent(100.0f);
 	}
 	
-	public void render(Render2D renderer, Jetpack jetpack){
+	public void render(Renderer renderer, Jetpack jetpack){
 		// only fade out when fuel is full
 		if(jetpack.remainingFuel() == 100.0f){
 			// fade out fill
@@ -79,8 +79,8 @@ public class JetpackBar extends Bar {
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			
 			renderer.modelview.translate(0.0f, yOffset, 0.0f);
-			renderer.modelview.scale(scale / Game.renderer.render2D.camera.getZoom(), scale / Game.renderer.render2D.camera.getZoom(), 1.0f);
-			renderer.sendMatrixToShader();
+			renderer.modelview.scale(scale / Game.renderer.r2D.camera.getZoom(), scale / Game.renderer.r2D.camera.getZoom(), 1.0f);
+			renderer.r2D.sendMatrixToShader();
 			
 			super.render(renderer, false, false);
 			
