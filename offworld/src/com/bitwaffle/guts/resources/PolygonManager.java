@@ -3,6 +3,7 @@ package com.bitwaffle.guts.resources;
 import java.util.HashMap;
 
 import com.badlogic.gdx.physics.box2d.Shape;
+import com.bitwaffle.guts.graphics.shapes.model.ModelPolygon;
 import com.bitwaffle.guts.graphics.shapes.polygon.Polygon;
 
 /**
@@ -33,6 +34,11 @@ public class PolygonManager {
 
 	public Polygon get(String polygonName) {
 		return polygons.get(polygonName);
+	}
+	
+	/** Get a polygon that has a model attached to it.  */
+	public ModelPolygon getModelPolygon(String polygonName){
+		return (ModelPolygon) polygons.get(polygonName);
 	}
 	
 	public void remove(String polygonName){

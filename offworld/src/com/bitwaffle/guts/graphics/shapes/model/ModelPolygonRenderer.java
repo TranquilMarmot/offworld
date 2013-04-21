@@ -9,9 +9,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.entity.EntityRenderer3D;
-import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.render.Renderer;
-import com.bitwaffle.guts.util.MathHelper;
 
 /**
  * Renders a {@link Model}
@@ -22,9 +20,10 @@ public class ModelPolygonRenderer extends EntityRenderer3D {
 	/** Info on coordinates */
 	private static final int COORDS_PER_VERTEX = 3, COORDS_PER_TEXCOORD = 2;
 	
-	/** Model this renderer renders */
+	/** Polygon holding physics/debug data */
 	private ModelPolygon modelPoly;
 	
+	/** Model being rendered */
 	private Model model;
 	
 	public ModelPolygonRenderer(ModelPolygon modelPoly){
@@ -70,16 +69,15 @@ public class ModelPolygonRenderer extends EntityRenderer3D {
 	private void renderDebug(Renderer renderer, Entity ent){
 		Buffer debugVertBuffer = modelPoly.getDebugVertBuffer(), debugTexCoordBuffer = modelPoly.getDebugTexCoordBuffer();
 		if(debugVertBuffer != null && debugTexCoordBuffer != null){
-			int positionHandle = renderer.r3D.getVertexPositionHandle();
-			int texCoordHandle = renderer.r3D.getTexCoordHandle();
+			renderer.r2D.switchTo2DWorldCoords();
+			renderer.r2D.prepareToRenderEntity(ent);
+			int positionHandle = renderer.r2D.getVertexPositionHandle();
+			int texCoordHandle = renderer.r2D.getTexCoordHandle();
 			
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_DST_COLOR);
 			
 			renderer.r2D.setColor(0.0f, 1.0f, 1.0f, 0.4f);
-			
-			//renderer.modelview.rotate(0.0f, 0.0f, 1.0f, MathHelper.toDegrees(ent.getAngle()));
-			//renderer.r3D.sendMatrixToShader();
 			
 			// bind blank texture
 			Game.resources.textures.bindTexture("blank");

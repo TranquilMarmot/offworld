@@ -3,20 +3,18 @@ package com.bitwaffle.offworld.rooms;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.shapes.model.ModelPolygon;
-import com.bitwaffle.guts.graphics.shapes.model.ModelPolygonRenderer;
 import com.bitwaffle.guts.graphics.shapes.polygon.Polygon;
 import com.bitwaffle.guts.graphics.shapes.polygon.PolygonRenderer;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.physics.Room;
 import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
 import com.bitwaffle.offworld.entities.enemies.bat.Bat;
+import com.bitwaffle.offworld.entities.pickups.diamond.Diamond;
+
 
 public class Room1 extends Room {
 	/** Bounds of room */
@@ -36,7 +34,7 @@ public class Room1 extends Room {
 		//this.addEntity(getEntity("intro-underground-background", 3, new float[]{0.0196078431372549f,0.196078431372549f, 0.4274509803921569f, 1.0f});
 		
 		// add random rocks
-		for(int i = 0; i < 0; i++){
+		for(int i = 0; i < 100; i++){
     		float rockX = Game.random.nextFloat() * 10.0f - 50.0f;
     		if(rockX < 1.0f) rockX = 1.0f;
     		float rockY = Game.random.nextFloat() * 150.0f + 15.0f;
@@ -46,6 +44,9 @@ public class Room1 extends Room {
     		
     		BreakableRock rock = new BreakableRock(new Vector2(rockX, rockY), 1.0f, layer);
     		Game.physics.addEntity(rock, true);
+    		
+    		Diamond diamond = new Diamond(layer, new Vector2(rockX, rockY), 13.0f);
+    		this.addEntity(diamond);
     		
     		/*
     		QuadRenderer rend = new QuadRenderer("box", false, true, 2.0f, 2.0f, 1.0f, 1.0f, new float[]{1.0f, 1.0f, 1.0f, 1.0f});
@@ -66,23 +67,8 @@ public class Room1 extends Room {
 		this.addEntity(bat);
 		
 		
-		ModelPolygon diamondModel = (ModelPolygon)Game.resources.polygons.get("diamond");
-		
-		
-		BodyDef diamondBody = new BodyDef();
-		diamondBody.type = BodyType.DynamicBody;
-		diamondBody.position.set(3.0f, 6.0f);
-		diamondBody.angle = 0.0f;
-		diamondBody.angularVelocity = 1.0f;
-		diamondBody.fixedRotation = false;
-		
-		FixtureDef diamondFixture = new FixtureDef();
-		diamondFixture.shape = diamondModel.getShape();
-		diamondFixture.density = 2.0f;
-		
-		DynamicEntity diamond = new DynamicEntity(new ModelPolygonRenderer(diamondModel), 6, diamondBody, diamondFixture);
+		Diamond diamond = new Diamond(6, new Vector2(3.0f, 6.0f), 13.0f);
 		this.addEntity(diamond);
-		
 		
 		// create walls
 		//makeWalls();

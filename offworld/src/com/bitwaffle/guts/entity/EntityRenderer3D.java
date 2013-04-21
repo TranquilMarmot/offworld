@@ -1,7 +1,6 @@
 package com.bitwaffle.guts.entity;
 
 import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdx.math.Quaternion;
 import com.bitwaffle.guts.graphics.render.Renderer;
 
 /**

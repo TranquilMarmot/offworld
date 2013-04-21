@@ -143,29 +143,37 @@ public class Render3D {
 		program.setUniform("NormalMatrix", normal);
 	}
 	
+	/** 
+	 * Translates and rotates the camera to be at the given entity.
+	 * Entity's renderer MUST extend EntityRenderer3D!!
+	 */
 	public void prepareToRenderEntity(Entity ent){
 		Vector2 entLoc = ent.getLocation();
+		float entAngle = ent.getAngle();
 		
 		EntityRenderer3D rend = (EntityRenderer3D) ent.renderer;
 		
 		renderer.modelview.idt();
 		translateModelviewToCamera();
 		
+		// translate to entity with z value from renderer
 		renderer.modelview.translate(new Vector3(entLoc.x, entLoc.y, rend.z));
 		
-		//renderer.modelview.rotate(0.0f, 0.0f, 1.0f, MathHelper.toDegrees(ent.getAngle()));
+		// rotate to match entity's angle
+		renderer.modelview.rotate(0.0f, 0.0f, 1.0f, MathHelper.toDegrees(entAngle));
 		
-		//Quaternion reverse = new Quaternion(rend.rotation).conjugate();
-		//rend.rotation.toMatrix(tempMatrixArr);
+		// add any rotation from renderer
 		renderer.modelview = renderer.modelview.mul(rend.rotation);
 		
 		sendMatrixToShader();
 	}
 	
+	public void setLight(int light, Light l){
+		lights.set(light, l);
+	}
 	
-	/**
-	 * Sets up lights for rendering
-	 */
+	
+	/** Sets up lights for rendering */
 	private void setUpLights(){
 		// FIXME only one light supported right now!
 		if(lights.size() > 1)
@@ -173,8 +181,8 @@ public class Render3D {
 		Light l = lights.iterator().next();
 		
 		// crazy quaternion and vector math to get the light into world coordinates
-		Quaternion reverse = new Quaternion(camera.getRotation()).conjugate();
-		Vector3 rotated = MathHelper.rotateVectorByQuaternion(l.location(), reverse);
+		//Quaternion reverse = new Quaternion(camera.getRotation()).conjugate();
+		//Vector3 rotated = MathHelper.rotateVectorByQuaternion(l.location(), reverse);
 		
 		// set uniforms
 		//program.setUniform("Light.LightPosition", rotated.x, rotated.y, rotated.z, 0.0f);

@@ -29,5 +29,32 @@
 			"texture": "diamond",
 			"scale": 4.0
 		}
+	],
+	
+	"entities":	[
+		{
+			"name":	"diamond",
+			"fixture":	{
+				"shape":	{
+					"type":	"polygon",
+					"polyName":	"diamond"
+				},
+				"density":	1.0,
+				"friction":	0.2,
+				"restitution":	0.7,
+				"isSensor":	false,
+				"groupIndex":	5,
+				"category":	"entity",
+				"mask":	"everything"
+			},
+			"body":	{
+				"allowSleep":	true,
+				"bullet":	false,
+				"fixedRotation":	false,
+				"gravityScale":	1.0,
+				"linearDamping":	0.0,
+				"type":	"dynamic"
+			}
+		}
 	]
 }}
