@@ -1,6 +1,5 @@
 package com.bitwaffle.guts.desktop;
 
-import org.lwjgl.Sys;
 import org.lwjgl.input.Mouse;
 
 import com.badlogic.gdx.Files.FileType;
@@ -65,12 +64,6 @@ public class DesktopGame extends Game {
 		super.dispose();
 		System.out.println(goodbye());
 		Mouse.setGrabbed(false);
-	}
-    
-
-	@Override
-	public long getTime() {
-	    return (Sys.getTime() * 1000) / Sys.getTimerResolution();
 	}
     
 	/**

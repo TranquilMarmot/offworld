@@ -5,6 +5,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.input.Input;
@@ -57,7 +58,7 @@ public abstract class Game implements ApplicationListener {
 	/** Current frames per second (at the moment, counts rendering and physics updates per second) */
 	public static int currentFPS = 60;
 	/** Used to count up to a second for FPS */
-	private long counter;
+	private float counter = 0.0f;
 	/** Used to count frames for FPS */
 	private int frameCount = 0;
 	
@@ -66,7 +67,7 @@ public abstract class Game implements ApplicationListener {
 	/** Maximum number of allowed steps per frame */
 	private final int MAX_STEPS = 5;
 	/** Used to know how much time has passed */
-	private float timeStepAccum = 0;
+	private float timeStepAccum;
 	/** Used to know how much time has passed */
 	private long previousTime;
 	
@@ -77,7 +78,7 @@ public abstract class Game implements ApplicationListener {
 	
 	@Override
     public void create () {
-    	random = new Random(this.getTime());
+    	random = new Random(TimeUtils.millis());
 		
     	initGDX();
     	initPhysics();
@@ -105,8 +106,6 @@ public abstract class Game implements ApplicationListener {
 	}
 	
 	protected void initRenderer(){
-		//render2D = new Render2D();
-		//render3D = new Render3D();
 		renderer = new Renderer();
 	}
 	
@@ -117,16 +116,16 @@ public abstract class Game implements ApplicationListener {
 
 	@Override
     public void render () {
-		// update everything
 		update();
-		// render the scene
-		//render2D.renderScene();
 		renderer.renderScene();
     }
     
     protected void update(){
+    	long currentTime = TimeUtils.millis();
+    	if(previousTime == 0.0f)
+    		previousTime = currentTime;
     	// get the current time
-		long timeBeforeLoop = getTime();
+		long timeBeforeLoop = currentTime;
 		
     	// subtract and convert to seconds 
 		float deltaTime = (float)(timeBeforeLoop - previousTime) / 1000.0f;
@@ -160,17 +159,10 @@ public abstract class Game implements ApplicationListener {
 				gui.update(FIXED_TIMESTEP);
 		}
 		
-		updateFPS(timeBeforeLoop);
+		updateFPS(deltaTime);
 		
 		net.update();
     }
-    
-	/**
-	 * Get the time in milliseconds
-	 * 
-	 * @return The system time in milliseconds
-	 */
-	public abstract long getTime();
     
     /**
      * @return Whether or not the game is currently pause
@@ -210,16 +202,17 @@ public abstract class Game implements ApplicationListener {
      * Update the FPS counter
      * @param timeBeforeLoop Time in milliseconds before doing everything
      */
-    private void updateFPS(long timeBeforeLoop){
-    	long elapsedTime = getTime() - timeBeforeLoop;
-    	counter += elapsedTime;
+    private void updateFPS(float deltaTime){
+    	counter += deltaTime;
     	frameCount++;
     	
+		System.out.println(deltaTime + " " + counter);
+    	
     	// if the counter is above 1000, it means a second has passed
-    	if(counter >= 1000.0){
+    	if(counter >= 1.0){
     		currentFPS = frameCount;
     		frameCount = 0;
-    		counter -= 1000.0;
+    		counter -= 1.0;
     	}
     }
 }
