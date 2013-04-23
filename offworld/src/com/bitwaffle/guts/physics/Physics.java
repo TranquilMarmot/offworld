@@ -6,6 +6,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.ContactFilter;
 import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.QueryCallback;
 import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
@@ -105,10 +106,7 @@ public class Physics {
 			currentRoom.update(timeStep);
 	}
 	
-	/**
-	 * Set the current room in the Physics world
-	 * @param newRoom New room
-	 */
+	/** Set the current room in the Physics world */
 	public void setCurrentRoom(Room newRoom){
 		if(currentRoom != null)
 			currentRoom.removeFromWorld(this);
@@ -257,5 +255,9 @@ public class Physics {
 	 */
 	public void rayCast(RayCastCallback callback, Vector2 point1, Vector2 point2){
 		world.rayCast(callback, point1, point2);
+	}
+	
+	public void queryAABB(QueryCallback callback, float lowerX, float lowerY, float upperX, float upperY){
+		world.QueryAABB(callback, lowerX, lowerY, upperX, upperY);
 	}
 }

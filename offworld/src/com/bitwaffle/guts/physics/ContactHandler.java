@@ -29,10 +29,14 @@ public class ContactHandler implements ContactListener, ContactFilter{
 			Player player = (Player)entA;
 			if(fixtureA.equals(player.getJumpSensor().fixture()))
 				player.getJumpSensor().beginContact(entB);
+			else if(fixtureA.equals(player.getPickupSensor().fixture()))
+				player.getPickupSensor().reportContact(entB);
 		} else if(entB instanceof Player){
 			Player player = (Player)entB;
 			if(fixtureB.equals(player.getJumpSensor().fixture()))
 					player.getJumpSensor().beginContact(entA);
+			else if(fixtureB.equals(player.getPickupSensor().fixture()))
+				player.getPickupSensor().reportContact(entA);
 		}
 		
 		// bullet collision

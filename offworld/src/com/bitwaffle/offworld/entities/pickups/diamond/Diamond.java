@@ -6,13 +6,17 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.EntityRenderer3D;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.shapes.model.ModelPolygonRenderer;
+import com.bitwaffle.offworld.entities.player.Inventory;
+import com.bitwaffle.offworld.interfaces.Money;
 
 /**
  * Now YOU have a friend in the diamond business.
  * 
  * @author TranquilMarmot
  */
-public class Diamond extends DynamicEntity {
+public class Diamond extends DynamicEntity implements Money {
+	private static final int MONEY_VAL = 10;
+	
 	public Diamond(int layer, Vector2 location, float rotation){
 		super(
 				new ModelPolygonRenderer(Game.resources.polygons.getModelPolygon("diamond")),
@@ -39,4 +43,12 @@ public class Diamond extends DynamicEntity {
 		// spin the diamond on the Y axis
 		((EntityRenderer3D)renderer).rotation.rotate(0.0f, 1.0f, 0.0f , (timeStep * (linVec.x + linVec.y)) * 10.0f);
 	}
+	
+	@Override // from Item
+	public void onAddToInventory(Inventory inv){
+		Game.physics.removeEntity(this, true);
+	}
+	
+	@Override // from Money
+	public int moneyValue(){ return MONEY_VAL; }
 }

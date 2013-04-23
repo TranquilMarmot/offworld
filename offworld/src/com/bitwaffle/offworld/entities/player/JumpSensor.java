@@ -66,9 +66,7 @@ public class JumpSensor {
 		contacts.push(ent);
 	}
 	
-	/**
-	 * Called by {@link ContactHandler} when sensor stops hitting something
-	 */
+	/** Called by {@link ContactHandler} when sensor stops hitting something */
 	public void endContact(DynamicEntity ent){
 		contacts.remove(ent);
 	}

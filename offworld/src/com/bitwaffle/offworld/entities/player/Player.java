@@ -31,6 +31,9 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 	/** The player's current firearm */
 	private Firearm firearm;
 	
+	/** Player's inventory */
+	public Inventory backpack;
+	
 	/** Player's current health */
 	private float health;
 	
@@ -44,6 +47,9 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 	
 	/** If the counter for this is >= 1, it means the player can jump. See JumpSensorFixture docs for more info. */
 	private JumpSensor jumpSensor;
+	
+	/** Sensor to detect any pickups */
+	private PickupSensor pickupSensor;
 	
 	/** Used to time jumps, so that the player can't jump too often */
 	private float jumpTimer = 0.0f;
@@ -70,21 +76,13 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 	/** To infinity and yada yada */
 	public Jetpack jetpack;
 	
-	/**
-	 * Noargs constructor ONLY to be used with serialization!!!
-	 */
+	/** Noargs constructor ONLY to be used with serialization!!! */
 	public Player(){
 		super();
 		init();
 	}
 	
-	/**
-	 * Create a new Player instance
-	 * @param bodyDef Definition of player's body
-	 * @param width Width of player
-	 * @param height Height of player
-	 * @param fixtureDef Definition for player's fixture
-	 */
+	/** Create a new Player instance */
 	public Player(int layer, Vector2 location) {
 		super(new PlayerRenderer(), layer, getBodyDef(location), WIDTH, HEIGHT, getFixtureDef());
 		init();
@@ -94,6 +92,7 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 		BodyDef playerBodyDef = new BodyDef();
 		playerBodyDef.type = BodyDef.BodyType.DynamicBody;
 		playerBodyDef.position.set(location);
+		playerBodyDef.fixedRotation = true;
 		
 		return playerBodyDef;
 	}
@@ -127,17 +126,17 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 		bodyAnimation = new PlayerBodyAnimation(this);
 		
 		jetpack = new Jetpack(this);
+		backpack = new Inventory();
 	}
 	
 	@Override
 	public void init(World world){
 		super.init(world);
 		
-		// don't want out player rotating all willy nilly now, do we?
-		this.body.setFixedRotation(true);
-		
-		// creating the jump sensor adds it as a fixture to the player's body
+		// creating the sensors adds them as a fixture to the player's body,
+		// so the body needs to exist before they are created
 		jumpSensor = new JumpSensor(this);
+		pickupSensor = new PickupSensor(this);
 	}
 	
 	@Override
@@ -167,6 +166,8 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 			if(this.isShooting)
 				firearm.shootAt(body.getWorld(), target);
 		}
+		
+		
 	}
 	
 	/**
@@ -221,8 +222,8 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 		}
 	}
 	
-	/** @return The player's jump sensor */
 	public JumpSensor getJumpSensor(){ return jumpSensor; }
+	public PickupSensor getPickupSensor() { return pickupSensor; }
 	
 	public PlayerBodyAnimation getBodyAnimation(){ return bodyAnimation; }
 	
