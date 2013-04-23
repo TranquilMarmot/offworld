@@ -14,7 +14,7 @@ import com.bitwaffle.guts.net.messages.PlayerUpdateRequest;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateMessage;
 import com.bitwaffle.guts.physics.Entities.EntityRemoveRequest;
 import com.bitwaffle.guts.physics.PhysicsHelper;
-import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
+import com.bitwaffle.offworld.entities.BreakableRock;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;

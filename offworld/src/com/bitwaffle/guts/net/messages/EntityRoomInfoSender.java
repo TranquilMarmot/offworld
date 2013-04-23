@@ -5,7 +5,7 @@ import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateMessage;
 import com.bitwaffle.guts.physics.PhysicsUpdateRequest;
 import com.bitwaffle.guts.physics.Entities.EntityHashMap;
-import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
+import com.bitwaffle.offworld.entities.BreakableRock;
 import com.esotericsoftware.kryonet.Connection;
 
 public class EntityRoomInfoSender implements PhysicsUpdateRequest {

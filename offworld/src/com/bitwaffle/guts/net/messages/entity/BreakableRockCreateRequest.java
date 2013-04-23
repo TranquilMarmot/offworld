@@ -3,7 +3,7 @@ package com.bitwaffle.guts.net.messages.entity;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.physics.PhysicsUpdateRequest;
-import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
+import com.bitwaffle.offworld.entities.BreakableRock;
 
 public class BreakableRockCreateRequest implements PhysicsUpdateRequest {
 	BreakableRockCreateMessage req;

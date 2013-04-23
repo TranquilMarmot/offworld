@@ -34,7 +34,9 @@ public class Diamond extends DynamicEntity {
 	public void update(float timeStep){
 		super.update(timeStep);
 		
+		Vector2 linVec = this.body.getLinearVelocity();
+		
 		// spin the diamond on the Y axis
-		((EntityRenderer3D)renderer).rotation.rotate(0.0f, 1.0f, 0.0f , timeStep * 75.0f);
+		((EntityRenderer3D)renderer).rotation.rotate(0.0f, 1.0f, 0.0f , (timeStep * (linVec.x + linVec.y)) * 10.0f);
 	}
 }

@@ -1,4 +1,4 @@
-package com.bitwaffle.offworld.entities.dynamic;
+package com.bitwaffle.offworld.entities;
 
 import java.util.ArrayList;
 

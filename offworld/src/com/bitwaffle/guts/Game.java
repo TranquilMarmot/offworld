@@ -21,23 +21,19 @@ import com.bitwaffle.offworld.entities.player.Player;
  */
 public abstract class Game implements ApplicationListener {
 	/** Current version of the game */
-	public static final String VERSION = "0.0.6.8 (pre-alpha)";
+	public static final String VERSION = "0.0.6.10 (pre-alpha)";
 	
-	/** Resource manager */
 	public static Resources resources;
-	
 	public static Renderer renderer;
-	
-	/** The graphical user interface */
 	public static GUI gui;
-	
-	/** Physics world */
 	public static Physics physics;
+	public static Input input;
+	public static Net net;
 	
 	/** List of players */
 	public static Player[] players = new Player[4];
 	
-	/** Whether or not the game is paused */
+	/** Whether or not the game is paused (physics isn't stepped when this is true) */
 	private static boolean paused = false;
 	
 	/**
@@ -55,7 +51,7 @@ public abstract class Game implements ApplicationListener {
 	/** Where to print out info for the game (System.out by default, gets set to ConsoleOutputStream to print to console) */
 	public static PrintStream out = System.out;
 	
-	/** Current frames per second (at the moment, counts rendering and physics updates per second) */
+	/** Current frames per second (at the moment, counts rendering and physics loop per second) */
 	public static int currentFPS = 60;
 	/** Used to count up to a second for FPS */
 	private float counter = 0.0f;
@@ -70,11 +66,6 @@ public abstract class Game implements ApplicationListener {
 	private float timeStepAccum;
 	/** Used to know how much time has passed */
 	private long previousTime;
-	
-	/** Handles all input to the game */
-	public static Input input;
-	
-	public static Net net;
 	
 	@Override
     public void create () {
@@ -122,8 +113,10 @@ public abstract class Game implements ApplicationListener {
     
     protected void update(){
     	long currentTime = TimeUtils.millis();
+    	
     	if(previousTime == 0.0f)
     		previousTime = currentTime;
+    	
     	// get the current time
 		long timeBeforeLoop = currentTime;
 		
@@ -164,9 +157,7 @@ public abstract class Game implements ApplicationListener {
 		net.update();
     }
     
-    /**
-     * @return Whether or not the game is currently pause
-     */
+    /** @return Whether or not the game is currently paused */
     public static boolean isPaused(){
     	return paused;
     }
@@ -206,9 +197,7 @@ public abstract class Game implements ApplicationListener {
     	counter += deltaTime;
     	frameCount++;
     	
-		System.out.println(deltaTime + " " + counter);
-    	
-    	// if the counter is above 1000, it means a second has passed
+    	// if the counter is above 1, it means a second has passed
     	if(counter >= 1.0){
     		currentFPS = frameCount;
     		frameCount = 0;

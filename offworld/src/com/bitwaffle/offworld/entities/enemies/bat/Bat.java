@@ -21,7 +21,7 @@ public class Bat extends DynamicEntity implements Health {
 	
 	private float health;
 	
-	private boolean sleeping = false;
+	public boolean sleeping = false;
 	
 	float timer = 0.0f;
 
@@ -64,7 +64,7 @@ public class Bat extends DynamicEntity implements Health {
 			//Vector2 linVec = this.body.getLinearVelocity();
 			this.body.setLinearVelocity(0.0f, 1.0f);
 		} else {
-			this. body.setLinearVelocity((float)Math.sin(timer) * 2.0f, (float)Math.cos(timer) * 2.0f);
+			this. body.setLinearVelocity((float)Math.sin(timer) * 2.0f, (float)Math.cos(timer) * 1.0f);
 		}
 	}
 	

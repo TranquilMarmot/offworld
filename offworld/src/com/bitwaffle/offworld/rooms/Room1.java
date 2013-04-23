@@ -11,7 +11,7 @@ import com.bitwaffle.guts.graphics.shapes.polygon.Polygon;
 import com.bitwaffle.guts.graphics.shapes.polygon.PolygonRenderer;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.physics.Room;
-import com.bitwaffle.offworld.entities.dynamic.BreakableRock;
+import com.bitwaffle.offworld.entities.BreakableRock;
 import com.bitwaffle.offworld.entities.enemies.bat.Bat;
 import com.bitwaffle.offworld.entities.pickups.diamond.Diamond;
 
@@ -34,7 +34,7 @@ public class Room1 extends Room {
 		//this.addEntity(getEntity("intro-underground-background", 3, new float[]{0.0196078431372549f,0.196078431372549f, 0.4274509803921569f, 1.0f});
 		
 		// add random rocks
-		for(int i = 0; i < 100; i++){
+		for(int i = 0; i < 10; i++){
     		float rockX = Game.random.nextFloat() * 10.0f - 50.0f;
     		if(rockX < 1.0f) rockX = 1.0f;
     		float rockY = Game.random.nextFloat() * 150.0f + 15.0f;
@@ -43,32 +43,32 @@ public class Room1 extends Room {
     		int layer = 4;
     		
     		BreakableRock rock = new BreakableRock(new Vector2(rockX, rockY), 1.0f, layer);
-    		Game.physics.addEntity(rock, true);
+    		this.addEntity(rock);
+		}
+		
+		
+		for(int i = 0; i < 10; i++){
+    		float diamondX = Game.random.nextFloat() * 10.0f - 50.0f;
+    		if(diamondX < 1.0f) diamondX = 1.0f;
+    		float diamondY = Game.random.nextFloat() * 15.0f + 15.0f;
+    		if(diamondY < 1.0f) diamondY = 1.0f;
     		
-    		Diamond diamond = new Diamond(layer, new Vector2(rockX, rockY), 13.0f);
+    		float rotation = Game.random.nextFloat() * 10.0f;
+    		
+    		int layer = 4;
+    		
+    		Diamond diamond = new Diamond(layer, new Vector2(diamondX, diamondY), rotation);
     		this.addEntity(diamond);
-    		
-    		/*
-    		QuadRenderer rend = new QuadRenderer("box", false, true, 2.0f, 2.0f, 1.0f, 1.0f, new float[]{1.0f, 1.0f, 1.0f, 1.0f});
-    		BodyDef bod = Game.resources.entityInfo.getEntityBodyDef("rock1");
-    		bod.position.set(rockX, rockY);
-    		bod.fixedRotation = false;
-    		
-    		FixtureDef fixt = new FixtureDef();
-    		PhysicsHelper.setFixtureAsBox(fixt, 2.0f, 2.0f);
-    		fixt.density = 2.0f;
-    		
-    		DestroyableEntity ent = new DestroyableEntity(rend, layer, bod, fixt, 50);
-    		Game.physics.addEntity(ent, true);
-    		*/
 		}
 		
 		Bat bat = new Bat(4, new Vector2(70.0f, 19.0f));
 		this.addEntity(bat);
 		
+		Bat bat2 = new Bat(4, new Vector2(50.0f, 19.0f));
+		bat2.sleeping = true;
+		this.addEntity(bat2);
 		
-		Diamond diamond = new Diamond(6, new Vector2(3.0f, 6.0f), 13.0f);
-		this.addEntity(diamond);
+
 		
 		// create walls
 		//makeWalls();

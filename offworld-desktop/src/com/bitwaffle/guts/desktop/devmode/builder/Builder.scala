@@ -13,7 +13,7 @@ import com.bitwaffle.guts.desktop.devmode.DevModeDisplay
 import com.bitwaffle.guts.graphics.render.render2d.Render2D
 import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D
 import com.bitwaffle.guts.gui.GUI
-import com.bitwaffle.offworld.entities.dynamic.BreakableRock
+import com.bitwaffle.offworld.entities.BreakableRock
 
 import javax.swing.BoxLayout
 import javax.swing.JButton
