@@ -64,7 +64,7 @@ public class BitmapFont {
 		// go through each row/column and create its character
 		for(int row = 0; row < numRows; row++)
 			for(int col = 0; col < numCols; col++)
-				chars[(numCols * col) + row] = initFontChar(texture, row, col);
+				chars[(numCols * col) + row] = initFontChar(texture, row, col);		
 	}
 	
 	/**

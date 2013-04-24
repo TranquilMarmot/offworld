@@ -5,6 +5,8 @@ import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Matrix4;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
@@ -18,6 +20,9 @@ import com.bitwaffle.guts.graphics.render.render3d.Render3D;
  * @author TranquilMarmot
  */
 public class Renderer {
+	
+	BitmapFont font;
+	
 	public Matrix4 modelview, projection;
 	
 	/** 2D Renderer */
@@ -38,6 +43,9 @@ public class Renderer {
 		
 		r2D = new Render2D(this);
 		r3D = new Render3D(this);
+		
+		FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Game.resources.getFileHandle("VeraMono.ttf"));
+		font = gen.generateFont(12);
 	}
 	
 	/** Renders the entire scene- every entity and every GUI object */
@@ -52,6 +60,8 @@ public class Renderer {
 		// render GUI
 		r2D.switchTo2DScreenCoords();
 		Game.gui.render(this);
+		
+		
 	}
 	
 	/**
