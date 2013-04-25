@@ -2,6 +2,11 @@ package com.bitwaffle.guts.graphics.render.render3d;
 
 import com.badlogic.gdx.math.Vector3;
 
+/**
+ * A light used for 3D rendering
+ * 
+ * @author TranquilMarmot
+ */
 public class Light {
 	private Vector3 location;
 	private Vector3 intensity;
