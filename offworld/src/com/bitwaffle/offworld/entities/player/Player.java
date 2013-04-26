@@ -1,5 +1,7 @@
 package com.bitwaffle.offworld.entities.player;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -7,7 +9,6 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entity.dynamic.BoxEntity;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.physics.CollisionFilters;
 import com.bitwaffle.guts.util.MathHelper;
@@ -24,9 +25,12 @@ import com.bitwaffle.offworld.weapons.pistol.Pistol;
  * 
  * @author TranquilMarmot
  */
-public class Player extends BoxEntity implements FirearmHolder, Health{
+public class Player extends DynamicEntity implements FirearmHolder, Health{
 	/** Size of player's hitbox */
 	private static final float WIDTH = 0.52062f, HEIGHT = 1.8034f;
+	
+	/** Two boxes are put on the side of the player with no friction, so that the player slides along walls */
+	private static final float SIDE_BOX_W = 0.2f, SIDE_BOX_H = HEIGHT;
 	
 	/** The player's current firearm */
 	private Firearm firearm;
@@ -84,7 +88,7 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 	
 	/** Create a new Player instance */
 	public Player(int layer, Vector2 location) {
-		super(new PlayerRenderer(), layer, getBodyDef(location), WIDTH, HEIGHT, getFixtureDef());
+		super(new PlayerRenderer(), layer, getBodyDef(location), getFixtureDef());
 		init();
 	}
 	
@@ -97,18 +101,45 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 		return playerBodyDef;
 	}
 	
-	private static FixtureDef getFixtureDef(){
+	private static ArrayList<FixtureDef> getFixtureDef(){	
+		// actual body
 		FixtureDef playerFixture = new FixtureDef();
 		PolygonShape boxShape = new PolygonShape();
-		boxShape.setAsBox(WIDTH, HEIGHT);
+		boxShape.setAsBox(WIDTH - (SIDE_BOX_W * 2.0f), HEIGHT);
 		playerFixture.shape = boxShape;
-		
 		playerFixture.density = 1.0f;
-		playerFixture.friction = 0.3f;
+		playerFixture.friction = 0.5f;
 		playerFixture.restitution = 0.0f;
 		playerFixture.filter.categoryBits = CollisionFilters.PLAYER;
 		playerFixture.filter.maskBits = CollisionFilters.EVERYTHING;
-		return playerFixture;
+		
+		// left side without friction to make it so player can't stick to walls
+		FixtureDef leftSideDef = new FixtureDef();
+		PolygonShape leftBox = new PolygonShape();
+		leftBox.setAsBox(SIDE_BOX_W, SIDE_BOX_H, new Vector2(-WIDTH/2.0f, 0.0f), 0.0f);
+		leftSideDef.shape = leftBox;
+		leftSideDef.density = 1.0f;
+		leftSideDef.friction = 0.0f;
+		leftSideDef.restitution = 0.0f;
+		leftSideDef.filter.categoryBits = CollisionFilters.PLAYER;
+		leftSideDef.filter.maskBits = CollisionFilters.EVERYTHING;
+		
+		// right side without friction to make it so player can't stick to walls
+		FixtureDef rightSideDef = new FixtureDef();
+		PolygonShape rightBox = new PolygonShape();
+		rightBox.setAsBox(SIDE_BOX_W, SIDE_BOX_H, new Vector2(WIDTH/2.0f, 0.0f), 0.0f);
+		rightSideDef.shape = rightBox;
+		rightSideDef.density = 1.0f;
+		rightSideDef.friction = 0.0f;
+		rightSideDef.restitution = 0.0f;
+		rightSideDef.filter.categoryBits = CollisionFilters.PLAYER;
+		rightSideDef.filter.maskBits = CollisionFilters.EVERYTHING;
+		
+		ArrayList<FixtureDef> defs = new ArrayList<FixtureDef>();
+		defs.add(playerFixture);
+		defs.add(leftSideDef);
+		defs.add(rightSideDef);
+		return defs;
 	}
 	
 	/**
@@ -221,6 +252,11 @@ public class Player extends BoxEntity implements FirearmHolder, Health{
 			}
 		}
 	}
+	
+	/** @return Total width of player's fixture */
+	public float getWidth(){ return WIDTH; }
+	/** @return Total height of player's fixture */
+	public float getHeight(){ return HEIGHT; }
 	
 	public JumpSensor getJumpSensor(){ return jumpSensor; }
 	public PickupSensor getPickupSensor() { return pickupSensor; }

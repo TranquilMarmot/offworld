@@ -24,7 +24,7 @@ public class JumpSensor {
 	private Fixture fixture;
 	
 	/** How large the sensor is */
-	private float width = 0.5f, height = 0.25f;
+	private float width = 0.4f, height = 0.25f;
 	
 	/** Sensor location, relative to player's center */
 	private float x, y;
