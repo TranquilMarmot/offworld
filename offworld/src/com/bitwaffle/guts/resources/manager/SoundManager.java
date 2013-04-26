@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.resources;
+package com.bitwaffle.guts.resources.manager;
 
 import java.util.HashMap;
 
@@ -14,6 +14,8 @@ import com.bitwaffle.guts.Game;
 public class SoundManager {
 	
 	private HashMap<String, Sound> sounds;
+	
+	public float volume = 0.1f;
 	
 	public SoundManager(){
 		sounds = new HashMap<String, Sound>();
@@ -39,5 +41,13 @@ public class SoundManager {
 	/** Get a sound to play */
 	public Sound getSound(String soundName){
 		return this.sounds.get(soundName);
+	}
+	
+	public void play(String soundName){
+		this.sounds.get(soundName).play(volume);
+	}
+	
+	public void play(String soundName, float volume){
+		this.sounds.get(soundName).play(volume);
 	}
 }

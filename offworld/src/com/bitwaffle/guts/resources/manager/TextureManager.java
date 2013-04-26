@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.resources;
+package com.bitwaffle.guts.resources.manager;
 
 import java.util.HashMap;
 

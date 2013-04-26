@@ -210,7 +210,7 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 			// if there's a contact, jump!
 			if(jumpSensor.numContacts() >= 1){
 				Vector2 linVec = body.getLinearVelocity();
-				Game.resources.sounds.getSound("jump").play();
+				Game.resources.sounds.play("jump");
 				// add force to current velocity and set it
 				linVec.y += JUMP_FORCE;
 				body.setLinearVelocity(linVec);

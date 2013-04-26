@@ -7,7 +7,7 @@ import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.entity.EntityRenderer;
 import com.bitwaffle.guts.graphics.SubImage;
 import com.bitwaffle.guts.graphics.render.Renderer;
-import com.bitwaffle.guts.resources.TextureManager;
+import com.bitwaffle.guts.resources.manager.TextureManager;
 
 /**
  * Renders an entity represented by a {@link Quad}

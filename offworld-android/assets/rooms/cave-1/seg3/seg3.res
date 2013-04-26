@@ -1,15 +1,9 @@
 {"resources":	{
 	"polygons": [
 		{
-			"name":	"cave-1-seg1",
-			"geom":	"rooms/cave-1/seg1/geom.obj",
-			"debug": "rooms/cave-1/seg1/debug.obj",
-			"render":	[
-				{
-					"render":	"rooms/cave-1/seg1/render.obj",
-					"texture":	"cave-1-tile-1"
-				}
-			],
+			"name":	"cave-1-seg3",
+			"geom":	"rooms/cave-1/seg3/geom.obj",
+			"debug": "rooms/cave-1/seg3/debug.obj",
 			"type":	"chain",
 			"scale": 3.0
 		}
@@ -17,11 +11,11 @@
 	
 	"entities":	[
 		{
-			"name":	"cave-1-seg1",
+			"name":	"cave-1-seg3",
 			"fixture":	{
 				"shape":	{
 					"type":	"polygon",
-					"polyName":	"cave-1-seg1"
+					"polyName":	"cave-1-seg3"
 				},
 				"density":	0.0,
 				"friction":	1.0,

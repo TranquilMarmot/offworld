@@ -15,7 +15,7 @@ import com.bitwaffle.guts.graphics.shapes.quad.Quad;
 import com.bitwaffle.guts.util.MathHelper;
 
 /**
- * This class handles all 2D rendering
+ * Handles all 2D rendering
  * 
  * @author TranquilMarmot
  */
@@ -77,10 +77,10 @@ public class Render2D {
 	/** @return Handle for vertex texture coordinate shader attribute */
 	public int getTexCoordHandle(){ return program.getAttribLocation(TEXCOORD_ATTRIB); }
 	
-	public void setColor(float[] color){
-		setColor(color[0], color[1], color[2], color[3]);
-	}
+	/** @param color Color to set renderer to draw in, must have four floats [r,g,b,a] */
+	public void setColor(float[] color){ setColor(color[0], color[1], color[2], color[3]); }
 	
+	/** Set the color the renderer is drawing in */
 	public void setColor(float r, float g, float b, float a){
 		renderer.r2D.program.setUniform(COLOR_UNIFORM, r, g, b, a);
 	}
@@ -108,10 +108,10 @@ public class Render2D {
 		
 		// mainpulate the modelview matrix to draw the entity
 		renderer.modelview.idt();
-		this.translateModelViewToCamera();
+		translateModelViewToCamera();
 		renderer.modelview.translate(loc.x, loc.y, 0.0f);
 		renderer.modelview.rotate(0.0f, 0.0f, 1.0f, angle);
-		this.sendMatrixToShader();
+		sendMatrixToShader();
 	}
 	
 	/** Translates the modelview matrix to represent the camera's location */
