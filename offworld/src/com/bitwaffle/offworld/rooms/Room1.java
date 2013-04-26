@@ -26,9 +26,9 @@ public class Room1 extends Room {
 		
 		Gdx.gl20.glClearColor(0.4117647058823529f, 0.592156862745098f, 0.8274509803921569f, 1.0f);
 
-		this.addEntity(getDynamicEntity("intro-seg1", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
-		this.addEntity(getDynamicEntity("intro-seg2", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
-		this.addEntity(getDynamicEntity("intro-seg3", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
+		this.addEntity(getDynamicEntity("cave-1-seg1", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
+		//this.addEntity(getDynamicEntity("intro-seg2", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
+		//this.addEntity(getDynamicEntity("intro-seg3", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
 		//this.addEntity(getEntity("intro-gradient3", 4, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
 		//this.addEntity(getEntity("intro-gradient1", 4, new float[]{1.0f, 1.0f, 1.0f, 1.0f}));
 		//this.addEntity(getEntity("intro-underground-background", 3, new float[]{0.0196078431372549f,0.196078431372549f, 0.4274509803921569f, 1.0f});

@@ -399,7 +399,7 @@ public class ResourceLoader {
 				JSONArray renderArr = polyObj.optJSONArray("render");
 				String model = polyObj.optString("model");
 				
-				// polygon with a model attached to it (loaded seperately)
+				// polygon with a model attached to it (model gets loaded seperately)
 				if(!(model.equals(""))){
 					ModelPolygon poly = PolygonLoader.loadModelPolygon(xScale, yScale, model, geomPath, shapeType, debugPath);
 					Game.resources.polygons.addPolygon(polyName, poly);
@@ -420,9 +420,14 @@ public class ResourceLoader {
 				// single render object
 				} else {
 					String singleRenderPath = polyObj.optString("render");
-					renderObjLocs.add(singleRenderPath);
-					String polyTex = polyObj.getString("texture");
-					textureNames.add(polyTex);
+					if(!(singleRenderPath.equals(""))){
+						renderObjLocs.add(singleRenderPath);
+						String polyTex = polyObj.getString("texture");
+						textureNames.add(polyTex);
+					} else {
+						Polygon poly = PolygonLoader.loadPolygon(xScale, yScale, geomPath, shapeType, debugPath);
+						
+					}
 				}
 				
 				Polygon poly = PolygonLoader.loadPolygon(xScale, yScale, renderObjLocs, textureNames, geomPath, shapeType, debugPath);

@@ -36,7 +36,7 @@ public class Camera2D extends Entity {
 	private Vector2 worldWindowSize;
 	
 	/** Whether or not to keep the camera within Physics.getCurrentRoom */
-	private boolean boundsCheck = true;
+	private boolean boundsCheck = false;
 	
 	/** Different camera modes */
 	public static enum Modes{

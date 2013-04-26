@@ -44,6 +44,11 @@ public class PolygonLoader {
 		return new PolygonLoader(xScale, yScale).loadPolygon(renderObjLocs, textureNames, collisiionObjLoc, shapeType, debugObjLoc);
 	}
 	
+	public static Polygon loadPolygon(float xScale, float yScale,
+			String geomPath, Types shapeType, String debugPath) {
+		return loadPolygon(xScale, yScale, null, null, geomPath, shapeType, debugPath);
+	}
+	
 	private PolygonLoader(float xScale, float yScale){
 		this.xScale = xScale;
 		this.yScale = yScale;
@@ -69,26 +74,29 @@ public class PolygonLoader {
 	private Polygon loadPolygon(ArrayList<String> renderObjLocs, ArrayList<String> textureNames, String collisionObjLoc, Polygon.Types shapeType, String debugObjLoc){
 		ArrayList<Buffer> vertBuffers = new ArrayList<Buffer>(), texCoordBuffers = new ArrayList<Buffer>();
 		ArrayList<Integer> counts = new ArrayList<Integer>();
-		for(String renderObjLoc : renderObjLocs){
-			// this fills up the ArrayLists and increments count
-			parseRenderObj(renderObjLoc);
-			// done parsing! let's fill some float buffers!
-			Buffer vertexBuffer = putVerticesIntoBuffer();
-			Buffer texCoordBuffer = putTextureCoordsIntoBuffer();
-			
-			vertBuffers.add(vertexBuffer);
-			texCoordBuffers.add(texCoordBuffer);
-			counts.add(count);
-			
-			count = 0;
-			vertexIndices.clear();
-			textureIndices.clear();
-			
-			vertices.clear();
-			textureCoords.clear();
-			// obj references things with 1 origin instead of 0 (wtf?! who decided that? asshole)
-			vertices.add(new Vector2(0.0f, 0.0f));
-			textureCoords.add(new Vector2(0.0f, 0.0f));
+		
+		if(renderObjLocs != null){
+			for(String renderObjLoc : renderObjLocs){
+				// this fills up the ArrayLists and increments count
+				parseRenderObj(renderObjLoc);
+				// done parsing! let's fill some float buffers!
+				Buffer vertexBuffer = putVerticesIntoBuffer();
+				Buffer texCoordBuffer = putTextureCoordsIntoBuffer();
+				
+				vertBuffers.add(vertexBuffer);
+				texCoordBuffers.add(texCoordBuffer);
+				counts.add(count);
+				
+				count = 0;
+				vertexIndices.clear();
+				textureIndices.clear();
+				
+				vertices.clear();
+				textureCoords.clear();
+				// obj references things with 1 origin instead of 0 (wtf?! who decided that? asshole)
+				vertices.add(new Vector2(0.0f, 0.0f));
+				textureCoords.add(new Vector2(0.0f, 0.0f));
+			}
 		}
 		
 		Buffer debugVertexBuffer = null, debugTexCoordBuffer = null;
