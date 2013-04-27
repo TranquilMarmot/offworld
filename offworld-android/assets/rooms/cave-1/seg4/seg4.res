@@ -4,6 +4,12 @@
 			"name":	"cave-1-seg4",
 			"geom":	"rooms/cave-1/seg4/geom.obj",
 			"debug": "rooms/cave-1/seg4/debug.obj",
+			"render":	[
+				{
+					"render":	"rooms/cave-1/seg4/render.obj",
+					"texture":	"cave-1-tile-1"
+				}
+			],
 			"type":	"chain",
 			"scale": 3.0
 		}
