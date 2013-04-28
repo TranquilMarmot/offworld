@@ -2,6 +2,7 @@ package com.bitwaffle.offworld.entities.player;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -31,6 +32,10 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 	
 	/** Two boxes are put on the side of the player with no friction, so that the player slides along walls */
 	private static final float SIDE_BOX_W = 0.2f, SIDE_BOX_H = HEIGHT;
+	
+	private static final float MAX_TARGET_DX = 10.0f, MAX_TARGET_DY = 8.0f;
+	
+	private static final float MAX_TARGET_RADIUS = 10.0f;
 	
 	/** The player's current firearm */
 	private Firearm firearm;
@@ -64,6 +69,12 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 	
 	/** What the player is aiming at */
 	private Vector2 target;
+	
+	/** 
+	 * Whether or not this player is being controlled by the mouse, so the value can get grabbed every frame
+	 * If it's not grabbed every frame, the target only gets updated when the mouse moves which doesn't compensate for camera movement.
+	 */
+	public boolean controlledByMouse = true;
 	
 	/** Whether or not the player is shooting */
 	private boolean isShooting;
@@ -198,6 +209,11 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 				firearm.shootAt(body.getWorld(), target);
 		}
 		
+		if(controlledByMouse){
+			Vector2 mouse = new Vector2();
+			MathHelper.toWorldSpace(mouse, Gdx.input.getX(), Gdx.input.getY(), Game.renderer.r2D.camera);
+			setTarget(mouse);
+		}
 		
 	}
 	
@@ -296,8 +312,14 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 	 * @param target New spot to aim at
 	 */
 	public void setTarget(Vector2 target){
-		if(!Game.isPaused())
-			this.target.set(target);
+		if(!Game.isPaused()){
+			float angle = MathHelper.angle(this.getLocation(), target);
+			
+			Vector2 circ = new Vector2(MAX_TARGET_RADIUS, 0.0f);
+			circ = circ.rotate(angle);
+			
+			this.target.set(location.x + circ.x, location.y + circ.y);
+		}
 	}
 	
 	/** @return The player's current weapon */

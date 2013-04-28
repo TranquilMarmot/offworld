@@ -40,7 +40,7 @@ public class Camera2D extends Entity {
 	
 	/** Different camera modes */
 	public static enum Modes{
-		FOLLOW(new FollowMode(100.0f, 0.0f, -0.3f, 2.25f, 1.0f)),
+		FOLLOW(new FollowMode()),
 		FREE(new FreeMode());
 		
 		private CameraMode mode;

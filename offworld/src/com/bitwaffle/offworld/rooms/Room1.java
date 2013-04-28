@@ -75,7 +75,7 @@ public class Room1 extends Room {
 		bat2.sleeping = true;
 		this.addEntity(bat2);
 		
-
+		Game.net.startServer();
 		
 		// create walls
 		//makeWalls();
