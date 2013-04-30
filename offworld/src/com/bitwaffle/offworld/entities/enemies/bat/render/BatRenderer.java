@@ -3,8 +3,8 @@ package com.bitwaffle.offworld.entities.enemies.bat.render;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.entity.Entity;
-import com.bitwaffle.guts.entity.EntityRenderer;
 import com.bitwaffle.guts.graphics.render.Renderer;
+import com.bitwaffle.guts.graphics.render.render2d.EntityRenderer;
 import com.bitwaffle.offworld.entities.enemies.bat.Bat;
 
 public class BatRenderer implements EntityRenderer {

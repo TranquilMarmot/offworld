@@ -1,5 +1,6 @@
-package com.bitwaffle.guts.entity;
+package com.bitwaffle.guts.graphics.render.render2d;
 
+import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.graphics.render.Renderer;
 
 /**Interface for rendering entities */

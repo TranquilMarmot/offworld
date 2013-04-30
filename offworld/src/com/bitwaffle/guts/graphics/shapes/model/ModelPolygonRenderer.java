@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
-import com.bitwaffle.guts.entity.EntityRenderer3D;
 import com.bitwaffle.guts.graphics.render.Renderer;
+import com.bitwaffle.guts.graphics.render.render3d.EntityRenderer3D;
 
 /**
  * Renders a {@link Model}

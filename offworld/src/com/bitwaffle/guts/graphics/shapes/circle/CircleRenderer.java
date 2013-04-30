@@ -4,9 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
-import com.bitwaffle.guts.entity.EntityRenderer;
 import com.bitwaffle.guts.entity.dynamic.CircleEntity;
 import com.bitwaffle.guts.graphics.render.Renderer;
+import com.bitwaffle.guts.graphics.render.render2d.EntityRenderer;
 
 /**
  * Renders an {@link CircleEntity}

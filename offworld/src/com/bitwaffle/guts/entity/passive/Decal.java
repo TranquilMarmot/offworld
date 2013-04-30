@@ -3,7 +3,7 @@ package com.bitwaffle.guts.entity.passive;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
-import com.bitwaffle.guts.entity.EntityRenderer;
+import com.bitwaffle.guts.graphics.render.render2d.EntityRenderer;
 
 /**
  * A decal that disappears after a certain time period

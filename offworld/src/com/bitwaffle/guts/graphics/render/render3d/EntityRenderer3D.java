@@ -1,7 +1,9 @@
-package com.bitwaffle.guts.entity;
+package com.bitwaffle.guts.graphics.render.render3d;
 
 import com.badlogic.gdx.math.Matrix4;
+import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.graphics.render.Renderer;
+import com.bitwaffle.guts.graphics.render.render2d.EntityRenderer;
 
 /**
  * Renders an entity in 3D mode. When the render() method is called, assume that the renderer's

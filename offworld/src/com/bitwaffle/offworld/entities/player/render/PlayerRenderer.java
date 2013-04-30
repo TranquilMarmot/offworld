@@ -6,8 +6,8 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
-import com.bitwaffle.guts.entity.EntityRenderer;
 import com.bitwaffle.guts.graphics.render.Renderer;
+import com.bitwaffle.guts.graphics.render.render2d.EntityRenderer;
 import com.bitwaffle.offworld.entities.player.JumpSensor;
 import com.bitwaffle.offworld.entities.player.Player;
 

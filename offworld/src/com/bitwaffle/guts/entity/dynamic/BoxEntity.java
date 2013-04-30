@@ -3,7 +3,7 @@ package com.bitwaffle.guts.entity.dynamic;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.bitwaffle.guts.entity.EntityRenderer;
+import com.bitwaffle.guts.graphics.render.render2d.EntityRenderer;
 import com.bitwaffle.guts.physics.CollisionFilters;
 
 /**
