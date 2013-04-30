@@ -31,6 +31,10 @@ public class ModelPolygonRenderer extends EntityRenderer3D {
 		this.model = Game.resources.models.getModel(modelPoly.modelName());
 	}
 	
+	public ModelPolygonRenderer(Model model){
+		this.model = model;
+	}
+	
 	@Override
 	public void render(Renderer renderer, Entity ent, boolean renderDebug){
 		if(renderDebug){

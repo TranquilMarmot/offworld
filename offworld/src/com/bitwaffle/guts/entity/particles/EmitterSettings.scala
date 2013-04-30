@@ -2,7 +2,7 @@ package com.bitwaffle.guts.entity.particles
 
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity
 import com.badlogic.gdx.math.Vector2
-import com.bitwaffle.guts.entity.EntityRenderer
+import com.bitwaffle.guts.graphics.render.render2d.EntityRenderer
 
 /** Settings for a particle emitter */
 trait EmitterSettings {

@@ -3,7 +3,7 @@ package com.bitwaffle.offworld.entities.player
 import com.bitwaffle.guts.entity.particles.EmitterSettings
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity
 import com.badlogic.gdx.math.Vector2
-import com.bitwaffle.guts.entity.EntityRenderer
+import com.bitwaffle.guts.graphics.render.render2d.EntityRenderer
 import com.bitwaffle.guts.graphics.render.Renderer
 import com.bitwaffle.guts.graphics.render.render2d.Render2D
 import com.bitwaffle.guts.entity.Entity
