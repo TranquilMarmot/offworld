@@ -102,7 +102,7 @@ public abstract class Game implements ApplicationListener {
 	
 	protected void initGUI(){
 		gui = new GUI();
-		gui.setCurrentState(GUI.States.TITLESCREEN);
+		gui.setCurrentState(GUI.States.SPLASH);
 	}
 
 	@Override

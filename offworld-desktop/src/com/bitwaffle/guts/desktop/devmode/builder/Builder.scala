@@ -108,8 +108,3 @@ object Builder {
 		toolPanel
 	}
 }
-
-
-
-
-

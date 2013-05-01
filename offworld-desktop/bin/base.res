@@ -35,6 +35,10 @@
 		{
 			"name": "diamond",
 			"path": "entities/diamond/diamond.res"
+		},
+		{
+			"name": "splash",
+			"path": "ui/splash/splash.res"
 		}
 	],
 	

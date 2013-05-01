@@ -15,6 +15,7 @@ import com.bitwaffle.guts.gui.states.BlankState;
 import com.bitwaffle.guts.gui.states.GUIState;
 import com.bitwaffle.guts.gui.states.options.OptionsState;
 import com.bitwaffle.guts.gui.states.pause.PauseState;
+import com.bitwaffle.guts.gui.states.splash.SplashScreenState;
 import com.bitwaffle.guts.gui.states.titlescreen.TitleScreenState;
 
 /**
@@ -30,10 +31,11 @@ public class GUI {
 	 * setCurrentState() method
 	 */
 	public enum States{
-		NONE(new BlankState()), // nothing
-		PAUSE(new PauseState()),     // displayed when the game is paused
+		NONE(new BlankState()),              // nothing
+		PAUSE(new PauseState()),             // displayed when the game is paused
 		TITLESCREEN(new TitleScreenState()), // the title screen
-		OPTIONS(new OptionsState());   // the options screen
+		OPTIONS(new OptionsState()),         // the options screen
+		SPLASH(new SplashScreenState());     // splash screen (only displayed for a bit at beginning of game)
 		
 		// Each value in this enum basically acts as a wrapper to access a GUIState
 		GUIState state;

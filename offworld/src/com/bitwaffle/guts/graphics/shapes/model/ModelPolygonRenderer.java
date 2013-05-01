@@ -37,7 +37,8 @@ public class ModelPolygonRenderer extends EntityRenderer3D {
 	
 	@Override
 	public void render(Renderer renderer, Entity ent, boolean renderDebug){
-		if(renderDebug){
+		// debug rendering data comes from model polygon
+		if(modelPoly != null && renderDebug){
 			renderDebug(renderer, ent);
 		} else{
 			int positionHandle = renderer.r3D.getVertexPositionHandle();
