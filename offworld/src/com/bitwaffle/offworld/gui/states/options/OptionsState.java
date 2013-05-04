@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.gui.states.options;
+package com.bitwaffle.offworld.gui.states.options;
 
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.passive.GLSLSandbox;
@@ -6,7 +6,7 @@ import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.button.TextButton;
 import com.bitwaffle.guts.gui.states.GUIState;
-import com.bitwaffle.guts.gui.states.options.buttons.FullScreenButton;
+import com.bitwaffle.offworld.gui.states.options.buttons.FullScreenButton;
 
 public class OptionsState extends GUIState {
 	

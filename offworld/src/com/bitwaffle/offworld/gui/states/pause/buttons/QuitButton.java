@@ -1,19 +1,20 @@
-package com.bitwaffle.guts.gui.states.pause.buttons;
+package com.bitwaffle.offworld.gui.states.pause.buttons;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.Renderer;
+import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.TextButton;
-import com.bitwaffle.guts.gui.states.pause.PauseState;
+import com.bitwaffle.offworld.gui.states.pause.PauseState;
 
-public class SaveButton extends TextButton {
+public class QuitButton extends TextButton {
 	// offset of button from center
-	public static float xOffset = -200.0f, yOffset = 150.0f;
+	public static float xOffset = -200.0f, yOffset = -150.0f;
 
-	public SaveButton(PauseState state) {
+	public QuitButton(PauseState state) {
 		super(
-				"Save",
+				"Main Menu",
 				25.0f,
 				(Game.windowWidth / 2.0f) + xOffset,
 				(Game.windowHeight / 2.0f) + yOffset,
@@ -31,17 +32,16 @@ public class SaveButton extends TextButton {
 
 	@Override
 	protected void onRelease() {
-		/*
-		// ask the user where to save the file to
-		final GameSaver saver = new GameSaver();
-		TextInput input = new TextInput("Save Game", "Enter save name"){
-			@Override
-			public void parseInput(String input) {
-				saver.saveGame(input + ".ofw", Game.physics);
-			}
-		};
-		input.askForInput();
-		*/
+		Game.physics.clearWorld();
+		
+		for(int i = 0; i < Game.players.length; i++)
+			Game.players[i] = null;
+		
+		Game.renderer.r2D.camera.setTarget(null);
+		
+		Game.gui.setCurrentState(GUI.States.TITLESCREEN);
+		if(Game.isPaused())
+			Game.togglePause();
 	}
 
 	@Override

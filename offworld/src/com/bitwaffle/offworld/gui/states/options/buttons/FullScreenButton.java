@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.gui.states.options.buttons;
+package com.bitwaffle.offworld.gui.states.options.buttons;
 
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.Renderer;

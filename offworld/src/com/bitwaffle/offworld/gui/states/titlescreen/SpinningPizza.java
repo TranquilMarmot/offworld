@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.gui.states.titlescreen;
+package com.bitwaffle.offworld.gui.states.titlescreen;
 
 import com.badlogic.gdx.math.Matrix4;
 import com.bitwaffle.guts.Game;

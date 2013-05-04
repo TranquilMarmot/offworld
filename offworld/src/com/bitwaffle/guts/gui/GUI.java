@@ -13,10 +13,10 @@ import com.bitwaffle.guts.gui.console.Console;
 import com.bitwaffle.guts.gui.hud.HUD;
 import com.bitwaffle.guts.gui.states.BlankState;
 import com.bitwaffle.guts.gui.states.GUIState;
-import com.bitwaffle.guts.gui.states.options.OptionsState;
-import com.bitwaffle.guts.gui.states.pause.PauseState;
-import com.bitwaffle.guts.gui.states.splash.SplashScreenState;
-import com.bitwaffle.guts.gui.states.titlescreen.TitleScreenState;
+import com.bitwaffle.offworld.gui.states.options.OptionsState;
+import com.bitwaffle.offworld.gui.states.pause.PauseState;
+import com.bitwaffle.offworld.gui.states.splash.SplashScreenState;
+import com.bitwaffle.offworld.gui.states.titlescreen.TitleScreenState;
 
 /**
  * Handles all GUI elements

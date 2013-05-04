@@ -1,11 +1,11 @@
-package com.bitwaffle.guts.gui.states.titlescreen;
+package com.bitwaffle.offworld.gui.states.titlescreen;
 
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.passive.GLSLSandbox;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
-import com.bitwaffle.guts.gui.states.titlescreen.buttons.OptionsButton;
-import com.bitwaffle.guts.gui.states.titlescreen.buttons.StartGameButton;
+import com.bitwaffle.offworld.gui.states.titlescreen.buttons.OptionsButton;
+import com.bitwaffle.offworld.gui.states.titlescreen.buttons.StartGameButton;
 
 public class TitleScreenState extends GUIState {
 	/** Alpha values of buttons */

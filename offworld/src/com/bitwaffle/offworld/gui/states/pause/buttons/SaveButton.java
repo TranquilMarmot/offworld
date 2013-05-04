@@ -1,19 +1,19 @@
-package com.bitwaffle.guts.gui.states.pause.buttons;
+package com.bitwaffle.offworld.gui.states.pause.buttons;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.gui.button.TextButton;
-import com.bitwaffle.guts.gui.states.pause.PauseState;
+import com.bitwaffle.offworld.gui.states.pause.PauseState;
 
-public class DebugButton extends TextButton {
+public class SaveButton extends TextButton {
 	// offset of button from center
-	public static float xOffset = 200.0f, yOffset = -150.0f;
+	public static float xOffset = -200.0f, yOffset = 150.0f;
 
-	public DebugButton(PauseState state) {
+	public SaveButton(PauseState state) {
 		super(
-				"Debug",
+				"Save",
 				25.0f,
 				(Game.windowWidth / 2.0f) + xOffset,
 				(Game.windowHeight / 2.0f) + yOffset,
@@ -31,7 +31,17 @@ public class DebugButton extends TextButton {
 
 	@Override
 	protected void onRelease() {
-		Renderer.renderDebug = !Renderer.renderDebug;
+		/*
+		// ask the user where to save the file to
+		final GameSaver saver = new GameSaver();
+		TextInput input = new TextInput("Save Game", "Enter save name"){
+			@Override
+			public void parseInput(String input) {
+				saver.saveGame(input + ".ofw", Game.physics);
+			}
+		};
+		input.askForInput();
+		*/
 	}
 
 	@Override

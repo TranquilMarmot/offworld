@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.gui.states.titlescreen.buttons;
+package com.bitwaffle.offworld.gui.states.titlescreen.buttons;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -6,15 +6,14 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.TextButton;
-import com.bitwaffle.guts.physics.PhysicsHelper;
 
-public class StartGameButton extends TextButton {
-	private static final String TEXT = "Start\nGame";
+public class OptionsButton extends TextButton {
+	private static final String TEXT = "Options";
 	
 	float xOffset, yOffset;
 
-	public StartGameButton(float xOffset, float yOffset, int rows, int columns, float rowWidth, float columnHeight) {
-		super(TEXT, 30.0f,0.0f, 0.0f, rows, columns, rowWidth, columnHeight);
+	public OptionsButton(float xOffset, float yOffset, int rows, int columns, float rowWidth, float columnHeight) {
+		super(TEXT, 25.0f, 0.0f, 0.0f, rows, columns, rowWidth, columnHeight);
 		
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;
@@ -28,14 +27,11 @@ public class StartGameButton extends TextButton {
 
 	@Override
 	protected void onRelease() {
-		PhysicsHelper.tempInit(Game.physics);
-		Game.gui.setCurrentState(GUI.States.NONE);
-		//Game.input.setPlayer(Game.players[0]);
+		Game.gui.setCurrentState(GUI.States.OPTIONS);
 	}
 
 	@Override
 	protected void onSlideRelease() {
-		
 	}
 
 	@Override
@@ -52,7 +48,10 @@ public class StartGameButton extends TextButton {
 	}
 	
 	@Override
-	protected void onDrag(float dx, float dy){}
+	protected void onDrag(float dx, float dy){
+		this.xOffset += dx;
+		this.yOffset += dy;
+	}
 	
 	@Override
 	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical){

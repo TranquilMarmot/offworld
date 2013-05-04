@@ -1,12 +1,12 @@
-package com.bitwaffle.guts.gui.states.pause;
+package com.bitwaffle.offworld.gui.states.pause;
 
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
-import com.bitwaffle.guts.gui.states.pause.buttons.DebugButton;
-import com.bitwaffle.guts.gui.states.pause.buttons.LoadButton;
-import com.bitwaffle.guts.gui.states.pause.buttons.QuitButton;
-import com.bitwaffle.guts.gui.states.pause.buttons.SaveButton;
+import com.bitwaffle.offworld.gui.states.pause.buttons.DebugButton;
+import com.bitwaffle.offworld.gui.states.pause.buttons.LoadButton;
+import com.bitwaffle.offworld.gui.states.pause.buttons.QuitButton;
+import com.bitwaffle.offworld.gui.states.pause.buttons.SaveButton;
 
 /**
  * A ButtonManager that manages the pause menu
