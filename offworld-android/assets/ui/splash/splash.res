@@ -5,6 +5,12 @@
 			"path": "ui/splash/bitwaffle/bitwaffle.png",
 			"minFilter": "linear",
 			"magFilter": "linear"
+		},
+		{
+			"name": "bitwaffle-text",
+			"path": "ui/splash/bitwaffle-text.png",
+			"minFilter": "nearest",
+			"magFilter": "nearest"
 		}
 	],
 	

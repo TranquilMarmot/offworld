@@ -16,11 +16,11 @@ public abstract class EntityRenderer3D implements EntityRenderer {
 	/** Z location of entity */
 	public float z;
 	
-	/** Rotation of entity */
-	public Matrix4 rotation;
+	/** Matrix that gets multiplied with renderer's modelview when rendering */
+	public Matrix4 view;
 	
 	public EntityRenderer3D(){
-		rotation = new Matrix4();
+		view = new Matrix4();
 		z = 0.0f;
 	}
 	

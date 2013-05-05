@@ -162,7 +162,7 @@ public class Render3D {
 		renderer.modelview.rotate(0.0f, 0.0f, 1.0f, MathHelper.toDegrees(entAngle));
 		
 		// add any rotation from renderer
-		renderer.modelview = renderer.modelview.mul(rend.rotation);
+		renderer.modelview = renderer.modelview.mul(rend.view);
 		
 		sendMatrixToShader();
 	}
