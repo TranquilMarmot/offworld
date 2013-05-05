@@ -106,7 +106,7 @@ public class Camera2D extends Entity {
 			this.zoom = newZoom;
 			
 			Vector2 prevWorldWindowSize = new Vector2(worldWindowSize);
-			Vector2 newWorldWindowSize = getWorldWindowSize(this.zoom);
+			Vector2 newWorldWindowSize = getWorldWindowSize();
 			
 			// make sure the camera doesn't zoom outside of the room if bounds are being checked
 			if(boundsCheck){
@@ -146,7 +146,7 @@ public class Camera2D extends Entity {
 	 * @param zoom Zoom level to get window size for
 	 * @return Size of window in world coordinates for given zoom level
 	 */
-	private Vector2 getWorldWindowSize(float zoom){
+	public Vector2 getWorldWindowSize(){
 		projection.idt();
 		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1);
 		
@@ -194,11 +194,6 @@ public class Camera2D extends Entity {
 		float roomRightX = r.getRoomX() + r.getRoomWidth();
 		if(cameraRightX > roomRightX)
 			this.location.x += (cameraRightX - roomRightX);
-	}
-	
-	/** @return How much the camera can see, in world coordinates */
-	public Vector2 getWorldWindowSize(){
-		return worldWindowSize;
 	}
 	
 	@Override

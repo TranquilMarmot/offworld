@@ -27,7 +27,7 @@ public class SplashScreenState extends GUIState {
 		renderer.rotation.scale(0.5f, 0.5f, 0.5f);
 		bitwaffle = new Entity(renderer, 5, new Vector2(0.0f, 0.0f)){
 			//float x = Game.random.nextFloat(), y = Game.random.nextFloat(), z = Game.random.nextFloat();
-			float x = 0.0f, y = 0.0f, z = 1.0f;
+			float x = 0.0f, y = 0.0f, z = -1.0f;
 			@Override
 			public void update(float timeStep){
 				EntityRenderer3D rend = (EntityRenderer3D)this.renderer;
@@ -39,13 +39,12 @@ public class SplashScreenState extends GUIState {
 				
 				
 				Vector2 worldSize = Game.renderer.r2D.camera.getWorldWindowSize();
-				System.out.println(worldSize);
 				this.location.set((worldSize.x / 2.0f), (worldSize.y / 2.0f));
 				Game.renderer.r2D.camera.setLocation(this.location);
 			}
 		};
 		
-		background = new GLSLSandbox("shaders/sandbox/wiggle.frag");
+		background = new GLSLSandbox("shaders/sandbox/tadah.frag");
 	}
 
 	@Override
@@ -54,9 +53,6 @@ public class SplashScreenState extends GUIState {
 		Game.physics.addEntity(background, false);
 		
 		Game.renderer.r2D.camera.setMode(Camera2D.Modes.FREE);
-		//Vector2 worldSize = Game.renderer.r2D.camera.getWorldWindowSize();
-		//Vector2 waf = bitwaffle.getLocation();
-		//Vector2 newLoc = new Vector2((worldSize.x / 2.0f) + waf.x + 4.0f, (worldSize.y / 2.0f) + waf.y + 4.0f);
 		Game.renderer.r2D.camera.setLocation(bitwaffle.getLocation());
 	}
 
@@ -67,23 +63,14 @@ public class SplashScreenState extends GUIState {
 	}
 
 	@Override
-	public Button initialLeftButton() {
-		return null;
-	}
+	public Button initialLeftButton() { return null; }
 
 	@Override
-	public Button initialRightButton() {
-		return null;
-	}
+	public Button initialRightButton() { return null; }
 
 	@Override
-	public Button initialUpButton() {	
-		return null;
-	}
+	public Button initialUpButton() { return null; }
 
 	@Override
-	public Button initialDownButton() {
-		return null;
-	}
-
+	public Button initialDownButton() { return null; }
 }

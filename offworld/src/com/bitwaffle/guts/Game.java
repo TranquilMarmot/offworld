@@ -183,6 +183,10 @@ public abstract class Game implements ApplicationListener {
     	Game.windowHeight = height;
     	Game.aspect = (float)width / (float) height;
     	Gdx.gl20.glViewport(0, 0, Game.windowWidth, Game.windowHeight);
+    	if(renderer.r2D.camera != null){
+    		// setting the zoom resizes the camera's view of the world
+    		renderer.r2D.camera.setZoom(renderer.r2D.camera.getZoom());
+    	}
     }
 
     public void dispose () {
