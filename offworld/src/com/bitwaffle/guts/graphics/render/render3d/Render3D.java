@@ -108,7 +108,7 @@ public class Render3D {
 		program.use();
 		
 		useDefaultMaterial();
-		setUpLights();
+		sendLightsToShader();
 		
 		//MathHelper.perspective(projection, fov, aspect, 1.0f, drawDistance);
 		MathHelper.orthoM(renderer.projection, 0, Game.aspect, 0, 1, -1, drawDistance);
@@ -173,7 +173,7 @@ public class Render3D {
 	
 	
 	/** Sets up lights for rendering */
-	private void setUpLights(){
+	private void sendLightsToShader(){
 		// FIXME only one light supported right now!
 		if(lights.size() > 1)
 			System.out.println("More than one light! Multiple lighting not yet implemented.");
