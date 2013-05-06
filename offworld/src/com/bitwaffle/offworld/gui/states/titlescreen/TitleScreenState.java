@@ -2,6 +2,7 @@ package com.bitwaffle.offworld.gui.states.titlescreen;
 
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.passive.GLSLSandbox;
+import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
 import com.bitwaffle.offworld.gui.states.titlescreen.buttons.OptionsButton;
@@ -21,8 +22,8 @@ public class TitleScreenState extends GUIState {
 	/** Fancy spinning pizza */
 	private SpinningPizza spinningPizza;
 	
-	public TitleScreenState(){
-		super();
+	public TitleScreenState(GUI gui){
+		super(gui);
 		
 		sandbox = new GLSLSandbox();
 		

@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.Renderer;
-import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.TextButton;
+import com.bitwaffle.offworld.gui.states.GUIStates;
 
 public class OptionsButton extends TextButton {
 	private static final String TEXT = "Options";
@@ -27,7 +27,7 @@ public class OptionsButton extends TextButton {
 
 	@Override
 	protected void onRelease() {
-		Game.gui.setCurrentState(GUI.States.OPTIONS);
+		Game.gui.setCurrentState(GUIStates.OPTIONS);
 	}
 
 	@Override

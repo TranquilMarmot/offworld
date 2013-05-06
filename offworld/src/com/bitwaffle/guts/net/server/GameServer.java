@@ -62,9 +62,9 @@ public class GameServer extends Listener {
 		server = null;
 	}
 	
-	public void update(){
+	public void update(float timeStep){
 		for(ServerConnection con : connections.values())
-			con.update();
+			con.update(timeStep);
 		
 		if(playerNumber != -1){
 			// FIXME temporary? just send player data

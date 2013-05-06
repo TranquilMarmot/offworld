@@ -13,6 +13,7 @@ import com.bitwaffle.guts.net.Net;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.Resources;
 import com.bitwaffle.offworld.entities.player.Player;
+import com.bitwaffle.offworld.gui.states.GUIStates;
 
 /**
  * Base game class.
@@ -102,7 +103,7 @@ public abstract class Game implements ApplicationListener {
 	
 	protected void initGUI(){
 		gui = new GUI();
-		gui.setCurrentState(GUI.States.SPLASH);
+		gui.setCurrentState(GUIStates.SPLASH);
 	}
 
 	@Override
@@ -136,25 +137,23 @@ public abstract class Game implements ApplicationListener {
 		
 		// clamp steps and iterate, updating everything by FIXED_TIMESTEP here
 		for(int i = 0; i < Math.min(steps, MAX_STEPS); i++){
-			// Step the physics sim and camera
-			if(!paused){
-				if(physics != null)
+			// only step physics sim if not paused
+			if(!paused && physics != null)
 					physics.update(FIXED_TIMESTEP);
 			
-				if(renderer.r2D.camera != null)
-					renderer.r2D.camera.update(FIXED_TIMESTEP);
-				if(renderer.r3D.camera != null)
-					renderer.r3D.camera.update(FIXED_TIMESTEP);
-			}
+			// update cameras
+			if(renderer != null)
+				renderer.update(FIXED_TIMESTEP);
 			
-			// GUI gets updated even if we're not paused
+			// update GUI
 			if(gui != null)
 				gui.update(FIXED_TIMESTEP);
+			
+			if(net != null)
+				net.update(FIXED_TIMESTEP);
 		}
 		
 		updateFPS(deltaTime);
-		
-		net.update();
     }
     
     /** @return Whether or not the game is currently paused */

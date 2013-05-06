@@ -6,14 +6,11 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.gui.GUI;
+import com.bitwaffle.offworld.gui.states.GUIStates;
 
 public class GUIInputListener implements InputProcessor {
 	
-	/** 
-	 * Array of pointers, gets expanded if necessary (if number of pointers down is > length)
-	 * Given a MotionEvent e,  calling e.getPointerId(e.getActionIndex()) will give you the index
-	 * in this array of the action's Pointer
-	 */
+	/** Array of pointers, gets expanded if necessary (if number of pointers down is > length) */
 	private LinkedList<ButtonPointer> pointers;
 	
 	/** GUI this listener is controlling */
@@ -26,12 +23,12 @@ public class GUIInputListener implements InputProcessor {
 
 	@Override
 	public boolean keyDown(int keycode) {
-		if(keycode == Input.Keys.ESCAPE && !Game.gui.isCurrentState(GUI.States.TITLESCREEN) && !Game.gui.isCurrentState(GUI.States.OPTIONS)){
+		if(keycode == Input.Keys.ESCAPE && !Game.gui.isCurrentState(GUIStates.TITLESCREEN) && !Game.gui.isCurrentState(GUIStates.OPTIONS)){
 			Game.togglePause();
 			return true;
 		}
 		
-		if(!gui.isCurrentState(GUI.States.NONE)){
+		if(!gui.isCurrentState(GUIStates.NONE)){
 			switch(keycode){
 			case Input.Keys.RIGHT:
 				gui.moveRight();

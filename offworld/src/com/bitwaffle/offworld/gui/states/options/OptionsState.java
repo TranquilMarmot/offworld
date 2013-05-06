@@ -6,6 +6,7 @@ import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.button.TextButton;
 import com.bitwaffle.guts.gui.states.GUIState;
+import com.bitwaffle.offworld.gui.states.GUIStates;
 import com.bitwaffle.offworld.gui.states.options.buttons.FullScreenButton;
 
 public class OptionsState extends GUIState {
@@ -16,8 +17,8 @@ public class OptionsState extends GUIState {
 	
 	TextButton backButton;
 	
-	public OptionsState() {
-		super();
+	public OptionsState(GUI gui) {
+		super(gui);
 		
 		fullscreenButton = new FullScreenButton(Game.windowWidth / 2.0f, Game.windowHeight / 2.0f, 30);
 		this.addButton(fullscreenButton);
@@ -34,7 +35,7 @@ public class OptionsState extends GUIState {
 		backButton = new TextButton(text, textScale, x, y, rows, columns, rowWidth, columnHeight){
 			@Override
 			protected void onRelease() {
-				Game.gui.setCurrentState(GUI.States.TITLESCREEN);
+				Game.gui.setCurrentState(GUIStates.TITLESCREEN);
 			}
 
 			@Override

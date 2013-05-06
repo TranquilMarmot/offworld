@@ -1,6 +1,7 @@
 package com.bitwaffle.offworld.gui.states.pause;
 
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
 import com.bitwaffle.offworld.gui.states.pause.buttons.DebugButton;
@@ -34,8 +35,8 @@ public class PauseState extends GUIState{
 	public float buttonRowWidth(){ return buttonRowWidth; }
 	public float buttonColHeight(){ return buttonColHeight; }
 
-	public PauseState(){
-		super();
+	public PauseState(GUI gui){
+		super(gui);
 		
 		debugButton = new DebugButton(this);
 		loadButton = new LoadButton(this);

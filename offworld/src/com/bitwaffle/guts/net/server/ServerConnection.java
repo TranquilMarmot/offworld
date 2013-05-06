@@ -28,7 +28,7 @@ public class ServerConnection {
 	
 	public Connection connection(){ return connection; }
 	
-	public void update(){
+	public void update(float timeStep){
 		ticksSinceLastUpdate++;
 		if(ticksSinceLastUpdate > updateFrequency){
 			for(int l = 0; l < Game.physics.numLayers(); l++){

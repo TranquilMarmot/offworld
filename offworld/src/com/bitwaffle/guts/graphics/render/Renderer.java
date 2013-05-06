@@ -18,6 +18,11 @@ import com.bitwaffle.guts.graphics.render.render3d.Render3D;
  * @author TranquilMarmot
  */
 public class Renderer {
+	
+	/** Used to know when to switch render modes */
+	private enum RenderMode{ r2D, r3D }
+	private RenderMode currentMode;
+	
 	/** Matrices for use with shaders */
 	public Matrix4 modelview, projection;
 	
@@ -39,6 +44,29 @@ public class Renderer {
 		
 		r2D = new Render2D(this);
 		r3D = new Render3D(this);
+		currentMode = RenderMode.r2D;
+	}
+	
+	/**
+	 * Updates the renderer - pretty much just updates cameras right now
+	 * @param timeStep Time passed since last update, in seconds
+	 */
+	public void update(float timeStep) {
+		if(r2D.camera != null)
+			r2D.camera.update(timeStep);
+		if(r3D.camera != null)
+			r3D.camera.update(timeStep);
+	}
+	
+	/** Switched render mode. Does nothing if give mode is same as currentMode. */
+	private void switchMode(RenderMode mode){
+		if(currentMode == mode)
+			return;
+		else if(mode == RenderMode.r2D)
+			r2D.switchTo2DWorldCoords();
+		else if(mode == RenderMode.r3D)
+			r3D.switchTo3DRender();
+		currentMode = mode;
 	}
 	
 	/** Renders the entire scene- every entity and every GUI object */
@@ -69,13 +97,13 @@ public class Renderer {
 				if(ent != null && ent.renderer != null){
 					// 3D renderer
 					if(ent.renderer instanceof EntityRenderer3D){
-						r3D.switchTo3DRender();
+						switchMode(RenderMode.r3D);
 						r3D.prepareToRenderEntity(ent);
 						ent.renderer.render(this, ent, renderDebug);
 						
 					// 2D renderer
 					} else {
-						r2D.switchTo2DWorldCoords();
+						switchMode(RenderMode.r2D);
 						r2D.prepareToRenderEntity(ent);
 						ent.renderer.render(this, ent, renderDebug);
 					}

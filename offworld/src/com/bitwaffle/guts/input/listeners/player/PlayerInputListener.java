@@ -16,11 +16,7 @@ import com.bitwaffle.offworld.entities.player.Player;
  * @author TranquilMarmot
  */
 public class PlayerInputListener implements InputProcessor {
-	/** 
-	 * Array of pointers, gets expanded if necessary (if number of pointers down is > length)
-	 * Given a MotionEvent e,  calling e.getPointerId(e.getActionIndex()) will give you the index
-	 * in this array of the action's Pointer
-	 */
+	/** Array of pointers, gets expanded if necessary (if number of pointers down is > length) */
 	private LinkedList<PlayerPointer> pointers;
 	
 	/** Player that this handler is handling */
@@ -43,6 +39,7 @@ public class PlayerInputListener implements InputProcessor {
 
 	@Override
 	public boolean keyDown(int keycode) {
+		// if console is on, player isn't being controlled
 		if(Game.gui.console.isOn())
 			return false;
 		

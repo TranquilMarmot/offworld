@@ -14,6 +14,7 @@ import com.bitwaffle.guts.graphics.render.render2d.Render2D
 import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D
 import com.bitwaffle.guts.gui.GUI
 import com.bitwaffle.offworld.entities.BreakableRock
+import com.bitwaffle.offworld.gui.states.GUIStates
 
 import javax.swing.BoxLayout
 import javax.swing.JButton
@@ -36,7 +37,7 @@ object Builder {
 	 * Checks for the koonami code and starts dev mode if it's entered
 	 */
 	def update {
-		if (Game.gui.isCurrentState(GUI.States.TITLESCREEN)) {
+		if (Game.gui.isCurrentState(GUIStates.TITLESCREEN)) {
 		  /*
 			if (koonami(currentKey) isPressed) {
 				currentKeyDown = true

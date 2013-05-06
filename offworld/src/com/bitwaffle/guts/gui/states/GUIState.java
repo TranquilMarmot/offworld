@@ -34,7 +34,8 @@ public abstract class GUIState {
 	/**
 	 * Create a new GUI state
 	 */
-	public GUIState(){
+	public GUIState(GUI gui){
+		this.gui = gui;
 		this.isCurrentState = false;
 		
 		buttons = new ArrayList<Button>();
@@ -74,11 +75,6 @@ public abstract class GUIState {
 	
 	/** Initial button to go to when no button is selected and down is pressed. null ok. */
 	public abstract Button initialDownButton();
-	
-	/**
-	 * @param gui New GUI that this state is using
-	 */
-	public void setParentGUI(GUI gui){ this.gui = gui; }
 	
 	/**
 	 * Called when this state becomes the current state of a GUI

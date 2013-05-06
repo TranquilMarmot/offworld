@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.Renderer;
-import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.TextButton;
+import com.bitwaffle.offworld.gui.states.GUIStates;
 import com.bitwaffle.offworld.gui.states.pause.PauseState;
 
 public class QuitButton extends TextButton {
@@ -39,7 +39,7 @@ public class QuitButton extends TextButton {
 		
 		Game.renderer.r2D.camera.setTarget(null);
 		
-		Game.gui.setCurrentState(GUI.States.TITLESCREEN);
+		Game.gui.setCurrentState(GUIStates.TITLESCREEN);
 		if(Game.isPaused())
 			Game.togglePause();
 	}

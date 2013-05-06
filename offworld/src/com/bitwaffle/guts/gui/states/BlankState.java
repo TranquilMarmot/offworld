@@ -1,8 +1,12 @@
 package com.bitwaffle.guts.gui.states;
 
+import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.Button;
 
 public class BlankState extends GUIState {
+	
+	public BlankState(GUI gui){ super(gui); }
+	
 	@Override
 	protected void onGainCurrentState() {}
 

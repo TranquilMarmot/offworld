@@ -18,10 +18,10 @@ public class Net {
 			client = new GameClient(host);
 	}
 	
-	public void update(){
+	public void update(float timeStep){
 		if(server != null)
-			server.update();
+			server.update(timeStep);
 		if(client != null)
-			client.update();
+			client.update(timeStep);
 	}
 }

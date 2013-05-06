@@ -60,7 +60,7 @@ public class GameClient extends Listener {
 	public void setPlayerNumber(int number){ this.playerNumber = number; }
 	public int playerNumber(){ return this.playerNumber; }
 
-	public void update() {
+	public void update(float timeStep) {
 		// temporary, just send player data
 		ticksSinceLastUpdate++;
 		

@@ -4,9 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.Renderer;
-import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.TextButton;
 import com.bitwaffle.guts.physics.PhysicsHelper;
+import com.bitwaffle.offworld.gui.states.GUIStates;
 
 public class StartGameButton extends TextButton {
 	private static final String TEXT = "Start\nGame";
@@ -29,8 +29,7 @@ public class StartGameButton extends TextButton {
 	@Override
 	protected void onRelease() {
 		PhysicsHelper.tempInit(Game.physics);
-		Game.gui.setCurrentState(GUI.States.NONE);
-		//Game.input.setPlayer(Game.players[0]);
+		Game.gui.setCurrentState(GUIStates.NONE);
 	}
 
 	@Override

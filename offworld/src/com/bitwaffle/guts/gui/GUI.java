@@ -11,12 +11,8 @@ import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.console.Console;
 import com.bitwaffle.guts.gui.hud.HUD;
-import com.bitwaffle.guts.gui.states.BlankState;
 import com.bitwaffle.guts.gui.states.GUIState;
-import com.bitwaffle.offworld.gui.states.options.OptionsState;
-import com.bitwaffle.offworld.gui.states.pause.PauseState;
-import com.bitwaffle.offworld.gui.states.splash.SplashScreenState;
-import com.bitwaffle.offworld.gui.states.titlescreen.TitleScreenState;
+import com.bitwaffle.offworld.gui.states.GUIStates;
 
 /**
  * Handles all GUI elements
@@ -25,26 +21,6 @@ import com.bitwaffle.offworld.gui.states.titlescreen.TitleScreenState;
  */
 public class GUI {
 	private static final String LOGTAG = "GUI";
-	/**
-	 * States for the GUI. Anything can extend
-	 * GUIState and be made the current state through the
-	 * setCurrentState() method
-	 */
-	public enum States{
-		NONE(new BlankState()),              // nothing
-		PAUSE(new PauseState()),             // displayed when the game is paused
-		TITLESCREEN(new TitleScreenState()), // the title screen
-		OPTIONS(new OptionsState()),         // the options screen
-		SPLASH(new SplashScreenState());     // splash screen (only displayed for a bit at beginning of game)
-		
-		// Each value in this enum basically acts as a wrapper to access a GUIState
-		GUIState state;
-		States(GUIState state){ this.state = state; }
-		protected void setParentGUI(GUI gui){ state.setParentGUI(gui); }
-		protected void update(float timeStep){ state.update(timeStep); }
-		protected void loseCurrentState(){ state.loseCurrentState(); }
-		protected void gainCurrentState(){ state.gainCurrentState(); }
-	}
 	
 	/** Console for interacting with game */
 	public Console console;
@@ -86,10 +62,6 @@ public class GUI {
 		
 		stateStack = new Stack<GUIState>();
 		
-		// Set GUI states to belong to this GUI
-		for(States s : States.values())
-			s.setParentGUI(this);
-		
 		// add a HUD to this GUI
 		this.addObject(new HUD(this));
 	}
@@ -111,13 +83,13 @@ public class GUI {
 	/** Checks the state of the GUI and changes it if necessary */
 	protected void checkState(){
 		// check if we need to switch between the pause menu and the movement keys
-		if(currentState != States.TITLESCREEN.state && currentState != States.OPTIONS.state){
+		if(currentState != GUIStates.TITLESCREEN.state && currentState != GUIStates.OPTIONS.state){
 			if(Game.isPaused()){
-				if(currentState != States.PAUSE.state)
-					setCurrentState(States.PAUSE);
+				if(currentState != GUIStates.PAUSE.state)
+					setCurrentState(GUIStates.PAUSE);
 			} else {
-				if(currentState == States.PAUSE.state)
-					setCurrentState(States.NONE);
+				if(currentState == GUIStates.PAUSE.state)
+					setCurrentState(GUIStates.NONE);
 			}
 		}
 	}
@@ -189,7 +161,7 @@ public class GUI {
 	}
 	
 	/** @param newState New state to use for GUI */
-	public void setCurrentState(States newState){
+	public void setCurrentState(GUIStates newState){
 		setCurrentState(newState.state);
 	}
 	
@@ -222,7 +194,7 @@ public class GUI {
 	 * @param state State from GUI.States
 	 * @return Whether or not the given state is the curent state
 	 */
-	public boolean isCurrentState(States state){ return currentState == state.state; }
+	public boolean isCurrentState(GUIStates state){ return currentState == state.state; }
 	
 	/** @return Whether the given state is the current state */
 	public boolean isCurrentState(GUIState state){ return currentState == state; }

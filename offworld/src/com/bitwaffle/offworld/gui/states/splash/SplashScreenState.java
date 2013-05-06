@@ -14,6 +14,7 @@ import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
 import com.bitwaffle.guts.graphics.shapes.model.ModelPolygonRenderer;
+import com.bitwaffle.offworld.gui.states.GUIStates;
 
 /**
  * Super fancy splash screen
@@ -28,7 +29,8 @@ public class SplashScreenState extends GUIState {
 	/** Total time in seconds that splash screen is displayed */
 	private float splashScreenTime = 3.75f;
 	
-	public SplashScreenState(){
+	public SplashScreenState(GUI gui){
+		super(gui);
 		background = new GLSLSandbox("shaders/sandbox/tadah.frag");
 		
 		// create waffle object
@@ -44,7 +46,7 @@ public class SplashScreenState extends GUIState {
 				rend.view.rotate(x, y, z, timeStep * 100.0f);
 				timer += timeStep;
 				if(timer > splashScreenTime){
-					Game.gui.setCurrentState(GUI.States.TITLESCREEN);
+					Game.gui.setCurrentState(GUIStates.TITLESCREEN);
 				}
 				
 				
