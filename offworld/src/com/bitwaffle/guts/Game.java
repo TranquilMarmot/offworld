@@ -30,9 +30,6 @@ public abstract class Game implements ApplicationListener {
 	public static Input input;
 	public static Net net;
 	
-	/** List of players */
-	public static Player[] players = new Player[4];
-	
 	/** Whether or not the game is paused (physics isn't stepped when this is true) */
 	private static boolean paused = false;
 	

@@ -1,8 +1,8 @@
 package com.bitwaffle.guts.net.messages;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.physics.PhysicsUpdateRequest;
+import com.bitwaffle.offworld.OffworldGame;
 import com.bitwaffle.offworld.entities.player.Player;
 
 /**
@@ -17,7 +17,7 @@ public class PlayerUpdateRequest implements PhysicsUpdateRequest {
 
 	@Override
 	public void doRequest() {
-		Player player = Game.players[reply.playerNumber];
+		Player player = OffworldGame.players[reply.playerNumber];
 		player.body.setTransform(new Vector2(reply.x, reply.y), 0);
 		player.body.setLinearVelocity(reply.dx, reply.dy);
 		player.setTarget(new Vector2(reply.aimX, reply.aimY));

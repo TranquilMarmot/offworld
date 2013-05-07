@@ -14,6 +14,7 @@ import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.physics.Entities.EntityHashMap;
 import com.bitwaffle.guts.physics.callbacks.FirstHitQueryCallback;
+import com.bitwaffle.offworld.OffworldGame;
 
 /**
  * Handles all physics workings
@@ -199,7 +200,6 @@ public class Physics {
 		}
 		
 
-		
 		for(EntityHashMap layer : entities.layers){
 			for(Entity ent : layer.values())
 				this.removeEntity(ent, false);
@@ -212,8 +212,8 @@ public class Physics {
 		entities.clear();
 		
 		// get rid of the player FIXME should this be here?
-		for(int i = 0; i < Game.players.length; i++)
-			Game.players[i] = null;
+		for(int i = 0; i < OffworldGame.players.length; i++)
+			OffworldGame.players[i] = null;
 	}
 	
 	/** @param request Request to add */

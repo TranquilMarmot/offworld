@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.gui.button.TextButton;
+import com.bitwaffle.offworld.OffworldGame;
 import com.bitwaffle.offworld.gui.states.GUIStates;
 import com.bitwaffle.offworld.gui.states.pause.PauseState;
 
@@ -34,8 +35,8 @@ public class QuitButton extends TextButton {
 	protected void onRelease() {
 		Game.physics.clearWorld();
 		
-		for(int i = 0; i < Game.players.length; i++)
-			Game.players[i] = null;
+		for(int i = 0; i < OffworldGame.players.length; i++)
+			OffworldGame.players[i] = null;
 		
 		Game.renderer.r2D.camera.setTarget(null);
 		

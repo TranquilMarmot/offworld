@@ -14,6 +14,7 @@ import com.bitwaffle.guts.net.messages.PlayerUpdateRequest;
 import com.bitwaffle.guts.net.messages.entity.BreakableRockCreateMessage;
 import com.bitwaffle.guts.physics.Entities.EntityRemoveRequest;
 import com.bitwaffle.guts.physics.PhysicsHelper;
+import com.bitwaffle.offworld.OffworldGame;
 import com.bitwaffle.offworld.entities.BreakableRock;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.esotericsoftware.kryonet.Connection;
@@ -82,7 +83,7 @@ public class GameServer extends Listener {
 	public void sendPlayerInfoReply(Connection connection, int playerNumber){
 		PlayerUpdateMessage reply = new PlayerUpdateMessage();
 		reply.playerNumber = playerNumber;
-		Player player = Game.players[reply.playerNumber];
+		Player player = OffworldGame.players[reply.playerNumber];
 		reply.x = player.body.getPosition().x;
 		reply.y = player.body.getPosition().y;
 		reply.dx = player.body.getLinearVelocity().x;
@@ -141,9 +142,9 @@ public class GameServer extends Listener {
 	private void playerJoined(Connection connection){
 		// figure out which player is joining
 		int playerNum = -1;
-		for(int i = 0; i < Game.players.length; i++){
+		for(int i = 0; i < OffworldGame.players.length; i++){
 			// assign to first null slot
-			if(Game.players[i] == null){
+			if(OffworldGame.players[i] == null){
 				playerNum = i;
 				// create the player on the server
 				PhysicsHelper.initPlayer(Game.physics, new Vector2(1.0f, 16.0f), playerNum, false);
@@ -166,11 +167,11 @@ public class GameServer extends Listener {
 		}
 		
 		// send any existing players to newly connected player
-		for(int i = 0; i < Game.players.length; i++){
-			if(Game.players[i] != null && i != playerNum){
+		for(int i = 0; i < OffworldGame.players.length; i++){
+			if(OffworldGame.players[i] != null && i != playerNum){
 				PlayerCreateMessage msg = new PlayerCreateMessage();
 				msg.playerNumber = i;
-				Player p = Game.players[i];
+				Player p = OffworldGame.players[i];
 				msg.x = p.body.getPosition().x;
 				msg.y = p.body.getPosition().y;
 				msg.takeControl = false;

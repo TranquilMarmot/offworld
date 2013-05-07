@@ -15,6 +15,7 @@ import com.bitwaffle.guts.net.messages.entity.DynamicEntityUpdateMessage;
 import com.bitwaffle.guts.net.messages.entity.DynamicEntityUpdateRequest;
 import com.bitwaffle.guts.physics.Entities.EntityRemoveRequest;
 import com.bitwaffle.guts.physics.PhysicsHelper;
+import com.bitwaffle.offworld.OffworldGame;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
@@ -76,7 +77,7 @@ public class GameClient extends Listener {
 	public void sendPlayerUpdateMessage(Connection connection, int playerNumber){
 		PlayerUpdateMessage reply = new PlayerUpdateMessage();
 		reply.playerNumber = playerNumber;
-		Player player = Game.players[reply.playerNumber];
+		Player player = OffworldGame.players[reply.playerNumber];
 		reply.x = player.body.getPosition().x;
 		reply.y = player.body.getPosition().y;
 		reply.dx = player.body.getLinearVelocity().x;

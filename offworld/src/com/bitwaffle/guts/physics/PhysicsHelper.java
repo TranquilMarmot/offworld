@@ -16,6 +16,7 @@ import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D;
 import com.bitwaffle.guts.input.controller.player.OuyaPlayerControllerListener;
 import com.bitwaffle.guts.input.controller.player.XboxPlayerControllerListener;
 import com.bitwaffle.guts.input.listeners.player.PlayerInputListener;
+import com.bitwaffle.offworld.OffworldGame;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.bitwaffle.offworld.rooms.Room1;
 
@@ -111,26 +112,26 @@ public class PhysicsHelper {
 	 * @param physics
 	 */
 	public static void initPlayer(Physics physics, Vector2 position, int playerNumber, boolean takeControl){
-		Game.players[playerNumber] = new Player(6, position);
-		physics.addEntity(Game.players[playerNumber], false);
+		OffworldGame.players[playerNumber] = new Player(6, position);
+		physics.addEntity(OffworldGame.players[playerNumber], false);
 	
 		// TODO have each player press start
 		
 		if(takeControl){	
-			Game.renderer.r2D.camera.setTarget(Game.players[playerNumber]);
+			Game.renderer.r2D.camera.setTarget(OffworldGame.players[playerNumber]);
 			Game.renderer.r2D.camera.setMode(Camera2D.Modes.FOLLOW);
-			Game.renderer.r2D.camera.setLocation(Game.players[playerNumber].getLocation());
+			Game.renderer.r2D.camera.setLocation(OffworldGame.players[playerNumber].getLocation());
 			
 			for(Controller con : Controllers.getControllers()){
 				if(con.getName().equals(Ouya.ID)){
-					con.addListener(new OuyaPlayerControllerListener(Game.players[playerNumber]));
+					con.addListener(new OuyaPlayerControllerListener(OffworldGame.players[playerNumber]));
 				}else if(con.getName().contains("XBOX 360")){
-					con.addListener(new XboxPlayerControllerListener(Game.players[playerNumber]));
+					con.addListener(new XboxPlayerControllerListener(OffworldGame.players[playerNumber]));
 				}
 			}
 			
 			// add player control listener
-			Game.input.multiplexer.addProcessor(new PlayerInputListener(Game.players[playerNumber], Game.renderer.r2D.camera));
+			Game.input.multiplexer.addProcessor(new PlayerInputListener(OffworldGame.players[playerNumber], Game.renderer.r2D.camera));
 		}
 	}
 }

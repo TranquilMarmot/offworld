@@ -9,14 +9,14 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.desktop.devmode.DevModeDisplay;
 import com.bitwaffle.guts.desktop.devmode.builder.Builder;
 import com.bitwaffle.guts.desktop.gui.DesktopGUI;
-import com.bitwaffle.offworld.gui.states.GUIStates;
+import com.bitwaffle.offworld.OffworldGame;
 
 /**
  * Runs the game on the desktop
  * 
  * @author TranquilMarmot
  */
-public class DesktopGame extends Game {
+public class DesktopGame extends OffworldGame {
 	static String[] iconPaths = new String[]{"icon.png" };
 	static FileType[] iconFileTypes = new FileType[]{ FileType.Local };
 
@@ -45,7 +45,6 @@ public class DesktopGame extends Game {
 	@Override
 	protected void initGUI(){
 		gui = new DesktopGUI();
-		gui.setCurrentState(GUIStates.SPLASH);
 	}
 	
 	@Override
