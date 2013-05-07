@@ -68,12 +68,12 @@ public class Room1 extends Room {
     		this.addEntity(diamond);
 		}
 		
-		Bat bat = new Bat(4, new Vector2(70.0f, 19.0f));
+		Bat bat = new Bat(4, new Vector2(46.0f, -3.0f));
 		this.addEntity(bat);
 		
-		Bat bat2 = new Bat(4, new Vector2(50.0f, 19.0f));
-		bat2.sleeping = true;
-		this.addEntity(bat2);
+		//Bat bat2 = new Bat(4, new Vector2(50.0f, 19.0f));
+		//bat2.sleeping = true;
+		//this.addEntity(bat2);
 		
 		Game.net.startServer();
 		

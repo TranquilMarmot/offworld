@@ -12,7 +12,6 @@ import com.bitwaffle.guts.input.Input;
 import com.bitwaffle.guts.net.Net;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.Resources;
-import com.bitwaffle.offworld.entities.player.Player;
 
 /**
  * Base game class.
