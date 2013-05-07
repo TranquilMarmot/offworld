@@ -7,18 +7,47 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.physics.PhysicsHelper;
 
-public class PathFinder {
-	public PathData findPath(Vector2 start, Vector2 goal){
-		Game.physics.rayCast(new RayCastCallback(){
-			@Override
-			public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal,
-					float fraction) {
-				DynamicEntity ent = PhysicsHelper.getDynamicEntity(fixture);
-				System.out.println("hit: " + ent.getClass().getSimpleName() + " at " + point);
-				return 1;
-			}
-		}, start, goal);
+public class PathFinder {	
+	class FinderCallback implements RayCastCallback{
 		
-		return null;
+		PathData data;
+		
+		public FinderCallback(){
+			data = new PathData();
+		}
+
+		@Override
+		public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal,
+				float fraction) {
+			DynamicEntity ent = PhysicsHelper.getDynamicEntity(fixture);
+			data.addHit(ent, point, normal, fraction);
+			return 1;
+		}
+		
+		public PathData getData(){
+			return data;
+		}
+		
+		public void reset(){
+			data.reset();
+		}
+		
+	}
+	
+	FinderCallback callback;
+	
+	public PathFinder(){
+		callback = new FinderCallback();
+	}
+	
+	
+	public PathData findPath(Vector2 start, Vector2 goal){
+		Game.physics.rayCast(callback, start, goal);
+		
+		return callback.getData();
+	}
+	
+	public void reset(){
+		callback.reset();
 	}
 }
