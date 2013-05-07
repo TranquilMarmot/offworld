@@ -8,17 +8,18 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.desktop.devmode.DevModeDisplay;
 import com.bitwaffle.guts.desktop.devmode.builder.Builder;
+import com.bitwaffle.guts.desktop.gui.DesktopGUI;
+import com.bitwaffle.offworld.gui.states.GUIStates;
 
 /**
+ * Runs the game on the desktop
+ * 
  * @author TranquilMarmot
  */
 public class DesktopGame extends Game {
 	static String[] iconPaths = new String[]{"icon.png" };
 	static FileType[] iconFileTypes = new FileType[]{ FileType.Local };
-	/**
-	 * @param args None if LWJGL library path is in /libs/natives,
-	 * location of natives otherwise (See comment at top of class)
-	 */
+
 	public static void main(String[] args){
 		Game.windowWidth = 1024;
 		Game.windowHeight = 768;
@@ -42,6 +43,12 @@ public class DesktopGame extends Game {
 	}
 	
 	@Override
+	protected void initGUI(){
+		gui = new DesktopGUI();
+		gui.setCurrentState(GUIStates.SPLASH);
+	}
+	
+	@Override
 	protected void update(){
 		super.update();
 
@@ -56,9 +63,7 @@ public class DesktopGame extends Game {
     	
     	Builder.update();
 	}
-	/**
-	 * Called right before dying to close all resources
-	 */
+	/** Called right before dying to close all resources */
 	@Override
 	public void dispose(){
 		super.dispose();

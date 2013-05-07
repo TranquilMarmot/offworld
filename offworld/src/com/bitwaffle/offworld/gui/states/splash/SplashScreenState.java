@@ -13,7 +13,7 @@ import com.bitwaffle.guts.graphics.render.render3d.EntityRenderer3D;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
-import com.bitwaffle.guts.graphics.shapes.model.ModelPolygonRenderer;
+import com.bitwaffle.guts.graphics.shapes.model.ModelRenderer;
 import com.bitwaffle.offworld.gui.states.GUIStates;
 
 /**
@@ -34,7 +34,7 @@ public class SplashScreenState extends GUIState {
 		background = new GLSLSandbox("shaders/sandbox/tadah.frag");
 		
 		// create waffle object
-		EntityRenderer3D renderer = new ModelPolygonRenderer(Game.resources.models.getModel("bitwaffle"));
+		EntityRenderer3D renderer = new ModelRenderer(Game.resources.models.getModel("bitwaffle"));
 		renderer.view.rotate(0.0f, 1.0f, 1.0f, 180.0f);
 		renderer.view.scale(0.5f, 0.5f, 0.5f);
 		bitwaffle = new Entity(renderer, 5, new Vector2(0.0f, 0.0f)){

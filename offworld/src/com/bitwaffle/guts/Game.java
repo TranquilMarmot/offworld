@@ -13,7 +13,6 @@ import com.bitwaffle.guts.net.Net;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.Resources;
 import com.bitwaffle.offworld.entities.player.Player;
-import com.bitwaffle.offworld.gui.states.GUIStates;
 
 /**
  * Base game class.
@@ -101,10 +100,8 @@ public abstract class Game implements ApplicationListener {
 		renderer = new Renderer();
 	}
 	
-	protected void initGUI(){
-		gui = new GUI();
-		gui.setCurrentState(GUIStates.SPLASH);
-	}
+	/** Each platform has a different GUI (essentially, touch and non touch) */
+	protected abstract void initGUI();
 
 	@Override
     public void render () {

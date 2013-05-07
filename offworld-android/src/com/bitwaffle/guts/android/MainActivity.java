@@ -7,7 +7,7 @@ import android.view.Display;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.gui.states.movement.MovementGUIState;
+import com.bitwaffle.guts.android.gui.states.movement.MovementGUIState;
 
 public class MainActivity extends AndroidApplication {
     /** Info about the screen */

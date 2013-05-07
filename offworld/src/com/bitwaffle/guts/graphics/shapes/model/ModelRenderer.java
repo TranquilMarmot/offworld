@@ -16,7 +16,7 @@ import com.bitwaffle.guts.graphics.render.render3d.EntityRenderer3D;
  * 
  * @author TranquilMarmot
  */
-public class ModelPolygonRenderer extends EntityRenderer3D {
+public class ModelRenderer extends EntityRenderer3D {
 	/** Info on coordinates */
 	private static final int COORDS_PER_VERTEX = 3, COORDS_PER_TEXCOORD = 2;
 	
@@ -26,12 +26,17 @@ public class ModelPolygonRenderer extends EntityRenderer3D {
 	/** Model being rendered */
 	private Model model;
 	
-	public ModelPolygonRenderer(ModelPolygon modelPoly){
+	/**
+	 * Create a renderer for a model that's attached to a polygon.
+	 * Renders the polygon's debug data when rendering debug.
+	 */
+	public ModelRenderer(ModelPolygon modelPoly){
 		this.modelPoly = modelPoly;
 		this.model = Game.resources.models.getModel(modelPoly.modelName());
 	}
 	
-	public ModelPolygonRenderer(Model model){
+	/** Create a renderer that just renders a model */
+	public ModelRenderer(Model model){
 		this.model = model;
 	}
 	
@@ -56,6 +61,7 @@ public class ModelPolygonRenderer extends EntityRenderer3D {
 			
 			Game.resources.textures.bindTexture(model.getTexture());
 			
+			// render each part of the model (each part has its own material)
 			Iterator<ModelPart> it = model.partsIterator();
 			while(it.hasNext()){
 				ModelPart p = it.next();
@@ -71,6 +77,7 @@ public class ModelPolygonRenderer extends EntityRenderer3D {
 	}
 
 
+	/** Render debug data from polygon */
 	private void renderDebug(Renderer renderer, Entity ent){
 		Buffer debugVertBuffer = modelPoly.getDebugVertBuffer(), debugTexCoordBuffer = modelPoly.getDebugTexCoordBuffer();
 		if(debugVertBuffer != null && debugTexCoordBuffer != null){

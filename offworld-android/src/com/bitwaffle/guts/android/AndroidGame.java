@@ -2,16 +2,20 @@ package com.bitwaffle.guts.android;
 
 import com.badlogic.gdx.Gdx;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.gui.AndroidGUI;
+import com.bitwaffle.guts.android.gui.AndroidGUI;
 import com.bitwaffle.offworld.gui.states.GUIStates;
 
+/**
+ * Game class with special stuff for android
+ * 
+ * @author TranquilMarmot
+ */
 public class AndroidGame extends Game {
 	
 	@Override
 	protected void initGUI(){
-		// android has it's own GUI
 		gui = new AndroidGUI();
-		gui.setCurrentState(GUIStates.TITLESCREEN);
+		gui.setCurrentState(GUIStates.SPLASH);
 	}
 	
 	@Override

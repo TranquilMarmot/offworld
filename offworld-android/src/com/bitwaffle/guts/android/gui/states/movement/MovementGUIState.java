@@ -1,14 +1,14 @@
-package com.bitwaffle.guts.gui.states.movement;
+package com.bitwaffle.guts.android.gui.states.movement;
 
+import com.bitwaffle.guts.android.gui.states.movement.buttons.jump.LeftJumpButton;
+import com.bitwaffle.guts.android.gui.states.movement.buttons.jump.RightJumpButton;
+import com.bitwaffle.guts.android.gui.states.movement.buttons.left.LeftMoveLeftButton;
+import com.bitwaffle.guts.android.gui.states.movement.buttons.left.RightMoveLeftButton;
+import com.bitwaffle.guts.android.gui.states.movement.buttons.right.LeftMoveRightButton;
+import com.bitwaffle.guts.android.gui.states.movement.buttons.right.RightMoveRightButton;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
-import com.bitwaffle.guts.gui.states.movement.buttons.jump.LeftJumpButton;
-import com.bitwaffle.guts.gui.states.movement.buttons.jump.RightJumpButton;
-import com.bitwaffle.guts.gui.states.movement.buttons.left.LeftMoveLeftButton;
-import com.bitwaffle.guts.gui.states.movement.buttons.left.RightMoveLeftButton;
-import com.bitwaffle.guts.gui.states.movement.buttons.right.LeftMoveRightButton;
-import com.bitwaffle.guts.gui.states.movement.buttons.right.RightMoveRightButton;
 
 /**
  * A ButtonManager that keeps track of movement buttons and their size

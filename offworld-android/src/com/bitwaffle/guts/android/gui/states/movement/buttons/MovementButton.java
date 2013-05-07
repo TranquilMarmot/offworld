@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.gui.states.movement.buttons;
+package com.bitwaffle.guts.android.gui.states.movement.buttons;
 
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.gui.button.RectangleButton;

@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.Stack;
 
 import com.badlogic.gdx.Gdx;
-import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.console.Console;
@@ -19,7 +18,7 @@ import com.bitwaffle.offworld.gui.states.GUIStates;
  * 
  * @author TranquilMarmot
  */
-public class GUI {
+public abstract class GUI {
 	private static final String LOGTAG = "GUI";
 	
 	/** Console for interacting with game */
@@ -71,27 +70,12 @@ public class GUI {
 	 * @param timeStep Time passed since last update, in seconds
 	 */
 	public void update(float timeStep){
-		checkState();
 		if(currentState != null)
 			currentState.update(timeStep);
 		
 		updateButtons(timeStep);
 		updateObjects(timeStep);
 		console.update(timeStep);
-	}
-	
-	/** Checks the state of the GUI and changes it if necessary */
-	protected void checkState(){
-		// check if we need to switch between the pause menu and the movement keys
-		if(currentState != GUIStates.TITLESCREEN.state && currentState != GUIStates.OPTIONS.state){
-			if(Game.isPaused()){
-				if(currentState != GUIStates.PAUSE.state)
-					setCurrentState(GUIStates.PAUSE);
-			} else {
-				if(currentState == GUIStates.PAUSE.state)
-					setCurrentState(GUIStates.NONE);
-			}
-		}
 	}
 	
 	/**
@@ -124,26 +108,14 @@ public class GUI {
 			obj.update(timeStep);
 	}
 	
-	/**
-	 * @param o Object to add to GUI
-	 */
-	public void addObject(GUIObject o){
-		objectsToAdd.push(o);
-	}
+	/** @param o Object to add to GUI */
+	public void addObject(GUIObject o){ objectsToAdd.push(o); }
 	
-	/**
-	 * @param o Object to remove from GUI
-	 */
-	public void removeObject(GUIObject o){
-		objectsToRemove.push(o);
-	}
+	/** @param o Object to remove from GUI */
+	public void removeObject(GUIObject o){ objectsToRemove.push(o); }
 	
-	/**
-	 * @return An iterator that goes through every GUIObject currently in the GUI
-	 */
-	public Iterator<GUIObject> getObjectIterator(){
-		return objects.iterator();
-	}
+	/** @return An iterator that goes through every GUIObject currently in the GUI */
+	public Iterator<GUIObject> getObjectIterator(){ return objects.iterator(); }
 	
 	/** @param b Button to add to GUI */
 	public void addButton(Button b){ 
@@ -181,7 +153,6 @@ public class GUI {
 	/** Go to the previous state in the stack */
 	public void goToPreviousState(){
 		if(!stateStack.isEmpty()){
-			System.out.println("doo it");
 			if(currentState != null)
 				currentState.loseCurrentState();
 			
@@ -190,29 +161,20 @@ public class GUI {
 		}
 	}
 	
-	/**
-	 * @param state State from GUI.States
-	 * @return Whether or not the given state is the curent state
-	 */
+	/** @return Whether or not the given state is the curent state */
 	public boolean isCurrentState(GUIStates state){ return currentState == state.state; }
 	
 	/** @return Whether the given state is the current state */
 	public boolean isCurrentState(GUIState state){ return currentState == state; }
 	
-	/**
-	 * Draw the GUI
-	 * @param renderer
-	 */
+	/** Draw the GUI */
 	public void render(Renderer renderer) {
 		renderObjects(getObjectIterator(), renderer);
 		renderObjects(getButtonIterator(), renderer);
 		console.render(renderer, false, false);
 	}
 	
-	/**
-	 * @param objects GUI Objects to render
-	 * @param renderer Renderer to use
-	 */
+	/** Render all objects in an iterator */
 	private void renderObjects(Iterator<? extends GUIObject> it, Renderer renderer){
 		try{
 			while(it.hasNext()){
@@ -226,10 +188,7 @@ public class GUI {
 		}
 	}
 	
-	/**
-	 * @param obj GUI Object to render
-	 * @param renderer Renderer to use
-	 */
+	/** Renders a GUI object */
 	public void renderObject(GUIObject obj, Renderer renderer){
 		renderer.modelview.idt();
 		renderer.modelview.translate(obj.x, obj.y, 0.0f);
@@ -239,9 +198,6 @@ public class GUI {
 	
 	/**
 	 * Checks for a button at the given screen coordinates.
-	 * Returns null if no button.
-	 * @param screenX X screen location
-	 * @param screenY Y screen location
 	 * @return Button at location, null if no button
 	 */
 	public Button buttonAt(float screenX, float screenY) {
@@ -258,8 +214,6 @@ public class GUI {
 	/**
 	 * Checks if the given point contains a button and, if it does,
 	 * sets that button as the selected button.
-	 * @param screenX X location of pointer
-	 * @param screenY Y location of pointer
 	 */
 	public void checkForButtonSelection(float screenX, float screenY){
 		// check if the mouse went off of the selected button
@@ -276,33 +230,24 @@ public class GUI {
 		}
 	}
 
-	/**
-	 * @return Whether or not a button is currently selected
-	 */
+	/** @return Whether or not a button is currently selected */
 	public boolean hasSelectedButton(){
 		return selectedButton != null;
 	}
 	
-	/**
-	 * Press the selected button
-	 */
+	/** Press the selected button */
 	public void selectedButtonDown(){
 		if(selectedButton != null)
 			selectedButton.press();
 	}
 	
-	/**
-	 * Release the selected button
-	 */
+	/** Release the selected button */
 	public void selectedButtonUp(){
 		if(selectedButton != null && selectedButton.isDown())
 			selectedButton.release();
 	}
 	
-	/**
-	 * Set the selected button to a new button
-	 * @param newButton New button to be selected.
-	 */
+	/** Set the selected button to a new button */
 	public void setSelectedButton(Button newButton){
 		if(selectedButton != null){
 			selectedButton.unselect();
