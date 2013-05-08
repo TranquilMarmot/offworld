@@ -40,18 +40,16 @@ public class BatRenderer implements EntityRenderer {
 		
 		
 		if(bat.points != null){
-			//System.out.println(bat.points.size());
 			renderer.r2D.setColor(0.5f, 0.0f, 0.0f, 0.5f);
 			for(Vector2 point : bat.points){
-			//	System.out.println(point);
+				System.out.print(point);
 				renderer.modelview.idt();
 				renderer.r2D.translateModelViewToCamera();
 				renderer.modelview.translate(point.x, point.y, 0.0f);
 				renderer.r2D.sendMatrixToShader();
 				renderer.r2D.quad.render(1.0f, 1.0f);
 			}
-			bat.points.clear();
-			//System.out.println("--------");
+			System.out.println("-------------");
 		}
 		
 		

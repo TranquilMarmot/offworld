@@ -15,7 +15,7 @@ public class PathData {
 
 	public void addHit(DynamicEntity ent, Vector2 point, Vector2 normal,
 			float fraction) {
-		points.add(point);
+		points.add(new Vector2(point));
 	}
 	
 	public ArrayList<Vector2> getPoints(){

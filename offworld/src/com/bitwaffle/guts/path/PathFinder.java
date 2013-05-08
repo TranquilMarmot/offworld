@@ -20,7 +20,7 @@ public class PathFinder {
 		public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal,
 				float fraction) {
 			DynamicEntity ent = PhysicsHelper.getDynamicEntity(fixture);
-			data.addHit(ent, point, normal, fraction);
+			data.addHit(ent, new Vector2(point), new Vector2(normal), fraction);
 			return 1;
 		}
 		
@@ -41,13 +41,13 @@ public class PathFinder {
 	}
 	
 	
-	public PathData findPath(Vector2 start, Vector2 goal){
+	public PathData findPath(Vector2 start, Vector2 goal){ 
 		Game.physics.rayCast(callback, start, goal);
 		
 		return callback.getData();
 	}
 	
 	public void reset(){
-		callback.reset();
+		//callback.reset();
 	}
 }

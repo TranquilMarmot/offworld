@@ -20,7 +20,7 @@ import com.bitwaffle.guts.graphics.render.render3d.Render3D;
 public class Renderer {
 	
 	/** Used to know when to switch render modes */
-	private enum RenderMode{ r2D, r3D }
+	private enum RenderMode{ r2DWorld, r2DScreen, r3D }
 	private RenderMode currentMode;
 	
 	/** Matrices for use with shaders */
@@ -44,7 +44,6 @@ public class Renderer {
 		
 		r2D = new Render2D(this);
 		r3D = new Render3D(this);
-		currentMode = RenderMode.r2D;
 	}
 	
 	/**
@@ -62,8 +61,10 @@ public class Renderer {
 	private void switchMode(RenderMode mode){
 		if(currentMode == mode)
 			return;
-		else if(mode == RenderMode.r2D)
+		else if(mode == RenderMode.r2DWorld)
 			r2D.switchTo2DWorldCoords();
+		else if(mode == RenderMode.r2DScreen)
+			r2D.switchTo2DScreenCoords();
 		else if(mode == RenderMode.r3D)
 			r3D.switchTo3DRender();
 		currentMode = mode;
@@ -79,9 +80,8 @@ public class Renderer {
 			renderEntities(Game.physics.getLayer(i).values().iterator());
 		
 		// render GUI
-		r2D.switchTo2DScreenCoords();
+		switchMode(RenderMode.r2DScreen);
 		Game.gui.render(this);
-		
 		
 	}
 	
@@ -103,7 +103,7 @@ public class Renderer {
 						
 					// 2D renderer
 					} else {
-						switchMode(RenderMode.r2D);
+						switchMode(RenderMode.r2DWorld);
 						r2D.prepareToRenderEntity(ent);
 						ent.renderer.render(this, ent, renderDebug);
 					}

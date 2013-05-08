@@ -54,7 +54,8 @@ public class Room1 extends Room {
 		}
 		
 		
-		for(int i = 0; i < 10; i++){
+		// diamonds
+		for(int i = 0; i < 1; i++){
     		float diamondX = Game.random.nextFloat() * 10.0f - 50.0f;
     		if(diamondX < 1.0f) diamondX = 1.0f;
     		float diamondY = Game.random.nextFloat() * 15.0f + 15.0f;

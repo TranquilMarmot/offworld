@@ -2,6 +2,7 @@ package com.bitwaffle.offworld.entities.enemies.bat;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.math.Matrix3;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.path.PathData;
 import com.bitwaffle.guts.path.PathFinder;
+import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatFlyAnimation;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatRenderer;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatSleepAnimation;
@@ -34,6 +36,7 @@ public class Bat extends DynamicEntity implements Health {
 	float timer = 0.0f;
 	
 	private PathFinder finder;
+	private float ang = 0.0f;
 	
 	public Bat(int layer, Vector2 location){
 		super(new BatRenderer(), layer, getBodyDef(location), getFixtureDef());
@@ -81,17 +84,27 @@ public class Bat extends DynamicEntity implements Health {
 		
 		
 		finder.reset();
-		for(float ang = 0; ang < 360.0f; ang += 30.0){
-			float checkDist = 15.0f;
+		//points.clear();
+		System.out.println(points.size());
+		ang += 30.0f;
+		if(ang >= 360.0f){
+			ang -= 360.0f;
+			points.clear();
+		}
+		//for(float ang = 0; ang < 360.0f; ang += 30.0){
+			float checkDist = 10.0f;
 			Vector2 vec = new Vector2(checkDist, 0.0f);
-			vec.rotate(ang);
+			vec = vec.rotate(ang);
 			
 			Vector2 target = new Vector2(this.location);
 			target.add(vec);
 			PathData data = finder.findPath(this.location, target);
-			if(data.getPoints().size() > 5)
-				points.add(target);
-		}
+			//for(Vector2 p : data.getPoints())
+			//	System.out.println(p);
+			ArrayList<Vector2> wat = data.getPoints();
+			if(wat.size() > 0)
+				points.add(wat.get(0));
+		//}
 	}
 	
 	public boolean isSleeping(){ return sleeping; }
