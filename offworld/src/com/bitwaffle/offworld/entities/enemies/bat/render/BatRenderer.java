@@ -41,18 +41,15 @@ public class BatRenderer implements EntityRenderer {
 		renderer.r2D.quad.render(bat.getWidth(), bat.getHeight());
 		
 		
-		if(bat.callback.getData() != null){
-			renderer.r2D.setColor(0.5f, 0.0f, 0.0f, 0.5f);
-			Iterator<Vector2> it = bat.callback.getData().points();
-
-			while(it.hasNext()){
-				Vector2 point = it.next();
-				renderer.modelview.idt();
-				renderer.r2D.translateModelViewToCamera();
-				renderer.modelview.translate(point.x, point.y, 0.0f);
-				renderer.r2D.sendMatrixToShader();
-				renderer.r2D.quad.render(1.0f, 1.0f);
-			}
+		renderer.r2D.setColor(1.0f, 0.0f, 0.0f, 0.75f);
+		Iterator<Vector2> it = bat.pathfinder.getPath().iterator();
+		while(it.hasNext()){
+			Vector2 point = it.next();
+			renderer.modelview.idt();
+			renderer.r2D.translateModelViewToCamera();
+			renderer.modelview.translate(point.x, point.y, 0.0f);
+			renderer.r2D.sendMatrixToShader();
+			renderer.r2D.quad.render(0.25f, 0.25f);
 		}
 		
 		

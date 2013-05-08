@@ -1,18 +1,12 @@
 package com.bitwaffle.offworld.entities.enemies.bat;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.math.Matrix3;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.ai.path.PathFinder;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.path.FinderCallback;
-import com.bitwaffle.guts.path.PathData;
-import com.bitwaffle.guts.path.PathFinder;
-import com.bitwaffle.guts.util.MathHelper;
+import com.bitwaffle.offworld.OffworldGame;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatFlyAnimation;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatRenderer;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatSleepAnimation;
@@ -33,21 +27,17 @@ public class Bat extends DynamicEntity implements Health {
 	
 	public boolean sleeping = false;
 	
-	//public ArrayList<Vector2> points;
-	
+	// FIXME temp
 	float timer = 0.0f;
 	
-	//private PathFinder finder;
-	public FinderCallback callback;
-	private float ang = 0.0f;
+	// FIXME temp
+	public PathFinder pathfinder;
 	
 	public Bat(int layer, Vector2 location){
 		super(new BatRenderer(), layer, getBodyDef(location), getFixtureDef());
 		sleepAnimation = new BatSleepAnimation(this);
 		flyAnimation = new BatFlyAnimation(this);
-		//points = new ArrayList<Vector2>();
-		//finder = new PathFinder();
-		callback = new FinderCallback();
+		pathfinder = new PathFinder();
 	}
 	
 	private static BodyDef getBodyDef(Vector2 location){
@@ -87,20 +77,7 @@ public class Bat extends DynamicEntity implements Health {
 		}
 		
 		
-		ang += 30.0f;
-		if(ang >= 360.0f){
-			ang -= 360.0f;
-			callback.reset();
-		}
-		
-		float checkDist = 10.0f;
-		Vector2 vec = new Vector2(checkDist, 0.0f);
-		vec = vec.rotate(ang);
-		
-		Vector2 target = new Vector2(this.location);
-		target = target.add(vec);
-		
-		Game.physics.rayCast(callback, this.location, target);
+		pathfinder.updatePath(this.location, OffworldGame.players[0].getLocation());
 	}
 	
 	public boolean isSleeping(){ return sleeping; }
