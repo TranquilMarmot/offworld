@@ -1,6 +1,7 @@
 package com.bitwaffle.guts.ai.path;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -9,9 +10,10 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.physics.callbacks.HitCountRayCastCallback;
 
 public class PathFinder {
+
+	PriorityQueue<Vector2> openset, closedset;
 	
-	/** Set of open nodes */
-	PriorityQueue<Vector2> openset;
+	HashMap<Vector2, Integer> cameFrom;
 	
 	/** Start and end nodes */
 	private Vector2 start, goal;
@@ -25,24 +27,29 @@ public class PathFinder {
 	/** When finder sweeps in a circle (0 to 360) it steps by this amount */
 	private float sweepResolution = 30.0f;
 	
+	private Comparator<Vector2> goalDistanceComparator = new Comparator<Vector2>(){
+		@Override
+		public int compare(Vector2 vecA, Vector2 vecB) {
+			float da = vecA.dst(goal);
+			float db = vecB.dst(goal);
+			return (int)(da - db);
+		}
+	};
+	
 	public PathFinder(){
 		callback = new HitCountRayCastCallback();
 		
-		openset = new PriorityQueue<Vector2>(20, new Comparator<Vector2>(){
-			@Override
-			public int compare(Vector2 vecA, Vector2 vecB) {
-				float da = vecA.dst(goal);
-				float db = vecB.dst(goal);
-				return (int)(da - db);
-			}
-		});
+		openset = new PriorityQueue<Vector2>(20, goalDistanceComparator);
+		closedset = new PriorityQueue<Vector2>(20, goalDistanceComparator);
 	}
 	
 	public void updatePath(Vector2 start, Vector2 goal){
-		openset.clear();
 		this.start = start;
 		this.goal = goal;
-
+		
+		closedset.clear();
+		
+		openset.clear();
 		buildStartNodes();
 	}
 	
