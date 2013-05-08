@@ -77,6 +77,7 @@ public class Bat extends DynamicEntity implements Health {
 		}
 		
 		
+		// FIXME temp
 		pathfinder.updatePath(this.location, OffworldGame.players[0].getLocation());
 	}
 	

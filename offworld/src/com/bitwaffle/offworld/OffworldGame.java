@@ -1,6 +1,7 @@
 package com.bitwaffle.offworld;
 
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.physics.PhysicsHelper;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.bitwaffle.offworld.gui.states.GUIStates;
 
@@ -22,8 +23,11 @@ public abstract class OffworldGame extends Game {
 		
 		if(showSplash)
 			gui.setCurrentState(GUIStates.SPLASH);
-		else
-			gui.setCurrentState(GUIStates.TITLESCREEN);
+		else {
+			//gui.setCurrentState(GUIStates.TITLESCREEN); FIXME temp
+			PhysicsHelper.tempInit(Game.physics);
+			Game.gui.setCurrentState(GUIStates.NONE);
+		}
 	}
 
 }

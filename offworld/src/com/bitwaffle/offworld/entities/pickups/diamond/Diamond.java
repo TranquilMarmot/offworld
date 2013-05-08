@@ -20,7 +20,7 @@ public class Diamond extends DynamicEntity implements Money {
 	public Diamond(int layer, Vector2 location, float rotation){
 		super(
 				//new ModelPolygonRenderer(Game.resources.polygons.getModelPolygon("diamond")),
-				new ModelRenderer(Game.resources.models.getModel("diamond")),
+				new ModelRenderer(Game.resources.polygons.getModelPolygon("diamond")),
 				layer,
 				getBodyDef(location, rotation),
 				Game.resources.entityInfo.getEntityFixtureDef("diamond")
