@@ -7,7 +7,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
+import com.bitwaffle.guts.path.FinderCallback;
 import com.bitwaffle.guts.path.PathData;
 import com.bitwaffle.guts.path.PathFinder;
 import com.bitwaffle.guts.util.MathHelper;
@@ -31,19 +33,21 @@ public class Bat extends DynamicEntity implements Health {
 	
 	public boolean sleeping = false;
 	
-	public ArrayList<Vector2> points;
+	//public ArrayList<Vector2> points;
 	
 	float timer = 0.0f;
 	
-	private PathFinder finder;
+	//private PathFinder finder;
+	public FinderCallback callback;
 	private float ang = 0.0f;
 	
 	public Bat(int layer, Vector2 location){
 		super(new BatRenderer(), layer, getBodyDef(location), getFixtureDef());
 		sleepAnimation = new BatSleepAnimation(this);
 		flyAnimation = new BatFlyAnimation(this);
-		points = new ArrayList<Vector2>();
-		finder = new PathFinder();
+		//points = new ArrayList<Vector2>();
+		//finder = new PathFinder();
+		callback = new FinderCallback();
 	}
 	
 	private static BodyDef getBodyDef(Vector2 location){
@@ -83,28 +87,20 @@ public class Bat extends DynamicEntity implements Health {
 		}
 		
 		
-		finder.reset();
-		//points.clear();
-		System.out.println(points.size());
 		ang += 30.0f;
 		if(ang >= 360.0f){
 			ang -= 360.0f;
-			points.clear();
+			callback.reset();
 		}
-		//for(float ang = 0; ang < 360.0f; ang += 30.0){
-			float checkDist = 10.0f;
-			Vector2 vec = new Vector2(checkDist, 0.0f);
-			vec = vec.rotate(ang);
-			
-			Vector2 target = new Vector2(this.location);
-			target.add(vec);
-			PathData data = finder.findPath(this.location, target);
-			//for(Vector2 p : data.getPoints())
-			//	System.out.println(p);
-			ArrayList<Vector2> wat = data.getPoints();
-			if(wat.size() > 0)
-				points.add(wat.get(0));
-		//}
+		
+		float checkDist = 10.0f;
+		Vector2 vec = new Vector2(checkDist, 0.0f);
+		vec = vec.rotate(ang);
+		
+		Vector2 target = new Vector2(this.location);
+		target = target.add(vec);
+		
+		Game.physics.rayCast(callback, this.location, target);
 	}
 	
 	public boolean isSleeping(){ return sleeping; }

@@ -1,5 +1,7 @@
 package com.bitwaffle.offworld.entities.enemies.bat.render;
 
+import java.util.Iterator;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
@@ -39,17 +41,18 @@ public class BatRenderer implements EntityRenderer {
 		renderer.r2D.quad.render(bat.getWidth(), bat.getHeight());
 		
 		
-		if(bat.points != null){
+		if(bat.callback.getData() != null){
 			renderer.r2D.setColor(0.5f, 0.0f, 0.0f, 0.5f);
-			for(Vector2 point : bat.points){
-				System.out.print(point);
+			Iterator<Vector2> it = bat.callback.getData().points();
+
+			while(it.hasNext()){
+				Vector2 point = it.next();
 				renderer.modelview.idt();
 				renderer.r2D.translateModelViewToCamera();
 				renderer.modelview.translate(point.x, point.y, 0.0f);
 				renderer.r2D.sendMatrixToShader();
 				renderer.r2D.quad.render(1.0f, 1.0f);
 			}
-			System.out.println("-------------");
 		}
 		
 		
