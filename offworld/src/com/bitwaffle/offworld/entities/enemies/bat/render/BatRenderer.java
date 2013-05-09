@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.ai.path.Node;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.graphics.render.render2d.EntityRenderer;
@@ -42,9 +43,9 @@ public class BatRenderer implements EntityRenderer {
 		
 		
 		renderer.r2D.setColor(1.0f, 0.0f, 0.0f, 0.75f);
-		Iterator<Vector2> it = bat.pathfinder.getPath().iterator();
+		Iterator<Node> it = bat.pathfinder.getPath().iterator();
 		while(it.hasNext()){
-			Vector2 point = it.next();
+			Vector2 point = it.next().loc();
 			renderer.modelview.idt();
 			renderer.r2D.translateModelViewToCamera();
 			renderer.modelview.translate(point.x, point.y, 0.0f);
