@@ -18,13 +18,11 @@ public class PathFinder {
 	
 	HashMap<Node, Node> cameFrom;
 	
-	ArrayList<Node> neighbors;
-	
 	/** Start and end nodes */
 	private Node start, goal;
 	
 	/** Callback for sweeping physics world for obstacles */
-	private HitCountRayCastCallback callback;
+	private static HitCountRayCastCallback callback;
 	
 	/** How far out to sweep for obstacles */
 	private float sweepRadius = 5.0f;
@@ -70,35 +68,14 @@ public class PathFinder {
 			
 			closedset.add(current);
 			
-			Vector2[] directions = {
-					new Vector2(-sweepResolution, -sweepResolution),
-					new Vector2(sweepResolution, -sweepResolution),
-					new Vector2(sweepResolution, sweepResolution),
-					new Vector2(-sweepResolution, sweepResolution),
-					new Vector2(sweepResolution, 0.0f),
-					new Vector2(-sweepResolution, 0.0f),
-					new Vector2(0.0f, sweepResolution),
-					new Vector2(0.0f, -sweepResolution)
-			};
-			// TODO
-			
-			neighbors = new ArrayList<Node>();
-			for(Vector2 vec : directions){
-				vec = vec.add(current.loc());
-				
-				callback.reset();
-				Game.physics.rayCast(callback, current.loc(), vec);
-				if(callback.hitCount() <= 0){
-					Node n = new Node(vec);
-					n.setParent(current);
-					n.calcHScore(goal);
-					n.calcFScore();
-					n.calcGScore();
-					neighbors.add(n);
-				}
+			current.expand(goal, sweepResolution);
+			for(Node neighbore : current.neighbors()){
+				openset.add(neighbore);
 			}
 			
-			for(Node neighbor : neighbors){
+			/*
+			for(Node neighbor : current.neighbors()){
+				// FIXME 'current.dst(neighbor)' should always be the same since its a grid right?
 				float tentativeGScore = current.gScore() + current.dst(neighbor);
 				if(closedset.contains(neighbor) && tentativeGScore >= neighbor.gScore())
 					continue;
@@ -110,6 +87,7 @@ public class PathFinder {
 						openset.add(neighbor);
 				}
 			}
+			*/
 		}
 		//}
 	}
@@ -143,80 +121,57 @@ public class PathFinder {
 		if(isValidMove(start, n)){
 			nw.n = n;
 			ne.n = n;
-			n.calcHScore(goal);
-			n.calcGScore();
-			n.calcFScore();
+			n.calcScores(goal);
 			openset.add(n);
 		}
 		
 		if(isValidMove(start, e)){
 			ne.s = e;
 			se.n = e;
-			e.calcHScore(goal);
-			e.calcGScore();
-			e.calcFScore();
+			e.calcScores(goal);
 			openset.add(e);
 		}
 		
 		if(isValidMove(start, s)){
 			se.s = s;
 			sw.s = s;
-			s.calcHScore(goal);
-			s.calcGScore();
-			s.calcFScore();
+			s.calcScores(goal);
 			openset.add(s);
 		}
 		
 		if(isValidMove(start, w)){
 			nw.w = w;
 			sw.n = w;
-			w.calcHScore(goal);
-			w.calcGScore();
-			w.calcFScore();
+			w.calcScores(goal);
 			openset.add(w);
 		}
 		
 		if(isValidMove(start, ne)){
 			n.e = ne;
 			e.n = ne;
-			ne.calcHScore(goal);
-			ne.calcGScore();
-			ne.calcFScore();
+			ne.calcScores(goal);
 			openset.add(ne);
 		}
 		
 		if(isValidMove(start, nw)){
 			n.w = nw;
 			w.n = nw;
-			nw.calcHScore(goal);
-			nw.calcGScore();
-			nw.calcFScore();
+			nw.calcScores(goal);
 			openset.add(nw);
 		}
 		
 		if(isValidMove(start, se)){
 			s.e = se;
 			e.s = se;
-			se.calcHScore(goal);
-			se.calcGScore();
-			se.calcFScore();
+			se.calcScores(goal);
 			openset.add(se);
 		}
 		
 		if(isValidMove(start, sw)){
 			s.w = sw;
 			w.s = sw;
-			sw.calcHScore(goal);
-			sw.calcGScore();
-			sw.calcFScore();
+			sw.calcScores(goal);
 			openset.add(sw);
-		}
-	}
-	
-	/** Creates new nodes for any empty spots around this node */
-	private void expandNode(Node node){
-		if(node.n == null){
-			
 		}
 	}
 	
@@ -227,9 +182,10 @@ public class PathFinder {
 		return goal.dst(node) <= 1.0f;
 	}
 	
-	public boolean isValidMove(Node from, Node to){
+	public static boolean isValidMove(Node from, Node to){ return isValidMove(from.loc(), to.loc()); }
+	public static boolean isValidMove(Vector2 from, Vector2 to){
 		callback.reset();
-		Game.physics.rayCast(callback, from.loc(), to.loc());
+		Game.physics.rayCast(callback, from, to);
 		return callback.hitCount() <= 0;
 	}
 }
