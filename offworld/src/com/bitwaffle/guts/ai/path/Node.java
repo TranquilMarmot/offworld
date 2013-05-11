@@ -112,90 +112,68 @@ public class Node implements Comparable<Node> {
 	
 	/** Creates new nodes for any empty spots around this node */
 	public void expand(Node goal, float sweepResolution){
-		// create new nodes
+		/* create new nodes */
+		// north
 		if(this.n == null){
 			Vector2 nvec = new Vector2(loc.x, loc.y + sweepResolution);
-			if(PathFinder.isValidMove(loc, nvec)){
-				Node nor = new Node(nvec);
-				nor.calcScores(goal);
-				nor.s = this;
-				this.n = nor;
-			}
+			if(PathFinder.isValidMove(loc, nvec))
+				n = new Node(nvec);
 		}
 		
+		// east
 		if(this.e == null){
 			Vector2 evec = new Vector2(loc.x + sweepResolution, loc.y);
-			if(PathFinder.isValidMove(loc, evec)){
-				Node eas = new Node(evec);
-				eas.calcScores(goal);
-				eas.w = this;
-				this.e = eas;
-			}
+			if(PathFinder.isValidMove(loc, evec))
+				e = new Node(evec);
 		}
 		
+		// south
 		if(this.s == null){
 			Vector2 svec = new Vector2(loc.x, loc.y - sweepResolution);
-			if(PathFinder.isValidMove(loc, svec)){
-				Node sou = new Node(svec);
-				sou.calcScores(goal);
-				sou.n = this;
-				this.s = sou;
-			}
+			if(PathFinder.isValidMove(loc, svec))
+				s = new Node(svec);
 		}
 		
+		// west
 		if(this.w == null){
 			Vector2 wvec = new Vector2(loc.x - sweepResolution, loc.y);
-			if(PathFinder.isValidMove(loc, wvec)){
-				Node wes = new Node(wvec);
-				wes.calcScores(goal);
-				wes.e = this;
-				this.w = wes;
-			}
+			if(PathFinder.isValidMove(loc, wvec))
+				w = new Node(wvec);
 		}
 		
+		// northeast
 		if(this.ne == null){
 			Vector2 nevec = new Vector2(loc.x + sweepResolution, loc.y + sweepResolution);
-			if(PathFinder.isValidMove(loc, nevec)){
-				Node noreas = new Node(nevec);
-				noreas.calcScores(goal);
-				noreas.se = this;
-				this.ne = noreas;
-			}
+			if(PathFinder.isValidMove(loc, nevec))
+				ne = new Node(nevec);
 		}
 		
+		// northwest
 		if(this.nw == null){
 			Vector2 nwvec = new Vector2(loc.x - sweepResolution, loc.y + sweepResolution);
-			if(PathFinder.isValidMove(loc, nwvec)){
-				Node norwes = new Node(nwvec);
-				norwes.calcScores(goal);
-				norwes.sw = this;
-				this.nw = norwes;
-			}
+			if(PathFinder.isValidMove(loc, nwvec))
+				nw = new Node(nwvec);
 		}
 		
+		// southwest
 		if(this.sw == null){
 			Vector2 swvec = new Vector2(loc.x - sweepResolution, loc.y - sweepResolution);
-			if(PathFinder.isValidMove(loc, swvec)){
-				Node souwes = new Node(swvec);
-				souwes.calcScores(goal);
-				souwes.nw = this;
-				this.sw = souwes;
-			}
+			if(PathFinder.isValidMove(loc, swvec))
+				sw = new Node(swvec);
 		}
 		
+		// southeast
 		if(this.se == null){
 			Vector2 sevec = new Vector2(loc.x + sweepResolution, loc.y - sweepResolution);
-			if(PathFinder.isValidMove(loc, sevec)){
-				Node soueas = new Node(sevec);
-				soueas.calcScores(goal);
-				soueas.ne = this;
-				this.se = soueas;
-			}
+			if(PathFinder.isValidMove(loc, sevec))
+				se = new Node(sevec);
 		}
 		
 		// link nodes together
 		if(n != null){
 			n.setParent(this);
+			n.calcScores(goal);
+			n.s = this;
 			
 			if(nw != null){
 				nw.e = n;
@@ -209,6 +187,8 @@ public class Node implements Comparable<Node> {
 		
 		if(s != null){
 			s.setParent(this);
+			s.calcScores(goal);
+			s.n = this;
 			
 			if(sw != null){
 				sw.e = s;
@@ -222,6 +202,8 @@ public class Node implements Comparable<Node> {
 		
 		if(e != null){
 			e.setParent(this);
+			e.calcScores(goal);
+			e.w = this;
 			
 			if(ne != null){
 				ne.s = e;
@@ -235,6 +217,8 @@ public class Node implements Comparable<Node> {
 		
 		if(w != null){
 			w.setParent(this);
+			w.calcScores(goal);
+			w.e = this;
 			
 			if(nw != null){
 				nw.s = w;
@@ -243,6 +227,66 @@ public class Node implements Comparable<Node> {
 			if(sw != null){
 				sw.n = w;
 				w.s = sw;
+			}
+		}
+		
+		if(nw != null){
+			nw.setParent(this);
+			nw.calcScores(goal);
+			nw.se = this;
+			
+			if(n != null){
+				nw.e = w;
+				n.w = nw;
+			}
+			if(w != null){
+				nw.s = w;
+				w.n = nw;
+			}
+		}
+		
+		if(ne != null){
+			ne.setParent(this);
+			ne.calcScores(goal);
+			ne.sw = this;
+			
+			if(n != null){
+				ne.w = n;
+				n.e = ne;
+			}
+			if(e != null){
+				ne.s = e;
+				e.n = ne;
+			}
+		}
+		
+		if(sw != null){
+			sw.setParent(this);
+			sw.calcScores(goal);
+			sw.ne = this;
+			
+			if(w != null){
+				w.s = sw;
+				sw.n = w;
+			}
+			if(s != null){
+				s.w = sw;
+				sw.e = s;
+			}
+		}
+		
+		if(se != null){
+			se.setParent(this);
+			se.calcScores(goal);
+			se.nw = this;
+			
+			if(s != null){
+				se.w = s;
+				s.e = se;
+			}
+			if(e != null){
+				e.s = se;
+				se.n = e;
 			}
 		}
 	}

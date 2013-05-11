@@ -69,9 +69,8 @@ public class PathFinder {
 			closedset.add(current);
 			
 			current.expand(goal, sweepResolution);
-			for(Node neighbore : current.neighbors()){
-				openset.add(neighbore);
-			}
+			for(Node neighbor : current.neighbors())
+				openset.add(neighbor);
 			
 			/*
 			for(Node neighbor : current.neighbors()){
@@ -118,60 +117,132 @@ public class PathFinder {
 		ne = new Node(new Vector2(loc.x + sweepResolution, loc.y + sweepResolution)),
 		nw = new Node(new Vector2(loc.x - sweepResolution, loc.y + sweepResolution));
 		
-		if(isValidMove(start, n)){
-			nw.n = n;
-			ne.n = n;
-			n.calcScores(goal);
+		if(isValidMove(start, n))
 			openset.add(n);
-		}
 		
-		if(isValidMove(start, e)){
-			ne.s = e;
-			se.n = e;
-			e.calcScores(goal);
+		if(isValidMove(start, e))
 			openset.add(e);
-		}
 		
-		if(isValidMove(start, s)){
-			se.s = s;
-			sw.s = s;
-			s.calcScores(goal);
+		if(isValidMove(start, s))
 			openset.add(s);
-		}
 		
-		if(isValidMove(start, w)){
-			nw.w = w;
-			sw.n = w;
-			w.calcScores(goal);
+		if(isValidMove(start, w))
 			openset.add(w);
-		}
 		
-		if(isValidMove(start, ne)){
-			n.e = ne;
-			e.n = ne;
-			ne.calcScores(goal);
+		if(isValidMove(start, ne))
 			openset.add(ne);
-		}
 		
-		if(isValidMove(start, nw)){
-			n.w = nw;
-			w.n = nw;
-			nw.calcScores(goal);
+		if(isValidMove(start, nw))
 			openset.add(nw);
-		}
 		
-		if(isValidMove(start, se)){
-			s.e = se;
-			e.s = se;
-			se.calcScores(goal);
+		if(isValidMove(start, se))
 			openset.add(se);
+		
+		if(isValidMove(start, sw))
+			openset.add(sw);
+		
+		if(n != null){
+			n.calcScores(goal);
+			
+			if(ne != null){
+				n.e = ne;
+				ne.w = n;
+			}
+			if(nw != null){
+				n.w = nw;
+				nw.e = n;
+			}
 		}
 		
-		if(isValidMove(start, sw)){
-			s.w = sw;
-			w.s = sw;
+		if(e != null){
+			e.calcScores(goal);
+			
+			if(ne != null){
+				e.n = ne;
+				ne.s = e;
+			}
+			if(se != null){
+				e.s = se;
+				se.n = e;
+			}
+		}
+		
+		if(s != null){
+			s.calcScores(goal);
+			
+			if(se != null){
+				s.e = se;
+				se.w = s;
+			}
+			if(sw != null){
+				s.w = sw;
+				sw.e = s;
+			}
+		}
+		
+		if(w != null){
+			w.calcScores(goal);
+			
+			if(nw != null){
+				nw.s = w;
+				w.n = nw;
+			}
+			if(sw != null){
+				sw.n = w;
+				w.s = sw;
+			}
+		}
+		
+		if(ne != null){
+			ne.calcScores(goal);
+			
+			if(n != null){
+				n.e = ne;
+				ne.w = n;
+			}
+			if(e != null){
+				ne.s = e;
+				e.n = ne;
+			}
+		}
+		
+		if(nw != null){
+			nw.calcScores(goal);
+			
+			if(n != null){
+				n.w = nw;
+				nw.e = n;
+			}
+			if(w != null){
+				w.n = nw;
+				nw.s = w;
+			}
+		}
+		
+		if(se != null){
+			se.calcScores(goal);
+			
+			if(s != null){
+				s.e = se;
+				se.n = e;
+			}
+			if(e != null){
+				se.n = e;
+				e.s = se;
+			}
+		}
+		
+		if(sw != null){
 			sw.calcScores(goal);
-			openset.add(sw);
+			
+			if(s != null){
+				s.w = sw;
+				sw.e = s;
+			}
+			if(w != null){
+				w.s = sw;
+				se.n = w;
+			}
 		}
 	}
 	
