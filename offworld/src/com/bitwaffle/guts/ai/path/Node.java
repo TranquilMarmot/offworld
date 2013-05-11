@@ -236,7 +236,7 @@ public class Node implements Comparable<Node> {
 			nw.se = this;
 			
 			if(n != null){
-				nw.e = w;
+				nw.e = n;
 				n.w = nw;
 			}
 			if(w != null){

@@ -69,6 +69,8 @@ public class PathFinder {
 			closedset.add(current);
 			
 			current.expand(goal, sweepResolution);
+			
+			// FIXME temp
 			for(Node neighbor : current.neighbors())
 				openset.add(neighbor);
 			
@@ -224,7 +226,7 @@ public class PathFinder {
 			
 			if(s != null){
 				s.e = se;
-				se.n = e;
+				se.w = s;
 			}
 			if(e != null){
 				se.n = e;
@@ -241,7 +243,7 @@ public class PathFinder {
 			}
 			if(w != null){
 				w.s = sw;
-				se.n = w;
+				sw.n = w;
 			}
 		}
 	}
