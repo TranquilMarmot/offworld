@@ -1,7 +1,5 @@
 package com.bitwaffle.guts.ai.path;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -17,7 +15,7 @@ public class Node implements Comparable<Node> {
 	private Vector2 loc;
 	private Node parent;
 	
-	public Node n, s, e, w, ne, nw, se, sw;
+	private int row, col;
 	
 	
 	private float 
@@ -28,8 +26,10 @@ public class Node implements Comparable<Node> {
 		/** gScore + hScore (used to sort) */
 		fScore;
 	
-	public Node(Vector2 vector){
+	public Node(Vector2 vector, int row, int col){
 		this.loc = vector;
+		this.row = row;
+		this.col = col;
 		hScore = 0.0f;
 		fScore = 0.0f;
 		gScore = 0.0f;
@@ -43,7 +43,7 @@ public class Node implements Comparable<Node> {
 	@Override
 	public int compareTo(Node other) {
 		// sort based on f score
-		double otherFScore = other.fScore();
+		float otherFScore = other.fScore();
 		if (fScore > otherFScore)
 			return 1;
 		else if (fScore < otherFScore)
@@ -58,31 +58,13 @@ public class Node implements Comparable<Node> {
 	public Vector2 loc(){ return location(); }
 	public Vector2 location(){ return loc; }
 	
+	public int row(){ return row; }
+	public void setRow(int row){ this.row = row; }
+	public int col(){ return col; }
+	public void setCol(int col){ this.col = col; }
+	
 	public Node parent(){ return parent; }
 	public void setParent(Node newParent){ parent = newParent; }
-	
-	public ArrayList<Node> neighbors(){
-		ArrayList<Node> neighbors = new ArrayList<Node>();
-		
-		if(n != null)
-			neighbors.add(n);
-		if(e != null)
-			neighbors.add(e);
-		if(s != null)
-			neighbors.add(s);
-		if(w != null)
-			neighbors.add(w);
-		if(ne != null)
-			neighbors.add(ne);
-		if(nw != null)
-			neighbors.add(nw);
-		if(se != null)
-			neighbors.add(se);
-		if(sw != null)
-			neighbors.add(sw);
-		
-		return neighbors;
-	}
 	
 	public void calcScores(Node goal){
 		calcHScore(goal);
@@ -111,183 +93,88 @@ public class Node implements Comparable<Node> {
 	}
 	
 	/** Creates new nodes for any empty spots around this node */
-	public void expand(Node goal, float sweepResolution){
-		/* create new nodes */
-		// north
-		if(this.n == null){
-			Vector2 nvec = new Vector2(loc.x, loc.y + sweepResolution);
-			if(PathFinder.isValidMove(loc, nvec))
-				n = new Node(nvec);
-		}
+	public void expand(Node goal, float nodeDist, Grid grid){
+		// TODO
+		Vector2
+			nvec = new Vector2(loc.x, loc.y + nodeDist),
+			evec = new Vector2(loc.x + nodeDist, loc.y),
+			svec = new Vector2(loc.x, loc.y - nodeDist),
+			wvec = new Vector2(loc.x - nodeDist, loc.y),
+			swvec = new Vector2(loc.x - nodeDist, loc.y - nodeDist),
+			sevec = new Vector2(loc.x + nodeDist, loc.y - nodeDist),
+			nevec = new Vector2(loc.x + nodeDist, loc.y + nodeDist),
+			nwvec = new Vector2(loc.x - nodeDist, loc.y + nodeDist);
 		
-		// east
-		if(this.e == null){
-			Vector2 evec = new Vector2(loc.x + sweepResolution, loc.y);
-			if(PathFinder.isValidMove(loc, evec))
-				e = new Node(evec);
-		}
-		
-		// south
-		if(this.s == null){
-			Vector2 svec = new Vector2(loc.x, loc.y - sweepResolution);
-			if(PathFinder.isValidMove(loc, svec))
-				s = new Node(svec);
-		}
-		
-		// west
-		if(this.w == null){
-			Vector2 wvec = new Vector2(loc.x - sweepResolution, loc.y);
-			if(PathFinder.isValidMove(loc, wvec))
-				w = new Node(wvec);
-		}
-		
-		// northeast
-		if(this.ne == null){
-			Vector2 nevec = new Vector2(loc.x + sweepResolution, loc.y + sweepResolution);
-			if(PathFinder.isValidMove(loc, nevec))
-				ne = new Node(nevec);
-		}
-		
-		// northwest
-		if(this.nw == null){
-			Vector2 nwvec = new Vector2(loc.x - sweepResolution, loc.y + sweepResolution);
-			if(PathFinder.isValidMove(loc, nwvec))
-				nw = new Node(nwvec);
-		}
-		
-		// southwest
-		if(this.sw == null){
-			Vector2 swvec = new Vector2(loc.x - sweepResolution, loc.y - sweepResolution);
-			if(PathFinder.isValidMove(loc, swvec))
-				sw = new Node(swvec);
-		}
-		
-		// southeast
-		if(this.se == null){
-			Vector2 sevec = new Vector2(loc.x + sweepResolution, loc.y - sweepResolution);
-			if(PathFinder.isValidMove(loc, sevec))
-				se = new Node(sevec);
-		}
-		
-		// link nodes together
-		if(n != null){
+		// N
+		if(grid.get(row, col + 1) == null
+		&& PathFinder.isValidMove(loc, nvec)){
+			Node n = new Node(nvec, row, col + 1);
 			n.setParent(this);
 			n.calcScores(goal);
-			n.s = this;
-			
-			if(nw != null){
-				nw.e = n;
-				n.w = nw;
-			}
-			if(ne != null){
-				ne.w = n;
-				n.e = ne;
-			}
+			grid.put(n);
 		}
 		
-		if(s != null){
-			s.setParent(this);
-			s.calcScores(goal);
-			s.n = this;
-			
-			if(sw != null){
-				sw.e = s;
-				s.w = sw;
-			}
-			if(se != null){
-				se.w = s;
-				s.e = se;
-			}
-		}
-		
-		if(e != null){
+		// E
+		if(grid.get(row + 1, col) == null
+		&& PathFinder.isValidMove(loc, evec)){
+			Node e = new Node(evec, row + 1, col);
 			e.setParent(this);
 			e.calcScores(goal);
-			e.w = this;
-			
-			if(ne != null){
-				ne.s = e;
-				e.n = ne;
-			}
-			if(se != null){
-				se.n = e;
-				e.s = se;
-			}
+			grid.put(e);
 		}
 		
-		if(w != null){
+		// S
+		if(grid.get(row, col - 1) == null
+		&& PathFinder.isValidMove(loc, svec)){
+			Node s = new Node(svec, row, col - 1);
+			s.setParent(this);
+			s.calcScores(goal);
+			grid.put(s);
+		}
+		
+		// W
+		if(grid.get(row - 1, col) == null
+		&& PathFinder.isValidMove(loc, wvec)){
+			Node w = new Node(wvec, row - 1, col);
 			w.setParent(this);
 			w.calcScores(goal);
-			w.e = this;
-			
-			if(nw != null){
-				nw.s = w;
-				w.n = nw;
-			}
-			if(sw != null){
-				sw.n = w;
-				w.s = sw;
-			}
+			grid.put(w);
 		}
 		
-		if(nw != null){
+		// NW
+		if(grid.get(row - 1, col + 1) == null
+		&& PathFinder.isValidMove(loc, nwvec)){
+			Node nw = new Node(nwvec, row - 1, col + 1);
 			nw.setParent(this);
 			nw.calcScores(goal);
-			nw.se = this;
-			
-			if(n != null){
-				nw.e = n;
-				n.w = nw;
-			}
-			if(w != null){
-				nw.s = w;
-				w.n = nw;
-			}
+			grid.put(nw);
 		}
 		
-		if(ne != null){
+		// NE
+		if(grid.get(row + 1, col + 1) == null
+		&& PathFinder.isValidMove(loc, nevec)){
+			Node ne = new Node(nevec, row + 1, col + 1);
 			ne.setParent(this);
 			ne.calcScores(goal);
-			ne.sw = this;
-			
-			if(n != null){
-				ne.w = n;
-				n.e = ne;
-			}
-			if(e != null){
-				ne.s = e;
-				e.n = ne;
-			}
+			grid.put(ne);
 		}
 		
-		if(sw != null){
+		// SW
+		if(grid.get(row - 1, col - 1) == null
+		&& PathFinder.isValidMove(loc, swvec)){
+			Node sw = new Node(swvec, row - 1, col - 1);
 			sw.setParent(this);
 			sw.calcScores(goal);
-			sw.ne = this;
-			
-			if(w != null){
-				w.s = sw;
-				sw.n = w;
-			}
-			if(s != null){
-				s.w = sw;
-				sw.e = s;
-			}
+			grid.put(sw);
 		}
 		
-		if(se != null){
+		// SE
+		if(grid.get(row + 1, col - 1) == null
+		&& PathFinder.isValidMove(loc, sevec)){
+			Node se = new Node(sevec, row + 1, col - 1);
 			se.setParent(this);
 			se.calcScores(goal);
-			se.nw = this;
-			
-			if(s != null){
-				se.w = s;
-				s.e = se;
-			}
-			if(e != null){
-				e.s = se;
-				se.n = e;
-			}
+			grid.put(se);
 		}
 	}
 }

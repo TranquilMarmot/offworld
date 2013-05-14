@@ -1,8 +1,8 @@
 package com.bitwaffle.guts.ai.path;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -18,20 +18,21 @@ public class PathFinder {
 	
 	HashMap<Node, Node> cameFrom;
 	
+	Grid grid;
+	
 	/** Start and end nodes */
 	private Node start, goal;
 	
 	/** Callback for sweeping physics world for obstacles */
 	private static HitCountRayCastCallback callback;
 	
-	/** How far out to sweep for obstacles */
-	private float sweepRadius = 5.0f;
+	/** How far apart each node is */
+	private float nodeDist = 1.0f;
 	
-	/** When finder sweeps in a circle (0 to 360) it steps by this amount */
-	private float sweepResolution = 2.0f;
-	
-	int speed = 100, timer = 0;
+	// FIXME temp
+	int speed = 60, timer = 0;
 	private int step = 1;
+	Node current;
 	
 	public PathFinder(){
 		callback = new HitCountRayCastCallback();
@@ -40,15 +41,17 @@ public class PathFinder {
 		closedset = new PriorityQueue<Node>(20);
 		cameFrom = new HashMap<Node, Node>();
 		path = new LinkedList<Node>();
+		grid = new Grid(100, 100);
 	}
 	
 	public void updatePath(Vector2 startLoc, Vector2 goalLoc){
-		this.start = new Node(startLoc);
-		this.goal = new Node(goalLoc);
+		this.start = new Node(startLoc, 0, 0);
+		this.goal = new Node(goalLoc, 0, 0);
 		
 		closedset.clear();
 		openset.clear();
 		cameFrom.clear();
+		grid.clear();
 		buildStartNodes();
 		
 		
@@ -60,22 +63,31 @@ public class PathFinder {
 		}
 		for(int i = 0; i < step; i++){
 			// FIXME should this be a poll? or a peek?
-			Node current = openset.remove();
+			current = openset.remove();
 			if(isGoal(current)){
+				Game.out.println("Made path!");
 				reconstructPath(cameFrom, goal);
 				return;
 			}
 			
 			closedset.add(current);
 			
-			current.expand(goal, sweepResolution);
+			current.expand(goal, nodeDist, grid);
 			
 			// FIXME temp
-			for(Node neighbor : current.neighbors())
-				openset.add(neighbor);
+			//for(Node neighbor : current.neighbors()){
+			//	if(!openset.contains(neighbor) && !closedset.contains(neighbor))
+			//		openset.add(neighbor);
+			//}
 			
-			/*
-			for(Node neighbor : current.neighbors()){
+			//Iterator<Node> it = openset.iterator();
+			//while(it.hasNext()){
+			//	Node n = it.next();
+			//	n.calcScores(goal);
+			//}
+			
+			
+			for(Node neighbor : grid.getNeighbors(current)){
 				// FIXME 'current.dst(neighbor)' should always be the same since its a grid right?
 				float tentativeGScore = current.gScore() + current.dst(neighbor);
 				if(closedset.contains(neighbor) && tentativeGScore >= neighbor.gScore())
@@ -88,7 +100,7 @@ public class PathFinder {
 						openset.add(neighbor);
 				}
 			}
-			*/
+			
 		}
 		//}
 	}
@@ -98,153 +110,101 @@ public class PathFinder {
 		if(cameFrom2.containsKey(n)){
 			reconstructPath(cameFrom2, cameFrom2.get(n));
 			path.add(n);
-		} else{
+		} else
 			path.add(n);
-		}
 	}
 
-	public Queue<Node> getPath(){
+	// FIXME TEMP
+	public Queue<Node> getOpenset(){
 		return openset;
 	}
 	
+	// FIXME TEMP
+	public Queue<Node> getClosedSet(){
+		return closedset;
+	}
+	
+	// FIXME TEMP
+	public Map<Node, Node> getCameFrom(){
+		return cameFrom;
+	}
+	
+	public Node getCurrent(){
+		return current;
+	}
+	
+	public LinkedList<Node> getPath(){
+		return path;
+	}
+	
 	private void buildStartNodes(){
-		Vector2 loc = start.loc();
-		Node
-		n = new Node(new Vector2(loc.x, loc.y + sweepResolution)),
-		e = new Node(new Vector2(loc.x + sweepResolution, loc.y)),
-		s = new Node(new Vector2(loc.x, loc.y - sweepResolution)),
-		w = new Node(new Vector2(loc.x - sweepResolution, loc.y)),
-		sw = new Node(new Vector2(loc.x - sweepResolution, loc.y - sweepResolution)),
-		se = new Node(new Vector2(loc.x + sweepResolution, loc.y - sweepResolution)),
-		ne = new Node(new Vector2(loc.x + sweepResolution, loc.y + sweepResolution)),
-		nw = new Node(new Vector2(loc.x - sweepResolution, loc.y + sweepResolution));
+		Vector2
+			loc = start.loc(),
+			nvec = new Vector2(loc.x, loc.y + nodeDist),
+			evec = new Vector2(loc.x + nodeDist, loc.y),
+			svec = new Vector2(loc.x, loc.y - nodeDist),
+			wvec = new Vector2(loc.x - nodeDist, loc.y),
+			swvec = new Vector2(loc.x - nodeDist, loc.y - nodeDist),
+			sevec = new Vector2(loc.x + nodeDist, loc.y - nodeDist),
+			nevec = new Vector2(loc.x + nodeDist, loc.y + nodeDist),
+			nwvec = new Vector2(loc.x - nodeDist, loc.y + nodeDist);
 		
-		if(isValidMove(start, n))
-			openset.add(n);
+		Node n = null, e = null, s = null, w = null, ne = null, nw = null, se = null, sw = null;
 		
-		if(isValidMove(start, e))
-			openset.add(e);
-		
-		if(isValidMove(start, s))
-			openset.add(s);
-		
-		if(isValidMove(start, w))
-			openset.add(w);
-		
-		if(isValidMove(start, ne))
-			openset.add(ne);
-		
-		if(isValidMove(start, nw))
-			openset.add(nw);
-		
-		if(isValidMove(start, se))
-			openset.add(se);
-		
-		if(isValidMove(start, sw))
-			openset.add(sw);
-		
-		if(n != null){
+		if(isValidMove(loc, nvec)){
+			n = new Node(nvec, 0, 1);
 			n.calcScores(goal);
-			
-			if(ne != null){
-				n.e = ne;
-				ne.w = n;
-			}
-			if(nw != null){
-				n.w = nw;
-				nw.e = n;
-			}
+			openset.add(n);
+			grid.put(n);
 		}
 		
-		if(e != null){
+		if(isValidMove(loc, evec)){
+			e = new Node(evec, 1, 0);
 			e.calcScores(goal);
-			
-			if(ne != null){
-				e.n = ne;
-				ne.s = e;
-			}
-			if(se != null){
-				e.s = se;
-				se.n = e;
-			}
+			openset.add(e);
+			grid.put(e);
 		}
 		
-		if(s != null){
+		if(isValidMove(loc, svec)){
+			s = new Node(svec, 0 ,-1);
 			s.calcScores(goal);
-			
-			if(se != null){
-				s.e = se;
-				se.w = s;
-			}
-			if(sw != null){
-				s.w = sw;
-				sw.e = s;
-			}
+			openset.add(s);
+			grid.put(s);
 		}
 		
-		if(w != null){
+		if(isValidMove(loc, wvec)){
+			w = new Node(wvec, -1, 0);
 			w.calcScores(goal);
-			
-			if(nw != null){
-				nw.s = w;
-				w.n = nw;
-			}
-			if(sw != null){
-				sw.n = w;
-				w.s = sw;
-			}
+			openset.add(w);
+			grid.put(w);
 		}
 		
-		if(ne != null){
+		if(isValidMove(loc, nevec)){
+			ne = new Node(nevec, 1, 1);
 			ne.calcScores(goal);
-			
-			if(n != null){
-				n.e = ne;
-				ne.w = n;
-			}
-			if(e != null){
-				ne.s = e;
-				e.n = ne;
-			}
+			openset.add(ne);
+			grid.put(ne);
 		}
 		
-		if(nw != null){
+		if(isValidMove(loc, nwvec)){
+			nw = new Node(nwvec, -1, 1);
 			nw.calcScores(goal);
-			
-			if(n != null){
-				n.w = nw;
-				nw.e = n;
-			}
-			if(w != null){
-				w.n = nw;
-				nw.s = w;
-			}
+			openset.add(nw);
+			grid.put(nw);
 		}
 		
-		if(se != null){
+		if(isValidMove(loc, sevec)){
+			se = new Node(sevec, 1, -1);
 			se.calcScores(goal);
-			
-			if(s != null){
-				s.e = se;
-				se.w = s;
-			}
-			if(e != null){
-				se.n = e;
-				e.s = se;
-			}
+			openset.add(se);
+			grid.put(se);
 		}
 		
-		if(sw != null){
+		if(isValidMove(loc, swvec)){
+			sw = new Node(swvec, -1, -1);
 			sw.calcScores(goal);
-			
-			if(s != null){
-				s.w = sw;
-				sw.e = s;
-			}
-			if(w != null){
-				w.s = sw;
-				sw.n = w;
-			}
+			openset.add(sw);
+			grid.put(sw);
 		}
 	}
 	

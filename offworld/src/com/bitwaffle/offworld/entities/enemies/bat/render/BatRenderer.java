@@ -41,9 +41,11 @@ public class BatRenderer implements EntityRenderer {
 		Game.resources.textures.bindTexture("blank");
 		renderer.r2D.quad.render(bat.getWidth(), bat.getHeight());
 		
+		// FIXME TEMP
+		Game.out.println(bat.pathfinder.getOpenset().size());
 		
 		renderer.r2D.setColor(1.0f, 0.0f, 0.0f, 0.75f);
-		Iterator<Node> it = bat.pathfinder.getPath().iterator();
+		Iterator<Node> it = bat.pathfinder.getOpenset().iterator();
 		while(it.hasNext()){
 			Vector2 point = it.next().loc();
 			renderer.modelview.idt();
@@ -52,6 +54,26 @@ public class BatRenderer implements EntityRenderer {
 			renderer.r2D.sendMatrixToShader();
 			renderer.r2D.quad.render(0.25f, 0.25f);
 		}
+		
+		renderer.r2D.setColor(0.75f, 0.5f, 0.0f, 0.75f);
+		Iterator<Node> it2 = bat.pathfinder.getClosedSet().iterator();
+		while(it2.hasNext()){
+			Vector2 point = it2.next().loc();
+			renderer.modelview.idt();
+			renderer.r2D.translateModelViewToCamera();
+			renderer.modelview.translate(point.x, point.y, 0.0f);
+			renderer.r2D.sendMatrixToShader();
+			renderer.r2D.quad.render(0.25f, 0.25f);
+		}
+		
+		renderer.r2D.setColor(0.0f, 1.0f, 0.0f, 0.8f);
+		Node current = bat.pathfinder.getCurrent();
+		Vector2 point = current.loc();
+		renderer.modelview.idt();
+		renderer.r2D.translateModelViewToCamera();
+		renderer.modelview.translate(point.x, point.y, 0.0f);
+		renderer.r2D.sendMatrixToShader();
+		renderer.r2D.quad.render(0.25f, 0.25f);
 		
 		
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
