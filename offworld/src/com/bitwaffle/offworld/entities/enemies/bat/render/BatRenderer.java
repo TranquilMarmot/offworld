@@ -39,6 +39,7 @@ public class BatRenderer implements EntityRenderer {
 		renderer.r2D.quad.render(bat.getWidth(), bat.getHeight());
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 		
+		// render path
 		PathRenderer.renderDebug(renderer, bat.pathfinder);
 	}
 

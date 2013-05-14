@@ -18,14 +18,20 @@ import com.bitwaffle.guts.physics.callbacks.HitCountRayCastCallback;
  * @author TranquilMarmot
  */
 public class PathFinder {
-	/** Queues to manage nodes */
-	PriorityQueue<Node> openset, closedset;
+	// TODO try to speed up with jump point search http://harablog.wordpress.com/2011/09/07/jump-point-search/
+	// TODO make diagonal searching optional
+	
+	/** Queue of open nodes, sorted by F scores (see Node's compareTo() method) */
+	private PriorityQueue<Node> openset;
 	
 	/** The completed path, after updatePath is called */
-	LinkedList<Node> path;
+	private LinkedList<Node> path;
+	
+	/** Whether or not the path has changed since the last time it was gotten */
+	private boolean newPath;
 	
 	/** Grid to keep track of where nodes are */
-	SparseMatrix grid;
+	private SparseMatrix grid;
 	
 	/** Start and end nodes */
 	private Node start, goal;
@@ -34,7 +40,10 @@ public class PathFinder {
 	private static HitCountRayCastCallback callback;
 	
 	/** How far apart each node is */
-	private float nodeDist = 2.5f, goalThreshold = 5.0f;
+	private float nodeDist = 2.5f;
+	
+	/** How close algorithm has to get to consider itself at the goal */
+	private float goalThreshold = 5.0f;
 	
 	/** How frequently the path gets updated */
 	private float updateFrequency = 0.5f;
@@ -56,10 +65,10 @@ public class PathFinder {
 		goal = new Node(new Vector2(), 0, 0);
 		
 		openset = new PriorityQueue<Node>(20);
-		closedset = new PriorityQueue<Node>(20);
 		path = new LinkedList<Node>();
 		
 		timer = 0.0f;
+		newPath = false;
 	}
 	
 	public void setStart(Vector2 newStart){ this.start.setLocation(newStart); }
@@ -86,13 +95,14 @@ public class PathFinder {
 			step++;
 			
 			// clear everything
-			closedset.clear();
 			openset.clear();
 			grid.clear();
 			buildStartNodes();
 			
 			// perform A* to rebuild path
 			aStar();
+			
+			newPath = true;
 		}
 	}
 	
@@ -105,47 +115,59 @@ public class PathFinder {
 	private void aStar(){
 		while(!openset.isEmpty()){
 		//for(int i = 0; i < step; i++){
+			// grabbing the head will give the node with the lowest value and thus the closest
 			current = openset.remove();
+			
+			// return if we've hit the goal
 			if(isGoal(current)){
-				path = reconstructPath(current);
+				reconstructPath(current);
 				return;
 			}
 			
-			closedset.add(current);
+			// add node to closed set
+			current.setStatus(Node.Status.CLOSED);
 			
+			// expand node out
 			current.expand(grid, goal, nodeDist);
 			
+			// iterate through neighbors and update scores as necessary
 			for(Node neighbor : grid.getNeighbors(current)){
+				Node.Status status = neighbor.status();
 				// FIXME 'current.dst(neighbor)' should always be the same since its a grid right?
 				float tentativeGScore = current.gScore() + current.dst(neighbor);
-				if(closedset.contains(neighbor) && tentativeGScore >= neighbor.gScore())
+				if(status == Node.Status.CLOSED && tentativeGScore >= neighbor.gScore())
 					continue;
-				else if(!openset.contains(neighbor) || tentativeGScore > neighbor.gScore()){
+				else if(status != Node.Status.OPEN || tentativeGScore > neighbor.gScore()){
 					neighbor.setParent(current);
 					neighbor.setGScore(tentativeGScore);
 					neighbor.calcFScore();
-					if(!openset.contains(neighbor))
+					if(status != Node.Status.OPEN){
+						neighbor.setStatus(Node.Status.OPEN);
 						openset.add(neighbor);
+					}
 				}
 			}
 		}
 	}
 	
-	/** @return Path reconstructed from parents of current node */
-	private LinkedList<Node> reconstructPath(Node n) {
-		LinkedList<Node> p = new LinkedList<Node>();
+	/** Clears path and reconstructs it */
+	private void reconstructPath(Node n) {
+		path.clear();
 		if(n.parent() != null){
-			p.addAll(reconstructPath(n.parent()));
-			p.add(n);
-			return p;
-		} else {
-			p.add(n);
-			return p;
-		}
+			reconstructPath(n.parent());
+			path.add(n);
+		} else 
+			path.add(n);
 	}
 	
+	/** @return Whether or not the path has changed since the last call to getPath() */
+	public boolean newPath(){ return newPath; }
+	
 	/** Get the path constructed after it's been updated */
-	public LinkedList<Node> getPath(){ return path; }
+	public LinkedList<Node> getPath(){ 
+		newPath = false;
+		return path;
+	}
 	
 	/** @return Whether or not the given goal is close enough to be the goal */
 	private boolean isGoal(Node node){
@@ -157,9 +179,9 @@ public class PathFinder {
 	/** Pretty much only for debug purposes */
 	protected Queue<Node> getOpenset(){ return openset; }
 	/** Pretty much only for debug purposes */
-	protected Queue<Node> getClosedSet(){ return closedset; }
-	/** Pretty much only for debug purposes */
 	protected Node getCurrentNode(){ return current; }
+	/** Pretty much only for debug purposes */
+	protected SparseMatrix getGrid(){ return grid; }
 	
 	/** @return Whether or not between the two vectors is a valid move */
 	public static boolean isValidMove(Node from, Node to){ return isValidMove(from.loc(), to.loc()); }
@@ -185,6 +207,7 @@ public class PathFinder {
 		
 		Node n = null, e = null, s = null, w = null, ne = null, nw = null, se = null, sw = null;
 		
+		// N
 		if(isValidMove(loc, nvec)){
 			n = new Node(nvec, 0, 1);
 			n.calcScores(goal);
@@ -192,6 +215,7 @@ public class PathFinder {
 			grid.put(n);
 		}
 		
+		// E
 		if(isValidMove(loc, evec)){
 			e = new Node(evec, 1, 0);
 			e.calcScores(goal);
@@ -199,6 +223,7 @@ public class PathFinder {
 			grid.put(e);
 		}
 		
+		// S
 		if(isValidMove(loc, svec)){
 			s = new Node(svec, 0 ,-1);
 			s.calcScores(goal);
@@ -206,6 +231,7 @@ public class PathFinder {
 			grid.put(s);
 		}
 		
+		// W
 		if(isValidMove(loc, wvec)){
 			w = new Node(wvec, -1, 0);
 			w.calcScores(goal);
@@ -213,6 +239,7 @@ public class PathFinder {
 			grid.put(w);
 		}
 		
+		// NE
 		if(isValidMove(loc, nevec)){
 			ne = new Node(nevec, 1, 1);
 			ne.calcScores(goal);
@@ -220,6 +247,7 @@ public class PathFinder {
 			grid.put(ne);
 		}
 		
+		// NW
 		if(isValidMove(loc, nwvec)){
 			nw = new Node(nwvec, -1, 1);
 			nw.calcScores(goal);
@@ -227,6 +255,7 @@ public class PathFinder {
 			grid.put(nw);
 		}
 		
+		// SE
 		if(isValidMove(loc, sevec)){
 			se = new Node(sevec, 1, -1);
 			se.calcScores(goal);
@@ -234,6 +263,7 @@ public class PathFinder {
 			grid.put(se);
 		}
 		
+		// SW
 		if(isValidMove(loc, swvec)){
 			sw = new Node(swvec, -1, -1);
 			sw.calcScores(goal);

@@ -15,7 +15,6 @@ import com.bitwaffle.guts.graphics.render.Renderer;
  * @author TranquilMarmot
  */
 public class PathRenderer {
-	
 	/** Colors to render stuff as */
 	private static float[]
 			openSetColor = new float[]{1.0f, 0.0f, 0.0f, 0.6f},
@@ -31,13 +30,23 @@ public class PathRenderer {
 		Gdx.gl20.glEnable(GL20.GL_BLEND);
 		Game.resources.textures.bindTexture("blank");
 		
-		// render open set
-		renderer.r2D.setColor(openSetColor[0], openSetColor[1], openSetColor[2], openSetColor[3]);
-		renderNodeIterator(renderer, finder.getOpenset().iterator());
-		
-		// render closed set
-		renderer.r2D.setColor(closedSetColor[0], closedSetColor[1], closedSetColor[2], closedSetColor[3]);
-		renderNodeIterator(renderer, finder.getClosedSet().iterator());
+		SparseMatrix grid = finder.getGrid();
+		for(Node n : grid.getAll()){
+			if(n != null){
+				switch(n.status()){
+				case OPEN:
+					renderer.r2D.setColor(openSetColor[0], openSetColor[1], openSetColor[2], openSetColor[3]);
+					break;
+				case CLOSED:
+					renderer.r2D.setColor(closedSetColor[0], closedSetColor[1], closedSetColor[2], closedSetColor[3]);
+					break;
+				default:
+					renderer.r2D.setColor(currentNodeColor[0], currentNodeColor[1], currentNodeColor[2], currentNodeColor[3]);
+					break;
+				}
+				renderNode(renderer, n);
+			}
+		}
 		
 		// render current node
 		renderer.r2D.setColor(currentNodeColor[0], currentNodeColor[1], currentNodeColor[2], currentNodeColor[3]);

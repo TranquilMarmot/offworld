@@ -16,7 +16,7 @@ public class SparseMatrix {
 	/** How large the grid is, useful for iteration */
 	private int minRow, maxRow, minCol, maxCol;
 	
-	/** How large to make each column initially */
+	/** How many columns to initially make on each row */
 	private int initcols;
 	
 	/**
@@ -93,22 +93,22 @@ public class SparseMatrix {
 			sw = this.get(row - 1, col - 1),
 			w = this.get(row - 1, col);
 		
-		if(ne != null)
-			neighbors.add(ne);
 		if(n != null)
 			neighbors.add(n);
-		if(nw != null)
-			neighbors.add(nw);
 		if(e != null)
 			neighbors.add(e);
-		if(se != null)
-			neighbors.add(se);
 		if(s != null)
 			neighbors.add(s);
-		if(sw != null)
-			neighbors.add(sw);
 		if(w != null)
 			neighbors.add(w);
+		if(ne != null)
+			neighbors.add(ne);
+		if(nw != null)
+			neighbors.add(nw);
+		if(se != null)
+			neighbors.add(se);
+		if(sw != null)
+			neighbors.add(sw);
 		
 		return neighbors;
 	}
@@ -117,9 +117,13 @@ public class SparseMatrix {
 	public LinkedList<Node> getAll(){
 		LinkedList<Node> list = new LinkedList<Node>();
 		
-		for(int row = minRow; row < maxRow; row++)
-			for(int col = minCol; col < maxCol; col++)
-				list.add(this.get(row, col));
+		for(int row = minRow; row < maxRow; row++){
+			for(int col = minCol; col < maxCol; col++){
+				Node n = this.get(row, col);
+				if(n != null)
+					list.add(n);
+			}
+		}
 		
 		return list;
 	}

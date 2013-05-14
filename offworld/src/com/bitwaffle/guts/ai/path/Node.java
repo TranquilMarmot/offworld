@@ -11,6 +11,18 @@ import com.badlogic.gdx.math.Vector2;
  * @author TranquilMarmot
  */
 public class Node implements Comparable<Node> {
+	/** Possible status of nodes */
+	public static enum Status {
+		/** Node is in open set (can still be expanded and hasn't been visited) */
+		OPEN,
+		/** Node is in the closed set (has been expanded and visited) */
+		CLOSED,
+		/** Unknown default status */
+		UNKNOWN
+	}
+	/** Status of this node- OPEN, CLOSED, or UNKNOWN */
+	private Status status;
+	
 	/** Location of this Node in the world */
 	private Vector2 loc;
 	/** Parent of this node (where it came from, to reconstruct path) */
@@ -33,6 +45,7 @@ public class Node implements Comparable<Node> {
 		hScore = 0.0f;
 		fScore = 0.0f;
 		gScore = 0.0f;
+		this.status = Status.UNKNOWN;
 	}
 	
 	/** @return Distance from this node to another one */
@@ -52,6 +65,9 @@ public class Node implements Comparable<Node> {
 	
 	@Override
 	public int hashCode(){ return this.loc.hashCode(); }
+	
+	public void setStatus(Status newStatus){ this.status = newStatus; }
+	public Status status(){ return status; }
 	
 	public Vector2 loc(){ return location(); }
 	public Vector2 location(){ return loc; }
@@ -95,6 +111,7 @@ public class Node implements Comparable<Node> {
 	 * Creates new nodes for any empty spots around this node
 	 * @param grid Grid of nodes
 	 * @param goal Goal of new nodes, for calculating costs 
+	 * @param nodeDist How far to expand node in physical world
 	 */
 	public void expand(SparseMatrix grid, Node goal, float nodeDist){
 		Vector2
@@ -111,7 +128,6 @@ public class Node implements Comparable<Node> {
 		if(grid.get(row, col + 1) == null
 		&& PathFinder.isValidMove(loc, nvec)){
 			Node n = new Node(nvec, row, col + 1);
-			//n.setParent(this);
 			n.calcScores(goal);
 			grid.put(n);
 		}
@@ -120,7 +136,6 @@ public class Node implements Comparable<Node> {
 		if(grid.get(row + 1, col) == null
 		&& PathFinder.isValidMove(loc, evec)){
 			Node e = new Node(evec, row + 1, col);
-			//e.setParent(this);
 			e.calcScores(goal);
 			grid.put(e);
 		}
@@ -129,7 +144,6 @@ public class Node implements Comparable<Node> {
 		if(grid.get(row, col - 1) == null
 		&& PathFinder.isValidMove(loc, svec)){
 			Node s = new Node(svec, row, col - 1);
-			//s.setParent(this);
 			s.calcScores(goal);
 			grid.put(s);
 		}
@@ -138,7 +152,6 @@ public class Node implements Comparable<Node> {
 		if(grid.get(row - 1, col) == null
 		&& PathFinder.isValidMove(loc, wvec)){
 			Node w = new Node(wvec, row - 1, col);
-			//w.setParent(this);
 			w.calcScores(goal);
 			grid.put(w);
 		}
@@ -147,7 +160,6 @@ public class Node implements Comparable<Node> {
 		if(grid.get(row - 1, col + 1) == null
 		&& PathFinder.isValidMove(loc, nwvec)){
 			Node nw = new Node(nwvec, row - 1, col + 1);
-			//nw.setParent(this);
 			nw.calcScores(goal);
 			grid.put(nw);
 		}
@@ -156,7 +168,6 @@ public class Node implements Comparable<Node> {
 		if(grid.get(row + 1, col + 1) == null
 		&& PathFinder.isValidMove(loc, nevec)){
 			Node ne = new Node(nevec, row + 1, col + 1);
-			//ne.setParent(this);
 			ne.calcScores(goal);
 			grid.put(ne);
 		}
@@ -165,7 +176,6 @@ public class Node implements Comparable<Node> {
 		if(grid.get(row - 1, col - 1) == null
 		&& PathFinder.isValidMove(loc, swvec)){
 			Node sw = new Node(swvec, row - 1, col - 1);
-			//sw.setParent(this);
 			sw.calcScores(goal);
 			grid.put(sw);
 		}
@@ -174,7 +184,6 @@ public class Node implements Comparable<Node> {
 		if(grid.get(row + 1, col - 1) == null
 		&& PathFinder.isValidMove(loc, sevec)){
 			Node se = new Node(sevec, row + 1, col - 1);
-			//se.setParent(this);
 			se.calcScores(goal);
 			grid.put(se);
 		}
