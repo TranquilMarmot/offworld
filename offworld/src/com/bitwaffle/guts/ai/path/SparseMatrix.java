@@ -1,54 +1,31 @@
 package com.bitwaffle.guts.ai.path;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
-public class Grid {
-	private class GridList extends IntHashMap{
-		/** How large to make each column initially */
-		private int initcols;
-		
-		/**
-		 * @param initrows Initial number of rows
-		 * @param initcols Intitial number of columns
-		 */
-		public GridList(int initrows, int initcols){
-			super(initrows);
-			this.initcols = initcols;
-		}
-		
-		/** Returns node at the given spot. Null if no node exists there. */
-		public Node get(int row, int col){
-			IntHashMap r = (IntHashMap)this.get(row);
-			if(r == null)
-				return null;
-			else
-				return (Node)r.get(col);
-		}
-		
-		/** Puts a node in a given spot. Expands grid if necessary. */
-		public void put(Node n, int row, int col){
-			// TODO Will this overwrite any existing node in given spot ?!?!
-			IntHashMap r = (IntHashMap)this.get(row);
-			if(r == null){
-				r = new IntHashMap(initcols);
-				this.put(row, r);
-			}
-			r.put(col, n);
-		}
-	}
+/**
+ * A sparse two-dimensional matrix that can go big any direction
+ * and expands automagically.
+ * 
+ * @author TranquilMarmot
+ */
+public class SparseMatrix {
+	/** This is a HashMap of HashMaps of Nodes */
+	private IntHashMap list;
 	
-	/** Grids going in all directions */
-	private GridList list;
-	
-	/** How large the grid is */
+	/** How large the grid is, useful for iteration */
 	private int minRow, maxRow, minCol, maxCol;
+	
+	/** How large to make each column initially */
+	private int initcols;
 	
 	/**
 	 * @param initrows Initial number of rows (expands as needed)
 	 * @param initcols Initial number of columns (expands as necessary)
 	 */
-	public Grid(int initrows, int initcols){
-		list = new GridList(initrows, initcols);
+	public SparseMatrix(int initrows, int initcols){
+		list = new IntHashMap(initrows);
+		this.initcols = initcols;
 	
 		minRow = 0;
 		maxRow = 0;
@@ -57,9 +34,7 @@ public class Grid {
 	}
 	
 	/** @param n Node to put in this grid. Uses the node's stored row and column. */
-	public void put(Node n){
-		this.put(n, n.row(), n.col());
-	}
+	public void put(Node n){ this.put(n, n.row(), n.col()); }
 	
 	/**
 	 * Puts a node into this grid.
@@ -79,17 +54,32 @@ public class Grid {
 		if(col > maxCol)
 			maxCol = col;
 		
-		list.put(n, row, col);
+		IntHashMap r = (IntHashMap)list.get(row);
+		// create new row if necessary
+		if(r == null){
+			r = new IntHashMap(initcols);
+			list.put(row, r);
+		}
+		// put node in given column in given row
+		r.put(col, n);
 	}
 	
+	/** @return Node at given row and column, null if no node exists. */
 	public Node get(int row, int col){
-		return list.get(row, col);
+		IntHashMap r = (IntHashMap)list.get(row);
+		// if row doesn't exist, node doesn't exist
+		if(r == null)
+			return null;
+		else
+			return (Node)r.get(col);
 	}
 	
+	/** @return Neighbors of this node in all eight directions */
 	public ArrayList<Node> getNeighbors(Node n){
 		return this.getNeighbors(n.row(), n.col());
 	}
 	
+	/** @return Nodes next to given row and column in the eight cardinal directions */
 	public ArrayList<Node> getNeighbors(int row, int col){
 		ArrayList<Node> neighbors = new ArrayList<Node>();
 		
@@ -123,8 +113,9 @@ public class Grid {
 		return neighbors;
 	}
 	
-	public ArrayList<Node> getAll(){
-		ArrayList<Node> list = new ArrayList<Node>();
+	/** @return List of every node in this matrix */
+	public LinkedList<Node> getAll(){
+		LinkedList<Node> list = new LinkedList<Node>();
 		
 		for(int row = minRow; row < maxRow; row++)
 			for(int col = minCol; col < maxCol; col++)
@@ -133,7 +124,9 @@ public class Grid {
 		return list;
 	}
 	
-	public void clear(){		
+	/** Get rid of everything in this matrix */
+	public void clear(){
+		// clear every row
 		for(int row = minRow; row < maxRow; row++)
 			((IntHashMap)list.get(row)).clear();
 		list.clear();

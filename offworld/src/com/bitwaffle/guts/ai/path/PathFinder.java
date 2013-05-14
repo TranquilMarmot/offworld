@@ -1,8 +1,6 @@
 package com.bitwaffle.guts.ai.path;
 
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -10,15 +8,24 @@ import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.physics.callbacks.HitCountRayCastCallback;
 
+/**
+ * Performs the A* search algorithm to find a path between a start and a goal node.
+ * updatePath() should be called every frame with the timeStep,
+ * and the path will only get updated as often as the updateFrequency is set.
+ * The start and goal nodes should be set using the appropriate methods at least once before any
+ * updates are done.
+ * 
+ * @author TranquilMarmot
+ */
 public class PathFinder {
-
+	/** Queues to manage nodes */
 	PriorityQueue<Node> openset, closedset;
 	
+	/** The completed path, after updatePath is called */
 	LinkedList<Node> path;
 	
-	HashMap<Node, Node> cameFrom;
-	
-	Grid grid;
+	/** Grid to keep track of where nodes are */
+	SparseMatrix grid;
 	
 	/** Start and end nodes */
 	private Node start, goal;
@@ -27,65 +34,86 @@ public class PathFinder {
 	private static HitCountRayCastCallback callback;
 	
 	/** How far apart each node is */
-	private float nodeDist = 1.0f;
+	private float nodeDist = 2.5f, goalThreshold = 5.0f;
 	
-	// FIXME temp
-	int speed = 60, timer = 0;
+	/** How frequently the path gets updated */
+	private float updateFrequency = 0.5f;
+	/** Used to time updates*/
+	private float timer;
+	
+	// FIXME debug
 	private int step = 1;
-	Node current;
+	
+	/** Current node being looked at */
+	private Node current;
 	
 	public PathFinder(){
+		grid = new SparseMatrix(100, 100);
+		
 		callback = new HitCountRayCastCallback();
+		
+		start = new Node(new Vector2(), 0, 0);
+		goal = new Node(new Vector2(), 0, 0);
 		
 		openset = new PriorityQueue<Node>(20);
 		closedset = new PriorityQueue<Node>(20);
-		cameFrom = new HashMap<Node, Node>();
 		path = new LinkedList<Node>();
-		grid = new Grid(100, 100);
+		
+		timer = 0.0f;
 	}
 	
-	public void updatePath(Vector2 startLoc, Vector2 goalLoc){
-		this.start = new Node(startLoc, 0, 0);
-		this.goal = new Node(goalLoc, 0, 0);
-		
-		closedset.clear();
-		openset.clear();
-		cameFrom.clear();
-		grid.clear();
-		buildStartNodes();
-		
-		
-		//while(!openset.isEmpty()){
-		timer++;
-		if(timer > speed){
-			timer -= speed;
+	public void setStart(Vector2 newStart){ this.start.setLocation(newStart); }
+	public Node getStart(){ return start; }
+	
+	public void setGoal(Vector2 newGoal){ this.goal.setLocation(newGoal); }
+	public Node getGoal(){ return goal; }
+	
+	/** @param newFrequency New update frequency, in seconds */
+	public void setUpdateFrequency(float newFrequency){ this.updateFrequency = newFrequency; }
+	/** @return Current update frequency, in updates per second */
+	public float getUpdateFrequency(){ return updateFrequency; }
+	
+	/**
+	 * Updates this pathfinder and finds the path again if the timer is up.
+	 * @param timeStep Time passed since last update, in seconds
+	 */
+	public void updatePath(float timeStep){
+		timer += timeStep;
+		if(timer > updateFrequency){
+			timer -= updateFrequency;
+			
+			// FIXME temp
 			step++;
+			
+			// clear everything
+			closedset.clear();
+			openset.clear();
+			grid.clear();
+			buildStartNodes();
+			
+			// perform A* to rebuild path
+			aStar();
 		}
-		for(int i = 0; i < step; i++){
-			// FIXME should this be a poll? or a peek?
+	}
+	
+	/**
+	 * Performs the A* search algorithm to find a path from the start goal to the end goal.
+	 * After this is called, this PathFinder's path should contain a path to the goal.
+	 * 
+	 * Straight from Wikipedia.
+	 */
+	private void aStar(){
+		while(!openset.isEmpty()){
+		//for(int i = 0; i < step; i++){
 			current = openset.remove();
 			if(isGoal(current)){
-				Game.out.println("Made path!");
-				reconstructPath(cameFrom, goal);
+				path = reconstructPath(current);
 				return;
 			}
 			
 			closedset.add(current);
 			
-			current.expand(goal, nodeDist, grid);
-			
-			// FIXME temp
-			//for(Node neighbor : current.neighbors()){
-			//	if(!openset.contains(neighbor) && !closedset.contains(neighbor))
-			//		openset.add(neighbor);
-			//}
-			
-			//Iterator<Node> it = openset.iterator();
-			//while(it.hasNext()){
-			//	Node n = it.next();
-			//	n.calcScores(goal);
-			//}
-			
+			current.expand(grid, goal, nodeDist);
 			
 			for(Node neighbor : grid.getNeighbors(current)){
 				// FIXME 'current.dst(neighbor)' should always be the same since its a grid right?
@@ -93,50 +121,56 @@ public class PathFinder {
 				if(closedset.contains(neighbor) && tentativeGScore >= neighbor.gScore())
 					continue;
 				else if(!openset.contains(neighbor) || tentativeGScore > neighbor.gScore()){
-					cameFrom.put(neighbor, current);
+					neighbor.setParent(current);
 					neighbor.setGScore(tentativeGScore);
 					neighbor.calcFScore();
 					if(!openset.contains(neighbor))
 						openset.add(neighbor);
 				}
 			}
-			
 		}
-		//}
 	}
 	
-	private void reconstructPath(HashMap<Node, Node> cameFrom2, Node n) {
-		path.clear();
-		if(cameFrom2.containsKey(n)){
-			reconstructPath(cameFrom2, cameFrom2.get(n));
-			path.add(n);
-		} else
-			path.add(n);
+	/** @return Path reconstructed from parents of current node */
+	private LinkedList<Node> reconstructPath(Node n) {
+		LinkedList<Node> p = new LinkedList<Node>();
+		if(n.parent() != null){
+			p.addAll(reconstructPath(n.parent()));
+			p.add(n);
+			return p;
+		} else {
+			p.add(n);
+			return p;
+		}
+	}
+	
+	/** Get the path constructed after it's been updated */
+	public LinkedList<Node> getPath(){ return path; }
+	
+	/** @return Whether or not the given goal is close enough to be the goal */
+	private boolean isGoal(Node node){
+		if(goal == null || node == null || node.loc() == null)
+			return false;
+		return goal.dst(node) <= goalThreshold;
 	}
 
-	// FIXME TEMP
-	public Queue<Node> getOpenset(){
-		return openset;
+	/** Pretty much only for debug purposes */
+	protected Queue<Node> getOpenset(){ return openset; }
+	/** Pretty much only for debug purposes */
+	protected Queue<Node> getClosedSet(){ return closedset; }
+	/** Pretty much only for debug purposes */
+	protected Node getCurrentNode(){ return current; }
+	
+	/** @return Whether or not between the two vectors is a valid move */
+	public static boolean isValidMove(Node from, Node to){ return isValidMove(from.loc(), to.loc()); }
+	/** @return Whether or not between the two vectors is a valid move */
+	public static boolean isValidMove(Vector2 from, Vector2 to){
+		callback.reset();
+		Game.physics.rayCast(callback, from, to);
+		return callback.hitCount() <= 0;
 	}
 	
-	// FIXME TEMP
-	public Queue<Node> getClosedSet(){
-		return closedset;
-	}
-	
-	// FIXME TEMP
-	public Map<Node, Node> getCameFrom(){
-		return cameFrom;
-	}
-	
-	public Node getCurrent(){
-		return current;
-	}
-	
-	public LinkedList<Node> getPath(){
-		return path;
-	}
-	
+	/** Builds up start nodes in eight directions */
 	private void buildStartNodes(){
 		Vector2
 			loc = start.loc(),
@@ -206,19 +240,5 @@ public class PathFinder {
 			openset.add(sw);
 			grid.put(sw);
 		}
-	}
-	
-	private boolean isGoal(Node node){
-		// FIXME temp?
-		if(goal == null || node == null || node.loc() == null)
-			return false;
-		return goal.dst(node) <= 1.0f;
-	}
-	
-	public static boolean isValidMove(Node from, Node to){ return isValidMove(from.loc(), to.loc()); }
-	public static boolean isValidMove(Vector2 from, Vector2 to){
-		callback.reset();
-		Game.physics.rayCast(callback, from, to);
-		return callback.hitCount() <= 0;
 	}
 }

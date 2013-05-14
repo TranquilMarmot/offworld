@@ -30,7 +30,6 @@ public class Bat extends DynamicEntity implements Health {
 	// FIXME temp
 	float timer = 0.0f;
 	
-	// FIXME temp
 	public PathFinder pathfinder;
 	
 	public Bat(int layer, Vector2 location){
@@ -76,12 +75,16 @@ public class Bat extends DynamicEntity implements Health {
 			this. body.setLinearVelocity((float)Math.sin(timer) * 2.0f, (float)Math.cos(timer) * 1.0f);
 		}
 		
-		
-		// FIXME temp
-		pathfinder.updatePath(this.location, OffworldGame.players[0].getLocation());
+		// update path
+		pathfinder.setStart(this.location);
+		pathfinder.setGoal(OffworldGame.players[0].getLocation());
+		pathfinder.updatePath(timeStep);
 	}
 	
 	public boolean isSleeping(){ return sleeping; }
+	
+	public float getWidth() { return width; }
+	public float getHeight(){ return height; }
 	
 	public BatFlyAnimation getFlyAnimation(){ return flyAnimation; }
 	public BatSleepAnimation getSleepAnimation(){ return sleepAnimation; }
@@ -94,10 +97,4 @@ public class Bat extends DynamicEntity implements Health {
 
 	@Override
 	public void heal(float amount) { health += amount; }
-
-	public float getWidth() { return width; }
-	
-	public float getHeight(){ return height; }
-	
-	
 }
