@@ -325,9 +325,7 @@ public class IntHashMap {
         return null;
     }
 
-    /**
-     * <p>Clears this hashtable so that it contains no keys.</p>
-     */
+    /** <p>Clears this hashtable so that it contains no keys.</p> */
     public void clear() {
         Entry tab[] = table;
         for (int index = tab.length; --index >= 0;)

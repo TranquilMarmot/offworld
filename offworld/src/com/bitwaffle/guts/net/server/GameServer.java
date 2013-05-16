@@ -43,7 +43,7 @@ public class GameServer extends Listener {
 		server = new Server();
 		
 		// FIXME temp server just takes control of 0th player
-		PhysicsHelper.initPlayer(Game.physics, new Vector2(1.0f, 5.0f), 0, true);
+		PhysicsHelper.initPlayer(Game.physics, new Vector2(111.58881f, -21.654314f), 0, true);
 		playerNumber = 0;
 		
 		NetRegistrar.registerClasses(server.getKryo());

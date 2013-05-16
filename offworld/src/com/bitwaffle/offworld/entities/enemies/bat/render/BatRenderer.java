@@ -40,7 +40,7 @@ public class BatRenderer implements EntityRenderer {
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 		
 		// render path
-		PathRenderer.renderDebug(renderer, bat.pathfinder);
+		PathRenderer.renderDebug(renderer, bat.follower.pathfinder);
 	}
 
 }

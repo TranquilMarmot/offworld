@@ -7,6 +7,7 @@ import java.util.Queue;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.physics.callbacks.HitCountRayCastCallback;
+import com.bitwaffle.offworld.OffworldGame;
 
 /**
  * Performs the A* search algorithm to find a path between a start and a goal node.
@@ -40,13 +41,13 @@ public class PathFinder {
 	private static HitCountRayCastCallback callback;
 	
 	/** How far apart each node is */
-	private float nodeDist = 2.5f;
+	private float nodeDist;
 	
 	/** How close algorithm has to get to consider itself at the goal */
-	private float goalThreshold = 5.0f;
+	private float goalThreshold;
 	
 	/** How frequently the path gets updated */
-	private float updateFrequency = 0.5f;
+	private float updateFrequency;
 	/** Used to time updates*/
 	private float timer;
 	
@@ -56,7 +57,16 @@ public class PathFinder {
 	/** Current node being looked at */
 	private Node current;
 	
-	public PathFinder(){
+	/**
+	 * @param nodeDist Distance to put between each node
+	 * @param goalThreshold How close algorithm has to be to consider itself at the goal
+	 * @param updateFrequency How often to recalculate the path (in updates per second)
+	 */
+	public PathFinder(float nodeDist, float goalThreshold, float updateFrequency){
+		this.nodeDist = nodeDist;
+		this.goalThreshold = goalThreshold;
+		this.updateFrequency = updateFrequency;
+		
 		grid = new SparseMatrix(100, 100);
 		
 		callback = new HitCountRayCastCallback();
@@ -87,6 +97,7 @@ public class PathFinder {
 	 * @param timeStep Time passed since last update, in seconds
 	 */
 	public void updatePath(float timeStep){
+		System.out.println(OffworldGame.players[0].getLocation());
 		timer += timeStep;
 		if(timer > updateFrequency){
 			timer -= updateFrequency;

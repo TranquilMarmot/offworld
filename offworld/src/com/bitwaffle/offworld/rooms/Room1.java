@@ -70,6 +70,7 @@ public class Room1 extends Room {
 		}
 		
 		Bat bat = new Bat(4, new Vector2(46.0f, -6.0f));
+		bat.sleeping = false;
 		this.addEntity(bat);
 		
 		//Bat bat2 = new Bat(4, new Vector2(50.0f, 19.0f));

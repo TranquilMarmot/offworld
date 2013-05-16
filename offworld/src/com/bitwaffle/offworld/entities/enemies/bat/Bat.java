@@ -4,7 +4,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.bitwaffle.guts.ai.AI;
 import com.bitwaffle.guts.ai.path.PathFinder;
+import com.bitwaffle.guts.ai.states.PathFollower;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.offworld.OffworldGame;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatFlyAnimation;
@@ -30,13 +32,18 @@ public class Bat extends DynamicEntity implements Health {
 	// FIXME temp
 	float timer = 0.0f;
 	
-	public PathFinder pathfinder;
+	//public PathFinder pathfinder;
+	private AI ai;
+	public PathFollower follower;
 	
 	public Bat(int layer, Vector2 location){
 		super(new BatRenderer(), layer, getBodyDef(location), getFixtureDef());
 		sleepAnimation = new BatSleepAnimation(this);
 		flyAnimation = new BatFlyAnimation(this);
-		pathfinder = new PathFinder();
+		//pathfinder = new PathFinder();
+		ai = new AI(this);
+		follower = new PathFollower(this);
+		ai.setState(follower);
 	}
 	
 	private static BodyDef getBodyDef(Vector2 location){
@@ -68,6 +75,11 @@ public class Bat extends DynamicEntity implements Health {
 		flyAnimation.update(timeStep);
 		timer += timeStep;
 		
+		follower.pathfinder.setStart(this.location);
+		follower.pathfinder.setGoal(OffworldGame.players[0].getLocation());
+		ai.update(timeStep);
+		
+		/*
 		if(sleeping){
 			//Vector2 linVec = this.body.getLinearVelocity();
 			this.body.setLinearVelocity(0.0f, 1.0f);
@@ -79,6 +91,7 @@ public class Bat extends DynamicEntity implements Health {
 		pathfinder.setStart(this.location);
 		pathfinder.setGoal(OffworldGame.players[0].getLocation());
 		pathfinder.updatePath(timeStep);
+		*/
 	}
 	
 	public boolean isSleeping(){ return sleeping; }
