@@ -9,6 +9,5 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="libs/gdx-backend-android-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/gdx-controllers-android.jar"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/guts"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
