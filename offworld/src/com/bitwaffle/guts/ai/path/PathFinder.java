@@ -7,7 +7,6 @@ import java.util.Queue;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.physics.callbacks.HitCountRayCastCallback;
-import com.bitwaffle.offworld.OffworldGame;
 
 /**
  * Performs the A* search algorithm to find a path between a start and a goal node.
@@ -21,6 +20,7 @@ import com.bitwaffle.offworld.OffworldGame;
 public class PathFinder {
 	// TODO try to speed up with jump point search http://harablog.wordpress.com/2011/09/07/jump-point-search/
 	// TODO make diagonal searching optional
+	// TODO theta*? http://aigamedev.com/open/tutorials/theta-star-any-angle-paths/#Rabin:02
 	
 	/** Queue of open nodes, sorted by F scores (see Node's compareTo() method) */
 	private PriorityQueue<Node> openset;
@@ -31,16 +31,16 @@ public class PathFinder {
 	/** Whether or not the path has changed since the last time it was gotten */
 	private boolean newPath;
 	
-	/** Grid to keep track of where nodes are */
+	/** Grid to keep track of where nodes are and to get neighbors */
 	private SparseMatrix grid;
 	
-	/** Start and end nodes */
+	/** Start and end nodes (not actually in grid) */
 	private Node start, goal;
 	
 	/** Callback for sweeping physics world for obstacles */
 	private static HitCountRayCastCallback callback;
 	
-	/** How far apart each node is */
+	/** How far apart each node is in the grid */
 	private float nodeDist;
 	
 	/** How close algorithm has to get to consider itself at the goal */
@@ -74,7 +74,7 @@ public class PathFinder {
 		openset = new PriorityQueue<Node>(20);
 		path = new LinkedList<Node>();
 		
-		timer = 0.0f;
+		timer = updateFrequency + 0.00001f;
 		newPath = false;
 	}
 	
@@ -84,7 +84,7 @@ public class PathFinder {
 	public void setGoal(Vector2 newGoal){ this.goal.setLocation(newGoal); }
 	public Node getGoal(){ return goal; }
 	
-	/** @param newFrequency New update frequency, in seconds */
+	/** @param newFrequency How often path gets recalculated, in seconds */
 	public void setUpdateFrequency(float newFrequency){ this.updateFrequency = newFrequency; }
 	/** @return Current update frequency, in updates per second */
 	public float getUpdateFrequency(){ return updateFrequency; }
@@ -94,7 +94,6 @@ public class PathFinder {
 	 * @param timeStep Time passed since last update, in seconds
 	 */
 	public void updatePath(float timeStep){
-		System.out.println(OffworldGame.players[0].getLocation());
 		timer += timeStep;
 		if(timer > updateFrequency){
 			timer -= updateFrequency;
@@ -106,7 +105,6 @@ public class PathFinder {
 			
 			// perform A* to rebuild path
 			aStar();
-			
 			newPath = true;
 		}
 	}
@@ -181,17 +179,17 @@ public class PathFinder {
 		return goal.dst(node) <= goalThreshold;
 	}
 
-	/** Pretty much only for debug purposes */
+	/** Only for debug purposes */
 	protected Queue<Node> getOpenset(){ return openset; }
-	/** Pretty much only for debug purposes */
+	/** Only for debug purposes */
 	protected Node getCurrentNode(){ return current; }
-	/** Pretty much only for debug purposes */
+	/** Only for debug purposes */
 	protected SparseMatrix getGrid(){ return grid; }
 	
-	/** @return Whether or not between the two vectors is a valid move */
-	public static boolean isValidMove(Node from, Node to){ return isValidMove(from.loc(), to.loc()); }
-	/** @return Whether or not between the two vectors is a valid move */
-	public static boolean isValidMove(Vector2 from, Vector2 to){
+	/** @return Whether or not between two nodes is a valid move */
+	public static boolean isValidMove(Node from, Node to){ return isValid(from.loc(), to.loc()); }
+	/** @return Whether or not between two vectors is a valid move */
+	public static boolean isValid(Vector2 from, Vector2 to){
 		callback.reset();
 		Game.physics.rayCast(callback, from, to);
 		return callback.hitCount() <= 0;
@@ -214,7 +212,7 @@ public class PathFinder {
 		Node n = null, e = null, s = null, w = null, ne = null, nw = null, se = null, sw = null;
 		
 		// N
-		if(isValidMove(loc, nvec)){
+		if(isValid(loc, nvec)){
 			n = new Node(nvec, 0, 1);
 			n.calcScores(goal);
 			openset.add(n);
@@ -222,7 +220,7 @@ public class PathFinder {
 		}
 		
 		// E
-		if(isValidMove(loc, evec)){
+		if(isValid(loc, evec)){
 			e = new Node(evec, 1, 0);
 			e.calcScores(goal);
 			openset.add(e);
@@ -230,7 +228,7 @@ public class PathFinder {
 		}
 		
 		// S
-		if(isValidMove(loc, svec)){
+		if(isValid(loc, svec)){
 			s = new Node(svec, 0 ,-1);
 			s.calcScores(goal);
 			openset.add(s);
@@ -238,7 +236,7 @@ public class PathFinder {
 		}
 		
 		// W
-		if(isValidMove(loc, wvec)){
+		if(isValid(loc, wvec)){
 			w = new Node(wvec, -1, 0);
 			w.calcScores(goal);
 			openset.add(w);
@@ -246,7 +244,7 @@ public class PathFinder {
 		}
 		
 		// NE
-		if(isValidMove(loc, nevec)){
+		if(isValid(loc, nevec)){
 			ne = new Node(nevec, 1, 1);
 			ne.calcScores(goal);
 			openset.add(ne);
@@ -254,7 +252,7 @@ public class PathFinder {
 		}
 		
 		// NW
-		if(isValidMove(loc, nwvec)){
+		if(isValid(loc, nwvec)){
 			nw = new Node(nwvec, -1, 1);
 			nw.calcScores(goal);
 			openset.add(nw);
@@ -262,7 +260,7 @@ public class PathFinder {
 		}
 		
 		// SE
-		if(isValidMove(loc, sevec)){
+		if(isValid(loc, sevec)){
 			se = new Node(sevec, 1, -1);
 			se.calcScores(goal);
 			openset.add(se);
@@ -270,7 +268,7 @@ public class PathFinder {
 		}
 		
 		// SW
-		if(isValidMove(loc, swvec)){
+		if(isValid(loc, swvec)){
 			sw = new Node(swvec, -1, -1);
 			sw.calcScores(goal);
 			openset.add(sw);

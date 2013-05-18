@@ -3,7 +3,7 @@ package com.bitwaffle.offworld.entities.enemies.bat.render;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.ai.path.PathRenderer;
+import com.bitwaffle.guts.ai.path.DebugPathRenderer;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.graphics.render.Renderer;
 import com.bitwaffle.guts.graphics.render.render2d.EntityRenderer;
@@ -40,7 +40,7 @@ public class BatRenderer implements EntityRenderer {
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 		
 		// render path
-		PathRenderer.renderDebug(renderer, bat.follower.pathfinder);
+		DebugPathRenderer.renderDebug(renderer, bat.follower.pathfinder);
 	}
 
 }

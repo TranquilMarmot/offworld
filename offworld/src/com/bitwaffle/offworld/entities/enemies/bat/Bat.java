@@ -45,14 +45,13 @@ public class Bat extends DynamicEntity implements Health {
 		sleepAnimation = new BatSleepAnimation(this);
 		flyAnimation = new BatFlyAnimation(this);
 		
-		ai = new AI(this);
 		float
-			pathNodeDist = 10.0f,
-			pathGoalThreshold = 15.0f,
-			pathUpdateFrequency = 1.0f,
+			pathNodeDist = 7.5f,
+			pathGoalThreshold = 14.0f,
+			pathUpdateFrequency = 2.0f,
 			nodeThreshold = 2.0f,
-			followSpeed = 4.5f;
-				
+			followSpeed = 7.5f;
+		ai = new AI(this);
 		follower = new PathFollower(pathNodeDist, pathGoalThreshold, pathUpdateFrequency, nodeThreshold, followSpeed);
 		ai.setState(follower);
 	}

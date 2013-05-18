@@ -126,7 +126,7 @@ public class Node implements Comparable<Node> {
 		
 		// N
 		if(grid.get(row, col + 1) == null
-		&& PathFinder.isValidMove(loc, nvec)){
+		&& PathFinder.isValid(loc, nvec)){
 			Node n = new Node(nvec, row, col + 1);
 			n.calcScores(goal);
 			grid.put(n);
@@ -134,7 +134,7 @@ public class Node implements Comparable<Node> {
 		
 		// E
 		if(grid.get(row + 1, col) == null
-		&& PathFinder.isValidMove(loc, evec)){
+		&& PathFinder.isValid(loc, evec)){
 			Node e = new Node(evec, row + 1, col);
 			e.calcScores(goal);
 			grid.put(e);
@@ -142,7 +142,7 @@ public class Node implements Comparable<Node> {
 		
 		// S
 		if(grid.get(row, col - 1) == null
-		&& PathFinder.isValidMove(loc, svec)){
+		&& PathFinder.isValid(loc, svec)){
 			Node s = new Node(svec, row, col - 1);
 			s.calcScores(goal);
 			grid.put(s);
@@ -150,7 +150,7 @@ public class Node implements Comparable<Node> {
 		
 		// W
 		if(grid.get(row - 1, col) == null
-		&& PathFinder.isValidMove(loc, wvec)){
+		&& PathFinder.isValid(loc, wvec)){
 			Node w = new Node(wvec, row - 1, col);
 			w.calcScores(goal);
 			grid.put(w);
@@ -158,7 +158,7 @@ public class Node implements Comparable<Node> {
 		
 		// NW
 		if(grid.get(row - 1, col + 1) == null
-		&& PathFinder.isValidMove(loc, nwvec)){
+		&& PathFinder.isValid(loc, nwvec)){
 			Node nw = new Node(nwvec, row - 1, col + 1);
 			nw.calcScores(goal);
 			grid.put(nw);
@@ -166,7 +166,7 @@ public class Node implements Comparable<Node> {
 		
 		// NE
 		if(grid.get(row + 1, col + 1) == null
-		&& PathFinder.isValidMove(loc, nevec)){
+		&& PathFinder.isValid(loc, nevec)){
 			Node ne = new Node(nevec, row + 1, col + 1);
 			ne.calcScores(goal);
 			grid.put(ne);
@@ -174,7 +174,7 @@ public class Node implements Comparable<Node> {
 		
 		// SW
 		if(grid.get(row - 1, col - 1) == null
-		&& PathFinder.isValidMove(loc, swvec)){
+		&& PathFinder.isValid(loc, swvec)){
 			Node sw = new Node(swvec, row - 1, col - 1);
 			sw.calcScores(goal);
 			grid.put(sw);
@@ -182,7 +182,7 @@ public class Node implements Comparable<Node> {
 		
 		// SE
 		if(grid.get(row + 1, col - 1) == null
-		&& PathFinder.isValidMove(loc, sevec)){
+		&& PathFinder.isValid(loc, sevec)){
 			Node se = new Node(sevec, row + 1, col - 1);
 			se.calcScores(goal);
 			grid.put(se);

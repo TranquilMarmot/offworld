@@ -17,10 +17,6 @@
 			"path": "weapons/pistol/pistol.res"
 		},
 		{
-			"name":	"intro",
-			"path":	"rooms/intro/intro.res"
-		},
-		{
 			"name": "cave-1",
 			"path": "rooms/cave-1/cave-1.res"
 		},

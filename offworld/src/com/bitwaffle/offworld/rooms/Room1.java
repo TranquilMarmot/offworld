@@ -34,11 +34,6 @@ public class Room1 extends Room {
 		this.addEntity(getDynamicEntity("cave-1-platform-2", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
 		this.addEntity(getDynamicEntity("cave-1-platform-3", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
 		this.addEntity(getDynamicEntity("cave-1-platform-4", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
-		//this.addEntity(getDynamicEntity("intro-seg2", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
-		//this.addEntity(getDynamicEntity("intro-seg3", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
-		//this.addEntity(getEntity("intro-gradient3", 4, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
-		//this.addEntity(getEntity("intro-gradient1", 4, new float[]{1.0f, 1.0f, 1.0f, 1.0f}));
-		//this.addEntity(getEntity("intro-underground-background", 3, new float[]{0.0196078431372549f,0.196078431372549f, 0.4274509803921569f, 1.0f});
 		
 		// add random rocks
 		for(int i = 0; i < 10; i++){
@@ -55,11 +50,11 @@ public class Room1 extends Room {
 		
 		
 		// diamonds
-		for(int i = 0; i < 1; i++){
+		for(int i = 0; i < 10; i++){
     		float diamondX = Game.random.nextFloat() * 10.0f - 50.0f;
-    		if(diamondX < 1.0f) diamondX = 1.0f;
+    		if(Game.random.nextBoolean()) diamondX = -diamondX;
     		float diamondY = Game.random.nextFloat() * 15.0f + 15.0f;
-    		if(diamondY < 1.0f) diamondY = 1.0f;
+    		if(Game.random.nextBoolean()) diamondY = -diamondY;
     		
     		float rotation = Game.random.nextFloat() * 10.0f;
     		
@@ -69,13 +64,16 @@ public class Room1 extends Room {
     		this.addEntity(diamond);
 		}
 		
-		Bat bat = new Bat(4, new Vector2(46.0f, -6.0f));
-		bat.sleeping = false;
-		this.addEntity(bat);
-		
-		//Bat bat2 = new Bat(4, new Vector2(50.0f, 19.0f));
-		//bat2.sleeping = true;
-		//this.addEntity(bat2);
+		for(int i = 0; i < 3; i++){
+    		float batX = Game.random.nextFloat() * 100.0f;
+    		float batY = Game.random.nextFloat() * 100.0f;
+    		if(Game.random.nextBoolean()) batX = -batX;
+    		if(Game.random.nextBoolean()) batY = -batY;
+    		
+    		Bat bat = new Bat(4, new Vector2(batX, batY));
+    		bat.sleeping = false;
+    		this.addEntity(bat);
+		}
 		
 		Game.net.startServer();
 		

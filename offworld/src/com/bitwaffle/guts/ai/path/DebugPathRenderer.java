@@ -14,7 +14,7 @@ import com.bitwaffle.guts.graphics.render.Renderer;
  * 
  * @author TranquilMarmot
  */
-public class PathRenderer {
+public class DebugPathRenderer {
 	/** Colors to render stuff as */
 	private static float[]
 			openSetColor = new float[]{1.0f, 0.0f, 0.0f, 0.6f},
