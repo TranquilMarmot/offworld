@@ -10,8 +10,9 @@ import com.badlogic.gdx.math.Vector2
 import com.bitwaffle.guts.Game
 import com.bitwaffle.guts.Game
 import com.bitwaffle.guts.desktop.devmode.DevModeDisplay
-import com.bitwaffle.guts.graphics.render.render2d.Render2D
-import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D
+import com.bitwaffle.guts.graphics.graphics2d.Render2D
+import com.bitwaffle.guts.graphics.graphics2d.Camera2D
+import com.bitwaffle.offworld.camera.CameraModes
 import com.bitwaffle.guts.gui.GUI
 import com.bitwaffle.offworld.entities.BreakableRock
 import com.bitwaffle.offworld.gui.GUIStates
@@ -86,7 +87,7 @@ object Builder {
 		val cameraButt = new JButton("Camera")
 		cameraButt.addActionListener(new ActionListener(){
 			override def actionPerformed(e: ActionEvent){
-				Game.renderer.r2D.camera.setMode(Camera2D.Modes.FREE)
+				Game.renderer.r2D.camera.setMode(CameraModes.free)
 			}
 		})
 		leftTools add cameraButt
