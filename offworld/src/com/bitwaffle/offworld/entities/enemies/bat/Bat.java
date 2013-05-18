@@ -51,8 +51,9 @@ public class Bat extends DynamicEntity implements Health {
 			pathUpdateFrequency = 2.0f,
 			nodeThreshold = 2.0f,
 			followSpeed = 7.5f;
+		int pathMaxIterations = 1000;
 		ai = new AI(this);
-		follower = new PathFollower(pathNodeDist, pathGoalThreshold, pathUpdateFrequency, nodeThreshold, followSpeed);
+		follower = new PathFollower(pathNodeDist, pathGoalThreshold, pathUpdateFrequency, pathMaxIterations, nodeThreshold, followSpeed);
 		ai.setState(follower);
 	}
 	

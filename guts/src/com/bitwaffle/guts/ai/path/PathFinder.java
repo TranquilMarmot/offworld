@@ -54,15 +54,19 @@ public class PathFinder {
 	/** Used to time updates*/
 	private float timer;
 	
+	/** Maximum number of iterations before algorithm terminates */
+	private int maxIterations, currentIteration;
+	
 	/**
 	 * @param nodeDist Distance to put between each node
 	 * @param goalThreshold How close algorithm has to be to consider itself at the goal
 	 * @param updateFrequency How often to recalculate the path (in updates per second)
 	 */
-	public PathFinder(float nodeDist, float goalThreshold, float updateFrequency){
+	public PathFinder(float nodeDist, float goalThreshold, float updateFrequency, int maxIterations){
 		this.nodeDist = nodeDist;
 		this.goalThreshold = goalThreshold;
 		this.updateFrequency = updateFrequency;
+		this.maxIterations = maxIterations;
 		
 		grid = new SparseMatrix(100, 100);
 		
@@ -116,12 +120,14 @@ public class PathFinder {
 	 * Straight from Wikipedia.
 	 */
 	private void aStar(){
+		currentIteration = 0;
 		while(!openset.isEmpty()){
 			// grabbing the head will give the node with the lowest value
 			current = openset.remove();
 			
+			currentIteration++;
 			// return if we've hit the goal
-			if(isGoal(current)){
+			if(isGoal(current) || currentIteration >= maxIterations){
 				reconstructPath(current);
 				return;
 			}

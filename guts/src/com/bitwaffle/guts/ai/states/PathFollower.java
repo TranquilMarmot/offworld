@@ -32,10 +32,10 @@ public class PathFollower extends AIState {
 	 * @param nodeThreshold How close entity has to be to node in path to move on to next node
 	 * @param followSpeed How fast entity follows the path
 	 */
-	public PathFollower(float pathNodeDist, float pathGoalThreshold, float pathUpdateFrequency,
+	public PathFollower(float pathNodeDist, float pathGoalThreshold, float pathUpdateFrequency, int pathMaxIterations,
 			float nodeThreshold, float followSpeed){
 		path = new LinkedList<Node>();
-		pathfinder = new PathFinder(pathNodeDist, pathGoalThreshold, pathUpdateFrequency);
+		pathfinder = new PathFinder(pathNodeDist, pathGoalThreshold, pathUpdateFrequency, pathMaxIterations);
 		this.nodeThreshold = nodeThreshold;
 		this.followSpeed = followSpeed;
 	}
