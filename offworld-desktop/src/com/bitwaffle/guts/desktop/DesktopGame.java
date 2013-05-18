@@ -9,6 +9,7 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.desktop.devmode.DevModeDisplay;
 import com.bitwaffle.guts.desktop.devmode.builder.Builder;
 import com.bitwaffle.guts.desktop.gui.DesktopGUI;
+import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.offworld.OffworldGame;
 
 /**
@@ -43,8 +44,8 @@ public class DesktopGame extends OffworldGame {
 	}
 	
 	@Override
-	protected void initGUI(){
-		gui = new DesktopGUI();
+	protected GUI initGUI(){
+		return new DesktopGUI();
 	}
 	
 	@Override

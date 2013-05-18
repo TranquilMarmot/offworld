@@ -1,9 +1,18 @@
 package com.bitwaffle.offworld;
 
+import com.badlogic.gdx.Gdx;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.physics.PhysicsHelper;
+import com.bitwaffle.guts.graphics.render.Renderer;
+import com.bitwaffle.guts.input.Input;
+import com.bitwaffle.guts.net.Net;
+import com.bitwaffle.guts.physics.Physics;
+import com.bitwaffle.offworld.camera.CameraModes;
 import com.bitwaffle.offworld.entities.player.Player;
-import com.bitwaffle.offworld.gui.states.GUIStates;
+import com.bitwaffle.offworld.gui.GUIStates;
+import com.bitwaffle.offworld.input.OffworldInput;
+import com.bitwaffle.offworld.net.OffworldNet;
+import com.bitwaffle.offworld.physics.OffworldPhysics;
+import com.bitwaffle.offworld.rooms.Room1;
 
 /**
  * Sets the game to the title screen for Offworld.
@@ -11,6 +20,9 @@ import com.bitwaffle.offworld.gui.states.GUIStates;
  * @author TranquilMarmot
  */
 public abstract class OffworldGame extends Game {
+	/** Current version of the game */
+	public static final String VERSION = "0.0.6.10 (pre-alpha)";
+	
 	/** Whether or not to show the splash screen */
 	public static boolean showSplash = false;
 	
@@ -22,12 +34,44 @@ public abstract class OffworldGame extends Game {
 		super.create();
 		
 		if(showSplash)
-			gui.setCurrentState(GUIStates.SPLASH);
+			gui.setCurrentState(GUIStates.SPLASH.state);
 		else {
 			//gui.setCurrentState(GUIStates.TITLESCREEN); FIXME temp
-			PhysicsHelper.tempInit(Game.physics);
-			Game.gui.setCurrentState(GUIStates.NONE);
+			tempInit(Game.physics);
+			Game.gui.setCurrentState(GUIStates.NONE.state);
 		}
+	}
+	
+	@Override
+	protected void initGDX(){
+		super.initGDX();
+		Gdx.graphics.setTitle("Offworld " + VERSION);
+	}
+	
+	@Override
+	protected Physics initPhysics(){ return new OffworldPhysics(); }
+	
+	@Override
+	protected Net initNet(){ return new OffworldNet(); }
+	
+	@Override
+	protected Input initInput(){ return new OffworldInput(); }
+	
+	@Override
+	protected Renderer initRenderer(){
+		Renderer r = super.initRenderer();
+		CameraModes.setCamera(r);
+		return r;
+	}
+	
+	/**
+	 * Temporary initialization
+	 * @param physics Physics world to initialize
+	 */
+	public static void tempInit(Physics physics){
+		//initPlayer(physics, new Vector2(1.0f, 6.0f));
+		Room1 r1 = new Room1();
+		physics.setCurrentRoom(r1);
 	}
 
 }

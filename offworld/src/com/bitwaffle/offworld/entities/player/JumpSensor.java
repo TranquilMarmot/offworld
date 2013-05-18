@@ -60,13 +60,13 @@ public class JumpSensor {
 	}
 	
 	/**
-	 * Called by {@link ContactHandler} when sensor hits something
+	 * Called by {@link OffworldContactFilter} when sensor hits something
 	 */
 	public void beginContact(DynamicEntity ent){
 		contacts.push(ent);
 	}
 	
-	/** Called by {@link ContactHandler} when sensor stops hitting something */
+	/** Called by {@link OffworldContactFilter} when sensor stops hitting something */
 	public void endContact(DynamicEntity ent){
 		contacts.remove(ent);
 	}

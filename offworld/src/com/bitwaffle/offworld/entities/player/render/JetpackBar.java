@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.render.Renderer;
-import com.bitwaffle.guts.gui.hud.Bar;
 import com.bitwaffle.offworld.entities.player.Jetpack;
+import com.bitwaffle.offworld.gui.hud.Bar;
 
 /**
  * Bar that hovers above a player's head and represents how much jetpack is left

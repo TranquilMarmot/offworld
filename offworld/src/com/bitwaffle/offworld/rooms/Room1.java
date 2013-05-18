@@ -65,8 +65,8 @@ public class Room1 extends Room {
 		}
 		
 		for(int i = 0; i < 3; i++){
-    		float batX = Game.random.nextFloat() * 100.0f;
-    		float batY = Game.random.nextFloat() * 100.0f;
+    		float batX = Game.random.nextFloat() * 10.0f;
+    		float batY = Game.random.nextFloat() * 10.0f;
     		if(Game.random.nextBoolean()) batX = -batX;
     		if(Game.random.nextBoolean()) batY = -batY;
     		

@@ -5,10 +5,10 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/offworld"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-	<classpathentry exported="true" kind="lib" path="/offworld/libs/gdx.jar" sourcepath="/offworld/libs/gdx-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/gdx-backend-android.jar" sourcepath="libs/gdx-backend-android-sources.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="libs/gdx-backend-android-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/gdx-controllers-android.jar"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/guts"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

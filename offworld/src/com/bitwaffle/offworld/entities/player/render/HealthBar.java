@@ -1,6 +1,6 @@
 package com.bitwaffle.offworld.entities.player.render;
 
-import com.bitwaffle.guts.gui.hud.Bar;
+import com.bitwaffle.offworld.gui.hud.Bar;
 
 public class HealthBar extends Bar{
 	private static final int COLUMNS = 8;

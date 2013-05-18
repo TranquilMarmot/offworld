@@ -2,6 +2,7 @@ package com.bitwaffle.guts.android;
 
 import com.badlogic.gdx.Gdx;
 import com.bitwaffle.guts.android.gui.AndroidGUI;
+import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.offworld.OffworldGame;
 
 /**
@@ -12,8 +13,8 @@ import com.bitwaffle.offworld.OffworldGame;
 public class AndroidGame extends OffworldGame {
 	
 	@Override
-	protected void initGUI(){
-		gui = new AndroidGUI();
+	protected GUI initGUI(){
+		return new AndroidGUI();
 	}
 	
 	@Override
