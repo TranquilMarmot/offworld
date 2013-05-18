@@ -6,7 +6,6 @@ import java.util.Queue;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.ai.path.Node;
 import com.bitwaffle.guts.ai.path.PathFinder;
-import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.util.MathHelper;
 
 /**
@@ -15,15 +14,30 @@ import com.bitwaffle.guts.util.MathHelper;
  * @author TranquilMarmot
  */
 public class PathFollower extends AIState {
-	
-	// TODO find a way to get path from pathfinder and step through it
+	/** Path entity is following */
 	private Queue<Node> path;
-	
+	/** Finds path that gets followed */
 	public PathFinder pathfinder;
 	
-	public PathFollower(DynamicEntity ent){
+	private float
+		/** How close the entity has to be to each node before moving on to the next one */
+		nodeThreshold,
+		/** Speed that entity moves along path */
+		followSpeed;
+	
+	/**
+	 * @param pathNodeDist How far apart each node in the pathfinding should be (farther is faster)
+	 * @param pathGoalThreshold How close a node has to be for it to be considered the goal during pathfinding
+	 * @param pathUpdateFrequency How frequently to refind the path (in seconds)
+	 * @param nodeThreshold How close entity has to be to node in path to move on to next node
+	 * @param followSpeed How fast entity follows the path
+	 */
+	public PathFollower(float pathNodeDist, float pathGoalThreshold, float pathUpdateFrequency,
+			float nodeThreshold, float followSpeed){
 		path = new LinkedList<Node>();
-		pathfinder = new PathFinder(2.5f, 5.0f, 0.5f);
+		pathfinder = new PathFinder(pathNodeDist, pathGoalThreshold, pathUpdateFrequency);
+		this.nodeThreshold = nodeThreshold;
+		this.followSpeed = followSpeed;
 	}
 
 	@Override
@@ -34,23 +48,21 @@ public class PathFollower extends AIState {
 		moveTowardsTarget();
 	}
 	
+	/** Set the path being followed */
 	public void setPath(LinkedList<Node> newPath){ path = newPath; }
 	
+	/** Sets linear velocity to move towards current point */
 	private void moveTowardsTarget(){
 		Node n = path.peek();
 		if(n != null){
-			Vector2 target = path.peek().loc();
-			float angle = MathHelper.angle(controlling.getLocation(), target);
+			float angle = MathHelper.angle(controlling.getLocation(), n.loc());
 			
-			float speed = 10.0f;
-			
-			Vector2 linvec = new Vector2(speed, 0.0f);
+			Vector2 linvec = new Vector2(followSpeed, 0.0f);
 			linvec.rotate(angle);
 			controlling.body.setLinearVelocity(linvec);
 			
-			// how close it has to be before moving on to next node
-			float nodeDist = 1.0f;
-			if(controlling.getLocation().dst(target) <= nodeDist)
+			// move on to next node if close enough to current
+			if(controlling.getLocation().dst(n.loc()) <= nodeThreshold)
 				path.poll();
 		}
 	}

@@ -4,8 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.ai.AI;
-import com.bitwaffle.guts.ai.path.PathFinder;
 import com.bitwaffle.guts.ai.states.PathFollower;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.offworld.OffworldGame;
@@ -20,29 +20,40 @@ import com.bitwaffle.offworld.interfaces.Health;
  * @author TranquilMarmot
  */
 public class Bat extends DynamicEntity implements Health {
+	// TODO add sensor to tell when player is near and attack player
+	// TODO add states for idle sweepin (sin and cos velocities)
+	
 	protected BatSleepAnimation sleepAnimation;
 	protected BatFlyAnimation flyAnimation;
 	
 	private static float width = 0.78f, height = 1.35f;
 	
-	private float health;
+	private float health = 100.0f;
 	
 	public boolean sleeping = false;
 	
-	// FIXME temp
+	// FIXME temp??
 	float timer = 0.0f;
 	
-	//public PathFinder pathfinder;
+	/** AI controlling this Bat */
 	private AI ai;
+	/** Makes bat move along given path */
 	public PathFollower follower;
 	
 	public Bat(int layer, Vector2 location){
 		super(new BatRenderer(), layer, getBodyDef(location), getFixtureDef());
 		sleepAnimation = new BatSleepAnimation(this);
 		flyAnimation = new BatFlyAnimation(this);
-		//pathfinder = new PathFinder();
+		
 		ai = new AI(this);
-		follower = new PathFollower(this);
+		float
+			pathNodeDist = 10.0f,
+			pathGoalThreshold = 15.0f,
+			pathUpdateFrequency = 1.0f,
+			nodeThreshold = 2.0f,
+			followSpeed = 4.5f;
+				
+		follower = new PathFollower(pathNodeDist, pathGoalThreshold, pathUpdateFrequency, nodeThreshold, followSpeed);
 		ai.setState(follower);
 	}
 	
@@ -86,11 +97,6 @@ public class Bat extends DynamicEntity implements Health {
 		} else {
 			this. body.setLinearVelocity((float)Math.sin(timer) * 2.0f, (float)Math.cos(timer) * 1.0f);
 		}
-		
-		// update path
-		pathfinder.setStart(this.location);
-		pathfinder.setGoal(OffworldGame.players[0].getLocation());
-		pathfinder.updatePath(timeStep);
 		*/
 	}
 	
@@ -106,7 +112,11 @@ public class Bat extends DynamicEntity implements Health {
 	public float currentHealth() { return health; }
 
 	@Override
-	public void hurt(float amount) { health -= amount; }
+	public void hurt(float amount) {
+		health -= amount;
+		if(health <= 0.0f)
+			Game.physics.removeEntity(this, true);
+	}
 
 	@Override
 	public void heal(float amount) { health += amount; }

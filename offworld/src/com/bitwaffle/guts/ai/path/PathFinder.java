@@ -51,9 +51,6 @@ public class PathFinder {
 	/** Used to time updates*/
 	private float timer;
 	
-	// FIXME debug
-	private int step = 1;
-	
 	/** Current node being looked at */
 	private Node current;
 	
@@ -102,9 +99,6 @@ public class PathFinder {
 		if(timer > updateFrequency){
 			timer -= updateFrequency;
 			
-			// FIXME temp
-			step++;
-			
 			// clear everything
 			openset.clear();
 			grid.clear();
@@ -125,7 +119,6 @@ public class PathFinder {
 	 */
 	private void aStar(){
 		while(!openset.isEmpty()){
-		//for(int i = 0; i < step; i++){
 			// grabbing the head will give the node with the lowest value and thus the closest
 			current = openset.remove();
 			
@@ -165,6 +158,7 @@ public class PathFinder {
 	private void reconstructPath(Node n) {
 		path.clear();
 		if(n.parent() != null){
+			// recurse to add parent's parents
 			reconstructPath(n.parent());
 			path.add(n);
 		} else 
@@ -205,6 +199,7 @@ public class PathFinder {
 	
 	/** Builds up start nodes in eight directions */
 	private void buildStartNodes(){
+		// TODO would it be better to use a hex grid here instead of a square one?
 		Vector2
 			loc = start.loc(),
 			nvec = new Vector2(loc.x, loc.y + nodeDist),

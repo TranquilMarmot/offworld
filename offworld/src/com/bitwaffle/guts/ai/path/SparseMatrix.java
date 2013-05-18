@@ -131,8 +131,11 @@ public class SparseMatrix {
 	/** Get rid of everything in this matrix */
 	public void clear(){
 		// clear every row
-		for(int row = minRow; row < maxRow; row++)
-			((IntHashMap)list.get(row)).clear();
+		for(int row = minRow; row < maxRow; row++){
+			IntHashMap m = (IntHashMap)list.get(row);
+			if(m != null)
+				m.clear();
+		}
 		list.clear();
 		
 		minRow = 0;
