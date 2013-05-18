@@ -6,8 +6,8 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
-import com.bitwaffle.guts.graphics.render.Renderer;
-import com.bitwaffle.guts.graphics.render.render2d.EntityRenderer;
+import com.bitwaffle.guts.graphics.Renderer;
+import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
 import com.bitwaffle.offworld.entities.player.JumpSensor;
 import com.bitwaffle.offworld.entities.player.Player;
 
@@ -16,7 +16,7 @@ import com.bitwaffle.offworld.entities.player.Player;
  * 
  * @author TranquilMarmot
  */
-public class PlayerRenderer implements EntityRenderer {
+public class PlayerRenderer implements EntityRenderer2D {
 	private static float[] color = new float[]{1.0f, 1.0f, 1.0f, 1.0f};
 	private static Matrix4 tempmat = new Matrix4();
 	

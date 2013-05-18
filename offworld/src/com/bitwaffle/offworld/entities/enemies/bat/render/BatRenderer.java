@@ -5,11 +5,11 @@ import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.ai.path.DebugPathRenderer;
 import com.bitwaffle.guts.entity.Entity;
-import com.bitwaffle.guts.graphics.render.Renderer;
-import com.bitwaffle.guts.graphics.render.render2d.EntityRenderer;
+import com.bitwaffle.guts.graphics.Renderer;
+import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
 import com.bitwaffle.offworld.entities.enemies.bat.Bat;
 
-public class BatRenderer implements EntityRenderer {
+public class BatRenderer implements EntityRenderer2D {
 
 	@Override
 	public void render(Renderer renderer, Entity ent, boolean renderDebug) {

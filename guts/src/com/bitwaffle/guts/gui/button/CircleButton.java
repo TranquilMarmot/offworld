@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.gui.button;
 
-import com.bitwaffle.guts.graphics.render.Renderer;
+import com.bitwaffle.guts.graphics.Renderer;
 
 /**
  * A circle-shaped button

@@ -3,9 +3,9 @@ package com.bitwaffle.offworld.entities.player
 import com.bitwaffle.guts.entity.particles.EmitterSettings
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity
 import com.badlogic.gdx.math.Vector2
-import com.bitwaffle.guts.graphics.render.render2d.EntityRenderer
-import com.bitwaffle.guts.graphics.render.Renderer
-import com.bitwaffle.guts.graphics.render.render2d.Render2D
+import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D
+import com.bitwaffle.guts.graphics.Renderer
+import com.bitwaffle.guts.graphics.graphics2d.Render2D
 import com.bitwaffle.guts.entity.Entity
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.GL20
@@ -38,7 +38,7 @@ class JetpackEmitterSettings(attachedTo: DynamicEntity) extends EmitterSettings 
 	def particleRestitution = 0.2f
 	
 	
-	def particleRenderer = new EntityRenderer {
+	def particleRenderer = new EntityRenderer2D {
 		override def render(renderer: Renderer, ent: Entity, debug: Boolean){
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);

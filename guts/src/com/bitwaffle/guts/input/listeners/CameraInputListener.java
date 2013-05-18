@@ -2,7 +2,7 @@ package com.bitwaffle.guts.input.listeners;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.input.GestureDetector.GestureListener;
-import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D;
+import com.bitwaffle.guts.graphics.graphics2d.Camera2D;
 
 /**
  * Controls a 2D camera

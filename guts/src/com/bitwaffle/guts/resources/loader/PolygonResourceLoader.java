@@ -9,11 +9,11 @@ import org.json.JSONObject;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector3;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.shapes.model.Model;
-import com.bitwaffle.guts.graphics.shapes.model.ModelPolygon;
-import com.bitwaffle.guts.graphics.shapes.model.ObjParser;
-import com.bitwaffle.guts.graphics.shapes.polygon.Polygon;
-import com.bitwaffle.guts.graphics.shapes.polygon.PolygonLoader;
+import com.bitwaffle.guts.graphics.graphics2d.shapes.polygon.Polygon;
+import com.bitwaffle.guts.graphics.graphics2d.shapes.polygon.PolygonLoader;
+import com.bitwaffle.guts.graphics.graphics3d.model.Model;
+import com.bitwaffle.guts.graphics.graphics3d.model.ModelPolygon;
+import com.bitwaffle.guts.graphics.graphics3d.model.ObjParser;
 
 /**
  * Handles loading polygons and models from resource files

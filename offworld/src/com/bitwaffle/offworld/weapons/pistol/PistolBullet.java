@@ -10,7 +10,7 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.dynamic.BoxEntity;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.entity.passive.Decal;
-import com.bitwaffle.guts.graphics.shapes.quad.QuadRenderer;
+import com.bitwaffle.guts.graphics.graphics2d.shapes.quad.QuadRenderer;
 import com.bitwaffle.guts.physics.CollisionFilters;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.interfaces.Health;

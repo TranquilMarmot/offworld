@@ -3,7 +3,7 @@ package com.bitwaffle.offworld.input;
 import com.badlogic.gdx.Input;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.gui.GUI;
-import com.bitwaffle.guts.input.listeners.gui.GUIInputListener;
+import com.bitwaffle.guts.input.gui.GUIInputListener;
 import com.bitwaffle.offworld.gui.GUIStates;
 
 public class OffworldGUIInputListener extends GUIInputListener {

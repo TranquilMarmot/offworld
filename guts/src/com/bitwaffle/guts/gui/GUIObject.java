@@ -1,6 +1,6 @@
 package com.bitwaffle.guts.gui;
 
-import com.bitwaffle.guts.graphics.render.Renderer;
+import com.bitwaffle.guts.graphics.Renderer;
 
 /**
  * Everything that the GUI uses should extend this class.

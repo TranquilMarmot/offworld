@@ -9,10 +9,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
+import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.glsl.GLSLShader;
-import com.bitwaffle.guts.graphics.render.Renderer;
-import com.bitwaffle.guts.graphics.render.render2d.EntityRenderer;
+import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
 
 /**
  * This is a port of a Javascript/HTML5/WebGL sandbox that can be found
@@ -57,7 +57,7 @@ public class GLSLSandbox extends Entity {
 	@Override
 	public void cleanup() {}
 	
-	private class SandboxRenderer implements EntityRenderer{
+	private class SandboxRenderer implements EntityRenderer2D{
 		/** Number of coordinates per vertex */
 		private static final int COORDS_PER_VERTEX = 3;
 		

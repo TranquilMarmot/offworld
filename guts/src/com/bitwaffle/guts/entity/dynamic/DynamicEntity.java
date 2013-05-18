@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.entity.Entity;
-import com.bitwaffle.guts.graphics.render.render2d.EntityRenderer;
+import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
 import com.bitwaffle.guts.physics.Physics;
 
 /**
@@ -36,7 +36,7 @@ public class DynamicEntity extends Entity {
 	}
 	
 	/** Create a new DynmicEntity with one fixture */
-	public DynamicEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, FixtureDef fixtureDef){
+	public DynamicEntity(EntityRenderer2D renderer, int layer, BodyDef bodyDef, FixtureDef fixtureDef){
 		super(renderer, layer);
 		
 		this.bodyDef = bodyDef;
@@ -45,7 +45,7 @@ public class DynamicEntity extends Entity {
 	}
 	
 	/** Create a new DynmicEntity with multiple fixtures */
-	public DynamicEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, ArrayList<FixtureDef> fixtureDefs){
+	public DynamicEntity(EntityRenderer2D renderer, int layer, BodyDef bodyDef, ArrayList<FixtureDef> fixtureDefs){
 		super(renderer, layer);
 		
 		this.bodyDef = bodyDef;
@@ -53,7 +53,7 @@ public class DynamicEntity extends Entity {
 	}
 	
 	/** Create a new DynamicEntity with a single shape and given density */
-	public DynamicEntity(EntityRenderer renderer, int layer, BodyDef bodyDef, Shape shape, float density){
+	public DynamicEntity(EntityRenderer2D renderer, int layer, BodyDef bodyDef, Shape shape, float density){
 		super(renderer, layer);
 		
 		this.bodyDef = bodyDef;
@@ -62,7 +62,7 @@ public class DynamicEntity extends Entity {
 	}
 	
 	/** Create a new DynamicEntity from a body */
-	public DynamicEntity(EntityRenderer renderer, int layer, Body body){
+	public DynamicEntity(EntityRenderer2D renderer, int layer, Body body){
 		super(renderer, layer);
 		this.body = body;
 		body.setUserData(this);

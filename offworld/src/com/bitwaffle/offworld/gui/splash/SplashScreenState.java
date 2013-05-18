@@ -6,10 +6,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.entity.passive.GLSLSandbox;
-import com.bitwaffle.guts.graphics.render.Renderer;
-import com.bitwaffle.guts.graphics.render.render2d.EntityRenderer;
-import com.bitwaffle.guts.graphics.render.render3d.EntityRenderer3D;
-import com.bitwaffle.guts.graphics.shapes.model.ModelRenderer;
+import com.bitwaffle.guts.graphics.Renderer;
+import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
+import com.bitwaffle.guts.graphics.graphics3d.EntityRenderer3D;
+import com.bitwaffle.guts.graphics.graphics3d.model.ModelRenderer;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
@@ -57,7 +57,7 @@ public class SplashScreenState extends GUIState {
 		};
 		
 		// create text object
-		EntityRenderer textRenderer = new EntityRenderer(){
+		EntityRenderer2D textRenderer = new EntityRenderer2D(){
 			@Override
 			public void render(Renderer renderer, Entity ent, boolean renderDebug){
 				Gdx.gl20.glEnable(GL20.GL_BLEND);

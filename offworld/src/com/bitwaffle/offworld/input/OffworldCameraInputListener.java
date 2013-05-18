@@ -3,7 +3,7 @@ package com.bitwaffle.offworld.input;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D;
+import com.bitwaffle.guts.graphics.graphics2d.Camera2D;
 import com.bitwaffle.guts.input.listeners.CameraInputListener;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.camera.CameraModes;

@@ -6,7 +6,7 @@ import java.util.Random;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.bitwaffle.guts.graphics.render.Renderer;
+import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.input.Input;
 import com.bitwaffle.guts.net.Net;

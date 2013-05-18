@@ -3,8 +3,8 @@ package com.bitwaffle.guts.resources.manager;
 import java.util.HashMap;
 
 import com.badlogic.gdx.physics.box2d.Shape;
-import com.bitwaffle.guts.graphics.shapes.model.ModelPolygon;
-import com.bitwaffle.guts.graphics.shapes.polygon.Polygon;
+import com.bitwaffle.guts.graphics.graphics2d.shapes.polygon.Polygon;
+import com.bitwaffle.guts.graphics.graphics3d.model.ModelPolygon;
 
 /**
  * Manages a list of polygons

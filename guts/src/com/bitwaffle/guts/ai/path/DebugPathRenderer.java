@@ -7,7 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.Renderer;
+import com.bitwaffle.guts.graphics.Renderer;
 
 /**
  * Renders a Pathfinder

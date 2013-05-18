@@ -1,7 +1,7 @@
 package com.bitwaffle.guts.gui.button;
 
-import com.bitwaffle.guts.graphics.render.Renderer;
-import com.bitwaffle.guts.graphics.shapes.TiledBox;
+import com.bitwaffle.guts.graphics.Renderer;
+import com.bitwaffle.guts.graphics.graphics2d.shapes.TiledBox;
 
 /**
  * A button that stretches in segments that can be any size

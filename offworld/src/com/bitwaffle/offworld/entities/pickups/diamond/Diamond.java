@@ -4,8 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.render.render3d.EntityRenderer3D;
-import com.bitwaffle.guts.graphics.shapes.model.ModelRenderer;
+import com.bitwaffle.guts.graphics.graphics3d.EntityRenderer3D;
+import com.bitwaffle.guts.graphics.graphics3d.model.ModelRenderer;
 import com.bitwaffle.offworld.entities.player.Inventory;
 import com.bitwaffle.offworld.interfaces.Money;
 

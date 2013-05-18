@@ -13,10 +13,10 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.utils.BufferUtils;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.SubImage;
-import com.bitwaffle.guts.graphics.animation.Animation;
-import com.bitwaffle.guts.graphics.animation.AnimationPart;
-import com.bitwaffle.guts.graphics.animation.Frame;
+import com.bitwaffle.guts.graphics.graphics2d.animation.Animation;
+import com.bitwaffle.guts.graphics.graphics2d.animation.AnimationPart;
+import com.bitwaffle.guts.graphics.graphics2d.animation.Frame;
+import com.bitwaffle.guts.graphics.graphics2d.shapes.quad.SubImage;
 
 /**
  * Handles loading textures and animations

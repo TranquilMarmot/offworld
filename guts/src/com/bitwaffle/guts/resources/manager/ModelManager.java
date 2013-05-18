@@ -2,7 +2,7 @@ package com.bitwaffle.guts.resources.manager;
 
 import java.util.HashMap;
 
-import com.bitwaffle.guts.graphics.shapes.model.Model;
+import com.bitwaffle.guts.graphics.graphics3d.model.Model;
 
 public class ModelManager {
 	private HashMap<String, Model> models;

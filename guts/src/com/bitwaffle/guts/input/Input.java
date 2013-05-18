@@ -7,11 +7,11 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.mappings.Ouya;
 import com.badlogic.gdx.input.GestureDetector;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.input.controller.gui.OuyaGUIControllerListener;
-import com.bitwaffle.guts.input.controller.gui.XboxGUIControllerListener;
+import com.bitwaffle.guts.input.gui.GUIInputListener;
+import com.bitwaffle.guts.input.gui.controller.OuyaGUIControllerListener;
+import com.bitwaffle.guts.input.gui.controller.XboxGUIControllerListener;
 import com.bitwaffle.guts.input.listeners.CameraInputListener;
 import com.bitwaffle.guts.input.listeners.ConsoleInputListener;
-import com.bitwaffle.guts.input.listeners.gui.GUIInputListener;
 
 /**
  * Handles the input multiplexer and instances of useful input processors.

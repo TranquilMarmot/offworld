@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.render2d.camera.Camera2D;
+import com.bitwaffle.guts.graphics.graphics2d.Camera2D;
 
 /**
  * Any math functions not found in Android's FloatMath or 

@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Stack;
 
 import com.badlogic.gdx.Gdx;
-import com.bitwaffle.guts.graphics.render.Renderer;
+import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.console.Console;
 import com.bitwaffle.guts.gui.states.GUIState;

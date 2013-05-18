@@ -11,9 +11,9 @@ import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.offworld.OffworldGame;
 import com.bitwaffle.offworld.camera.CameraModes;
 import com.bitwaffle.offworld.entities.player.Player;
-import com.bitwaffle.offworld.input.player.PlayerInputListener;
-import com.bitwaffle.offworld.input.player.controller.OuyaPlayerControllerListener;
-import com.bitwaffle.offworld.input.player.controller.XboxPlayerControllerListener;
+import com.bitwaffle.offworld.entities.player.input.PlayerInputListener;
+import com.bitwaffle.offworld.entities.player.input.controller.OuyaPlayerControllerListener;
+import com.bitwaffle.offworld.entities.player.input.controller.XboxPlayerControllerListener;
 
 public class OffworldPhysics extends Physics {
 

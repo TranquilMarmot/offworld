@@ -1,7 +1,7 @@
 package com.bitwaffle.offworld.gui.options.buttons;
 
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.Renderer;
+import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.gui.button.BooleanButton;
 import com.bitwaffle.guts.gui.button.CircleButton;
 

@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.bitwaffle.guts.graphics.SubImage;
-import com.bitwaffle.guts.graphics.animation.Animation;
+import com.bitwaffle.guts.graphics.graphics2d.animation.Animation;
+import com.bitwaffle.guts.graphics.graphics2d.shapes.quad.SubImage;
 
 /**
  * Manages initializing and loading textures, and keeps

@@ -2,7 +2,7 @@ package com.bitwaffle.offworld;
 
 import com.badlogic.gdx.Gdx;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.render.Renderer;
+import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.input.Input;
 import com.bitwaffle.guts.net.Net;
 import com.bitwaffle.guts.physics.Physics;

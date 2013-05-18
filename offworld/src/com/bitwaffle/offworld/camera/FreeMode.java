@@ -1,13 +1,13 @@
 package com.bitwaffle.offworld.camera;
 
-import com.bitwaffle.guts.graphics.render.render2d.camera.CameraMode;
+import com.bitwaffle.guts.graphics.graphics2d.Camera2D;
 
 /**
  * Camera mode that mostly gets controlled by outside forces
  * 
  * @author TranquilMarmot
  */
-public class FreeMode extends CameraMode {
+public class FreeMode extends Camera2D.CameraMode {
 	@Override
 	public void update(float timeStep){
 		// do nothing (events handled by touch handler)

@@ -2,8 +2,8 @@ package com.bitwaffle.offworld.entities.enemies.bat.render;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.animation.Animation;
-import com.bitwaffle.guts.graphics.render.Renderer;
+import com.bitwaffle.guts.graphics.Renderer;
+import com.bitwaffle.guts.graphics.graphics2d.animation.Animation;
 import com.bitwaffle.offworld.entities.enemies.bat.Bat;
 
 public class BatFlyAnimation extends Animation {

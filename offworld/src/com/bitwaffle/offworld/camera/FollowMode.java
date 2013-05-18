@@ -3,7 +3,7 @@ package com.bitwaffle.offworld.camera;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.render.render2d.camera.CameraMode;
+import com.bitwaffle.guts.graphics.graphics2d.Camera2D;
 import com.bitwaffle.offworld.entities.player.Player;
 
 /**
@@ -11,7 +11,7 @@ import com.bitwaffle.offworld.entities.player.Player;
  * 
  * @author TranquilMarmot
  */
-public class FollowMode extends CameraMode {
+public class FollowMode extends Camera2D.CameraMode {
 	
 	/** What the camera is following */
 	private DynamicEntity target;

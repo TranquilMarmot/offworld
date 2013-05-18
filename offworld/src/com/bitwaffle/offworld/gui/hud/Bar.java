@@ -1,7 +1,7 @@
 package com.bitwaffle.offworld.gui.hud;
 
-import com.bitwaffle.guts.graphics.render.Renderer;
-import com.bitwaffle.guts.graphics.shapes.TiledBox;
+import com.bitwaffle.guts.graphics.Renderer;
+import com.bitwaffle.guts.graphics.graphics2d.shapes.TiledBox;
 import com.bitwaffle.guts.gui.GUIObject;
 
 /**
