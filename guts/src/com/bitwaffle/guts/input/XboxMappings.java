@@ -1,5 +1,10 @@
 package com.bitwaffle.guts.input;
 
+/**
+ * Maps Xbox controller buttons to their numbers
+ * 
+ * @author TranquilMarmot
+ */
 public class XboxMappings {
 	public static final int BUTTON_A = 0;
 	public static final int BUTTON_B = 1;

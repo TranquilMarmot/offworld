@@ -2,10 +2,10 @@ package com.bitwaffle.guts.graphics.graphics2d.shapes;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.MathHelper;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
-import com.bitwaffle.guts.util.MathHelper;
 
 /**
  * Used for rendering an image that takes up the entire screen.

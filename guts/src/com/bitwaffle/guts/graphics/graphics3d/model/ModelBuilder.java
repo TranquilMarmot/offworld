@@ -3,6 +3,7 @@ package com.bitwaffle.guts.graphics.graphics3d.model;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.BufferUtils;
 
 /**
@@ -14,6 +15,8 @@ import com.badlogic.gdx.utils.BufferUtils;
  * @see ObjParser
  */
 public class ModelBuilder {
+	private static final String LOGTAG = "ModelBuilder";
+	
 	/** the vertices of the model */
 	private ArrayList<float[]> vertices;
 
@@ -135,7 +138,7 @@ public class ModelBuilder {
 			// increase the count of indices for the current model part by 6 (two triangle)
 			count += 6;
 		} else {
-			System.out.println("Error! Array not a triangle or a quad! (ModelBuilder)");
+			Gdx.app.error(LOGTAG, "Error! Array not a triangle or a quad! (ModelBuilder)");
 		}
 	}
 
@@ -168,7 +171,7 @@ public class ModelBuilder {
 
 			normalIndices.add(tri2);
 		} else {
-			System.out.println("Error! Array not a triangle or a quad! (ModelBuilder)");
+			Gdx.app.error(LOGTAG, "Error! Array not a triangle or a quad! (ModelBuilder)");
 		}
 	}
 
@@ -199,7 +202,7 @@ public class ModelBuilder {
 
 			textureIndices.add(tri2);
 		} else {
-			System.out.println("Error! Array not a triangle or a quad! (ModelBuilder)");
+			Gdx.app.error(LOGTAG, "Error! Array not a triangle or a quad! (ModelBuilder)");
 		}
 	}
 
@@ -312,21 +315,4 @@ public class ModelBuilder {
 	public boolean isMakingModelPart(){
 		return makingModelPart;
 	}
-	
-	/**
-	 * Builds a collision shape for this model
-	 * @return A convex hull collision shape representing this model
-	 */
-	/*
-	private CollisionShape buildCollisionShape(){
-		ConvexShape originalConvexShape = new ConvexHullShape(vertices);
-		
-		// create a hull based on the vertices
-		ShapeHull hull = new ShapeHull(originalConvexShape);
-		float margin = originalConvexShape.getMargin();
-		hull.buildHull(margin);
-		
-		return new ConvexHullShape(hull.getVertexPointer());
-	}
-	*/
 }

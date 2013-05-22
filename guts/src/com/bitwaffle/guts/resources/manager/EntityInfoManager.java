@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.resources.entityinfo;
+package com.bitwaffle.guts.resources.manager;
 
 import java.util.HashMap;
 
@@ -11,6 +11,19 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
  * @author TranquilMarmot
  */
 public class EntityInfoManager {
+	public static class EntityInfo {
+		private FixtureDef fixDef;
+		private BodyDef bodDef;
+		
+		public EntityInfo(FixtureDef fixDef, BodyDef bodDef){
+			this.fixDef = fixDef;
+			this.bodDef = bodDef;
+		}
+		
+		public FixtureDef getFixtureDef(){ return fixDef; }
+		public BodyDef getBodyDef(){ return bodDef; }
+	}
+	
 	/** Info about entities */
 	private HashMap<String, EntityInfo> info;
 	

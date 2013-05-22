@@ -5,8 +5,8 @@ import java.util.LinkedList;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.MathHelper;
 import com.bitwaffle.guts.graphics.graphics2d.Camera2D;
-import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.camera.CameraModes;
 import com.bitwaffle.offworld.entities.player.Player;
 

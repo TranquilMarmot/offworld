@@ -119,9 +119,6 @@ public class ObjParser {
 					float y = (Float.parseFloat(toker.nextToken()) + offset.y) * scale.y;
 					float z = (Float.parseFloat(toker.nextToken()) + offset.z) * scale.z;
 					
-					//org.lwjgl.util.vector.Vector3 rotated = QuaternionHelper.rotateVectorByQuaternion(new org.lwjgl.util.vector.Vector3(x, y, z), rotation);
-
-					//builder.addVertex(new Vector3(rotated.x, rotated.y, rotated.z));
 					builder.addVertex(new float[]{x, y, z});
 				}
 
@@ -131,10 +128,7 @@ public class ObjParser {
 					float x = Float.parseFloat(toker.nextToken());
 					float y = Float.parseFloat(toker.nextToken());
 					float z = Float.parseFloat(toker.nextToken());
-					
-					//org.lwjgl.util.vector.Vector3 rotated = QuaternionHelper.rotateVectorByQuaternion(new org.lwjgl.util.vector.Vector3(x, y, z), rotation);
 
-					//builder.addNormal(new Vector3(rotated.x, rotated.y, rotated.z));
 					builder.addNormal(new float[]{x, y, z});
 				}
 

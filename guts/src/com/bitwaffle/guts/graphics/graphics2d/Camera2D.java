@@ -3,9 +3,9 @@ package com.bitwaffle.guts.graphics.graphics2d;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.MathHelper;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.physics.Room;
-import com.bitwaffle.guts.util.MathHelper;
 
 /**
  * Describes how a scene should be rendered and handles following a given entity

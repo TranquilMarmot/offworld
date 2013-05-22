@@ -23,7 +23,7 @@ import com.bitwaffle.guts.graphics.graphics2d.shapes.quad.SubImage;
  * 
  * @author TranquilMarmot
  */
-public class TextureResourceLoader {
+public class ImageResourceLoader {
 	private static final String LOGTAG = "TextureLoader";
 	
 	/** @param arr Array of textures to load */
@@ -218,6 +218,4 @@ public class TextureResourceLoader {
 		
 		return buff;
 	}
-	
-
 }

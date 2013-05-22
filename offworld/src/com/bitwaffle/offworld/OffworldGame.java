@@ -6,6 +6,7 @@ import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.input.Input;
 import com.bitwaffle.guts.net.Net;
 import com.bitwaffle.guts.physics.Physics;
+import com.bitwaffle.guts.resources.loader.ResourceLoader;
 import com.bitwaffle.offworld.camera.CameraModes;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.bitwaffle.offworld.gui.GUIStates;
@@ -15,13 +16,13 @@ import com.bitwaffle.offworld.physics.OffworldPhysics;
 import com.bitwaffle.offworld.rooms.Room1;
 
 /**
- * Sets the game to the title screen for Offworld.
+ * Welcome to Offworld.
  * 
  * @author TranquilMarmot
  */
 public abstract class OffworldGame extends Game {
 	/** Current version of the game */
-	public static final String VERSION = "0.0.6.10 (pre-alpha)";
+	public static final String VERSION = "0.0.6.12 (pre-alpha)";
 	
 	/** Whether or not to show the splash screen */
 	public static boolean showSplash = false;
@@ -32,6 +33,9 @@ public abstract class OffworldGame extends Game {
 	@Override
 	public void create(){
 		super.create();
+		
+		// load vital resources from base resource file
+		ResourceLoader.loadResourceFile("base.res");
 		
 		if(showSplash)
 			gui.setCurrentState(GUIStates.SPLASH.state);
@@ -60,6 +64,7 @@ public abstract class OffworldGame extends Game {
 	@Override
 	protected Renderer initRenderer(){
 		Renderer r = super.initRenderer();
+		// grab camera and set camera modes to use it
 		CameraModes.setCamera(r);
 		return r;
 	}
@@ -69,7 +74,6 @@ public abstract class OffworldGame extends Game {
 	 * @param physics Physics world to initialize
 	 */
 	public static void tempInit(Physics physics){
-		//initPlayer(physics, new Vector2(1.0f, 6.0f));
 		Room1 r1 = new Room1();
 		physics.setCurrentRoom(r1);
 	}

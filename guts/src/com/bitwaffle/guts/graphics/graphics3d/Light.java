@@ -16,6 +16,5 @@ public class Light {
 	}
 	
 	public Vector3 location(){ return location; }
-	
 	public Vector3 intensity(){ return intensity; }
 }

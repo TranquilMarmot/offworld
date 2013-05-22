@@ -5,13 +5,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.MathHelper;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.graphics2d.font.BitmapFont;
 import com.bitwaffle.guts.graphics.graphics2d.shapes.circle.Circle;
 import com.bitwaffle.guts.graphics.graphics2d.shapes.quad.Quad;
-import com.bitwaffle.guts.util.MathHelper;
 
 /**
  * Handles all 2D rendering

@@ -4,9 +4,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.guts.MathHelper;
 import com.bitwaffle.guts.ai.path.Node;
 import com.bitwaffle.guts.ai.path.PathFinder;
-import com.bitwaffle.guts.util.MathHelper;
 
 /**
  * Moves the entity being controlled towards a given goal

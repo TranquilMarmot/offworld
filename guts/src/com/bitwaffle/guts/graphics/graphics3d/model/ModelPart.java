@@ -23,7 +23,7 @@ public class ModelPart {
 	/**
 	 * ModelPart constructor
 	 * @param material Material to use
-	 * @param startIndex VAO Handle containing vertices
+	 * @param startIndex Index to start drawing at
 	 * @param count Number of indices to draw with glDrawArrays
 	 */
 	public ModelPart(Material material, int startIndex, int count){

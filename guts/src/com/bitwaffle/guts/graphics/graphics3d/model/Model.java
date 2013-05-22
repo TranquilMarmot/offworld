@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 /**
  * This class defines a 3D model. A model is a set of vertices to draw and what texture to use when drawing them.
+ * 
  * @author TranquilMarmot
  *
  */

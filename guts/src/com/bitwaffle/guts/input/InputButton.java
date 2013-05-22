@@ -2,17 +2,13 @@ package com.bitwaffle.guts.input;
 
 
 /**
- * This interface is used in {@link Keys}, so that is can be referenced in {@link KeyBindings}
+ * A button that can be pressed and released
+ * 
  * @author TranquilMarmot
- * @see Keys
- * @see Buttons
- * @see KeyBindings
  *
  */
 public interface InputButton {
-	/**
-	 * Notify the key that it's been pressed
-	 */
+	/** Notify the key that it's been pressed */
 	public void press();
 
 	/**

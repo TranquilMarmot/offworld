@@ -31,7 +31,7 @@
 package com.bitwaffle.guts.ai.path;
 
 /**
- * <p>A hash map that uses primitive ints for the key rather than objects.</p>
+ * A hash map that uses primitive ints for the key rather than objects.
  *
  * Note from TranquilMarmot:
  * I chose to use this over regular HashMap since I will only be using integers

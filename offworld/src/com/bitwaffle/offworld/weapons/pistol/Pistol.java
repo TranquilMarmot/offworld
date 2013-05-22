@@ -6,8 +6,8 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.MathHelper;
 import com.bitwaffle.guts.graphics.Renderer;
-import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.FirearmHolder;
 
