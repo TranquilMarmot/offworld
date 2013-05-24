@@ -10,10 +10,10 @@ import com.bitwaffle.guts.physics.callbacks.HitCountRayCastCallback;
 import com.bitwaffle.guts.util.SparseMatrix;
 
 /**
- * Performs the A* search algorithm to find a path between a start and a goal node.
+ * Performs the A* search algorithm to find a path between a start and a settings.goal node.
  * updatePath() should be called every frame with the timeStep,
  * and the path will only get updated as often as the updateFrequency is set.
- * The start and goal nodes should be set using the appropriate methods at least once before any
+ * The start and settings.goal nodes should be set using the appropriate methods at least once before any
  * updates are done.
  * 
  * @author TranquilMarmot
@@ -29,9 +29,6 @@ public class PathFinder {
 	
 	/** Queue of open nodes, sorted by F scores (see Node's compareTo() method) */
 	private PriorityQueue<Node> openset;
-	
-	/** Start and end nodes (not actually in grid) */
-	private Node start, goal;
 	
 	/** Current node being looked at */
 	private Node current;
@@ -56,7 +53,7 @@ public class PathFinder {
 	
 	/**
 	 * @param nodeDist Distance to put between each node
-	 * @param goalThreshold How close algorithm has to be to consider itself at the goal
+	 * @param settings.goalThreshold How close algorithm has to be to consider itself at the settings.goal
 	 * @param updateFrequency How often to recalculate the path (in updates per second)
 	 */
 	public PathFinder(PathFinderSettings settings){
@@ -64,9 +61,6 @@ public class PathFinder {
 		grid = new SparseMatrix<Node>(100, 100);
 		
 		callback = new HitCountRayCastCallback();
-		
-		start = new Node(new Vector2(), 0, 0);
-		goal = new Node(new Vector2(), 0, 0);
 		
 		openset = new PriorityQueue<Node>(20);
 		path = new LinkedList<Node>();
@@ -77,12 +71,6 @@ public class PathFinder {
 	
 	public void setSettings(PathFinderSettings settings){ this.settings.set(settings); }
 	public PathFinderSettings getCurrentSettings(){ return settings; }
-	
-	public void setStart(Vector2 newStart){ this.start.setLocation(newStart); }
-	public Node getStart(){ return start; }
-	
-	public void setGoal(Vector2 newGoal){ this.goal.setLocation(newGoal); }
-	public Node getGoal(){ return goal; }
 	
 	/**
 	 * Updates this pathfinder and finds the path again if the timer is up.
@@ -105,8 +93,8 @@ public class PathFinder {
 	}
 	
 	/**
-	 * Performs the A* search algorithm to find a path from the start goal to the end goal.
-	 * After this is called, this PathFinder's path should contain a path to the goal.
+	 * Performs the A* search algorithm to find a path from the start settings.goal to the end settings.goal.
+	 * After this is called, this PathFinder's path should contain a path to the settings.goal.
 	 * 
 	 * Straight from Wikipedia.
 	 */
@@ -117,7 +105,7 @@ public class PathFinder {
 			current = openset.remove();
 			
 			currentIteration++;
-			// return if we've hit the goal
+			// return if we've hit the settings.goal
 			if(isGoal(current) || currentIteration >= settings.maxIterations){
 				reconstructPath(current);
 				return;
@@ -127,7 +115,7 @@ public class PathFinder {
 			current.setStatus(Node.Status.CLOSED);
 			
 			// expand node out
-			current.expand(grid, goal, settings.nodeDist);
+			current.expand(grid, settings.goal, settings.nodeDist);
 			
 			// iterate through neighbors and update scores as necessary
 			for(Node neighbor : grid.getNeighbors(current.row(), current.col())){
@@ -169,11 +157,11 @@ public class PathFinder {
 		return path;
 	}
 	
-	/** @return Whether or not the given goal is close enough to be the goal */
+	/** @return Whether or not the given settings.goal is close enough to be the settings.goal */
 	private boolean isGoal(Node node){
-		if(goal == null || node == null || node.loc() == null)
+		if(settings.goal == null || node == null || node.loc() == null)
 			return false;
-		return goal.dst(node) <= settings.goalThreshold;
+		return settings.goal.dst(node.loc()) <= settings.goalThreshold;
 	}
 
 	/** Only for debug purposes */
@@ -196,7 +184,7 @@ public class PathFinder {
 	private void buildStartNodes(){
 		// TODO would it be better to use a hex grid here instead of a square one?
 		Vector2
-			loc = start.loc(),
+			loc = settings.start,
 			nvec = new Vector2(loc.x, loc.y + settings.nodeDist),
 			evec = new Vector2(loc.x + settings.nodeDist, loc.y),
 			svec = new Vector2(loc.x, loc.y - settings.nodeDist),
@@ -211,7 +199,7 @@ public class PathFinder {
 		// N
 		if(isValid(loc, nvec)){
 			n = new Node(nvec, 0, 1);
-			n.calcScores(goal);
+			n.calcScores(settings.goal);
 			openset.add(n);
 			grid.put(n, n.row(), n.col());
 		}
@@ -219,7 +207,7 @@ public class PathFinder {
 		// E
 		if(isValid(loc, evec)){
 			e = new Node(evec, 1, 0);
-			e.calcScores(goal);
+			e.calcScores(settings.goal);
 			openset.add(e);
 			grid.put(e, e.row(), e.col());
 		}
@@ -227,7 +215,7 @@ public class PathFinder {
 		// S
 		if(isValid(loc, svec)){
 			s = new Node(svec, 0 ,-1);
-			s.calcScores(goal);
+			s.calcScores(settings.goal);
 			openset.add(s);
 			grid.put(s, s.row(), s.col());
 		}
@@ -235,7 +223,7 @@ public class PathFinder {
 		// W
 		if(isValid(loc, wvec)){
 			w = new Node(wvec, -1, 0);
-			w.calcScores(goal);
+			w.calcScores(settings.goal);
 			openset.add(w);
 			grid.put(w, w.row(), w.col());
 		}
@@ -243,7 +231,7 @@ public class PathFinder {
 		// NE
 		if(isValid(loc, nevec)){
 			ne = new Node(nevec, 1, 1);
-			ne.calcScores(goal);
+			ne.calcScores(settings.goal);
 			openset.add(ne);
 			grid.put(ne, ne.row(), ne.col());
 		}
@@ -251,7 +239,7 @@ public class PathFinder {
 		// NW
 		if(isValid(loc, nwvec)){
 			nw = new Node(nwvec, -1, 1);
-			nw.calcScores(goal);
+			nw.calcScores(settings.goal);
 			openset.add(nw);
 			grid.put(nw, nw.row(), nw.col());
 		}
@@ -259,7 +247,7 @@ public class PathFinder {
 		// SE
 		if(isValid(loc, sevec)){
 			se = new Node(sevec, 1, -1);
-			se.calcScores(goal);
+			se.calcScores(settings.goal);
 			openset.add(se);
 			grid.put(se, se.row(), se.col());
 		}
@@ -267,7 +255,7 @@ public class PathFinder {
 		// SW
 		if(isValid(loc, swvec)){
 			sw = new Node(swvec, -1, -1);
-			sw.calcScores(goal);
+			sw.calcScores(settings.goal);
 			openset.add(sw);
 			grid.put(sw, sw.row(), sw.col());
 		}

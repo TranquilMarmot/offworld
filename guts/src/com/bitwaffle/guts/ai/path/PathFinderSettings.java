@@ -1,11 +1,18 @@
 package com.bitwaffle.guts.ai.path;
 
+import com.badlogic.gdx.math.Vector2;
+
 /** 
  * Settings for the pathfinder to use when finding paths
  * 
  * @author TranquilMarmot
  */
 public class PathFinderSettings {
+	public Vector2
+		/** Start node location */
+		start = new Vector2(0.0f, 0.0f),
+		/** End node location */
+		goal = new Vector2(0.0f, 0.0f);
 	public float
 		/** How far apart each node is in the grid */
 		nodeDist = 100.0f,

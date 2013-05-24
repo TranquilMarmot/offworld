@@ -92,8 +92,8 @@ public class Bat extends DynamicEntity implements Health {
 		flyAnimation.update(timeStep);
 		timer += timeStep;
 		
-		follower.pathfinder.setStart(this.location);
-		follower.pathfinder.setGoal(OffworldGame.players[0].getLocation());
+		follower.pathfinder.getCurrentSettings().start.set(this.location);
+		follower.pathfinder.getCurrentSettings().goal.set(OffworldGame.players[0].getLocation());
 		ai.update(timeStep);
 		
 		/*

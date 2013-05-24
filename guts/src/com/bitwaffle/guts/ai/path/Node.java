@@ -91,15 +91,15 @@ public class Node implements Comparable<Node> {
 	 * Recalculates all the scores for this node
 	 * @param goal Goal used to calculate H score
 	 */
-	public void calcScores(Node goal){
+	public void calcScores(Vector2 goal){
 		calcHScore(goal);
 		calcGScore();
 		calcFScore();
 	}
 	
 	public float hScore(){ return hScore; }
-	public void calcHScore(Node goal){ 
-		hScore = this.dst(goal);
+	public void calcHScore(Vector2 goal){ 
+		hScore = this.loc.dst(goal);
 	}
 	
 	public float gScore(){ return gScore; }
@@ -123,7 +123,7 @@ public class Node implements Comparable<Node> {
 	 * @param goal Goal of new nodes, for calculating costs 
 	 * @param nodeDist How far to expand node in physical world
 	 */
-	public void expand(SparseMatrix<Node> grid, Node goal, float nodeDist){
+	public void expand(SparseMatrix<Node> grid, Vector2 goal, float nodeDist){
 		Vector2
 			nvec = new Vector2(loc.x, loc.y + nodeDist),
 			evec = new Vector2(loc.x + nodeDist, loc.y),
