@@ -6,6 +6,7 @@ import java.util.Queue;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.ai.path.Node;
 import com.bitwaffle.guts.ai.path.PathFinder;
+import com.bitwaffle.guts.ai.path.PathFinderSettings;
 import com.bitwaffle.guts.util.MathHelper;
 
 /**
@@ -32,13 +33,15 @@ public class PathFollower extends AIState {
 	 * @param nodeThreshold How close entity has to be to node in path to move on to next node
 	 * @param followSpeed How fast entity follows the path
 	 */
-	public PathFollower(float pathNodeDist, float pathGoalThreshold, float pathUpdateFrequency, int pathMaxIterations,
-			float nodeThreshold, float followSpeed){
+	public PathFollower(PathFinderSettings settings, float nodeThreshold, float followSpeed){
 		path = new LinkedList<Node>();
-		pathfinder = new PathFinder(pathNodeDist, pathGoalThreshold, pathUpdateFrequency, pathMaxIterations);
+		pathfinder = new PathFinder(settings);
 		this.nodeThreshold = nodeThreshold;
 		this.followSpeed = followSpeed;
 	}
+	
+	public void setPathFinderSettings(PathFinderSettings settings){ pathfinder.setSettings(settings); }	
+	public PathFinderSettings getPathFinderSettings(){ return pathfinder.getCurrentSettings(); }
 
 	@Override
 	public void update(float timeStep) {

@@ -20,8 +20,12 @@ import com.bitwaffle.guts.util.SparseMatrix;
  */
 public class PathFinder {
 	// TODO try to speed up with jump point search http://harablog.wordpress.com/2011/09/07/jump-point-search/
-	// TODO make diagonal searching optional
+	// TODO make diagonal searching optional (got it in settings, now need to honor it)
 	// TODO theta*? http://aigamedev.com/open/tutorials/theta-star-any-angle-paths/#Rabin:02
+	// TODO Sparse matrix is a little much- retry it again with N,E,S,W pointer on each node
+	
+	/** Settings algorithm uses for pathfinding. Can have dramatic effects on speed! */
+	private PathFinderSettings settings;
 	
 	/** Queue of open nodes, sorted by F scores (see Node's compareTo() method) */
 	private PriorityQueue<Node> openset;
@@ -44,31 +48,19 @@ public class PathFinder {
 	/** Callback for sweeping physics world for obstacles */
 	private static HitCountRayCastCallback callback;
 	
-	/** How far apart each node is in the grid */
-	private float nodeDist;
-	
-	/** How close algorithm has to get to consider itself at the goal */
-	private float goalThreshold;
-	
-	/** How frequently the path gets updated */
-	private float updateFrequency;
-	/** Used to time updates*/
+	/** Used to time updates (no need to find path every frame) */
 	private float timer;
 	
-	/** Maximum number of iterations before algorithm terminates */
-	private int maxIterations, currentIteration;
+	/** Current iteration, used for terminating early if given number in settings */
+	private int currentIteration;
 	
 	/**
 	 * @param nodeDist Distance to put between each node
 	 * @param goalThreshold How close algorithm has to be to consider itself at the goal
 	 * @param updateFrequency How often to recalculate the path (in updates per second)
 	 */
-	public PathFinder(float nodeDist, float goalThreshold, float updateFrequency, int maxIterations){
-		this.nodeDist = nodeDist;
-		this.goalThreshold = goalThreshold;
-		this.updateFrequency = updateFrequency;
-		this.maxIterations = maxIterations;
-		
+	public PathFinder(PathFinderSettings settings){
+		this.settings = settings;
 		grid = new SparseMatrix<Node>(100, 100);
 		
 		callback = new HitCountRayCastCallback();
@@ -79,9 +71,12 @@ public class PathFinder {
 		openset = new PriorityQueue<Node>(20);
 		path = new LinkedList<Node>();
 		
-		timer = updateFrequency + 0.00001f;
+		timer = settings.updateFrequency + 0.00001f;
 		newPath = false;
 	}
+	
+	public void setSettings(PathFinderSettings settings){ this.settings.set(settings); }
+	public PathFinderSettings getCurrentSettings(){ return settings; }
 	
 	public void setStart(Vector2 newStart){ this.start.setLocation(newStart); }
 	public Node getStart(){ return start; }
@@ -89,19 +84,14 @@ public class PathFinder {
 	public void setGoal(Vector2 newGoal){ this.goal.setLocation(newGoal); }
 	public Node getGoal(){ return goal; }
 	
-	/** @param newFrequency How often path gets recalculated, in seconds */
-	public void setUpdateFrequency(float newFrequency){ this.updateFrequency = newFrequency; }
-	/** @return Current update frequency, in updates per second */
-	public float getUpdateFrequency(){ return updateFrequency; }
-	
 	/**
 	 * Updates this pathfinder and finds the path again if the timer is up.
 	 * @param timeStep Time passed since last update, in seconds
 	 */
 	public void updatePath(float timeStep){
 		timer += timeStep;
-		if(timer > updateFrequency){
-			timer -= updateFrequency;
+		if(timer > settings.updateFrequency){
+			timer -= settings.updateFrequency;
 			
 			// clear everything
 			openset.clear();
@@ -128,7 +118,7 @@ public class PathFinder {
 			
 			currentIteration++;
 			// return if we've hit the goal
-			if(isGoal(current) || currentIteration >= maxIterations){
+			if(isGoal(current) || currentIteration >= settings.maxIterations){
 				reconstructPath(current);
 				return;
 			}
@@ -137,7 +127,7 @@ public class PathFinder {
 			current.setStatus(Node.Status.CLOSED);
 			
 			// expand node out
-			current.expand(grid, goal, nodeDist);
+			current.expand(grid, goal, settings.nodeDist);
 			
 			// iterate through neighbors and update scores as necessary
 			for(Node neighbor : grid.getNeighbors(current.row(), current.col())){
@@ -183,7 +173,7 @@ public class PathFinder {
 	private boolean isGoal(Node node){
 		if(goal == null || node == null || node.loc() == null)
 			return false;
-		return goal.dst(node) <= goalThreshold;
+		return goal.dst(node) <= settings.goalThreshold;
 	}
 
 	/** Only for debug purposes */
@@ -207,14 +197,14 @@ public class PathFinder {
 		// TODO would it be better to use a hex grid here instead of a square one?
 		Vector2
 			loc = start.loc(),
-			nvec = new Vector2(loc.x, loc.y + nodeDist),
-			evec = new Vector2(loc.x + nodeDist, loc.y),
-			svec = new Vector2(loc.x, loc.y - nodeDist),
-			wvec = new Vector2(loc.x - nodeDist, loc.y),
-			swvec = new Vector2(loc.x - nodeDist, loc.y - nodeDist),
-			sevec = new Vector2(loc.x + nodeDist, loc.y - nodeDist),
-			nevec = new Vector2(loc.x + nodeDist, loc.y + nodeDist),
-			nwvec = new Vector2(loc.x - nodeDist, loc.y + nodeDist);
+			nvec = new Vector2(loc.x, loc.y + settings.nodeDist),
+			evec = new Vector2(loc.x + settings.nodeDist, loc.y),
+			svec = new Vector2(loc.x, loc.y - settings.nodeDist),
+			wvec = new Vector2(loc.x - settings.nodeDist, loc.y),
+			swvec = new Vector2(loc.x - settings.nodeDist, loc.y - settings.nodeDist),
+			sevec = new Vector2(loc.x + settings.nodeDist, loc.y - settings.nodeDist),
+			nevec = new Vector2(loc.x + settings.nodeDist, loc.y + settings.nodeDist),
+			nwvec = new Vector2(loc.x - settings.nodeDist, loc.y + settings.nodeDist);
 		
 		Node n = null, e = null, s = null, w = null, ne = null, nw = null, se = null, sw = null;
 		

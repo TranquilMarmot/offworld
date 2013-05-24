@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.ai.AI;
+import com.bitwaffle.guts.ai.path.PathFinderSettings;
 import com.bitwaffle.guts.ai.states.PathFollower;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.offworld.OffworldGame;
@@ -52,8 +53,13 @@ public class Bat extends DynamicEntity implements Health {
 			nodeThreshold = 2.0f,
 			followSpeed = 7.5f;
 		int pathMaxIterations = 1000;
+		boolean allowDiagonal = true;
 		ai = new AI(this);
-		follower = new PathFollower(pathNodeDist, pathGoalThreshold, pathUpdateFrequency, pathMaxIterations, nodeThreshold, followSpeed);
+		follower = new PathFollower(new PathFinderSettings(
+				pathNodeDist,
+				pathGoalThreshold,
+				pathUpdateFrequency,
+				pathMaxIterations, allowDiagonal), nodeThreshold, followSpeed);
 		ai.setState(follower);
 	}
 	
