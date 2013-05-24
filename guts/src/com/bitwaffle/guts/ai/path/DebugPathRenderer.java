@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Renderer;
+import com.bitwaffle.guts.util.SparseMatrix;
 
 /**
  * Renders a Pathfinder
@@ -30,7 +31,7 @@ public class DebugPathRenderer {
 		Gdx.gl20.glEnable(GL20.GL_BLEND);
 		Game.resources.textures.bindTexture("blank");
 		
-		SparseMatrix grid = finder.getGrid();
+		SparseMatrix<Node> grid = finder.getGrid();
 		for(Node n : grid.getAll()){
 			if(n != null){
 				switch(n.status()){

@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.ai.path;
+package com.bitwaffle.guts.util;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -7,13 +7,16 @@ import java.util.LinkedList;
  * A sparse two-dimensional matrix that can go big any direction
  * and expands automagically.
  * 
+ * Implemented as a hashmap of hashmaps, to (sort of) give O(1) access.
+ * 
+ * 
  * @author TranquilMarmot
  */
-public class SparseMatrix {
+public class SparseMatrix<T> {
 	/** This is a HashMap of HashMaps of Nodes */
 	private IntHashMap list;
 	
-	/** How large the grid is, useful for iteration */
+	/** How large the grid is, for iteration */
 	private int minRow, maxRow, minCol, maxCol;
 	
 	/** How many columns to initially make on each row */
@@ -33,17 +36,14 @@ public class SparseMatrix {
 		maxCol = 0;
 	}
 	
-	/** @param n Node to put in this grid. Uses the node's stored row and column. */
-	public void put(Node n){ this.put(n, n.row(), n.col()); }
-	
 	/**
-	 * Puts a node into this grid.
+	 * Puts an T into this sparse matrix.
 	 * Row and column can be either positive or negative.
 	 * @param n Node to put in grid
 	 * @param row Row to put node at
 	 * @param col Column to put node at
 	 */
-	public void put(Node n, int row, int col){
+	public void put(T n, int row, int col){
 		// check our bounds
 		if(row < minRow)
 			minRow = row;
@@ -65,25 +65,36 @@ public class SparseMatrix {
 	}
 	
 	/** @return Node at given row and column, null if no node exists. */
-	public Node get(int row, int col){
+	@SuppressWarnings("unchecked")
+	public T get(int row, int col){
 		IntHashMap r = (IntHashMap)list.get(row);
 		// if row doesn't exist, node doesn't exist
 		if(r == null)
 			return null;
 		else
-			return (Node)r.get(col);
+			return (T)r.get(col);
 	}
 	
-	/** @return Neighbors of this node in all eight directions */
-	public ArrayList<Node> getNeighbors(Node n){
-		return this.getNeighbors(n.row(), n.col());
+	/** @return List of every node in this matrix */
+	public LinkedList<T> getAll(){
+		LinkedList<T> list = new LinkedList<T>();
+		
+		for(int row = minRow; row < maxRow; row++){
+			for(int col = minCol; col < maxCol; col++){
+				T n = this.get(row, col);
+				if(n != null)
+					list.add(n);
+			}
+		}
+		
+		return list;
 	}
 	
 	/** @return Nodes next to given row and column in the eight cardinal directions */
-	public ArrayList<Node> getNeighbors(int row, int col){
-		ArrayList<Node> neighbors = new ArrayList<Node>();
+	public ArrayList<T> getNeighbors(int row, int col){
+		ArrayList<T> neighbors = new ArrayList<T>();
 		
-		Node 
+		T 
 			ne = this.get(row - 1, col + 1),
 			n = this.get(row, col + 1),
 			nw = this.get(row + 1, col + 1),
@@ -111,21 +122,6 @@ public class SparseMatrix {
 			neighbors.add(sw);
 		
 		return neighbors;
-	}
-	
-	/** @return List of every node in this matrix */
-	public LinkedList<Node> getAll(){
-		LinkedList<Node> list = new LinkedList<Node>();
-		
-		for(int row = minRow; row < maxRow; row++){
-			for(int col = minCol; col < maxCol; col++){
-				Node n = this.get(row, col);
-				if(n != null)
-					list.add(n);
-			}
-		}
-		
-		return list;
 	}
 	
 	/** Get rid of everything in this matrix */

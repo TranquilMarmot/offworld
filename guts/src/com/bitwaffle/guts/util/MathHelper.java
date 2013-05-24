@@ -1,10 +1,11 @@
-package com.bitwaffle.guts;
+package com.bitwaffle.guts.util;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.graphics2d.Camera2D;
 
 /**
@@ -36,8 +37,9 @@ public class MathHelper {
 	 * @return Angle between vectors (in degrees)
 	 */
 	public static float angle(Vector2 a, Vector2 b){
-		float dx = b.x - a.x;
-		float dy = b.y - a.y;
+		double 
+			dx = (double)(b.x - a.x), 
+			dy = (double)(b.y - a.y);
 		return (float)(Math.atan2(dy, dx) * 180.0 / Math.PI);
 	}
 	
@@ -50,8 +52,9 @@ public class MathHelper {
 	 * @return Distance between points
 	 */
 	public static float spacing(float x0, float y0, float x1, float y1){
-		double x = (double)x0 - (double)x1;
-		double y = (double)y0 - (double)y1;
+		double 
+			x = (double)(x0 - x1), 
+			y = (double)(y0 - y1);
 		return (float) Math.sqrt(x * x + y * y);
 	}
 	
@@ -63,10 +66,11 @@ public class MathHelper {
 	 * @param x1 Second point's X value
 	 * @param y1 Second point's Y value
 	 */
-	public static void midpoint(Vector2 out, float x0, float y0, float x1, float y1){
-		float x = x0 + x1;
-		float y = y0 + y1;
-		out.set(x / 2.0f, y / 2.0f);
+	public static void midpoint(Vector2 out, Vector2 v0, Vector2 v1){
+		out.set(
+				(v0.x + v1.x) / 2.0f,
+				(v0.y + v1.y) / 2.0f
+		);
 	}
 	
 	/**

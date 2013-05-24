@@ -46,8 +46,8 @@ public class Bat extends DynamicEntity implements Health {
 		flyAnimation = new BatFlyAnimation(this);
 		
 		float
-			pathNodeDist = 7.5f,
-			pathGoalThreshold = 14.0f,
+			pathNodeDist = 17.5f,
+			pathGoalThreshold = 18.0f,
 			pathUpdateFrequency = 2.0f,
 			nodeThreshold = 2.0f,
 			followSpeed = 7.5f;

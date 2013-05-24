@@ -7,6 +7,7 @@ import java.util.Queue;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.physics.callbacks.HitCountRayCastCallback;
+import com.bitwaffle.guts.util.SparseMatrix;
 
 /**
  * Performs the A* search algorithm to find a path between a start and a goal node.
@@ -35,7 +36,7 @@ public class PathFinder {
 	private LinkedList<Node> path;
 	
 	/** Grid to keep track of where nodes are and to get neighbors */
-	private SparseMatrix grid;
+	private SparseMatrix<Node> grid;
 	
 	/** Whether or not the path has changed since the last time it was gotten */
 	private boolean newPath;
@@ -68,7 +69,7 @@ public class PathFinder {
 		this.updateFrequency = updateFrequency;
 		this.maxIterations = maxIterations;
 		
-		grid = new SparseMatrix(100, 100);
+		grid = new SparseMatrix<Node>(100, 100);
 		
 		callback = new HitCountRayCastCallback();
 		
@@ -139,7 +140,7 @@ public class PathFinder {
 			current.expand(grid, goal, nodeDist);
 			
 			// iterate through neighbors and update scores as necessary
-			for(Node neighbor : grid.getNeighbors(current)){
+			for(Node neighbor : grid.getNeighbors(current.row(), current.col())){
 				Node.Status status = neighbor.status();
 				// FIXME 'current.dst(neighbor)' should always be the same since its a grid right?
 				float tentativeGScore = current.gScore() + current.dst(neighbor);
@@ -190,7 +191,7 @@ public class PathFinder {
 	/** Only for debug purposes */
 	protected Node getCurrentNode(){ return current; }
 	/** Only for debug purposes */
-	protected SparseMatrix getGrid(){ return grid; }
+	protected SparseMatrix<Node> getGrid(){ return grid; }
 	
 	/** @return Whether or not between two nodes is a valid move */
 	public static boolean isValidMove(Node from, Node to){ return isValid(from.loc(), to.loc()); }
@@ -222,7 +223,7 @@ public class PathFinder {
 			n = new Node(nvec, 0, 1);
 			n.calcScores(goal);
 			openset.add(n);
-			grid.put(n);
+			grid.put(n, n.row(), n.col());
 		}
 		
 		// E
@@ -230,7 +231,7 @@ public class PathFinder {
 			e = new Node(evec, 1, 0);
 			e.calcScores(goal);
 			openset.add(e);
-			grid.put(e);
+			grid.put(e, e.row(), e.col());
 		}
 		
 		// S
@@ -238,7 +239,7 @@ public class PathFinder {
 			s = new Node(svec, 0 ,-1);
 			s.calcScores(goal);
 			openset.add(s);
-			grid.put(s);
+			grid.put(s, s.row(), s.col());
 		}
 		
 		// W
@@ -246,7 +247,7 @@ public class PathFinder {
 			w = new Node(wvec, -1, 0);
 			w.calcScores(goal);
 			openset.add(w);
-			grid.put(w);
+			grid.put(w, w.row(), w.col());
 		}
 		
 		// NE
@@ -254,7 +255,7 @@ public class PathFinder {
 			ne = new Node(nevec, 1, 1);
 			ne.calcScores(goal);
 			openset.add(ne);
-			grid.put(ne);
+			grid.put(ne, ne.row(), ne.col());
 		}
 		
 		// NW
@@ -262,7 +263,7 @@ public class PathFinder {
 			nw = new Node(nwvec, -1, 1);
 			nw.calcScores(goal);
 			openset.add(nw);
-			grid.put(nw);
+			grid.put(nw, nw.row(), nw.col());
 		}
 		
 		// SE
@@ -270,7 +271,7 @@ public class PathFinder {
 			se = new Node(sevec, 1, -1);
 			se.calcScores(goal);
 			openset.add(se);
-			grid.put(se);
+			grid.put(se, se.row(), se.col());
 		}
 		
 		// SW
@@ -278,7 +279,7 @@ public class PathFinder {
 			sw = new Node(swvec, -1, -1);
 			sw.calcScores(goal);
 			openset.add(sw);
-			grid.put(sw);
+			grid.put(sw, sw.row(), sw.col());
 		}
 	}
 }

@@ -1,6 +1,7 @@
 package com.bitwaffle.guts.ai.path;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.guts.util.SparseMatrix;
 
 /**
  * A node used for pathfinding.
@@ -122,7 +123,7 @@ public class Node implements Comparable<Node> {
 	 * @param goal Goal of new nodes, for calculating costs 
 	 * @param nodeDist How far to expand node in physical world
 	 */
-	public void expand(SparseMatrix grid, Node goal, float nodeDist){
+	public void expand(SparseMatrix<Node> grid, Node goal, float nodeDist){
 		Vector2
 			nvec = new Vector2(loc.x, loc.y + nodeDist),
 			evec = new Vector2(loc.x + nodeDist, loc.y),
@@ -138,7 +139,7 @@ public class Node implements Comparable<Node> {
 		&& PathFinder.isValid(loc, nvec)){
 			Node n = new Node(nvec, row, col + 1);
 			n.calcScores(goal);
-			grid.put(n);
+			grid.put(n, n.row(), n.col());
 		}
 		
 		// E
@@ -146,7 +147,7 @@ public class Node implements Comparable<Node> {
 		&& PathFinder.isValid(loc, evec)){
 			Node e = new Node(evec, row + 1, col);
 			e.calcScores(goal);
-			grid.put(e);
+			grid.put(e, e.row(), e.col());
 		}
 		
 		// S
@@ -154,7 +155,7 @@ public class Node implements Comparable<Node> {
 		&& PathFinder.isValid(loc, svec)){
 			Node s = new Node(svec, row, col - 1);
 			s.calcScores(goal);
-			grid.put(s);
+			grid.put(s, s.row(), s.col());
 		}
 		
 		// W
@@ -162,7 +163,7 @@ public class Node implements Comparable<Node> {
 		&& PathFinder.isValid(loc, wvec)){
 			Node w = new Node(wvec, row - 1, col);
 			w.calcScores(goal);
-			grid.put(w);
+			grid.put(w, w.row(), w.col());
 		}
 		
 		// NW
@@ -170,7 +171,7 @@ public class Node implements Comparable<Node> {
 		&& PathFinder.isValid(loc, nwvec)){
 			Node nw = new Node(nwvec, row - 1, col + 1);
 			nw.calcScores(goal);
-			grid.put(nw);
+			grid.put(nw, nw.row(), nw.col());
 		}
 		
 		// NE
@@ -178,7 +179,7 @@ public class Node implements Comparable<Node> {
 		&& PathFinder.isValid(loc, nevec)){
 			Node ne = new Node(nevec, row + 1, col + 1);
 			ne.calcScores(goal);
-			grid.put(ne);
+			grid.put(ne, ne.row(), ne.col());
 		}
 		
 		// SW
@@ -186,7 +187,7 @@ public class Node implements Comparable<Node> {
 		&& PathFinder.isValid(loc, swvec)){
 			Node sw = new Node(swvec, row - 1, col - 1);
 			sw.calcScores(goal);
-			grid.put(sw);
+			grid.put(sw, sw.row(), sw.col());
 		}
 		
 		// SE
@@ -194,7 +195,7 @@ public class Node implements Comparable<Node> {
 		&& PathFinder.isValid(loc, sevec)){
 			Node se = new Node(sevec, row + 1, col - 1);
 			se.calcScores(goal);
-			grid.put(se);
+			grid.put(se, se.row(), se.col());
 		}
 	}
 }

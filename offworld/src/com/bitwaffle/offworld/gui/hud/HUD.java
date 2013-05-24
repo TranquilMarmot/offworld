@@ -18,7 +18,7 @@ public class HUD extends GUIObject {
 	/** Button for changing camera mode */
 	private CameraButton cameraButton;
 	/** Whether or not the camera button is in the GUI right now */
-	private boolean cameraButtonInGUI;
+	//private boolean cameraButtonInGUI;
 	
 	/** Button for toggling console/opening input dialog */
 	private ConsoleButton consoleButton;
@@ -80,16 +80,20 @@ public class HUD extends GUIObject {
 	}
 	
 	/** Adds the camera button to the GUI */
+	/*
 	private void addCameraButton(){
 		gui.addButton(cameraButton);
 		cameraButtonInGUI = true;
 	}
+	*/
 	
 	/** Removes the camera button from the GUI */
+	/*
 	private void removeCameraButton(){
 		gui.removeButton(cameraButton);
 		cameraButtonInGUI = false;
 	}
+	*/
 	
 	@Override
 	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical) {}

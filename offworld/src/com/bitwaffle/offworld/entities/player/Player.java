@@ -10,9 +10,9 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.MathHelper;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.physics.CollisionFilters;
+import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.player.render.PlayerBodyAnimation;
 import com.bitwaffle.offworld.entities.player.render.PlayerRenderer;
 import com.bitwaffle.offworld.interfaces.Firearm;
@@ -31,9 +31,9 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 	private static final float WIDTH = 0.52062f, HEIGHT = 1.8034f;
 	
 	/** Two boxes are put on the side of the player with no friction, so that the player slides along walls */
-	private static final float SIDE_BOX_W = 0.2f, SIDE_BOX_H = HEIGHT;
+	private static final float SIDE_BOX_W = 0.2f, SIDE_BOX_H = HEIGHT - 0.05f;
 	
-	private static final float MAX_TARGET_DX = 10.0f, MAX_TARGET_DY = 8.0f;
+	//private static final float MAX_TARGET_DX = 10.0f, MAX_TARGET_DY = 8.0f;
 	
 	private static final float MAX_TARGET_RADIUS = 10.0f;
 	

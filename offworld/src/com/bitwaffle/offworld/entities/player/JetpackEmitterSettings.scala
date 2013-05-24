@@ -13,11 +13,11 @@ import com.bitwaffle.guts.entity.particles.Particle
 import com.bitwaffle.guts.Game
 
 class JetpackEmitterSettings(attachedTo: DynamicEntity) extends EmitterSettings {
-	def attached = attachedTo;
+	def attached = attachedTo;//
 	def offset = new Vector2(Game.random.nextFloat * xLocationVariance * -0.2f, Game.random.nextFloat * yLocationVariance * 0.02f)
 	def maxParticles = 150
 	def particleDensity = 0.1f
-	def particleEmissionRate = 0.05f
+	def particleEmissionRate = 0.05f//
 	def particlesPerEmission = 5
 	def particleForce = new Vector2(if(Game.random.nextBoolean()) Game.random.nextFloat * -5.0f else Game.random.nextFloat * 5.0f, Game.random.nextFloat * -50.0f)
 	def particleHeight = 0.25f

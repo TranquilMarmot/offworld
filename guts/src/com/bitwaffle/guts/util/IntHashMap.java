@@ -28,25 +28,24 @@
  * TranquilMarmot
  */
 
-package com.bitwaffle.guts.ai.path;
+package com.bitwaffle.guts.util;
 
 /**
  * A hash map that uses primitive ints for the key rather than objects.
  *
  * Note from TranquilMarmot:
  * I chose to use this over regular HashMap since I will only be using integers
- * to reference nodes and java.util.HashMap does extra unnecessary things.
+ * to reference some things and java.util.HashMap does some extra unnecessary things.
  *
  * @author Justin Couch
  * @author Alex Chaffee (alex@apache.org)
  * @author Stephen Colebourne
  * @author TranquilMarmot
  * @since 2.0
- * @version $Revision: 561230 $
+ * @version $Revision: 561231 $
  * @see java.util.HashMap
  */
 public class IntHashMap {
-
     /** The hash table data. */
     private Entry table[];
 
