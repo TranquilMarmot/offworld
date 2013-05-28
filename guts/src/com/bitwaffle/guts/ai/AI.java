@@ -22,11 +22,15 @@ public class AI {
 	}
 	
 	public void update(float timeStep){
-		currentState.update(timeStep);
+		if(currentState != null)
+			currentState.update(timeStep);
 	}
 	
 	public void setState(AIState state){
-		state.setControlling(controlling);
+		if(state != null)
+			state.setControlling(controlling);
 		this.currentState = state;
 	}
+
+	public AIState currentState() { return currentState; }
 }

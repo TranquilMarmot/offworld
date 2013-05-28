@@ -64,6 +64,7 @@ public class Room1 extends Room {
     		this.addEntity(diamond);
 		}
 		
+		/*
 		for(int i = 0; i < 3; i++){
     		float batX = Game.random.nextFloat() * 10.0f;
     		float batY = Game.random.nextFloat() * 10.0f;
@@ -74,6 +75,14 @@ public class Room1 extends Room {
     		bat.sleeping = false;
     		this.addEntity(bat);
 		}
+		*/
+		
+		float batX = 20.0f;
+		float batY = -15.0f;
+		
+		Bat bat = new Bat(4, new Vector2(batX, batY));
+		bat.sleeping = true;
+		this.addEntity(bat);
 		
 		Game.net.startServer();
 		

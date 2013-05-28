@@ -4,15 +4,15 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.ai.AI;
 import com.bitwaffle.guts.ai.path.PathFinderSettings;
-import com.bitwaffle.guts.ai.states.PathFollower;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.offworld.OffworldGame;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatFlyAnimation;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatRenderer;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatSleepAnimation;
+import com.bitwaffle.offworld.entities.player.Player;
 import com.bitwaffle.offworld.interfaces.Health;
 
 /**
@@ -33,13 +33,12 @@ public class Bat extends DynamicEntity implements Health {
 	
 	public boolean sleeping = false;
 	
-	// FIXME temp??
-	float timer = 0.0f;
-	
 	/** AI controlling this Bat */
-	private AI ai;
+	public AI ai;
 	/** Makes bat move along given path */
-	public PathFollower follower;
+	public AttackAIState attackState;
+	/** Sense any players and wakes on finding one */
+	public SleepAIState sleepState;
 	
 	public Bat(int layer, Vector2 location){
 		super(new BatRenderer(), layer, getBodyDef(location), getFixtureDef());
@@ -55,12 +54,20 @@ public class Bat extends DynamicEntity implements Health {
 		int pathMaxIterations = 1000;
 		boolean allowDiagonal = true;
 		ai = new AI(this);
-		follower = new PathFollower(new PathFinderSettings(
+		attackState = new AttackAIState(this, new PathFinderSettings(
 				pathNodeDist,
 				pathGoalThreshold,
 				pathUpdateFrequency,
 				pathMaxIterations, allowDiagonal), nodeThreshold, followSpeed);
-		ai.setState(follower);
+	}
+	
+
+	@Override
+	public void init(World world){
+		super.init(world);
+		
+		sleepState = new SleepAIState(this, 15.0f);
+		ai.setState(sleepState);
 	}
 	
 	private static BodyDef getBodyDef(Vector2 location){
@@ -90,23 +97,14 @@ public class Bat extends DynamicEntity implements Health {
 		super.update(timeStep);
 		sleepAnimation.update(timeStep);
 		flyAnimation.update(timeStep);
-		timer += timeStep;
-		
-		follower.pathfinder.getCurrentSettings().start.set(this.location);
-		follower.pathfinder.getCurrentSettings().goal.set(OffworldGame.players[0].getLocation());
 		ai.update(timeStep);
-		
-		/*
-		if(sleeping){
-			//Vector2 linVec = this.body.getLinearVelocity();
-			this.body.setLinearVelocity(0.0f, 1.0f);
-		} else {
-			this. body.setLinearVelocity((float)Math.sin(timer) * 2.0f, (float)Math.cos(timer) * 1.0f);
-		}
-		*/
 	}
 	
-	public boolean isSleeping(){ return sleeping; }
+	/** Called in OffworldContactListener when a Player hits the bat's player sensor */
+	public void reportPlayerSensorHit(Player contact) {
+		attackState.setPlayer(contact);
+		ai.setState(attackState);
+	}
 	
 	public float getWidth() { return width; }
 	public float getHeight(){ return height; }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.ai.path.Node;
 import com.bitwaffle.guts.ai.path.PathFinder;
 import com.bitwaffle.guts.ai.path.PathFinderSettings;
+import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.util.MathHelper;
 
 /**
@@ -33,7 +34,8 @@ public class PathFollower extends AIState {
 	 * @param nodeThreshold How close entity has to be to node in path to move on to next node
 	 * @param followSpeed How fast entity follows the path
 	 */
-	public PathFollower(PathFinderSettings settings, float nodeThreshold, float followSpeed){
+	public PathFollower(DynamicEntity ent, PathFinderSettings settings, float nodeThreshold, float followSpeed){
+		super(ent);
 		path = new LinkedList<Node>();
 		pathfinder = new PathFinder(settings);
 		this.nodeThreshold = nodeThreshold;

@@ -22,7 +22,7 @@ public class BatRenderer implements EntityRenderer2D {
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 			
-			if(bat.isSleeping())
+			if(bat.ai.currentState() == bat.sleepState)
 				bat.getSleepAnimation().renderCurrentFrame(renderer);
 			else
 				bat.getFlyAnimation().renderCurrentFrame(renderer, false, false);
@@ -40,7 +40,7 @@ public class BatRenderer implements EntityRenderer2D {
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 		
 		// render path
-		DebugPathRenderer.renderDebug(renderer, bat.follower.pathfinder);
+		DebugPathRenderer.renderDebug(renderer, bat.attackState.pathfinder);
 	}
 
 }
