@@ -3,7 +3,7 @@ package com.bitwaffle.offworld.physics;
 import com.badlogic.gdx.physics.box2d.ContactFilter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.entity.particles.Particle;
+import com.bitwaffle.guts.entity.dynamic.particles.Particle;
 import com.bitwaffle.guts.physics.PhysicsHelper;
 import com.bitwaffle.offworld.weapons.pistol.PistolBullet;
 

@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.entity.particles
+package com.bitwaffle.guts.entity.dynamic.particles
 
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity
 import com.badlogic.gdx.math.Vector2

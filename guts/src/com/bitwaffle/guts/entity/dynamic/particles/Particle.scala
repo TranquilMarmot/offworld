@@ -1,13 +1,10 @@
-package com.bitwaffle.guts.entity.particles
+package com.bitwaffle.guts.entity.dynamic.particles
 
 import com.bitwaffle.guts.entity.dynamic.BoxEntity
 import com.badlogic.gdx.physics.box2d.BodyDef
 import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D
 import com.badlogic.gdx.physics.box2d.FixtureDef
 import com.bitwaffle.guts.Game
-import com.bitwaffle.guts.entity.dynamic.DynamicEntity
-import com.badlogic.gdx.physics.box2d.World
-import com.badlogic.gdx.math.Vector2
 
 /** A particle that comes from an emitter */
 class Particle(

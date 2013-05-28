@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.ai.states;
+package com.bitwaffle.guts.entity.ai.states;
 
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 

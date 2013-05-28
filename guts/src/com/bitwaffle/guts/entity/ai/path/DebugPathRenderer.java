@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.ai.path;
+package com.bitwaffle.guts.entity.ai.path;
 
 import java.util.Iterator;
 import java.util.LinkedList;

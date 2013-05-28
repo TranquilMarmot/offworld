@@ -1,12 +1,12 @@
-package com.bitwaffle.guts.ai.states;
+package com.bitwaffle.guts.entity.ai.states;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.guts.ai.path.Node;
-import com.bitwaffle.guts.ai.path.PathFinder;
-import com.bitwaffle.guts.ai.path.PathFinderSettings;
+import com.bitwaffle.guts.entity.ai.path.Node;
+import com.bitwaffle.guts.entity.ai.path.PathFinder;
+import com.bitwaffle.guts.entity.ai.path.PathFinderSettings;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.util.MathHelper;
 
