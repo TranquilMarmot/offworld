@@ -22,7 +22,12 @@ public class AttackAIState extends PathFollower {
 		
 	}
 	
-	public void setPlayer(Player player){ this.player = player; }
+	public void setPlayer(Player player){
+		this.player = player;
+		PathFinderSettings settings = ((Bat)controlling).attackState.pathfinder.getCurrentSettings();
+		settings.start.set(controlling.getLocation());
+		settings.goal.set(player.getLocation());
+	}
 	
 	@Override
 	public void update(float timeStep){

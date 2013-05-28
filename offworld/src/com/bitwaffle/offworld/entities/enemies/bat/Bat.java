@@ -104,6 +104,7 @@ public class Bat extends DynamicEntity implements Health {
 	/** Called in OffworldContactListener when a Player hits the bat's player sensor */
 	public void reportPlayerSensorHit(Player contact) {
 		attackState.setPlayer(contact);
+		
 		ai.setState(attackState);
 		Game.physics.addUpdateRequest(new PhysicsUpdateRequest(){
 			@Override

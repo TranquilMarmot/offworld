@@ -33,7 +33,7 @@ public class Renderer {
 	public Render3D r3D;
 	
 	/** Whether or not debug rendering mode is enabled */
-	public static boolean renderDebug = true;
+	public static boolean renderDebug = false;
 	
 	public Renderer(){
 		Gdx.gl.glViewport(0, 0, Game.windowWidth, Game.windowHeight);
