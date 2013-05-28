@@ -78,7 +78,7 @@ public class PathFinder {
 	 */
 	public void updatePath(float timeStep){
 		timer += timeStep;
-		if(timer > settings.updateFrequency){
+		if(timer >= settings.updateFrequency){
 			timer -= settings.updateFrequency;
 			
 			// clear everything
@@ -90,6 +90,11 @@ public class PathFinder {
 			aStar();
 			newPath = true;
 		}
+	}
+	
+	public void forceUpdate() {
+		timer = settings.updateFrequency;
+		updatePath(0.0f);
 	}
 	
 	/**

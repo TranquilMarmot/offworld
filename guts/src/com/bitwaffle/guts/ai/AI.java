@@ -27,8 +27,13 @@ public class AI {
 	}
 	
 	public void setState(AIState state){
-		if(state != null)
+		if(currentState != null){
+			currentState.onLoseCurrentState();
+		}
+		if(state != null){
 			state.setControlling(controlling);
+			state.onGainCurrentState();
+		}
 		this.currentState = state;
 	}
 

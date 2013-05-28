@@ -71,4 +71,14 @@ public class PathFollower extends AIState {
 				path.poll();
 		}
 	}
+
+	@Override
+	public void onLoseCurrentState() {
+
+	}
+
+	@Override
+	public void onGainCurrentState() {
+		pathfinder.forceUpdate();
+	}
 }

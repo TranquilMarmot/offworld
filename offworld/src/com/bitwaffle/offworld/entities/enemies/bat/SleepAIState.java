@@ -31,4 +31,12 @@ public class SleepAIState extends AIState {
 		controlling.body.setLinearVelocity(0.0f, 1.0f);
 	}
 
+	@Override
+	public void onLoseCurrentState() {
+	}
+
+	@Override
+	public void onGainCurrentState() {
+	}
+
 }

@@ -78,7 +78,7 @@ public class Room1 extends Room {
 		*/
 		
 		float batX = 20.0f;
-		float batY = -15.0f;
+		float batY = -14.20f;
 		
 		Bat bat = new Bat(4, new Vector2(batX, batY));
 		bat.sleeping = true;
