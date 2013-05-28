@@ -66,6 +66,7 @@ public class OffworldContactListener implements ContactListener {
 		
 	}
 	
+	/** Called when player hits something */
 	private static void beginPlayerContact(Player player, Fixture playerFixture, DynamicEntity contact, Fixture contactFixture){
 		// report fixtures to jump sensor
 		if(playerFixture.equals(player.getJumpSensor().fixture()))
@@ -76,6 +77,7 @@ public class OffworldContactListener implements ContactListener {
 			player.getPickupSensor().reportContact(contact);
 	}
 	
+	/** Called when bat hits something */
 	private static void beginBatContact(Bat bat, Fixture batFixture, DynamicEntity contact, Fixture contactFixture){
 		if(contact instanceof Player && batFixture == bat.sleepState.playerSensor){
 			bat.reportPlayerSensorHit((Player)contact);

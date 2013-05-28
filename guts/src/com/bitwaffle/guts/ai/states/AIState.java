@@ -14,7 +14,10 @@ public abstract class AIState {
 	}
 	
 	public abstract void update(float timeStep);
-
+	
+	/** Called when this state becomes the current state */
 	public abstract void onLoseCurrentState();
+	
+	/** Called when this state loses the current state */
 	public abstract void onGainCurrentState();
 }

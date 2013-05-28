@@ -6,10 +6,18 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.guts.ai.states.AIState;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 
+/**
+ * A sleeping bat.
+ * 
+ * @author TranquilMarmot
+ */
 public class SleepAIState extends AIState {
-	
+	/** Sensor to detect player */
 	public Fixture playerSensor;
 	
+	/**
+	 *@param sensorRadius How far to check for player
+	 */
 	public SleepAIState(DynamicEntity ent, float sensorRadius){
 		super(ent);
 		
@@ -23,20 +31,21 @@ public class SleepAIState extends AIState {
 		CircleShape circ = new CircleShape();
 		circ.setRadius(sensorRadius);
 		def.shape = circ;
+		
+		// TODO collision filters?
+		
 		return def;
 	}
 
 	@Override
 	public void update(float timeStep) {
+		// cling to ceiling
 		controlling.body.setLinearVelocity(0.0f, 1.0f);
 	}
 
 	@Override
-	public void onLoseCurrentState() {
-	}
-
+	public void onLoseCurrentState() {}
 	@Override
-	public void onGainCurrentState() {
-	}
+	public void onGainCurrentState() {}
 
 }

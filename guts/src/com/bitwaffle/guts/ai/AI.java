@@ -27,13 +27,18 @@ public class AI {
 	}
 	
 	public void setState(AIState state){
-		if(currentState != null){
+		// notify the current state that it's losing the current state
+		if(currentState != null)
 			currentState.onLoseCurrentState();
-		}
+		
 		if(state != null){
+			// set state to control this AI's entity
 			state.setControlling(controlling);
+			
+			// notify state that it's becoming the current state
 			state.onGainCurrentState();
 		}
+		
 		this.currentState = state;
 	}
 

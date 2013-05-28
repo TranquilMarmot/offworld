@@ -1,13 +1,22 @@
 package com.bitwaffle.offworld.entities.enemies.bat;
 
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.ai.path.PathFinderSettings;
 import com.bitwaffle.guts.ai.states.PathFollower;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.offworld.entities.player.Player;
 
+/**
+ * Bat attacking a player by following a path.
+ * 
+ * @author TranquilMarmot
+ */
 public class AttackAIState extends PathFollower {
 	/** Player bat is attacking */
 	private Player player;
+	
+	/** Minumum distance for pathfinding to use for node spacing */
+	float minDist = 10.0f;
 	
 	public AttackAIState(DynamicEntity ent, PathFinderSettings settings, float nodeThreshold, float followSpeed) {
 		super(ent, settings, nodeThreshold, followSpeed);
@@ -20,7 +29,13 @@ public class AttackAIState extends PathFollower {
 	public void update(float timeStep){
 		super.update(timeStep);
 		
-		((Bat)controlling).attackState.pathfinder.getCurrentSettings().start.set(controlling.getLocation());
-		((Bat)controlling).attackState.pathfinder.getCurrentSettings().goal.set(player.getLocation());
+		// set pathfinder to go to player from bat
+		PathFinderSettings settings = ((Bat)controlling).attackState.pathfinder.getCurrentSettings();
+		settings.start.set(controlling.getLocation());
+		settings.goal.set(player.getLocation());
+		float dist = controlling.getLocation().dst(player.getLocation());
+		if(dist < minDist) dist = minDist;
+		settings.nodeDist = dist / 10.0f;
+		settings.goalThreshold = (dist / 5.0f);
 	}
 }
