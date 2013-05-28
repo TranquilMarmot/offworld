@@ -20,7 +20,7 @@ public class ModelRenderer extends EntityRenderer3D {
 	/** Info on coordinates */
 	private static final int COORDS_PER_VERTEX = 3, COORDS_PER_TEXCOORD = 2;
 	
-	/** Polygon holding physics/debug data */
+	/** Polygon holding physics/debug data (can be null for no debug rendering) */
 	private ModelPolygon modelPoly;
 	
 	/** Model being rendered */

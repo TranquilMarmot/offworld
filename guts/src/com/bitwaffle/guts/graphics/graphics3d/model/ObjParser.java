@@ -133,7 +133,7 @@ public class ObjParser {
 				}
 
 				// texture coord
-				if (line.startsWith("vt")) {
+				if (lineType.equals("vt")) {
 					float u = Float.parseFloat(toker.nextToken());
 					float v = Float.parseFloat(toker.nextToken());
 
@@ -141,7 +141,7 @@ public class ObjParser {
 				}
 				
 				// new material
-				if(line.startsWith("usemtl")){
+				if(lineType.equals("usemtl")){
 					if(materials == null)
 						materials = loadMaterialList(directory + name + ".mtl");
 					
@@ -150,7 +150,7 @@ public class ObjParser {
 				}
 
 				// face
-				if (line.startsWith("f")) {
+				if (lineType.equals("f")) {
 					// to see if we're dealing with a triangle or a quad (the ModelBuilder automatically splits quads into triangles)
 					int numVertices = toker.countTokens();
 
