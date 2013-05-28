@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.guts.entity.ai.states.AIState;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
+import com.bitwaffle.guts.physics.CollisionFilters;
 
 /**
  * A sleeping bat.
@@ -31,6 +32,9 @@ public class SleepAIState extends AIState {
 		CircleShape circ = new CircleShape();
 		circ.setRadius(sensorRadius);
 		def.shape = circ;
+		def.filter.groupIndex = CollisionFilters.EVERYTHING;
+		def.filter.maskBits = CollisionFilters.PLAYER;
+		def.filter.categoryBits = CollisionFilters.EVERYTHING;
 		
 		// TODO collision filters?
 		

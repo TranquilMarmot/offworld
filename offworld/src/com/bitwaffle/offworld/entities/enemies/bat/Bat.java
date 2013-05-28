@@ -9,6 +9,7 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.ai.AI;
 import com.bitwaffle.guts.entity.ai.path.PathFinderSettings;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
+import com.bitwaffle.guts.physics.PhysicsUpdateRequest;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatFlyAnimation;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatRenderer;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatSleepAnimation;
@@ -104,6 +105,14 @@ public class Bat extends DynamicEntity implements Health {
 	public void reportPlayerSensorHit(Player contact) {
 		attackState.setPlayer(contact);
 		ai.setState(attackState);
+		Game.physics.addUpdateRequest(new PhysicsUpdateRequest(){
+			@Override
+			public void doRequest() {
+				body.destroyFixture(sleepState.playerSensor);
+			}
+			
+		});
+		
 	}
 	
 	public float getWidth() { return width; }

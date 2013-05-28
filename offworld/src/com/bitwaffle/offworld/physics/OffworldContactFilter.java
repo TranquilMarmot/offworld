@@ -5,6 +5,8 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.entity.dynamic.particles.Particle;
 import com.bitwaffle.guts.physics.PhysicsHelper;
+import com.bitwaffle.offworld.entities.enemies.bat.Bat;
+import com.bitwaffle.offworld.entities.player.Player;
 import com.bitwaffle.offworld.weapons.pistol.PistolBullet;
 
 /**
@@ -14,9 +16,9 @@ import com.bitwaffle.offworld.weapons.pistol.PistolBullet;
  */
 public class OffworldContactFilter implements ContactFilter{
 	@Override
-	public boolean shouldCollide(Fixture fix1, Fixture fix2) {
-		DynamicEntity entA = PhysicsHelper.getDynamicEntity(fix1);
-		DynamicEntity entB = PhysicsHelper.getDynamicEntity(fix2);
+	public boolean shouldCollide(Fixture fixA, Fixture fixB) {
+		DynamicEntity entA = PhysicsHelper.getDynamicEntity(fixA);
+		DynamicEntity entB = PhysicsHelper.getDynamicEntity(fixB);
 		
 		// ignore particles hitting their emitter and any bullets
 		if(entA instanceof Particle){
@@ -43,6 +45,28 @@ public class OffworldContactFilter implements ContactFilter{
 			else
 				return false;
 		}
+		
+		// ignore anything hitting bat sensor
+		if(entA instanceof Bat){
+			if(fixA == ((Bat)entA).sleepState.playerSensor){
+				if(entB instanceof Player)
+					return true;
+				else
+					return false;
+			} else {
+				return true;
+			}
+		} else if(entB instanceof Bat){
+			if(fixB == ((Bat)entB).sleepState.playerSensor){
+				if(entA instanceof Player)
+					return true;
+				else
+					return false;
+			} else {
+				return true;
+			}
+		}
+		
 		
 		return true;
 	}
