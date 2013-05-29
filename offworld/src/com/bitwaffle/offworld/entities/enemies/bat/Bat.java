@@ -32,8 +32,6 @@ public class Bat extends DynamicEntity implements Health {
 	
 	private float health = 100.0f;
 	
-	public boolean sleeping = false;
-	
 	/** AI controlling this Bat */
 	public AI ai;
 	/** Makes bat move along given path */
@@ -51,7 +49,7 @@ public class Bat extends DynamicEntity implements Health {
 			pathGoalThreshold = 18.0f,
 			pathUpdateFrequency = 2.0f,
 			nodeThreshold = 2.0f,
-			followSpeed = 7.5f;
+			followSpeed = 0.5f;
 		int pathMaxIterations = 1000;
 		boolean allowDiagonal = true;
 		ai = new AI(this);

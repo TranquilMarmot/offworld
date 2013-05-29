@@ -64,25 +64,25 @@ public class Room1 extends Room {
     		this.addEntity(diamond);
 		}
 		
-		/*
-		for(int i = 0; i < 3; i++){
-    		float batX = Game.random.nextFloat() * 10.0f;
-    		float batY = Game.random.nextFloat() * 10.0f;
-    		if(Game.random.nextBoolean()) batX = -batX;
-    		if(Game.random.nextBoolean()) batY = -batY;
+		
+		for(int i = 0; i < 15; i++){
+    		float batX = 20.0f + (Game.random.nextFloat() * 2.0f);
+    		float batY = -14.20f + (Game.random.nextFloat());
+    		//if(Game.random.nextBoolean()) batX = -batX;
+    		//if(Game.random.nextBoolean()) batY = -batY;
     		
     		Bat bat = new Bat(4, new Vector2(batX, batY));
-    		bat.sleeping = false;
     		this.addEntity(bat);
 		}
-		*/
 		
+		/*
 		float batX = 20.0f;
 		float batY = -14.20f;
 		
 		Bat bat = new Bat(4, new Vector2(batX, batY));
 		bat.sleeping = true;
 		this.addEntity(bat);
+		*/
 		
 		Game.net.startServer();
 		

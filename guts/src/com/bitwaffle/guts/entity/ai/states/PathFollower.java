@@ -64,7 +64,8 @@ public class PathFollower extends AIState {
 			
 			Vector2 linvec = new Vector2(followSpeed, 0.0f);
 			linvec.rotate(angle);
-			controlling.body.setLinearVelocity(linvec);
+			Vector2 linvel = controlling.body.getLinearVelocity();
+			controlling.body.setLinearVelocity(new Vector2(linvec.x + linvel.x, linvec.y + linvel.y));
 			
 			// move on to next node if close enough to current
 			if(controlling.getLocation().dst(n.loc()) <= nodeThreshold)
