@@ -36,7 +36,7 @@ public class Room1 extends Room {
 		this.addEntity(getDynamicEntity("cave-1-platform-4", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
 		
 		// add random rocks
-		for(int i = 0; i < 10; i++){
+		for(int i = 0; i < 0; i++){
     		float rockX = Game.random.nextFloat() * 10.0f - 50.0f;
     		if(rockX < 1.0f) rockX = 1.0f;
     		float rockY = Game.random.nextFloat() * 150.0f + 15.0f;
@@ -50,7 +50,7 @@ public class Room1 extends Room {
 		
 		
 		// diamonds
-		for(int i = 0; i < 10; i++){
+		for(int i = 0; i < 0; i++){
     		float diamondX = Game.random.nextFloat() * 10.0f - 50.0f;
     		if(Game.random.nextBoolean()) diamondX = -diamondX;
     		float diamondY = Game.random.nextFloat() * 15.0f + 15.0f;
@@ -65,7 +65,8 @@ public class Room1 extends Room {
 		}
 		
 		
-		for(int i = 0; i < 15; i++){
+		// bats
+		for(int i = 0; i < 1; i++){
     		float batX = 20.0f + (Game.random.nextFloat() * 2.0f);
     		float batY = -14.20f + (Game.random.nextFloat());
     		//if(Game.random.nextBoolean()) batX = -batX;

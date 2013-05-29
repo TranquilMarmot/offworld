@@ -20,55 +20,50 @@ public class OffworldContactFilter implements ContactFilter{
 		DynamicEntity entA = PhysicsHelper.getDynamicEntity(fixA);
 		DynamicEntity entB = PhysicsHelper.getDynamicEntity(fixB);
 		
-		// ignore particles hitting their emitter and any bullets
-		if(entA instanceof Particle){
-			if(entB != ((Particle)entA).getOwner() && !(entB instanceof PistolBullet))
-				return true;
-			else
-				return false;
-		} else if(entB instanceof Particle){
-			if(entA != ((Particle)entB).getOwner() && !(entA instanceof PistolBullet))
-				return true;
-			else
-				return false;
-		}
+		if(entA instanceof Particle)
+			return particleCollision((Particle)entA, fixA, entB, fixB);
+		else if(entB instanceof Particle)
+			return particleCollision((Particle)entB, fixB, entA, fixB);
 		
-		// ignore bullets hitting what they came from
-		if(entA instanceof PistolBullet){
-			if(entB != ((PistolBullet)entA).getOwner())
-				return true;
-			else
-				return false;
-		} else if(entB instanceof PistolBullet){
-			if(entA != ((PistolBullet)entB).getOwner())
-				return true;
-			else
-				return false;
-		}
+		if(entA instanceof PistolBullet)
+			return pistolBulletCollision((PistolBullet)entA, fixA, entB, fixB);
+		else if(entB instanceof PistolBullet)
+			return pistolBulletCollision((PistolBullet)entB, fixB, entA, fixA);
 		
-		// ignore anything hitting bat sensor
-		if(entA instanceof Bat){
-			if(fixA == ((Bat)entA).sleepState.playerSensor){
-				if(entB instanceof Player)
-					return true;
-				else
-					return false;
-			} else {
-				return true;
-			}
-		} else if(entB instanceof Bat){
-			if(fixB == ((Bat)entB).sleepState.playerSensor){
-				if(entA instanceof Player)
-					return true;
-				else
-					return false;
-			} else {
-				return true;
-			}
-		}
+		if(entA instanceof Bat)
+			return batCollision((Bat)entA, fixA, entB, fixB);
+		else if(entB instanceof Bat)
+			return batCollision((Bat)entB, fixB, entA, fixA);
 		
 		
 		return true;
+	}
+	
+	private boolean particleCollision(Particle particle, Fixture particleFix, DynamicEntity other, Fixture otherFix){
+		// ignore particles hitting their emitter and any bullets
+		if(other != particle.getOwner() && !(other instanceof PistolBullet))
+			return true;
+		else
+			return false;
+	}
+	
+	private boolean pistolBulletCollision(PistolBullet bullet, Fixture bulletFix, DynamicEntity other, Fixture otherFix){
+		// ignore bullets hitting what they came from and hitting sensors
+		if(!otherFix.isSensor() && other != bullet.getOwner())
+			return true;
+		else
+			return false;
+	}
+	
+	private boolean batCollision(Bat bat, Fixture batFixture, DynamicEntity other, Fixture otherFixture){
+		// ignore anything hitting bat sensor except a player
+		if(batFixture == bat.sleepState.playerSensor){
+			if(other instanceof Player)
+				return true;
+			else
+				return false;
+		} else
+			return true;
 	}
 
 }

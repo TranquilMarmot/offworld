@@ -1,13 +1,10 @@
 package com.bitwaffle.offworld.entities.enemies.bat;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.ai.path.PathFinderSettings;
 import com.bitwaffle.guts.entity.ai.states.PathFollower;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.offworld.entities.player.Player;
 import com.bitwaffle.guts.physics.callbacks.FirstHitRayCastCallback;
 
 /**
@@ -17,7 +14,7 @@ import com.bitwaffle.guts.physics.callbacks.FirstHitRayCastCallback;
  */
 public class AttackAIState extends PathFollower {
 	/** Player bat is attacking */
-	private Player player;
+	private DynamicEntity target;
 	
 	/** Minumum distance for pathfinding to use for node spacing */
 	float minDist = 10.0f;
@@ -32,11 +29,11 @@ public class AttackAIState extends PathFollower {
 		
 	}
 	
-	public void setPlayer(Player player){
-		this.player = player;
+	public void setTarget(DynamicEntity target){
+		this.target = target;
 		PathFinderSettings settings = ((Bat)controlling).attackState.pathfinder.getCurrentSettings();
 		settings.start.set(controlling.getLocation());
-		settings.goal.set(player.getLocation());
+		settings.goal.set(target.getLocation());
 	}
 	
 	@Override
@@ -46,8 +43,8 @@ public class AttackAIState extends PathFollower {
 		// set pathfinder to go to player from bat
 		PathFinderSettings settings = ((Bat)controlling).attackState.pathfinder.getCurrentSettings();
 		settings.start.set(controlling.getLocation());
-		settings.goal.set(player.getLocation());
-		float dist = controlling.getLocation().dst(player.getLocation());
+		settings.goal.set(target.getLocation());
+		float dist = controlling.getLocation().dst(target.getLocation());
 		if(dist < minDist) dist = minDist;
 		settings.nodeDist = dist / 10.0f;
 		settings.goalThreshold = (dist / 5.0f);

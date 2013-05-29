@@ -9,11 +9,9 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.ai.AI;
 import com.bitwaffle.guts.entity.ai.path.PathFinderSettings;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.physics.PhysicsUpdateRequest;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatFlyAnimation;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatRenderer;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatSleepAnimation;
-import com.bitwaffle.offworld.entities.player.Player;
 import com.bitwaffle.offworld.interfaces.Health;
 
 /**
@@ -44,20 +42,16 @@ public class Bat extends DynamicEntity implements Health {
 		sleepAnimation = new BatSleepAnimation(this);
 		flyAnimation = new BatFlyAnimation(this);
 		
-		float
-			pathNodeDist = 17.5f,
-			pathGoalThreshold = 18.0f,
-			pathUpdateFrequency = 2.0f,
-			nodeThreshold = 2.0f,
-			followSpeed = 0.5f;
-		int pathMaxIterations = 1000;
-		boolean allowDiagonal = true;
+		PathFinderSettings s = new PathFinderSettings();
+		s.nodeDist        = 17.5f;
+		s.goalThreshold   = 18.0f;
+		s.updateFrequency = 2.0f;
+		s.maxIterations   = 1000;
+		s.allowDiagonal   = true;
+		float nodeThreshold = 2.0f, 
+		      followSpeed = 12.5f;
 		ai = new AI(this);
-		attackState = new AttackAIState(this, new PathFinderSettings(
-				pathNodeDist,
-				pathGoalThreshold,
-				pathUpdateFrequency,
-				pathMaxIterations, allowDiagonal), nodeThreshold, followSpeed);
+		attackState = new AttackAIState(this, s, nodeThreshold, followSpeed);
 	}
 	
 
@@ -65,7 +59,8 @@ public class Bat extends DynamicEntity implements Health {
 	public void init(World world){
 		super.init(world);
 		
-		sleepState = new SleepAIState(this, 15.0f);
+		float radius = 15.0f;
+		sleepState = new SleepAIState(this, radius);
 		ai.setState(sleepState);
 	}
 	
@@ -100,18 +95,9 @@ public class Bat extends DynamicEntity implements Health {
 	}
 	
 	/** Called in OffworldContactListener when a Player hits the bat's player sensor */
-	public void reportPlayerSensorHit(Player contact) {
-		attackState.setPlayer(contact);
-		
+	public void startAttacking(DynamicEntity target) {
+		attackState.setTarget(target);
 		ai.setState(attackState);
-		Game.physics.addUpdateRequest(new PhysicsUpdateRequest(){
-			@Override
-			public void doRequest() {
-				body.destroyFixture(sleepState.playerSensor);
-			}
-			
-		});
-		
 	}
 	
 	public float getWidth() { return width; }

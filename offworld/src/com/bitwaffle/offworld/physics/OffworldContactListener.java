@@ -80,8 +80,9 @@ public class OffworldContactListener implements ContactListener {
 	/** Called when bat hits something */
 	private static void beginBatContact(Bat bat, Fixture batFixture, DynamicEntity contact, Fixture contactFixture){
 		if(contact instanceof Player && batFixture == bat.sleepState.playerSensor){
-			bat.reportPlayerSensorHit((Player)contact);
-			
+			bat.startAttacking(contact);
+		} else if(contact instanceof PistolBullet){
+			bat.startAttacking(((PistolBullet)contact).getOwner());
 		}
 	}
 }

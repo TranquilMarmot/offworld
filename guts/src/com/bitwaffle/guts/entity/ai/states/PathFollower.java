@@ -50,19 +50,19 @@ public class PathFollower extends AIState {
 		pathfinder.updatePath(timeStep);
 		if(pathfinder.newPath())
 			setPath(pathfinder.getPath());
-		moveTowardsTarget();
+		moveTowardsTarget(timeStep);
 	}
 	
 	/** Set the path being followed */
 	public void setPath(LinkedList<Node> newPath){ path = newPath; }
 	
 	/** Sets linear velocity to move towards current point */
-	private void moveTowardsTarget(){
+	private void moveTowardsTarget(float timeStep){
 		Node n = path.peek();
 		if(n != null){
 			float angle = MathHelper.angle(controlling.getLocation(), n.loc());
 			
-			Vector2 linvec = new Vector2(followSpeed, 0.0f);
+			Vector2 linvec = new Vector2(timeStep * followSpeed, 0.0f);
 			linvec.rotate(angle);
 			Vector2 linvel = controlling.body.getLinearVelocity();
 			controlling.body.setLinearVelocity(new Vector2(linvec.x + linvel.x, linvec.y + linvel.y));

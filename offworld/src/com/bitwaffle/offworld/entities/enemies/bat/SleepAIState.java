@@ -3,9 +3,11 @@ package com.bitwaffle.offworld.entities.enemies.bat;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.ai.states.AIState;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.physics.CollisionFilters;
+import com.bitwaffle.guts.physics.PhysicsUpdateRequest;
 
 /**
  * A sleeping bat.
@@ -48,7 +50,17 @@ public class SleepAIState extends AIState {
 	}
 
 	@Override
-	public void onLoseCurrentState() {}
+	public void onLoseCurrentState() {
+		if(playerSensor != null){
+			Game.physics.addUpdateRequest(new PhysicsUpdateRequest(){
+				@Override
+				public void doRequest() {
+					controlling.body.destroyFixture(playerSensor);
+					playerSensor = null;
+				}
+			});
+		}
+	}
 	@Override
 	public void onGainCurrentState() {}
 

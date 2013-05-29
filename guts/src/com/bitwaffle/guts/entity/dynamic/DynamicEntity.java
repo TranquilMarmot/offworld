@@ -130,6 +130,11 @@ public class DynamicEntity extends Entity {
 		this.body.getWorld().destroyBody(body);
 		body = null;
 	}
+	
+	@Override
+	public String toString(){
+		return this.getClass().getSimpleName() + " " + location;
+	}
 
 	/*
 	@Override
