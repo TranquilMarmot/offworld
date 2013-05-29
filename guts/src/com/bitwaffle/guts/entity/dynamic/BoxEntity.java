@@ -51,7 +51,7 @@ public class BoxEntity extends DynamicEntity {
 		
 		FixtureDef fixture = new FixtureDef();
 		fixture.shape = box;
-		fixture.filter.categoryBits = CollisionFilters.GROUND;
+		fixture.filter.categoryBits = CollisionFilters.ENTITY;
 		fixture.filter.maskBits = CollisionFilters.EVERYTHING;
 		fixture.density = density;
 		return fixture;
