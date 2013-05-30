@@ -3,6 +3,8 @@ package com.bitwaffle.guts.graphics.graphics2d;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.Shape;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.physics.Room;
@@ -177,6 +179,57 @@ public class Camera2D extends Entity {
 		float roomRightX = r.getRoomX() + r.getRoomWidth();
 		if(cameraRightX > roomRightX)
 			this.location.x += (cameraRightX - roomRightX);
+	}
+	
+	/** @return Whether or not a point is inside the screen */
+	public boolean isPointVisible(Vector2 p){
+		Vector2 windowSize = this.getWorldWindowSize();
+		Vector2 center = this.getWorldCenterPoint();
+		
+		Vector2 topLeft     = new Vector2(center.x - windowSize.x, center.y + windowSize.y),
+				topRight    = new Vector2(center.x + windowSize.x, center.y + windowSize.y),
+				bottomRight = new Vector2(center.x + windowSize.x, center.y - windowSize.y),
+				bottomLeft  = new Vector2(center.x - windowSize.x, center.y - windowSize.y);
+		
+		// FIXME why are these numbers off by so much?
+		return
+				(MathHelper.triangleArea(topRight,    topLeft,     p) >= 0) &&
+				(MathHelper.triangleArea(topLeft,     bottomLeft,  p) >= -50) && 
+				(MathHelper.triangleArea(bottomLeft,  bottomRight, p) >= 0) &&
+				(MathHelper.triangleArea(bottomRight, topRight,    p) >= -5);
+	}
+	
+	/** @return Whether a given fixture is visible by the camera */
+	public boolean isFixtureVisible(Vector2 bodyLoc, Fixture fixt){
+		Shape s = fixt.getShape();
+		Shape.Type st = s.getType();
+		switch(st){
+		case Chain:
+			Game.out.println("WARNING chain shape isVisible not implemented in Camera2D");
+			break;
+		case Circle:
+			Game.out.println("WARNING circle shape isVisible not implemented in Camera2D");
+			break;
+		case Edge:
+			Game.out.println("WARNING edge shape isVisible not implemented in Camera2D");
+			break;
+		case Polygon:
+			PolygonShape poly = (PolygonShape)s;
+			Vector2 v = new Vector2();
+			// if any point is visible, return true
+			for(int i = 0; i < poly.getVertexCount(); i++){
+				poly.getVertex(i, v);
+				v = v.add(bodyLoc);
+				if(isPointVisible(v))
+					return true;
+			}
+			
+			return false;
+		default:
+			break;
+		}
+		
+		return true;
 	}
 	
 	@Override

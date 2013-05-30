@@ -445,18 +445,4 @@ public class MathHelper {
 		     (v0.y*v1.x)
 		);
 	}
-	
-	public static boolean pointIsInScreen(Vector2 p){
-		Camera2D cam = Game.renderer.r2D.camera;
-		Vector2 windowSize = cam.getWorldWindowSize();
-		Vector2 center = cam.getWorldCenterPoint();
-		
-		Vector2 topLeft = new Vector2(center.x - windowSize.x, center.y + windowSize.y),
-				topRight = new Vector2(center.x + windowSize.x, center.y + windowSize.y);
-		if(triangleArea(topRight, topLeft, p) >= 0)
-			return true;
-		
-		
-		return false;
-	}
 }
