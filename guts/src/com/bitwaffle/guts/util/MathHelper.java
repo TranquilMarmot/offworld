@@ -434,4 +434,29 @@ public class MathHelper {
 		Vector3 multi = rotateVectorByQuaternion(new Vector3(0.0f, 0.0f,amount), quat);
 		return vec.add(multi);
 	}
+	
+	public static float triangleArea(Vector2 v0, Vector2 v1, Vector2 v2){
+		return (0.5f) * (
+		     (v1.x*v2.y) - 
+		     (v1.y*v2.x) -
+		     (v0.x*v2.y) + 
+		     (v0.y*v2.x) + 
+		     (v0.x*v1.y) - 
+		     (v0.y*v1.x)
+		);
+	}
+	
+	public static boolean pointIsInScreen(Vector2 p){
+		Camera2D cam = Game.renderer.r2D.camera;
+		Vector2 windowSize = cam.getWorldWindowSize();
+		Vector2 center = cam.getWorldCenterPoint();
+		
+		Vector2 topLeft = new Vector2(center.x - windowSize.x, center.y + windowSize.y),
+				topRight = new Vector2(center.x + windowSize.x, center.y + windowSize.y);
+		if(triangleArea(topRight, topLeft, p) >= 0)
+			return true;
+		
+		
+		return false;
+	}
 }

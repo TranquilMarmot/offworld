@@ -39,22 +39,24 @@ public class AttackAIState extends PathFollower {
 	@Override
 	public void update(float timeStep){
 		super.update(timeStep);
-		
+
+		Vector2 loc = controlling.getLocation();
+
 		// set pathfinder to go to player from bat
 		PathFinderSettings settings = ((Bat)controlling).attackState.pathfinder.getCurrentSettings();
-		settings.start.set(controlling.getLocation());
+		settings.start.set(loc);
 		settings.goal.set(target.getLocation());
-		float dist = controlling.getLocation().dst(target.getLocation());
+		float dist = loc.dst(target.getLocation());
 		if(dist < minDist) dist = minDist;
 		settings.nodeDist = dist / 10.0f;
 		settings.goalThreshold = (dist / 5.0f);
 		
-		Vector2 loc = controlling.getLocation();
-		Vector2 groundCheck = new Vector2(loc.x, loc.y + 5.0f);
+		// repel from the ground
+		Vector2 groundCheck = new Vector2(loc.x, loc.y + 7.5f);
 		Game.physics.rayCast(groundCheckCallback, loc, groundCheck);
 		if(groundCheckCallback.getHit() != null){
 			Vector2 linVec = controlling.body.getLinearVelocity();
-			controlling.body.setLinearVelocity(linVec.x, linVec.y + (10.0f * timeStep));
+			controlling.body.setLinearVelocity(linVec.x, linVec.y + (12.0f * timeStep));
 		}
 	}
 }

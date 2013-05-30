@@ -2,6 +2,7 @@ package com.bitwaffle.guts.graphics.graphics2d;
 
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.physics.Room;
@@ -50,6 +51,8 @@ public class Camera2D extends Entity {
 		this.setLocation(new Vector2(DEFAULT_CAMX, DEFAULT_CAMY));
 		this.location.set(DEFAULT_CAMX, DEFAULT_CAMY);
 		this.setZoom(DEFAULT_CAMZ);
+		
+		
 	}
 	
 	@Override

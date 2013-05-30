@@ -62,8 +62,17 @@ public class OffworldContactFilter implements ContactFilter{
 				return true;
 			else
 				return false;
-		} else
-			return true;
+		} else {
+			if(other instanceof Bat){
+				Bat ob = (Bat)other;
+				if(ob.ai.currentState() == ob.sleepState)
+					return false;
+				else
+					return true;
+			} else{
+				return true;
+			}
+		}
 	}
 
 }

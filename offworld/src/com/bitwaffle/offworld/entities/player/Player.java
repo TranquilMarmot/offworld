@@ -1,13 +1,16 @@
 package com.bitwaffle.offworld.entities.player;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
@@ -215,6 +218,28 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 			setTarget(mouse);
 		}
 		
+		
+		Iterator<Fixture> it = body.getFixtureList().iterator();
+		Fixture fix = it.next();
+		Shape.Type st = fix.getShape().getType();
+		switch(st){
+		case Chain:
+			break;
+		case Circle:
+			break;
+		case Edge:
+			break;
+		case Polygon:
+			PolygonShape poly = (PolygonShape)fix.getShape();
+			Vector2 v = new Vector2();
+			poly.getVertex(0, v);
+			v = v.add(location);
+			Game.out.println(MathHelper.pointIsInScreen(v));
+			
+			break;
+		default:
+			break;
+		}
 	}
 	
 	/**
