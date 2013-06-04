@@ -112,6 +112,7 @@ public class PathFinder {
 			currentIteration++;
 			// return if we've hit the settings.goal
 			if(isGoal(current) || currentIteration >= settings.maxIterations){
+				path.clear();
 				reconstructPath(current);
 				return;
 			}
@@ -129,7 +130,7 @@ public class PathFinder {
 				float tentativeGScore = current.gScore() + current.dst(neighbor);
 				if(status == Node.Status.CLOSED && tentativeGScore >= neighbor.gScore())
 					continue;
-				else if(status != Node.Status.OPEN || tentativeGScore > neighbor.gScore()){
+				if(status != Node.Status.OPEN || tentativeGScore > neighbor.gScore()){
 					neighbor.setParent(current);
 					neighbor.setGScore(tentativeGScore);
 					neighbor.calcFScore();
@@ -144,7 +145,6 @@ public class PathFinder {
 	
 	/** Clears path and reconstructs it */
 	private void reconstructPath(Node n) {
-		path.clear();
 		if(n.parent() != null){
 			// recurse to add parent's parents
 			reconstructPath(n.parent());
