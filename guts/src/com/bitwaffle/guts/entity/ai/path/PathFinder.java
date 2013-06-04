@@ -23,6 +23,8 @@ public class PathFinder {
 	// TODO make diagonal searching optional (got it in settings, now need to honor it)
 	// TODO theta*? http://aigamedev.com/open/tutorials/theta-star-any-angle-paths/#Rabin:02
 	// TODO Sparse matrix is a little much- retry it again with N,E,S,W pointer on each node
+	// TODO You know, ray casts tell where they hit- why not make nodes there?
+	// TODO try using corners for nodes maybe?
 	
 	/** Settings algorithm uses for pathfinding. Can have dramatic effects on speed! */
 	private PathFinderSettings settings;
