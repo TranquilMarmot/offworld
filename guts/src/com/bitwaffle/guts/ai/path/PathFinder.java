@@ -23,6 +23,9 @@ public class PathFinder {
 	// TODO make diagonal searching optional (got it in settings, now need to honor it)
 	// TODO theta*? http://aigamedev.com/open/tutorials/theta-star-any-angle-paths/#Rabin:02
 	// TODO Sparse matrix  is a little much- retry it again with N,E,S,W pointer on each node
+	// TODO Sparse matrix is a little much- retry it again with N,E,S,W pointer on each node
+	// TODO You know, ray casts tell where they hit- why not make nodes there?
+	// TODO try using corners for nodes maybe?
 	
 	/** Settings algorithm uses for pathfinding. Can have dramatic effects on speed! */
 	private PathFinderSettings settings;
@@ -112,6 +115,7 @@ public class PathFinder {
 			currentIteration++;
 			// return if we've hit the settings.goal or max number of iterations
 			if(isGoal(current) || currentIteration >= settings.maxIterations){
+				path.clear();
 				reconstructPath(current);
 				return;
 			}
@@ -129,8 +133,7 @@ public class PathFinder {
 				float tentativeGScore = current.gScore() + current.dst(neighbor);
 				if(status == Node.Status.CLOSED && tentativeGScore >= neighbor.gScore())
 					continue;
-				else if(status != Node.Status.OPEN || tentativeGScore > neighbor.gScore()){
-					// parents are used to build path
+				if(status != Node.Status.OPEN || tentativeGScore > neighbor.gScore()){
 					neighbor.setParent(current);
 					
 					// recalculate scores
@@ -149,7 +152,6 @@ public class PathFinder {
 	
 	/** Clears path and reconstructs it */
 	private void reconstructPath(Node n) {
-		path.clear();
 		if(n.parent() != null){
 			// recurse to add parent's parents
 			reconstructPath(n.parent());
