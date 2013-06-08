@@ -6,8 +6,8 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entity.ai.AI;
-import com.bitwaffle.guts.entity.ai.path.PathFinderSettings;
+import com.bitwaffle.guts.ai.AI;
+import com.bitwaffle.guts.ai.path.PathFinderSettings;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatFlyAnimation;
 import com.bitwaffle.offworld.entities.enemies.bat.render.BatRenderer;
@@ -46,10 +46,10 @@ public class Bat extends DynamicEntity implements Health {
 		s.nodeDist        = 17.5f;
 		s.goalThreshold   = 18.0f;
 		s.updateFrequency = 2.0f;
-		s.maxIterations   = 1000;
+		s.maxIterations   = 500;
 		s.allowDiagonal   = true;
 		float nodeThreshold = 2.0f, 
-		      followSpeed = 12.5f;
+		      followSpeed = 500.5f;
 		ai = new AI(this);
 		attackState = new AttackAIState(this, s, nodeThreshold, followSpeed);
 	}

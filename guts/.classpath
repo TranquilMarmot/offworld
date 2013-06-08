@@ -6,6 +6,5 @@
 	<classpathentry exported="true" kind="lib" path="libs/kryonet-debug-2.18-all.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/scala-library.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/gdx-controllers.jar"/>
-	<classpathentry exported="true" kind="lib" path="libs/gdx-freetype.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -58,7 +58,6 @@ public class PhysicsHelper {
 		def.linearVelocity.set(bod.getLinearVelocity());
 		def.position.set(bod.getPosition());
 		def.type = bod.getType();
-		
 		return def;
 	}
 	

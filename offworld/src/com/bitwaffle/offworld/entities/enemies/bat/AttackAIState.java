@@ -1,9 +1,9 @@
-package com.bitwaffle.offworld.entities.enemies.bat;
+ package com.bitwaffle.offworld.entities.enemies.bat;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entity.ai.path.PathFinderSettings;
-import com.bitwaffle.guts.entity.ai.states.PathFollower;
+import com.bitwaffle.guts.ai.path.PathFinderSettings;
+import com.bitwaffle.guts.ai.states.PathFollower;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.physics.callbacks.FirstHitRayCastCallback;
 

@@ -4,7 +4,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entity.ai.states.AIState;
+import com.bitwaffle.guts.ai.states.AIState;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.physics.CollisionFilters;
 import com.bitwaffle.guts.physics.PhysicsUpdateRequest;

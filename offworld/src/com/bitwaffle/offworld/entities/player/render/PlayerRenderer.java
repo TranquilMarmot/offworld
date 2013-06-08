@@ -102,6 +102,7 @@ public class PlayerRenderer implements EntityRenderer2D {
 			renderer.modelview.set(tempmat);
 		}
 		
+		renderer.modelview.set(tempmat);
 		jetpackBar.render(renderer, player.jetpack);
 	}
 	
@@ -142,6 +143,7 @@ public class PlayerRenderer implements EntityRenderer2D {
 		renderer.r2D.translateModelViewToCamera();
 		renderer.modelview.translate(targetLoc.x, targetLoc.y, 0.0f);
 		renderer.r2D.quad.render(0.75f, 0.75f);
+		renderer.modelview.translate(-targetLoc.x, -targetLoc.y, 0.0f);
 		
 		Gdx.gl20.glDisable(GL20.GL_BLEND); // don't forget to turn blending back off!
 	}
