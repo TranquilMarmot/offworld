@@ -31,8 +31,7 @@ public class OuyaGUIControllerListener extends GUIControllerListener {
 
 	@Override
 	protected boolean isPauseButton(int buttonCode) {
-		// TODO this needs to be handled elsewhere
-		return false;
+		return buttonCode == Ouya.BUTTON_MENU;
 	}
 
 }

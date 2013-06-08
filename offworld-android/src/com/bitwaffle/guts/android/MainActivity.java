@@ -38,5 +38,11 @@ public class MainActivity extends AndroidApplication {
         
         initialize(new AndroidGame(), cfg);
     }
+    
+    @Override
+    public void onBackPressed(){
+    	super.onBackPressed();//
+    	Game.out.println("what.");
+    }
 
 }

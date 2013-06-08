@@ -34,7 +34,7 @@ public abstract class GUIControllerListener implements ControllerListener {
 
 	@Override
 	public boolean buttonDown(Controller controller, int buttonCode) {
-		if(isConfirmButton(buttonCode)){
+		if(Game.gui.hasSelectedButton() && isConfirmButton(buttonCode)){
 			gui.selectedButtonDown();
 			return true;
 		} else if(isPauseButton(buttonCode)){

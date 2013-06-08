@@ -25,7 +25,7 @@ public abstract class OffworldGame extends Game {
 	public static final String VERSION = "0.0.6.12 (pre-alpha)";
 	
 	/** Whether or not to show the splash screen */
-	public static boolean showSplash = false;
+	public static boolean showSplash = true;
 	
 	/** List of players */
 	public static Player[] players = new Player[4];
@@ -40,9 +40,9 @@ public abstract class OffworldGame extends Game {
 		if(showSplash)
 			gui.setCurrentState(GUIStates.SPLASH.state);
 		else {
-			//gui.setCurrentState(GUIStates.TITLESCREEN); FIXME temp
-			tempInit(Game.physics);
-			Game.gui.setCurrentState(GUIStates.NONE.state);
+			Game.gui.setCurrentState(GUIStates.TITLESCREEN.state);
+			//tempInit(Game.physics);
+			//Game.gui.setCurrentState(GUIStates.NONE.state);
 		}
 	}
 	

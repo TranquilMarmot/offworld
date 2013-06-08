@@ -3,6 +3,7 @@ package com.bitwaffle.offworld.entities.player;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.controllers.mappings.Ouya;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -209,7 +210,7 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 				firearm.shootAt(body.getWorld(), target);
 		}
 		
-		if(controlledByMouse){
+		if(!Ouya.runningOnOuya && controlledByMouse){
 			Vector2 mouse = new Vector2();
 			MathHelper.toWorldSpace(mouse, Gdx.input.getX(), Gdx.input.getY(), Game.renderer.r2D.camera);
 			setTarget(mouse);

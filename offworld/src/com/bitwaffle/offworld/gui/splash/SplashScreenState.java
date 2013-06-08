@@ -27,7 +27,7 @@ public class SplashScreenState extends GUIState {
 	
 	private float timer;
 	/** Total time in seconds that splash screen is displayed */
-	private float splashScreenTime = 3.75f;
+	private float splashScreenTime = 5.75f;
 	
 	public SplashScreenState(GUI gui){
 		super(gui);
