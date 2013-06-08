@@ -1,6 +1,8 @@
 package com.bitwaffle.offworld.entities.player;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.entity.dynamic.particles.EmitterSettings;
 import com.bitwaffle.guts.entity.dynamic.particles.ParticleEmitter;
 
 /**
@@ -64,6 +66,7 @@ public class Jetpack {
 	 */
 	public void update(float timeStep){
 		jetpackEmitter.update(timeStep);
+		updateSettings();
 		
 		isHovering = fuel < hoverStartPercent;
 		
@@ -94,6 +97,30 @@ public class Jetpack {
 		// recharges faster after the player hits the ground
 		if(player.getJumpSensor().numContacts() > 0)
 			fastRecharging = true;
+	}
+	
+	private void updateSettings(){
+		EmitterSettings settings = jetpackEmitter.settings;
+		
+		// set offset
+		settings.offset = new Vector2(Game.random.nextFloat() * settings.xLocationVariance * -0.2f, Game.random.nextFloat() * settings.yLocationVariance * 0.02f);
+		
+		// set particle lifetime
+		if(Game.random.nextFloat() > 0.9f){
+			float low = 0.8f, high = 1.0f;
+			float liveLong = Game.random.nextFloat();
+			if(liveLong < low)
+				settings.particleLifetime = low * 2.0f;
+			else if(liveLong > high)
+				settings.particleLifetime = high * 2.0f;
+			else
+				settings.particleLifetime = liveLong * 2.0f;
+		} else {
+			settings.particleLifetime = Game.random.nextFloat() * 0.75f;
+		}
+		
+		// set particle force
+		settings.particleForce = new Vector2(Game.random.nextBoolean() ? Game.random.nextFloat() * -5.0f : Game.random.nextFloat() * -5.0f, Game.random.nextFloat() * -50.0f);
 	}
 	
 	/** @return How much fuel the jetpack has left, as a percent */

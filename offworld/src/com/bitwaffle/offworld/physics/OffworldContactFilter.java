@@ -41,7 +41,7 @@ public class OffworldContactFilter implements ContactFilter{
 	
 	private boolean particleCollision(Particle particle, Fixture particleFix, DynamicEntity other, Fixture otherFix){
 		// ignore particles hitting their emitter and any bullets
-		if(other != particle.getOwner() && !(other instanceof PistolBullet))
+		if(other != particle.getEmitter().settings.attached && !(other instanceof PistolBullet))
 			return true;
 		else
 			return false;

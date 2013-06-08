@@ -10,5 +10,6 @@
 	<classpathentry exported="true" kind="lib" path="libs/gdx-controllers-desktop-natives.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/gdx-controllers-desktop.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/gdx-freetype-natives.jar"/>
+	<classpathentry kind="lib" path="/guts/libs/scala-library.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
