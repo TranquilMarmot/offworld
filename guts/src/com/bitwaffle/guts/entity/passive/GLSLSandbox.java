@@ -144,7 +144,7 @@ public class GLSLSandbox extends Entity {
 		/** Initializes the Quad used for rendering */
 		private void initQuad(){
 			positionHandle = program.getAttribLocation("position");
-			
+
 			float[] coords = {
 					-1.0f, -1.0f, 0.0f,
 					1.0f, -1.0f, 0.0f,
@@ -154,6 +154,7 @@ public class GLSLSandbox extends Entity {
 					-1.0f, 1.0f, 0.0f,
 					-1.0f, -1.0f, 0.0f
 			};
+			
 			posBuffer = BufferUtils.newByteBuffer(coords.length * 4);
 			BufferUtils.copy(coords, posBuffer, coords.length, 0);
 			posBuffer.rewind();

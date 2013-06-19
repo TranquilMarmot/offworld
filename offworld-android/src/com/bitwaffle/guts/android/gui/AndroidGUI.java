@@ -13,37 +13,32 @@ import com.bitwaffle.offworld.gui.OffworldGUI;
  */
 public class AndroidGUI extends OffworldGUI {
 	private MovementGUIState movementState;
-	
-	public AndroidGUI(){
+
+	public AndroidGUI() {
 		super();
-		
-		if(!Ouya.runningOnOuya)
+
+		if (!Ouya.runningOnOuya)
 			movementState = new MovementGUIState(this);
 	}
-	
+
 	@Override
 	public void update(float timeStep) {
 		super.update(timeStep);
 		checkState();
 	}
-	
-	
-	protected void checkState(){
-		if(!isCurrentState(GUIStates.SPLASH.state)){
-			if(!Ouya.runningOnOuya){
-				// check if we need to switch between the pause menu and the movement keys
-				if(!isCurrentState(GUIStates.TITLESCREEN.state) && !isCurrentState(GUIStates.OPTIONS.state)){
-					if(Game.isPaused() && !isCurrentState(GUIStates.PAUSE.state))
-						setCurrentState(GUIStates.PAUSE.state);
-					else if(!Game.isPaused() && !isCurrentState(movementState))
-						setCurrentState(movementState);//
-				}
-			} else {
-				if(!isCurrentState(GUIStates.TITLESCREEN.state) && !isCurrentState(GUIStates.OPTIONS.state)){
-					if(Game.isPaused() && !isCurrentState(GUIStates.PAUSE.state))
-						setCurrentState(GUIStates.PAUSE.state);
-					else if(!Game.isPaused())
+
+	protected void checkState() {
+		if (!isCurrentState(GUIStates.SPLASH.state)) {
+			// check if we need to switch between the pause menu and the movement keys
+			if (!isCurrentState(GUIStates.TITLESCREEN.state)
+					&& !isCurrentState(GUIStates.OPTIONS.state)) {
+				if (Game.isPaused() && !isCurrentState(GUIStates.PAUSE.state))
+					setCurrentState(GUIStates.PAUSE.state);
+				else if (!Game.isPaused()) {
+					if(Ouya.runningOnOuya)
 						setCurrentState(GUIStates.NONE.state);
+					else if (!Ouya.runningOnOuya && !isCurrentState(movementState))
+						setCurrentState(movementState);
 				}
 			}
 		}

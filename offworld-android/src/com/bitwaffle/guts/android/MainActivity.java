@@ -41,8 +41,7 @@ public class MainActivity extends AndroidApplication {
     
     @Override
     public void onBackPressed(){
-    	super.onBackPressed();//
-    	Game.out.println("what.");
+    	super.onBackPressed();
     }
 
 }
