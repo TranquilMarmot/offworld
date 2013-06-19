@@ -114,27 +114,33 @@ public class PlayerBodyAnimation extends Animation {
 	
 	@Override
 	public void renderCurrentFrame(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
+		// just render the regular frame if the player is walking
 		if(player.getJumpSensor().numContacts() > 0)
 			super.renderCurrentFrame(renderer, flipHorizontal, flipVertical);
+		// else render an in-air frame
 		else{
 			boolean facingRight = player.isFacingRight();
 			float linVecX = player.body.getLinearVelocity().x;
 			
+			// threshold for linear velocity to change animation
 			float thresh = 1.5f;
 			
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 			
+			// moving left
 			if(linVecX < -thresh){
 				if(facingRight)
 					Game.resources.textures.getSubImage(airLeftSubTex).render(renderer, 1.9f, 1.9f, facingRight, true);
 				else
 					Game.resources.textures.getSubImage(airRightSubTex).render(renderer, 1.9f, 1.9f, facingRight, true);
+			// moving right
 			} else if(linVecX > thresh){
 				if(facingRight)
 					Game.resources.textures.getSubImage(airRightSubTex).render(renderer, 1.9f, 1.9f, facingRight, true);
 				else
 					Game.resources.textures.getSubImage(airLeftSubTex).render(renderer, 1.9f, 1.9f, facingRight, true);
+			// not moving
 			} else
 				Game.resources.textures.getSubImage(jumpSubTex).render(renderer, 1.9f, 1.9f, facingRight, true);
 			

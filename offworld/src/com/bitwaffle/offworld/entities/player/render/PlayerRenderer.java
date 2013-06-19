@@ -71,7 +71,8 @@ public class PlayerRenderer implements EntityRenderer2D {
 			renderer.modelview.rotate(0.0f, 0.0f, 1.0f, armAngle);
 			renderer.modelview.translate(gunOffset.x, facingRight ? gunOffset.y : -gunOffset.y, 0.0f);
 			renderer.r2D.sendMatrixToShader();
-			player.getCurrentFirearm().render(renderer);
+			if(player.getCurrentFirearm() != null)
+				player.getCurrentFirearm().render(renderer);
 			
 			// draw right arm
 			renderer.modelview.translate(-gunOffset.x, facingRight ? -gunOffset.y : gunOffset.y, 0.0f);
