@@ -4,6 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.graphics2d.Camera2D;
+import com.bitwaffle.guts.util.MathHelper;
+import com.bitwaffle.offworld.OffworldGame;
 import com.bitwaffle.offworld.entities.player.Player;
 
 /**
@@ -26,7 +28,7 @@ public class FollowMode extends Camera2D.CameraMode {
 	
 	/** How much the velocity of what the camera is following effects where the camera is looking */
 	private float
-			xVelocityFactor =  2.25f,
+			xVelocityFactor =  0.15f,
 			yVelocityFactor = 2.0f;
 	
 	public void setTarget(DynamicEntity newTarget){ this.target = newTarget; }
@@ -44,15 +46,14 @@ public class FollowMode extends Camera2D.CameraMode {
 			Vector2 targetLoc = target.getLocation();
 			
 			// offset for player's target
-			Vector2 playerTarget = new Vector2(0.0f, 0.0f);
+			Vector2 playerTargetDist = new Vector2(0.0f, 0.0f);
 			if(target instanceof Player){
 				Player player = (Player)target;
 				Vector2 ptarget = player.getCurrentTarget();
 				float pdx = targetLoc.x - ptarget.x;
 				float pdy = targetLoc.y - ptarget.y;
-				playerTarget.set(pdx, pdy);
+				playerTargetDist.set(pdx, pdy);
 			}
-			
 			
 			// if entity has no body, linear velocity doesnt effect camera
 			Vector2 linVec;
@@ -67,26 +68,33 @@ public class FollowMode extends Camera2D.CameraMode {
 			float centerX = -targetLoc.x + ((widthRatio / 2.0f) / zoom);
 			float centerY = -targetLoc.y + (heightRatio / zoom);
 			
+			Vector2 center = camera.getWorldCenterPoint();
+			
+			
+			Vector2 windowSize = camera.getWorldWindowSize();
+			float newX = -targetLoc.x + windowSize.x + (-linVec.x * xVelocityFactor),
+				  newY = -targetLoc.y + windowSize.y;	
+			Vector2 newLoc = new Vector2(newX, newY);
+			
+			//Vector2 dist = new Vector2(camera.getLocation().x - targetLoc.x, camera.getLocation().y - targetLoc.y);
+			camera.setLocation(camera.getLocation().lerp(newLoc, 0.05f));
+			
+			
+			/*
 			// step camera towards entity on X axis
-			float newX = centerX + (-linVec.x * xVelocityFactor) + (xOffset / zoom) + playerTarget.x;
+			float newX = centerX + (-linVec.x * xVelocityFactor) + (xOffset / zoom) + playerTargetDist.x;
 			float diffX = camLoc.x - newX;
-			if(diffX > 0.5f || diffX < -0.5f)
-				camLoc.x -= diffX / followSpeed;
+			camLoc.x -= diffX / followSpeed;
 			
 			// step camera towards entity on Y axis
-			float newY= centerY + (-linVec.y * yVelocityFactor) + (yOffset / zoom) + playerTarget.y;
+			float newY= centerY + (-linVec.y * yVelocityFactor) + (yOffset / zoom) + playerTargetDist.y;
 			float diffY = camLoc.y - newY;
-			if(diffY > 0.5f || diffY < -0.5f)
-				camLoc.y -= diffY / followSpeed;
-			
-			//Vector2 cameraWorldSize = camera.getWorldWindowSize();
-			//if(camLoc.x )
-
-			camera.setLocation(camLoc);
+			camLoc.y -= diffY / followSpeed;
+			*/
 		}
 	}
 	
-	/** @retufn Current follow speed. Higher number means slower speed, 1 means instant. */
+	/** @return Current follow speed. Higher number means slower speed, 1 means instant. */
 	public float getFollowSpeed(){
 		return followSpeed;
 	}

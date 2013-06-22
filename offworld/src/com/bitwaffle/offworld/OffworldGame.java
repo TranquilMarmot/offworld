@@ -25,7 +25,7 @@ public abstract class OffworldGame extends Game {
 	public static final String VERSION = "0.0.6.12 (pre-alpha)";
 	
 	/** Whether or not to show the splash screen */
-	public static boolean showSplash = true;
+	public static boolean showSplash = false;
 	
 	/** List of players */
 	public static Player[] players = new Player[4];

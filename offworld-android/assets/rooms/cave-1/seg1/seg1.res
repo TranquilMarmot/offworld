@@ -3,7 +3,7 @@
 		{
 			"name":	"cave-1-seg1",
 			"geom":	"rooms/cave-1/seg1/geom.obj",
-			"debug": "rooms/cave-1/seg1/debug.obj",
+			"debug": "rooms/cave-1/seg1/render.obj",
 			"render":	[
 				{
 					"render":	"rooms/cave-1/seg1/render.obj",

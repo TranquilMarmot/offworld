@@ -1,27 +1,27 @@
 {"resources":	{
 	"polygons": [
 		{
-			"name":	"cave-1-seg3",
-			"geom":	"rooms/cave-1/seg3/geom.obj",
-			"debug": "rooms/cave-1/seg3/debug.obj",
+			"name":	"cave-1-platform1",
+			"geom":	"rooms/cave-1/platform1/geom.obj",
+			"debug": "rooms/cave-1/platform1/render.obj",
 			"render":	[
 				{
-					"render":	"rooms/cave-1/seg3/render.obj",
+					"render":	"rooms/cave-1/platform1/render.obj",
 					"texture":	"cave-1-tile-1"
 				}
 			],
-			"type":	"chain",
+			"type":	"loop",
 			"scale": 3.0
 		}
 	],
 	
 	"entities":	[
 		{
-			"name":	"cave-1-seg3",
+			"name":	"cave-1-platform1",
 			"fixture":	{
 				"shape":	{
 					"type":	"polygon",
-					"polyName":	"cave-1-seg3"
+					"polyName":	"cave-1-platform1"
 				},
 				"density":	0.0,
 				"friction":	1.0,

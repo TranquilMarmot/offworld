@@ -25,13 +25,13 @@ public class Camera2D extends Entity {
 	}
 	
 	/** Initial values for camera */
-	private static final float DEFAULT_CAMX = 1.0f, DEFAULT_CAMY = -30.0f, DEFAULT_CAMZ = 0.03f;
+	private static final float DEFAULT_CAMX = 86.1816f * 3.0f, DEFAULT_CAMY = 24.6180f * 3.0f, DEFAULT_CAMZ = 0.03f;
 	
 	/** Current zoom level of camera (smaller it is, the smaller everything will be rendered) */
 	private float zoom;
 	
 	/** Minimum and maximum zoom values */
-	private float minZoom = 0.008F, maxZoom = 0.15F;
+	private float minZoom = 0.008f, maxZoom = 0.15f;
 	
 	/** Current camera mode */
 	private CameraMode currentMode = null;
@@ -127,10 +127,7 @@ public class Camera2D extends Entity {
 		}
 	}
 	
-	/**
-	 * @param zoom Zoom level to get window size for
-	 * @return Size of window in world coordinates for given zoom level
-	 */
+	/** @return Size of window in world coordinates */
 	public Vector2 getWorldWindowSize(){
 		projection.idt();
 		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1);

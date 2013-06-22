@@ -25,15 +25,20 @@ public class Room1 extends Room {
 		super(x, y, width, height);
 		
 		Gdx.gl20.glClearColor(0.4117647058823529f, 0.592156862745098f, 0.8274509803921569f, 1.0f);
+		//Gdx.gl20.glClearColor(0.40625f, 0.46875f, 0.78125f, 1.0f);
 
 		this.addEntity(getDynamicEntity("cave-1-seg1", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
 		this.addEntity(getDynamicEntity("cave-1-seg2", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
+		this.addEntity(getDynamicEntity("cave-1-platform1", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
+		this.addEntity(getDynamicEntity("cave-1-platform2", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
+		/*
 		this.addEntity(getDynamicEntity("cave-1-seg3", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
 		this.addEntity(getDynamicEntity("cave-1-seg4", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
 		this.addEntity(getDynamicEntity("cave-1-platform-1", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
 		this.addEntity(getDynamicEntity("cave-1-platform-2", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
 		this.addEntity(getDynamicEntity("cave-1-platform-3", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
 		this.addEntity(getDynamicEntity("cave-1-platform-4", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
+		*/
 		
 		// add random rocks
 		for(int i = 0; i < 10; i++){
