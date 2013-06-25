@@ -2,7 +2,6 @@ package com.bitwaffle.offworld;
 
 import com.badlogic.gdx.Gdx;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.input.Input;
 import com.bitwaffle.guts.net.Net;
 import com.bitwaffle.guts.physics.Physics;
@@ -59,13 +58,6 @@ public abstract class OffworldGame extends Game {
 	
 	@Override
 	protected Input initInput(){ return new OffworldInput(); }
-	
-	@Override
-	protected Renderer initRenderer(){
-		Renderer r = super.initRenderer();
-		// grab camera and set camera modes to use it
-		return r;
-	}
 	
 	/**
 	 * Temporary initialization

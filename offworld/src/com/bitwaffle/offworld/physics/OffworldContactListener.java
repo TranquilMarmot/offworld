@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.physics.PhysicsHelper;
+import com.bitwaffle.offworld.camera.CameraChangeSensor;
 import com.bitwaffle.offworld.entities.enemies.bat.Bat;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.bitwaffle.offworld.weapons.pistol.PistolBullet;
@@ -31,6 +32,7 @@ public class OffworldContactListener implements ContactListener {
 		else if(entB instanceof PistolBullet)
 			((PistolBullet)entB).collision(contact, entA);
 		
+		// bat collision
 		if(entA instanceof Bat)
 			beginBatContact((Bat)entA, fixtureA, entB, fixtureB);
 		else if(entB instanceof Bat)
@@ -45,15 +47,10 @@ public class OffworldContactListener implements ContactListener {
 		DynamicEntity entB = PhysicsHelper.getDynamicEntity(fixtureB);
 		
 		// check if it's the player's jump sensor and decrement if it is
-		if(entA instanceof Player){
-			Player player = (Player)entA;
-			if(fixtureA.equals(player.getJumpSensor().fixture()))
-				player.getJumpSensor().endContact(entB);
-		} else if(entB instanceof Player){
-			Player player = (Player)entB;
-			if(fixtureB.equals(player.getJumpSensor().fixture()))
-				player.getJumpSensor().endContact(entA);
-		}
+		if(entA instanceof Player)
+			endPlayerContact((Player)entA, fixtureA, entB, fixtureB);
+		else if(entB instanceof Player)
+			endPlayerContact((Player)entB, fixtureB, entA, fixtureA);
 	}
 	
 	@Override
@@ -68,13 +65,25 @@ public class OffworldContactListener implements ContactListener {
 	
 	/** Called when player hits something */
 	private static void beginPlayerContact(Player player, Fixture playerFixture, DynamicEntity contact, Fixture contactFixture){
+		// report any camera change sensor hits
+		if(contact instanceof CameraChangeSensor)
+			((CameraChangeSensor)contact).beginContact(player);
+		
 		// report fixtures to jump sensor
-		if(playerFixture.equals(player.getJumpSensor().fixture()))
+		else if(playerFixture.equals(player.getJumpSensor().fixture()))
 			player.getJumpSensor().beginContact(contact);
 		
 		// report pickups to pickup sensor
 		else if(playerFixture.equals(player.getPickupSensor().fixture()))
 			player.getPickupSensor().reportContact(contact);
+	}
+	
+	private static void endPlayerContact(Player player, Fixture playerFixture, DynamicEntity contact, Fixture contactFixture){
+		//if(contactFixture.getUserData() instanceof CameraChangeSensor)
+			
+			
+		if(playerFixture.equals(player.getJumpSensor().fixture()))
+			player.getJumpSensor().endContact(contact);
 	}
 	
 	/** Called when bat hits something */

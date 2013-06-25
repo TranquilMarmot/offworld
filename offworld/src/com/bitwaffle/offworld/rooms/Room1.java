@@ -4,13 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
+import com.bitwaffle.guts.graphics.graphics2d.Camera2D.CameraMode;
 import com.bitwaffle.guts.graphics.graphics2d.shapes.polygon.Polygon;
 import com.bitwaffle.guts.graphics.graphics2d.shapes.polygon.PolygonRenderer;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.physics.Room;
+import com.bitwaffle.offworld.camera.CameraChangeSensor;
+import com.bitwaffle.offworld.camera.CameraModes;
 import com.bitwaffle.offworld.entities.BreakableRock;
 import com.bitwaffle.offworld.entities.enemies.bat.Bat;
 import com.bitwaffle.offworld.entities.pickups.diamond.Diamond;
@@ -81,6 +85,8 @@ public class Room1 extends Room {
     		this.addEntity(bat);
 		}
 		
+		addCameraSensor();
+		
 		/*
 		float batX = 20.0f;
 		float batY = -14.20f;
@@ -110,6 +116,15 @@ public class Room1 extends Room {
 		Polygon poly = Game.resources.polygons.get(name);
 		Entity ent = new Entity(new PolygonRenderer(poly, color), layer);
 		return ent;
+	}
+	
+	private void addCameraSensor(){
+		CameraMode mode = CameraModes.free;
+		PolygonShape shape = new PolygonShape();
+		shape.setAsBox(10.0f, 10.0f);
+		Vector2 loc = new Vector2(370.0229f, -16.357243f);
+		CameraChangeSensor sensor = new CameraChangeSensor(mode, shape, loc);
+		this.addEntity(sensor);
 	}
 	
 	/**

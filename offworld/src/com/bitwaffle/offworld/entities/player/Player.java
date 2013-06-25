@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
+import com.bitwaffle.guts.graphics.graphics2d.Camera2D;
 import com.bitwaffle.guts.physics.CollisionFilters;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.player.render.PlayerBodyAnimation;
@@ -37,6 +38,9 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 	//private static final float MAX_TARGET_DX = 10.0f, MAX_TARGET_DY = 8.0f;
 	
 	private static final float MAX_TARGET_RADIUS = 10.0f;
+	
+	/** The camera following this player */
+	private Camera2D camera;
 	
 	/** The player's current firearm */
 	private Firearm firearm;
@@ -154,9 +158,7 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 		return defs;
 	}
 	
-	/**
-	 * Init method only used in constructor
-	 */
+	/** Init method only used in constructor */
 	private void init(){
 		health = 100.0f;
 		movingRight = false;
@@ -273,6 +275,9 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 	public float getWidth(){ return WIDTH; }
 	/** @return Total height of player's fixture */
 	public float getHeight(){ return HEIGHT; }
+	
+	public void setCamera(Camera2D camera){ this.camera = camera; }
+	public Camera2D getCamera(){ return this.camera; }
 	
 	public JumpSensor getJumpSensor(){ return jumpSensor; }
 	public PickupSensor getPickupSensor() { return pickupSensor; }
