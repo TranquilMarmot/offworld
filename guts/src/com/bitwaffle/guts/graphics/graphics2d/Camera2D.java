@@ -19,6 +19,8 @@ public class Camera2D extends Entity {
 	public static abstract class CameraMode {
 		protected Camera2D camera;
 		
+		public CameraMode(Camera2D camera){ this.camera = camera; }
+		
 		public abstract void update(float timeStep);
 		
 		public void setCamera(Camera2D camera){ this.camera = camera; }

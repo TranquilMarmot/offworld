@@ -63,6 +63,13 @@ public class OffworldGameClient extends GameClient {
 	
 	@Override
 	public void received(Connection connection, Object object){
+		
+		// TODO fix thisss!!!
+		// rather than using a big block of if/else instanceof's, have every method extend some
+		// message class that has like onRecieve and onSend methods
+		// Then just cast the message to the custom class and call the required method
+		
+		
 		// new player (can set to be controlled by this client)
 		if(object instanceof PlayerCreateMessage){
 			PlayerCreateMessage msg = (PlayerCreateMessage)object;

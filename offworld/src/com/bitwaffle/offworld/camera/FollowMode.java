@@ -1,11 +1,8 @@
 package com.bitwaffle.offworld.camera;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.graphics2d.Camera2D;
-import com.bitwaffle.guts.util.MathHelper;
-import com.bitwaffle.offworld.OffworldGame;
 import com.bitwaffle.offworld.entities.player.Player;
 
 /**
@@ -24,12 +21,16 @@ public class FollowMode extends Camera2D.CameraMode {
 	/** Offsets for rendering */
 	private float
 			xOffset = 0.0f,
-			yOffset = -0.3f;
+			yOffset = -10.0f;
 	
 	/** How much the velocity of what the camera is following effects where the camera is looking */
 	private float
-			xVelocityFactor =  0.15f,
-			yVelocityFactor = 2.0f;
+			xVelocityFactor =  1.0f,
+			yVelocityFactor = 0.5f;
+	
+	private float
+			xPlayerTargetFollowFactor = 0.3f,
+			yPlayerTargetFollowFactor = 0.3f;
 	
 	public void setTarget(DynamicEntity newTarget){ this.target = newTarget; }
 	
@@ -37,12 +38,14 @@ public class FollowMode extends Camera2D.CameraMode {
 	/** @return Current entity being followed by the camera */
 	public DynamicEntity getTarget(){ return target; }
 	
+	public FollowMode(Camera2D camera){
+		super(camera);
+	}
+	
 	
 	@Override
 	public void update(float timeStep){
 		if(target != null){
-			float zoom = camera.getZoom();
-			Vector2 camLoc = camera.getLocation();
 			Vector2 targetLoc = target.getLocation();
 			
 			// offset for player's target
@@ -62,35 +65,13 @@ public class FollowMode extends Camera2D.CameraMode {
 			else
 				linVec = new Vector2(0.0f, 0.0f);
 			
-			// find the center of the screen
-			float heightRatio = (float)Game.windowHeight / (float)Game.windowWidth;
-			float widthRatio = (float)Game.windowWidth / (float)Game.windowHeight;
-			float centerX = -targetLoc.x + ((widthRatio / 2.0f) / zoom);
-			float centerY = -targetLoc.y + (heightRatio / zoom);
-			
-			Vector2 center = camera.getWorldCenterPoint();
-			
 			
 			Vector2 windowSize = camera.getWorldWindowSize();
-			float newX = -targetLoc.x + windowSize.x + (-linVec.x * xVelocityFactor),
-				  newY = -targetLoc.y + windowSize.y;	
+			float newX = xOffset + -targetLoc.x + windowSize.x + (-linVec.x * xVelocityFactor) + (playerTargetDist.x * xPlayerTargetFollowFactor),
+				  newY = yOffset + -targetLoc.y + windowSize.y + (-linVec.y * yVelocityFactor) + (playerTargetDist.y * yPlayerTargetFollowFactor);	
 			Vector2 newLoc = new Vector2(newX, newY);
 			
-			//Vector2 dist = new Vector2(camera.getLocation().x - targetLoc.x, camera.getLocation().y - targetLoc.y);
-			camera.setLocation(camera.getLocation().lerp(newLoc, 0.05f));
-			
-			
-			/*
-			// step camera towards entity on X axis
-			float newX = centerX + (-linVec.x * xVelocityFactor) + (xOffset / zoom) + playerTargetDist.x;
-			float diffX = camLoc.x - newX;
-			camLoc.x -= diffX / followSpeed;
-			
-			// step camera towards entity on Y axis
-			float newY= centerY + (-linVec.y * yVelocityFactor) + (yOffset / zoom) + playerTargetDist.y;
-			float diffY = camLoc.y - newY;
-			camLoc.y -= diffY / followSpeed;
-			*/
+			camera.getLocation().lerp(newLoc, timeStep);
 		}
 	}
 	

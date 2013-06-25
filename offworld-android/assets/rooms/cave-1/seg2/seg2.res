@@ -10,7 +10,7 @@
 					"texture":	"cave-1-tile-1"
 				}
 			],
-			"type":	"chain",
+			"type":	"loop",
 			"scale": 3.0
 		}
 	],

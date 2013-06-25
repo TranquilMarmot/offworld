@@ -257,4 +257,12 @@ public abstract class Physics {
 	public void queryAABB(QueryCallback callback, float lowerX, float lowerY, float upperX, float upperY){
 		world.QueryAABB(callback, lowerX, lowerY, upperX, upperY);
 	}
+
+	public World getWorld() {
+		return world;
+	}
+
+	public void setWorld(World world) {
+		this.world = world;
+	}
 }

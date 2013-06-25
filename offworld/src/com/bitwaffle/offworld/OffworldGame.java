@@ -7,7 +7,6 @@ import com.bitwaffle.guts.input.Input;
 import com.bitwaffle.guts.net.Net;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.loader.ResourceLoader;
-import com.bitwaffle.offworld.camera.CameraModes;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.bitwaffle.offworld.gui.GUIStates;
 import com.bitwaffle.offworld.input.OffworldInput;
@@ -65,7 +64,6 @@ public abstract class OffworldGame extends Game {
 	protected Renderer initRenderer(){
 		Renderer r = super.initRenderer();
 		// grab camera and set camera modes to use it
-		CameraModes.setCamera(r);
 		return r;
 	}
 	
