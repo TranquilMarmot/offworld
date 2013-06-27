@@ -39,7 +39,7 @@ public class QuitButton extends TextButton {
 		for(int i = 0; i < OffworldGame.players.length; i++)
 			OffworldGame.players[i] = null;
 		
-		CameraModes.follow.setTarget(null);
+		CameraModes.follow.follow(null);
 		
 		Game.gui.setCurrentState(GUIStates.TITLESCREEN.state);
 		if(Game.isPaused())

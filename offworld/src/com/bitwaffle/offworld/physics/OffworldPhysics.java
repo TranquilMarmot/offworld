@@ -47,7 +47,7 @@ public class OffworldPhysics extends Physics {
 		// TODO have each player press start
 		
 		if(takeControl){	
-			CameraModes.follow.setTarget(OffworldGame.players[playerNumber]);
+			CameraModes.follow.follow(OffworldGame.players[playerNumber]);
 			Game.renderer.r2D.camera.setMode(CameraModes.follow);
 			Game.renderer.r2D.camera.setLocation(OffworldGame.players[playerNumber].getLocation());
 			
