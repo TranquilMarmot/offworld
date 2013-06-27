@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
+import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.graphics.graphics2d.Render2D;
 import com.bitwaffle.guts.graphics.graphics3d.EntityRenderer3D;
 import com.bitwaffle.guts.graphics.graphics3d.Render3D;
@@ -32,6 +33,9 @@ public class Renderer {
 	/** 2D Renderer */
 	public Render3D r3D;
 	
+	/** Camera for describing how the scene should be looked at */
+	public Camera camera;
+	
 	/** Whether or not debug rendering mode is enabled */
 	public static boolean renderDebug = false;
 	
@@ -44,6 +48,8 @@ public class Renderer {
 		
 		r2D = new Render2D(this);
 		r3D = new Render3D(this);
+		
+		camera = new Camera();
 	}
 	
 	/**
@@ -51,10 +57,10 @@ public class Renderer {
 	 * @param timeStep Time passed since last update, in seconds
 	 */
 	public void update(float timeStep) {
-		if(r2D.camera != null)
-			r2D.camera.update(timeStep);
-		if(r3D.camera != null)
-			r3D.camera.update(timeStep);
+		//if(r2D.camera != null)
+			camera.update(timeStep);
+		//if(r3D.camera != null)
+		//	r3D.camera.update(timeStep);
 	}
 	
 	/** Switched render mode. Does nothing if give mode is same as currentMode. */

@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.graphics2d.Camera2DMode;
+import com.bitwaffle.guts.graphics.camera.Camera2DMode;
 import com.bitwaffle.guts.graphics.graphics2d.shapes.polygon.Polygon;
 import com.bitwaffle.guts.graphics.graphics2d.shapes.polygon.PolygonRenderer;
 import com.bitwaffle.guts.physics.Physics;
@@ -60,10 +60,12 @@ public class Room1 extends Room {
 		
 		// diamonds
 		for(int i = 0; i < 10; i++){
-    		float diamondX = Game.random.nextFloat() * 10.0f - 50.0f;
-    		if(Game.random.nextBoolean()) diamondX = -diamondX;
-    		float diamondY = Game.random.nextFloat() * 15.0f + 15.0f;
-    		if(Game.random.nextBoolean()) diamondY = -diamondY;
+    		//float diamondX = Game.random.nextFloat() * 10.0f - 50.0f;
+    		//if(Game.random.nextBoolean()) diamondX = -diamondX;
+    		//float diamondY = Game.random.nextFloat() * 15.0f + 15.0f;
+    		//if(Game.random.nextBoolean()) diamondY = -diamondY;
+    		
+    		float diamondX = 86.1816f * 3.0f, diamondY = 27.6180f * 3.0f;
     		
     		float rotation = Game.random.nextFloat() * 10.0f;
     		

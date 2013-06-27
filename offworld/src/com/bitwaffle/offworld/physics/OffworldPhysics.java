@@ -48,8 +48,8 @@ public class OffworldPhysics extends Physics {
 		
 		if(takeControl){	
 			CameraModes.follow.follow(OffworldGame.players[playerNumber]);
-			Game.renderer.r2D.camera.setMode(CameraModes.follow);
-			Game.renderer.r2D.camera.setLocation(OffworldGame.players[playerNumber].getLocation());
+			Game.renderer.camera.setMode(CameraModes.follow);
+			Game.renderer.camera.setLocation(OffworldGame.players[playerNumber].getLocation());
 			
 			for(Controller con : Controllers.getControllers()){
 				if(con.getName().equals(Ouya.ID)){
@@ -60,7 +60,7 @@ public class OffworldPhysics extends Physics {
 			}
 			
 			// add player control listener
-			Game.input.multiplexer.addProcessor(new PlayerInputListener(OffworldGame.players[playerNumber], Game.renderer.r2D.camera));
+			Game.input.multiplexer.addProcessor(new PlayerInputListener(OffworldGame.players[playerNumber], Game.renderer.camera));
 		}
 	}
 }

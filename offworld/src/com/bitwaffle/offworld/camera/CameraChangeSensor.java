@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.graphics2d.Camera2DMode;
+import com.bitwaffle.guts.graphics.camera.Camera2DMode;
 import com.bitwaffle.offworld.entities.player.Player;
 
 /**
@@ -62,8 +62,8 @@ public class CameraChangeSensor extends DynamicEntity{
 		if(this.player == null /*&& player.getCamera().currentMode() != this.mode*/){
 			this.player = player;
 			//this.oldMode = player.getCamera().currentMode();
-			Game.renderer.r2D.camera.setMode(mode);
-			Game.renderer.r2D.camera.currentMode().setZoom(0.025f);
+			Game.renderer.camera.setMode(mode);
+			Game.renderer.camera.currentMode().zoom = 0.025f;
 		}
 	}
 	

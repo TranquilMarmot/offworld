@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.graphics2d.Camera2D;
+import com.bitwaffle.guts.graphics.camera.Camera;
 
 /**
  * Any math functions not found in Android's FloatMath or 
@@ -127,7 +127,7 @@ public class MathHelper {
 	 * It's preferred that you re-use the same vector with each call to minimize
 	 * memory allocations but do what you gotta do.
 	 */
-	public static Vector2 toWorldSpace(float screenX, float screenY, Camera2D camera){
+	public static Vector2 toWorldSpace(float screenX, float screenY, Camera camera){
 		Vector2 result = new Vector2();
 		toWorldSpace(result, screenX, screenY, camera);
 		return result;
@@ -157,7 +157,7 @@ public class MathHelper {
 	 * @param screenY Y of screen space vector
 	 * @param camera Camera to translate to
 	 */
-	public static void toWorldSpace(Vector2 out, float screenX, float screenY, Camera2D camera){
+	public static void toWorldSpace(Vector2 out, float screenX, float screenY, Camera camera){
 		// create the projection matrix (mimics Render2D's "setUpProjectionWorldCoords" method)
 		projection.idt();
 		orthoM(projection, 0, Game.aspect, 0, 1, -1, 1);
@@ -168,7 +168,7 @@ public class MathHelper {
 		// if we're using a camera, rotate/translate to it
 		if(camera != null){
 			projection.rotate(0.0f, 0.0f, 1.0f, camera.getAngle());
-			view.scale(camera.currentMode().zoom(), camera.currentMode().zoom(), 1.0f);
+			view.scale(camera.zoom, camera.zoom, 1.0f);
 			view.translate(camera.getLocation().x, camera.getLocation().y, 0.0f);
 		}
 		

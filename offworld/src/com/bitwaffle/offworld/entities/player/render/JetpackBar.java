@@ -79,7 +79,7 @@ public class JetpackBar extends Bar {
 			Gdx.gl20.glEnable(GL20.GL_BLEND);
 			
 			renderer.modelview.translate(0.0f, yOffset, 0.0f);
-			renderer.modelview.scale(scale / Game.renderer.r2D.camera.currentMode().zoom(), scale / Game.renderer.r2D.camera.currentMode().zoom(), 1.0f);
+			renderer.modelview.scale(scale / Game.renderer.camera.zoom, scale / Game.renderer.camera.zoom, 1.0f);
 			renderer.r2D.sendMatrixToShader();
 			
 			super.render(renderer, false, false);

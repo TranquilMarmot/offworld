@@ -13,6 +13,6 @@ public class OffworldInput extends Input {
 	
 	@Override
 	protected CameraInputListener getCameraInputListener(){
-		return new OffworldCameraInputListener(Game.renderer.r2D.camera);
+		return new OffworldCameraInputListener(Game.renderer.camera);
 	}
 }

@@ -3,7 +3,7 @@ package com.bitwaffle.offworld.input;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.graphics2d.Camera2D;
+import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.input.listeners.CameraInputListener;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.camera.CameraModes;
@@ -21,7 +21,7 @@ public class OffworldCameraInputListener extends CameraInputListener {
 	/** How much two fingers have to move from each other before zooming occurs */
 	private final float ZOOM_THRESHOLD = 3.0f;
 
-	public OffworldCameraInputListener(Camera2D camera) {
+	public OffworldCameraInputListener(Camera camera) {
 		super(camera);
 	}
 	
@@ -32,11 +32,10 @@ public class OffworldCameraInputListener extends CameraInputListener {
 
 			// only zoom if the amount is in the threshold
 			if(ds > ZOOM_THRESHOLD || ds < -ZOOM_THRESHOLD){
-				float zoom = camera.currentMode().zoom();
-
+				float zoom = camera.zoom;
 				zoom += (ds * zoom) / ZOOM_SENSITIVITY;
 
-				camera.currentMode().setZoom(zoom);
+				camera.currentMode().zoom = zoom;
 			}
 		}
 		return false;
@@ -143,7 +142,7 @@ public class OffworldCameraInputListener extends CameraInputListener {
 	@Override
 	public boolean scrolled(int amount) {
 		if(!Game.gui.console.isOn())
-			camera.currentMode().setZoom(camera.currentMode().zoom() - (amount / 250.0f));
+			camera.currentMode().zoom = camera.zoom - (amount / 250.0f);
 		
 		return false;
 	}

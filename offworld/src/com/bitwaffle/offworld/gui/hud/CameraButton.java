@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Renderer;
-import com.bitwaffle.guts.graphics.graphics2d.Camera2DMode;
+import com.bitwaffle.guts.graphics.camera.Camera2DMode;
 import com.bitwaffle.guts.gui.button.RectangleButton;
 import com.bitwaffle.offworld.camera.CameraModes;
 
@@ -31,11 +31,11 @@ public class CameraButton extends RectangleButton{
 	
 	@Override
 	protected void onRelease() {
-		Camera2DMode mode = Game.renderer.r2D.camera.currentMode();
+		Camera2DMode mode = Game.renderer.camera.currentMode();
 		if(mode == CameraModes.follow)
-			Game.renderer.r2D.camera.setMode(CameraModes.free);
+			Game.renderer.camera.setMode(CameraModes.free);
 		else
-			Game.renderer.r2D.camera.setMode(CameraModes.follow);
+			Game.renderer.camera.setMode(CameraModes.follow);
 	}
 	
 	@Override
@@ -65,7 +65,7 @@ public class CameraButton extends RectangleButton{
 			a = 0.75f;
 		renderer.r2D.setColor(r, g, b, a);
 		
-		if(Game.renderer.r2D.camera.currentMode() == CameraModes.free)
+		if(Game.renderer.camera.currentMode() == CameraModes.free)
 			Game.resources.textures.bindTexture("camera-free");
 		else
 			Game.resources.textures.bindTexture("camera");

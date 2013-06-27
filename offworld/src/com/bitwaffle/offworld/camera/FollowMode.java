@@ -2,8 +2,8 @@ package com.bitwaffle.offworld.camera;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.graphics2d.Camera2D;
-import com.bitwaffle.guts.graphics.graphics2d.Camera2DMode;
+import com.bitwaffle.guts.graphics.camera.Camera;
+import com.bitwaffle.guts.graphics.camera.Camera2DMode;
 import com.bitwaffle.offworld.entities.player.Player;
 
 /**
@@ -14,14 +14,6 @@ import com.bitwaffle.offworld.entities.player.Player;
 public class FollowMode extends Camera2DMode {
 	/** What the camera is following */
 	private DynamicEntity following;
-
-	/** Whether or not to lerp the camera's location */
-	private boolean interpolate = true;
-	
-	/** Offsets for rendering */
-	private float
-			xOffset = 0.0f,
-			yOffset = -10.0f;
 	
 	/** How much the velocity of what the camera is following effects where the camera is looking */
 	private float
@@ -33,7 +25,7 @@ public class FollowMode extends Camera2DMode {
 			xPlayerTargetFollowFactor = 0.3f,
 			yPlayerTargetFollowFactor = 0.3f;
 	
-	public FollowMode(Camera2D camera) {
+	public FollowMode(Camera camera) {
 		super(camera);
 	}
 	
@@ -44,7 +36,14 @@ public class FollowMode extends Camera2DMode {
 	public DynamicEntity getTarget(){ return following; }
 	
 	@Override
-	public void update(Camera2D camera, float timeStep){
+	public void update(float timeStep){
+		Vector2 followLoc = following.getLocation();
+		Vector2 windowSize = camera.getWorldWindowSize();
+		float newX = -followLoc.x + windowSize.x,
+				  newY = -followLoc.y + windowSize.y;
+		Vector2 newLoc = new Vector2(newX, newY);
+		camera.currentMode().target.set(newLoc);
+		/*
 		if(following != null){
 			Vector2 followLoc = following.getLocation();
 			Vector2 windowSize = camera.getWorldWindowSize();
@@ -74,5 +73,6 @@ public class FollowMode extends Camera2DMode {
 			else
 				camera.getLocation().set(newLoc);
 		}
+		*/
 	}
 }

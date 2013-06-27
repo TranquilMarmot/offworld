@@ -36,9 +36,6 @@ public class Render2D {
 	/** Renderer owning this 2D renderer */
 	private Renderer renderer;
 	
-	/** Camera for describing how the scene should be looked at */
-	public Camera2D camera;
-	
 	/** The program to use for 2D rendering */
 	public GLSLProgram program;
 	
@@ -63,7 +60,7 @@ public class Render2D {
 		
 		program = GLSLProgram.getProgram(VERTEX_SHADER, FRAGMENT_SHADER, LOGTAG);
 		mvp = new Matrix4();
-		camera = new Camera2D();
+		//camera = new Camera2D();
 		
 		quad = new Quad(renderer);
 		circle = new Circle(renderer, CIRCLE_STEP);
@@ -115,9 +112,9 @@ public class Render2D {
 	
 	/** Translates the modelview matrix to represent the camera's location */
 	public void translateModelViewToCamera(){
-		Vector2 cameraLoc = camera.getLocation();
-		float cameraAngle = camera.getAngle();
-		float cameraZoom = camera.currentMode().zoom();
+		Vector2 cameraLoc = renderer.camera.getLocation();
+		float cameraAngle = renderer.camera.getAngle();
+		float cameraZoom = renderer.camera.zoom;
 		
 		renderer.modelview.scale(cameraZoom, cameraZoom, 1.0f);
 		renderer.modelview.translate(cameraLoc.x, cameraLoc.y, 0.0f);

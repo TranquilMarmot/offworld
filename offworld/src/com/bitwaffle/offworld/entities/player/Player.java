@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.graphics2d.Camera2D;
+import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.physics.CollisionFilters;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.player.render.PlayerBodyAnimation;
@@ -40,7 +40,7 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 	private static final float MAX_TARGET_RADIUS = 10.0f;
 	
 	/** The camera following this player */
-	private Camera2D camera;
+	private Camera camera;
 	
 	/** The player's current firearm */
 	private Firearm firearm;
@@ -214,7 +214,7 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 		
 		if(!Ouya.runningOnOuya && controlledByMouse){
 			Vector2 mouse = new Vector2();
-			MathHelper.toWorldSpace(mouse, Gdx.input.getX(), Gdx.input.getY(), Game.renderer.r2D.camera);
+			MathHelper.toWorldSpace(mouse, Gdx.input.getX(), Gdx.input.getY(), Game.renderer.camera);
 			setTarget(mouse);
 		}
 	}
@@ -276,8 +276,8 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 	/** @return Total height of player's fixture */
 	public float getHeight(){ return HEIGHT; }
 	
-	public void setCamera(Camera2D camera){ this.camera = camera; }
-	public Camera2D getCamera(){ return this.camera; }
+	public void setCamera(Camera camera){ this.camera = camera; }
+	public Camera getCamera(){ return this.camera; }
 	
 	public JumpSensor getJumpSensor(){ return jumpSensor; }
 	public PickupSensor getPickupSensor() { return pickupSensor; }

@@ -36,7 +36,7 @@ public class SplashScreenState extends GUIState {
 		// create waffle object
 		EntityRenderer3D renderer = new ModelRenderer(Game.resources.models.getModel("bitwaffle"));
 		renderer.view.rotate(0.0f, 1.0f, 1.0f, 180.0f);
-		renderer.view.scale(0.5f, 0.5f, 0.5f);
+		renderer.view.scale(2.0f, 2.0f, 2.0f);
 		bitwaffle = new Entity(renderer, 5, new Vector2(0.0f, 0.0f)){
 			//float x = Game.random.nextFloat(), y = Game.random.nextFloat(), z = Game.random.nextFloat();
 			float x = 0.0f, y = 0.0f, z = -1.0f;
@@ -50,9 +50,9 @@ public class SplashScreenState extends GUIState {
 				}
 				
 				
-				Vector2 worldSize = Game.renderer.r2D.camera.getWorldWindowSize();
+				Vector2 worldSize = Game.renderer.camera.getWorldWindowSize();
 				this.location.set((worldSize.x / 2.0f), (worldSize.y / 2.0f));
-				Game.renderer.r2D.camera.setLocation(this.location);
+				Game.renderer.camera.setLocation(this.location);
 			}
 		};
 		
@@ -62,7 +62,7 @@ public class SplashScreenState extends GUIState {
 			public void render(Renderer renderer, Entity ent, boolean renderDebug){
 				Gdx.gl20.glEnable(GL20.GL_BLEND);
 				Game.resources.textures.bindTexture("bitwaffle-text");
-				renderer.r2D.quad.render(1.0f * 10.0f, 0.125f * 10.0f, true, true);
+				renderer.r2D.quad.render(1.0f * 30.0f, 0.125f * 30.0f, true, true);
 				Gdx.gl20.glDisable(GL20.GL_BLEND);
 			}
 		};
@@ -72,7 +72,7 @@ public class SplashScreenState extends GUIState {
 			public void update(float timeStep){
 				super.update(timeStep);
 				
-				Vector2 worldSize = Game.renderer.r2D.camera.getWorldWindowSize();
+				Vector2 worldSize = Game.renderer.camera.getWorldWindowSize();
 				this.location.set((worldSize.x / 2.0f), -1.0f);
 			}
 		};
@@ -85,8 +85,8 @@ public class SplashScreenState extends GUIState {
 		Game.physics.addEntity(text, false);
 		
 		// set camera to look at waffle
-		Game.renderer.r2D.camera.setMode(CameraModes.free);
-		Game.renderer.r2D.camera.setLocation(bitwaffle.getLocation());
+		Game.renderer.camera.setMode(CameraModes.free);
+		Game.renderer.camera.setLocation(bitwaffle.getLocation());
 	}
 
 	@Override

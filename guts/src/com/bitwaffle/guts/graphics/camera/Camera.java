@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.graphics.graphics2d;
+package com.bitwaffle.guts.graphics.camera;
 
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
@@ -15,12 +15,15 @@ import com.bitwaffle.guts.util.MathHelper;
  * 
  * @author TranquilMarmot
  */
-public class Camera2D extends Entity {	
+public class Camera extends Entity {	
 	/** Initial values for camera */
 	private static final float DEFAULT_CAMX = 86.1816f * 3.0f, DEFAULT_CAMY = 24.6180f * 3.0f, DEFAULT_CAMZ = 0.03f;
 	
 	/** Current camera mode */
 	private Camera2DMode currentMode = null;
+	
+	/** Current zoom level of camera (smaller it is, the smaller everything will be rendered) */
+	public float zoom = 0.008f;
 	
 	/** Used to determine how much of the screen the camera can see */
 	private Matrix4 projection, view;
@@ -28,8 +31,12 @@ public class Camera2D extends Entity {
 	/** How much of the world the camera can see. X value is width in world-coordinates, Y value is height */
 	protected Vector2 worldWindowSize;
 	
-	public Camera2D(){
+	/** Describes how the 3D scene gets rendered */
+	public Camera3D camera3D;
+	
+	public Camera(){
 		super();
+		camera3D = new Camera3D();
 		projection = new Matrix4();
 		view = new Matrix4();
 		worldWindowSize = new Vector2();
@@ -37,23 +44,33 @@ public class Camera2D extends Entity {
 		this.location.set(DEFAULT_CAMX, DEFAULT_CAMY);
 		currentMode = new Camera2DMode(this){
 			@Override
-			public void update(Camera2D camera, float timeStep) {
+			public void update(float timeStep) {
 			}
 		};
-		currentMode.setZoom(DEFAULT_CAMZ);
+		this.setZoom(DEFAULT_CAMZ);
+		
+		
 		
 	}
 	
 	@Override
 	public void update(float timeStep) {
-		if(currentMode != null)
-			currentMode.update(this, timeStep);
+		currentMode.update(timeStep);
 		
-		if(currentMode.boundsCheck()){
+		if(this.zoom != currentMode.zoom)
+			setZoom(currentMode.zoom);
+		
+		if(currentMode.interpolate)
+			this.location.lerp(currentMode.target, timeStep);
+		
+		if(currentMode.boundsCheck){
 			Room r = Game.physics.currentRoom();
 			if(r != null)
 				boundsCheck(r);	
 		}
+
+		camera3D.setLocation(this.location);
+		camera3D.setScale(this.zoom);
 	}
 	
 	/** Set the mode of the camera */
@@ -66,10 +83,49 @@ public class Camera2D extends Entity {
 	public void setLocation(Vector2 newLoc){
 		super.setLocation(newLoc);
 		
-		if(currentMode != null && currentMode.boundsCheck()){
+		if(currentMode != null && currentMode.boundsCheck){
 			Room r = Game.physics.currentRoom();
 			if(r != null)
 				boundsCheck(r);	
+		}
+	}
+	
+	/** @param New zoom for camera */
+	public void setZoom(float newZoom){
+		float oldZoom = this.zoom;
+		
+		// make sure zoom stays within bounds
+		if(newZoom > currentMode.maxZoom)
+			newZoom = currentMode.maxZoom;
+		else if(newZoom < currentMode.minZoom)
+			newZoom = currentMode.minZoom;
+		
+		if(newZoom != oldZoom){
+			this.zoom = newZoom;
+			
+			Vector2 prevWorldWindowSize = new Vector2(this.worldWindowSize);
+			Vector2 newWorldWindowSize = this.getWorldWindowSize();
+			
+			// make sure the camera doesn't zoom outside of the room if bounds are being checked
+			if(currentMode.boundsCheck){
+				Room r = Game.physics.currentRoom();
+				if(r != null){
+					if(newWorldWindowSize.x > r.getRoomWidth() || newWorldWindowSize.y > r.getRoomHeight()){
+						this.zoom = oldZoom;
+						return;
+					}
+				}
+			}
+			
+			
+			// update window size, since we zoomed
+			this.worldWindowSize.set(newWorldWindowSize);
+			
+			// make it so the camera zooms in to the middle
+			Vector2 newLocation = new Vector2(this.getLocation());
+			newLocation.x += this.worldWindowSize.x - prevWorldWindowSize.x;
+			newLocation.y += this.worldWindowSize.y - prevWorldWindowSize.y; 
+			this.setLocation(newLocation);
 		}
 	}
 	
@@ -79,7 +135,7 @@ public class Camera2D extends Entity {
 		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1);
 		
 		view.idt();
-		view.scale(currentMode.zoom(), currentMode.zoom(), 1.0f);
+		view.scale(zoom, zoom, 1.0f);
 		
 		// don't ask, that's just how it works, okay?
 		Vector2 tempVec = new Vector2(), newWorldWindowSize = new Vector2();

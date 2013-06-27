@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.graphics.Renderer;
+import com.bitwaffle.guts.graphics.camera.Camera3D;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.graphics3d.model.Material;
 import com.bitwaffle.guts.util.MathHelper;
@@ -47,7 +48,7 @@ public class Render3D {
 	private Renderer renderer;
 	
 	/** Camera for describing how the scene should be looked at */
-	public Camera3D camera;
+	//public Camera3D camera;
 	
 	/** The program to use for 2D rendering */
 	public GLSLProgram program;
@@ -77,7 +78,7 @@ public class Render3D {
 		Vector3 lightIntensity = new Vector3(0.9f, 0.9f, 0.9f);
 		lights.add(new Light(lightLoc, lightIntensity));
 		
-		camera = new Camera3D();
+		//camera = new Camera3D();
 	}
 	
 	public int getVertexPositionHandle(){ return program.getAttribLocation(POSITION_ATTRIB); }
@@ -117,15 +118,16 @@ public class Render3D {
 	
 	/** Transforms the ModelView matrix to represent the camera's location and rotation */
 	private void translateModelviewToCamera(){
+		Camera3D camera3D = renderer.camera.camera3D;
 		renderer.modelview.idt();
 		
-		float zoom = Game.renderer.r2D.camera.currentMode().zoom();
+		float zoom = renderer.camera.zoom;
 		renderer.modelview = renderer.modelview.scale(zoom, zoom, zoom);
 		
-		renderer.modelview = renderer.modelview.translate(camera.getLocation());
+		renderer.modelview = renderer.modelview.translate(camera3D.getLocation());
 
 		// reverse the camera's quaternion (we want to look OUT from the camera)
-		Quaternion reverse = camera.getRotation().conjugate();
+		Quaternion reverse = camera3D.getRotation().conjugate();
 		reverse.toMatrix(tempMatrixArr);
 		renderer.modelview = renderer.modelview.mul(new Matrix4(tempMatrixArr));
 	}

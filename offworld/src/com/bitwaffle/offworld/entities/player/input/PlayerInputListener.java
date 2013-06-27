@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.graphics2d.Camera2D;
+import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.camera.CameraModes;
 import com.bitwaffle.offworld.entities.player.Player;
@@ -24,7 +24,7 @@ public class PlayerInputListener implements InputProcessor {
 	private Player player;
 	
 	/** Camera following player */
-	private Camera2D camera;
+	private Camera camera;
 	
 	/**
 	 * Create a new listener to control the player with
@@ -32,7 +32,7 @@ public class PlayerInputListener implements InputProcessor {
 	 * @param player Player this listener is controlling
 	 * @param camera Camera following player
 	 */
-	public PlayerInputListener(Player player, Camera2D camera){
+	public PlayerInputListener(Player player, Camera camera){
 		this.player = player;
 		this.camera = camera;
 		pointers = new LinkedList<PlayerPointer>();
@@ -105,7 +105,7 @@ public class PlayerInputListener implements InputProcessor {
 		while(pointers.size() < pointerID + 1)
 			pointers.add(new PlayerPointer(player));
 		
-		if(Game.renderer.r2D.camera.currentMode() == CameraModes.follow)
+		if(Game.renderer.camera.currentMode() == CameraModes.follow)
 			pointers.get(pointerID).down(pointerID, pointerX, pointerY);
 		
 		return false;
@@ -130,7 +130,7 @@ public class PlayerInputListener implements InputProcessor {
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
 		if(camera.currentMode() == CameraModes.follow)
-			player.setTarget(MathHelper.toWorldSpace(screenX, screenY, Game.renderer.r2D.camera));
+			player.setTarget(MathHelper.toWorldSpace(screenX, screenY, Game.renderer.camera));
 		
 		return false;
 	}
