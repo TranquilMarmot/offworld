@@ -36,7 +36,7 @@ public class Camera3D {
 			Vector2 camLoc = Game.renderer.r2D.camera.getLocation();
 			this.location.x = camLoc.x;
 			this.location.y = camLoc.y;
-			this.scale = Game.renderer.r2D.camera.getZoom();
+			this.scale = Game.renderer.r2D.camera.currentMode().zoom();
 		}
 	}
 	

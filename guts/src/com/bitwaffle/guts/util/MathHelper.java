@@ -168,7 +168,7 @@ public class MathHelper {
 		// if we're using a camera, rotate/translate to it
 		if(camera != null){
 			projection.rotate(0.0f, 0.0f, 1.0f, camera.getAngle());
-			view.scale(camera.getZoom(), camera.getZoom(), 1.0f);
+			view.scale(camera.currentMode().zoom(), camera.currentMode().zoom(), 1.0f);
 			view.translate(camera.getLocation().x, camera.getLocation().y, 0.0f);
 		}
 		

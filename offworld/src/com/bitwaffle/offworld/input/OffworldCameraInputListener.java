@@ -32,11 +32,11 @@ public class OffworldCameraInputListener extends CameraInputListener {
 
 			// only zoom if the amount is in the threshold
 			if(ds > ZOOM_THRESHOLD || ds < -ZOOM_THRESHOLD){
-				float zoom = camera.getZoom();
+				float zoom = camera.currentMode().zoom();
 
 				zoom += (ds * zoom) / ZOOM_SENSITIVITY;
 
-				camera.setZoom(zoom);
+				camera.currentMode().setZoom(zoom);
 			}
 		}
 		return false;
@@ -143,7 +143,7 @@ public class OffworldCameraInputListener extends CameraInputListener {
 	@Override
 	public boolean scrolled(int amount) {
 		if(!Game.gui.console.isOn())
-			camera.setZoom(camera.getZoom() - (amount / 250.0f));
+			camera.currentMode().setZoom(camera.currentMode().zoom() - (amount / 250.0f));
 		
 		return false;
 	}

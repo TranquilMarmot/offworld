@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.graphics2d.Camera2D.CameraMode;
+import com.bitwaffle.guts.graphics.graphics2d.Camera2DMode;
 import com.bitwaffle.guts.graphics.graphics2d.shapes.polygon.Polygon;
 import com.bitwaffle.guts.graphics.graphics2d.shapes.polygon.PolygonRenderer;
 import com.bitwaffle.guts.physics.Physics;
@@ -119,7 +119,7 @@ public class Room1 extends Room {
 	}
 	
 	private void addCameraSensor(){
-		CameraMode mode = CameraModes.free;
+		Camera2DMode mode = CameraModes.free;
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(10.0f, 10.0f);
 		Vector2 loc = new Vector2(370.0229f, -16.357243f);

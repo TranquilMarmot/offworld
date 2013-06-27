@@ -117,7 +117,7 @@ public class Render2D {
 	public void translateModelViewToCamera(){
 		Vector2 cameraLoc = camera.getLocation();
 		float cameraAngle = camera.getAngle();
-		float cameraZoom = camera.getZoom();
+		float cameraZoom = camera.currentMode().zoom();
 		
 		renderer.modelview.scale(cameraZoom, cameraZoom, 1.0f);
 		renderer.modelview.translate(cameraLoc.x, cameraLoc.y, 0.0f);

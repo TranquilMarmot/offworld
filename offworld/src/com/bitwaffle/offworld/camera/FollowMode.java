@@ -3,6 +3,7 @@ package com.bitwaffle.offworld.camera;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.graphics2d.Camera2D;
+import com.bitwaffle.guts.graphics.graphics2d.Camera2DMode;
 import com.bitwaffle.offworld.entities.player.Player;
 
 /**
@@ -10,8 +11,7 @@ import com.bitwaffle.offworld.entities.player.Player;
  * 
  * @author TranquilMarmot
  */
-public class FollowMode extends Camera2D.CameraMode {
-	
+public class FollowMode extends Camera2DMode {
 	/** What the camera is following */
 	private DynamicEntity following;
 
@@ -33,20 +33,18 @@ public class FollowMode extends Camera2D.CameraMode {
 			xPlayerTargetFollowFactor = 0.3f,
 			yPlayerTargetFollowFactor = 0.3f;
 	
+	public FollowMode(Camera2D camera) {
+		super(camera);
+	}
+	
 	/** @param newTarget New entity to follow*/
 	public void follow(DynamicEntity newTarget){ this.following = newTarget; }
 	
 	/** @return Current entity being followed by the camera */
 	public DynamicEntity getTarget(){ return following; }
 	
-	/** @param camera Camera that this mode will be controlling */
-	public FollowMode(Camera2D camera){
-		super(camera);
-	}
-	
-	
 	@Override
-	public void update(float timeStep){
+	public void update(Camera2D camera, float timeStep){
 		if(following != null){
 			Vector2 followLoc = following.getLocation();
 			Vector2 windowSize = camera.getWorldWindowSize();

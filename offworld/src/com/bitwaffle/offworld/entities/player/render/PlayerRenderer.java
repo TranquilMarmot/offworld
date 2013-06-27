@@ -93,8 +93,8 @@ public class PlayerRenderer implements EntityRenderer2D {
 		if(player.currentHealth() < 100.0f){
 			renderer.modelview.translate(0.0f, healthBarYOffset, 0.0f);
 			renderer.modelview.scale(
-					healthBarScale / Game.renderer.r2D.camera.getZoom(),
-					healthBarScale / Game.renderer.r2D.camera.getZoom(),
+					healthBarScale / Game.renderer.r2D.camera.currentMode().zoom(),
+					healthBarScale / Game.renderer.r2D.camera.currentMode().zoom(),
 					1.0f);
 			renderer.r2D.sendMatrixToShader();
 			healthBar.setPercent(player.currentHealth());

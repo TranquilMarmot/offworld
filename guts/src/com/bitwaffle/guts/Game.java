@@ -169,7 +169,7 @@ public abstract class Game implements ApplicationListener {
     	Gdx.gl20.glViewport(0, 0, Game.windowWidth, Game.windowHeight);
     	if(renderer.r2D.camera != null){
     		// setting the zoom resizes the camera's view of the world
-    		renderer.r2D.camera.setZoom(renderer.r2D.camera.getZoom());
+    		renderer.r2D.camera.currentMode().setZoom(renderer.r2D.camera.currentMode().zoom());
     	}
     }
 

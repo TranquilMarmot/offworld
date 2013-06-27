@@ -94,9 +94,7 @@ public class Render3D {
 		program.setUniform("Material.Shininess", mat.shininess());
 	}
 
-	/**
-	 * Set the current material to the default material
-	 */
+	/** Set the current material to the default material */
 	public void useDefaultMaterial(){
 		program.setUniform("Material.Kd" , DEFAULT_KD[0], DEFAULT_KD[1], DEFAULT_KD[2]);
 		program.setUniform("Material.Ka", DEFAULT_KA[0], DEFAULT_KA[1], DEFAULT_KA[2]);
@@ -117,13 +115,11 @@ public class Render3D {
 		Gdx.gl20.glDisable(GL20.GL_BLEND); 
 	}
 	
-	/**
-	 * Transforms the ModelView matrix to represent the camera's location and rotation
-	 */
+	/** Transforms the ModelView matrix to represent the camera's location and rotation */
 	private void translateModelviewToCamera(){
 		renderer.modelview.idt();
 		
-		float zoom = Game.renderer.r2D.camera.getZoom();
+		float zoom = Game.renderer.r2D.camera.currentMode().zoom();
 		renderer.modelview = renderer.modelview.scale(zoom, zoom, zoom);
 		
 		renderer.modelview = renderer.modelview.translate(camera.getLocation());
