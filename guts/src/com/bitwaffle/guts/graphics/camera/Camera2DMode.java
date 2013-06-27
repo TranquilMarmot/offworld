@@ -1,8 +1,6 @@
 package com.bitwaffle.guts.graphics.camera;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.physics.Room;
 
 public abstract class Camera2DMode {
 	/** Camera this mode belongs to */
@@ -24,12 +22,15 @@ public abstract class Camera2DMode {
 		/** Target that camera interpolates towards (if interpolate is true) */
 		target = new Vector2(0.0f, 0.0f),
 		/** Offsets for rendering */
-		offset = new Vector2(0.0f, 0.0f);
+		offset = new Vector2(0.0f, 0.0f),
+		/** Center of camera's bounding box */
+		boundsCenter = new Vector2(0.0f, 0.0f),
+		/** Size of camera's bounding box; X is width, Y is height */
+		boundsSize = new Vector2(0.0f, 0.0f);
 
 	public Camera2DMode(Camera camera){
 		this.camera = camera;
 	}
 	
 	public abstract void update(float timeStep);
-
 }

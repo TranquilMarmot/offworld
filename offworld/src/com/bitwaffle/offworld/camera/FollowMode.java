@@ -15,21 +15,19 @@ public class FollowMode extends Camera2DMode {
 	/** What the camera is following */
 	private DynamicEntity following;
 	
-	/** How much the velocity of what the camera is following effects where the camera is looking */
-	private float
-			xVelocityFactor =  1.0f,
-			yVelocityFactor = 0.5f;
-	
-	/** How much where the player is aiming effects the camera */
-	private float
-			xPlayerTargetFollowFactor = 0.3f,
-			yPlayerTargetFollowFactor = 0.3f;
+	private Vector2
+		/** How much the velocity of what the camera is following effects where the camera is looking */
+		velocityFactor = new Vector2(1.0f, 0.5f),
+		/** How much where the player is aiming effects the camera */
+		playerTargetFollowFactor = new Vector2(0.3f, 0.3f);
 	
 	public FollowMode(Camera camera) {
 		super(camera);
+		
+		offset.set(-0.3f, -10.0f);
 	}
 	
-	/** @param newTarget New entity to follow*/
+	/** @param newTarget New entity to follow */
 	public void follow(DynamicEntity newTarget){ this.following = newTarget; }
 	
 	/** @return Current entity being followed by the camera */
@@ -37,13 +35,6 @@ public class FollowMode extends Camera2DMode {
 	
 	@Override
 	public void update(float timeStep){
-		Vector2 followLoc = following.getLocation();
-		Vector2 windowSize = camera.getWorldWindowSize();
-		float newX = -followLoc.x + windowSize.x,
-				  newY = -followLoc.y + windowSize.y;
-		Vector2 newLoc = new Vector2(newX, newY);
-		camera.currentMode().target.set(newLoc);
-		/*
 		if(following != null){
 			Vector2 followLoc = following.getLocation();
 			Vector2 windowSize = camera.getWorldWindowSize();
@@ -60,19 +51,14 @@ public class FollowMode extends Camera2DMode {
 			// if entity has no body, linear velocity doesn't effect camera
 			Vector2 linVec = new Vector2(0.0f, 0.0f);
 			if(following.body != null)
-				linVec = following.body.getLinearVelocity();
+				linVec.set(following.body.getLinearVelocity());
 			
 			// calculate new camera location based on variables
-			float newX = xOffset + -followLoc.x + windowSize.x + (-linVec.x * xVelocityFactor) + (playerTargetDist.x * xPlayerTargetFollowFactor),
-				  newY = yOffset + -followLoc.y + windowSize.y + (-linVec.y * yVelocityFactor) + (playerTargetDist.y * yPlayerTargetFollowFactor);
-			Vector2 newLoc = new Vector2(newX, newY);
+			float newX = offset.x + -followLoc.x + windowSize.x + (-linVec.x * velocityFactor.x) + (playerTargetDist.x * playerTargetFollowFactor.x),
+				  newY = offset.y + -followLoc.y + windowSize.y + (-linVec.y * velocityFactor.y) + (playerTargetDist.y * playerTargetFollowFactor.y);
 			
 			// set the camera's location
-			if(interpolate)
-				camera.getLocation().lerp(newLoc, timeStep);
-			else
-				camera.getLocation().set(newLoc);
+			target.set(newX, newY);
 		}
-		*/
 	}
 }

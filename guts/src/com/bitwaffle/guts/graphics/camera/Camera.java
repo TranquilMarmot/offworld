@@ -7,7 +7,6 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
-import com.bitwaffle.guts.physics.Room;
 import com.bitwaffle.guts.util.MathHelper;
 
 /**
@@ -48,9 +47,6 @@ public class Camera extends Entity {
 			}
 		};
 		this.setZoom(DEFAULT_CAMZ);
-		
-		
-		
 	}
 	
 	@Override
@@ -63,11 +59,8 @@ public class Camera extends Entity {
 		if(currentMode.interpolate)
 			this.location.lerp(currentMode.target, timeStep);
 		
-		if(currentMode.boundsCheck){
-			Room r = Game.physics.currentRoom();
-			if(r != null)
-				boundsCheck(r);	
-		}
+		if(currentMode.boundsCheck)
+			boundsCheck();	
 
 		camera3D.setLocation(this.location);
 		camera3D.setScale(this.zoom);
@@ -78,17 +71,6 @@ public class Camera extends Entity {
 	
 	/** @return Current mode of camera, from Camera.Modes */
 	public Camera2DMode currentMode(){ return currentMode; }
-	
-	@Override
-	public void setLocation(Vector2 newLoc){
-		super.setLocation(newLoc);
-		
-		if(currentMode != null && currentMode.boundsCheck){
-			Room r = Game.physics.currentRoom();
-			if(r != null)
-				boundsCheck(r);	
-		}
-	}
 	
 	/** @param New zoom for camera */
 	public void setZoom(float newZoom){
@@ -108,12 +90,9 @@ public class Camera extends Entity {
 			
 			// make sure the camera doesn't zoom outside of the room if bounds are being checked
 			if(currentMode.boundsCheck){
-				Room r = Game.physics.currentRoom();
-				if(r != null){
-					if(newWorldWindowSize.x > r.getRoomWidth() || newWorldWindowSize.y > r.getRoomHeight()){
-						this.zoom = oldZoom;
-						return;
-					}
+				if(newWorldWindowSize.x > currentMode.boundsSize.x || newWorldWindowSize.y > currentMode.boundsSize.y){
+					this.zoom = oldZoom;
+					return;
 				}
 			}
 			
@@ -152,30 +131,30 @@ public class Camera extends Entity {
 	}
 	
 	/** @param r Room to keep camera inside of */
-	private void boundsCheck(Room r){
+	private void boundsCheck(){
 		Vector2 center = getWorldCenterPoint();
 		
 		// bottom bounds (-y)
 		float cameraBottomY = center.y - worldWindowSize.y;
-		float roomBottomY = r.getRoomY() - r.getRoomHeight();
+		float roomBottomY = currentMode.boundsCenter.y - currentMode.boundsSize.y;
 		if(cameraBottomY < roomBottomY)
 			this.location.y += (cameraBottomY - roomBottomY);
 		
 		// top bounds (+y)
 		float cameraTopY = center.y + worldWindowSize.y;
-		float roomTopY = r.getRoomY() + r.getRoomHeight();
+		float roomTopY = currentMode.boundsCenter.y + currentMode.boundsSize.y;
 		if(cameraTopY > roomTopY)
 			this.location.y += (cameraTopY - roomTopY);
 		
 		// left bounds (-x)
 		float cameraLeftX = center.x - worldWindowSize.x;
-		float roomLeftX = r.getRoomX() - r.getRoomWidth();
+		float roomLeftX = currentMode.boundsCenter.x - currentMode.boundsSize.x;
 		if(cameraLeftX < roomLeftX)
 			this.location.x += (cameraLeftX - roomLeftX);
 		
 		// right bounds (+x)
 		float cameraRightX = center.x + worldWindowSize.x;
-		float roomRightX = r.getRoomX() + r.getRoomWidth();
+		float roomRightX = currentMode.boundsCenter.x + currentMode.boundsSize.x;
 		if(cameraRightX > roomRightX)
 			this.location.x += (cameraRightX - roomRightX);
 	}
@@ -190,7 +169,7 @@ public class Camera extends Entity {
 				bottomRight = new Vector2(center.x + windowSize.x, center.y - windowSize.y),
 				bottomLeft  = new Vector2(center.x - windowSize.x, center.y - windowSize.y);
 		
-		// FIXME why are these numbers off by so much?
+		// FIXME why are these numbers off by so much? Maybe the offset?
 		return
 				(MathHelper.triangleArea(topRight,    topLeft,     p) >= 0) &&
 				(MathHelper.triangleArea(topLeft,     bottomLeft,  p) >= -50) && 

@@ -3,7 +3,6 @@ package com.bitwaffle.guts.graphics.camera;
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.bitwaffle.guts.Game;
 
 /**
  * A camera with an extra dimension and some rotation
@@ -28,16 +27,6 @@ public class Camera3D {
 		rotation = new Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
 		scale = 0.5f;
 		rotation.idt();
-	}
-	
-	public void update(float timeStep){
-		// follow the 2D camera
-		/*if(Game.renderer.r2D.camera != null){
-			Vector2 camLoc = Game.renderer.r2D.camera.getLocation();
-			this.location.x = camLoc.x;
-			this.location.y = camLoc.y;
-			this.scale = Game.renderer.r2D.camera.currentMode().zoom();
-		}*/
 	}
 	
 	public void setLocation(Vector2 loc){

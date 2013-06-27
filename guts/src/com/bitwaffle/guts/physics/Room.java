@@ -14,12 +14,6 @@ import com.bitwaffle.guts.entity.Entity;
  * @author TranquilMarmot
  */
 public abstract class Room {
-	/** Location of center of room */
-	private float roomX, roomY;
-	
-	/** Size of room. Camera will not be allowed outside of these bounds. */
-	private float roomWidth, roomHeight;
-	
 	/** List of entities in this room */
 	private ArrayList<Entity> entities2D;
 	
@@ -38,12 +32,6 @@ public abstract class Room {
 	 * @param roomHeight Height of room from center
 	 */
 	public Room(float roomX, float roomY, float roomWidth, float roomHeight){
-		this.roomX = roomX;
-		this.roomY = roomY;
-		
-		this.roomWidth = roomWidth;
-		this.roomHeight = roomHeight;
-		
 		entities2D = new ArrayList<Entity>();
 		entitiesToRemove2D = new Stack<Entity>();
 		entitiesToAdd2D = new Stack<Entity>();
@@ -113,15 +101,6 @@ public abstract class Room {
 	 * @param physics Physics world that room is being remvoed from
 	 */
 	public abstract void onRemoveFromWorld(Physics physics);
-	
-	/** @return X location of room's center */
-	public float getRoomX(){ return roomX; }
-	/** @return Y location of room's center */
-	public float getRoomY(){ return roomY; }
-	/** @return  Width of room, from center */
-	public float getRoomWidth(){ return roomWidth; }
-	/** @return Height of room, from center */
-	public float getRoomHeight(){ return roomHeight; }
 
 	/** @return Number of entities in this room*/
 	public int numEntities() { return entities2D.size(); }
