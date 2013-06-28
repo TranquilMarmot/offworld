@@ -15,6 +15,7 @@ import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.physics.CollisionFilters;
 import com.bitwaffle.guts.util.MathHelper;
+import com.bitwaffle.offworld.camera.CameraModes;
 import com.bitwaffle.offworld.entities.player.render.PlayerBodyAnimation;
 import com.bitwaffle.offworld.entities.player.render.PlayerRenderer;
 import com.bitwaffle.offworld.interfaces.Firearm;
@@ -172,6 +173,9 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 		
 		jetpack = new Jetpack(this);
 		backpack = new Inventory();
+		
+		camera = new Camera();
+		camera.setMode(CameraModes.follow);
 	}
 	
 	@Override

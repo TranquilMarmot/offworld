@@ -2,11 +2,13 @@ package com.bitwaffle.offworld;
 
 import com.badlogic.gdx.Gdx;
 import com.bitwaffle.guts.Game;
+import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.input.Input;
 import com.bitwaffle.guts.net.Net;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.loader.ResourceLoader;
 import com.bitwaffle.offworld.entities.player.Player;
+import com.bitwaffle.offworld.graphics.OffworldRenderer;
 import com.bitwaffle.offworld.gui.GUIStates;
 import com.bitwaffle.offworld.input.OffworldInput;
 import com.bitwaffle.offworld.net.OffworldNet;
@@ -58,6 +60,9 @@ public abstract class OffworldGame extends Game {
 	
 	@Override
 	protected Input initInput(){ return new OffworldInput(); }
+	
+	@Override
+	protected Renderer initRenderer(){ return new OffworldRenderer(); }
 	
 	/**
 	 * Temporary initialization

@@ -88,7 +88,6 @@ public class Renderer {
 		// render GUI
 		switchMode(RenderMode.r2DScreen);
 		Game.gui.render(this);
-		
 	}
 	
 	/**
