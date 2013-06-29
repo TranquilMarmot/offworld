@@ -223,6 +223,9 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 			MathHelper.toWorldSpace(mouse, Gdx.input.getX(), Gdx.input.getY(), Game.renderer.camera);
 			setTarget(mouse);
 		}
+		
+		// FIXME temp? (so the camera always looks near the player)
+		setTarget(target);
 	}
 	
 	/**
