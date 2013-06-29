@@ -19,7 +19,7 @@ public class Camera extends Entity {
 	private static final float DEFAULT_CAMX = 86.1816f * 3.0f, DEFAULT_CAMY = 24.6180f * 3.0f, DEFAULT_CAMZ = 0.03f;
 	
 	/** Current camera mode */
-	private Camera2DMode currentMode = null;
+	private CameraMode currentMode = null;
 	
 	/** Current zoom level of camera (smaller it is, the smaller everything will be rendered) */
 	public float zoom = 0.008f;
@@ -41,7 +41,7 @@ public class Camera extends Entity {
 		worldWindowSize = new Vector2();
 		this.setLocation(new Vector2(DEFAULT_CAMX, DEFAULT_CAMY));
 		this.location.set(DEFAULT_CAMX, DEFAULT_CAMY);
-		currentMode = new Camera2DMode(this){
+		currentMode = new CameraMode(this){
 			@Override
 			public void update(float timeStep) {
 			}
@@ -67,10 +67,10 @@ public class Camera extends Entity {
 	}
 	
 	/** Set the mode of the camera */
-	public void setMode(Camera2DMode newMode){ this.currentMode = newMode; }
+	public void setMode(CameraMode newMode){ this.currentMode = newMode; }
 	
 	/** @return Current mode of camera, from Camera.Modes */
-	public Camera2DMode currentMode(){ return currentMode; }
+	public CameraMode currentMode(){ return currentMode; }
 	
 	/** @param New zoom for camera */
 	public void setZoom(float newZoom){

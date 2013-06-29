@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.camera.Camera2DMode;
+import com.bitwaffle.guts.graphics.camera.CameraMode;
 import com.bitwaffle.offworld.entities.player.Player;
 
 /**
@@ -22,7 +22,7 @@ public class CameraChangeSensor extends DynamicEntity{
 	/** Fixture this sensor is attached to */
 	private Fixture fixture;
 	
-	private Camera2DMode 
+	private CameraMode 
 		/** The mode the camera will be switched to */
 		mode,
 		/** Mode that camera gets switched to  */
@@ -31,7 +31,7 @@ public class CameraChangeSensor extends DynamicEntity{
 	/** Player that hits this sensor */
 	private Player player;
 	
-	public CameraChangeSensor(Camera2DMode mode,  Shape shape, Vector2 location){
+	public CameraChangeSensor(CameraMode mode,  Shape shape, Vector2 location){
 		super(null, 0, getBodyDef(location), getFixtureDef(shape));
 		this.mode = mode;
 	}

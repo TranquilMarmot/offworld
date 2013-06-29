@@ -2,7 +2,7 @@ package com.bitwaffle.guts.graphics.camera;
 
 import com.badlogic.gdx.math.Vector2;
 
-public abstract class Camera2DMode {
+public abstract class CameraMode {
 	/** Camera this mode belongs to */
 	protected Camera camera;
 	
@@ -28,7 +28,7 @@ public abstract class Camera2DMode {
 		/** Size of camera's bounding box; X is width, Y is height */
 		boundsSize = new Vector2(0.0f, 0.0f);
 
-	public Camera2DMode(Camera camera){
+	public CameraMode(Camera camera){
 		this.camera = camera;
 	}
 	
