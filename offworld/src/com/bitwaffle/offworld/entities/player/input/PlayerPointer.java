@@ -3,7 +3,6 @@ package com.bitwaffle.offworld.entities.player.input;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.util.MathHelper;
-import com.bitwaffle.offworld.camera.CameraModes;
 import com.bitwaffle.offworld.entities.player.Player;
 
 /**
@@ -22,7 +21,7 @@ public class PlayerPointer {
 	}
 	
 	public void down(int pointerID, float x, float y){
-		if(Game.renderer.camera != null && Game.renderer.camera.currentMode() == CameraModes.follow && 
+		if(Game.renderer.camera != null /*&& Game.renderer.camera.currentMode() == CameraModes.follow*/ && 
 			player != null && !player.isShooting()
 			&& !Game.gui.hasSelectedButton() && (Game.gui.buttonAt(x, y) == null))
 				player.beginShooting(MathHelper.toWorldSpace(x, y, Game.renderer.camera));

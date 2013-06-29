@@ -1,12 +1,11 @@
 package com.bitwaffle.offworld.input;
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.input.listeners.CameraInputListener;
 import com.bitwaffle.guts.util.MathHelper;
-import com.bitwaffle.offworld.camera.CameraModes;
+import com.bitwaffle.offworld.camera.FreeMode;
 
 /**
  * Handles panning/zooming the camera around
@@ -27,7 +26,7 @@ public class OffworldCameraInputListener extends CameraInputListener {
 	
 	@Override
 	public boolean zoom(float prevSpacing, float spacing) {
-		if(camera.currentMode() == CameraModes.free){
+		if(camera.currentMode() instanceof FreeMode){
 			float ds = spacing - prevSpacing;
 
 			// only zoom if the amount is in the threshold
@@ -67,7 +66,7 @@ public class OffworldCameraInputListener extends CameraInputListener {
 
 	@Override
 	public boolean pan(float x, float y, float deltaX, float deltaY) {
-		if(camera.currentMode() == CameraModes.free){
+		if(camera.currentMode() instanceof FreeMode){
 			Vector2 current = MathHelper.toWorldSpace(x + deltaX, y + deltaY, camera);
 			Vector2 previous = MathHelper.toWorldSpace(x, y, camera);
 
@@ -92,6 +91,7 @@ public class OffworldCameraInputListener extends CameraInputListener {
 
 	@Override
 	public boolean keyDown(int keycode) {
+		/*
 		switch(keycode){
 		case Input.Keys.C:
 			if(camera.currentMode() == CameraModes.follow)
@@ -99,7 +99,7 @@ public class OffworldCameraInputListener extends CameraInputListener {
 			else if(camera.currentMode() == CameraModes.free)
 				camera.setMode(CameraModes.follow);
 		}
-		
+		*/
 		return false;
 	}
 

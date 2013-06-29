@@ -13,7 +13,6 @@ import com.bitwaffle.guts.graphics.graphics3d.model.ModelRenderer;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
-import com.bitwaffle.offworld.camera.CameraModes;
 import com.bitwaffle.offworld.gui.GUIStates;
 
 /**
@@ -85,7 +84,7 @@ public class SplashScreenState extends GUIState {
 		Game.physics.addEntity(text, false);
 		
 		// set camera to look at waffle
-		Game.renderer.camera.setMode(CameraModes.free);
+		//Game.renderer.camera.setMode(CameraModes.free);
 		Game.renderer.camera.setLocation(bitwaffle.getLocation());
 	}
 

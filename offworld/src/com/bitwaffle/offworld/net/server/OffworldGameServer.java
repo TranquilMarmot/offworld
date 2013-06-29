@@ -30,7 +30,6 @@ public class OffworldGameServer extends GameServer {
 		OffworldNetRegistrar.registerClasses(server.getKryo());
 		
 		// FIXME temp server just takes control of 0th player
-		OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 24.6180f * 3.0f), 0, true);
 		playerNumber = 0;
 	}
 	

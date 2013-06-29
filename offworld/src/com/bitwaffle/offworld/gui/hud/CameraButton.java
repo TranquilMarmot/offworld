@@ -4,9 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Renderer;
-import com.bitwaffle.guts.graphics.camera.Camera2DMode;
 import com.bitwaffle.guts.gui.button.RectangleButton;
-import com.bitwaffle.offworld.camera.CameraModes;
 
 /** Button to change camera modes */
 public class CameraButton extends RectangleButton{
@@ -23,19 +21,23 @@ public class CameraButton extends RectangleButton{
 
 	@Override
 	public void update(float timeStep) {
+		/*
 		if(CameraModes.follow.getTarget() == null && this.isVisible())
 			this.hide();
 		else if(CameraModes.follow.getTarget() != null && !this.isVisible())
 			this.show();
+			*/
 	}
 	
 	@Override
 	protected void onRelease() {
+		/*
 		Camera2DMode mode = Game.renderer.camera.currentMode();
 		if(mode == CameraModes.follow)
 			Game.renderer.camera.setMode(CameraModes.free);
 		else
 			Game.renderer.camera.setMode(CameraModes.follow);
+			*/
 	}
 	
 	@Override
@@ -65,9 +67,9 @@ public class CameraButton extends RectangleButton{
 			a = 0.75f;
 		renderer.r2D.setColor(r, g, b, a);
 		
-		if(Game.renderer.camera.currentMode() == CameraModes.free)
-			Game.resources.textures.bindTexture("camera-free");
-		else
+		//if(Game.renderer.camera.currentMode() == CameraModes.free)
+		//	Game.resources.textures.bindTexture("camera-free");
+		//else
 			Game.resources.textures.bindTexture("camera");
 		renderer.r2D.quad.render(cameraButtonWidth, cameraButtonHeight);
 		Gdx.gl20.glDisable(GL20.GL_BLEND);

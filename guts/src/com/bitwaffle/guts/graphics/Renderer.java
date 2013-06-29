@@ -58,7 +58,7 @@ public class Renderer {
 	 */
 	public void update(float timeStep) {
 		//if(r2D.camera != null)
-			camera.update(timeStep);
+			//camera.update(timeStep);
 		//if(r3D.camera != null)
 		//	r3D.camera.update(timeStep);
 	}
@@ -76,11 +76,16 @@ public class Renderer {
 		currentMode = mode;
 	}
 	
-	/** Renders the entire scene- every entity and every GUI object */
+	/** Clears the screen and then renders the entire scene- every entity and every GUI object */
 	public void renderScene(){
 		// clear color and depth buffers
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		
+		renderEntities();
+	}
+	
+	/** Renders every entity and GUI object */
+	protected void renderEntities(){
 		// render each layer
 		for(int i = 0; i < Game.physics.numLayers(); i++)
 			renderEntities(Game.physics.getLayer(i).values().iterator());

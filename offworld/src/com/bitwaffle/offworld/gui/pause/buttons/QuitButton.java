@@ -6,7 +6,6 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.gui.button.TextButton;
 import com.bitwaffle.offworld.OffworldGame;
-import com.bitwaffle.offworld.camera.CameraModes;
 import com.bitwaffle.offworld.gui.GUIStates;
 import com.bitwaffle.offworld.gui.pause.PauseState;
 
@@ -39,7 +38,7 @@ public class QuitButton extends TextButton {
 		for(int i = 0; i < OffworldGame.players.length; i++)
 			OffworldGame.players[i] = null;
 		
-		CameraModes.follow.follow(null);
+		//CameraModes.follow.follow(null);
 		
 		Game.gui.setCurrentState(GUIStates.TITLESCREEN.state);
 		if(Game.isPaused())

@@ -5,9 +5,7 @@ import java.util.LinkedList;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.util.MathHelper;
-import com.bitwaffle.offworld.camera.CameraModes;
 import com.bitwaffle.offworld.entities.player.Player;
 
 /**
@@ -23,18 +21,14 @@ public class PlayerInputListener implements InputProcessor {
 	/** Player that this handler is handling */
 	private Player player;
 	
-	/** Camera following player */
-	private Camera camera;
-	
 	/**
 	 * Create a new listener to control the player with
 	 * a touch screen or mouse/keyboard
 	 * @param player Player this listener is controlling
 	 * @param camera Camera following player
 	 */
-	public PlayerInputListener(Player player, Camera camera){
+	public PlayerInputListener(Player player){
 		this.player = player;
-		this.camera = camera;
 		pointers = new LinkedList<PlayerPointer>();
 	}
 
@@ -105,7 +99,7 @@ public class PlayerInputListener implements InputProcessor {
 		while(pointers.size() < pointerID + 1)
 			pointers.add(new PlayerPointer(player));
 		
-		if(Game.renderer.camera.currentMode() == CameraModes.follow)
+		//if(Game.renderer.camera.currentMode() == CameraModes.follow)
 			pointers.get(pointerID).down(pointerID, pointerX, pointerY);
 		
 		return false;
@@ -122,14 +116,14 @@ public class PlayerInputListener implements InputProcessor {
 
 	@Override
 	public boolean touchDragged(int pointerX, int pointerY, int pointerID) {
-		if(camera.currentMode() == CameraModes.follow)
+		//if(camera.currentMode() == CameraModes.follow)
 			pointers.get(pointerID).move(pointerX, pointerY);
 		return false;
 	}
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		if(camera.currentMode() == CameraModes.follow)
+		//if(camera.currentMode() == CameraModes.follow)
 			player.setTarget(MathHelper.toWorldSpace(screenX, screenY, Game.renderer.camera));
 		
 		return false;

@@ -24,7 +24,7 @@ public class FollowMode extends Camera2DMode {
 	public FollowMode(Camera camera) {
 		super(camera);
 		
-		offset.set(-0.3f, -10.0f);
+		//offset.set(-0.3f, -10.0f);
 	}
 	
 	/** @param newTarget New entity to follow */

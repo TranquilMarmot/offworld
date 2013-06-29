@@ -9,7 +9,6 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.offworld.OffworldGame;
-import com.bitwaffle.offworld.camera.CameraModes;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.bitwaffle.offworld.entities.player.input.PlayerInputListener;
 import com.bitwaffle.offworld.entities.player.input.controller.OuyaPlayerControllerListener;
@@ -47,8 +46,8 @@ public class OffworldPhysics extends Physics {
 		// TODO have each player press start
 		
 		if(takeControl){	
-			CameraModes.follow.follow(OffworldGame.players[playerNumber]);
-			Game.renderer.camera.setMode(CameraModes.follow);
+			//CameraModes.follow.follow(OffworldGame.players[playerNumber]);
+			//Game.renderer.camera.setMode(CameraModes.follow);
 			Game.renderer.camera.setLocation(OffworldGame.players[playerNumber].getLocation());
 			
 			for(Controller con : Controllers.getControllers()){
@@ -60,7 +59,7 @@ public class OffworldPhysics extends Physics {
 			}
 			
 			// add player control listener
-			Game.input.multiplexer.addProcessor(new PlayerInputListener(OffworldGame.players[playerNumber], Game.renderer.camera));
+			Game.input.multiplexer.addProcessor(new PlayerInputListener(OffworldGame.players[playerNumber]));
 		}
 	}
 }

@@ -7,7 +7,7 @@ public abstract class Camera2DMode {
 	protected Camera camera;
 	
 	/** Current zoom level of camera (smaller it is, the smaller everything will be rendered) */
-	public float zoom = 0.008f;
+	public float zoom = 0.05f;
 	
 	/** Minimum and maximum zoom values */
 	public float minZoom = 0.005f, maxZoom = 0.15f;

@@ -4,20 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.camera.Camera2DMode;
 import com.bitwaffle.guts.graphics.graphics2d.shapes.polygon.Polygon;
 import com.bitwaffle.guts.graphics.graphics2d.shapes.polygon.PolygonRenderer;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.physics.Room;
-import com.bitwaffle.offworld.camera.CameraChangeSensor;
-import com.bitwaffle.offworld.camera.CameraModes;
 import com.bitwaffle.offworld.entities.BreakableRock;
 import com.bitwaffle.offworld.entities.enemies.bat.Bat;
 import com.bitwaffle.offworld.entities.pickups.diamond.Diamond;
+import com.bitwaffle.offworld.physics.OffworldPhysics;
 
 
 public class Room1 extends Room {
@@ -30,6 +27,9 @@ public class Room1 extends Room {
 		
 		Gdx.gl20.glClearColor(0.4117647058823529f, 0.592156862745098f, 0.8274509803921569f, 1.0f);
 		//Gdx.gl20.glClearColor(0.40625f, 0.46875f, 0.78125f, 1.0f);
+		
+		OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 24.6180f * 3.0f), 0, true);
+		OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 20.6180f * 3.0f), 1, false);
 
 		this.addEntity(getDynamicEntity("cave-1-seg1", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
 		this.addEntity(getDynamicEntity("cave-1-seg2", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
@@ -121,12 +121,14 @@ public class Room1 extends Room {
 	}
 	
 	private void addCameraSensor(){
-		Camera2DMode mode = CameraModes.free;
+		/*
+		Camera2DMode mode = new FreeMode();
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(10.0f, 10.0f);
 		Vector2 loc = new Vector2(370.0229f, -16.357243f);
 		CameraChangeSensor sensor = new CameraChangeSensor(mode, shape, loc);
 		this.addEntity(sensor);
+		*/
 	}
 	
 	/**
