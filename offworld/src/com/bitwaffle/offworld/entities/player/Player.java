@@ -100,13 +100,13 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 	/** Noargs constructor ONLY to be used with serialization!!! */
 	public Player(){
 		super();
-		init();
+		init(new Vector2(0.0f, 0.0f));
 	}
 	
 	/** Create a new Player instance */
 	public Player(int layer, Vector2 location) {
 		super(new PlayerRenderer(), layer, getBodyDef(location), getFixtureDef());
-		init();
+		init(location);
 	}
 	
 	private static BodyDef getBodyDef(Vector2 location){
@@ -160,7 +160,7 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 	}
 	
 	/** Init method only used in constructor */
-	private void init(){
+	private void init(Vector2 loc){
 		health = 100.0f;
 		movingRight = false;
 		movingLeft = false;
@@ -174,9 +174,14 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 		jetpack = new Jetpack(this);
 		backpack = new Inventory();
 		
-		camera = new Camera();
+		camera = new Camera(this.location);
 		camera.setMode(new FollowMode(camera));
 		((FollowMode)camera.currentMode()).follow(this);
+		camera.currentMode().interpolate = false;
+		camera.currentMode().target.set(loc);
+		camera.setLocation(loc);
+		camera.update(1.0f / 60.0f);
+		//camera.currentMode().interpolate = true;
 	}
 	
 	@Override

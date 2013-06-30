@@ -34,13 +34,17 @@ public class Camera extends Entity {
 	public Camera3D camera3D;
 	
 	public Camera(){
+		this(new Vector2(DEFAULT_CAMX, DEFAULT_CAMY));
+	}
+	
+	public Camera(Vector2 location){
 		super();
 		camera3D = new Camera3D();
 		projection = new Matrix4();
 		view = new Matrix4();
 		worldWindowSize = new Vector2();
-		this.setLocation(new Vector2(DEFAULT_CAMX, DEFAULT_CAMY));
-		this.location.set(DEFAULT_CAMX, DEFAULT_CAMY);
+		this.location = new Vector2(location);
+		this.setLocation(location);
 		currentMode = new CameraMode(this){
 			@Override
 			public void update(float timeStep) {
@@ -58,6 +62,8 @@ public class Camera extends Entity {
 		
 		if(currentMode.interpolate)
 			this.location.lerp(currentMode.target, timeStep);
+		else
+			this.location.set(currentMode.target);
 		
 		if(currentMode.boundsCheck)
 			boundsCheck();	

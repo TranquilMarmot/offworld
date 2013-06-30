@@ -17,9 +17,11 @@ public class FollowMode extends CameraMode {
 	
 	private Vector2
 		/** How much the velocity of what the camera is following effects where the camera is looking */
-		velocityFactor = new Vector2(1.0f, 0.5f),
+		//velocityFactor = new Vector2(1.0f, 0.5f),
+		velocityFactor = new Vector2(0.0f, 0.0f),
 		/** How much where the player is aiming effects the camera */
-		playerTargetFollowFactor = new Vector2(0.3f, 0.3f);
+		//playerTargetFollowFactor = new Vector2(0.3f, 0.3f);
+		playerTargetFollowFactor = new Vector2(0.0f, 0.0f);
 	
 	public FollowMode(Camera camera) {
 		super(camera);

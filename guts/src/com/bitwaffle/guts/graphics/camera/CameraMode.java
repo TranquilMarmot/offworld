@@ -14,7 +14,7 @@ public abstract class CameraMode {
 
 	public boolean
 		/** Whether or not to interpolate the values of the camera */
-		interpolate = true,
+		interpolate = false,
 		/** Whether or not to keep the camera within the given bounds */
 		boundsCheck = false;
 	

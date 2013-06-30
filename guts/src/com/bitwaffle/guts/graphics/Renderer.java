@@ -82,6 +82,7 @@ public class Renderer {
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		
 		renderEntities();
+		renderGUI();
 	}
 	
 	/** Renders every entity and GUI object */
@@ -89,7 +90,9 @@ public class Renderer {
 		// render each layer
 		for(int i = 0; i < Game.physics.numLayers(); i++)
 			renderEntities(Game.physics.getLayer(i).values().iterator());
-		
+	}
+	
+	protected void renderGUI(){
 		// render GUI
 		switchMode(RenderMode.r2DScreen);
 		Game.gui.render(this);

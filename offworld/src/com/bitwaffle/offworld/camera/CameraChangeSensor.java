@@ -1,7 +1,6 @@
 package com.bitwaffle.offworld.camera;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -17,16 +16,11 @@ import com.bitwaffle.offworld.entities.player.Player;
  * @author TranquilMarmot
  */
 public class CameraChangeSensor extends DynamicEntity{
-	/** Body this sensor is attached to */
-	private Body body;
 	/** Fixture this sensor is attached to */
 	private Fixture fixture;
 	
-	private CameraMode 
-		/** The mode the camera will be switched to */
-		mode,
-		/** Mode that camera gets switched to  */
-		oldMode;
+	/** The mode the camera will be switched to */
+	private CameraMode mode;
 	
 	/** Player that hits this sensor */
 	private Player player;
