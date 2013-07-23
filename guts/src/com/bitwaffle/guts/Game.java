@@ -29,11 +29,8 @@ public abstract class Game implements ApplicationListener {
 	/** Whether or not the game is paused (physics isn't stepped when this is true) */
 	private static boolean paused = false;
 	
-	/**
-	 * These change whenever the screen size is changed.
-	 * The values that they are defined as will be the initial size of the window.
-	 */
-	public static int windowWidth = 1337, windowHeight = 920;
+	/** These change whenever the screen size is changed. */
+	public static int windowWidth, windowHeight;
 	
 	/** The aspect ratio of the window */
 	public static float aspect = (float) windowWidth / (float) windowHeight;

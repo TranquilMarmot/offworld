@@ -4,14 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
+import com.bitwaffle.guts.graphics.camera.CameraMode;
 import com.bitwaffle.guts.graphics.graphics2d.shapes.polygon.Polygon;
 import com.bitwaffle.guts.graphics.graphics2d.shapes.polygon.PolygonRenderer;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.physics.Room;
 import com.bitwaffle.offworld.OffworldGame;
+import com.bitwaffle.offworld.camera.CameraChangeSensor;
 import com.bitwaffle.offworld.entities.BreakableRock;
 import com.bitwaffle.offworld.entities.enemies.bat.Bat;
 import com.bitwaffle.offworld.entities.pickups.diamond.Diamond;
@@ -30,12 +33,12 @@ public class Room1 extends Room {
 		//Gdx.gl20.glClearColor(0.40625f, 0.46875f, 0.78125f, 1.0f);
 		
 		OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 24.6180f * 3.0f), 0, true);
-		OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 20.6180f * 3.0f), 1, false);
-		OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 10.6180f * 3.0f), 2, false);
-		OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 4.6180f * 3.0f), 3, false);
-		OffworldGame.players[1].controlledByMouse = false;
-		OffworldGame.players[2].controlledByMouse = false;
-		OffworldGame.players[3].controlledByMouse = false;
+		//OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 20.6180f * 3.0f), 1, false);
+		//OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 10.6180f * 3.0f), 2, false);
+		//OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 4.6180f * 3.0f), 3, false);
+		//OffworldGame.players[1].controlledByMouse = false;
+		//OffworldGame.players[2].controlledByMouse = false;
+		//OffworldGame.players[3].controlledByMouse = false;
 
 		this.addEntity(getDynamicEntity("cave-1-seg1", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
 		this.addEntity(getDynamicEntity("cave-1-seg2", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
@@ -127,47 +130,17 @@ public class Room1 extends Room {
 	}
 	
 	private void addCameraSensor(){
-		/*
-		Camera2DMode mode = new FreeMode();
+		CameraMode mode = new CameraMode(OffworldGame.players[0].getCamera()){
+			@Override public void update(float timeStep) {}
+		};
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(10.0f, 10.0f);
 		Vector2 loc = new Vector2(370.0229f, -16.357243f);
+		mode.target.set(new Vector2(-340.0229f, 26.357243f));
+		mode.interpolate = false;
 		CameraChangeSensor sensor = new CameraChangeSensor(mode, shape, loc);
 		this.addEntity(sensor);
-		*/
 	}
-	
-	/**
-	 * Makes bounds for room
-	 */
-	/*
-	private void makeWalls(){
-		class Ground {
-			float x, y, width, height;
-			
-			public Ground(float x, float y, float width, float height){
-				this.x = x;
-				this.y = y;
-				this.width = width;
-				this.height = height;
-			}
-		}
-		
-		Ground[] grounds = new Ground[]{
-			new Ground(19.0f, -10.0f, 1.0f, 50.0f),
-			new Ground(-17.0f, -10.0f, 1.0f, 50.0f),
-			new Ground(0.0f, -34.7f, 50.0f, 1.0f)
-		};
-		
-		for(Ground g : grounds){
-			BodyDef bodyDef = new BodyDef();
-			bodyDef.position.set(g.x, g.y);
-			
-			BoxEntity ground = new BoxEntity(Renderers.BOX.renderer, 4, bodyDef, g.width, g.height, 0.0f, new float[]{0.5f, 0.5f, 0.5f, 1.0f});
-			this.addEntity(ground);
-		}
-	}
-	*/
 
 	@Override
 	public void onAddToWorld(Physics physics) {}

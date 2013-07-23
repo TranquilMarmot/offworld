@@ -189,13 +189,13 @@ public class Camera extends Entity {
 		Shape.Type st = s.getType();
 		switch(st){
 		case Chain:
-			Game.out.println("WARNING chain shape isVisible not implemented in Camera2D");
+			Game.out.println("WARNING chain shape isVisible not implemented in Camera");
 			break;
 		case Circle:
-			Game.out.println("WARNING circle shape isVisible not implemented in Camera2D");
+			Game.out.println("WARNING circle shape isVisible not implemented in Camera");
 			break;
 		case Edge:
-			Game.out.println("WARNING edge shape isVisible not implemented in Camera2D");
+			Game.out.println("WARNING edge shape isVisible not implemented in Camera");
 			break;
 		case Polygon:
 			PolygonShape poly = (PolygonShape)s;

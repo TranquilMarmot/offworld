@@ -18,17 +18,18 @@ import com.bitwaffle.offworld.OffworldGame;
  * @author TranquilMarmot
  */
 public class DesktopGame extends OffworldGame {
-	static String[] iconPaths = new String[]{"icon.png" };
-	static FileType[] iconFileTypes = new FileType[]{ FileType.Local };
-
+	private static int defaultWindowWidth = 1024, defaultWindowHeight = 768;
+	
+	private static Builder builder;
+	
 	public static void main(String[] args){
-		Game.windowWidth = 1024;
-		Game.windowHeight = 768;
+		Game.windowWidth = defaultWindowWidth;
+		Game.windowHeight = defaultWindowHeight;
 		//Keyboard.enableRepeatEvents(true);
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.resizable = true;
-		config.width = 1024;
-		config.height = 768;
+		config.width = defaultWindowWidth;
+		config.height = defaultWindowHeight;
 		config.useGL20 = true;
 		config.addIcon("icons/16x16.png", FileType.Local);
 		config.addIcon("icons/32x32.png", FileType.Local);
@@ -38,6 +39,7 @@ public class DesktopGame extends OffworldGame {
 		
 		if(args.length == 1 && args[0].equals("devmode")){
 			DevModeDisplay.createFrame();
+			builder = new Builder();
 			new LwjglApplication(new DesktopGame(), config, DevModeDisplay.gameCanvas);
 		}else
 			new LwjglApplication(new DesktopGame(), config);
@@ -52,7 +54,7 @@ public class DesktopGame extends OffworldGame {
 	protected void update(){
 		super.update();
 
-		// desktop has its own screenshot code TODO
+		// TODO
     	//if(KeyBindings.SYS_SCREENSHOT.pressedOnce())
 		//	Screenshot.takeScreenshot(windowWidth, windowHeight);
     	
@@ -61,7 +63,8 @@ public class DesktopGame extends OffworldGame {
     	//	Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode());
     	//}
     	
-    	Builder.update();
+		if(builder != null)
+			builder.update();
 	}
 	/** Called right before dying to close all resources */
 	@Override

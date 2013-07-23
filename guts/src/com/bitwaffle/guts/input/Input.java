@@ -5,13 +5,10 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.mappings.Ouya;
-import com.badlogic.gdx.input.GestureDetector;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.input.gui.GUIInputListener;
 import com.bitwaffle.guts.input.gui.controller.OuyaGUIControllerListener;
 import com.bitwaffle.guts.input.gui.controller.XboxGUIControllerListener;
-import com.bitwaffle.guts.input.listeners.CameraInputListener;
-import com.bitwaffle.guts.input.listeners.ConsoleInputListener;
 
 /**
  * Handles the input multiplexer and instances of useful input processors.
@@ -21,12 +18,6 @@ import com.bitwaffle.guts.input.listeners.ConsoleInputListener;
 public abstract class Input {
 	/** The input multiplexer */
 	public InputMultiplexer multiplexer;
-	
-	/** Gesture detector for zooming/panning camera*/
-	public GestureDetector cameraGestureListener;
-	
-	/** Input listener for moving the camera around when it's in free mode */
-	public CameraInputListener cameraInputListener; // TODO should this be added/removed every time the camera enters/exits free mode?
 	
 	/** Grabs things being typed and sends them to the console */
 	public ConsoleInputListener consoleInputListener;
@@ -42,14 +33,10 @@ public abstract class Input {
 		
 		// initialize processors
 		guiInputListener = getGUIInputListener();
-		cameraInputListener = getCameraInputListener();
-		cameraGestureListener = new GestureDetector(cameraInputListener);
 		consoleInputListener = new ConsoleInputListener(Game.gui.console);
 		
 		// add to multiplexer
 		multiplexer.addProcessor(guiInputListener);
-		multiplexer.addProcessor(cameraGestureListener);
-		multiplexer.addProcessor(cameraInputListener);
 		multiplexer.addProcessor(consoleInputListener);
 		
 		Gdx.input.setInputProcessor(multiplexer);
@@ -66,5 +53,4 @@ public abstract class Input {
 	}
 	
 	protected abstract GUIInputListener getGUIInputListener();
-	protected abstract CameraInputListener getCameraInputListener();
 }
