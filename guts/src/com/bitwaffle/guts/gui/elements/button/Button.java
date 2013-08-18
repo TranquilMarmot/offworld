@@ -59,6 +59,12 @@ public abstract class Button extends GUIObject{
 	 */
 	public boolean contains(Vector2 point){ return this.contains(point.x, point.y); }
 	
+	/** @return Width of button */
+	public abstract float getWidth();
+	
+	/** @return Height of button */
+	public abstract float getHeight();
+	
 	/** Press the button! This sets isDown to true. */
 	public void press(){
 		if(this.isActive){

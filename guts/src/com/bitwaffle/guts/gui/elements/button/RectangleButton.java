@@ -12,7 +12,6 @@ public abstract class RectangleButton extends Button {
 	protected float width, height;
 	
 	/**
-	 * Create a new rectangular button
 	 * @param x X location of button
 	 * @param y Y location of button
 	 * @param width How wide the button is
@@ -36,8 +35,13 @@ public abstract class RectangleButton extends Button {
 	@Override
 	public abstract void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical);
 	
+	@Override
 	public float getWidth(){ return width; }
+	
+	@Override
 	public float getHeight(){ return height; }
+	
+	
 	public void setSize(float width, float height){
 		this.width = width;
 		this.height = height;

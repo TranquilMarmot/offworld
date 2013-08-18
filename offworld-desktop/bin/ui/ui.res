@@ -35,6 +35,12 @@
 			"path":	"ui/textures/buttons/circlebutton.png",
 			"minFilter":	"nearest",
 			"magFilter":	"nearest"
+		},
+		{
+			"name": "toolboxbutton",
+			"path": "ui/textures/buttons/toolboxbutton.png",
+			"minFilter":	"nearest",
+			"magFilter":	"nearest"
 		}
 	],
 	

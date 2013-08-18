@@ -35,6 +35,12 @@ public abstract class CircleButton extends Button{
 	}
 	
 	@Override
+	public float getWidth(){ return radius; }
+	
+	@Override
+	public float getHeight(){ return radius; }
+	
+	@Override
 	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical) {
 		if(this.isDown())
 			renderer.r2D.setColor(down);

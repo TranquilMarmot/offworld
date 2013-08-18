@@ -163,15 +163,15 @@ public abstract class GUI {
 	
 	/** Render all objects in an iterator */
 	private void renderObjects(Iterator<? extends GUIObject> it, Renderer renderer){
-		try{
-			while(it.hasNext()){
-				GUIObject obj = it.next();
-				
-				if(obj.isVisible())
-					renderObject(obj, renderer);
+		while(it.hasNext()){
+			GUIObject obj = it.next();
+			if(obj == null){
+				Gdx.app.error(LOGTAG, "Got null gui object during rendering (ignoring)");
+				continue;
 			}
-		} catch(NullPointerException e){
-			Gdx.app.error(LOGTAG, "Got null gui object (ignoring)");
+			
+			if(obj.isVisible())
+				renderObject(obj, renderer);
 		}
 	}
 	

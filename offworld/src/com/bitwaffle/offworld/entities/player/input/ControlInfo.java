@@ -8,7 +8,7 @@ import com.badlogic.gdx.controllers.Controller;
  * @author TranquilMarmot
  */
 public class ControlInfo {
-	public static enum SplitScreenSections{
+	public static enum SplitScreenSection{
 		/** Player has the entire screen */
 		FULL,
 		/** Player has top half of the screen */
@@ -26,7 +26,7 @@ public class ControlInfo {
 	}
 	
 	/** Which section of the screen the player is using */
-	public SplitScreenSections screenSection;
+	public SplitScreenSection screenSection;
 	
 	/** 
 	 * Whether or not this player is being controlled by the mouse, so the mouse's location can get grabbed every frame
