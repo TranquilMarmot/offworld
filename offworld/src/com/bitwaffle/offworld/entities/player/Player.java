@@ -16,6 +16,7 @@ import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.physics.CollisionFilters;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.camera.FollowMode;
+import com.bitwaffle.offworld.entities.player.input.ControlInfo;
 import com.bitwaffle.offworld.entities.player.render.PlayerBodyAnimation;
 import com.bitwaffle.offworld.entities.player.render.PlayerRenderer;
 import com.bitwaffle.offworld.interfaces.Firearm;
@@ -36,12 +37,14 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 	/** Two boxes are put on the side of the player with no friction, so that the player slides along walls */
 	private static final float SIDE_BOX_W = 0.2f, SIDE_BOX_H = HEIGHT - 0.05f;
 	
-	//private static final float MAX_TARGET_DX = 10.0f, MAX_TARGET_DY = 8.0f;
-	
+	/** Maximum radius that the player's target can go */
 	private static final float MAX_TARGET_RADIUS = 10.0f;
 	
 	/** The camera following this player */
 	private Camera camera;
+	
+	/** Info on how the player is being controlled */
+	private ControlInfo controlInfo;
 	
 	/** The player's current firearm */
 	private Firearm firearm;
@@ -75,12 +78,6 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 	
 	/** What the player is aiming at */
 	private Vector2 target;
-	
-	/** 
-	 * Whether or not this player is being controlled by the mouse, so the value can get grabbed every frame
-	 * If it's not grabbed every frame, the target only gets updated when the mouse moves which doesn't compensate for camera movement.
-	 */
-	public boolean controlledByMouse = true;
 	
 	/** Whether or not the player is shooting */
 	private boolean isShooting;
@@ -174,6 +171,8 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 		jetpack = new Jetpack(this);
 		backpack = new Inventory();
 		
+		controlInfo = new ControlInfo();
+		
 		camera = new Camera(this.location);
 		camera.setMode(new FollowMode(camera));
 		((FollowMode)camera.currentMode()).follow(this);
@@ -223,7 +222,7 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 				firearm.shootAt(body.getWorld(), target);
 		}
 		
-		if(!Ouya.runningOnOuya && controlledByMouse){
+		if(!Ouya.runningOnOuya && controlInfo.controlledByMouse){
 			Vector2 mouse = new Vector2();
 			MathHelper.toWorldSpace(mouse, Gdx.input.getX(), Gdx.input.getY(), Game.renderer.camera);
 			setTarget(mouse);
