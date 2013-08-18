@@ -19,6 +19,7 @@ import com.bitwaffle.offworld.camera.FollowMode;
 import com.bitwaffle.offworld.entities.player.input.ControlInfo;
 import com.bitwaffle.offworld.entities.player.render.PlayerBodyAnimation;
 import com.bitwaffle.offworld.entities.player.render.PlayerRenderer;
+import com.bitwaffle.offworld.gui.elements.toolbox.Toolbox;
 import com.bitwaffle.offworld.interfaces.Firearm;
 import com.bitwaffle.offworld.interfaces.FirearmHolder;
 import com.bitwaffle.offworld.interfaces.Health;
@@ -45,6 +46,9 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 	
 	/** Info on how the player is being controlled */
 	private ControlInfo controlInfo;
+	
+	/** Player's toolbox, for accessing menus etc. */
+	private Toolbox toolbox;
 	
 	/** The player's current firearm */
 	private Firearm firearm;
@@ -180,7 +184,10 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 		camera.currentMode().target.set(loc);
 		camera.setLocation(loc);
 		camera.update(1.0f / 60.0f);
-		//camera.currentMode().interpolate = true;
+		camera.currentMode().interpolate = true;
+		
+		toolbox = new Toolbox(this, 32.0f, 32.0f, 32.0f, 32.0f);
+		Game.gui.addButton(toolbox);
 	}
 	
 	@Override
