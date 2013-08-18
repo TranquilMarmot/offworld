@@ -9,7 +9,7 @@ import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.loader.ResourceLoader;
 import com.bitwaffle.offworld.entities.player.Player;
 import com.bitwaffle.offworld.graphics.OffworldRenderer;
-import com.bitwaffle.offworld.gui.GUIStates;
+import com.bitwaffle.offworld.gui.states.GUIStates;
 import com.bitwaffle.offworld.input.OffworldInput;
 import com.bitwaffle.offworld.net.OffworldNet;
 import com.bitwaffle.offworld.physics.OffworldPhysics;

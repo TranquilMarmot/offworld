@@ -6,7 +6,7 @@ import java.util.Stack;
 
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.GUIObject;
-import com.bitwaffle.guts.gui.button.Button;
+import com.bitwaffle.guts.gui.elements.button.Button;
 
 /**
  * Each GUIState mantains a list of buttons. Generally, the GUI

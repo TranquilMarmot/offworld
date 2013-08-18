@@ -3,7 +3,7 @@ package com.bitwaffle.guts.input.gui;
 import java.util.Iterator;
 
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.gui.button.Button;
+import com.bitwaffle.guts.gui.elements.button.Button;
 
 /**
  * Each pointer can either be down or not down, and if it is down it's location is given by it's x and y values.

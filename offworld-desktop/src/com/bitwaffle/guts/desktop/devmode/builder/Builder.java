@@ -1,8 +1,11 @@
 package com.bitwaffle.guts.desktop.devmode.builder;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Label;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 
@@ -10,6 +13,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.desktop.devmode.DevModeDisplay;
+import com.bitwaffle.guts.graphics.Renderer;
 
 public class Builder {
 	private static int[] koonami = new int[]{
@@ -59,8 +63,26 @@ public class Builder {
 		
 		infoPanel.add(numEntsLabel);
 		infoPanel.add(fpsLabel);
+		infoPanel.add(createToolPanel());
 		
 		
 		return infoPanel;
+	}
+	
+	private Panel createToolPanel(){
+		Panel toolPanel = new Panel(),  leftTools = new Panel();
+		
+		leftTools.setLayout(new BoxLayout(leftTools, BoxLayout.Y_AXIS));
+		Button debugButton = new Button("Debug");
+		debugButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				Renderer.renderDebug = !Renderer.renderDebug;
+			}
+		});
+		leftTools.add(debugButton);
+		
+		toolPanel.add(leftTools);
+		return toolPanel;
 	}
 }

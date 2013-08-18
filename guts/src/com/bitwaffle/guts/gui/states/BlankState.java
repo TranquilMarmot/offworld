@@ -1,7 +1,7 @@
 package com.bitwaffle.guts.gui.states;
 
 import com.bitwaffle.guts.gui.GUI;
-import com.bitwaffle.guts.gui.button.Button;
+import com.bitwaffle.guts.gui.elements.button.Button;
 
 public class BlankState extends GUIState {
 	

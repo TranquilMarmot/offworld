@@ -3,7 +3,7 @@ package com.bitwaffle.guts.net;
 import java.util.StringTokenizer;
 
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.gui.console.Command;
+import com.bitwaffle.guts.gui.elements.console.Command;
 
 /**
  * Commands for fiddling with console stuff.

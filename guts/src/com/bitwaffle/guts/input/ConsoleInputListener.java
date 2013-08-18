@@ -2,7 +2,7 @@ package com.bitwaffle.guts.input;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.bitwaffle.guts.gui.console.Console;
+import com.bitwaffle.guts.gui.elements.console.Console;
 
 /**
  * Grabs keys being typed and sends them to a console

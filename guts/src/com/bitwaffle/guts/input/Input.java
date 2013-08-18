@@ -42,7 +42,7 @@ public abstract class Input {
 		Gdx.input.setInputProcessor(multiplexer);
 		
 		
-		// FIXME temp?
+		// FIXME temp
 		for(Controller con : Controllers.getControllers()){
 			if(con.getName().equals(Ouya.ID))
 				con.addListener(new OuyaGUIControllerListener(Game.gui));

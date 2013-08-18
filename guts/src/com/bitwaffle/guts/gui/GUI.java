@@ -7,8 +7,8 @@ import java.util.Stack;
 
 import com.badlogic.gdx.Gdx;
 import com.bitwaffle.guts.graphics.Renderer;
-import com.bitwaffle.guts.gui.button.Button;
-import com.bitwaffle.guts.gui.console.Console;
+import com.bitwaffle.guts.gui.elements.button.Button;
+import com.bitwaffle.guts.gui.elements.console.Console;
 import com.bitwaffle.guts.gui.states.GUIState;
 
 /**

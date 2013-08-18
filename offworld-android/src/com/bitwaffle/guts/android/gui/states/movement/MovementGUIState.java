@@ -7,7 +7,7 @@ import com.bitwaffle.guts.android.gui.states.movement.buttons.left.RightMoveLeft
 import com.bitwaffle.guts.android.gui.states.movement.buttons.right.LeftMoveRightButton;
 import com.bitwaffle.guts.android.gui.states.movement.buttons.right.RightMoveRightButton;
 import com.bitwaffle.guts.gui.GUI;
-import com.bitwaffle.guts.gui.button.Button;
+import com.bitwaffle.guts.gui.elements.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
 
 /**

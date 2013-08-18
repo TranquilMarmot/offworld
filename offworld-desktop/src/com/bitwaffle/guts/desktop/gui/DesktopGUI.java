@@ -1,8 +1,8 @@
 package com.bitwaffle.guts.desktop.gui;
 
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.offworld.gui.GUIStates;
 import com.bitwaffle.offworld.gui.OffworldGUI;
+import com.bitwaffle.offworld.gui.states.GUIStates;
 
 /**
  * GUI for desktop game

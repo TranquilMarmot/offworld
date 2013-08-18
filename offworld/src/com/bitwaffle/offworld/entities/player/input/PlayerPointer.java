@@ -1,7 +1,7 @@
 package com.bitwaffle.offworld.entities.player.input;
 
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.gui.button.Button;
+import com.bitwaffle.guts.gui.elements.button.Button;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.player.Player;
 
