@@ -12,6 +12,7 @@ import com.bitwaffle.guts.input.Input;
 import com.bitwaffle.guts.net.Net;
 import com.bitwaffle.guts.physics.Physics;
 import com.bitwaffle.guts.resources.Resources;
+import com.bitwaffle.guts.util.MathHelper;
 
 /**
  * Base game class.
@@ -163,11 +164,14 @@ public abstract class Game implements ApplicationListener {
     	Game.windowWidth = width;
     	Game.windowHeight = height;
     	Game.aspect = (float)width / (float) height;
+    	
+    	// set viewport and projection matrix
     	Gdx.gl20.glViewport(0, 0, Game.windowWidth, Game.windowHeight);
-    	if(renderer.camera != null){
-    		// setting the zoom resizes the camera's view of the world
+    	MathHelper.orthoM(renderer.projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
+
+    	// setting the zoom resizes the camera's view of the world
+    	if(renderer.camera != null)
     		renderer.camera.setZoom(renderer.camera.zoom);
-    	}
     }
 
     public void dispose () {
