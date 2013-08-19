@@ -23,19 +23,33 @@ public class Toolbox extends RectangleButton {
 	private ArrayList<Button> buttons;
 	
 	/** Whether or not the toolbox's buttons are being shown */
-	private boolean buttonsHidden;
+	private boolean expanded;
+	
+	/** Used for saving location of button before it expands */
+	private float oldX;
 	
 	public Toolbox(Player player, float x, float y, float width, float height){
 		super(x, y, width, height);
 		this.player = player;
 		buttons = new ArrayList<Button>();
-		buttonsHidden = true;
+		expanded = false;
+		oldX = x;
+		
+		MapButton mapButt = new MapButton(32.0f, 32.0f, 32.0f, 32.0f);
+		mapButt.deactivate();
+		mapButt.hide();
+		this.addButton(mapButt);
+		
+		Game.gui.addButton(mapButt);
 	}
 	
 	public void addButton(Button button){ buttons.add(button); }
 	public void removeButton(Button button){ buttons.remove(button); }
-	public void setButton(int number, Button button){ buttons.set(number, button); }
-	public Button getButton(int number){ return buttons.get(number); }
+	
+	@Override
+	public void update(float timeStep) {
+		
+	}
 
 	@Override
 	public void render(Renderer renderer, boolean flipHorizontal,
@@ -43,14 +57,11 @@ public class Toolbox extends RectangleButton {
 		Gdx.gl20.glEnable(GL20.GL_BLEND);
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_SRC_COLOR);
 		
-		float r = 0.5f;
-		float g = 0.5f;
-		float b = 0.5f;
-		float a = 0.5f;
-		if(this.isDown())
-			a = 1.0f;
-		else if(this.isSelected())
-			a = 0.75f;
+		float 
+			r = 0.5f,
+			g = 0.5f,
+			b = 0.5f,
+			a = this.isDown() ? 1.0f : 0.75f;
 		renderer.r2D.setColor(r, g, b, a);
 		
 		Game.resources.textures.bindTexture("toolboxbutton");
@@ -61,12 +72,24 @@ public class Toolbox extends RectangleButton {
 
 	@Override
 	protected void onRelease() {
-		buttonsHidden = !buttonsHidden;
+		expanded = !expanded;
 		
-		if(!buttonsHidden){
-			float oldX = this.x;
+		// expand out to show all buttons
+		if(expanded){
+			oldX = this.x;
 			for(Button b : buttons){
-				this.x += b.getWidth();
+				this.x += b.getWidth() * 2.0f;
+				b.show();
+				b.activate();
+			}
+			this.x += 2.0f;
+			
+		// shrink to hide all buttons
+		} else {
+			this.x = oldX;
+			for(Button b : buttons){
+				b.hide();
+				b.deactivate();
 			}
 		}
 	}
@@ -93,11 +116,6 @@ public class Toolbox extends RectangleButton {
 
 	@Override
 	protected void onDrag(float dx, float dy) {
-		
-	}
-
-	@Override
-	public void update(float timeStep) {
 		
 	}
 }

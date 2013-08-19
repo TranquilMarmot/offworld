@@ -41,6 +41,12 @@
 			"path": "ui/textures/buttons/toolboxbutton.png",
 			"minFilter":	"nearest",
 			"magFilter":	"nearest"
+		},
+		{
+			"name": "mapbutton",
+			"path": "ui/textures/buttons/compassbutton.png",
+			"minFilter": "nearest",
+			"magFilter": "nearest"
 		}
 	],
 	
