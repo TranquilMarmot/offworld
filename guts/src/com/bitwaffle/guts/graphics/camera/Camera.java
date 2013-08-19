@@ -61,7 +61,7 @@ public class Camera extends Entity {
 			setZoom(currentMode.zoom);
 		
 		if(currentMode.interpolate)
-			this.location.lerp(currentMode.target, timeStep);
+			this.location.lerp(currentMode.target, timeStep * currentMode.interpolationSpeed);
 		else
 			this.location.set(currentMode.target);
 		

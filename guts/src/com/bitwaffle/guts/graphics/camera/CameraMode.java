@@ -2,6 +2,11 @@ package com.bitwaffle.guts.graphics.camera;
 
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * Describes various aspects of how the camera behaves
+ * 
+ * @author TranquilMarmot
+ */
 public abstract class CameraMode {
 	/** Camera this mode belongs to */
 	protected Camera camera;
@@ -17,6 +22,9 @@ public abstract class CameraMode {
 		interpolate = false,
 		/** Whether or not to keep the camera within the given bounds */
 		boundsCheck = false;
+	
+	/** Controls how fast the camera interpolates towards its target if 'interpolate' is true */
+	public float interpolationSpeed = 1.0f;
 	
 	public Vector2
 		/** Target that camera interpolates towards (if interpolate is true) */

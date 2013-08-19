@@ -8,25 +8,26 @@ import com.badlogic.gdx.controllers.Controller;
  * @author TranquilMarmot
  */
 public class ControlInfo {
+	/** Describes which portion of the screen a player is taking up */
 	public static enum SplitScreenSection{
-		/** Player has the entire screen */
+		/** Entire screen */
 		FULL,
-		/** Player has top half of the screen */
+		/** Top half of the screen */
 		TOP_HALF,
-		/** Player has bottom half of the screen */
+		/** Bottom half of the screen */
 		BOTTOM_HALF,
-		/** Player has top-left quarter of the screen */
+		/** Top-left quarter of the screen */
 		TOP_LEFT_QUARTER,
-		/** Player has top-right quarter of the screen */
+		/** Top-right quarter of the screen */
 		TOP_RIGHT_QUARTER,
-		/** Player has bottom-left quarter of screen */
+		/** Bottom-left quarter of screen */
 		BOTTOM_LEFT_QUARTER,
-		/** Player has bottom-right quarter of screen */
+		/** Bottom-right quarter of screen */
 		BOTTOM_RIGHT_QUARTER;
 	}
 	
 	/** Which section of the screen the player is using */
-	public SplitScreenSection screenSection;
+	public SplitScreenSection screenSection = SplitScreenSection.TOP_RIGHT_QUARTER;
 	
 	/** 
 	 * Whether or not this player is being controlled by the mouse, so the mouse's location can get grabbed every frame
@@ -36,7 +37,7 @@ public class ControlInfo {
 	
 	/** 
 	 * Which controller is controlling this player,
-	 * null is not being controlled by a controller (i.e. by mouse and keyboard)
+	 * If null, player is not being controlled by a controller (i.e. by mouse and keyboard)
 	 */
 	public Controller controller;
 }

@@ -26,7 +26,7 @@ import com.bitwaffle.offworld.interfaces.Health;
 import com.bitwaffle.offworld.weapons.pistol.Pistol;
 
 /**
- * The person the person playing the game plays as while they play the game.
+ * The person that the person playing the game plays as while they play the game.
  * The player. Playing the game.
  * 
  * @author TranquilMarmot
@@ -45,7 +45,7 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 	private Camera camera;
 	
 	/** Info on how the player is being controlled */
-	private ControlInfo controlInfo;
+	public ControlInfo controlInfo;
 	
 	/** Player's toolbox, for accessing menus etc. */
 	private Toolbox toolbox;
@@ -181,6 +181,7 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 		camera.setMode(new FollowMode(camera));
 		((FollowMode)camera.currentMode()).follow(this);
 		camera.currentMode().interpolate = false;
+		camera.currentMode().interpolationSpeed = 2.5f;
 		camera.currentMode().target.set(loc);
 		camera.setLocation(loc);
 		camera.update(1.0f / 60.0f);
@@ -190,6 +191,7 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 		Game.gui.addButton(toolbox);
 	}
 	
+	/** Init method called when player gets added to physics world */
 	@Override
 	public void init(World world){
 		super.init(world);

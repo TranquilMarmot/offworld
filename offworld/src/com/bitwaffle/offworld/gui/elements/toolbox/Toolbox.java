@@ -28,6 +28,7 @@ public class Toolbox extends RectangleButton {
 	/** Used for saving location of button before it expands */
 	private float oldX;
 	
+	/** @param player Player this toolbox belongs to */
 	public Toolbox(Player player, float x, float y, float width, float height){
 		super(x, y, width, height);
 		this.player = player;
@@ -48,7 +49,53 @@ public class Toolbox extends RectangleButton {
 	
 	@Override
 	public void update(float timeStep) {
+		switch(player.controlInfo.screenSection){
+		// top-left corner of screen
+		case FULL:
+		case TOP_HALF:
+		case TOP_LEFT_QUARTER:
+			this.x = this.width;
+			this.y = this.height;
+			break;
 		
+		// halfway down the screen on the left
+		case BOTTOM_HALF:
+		case BOTTOM_LEFT_QUARTER:
+			this.x = this.width;
+			this.y = (Game.windowHeight / 2.0f) + this.height;
+			break;
+			
+		// halfway across the screen on the top
+		case TOP_RIGHT_QUARTER:
+			this.x = (Game.windowWidth / 2.0f) + this.width;
+			this.y = this.height;
+			break;
+			
+		// halfway down the screen and halfway accross
+		case BOTTOM_RIGHT_QUARTER:
+			this.x = (Game.windowWidth / 2.0f) + this.width;
+			this.y = (Game.windowHeight / 2.0f) + this.height;
+			break;
+		}
+		
+		// move out to be next to all buttons if expanded
+		if(expanded){
+			// save X for when toolbox shrinks again
+			oldX = this.x;
+			
+			// move all buttons to the right spot
+			float prevX = this.x;
+			for(Button b : buttons){
+				b.x = prevX;
+				prevX += b.getWidth();
+				b.y = this.y;
+				
+				// move toolbox over
+				this.x += (b.getWidth() * 2.0f) + 4.0f;
+			}
+		}
+		
+		// TODO make toolbox slide right to reveal buttons when pressed, maybe make it turn a bit
 	}
 
 	@Override
@@ -74,17 +121,14 @@ public class Toolbox extends RectangleButton {
 	protected void onRelease() {
 		expanded = !expanded;
 		
-		// expand out to show all buttons
+		// show and activate all buttons
 		if(expanded){
-			oldX = this.x;
 			for(Button b : buttons){
-				this.x += b.getWidth() * 2.0f;
 				b.show();
 				b.activate();
 			}
-			this.x += 2.0f;
 			
-		// shrink to hide all buttons
+		// hide and deactivate all buttons and move toolbox button back to its start
 		} else {
 			this.x = oldX;
 			for(Button b : buttons){
