@@ -123,8 +123,7 @@ public class PlayerInputListener implements InputProcessor {
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		//if(camera.currentMode() == CameraModes.follow)
-			player.setTarget(MathHelper.toWorldSpace(screenX, screenY, Game.renderer.camera));
+		player.setTarget(MathHelper.toWorldSpace(screenX, screenY, player.getCamera()));
 		
 		return false;
 	}

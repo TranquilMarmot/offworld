@@ -16,6 +16,8 @@ import com.bitwaffle.offworld.entities.player.Player;
  * @author TranquilMarmot
  */
 public class Toolbox extends RectangleButton {
+	private static String LOGTAG = "Toolbox";
+	
 	/** The player that this toolbox belongs to */
 	private Player player;
 	
@@ -80,6 +82,10 @@ public class Toolbox extends RectangleButton {
 		case BOTTOM_RIGHT_QUARTER:
 			this.x = (Game.windowWidth / 2.0f) + this.width;
 			this.y = (Game.windowHeight / 2.0f) + this.height;
+			break;
+			
+		default:
+			Gdx.app.error(LOGTAG, "Unkown splitscreen section in toolbox");
 			break;
 		}
 		

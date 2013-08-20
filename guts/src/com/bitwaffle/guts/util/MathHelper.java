@@ -160,7 +160,7 @@ public class MathHelper {
 	public static void toWorldSpace(Vector2 out, float screenX, float screenY, Camera camera){
 		// create the projection matrix (mimics Render2D's "setUpProjectionWorldCoords" method)
 		projection.idt();
-		orthoM(projection, 0, Game.aspect, 0, 1, -1, 1);
+		orthoM(projection, 0, Game.aspect, 0, 1, -1, 1000);
 		
 		// create the view matrix
 		view.idt();

@@ -232,9 +232,18 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 		}
 		
 		if(!Ouya.runningOnOuya && controlInfo.controlledByMouse){
-			Vector2 mouse = new Vector2();
-			MathHelper.toWorldSpace(mouse, Gdx.input.getX(), Gdx.input.getY(), Game.renderer.camera);
-			setTarget(mouse);
+			float 
+				mouseX = Gdx.input.getX(),
+				mouseY = Gdx.input.getY();
+		
+			Matrix4 projection = new Matrix4();
+			projection.idt();
+			
+			Vector2 worldLoc = new Vector2();
+			MathHelper.toWorldSpace(worldLoc, mouseX, mouseY, Game.renderer.camera);
+			
+			
+			setTarget(worldLoc);
 		}
 		
 		// FIXME temp? (so the camera always looks near the player)
@@ -324,7 +333,7 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 	
 	/** @param target Target to start shooting at */
 	public void beginShooting(Vector2 target){
-		this.setTarget(target);
+		//this.setTarget(target);
 		beginShooting();
 	}
 	/** Start shootin'! */

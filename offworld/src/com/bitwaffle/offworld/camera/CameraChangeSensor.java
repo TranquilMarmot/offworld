@@ -54,10 +54,7 @@ public class CameraChangeSensor extends DynamicEntity{
 	}
 	
 	public void endContact(Player player){
-		//if(player == this.player){
-		//	this.player = null;
-		//	this.player.getCamera().setMode(oldMode);
-		//}
+		
 	}
 	
 	

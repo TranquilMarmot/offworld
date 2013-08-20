@@ -7,6 +7,7 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.net.NetConsoleCommands;
 import com.bitwaffle.guts.physics.Entities.EntityHashMap;
+import com.bitwaffle.guts.graphics.Renderer;
 
 
 /**
@@ -49,7 +50,9 @@ public enum ConsoleCommands {
 	logging(log, true),
 	
 	server(new NetConsoleCommands.ServerCommand()),
-	client(new NetConsoleCommands.ClientCommand());
+	client(new NetConsoleCommands.ClientCommand()),
+	
+	debug(new DebugCommand());
 
 	/** Function to call for this ConsoleCommands */
 	private Command function;
@@ -335,5 +338,18 @@ class SetLoggingCommand implements Command{
 		                   "Where NEWSTATUS is 'enabled', 'disabled' or any boolean value\n" +
 		                   "Enables/disables writing to a log.\n" +
 		                   "Leave NEWSTATUS blank to see current status.");
+	}
+}
+
+class DebugCommand implements Command{
+
+	@Override
+	public void issue(StringTokenizer toker) {
+		Renderer.renderDebug = !Renderer.renderDebug;
+	}
+
+	@Override
+	public void help() {
+		Game.out.println("Debugging is " + (Renderer.renderDebug ? "enabled" : "disabled"));
 	}
 }

@@ -27,7 +27,7 @@ public class ControlInfo {
 	}
 	
 	/** Which section of the screen the player is using */
-	public SplitScreenSection screenSection = SplitScreenSection.TOP_RIGHT_QUARTER;
+	public SplitScreenSection screenSection = SplitScreenSection.FULL;
 	
 	/** 
 	 * Whether or not this player is being controlled by the mouse, so the mouse's location can get grabbed every frame

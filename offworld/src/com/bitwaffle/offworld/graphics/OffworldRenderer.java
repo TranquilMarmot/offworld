@@ -2,17 +2,27 @@ package com.bitwaffle.offworld.graphics;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Renderer;
+import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.OffworldGame;
 import com.bitwaffle.offworld.entities.player.Player;
 
+/**
+ * Automatically renders split-screen for all players
+ * 
+ * @author TranquilMarmot
+ */
 public class OffworldRenderer extends Renderer {
 	
 	/*
 	 * TODO
 	 * - Make it so that it only renders local players- remote player need not be rendered
 	 * - Maybe even have a seperate class for a remote player? Need less data, after all
+	 * - Make this work better... no need to multiply so many numbers every frame!
+	 * - Maybe just render each player and use which split screen section they control
+	 *   as a way to know how to set up the camera
 	 */
 	
 	@Override
@@ -75,12 +85,6 @@ public class OffworldRenderer extends Renderer {
 			}
 			render4Player(player1, player2, player3, player4);
 		}
-		
-		/*
-		if(OffworldGame.players[0] != null && OffworldGame.players[0].getCamera() != null)
-			this.camera = OffworldGame.players[0].getCamera();
-		super.renderScene();
-		*/
 	}
 	
 	private void render2Player(Player player1, Player player2){
@@ -91,10 +95,20 @@ public class OffworldRenderer extends Renderer {
 		this.camera = player1.getCamera();
 		super.renderEntities();
 		
+		// FIXME temp
+		if(player1.controlInfo.controlledByMouse){
+			float 
+			mouseX = Gdx.input.getX(),
+			mouseY = Gdx.input.getY();
+		
+			Vector2 worldLoc = new Vector2();
+			MathHelper.toWorldSpace(worldLoc, mouseX, mouseY, player1.getCamera());
+			player1.setTarget(worldLoc);
+		}
+		
 		Gdx.gl.glViewport(0, 0, Game.windowWidth, Game.windowHeight);
 		this.camera = player2.getCamera();
 		super.renderEntities();
-		
 		
 		Game.windowHeight *= 2.0f;
 		
