@@ -47,6 +47,12 @@
 			"path": "ui/textures/buttons/compassbutton.png",
 			"minFilter": "nearest",
 			"magFilter": "nearest"
+		},
+		{
+			"name": "inventorybutton",
+			"path": "ui/textures/buttons/inventorybutton.png",
+			"minFilter": "nearest",
+			"magFilter": "nearest"
 		}
 	],
 	

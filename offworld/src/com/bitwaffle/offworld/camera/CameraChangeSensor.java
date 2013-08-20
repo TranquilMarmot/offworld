@@ -56,8 +56,9 @@ public class CameraChangeSensor extends DynamicEntity{
 		if(this.player == null /*&& player.getCamera().currentMode() != this.mode*/){
 			this.player = player;
 			//this.oldMode = player.getCamera().currentMode();
-			Game.renderer.camera.setMode(mode);
-			Game.renderer.camera.currentMode().zoom = 0.025f;
+			player.getCamera().setMode(mode);
+			//Game.renderer.camera.setMode(mode);
+			player.getCamera().currentMode().zoom = 0.025f;
 		}
 	}
 	

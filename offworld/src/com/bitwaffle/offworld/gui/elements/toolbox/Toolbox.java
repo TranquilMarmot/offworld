@@ -40,8 +40,13 @@ public class Toolbox extends RectangleButton {
 		mapButt.deactivate();
 		mapButt.hide();
 		this.addButton(mapButt);
-		
 		Game.gui.addButton(mapButt);
+		
+		InventoryButton invButt = new InventoryButton(32.0f, 32.0f, 32.0f, 32.0f);
+		invButt.deactivate();
+		invButt.hide();
+		this.addButton(invButt);
+		Game.gui.addButton(invButt);
 	}
 	
 	public void addButton(Button button){ buttons.add(button); }
@@ -87,7 +92,7 @@ public class Toolbox extends RectangleButton {
 			float prevX = this.x;
 			for(Button b : buttons){
 				b.x = prevX;
-				prevX += b.getWidth();
+				prevX += (b.getWidth() * 2.0f) + 4.0f;
 				b.y = this.y;
 				
 				// move toolbox over
