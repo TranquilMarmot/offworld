@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Stack;
 
 import com.bitwaffle.guts.gui.GUI;
-import com.bitwaffle.guts.gui.GUIObject;
+import com.bitwaffle.guts.gui.elements.GUIObject;
 import com.bitwaffle.guts.gui.elements.button.Button;
 
 /**

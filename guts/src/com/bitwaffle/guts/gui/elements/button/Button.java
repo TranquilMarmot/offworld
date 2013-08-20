@@ -1,7 +1,7 @@
 package com.bitwaffle.guts.gui.elements.button;
 
 import com.badlogic.gdx.math.Vector2;
-import com.bitwaffle.guts.gui.GUIObject;
+import com.bitwaffle.guts.gui.elements.GUIObject;
 
 /**
  * A button that can be pressed

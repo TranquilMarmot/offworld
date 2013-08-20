@@ -3,7 +3,7 @@ package com.bitwaffle.offworld.gui.states.titlescreen;
 import com.badlogic.gdx.math.Matrix4;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Renderer;
-import com.bitwaffle.guts.gui.GUIObject;
+import com.bitwaffle.guts.gui.elements.GUIObject;
 
 public class SpinningPizza extends GUIObject {
 	

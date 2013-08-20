@@ -2,7 +2,7 @@ package com.bitwaffle.offworld.gui.elements;
 
 import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.graphics.graphics2d.shapes.TiledBox;
-import com.bitwaffle.guts.gui.GUIObject;
+import com.bitwaffle.guts.gui.elements.GUIObject;
 
 /**
  * A box with a percentage of it filled.

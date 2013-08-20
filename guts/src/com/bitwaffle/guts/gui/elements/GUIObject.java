@@ -1,4 +1,4 @@
-package com.bitwaffle.guts.gui;
+package com.bitwaffle.guts.gui.elements;
 
 import com.bitwaffle.guts.graphics.Renderer;
 
