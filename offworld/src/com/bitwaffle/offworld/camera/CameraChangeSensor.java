@@ -5,7 +5,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
-import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.graphics.camera.CameraMode;
 import com.bitwaffle.offworld.entities.player.Player;
@@ -21,9 +20,6 @@ public class CameraChangeSensor extends DynamicEntity{
 	
 	/** The mode the camera will be switched to */
 	private CameraMode mode;
-	
-	/** Player that hits this sensor */
-	private Player player;
 	
 	public CameraChangeSensor(CameraMode mode,  Shape shape, Vector2 location){
 		super(null, 0, getBodyDef(location), getFixtureDef(shape));
@@ -53,13 +49,8 @@ public class CameraChangeSensor extends DynamicEntity{
 	public Fixture fixture(){ return fixture; }
 	
 	public void beginContact(Player player){
-		if(this.player == null /*&& player.getCamera().currentMode() != this.mode*/){
-			this.player = player;
-			//this.oldMode = player.getCamera().currentMode();
+		if(player.getCamera().currentMode() != this.mode)
 			player.getCamera().setMode(mode);
-			//Game.renderer.camera.setMode(mode);
-			player.getCamera().currentMode().zoom = 0.025f;
-		}
 	}
 	
 	public void endContact(Player player){

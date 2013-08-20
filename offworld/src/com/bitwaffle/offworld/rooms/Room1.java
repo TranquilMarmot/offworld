@@ -141,6 +141,7 @@ public class Room1 extends Room {
 		Vector2 loc = new Vector2(370.0229f, -16.357243f);
 		mode.target.set(new Vector2(-340.0229f, 26.357243f));
 		mode.interpolate = false;
+		mode.zoom = 0.025f;
 		CameraChangeSensor sensor = new CameraChangeSensor(mode, shape, loc);
 		this.addEntity(sensor);
 	}
