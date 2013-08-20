@@ -53,6 +53,12 @@
 			"path": "ui/textures/buttons/inventorybutton.png",
 			"minFilter": "nearest",
 			"magFilter": "nearest"
+		},
+		{
+			"name": "settingsbutton",
+			"path": "ui/textures/buttons/settingsbutton.png",
+			"minFilter": "nearest",
+			"magFilter": "nearest"
 		}
 	],
 	

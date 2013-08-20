@@ -49,6 +49,12 @@ public class Toolbox extends RectangleButton {
 		invButt.hide();
 		this.addButton(invButt);
 		Game.gui.addButton(invButt);
+		
+		SettingsButton setButt = new SettingsButton(32.0f, 32.0f, 32.0f, 32.0f);
+		setButt.deactivate();
+		setButt.hide();
+		this.addButton(setButt);
+		Game.gui.addButton(setButt);
 	}
 	
 	public void addButton(Button button){ buttons.add(button); }
