@@ -3,11 +3,10 @@ package com.bitwaffle.offworld.gui.elements.toolbox;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Color;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.gui.elements.button.Button;
-import com.bitwaffle.guts.gui.elements.button.RectangleButton;
+import com.bitwaffle.guts.gui.elements.button.TransparentRectangleButton;
 import com.bitwaffle.offworld.entities.player.Player;
 
 /**
@@ -15,7 +14,7 @@ import com.bitwaffle.offworld.entities.player.Player;
  * 
  * @author TranquilMarmot
  */
-public class Toolbox extends RectangleButton {
+public class Toolbox extends TransparentRectangleButton {
 	private static String LOGTAG = "Toolbox";
 	
 	/** The player that this toolbox belongs to */
@@ -32,7 +31,7 @@ public class Toolbox extends RectangleButton {
 	
 	/** @param player Player this toolbox belongs to */
 	public Toolbox(Player player, float x, float y, float width, float height){
-		super(x, y, width, height);
+		super(x, y, width, height, "toolboxbutton", new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f));
 		this.player = player;
 		buttons = new ArrayList<Button>();
 		expanded = false;
@@ -116,30 +115,12 @@ public class Toolbox extends RectangleButton {
 	}
 
 	@Override
-	public void render(Renderer renderer, boolean flipHorizontal,
-			boolean flipVertical) {
-		Gdx.gl20.glEnable(GL20.GL_BLEND);
-		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_SRC_COLOR);
-		
-		float 
-			r = 0.5f,
-			g = 0.5f,
-			b = 0.5f,
-			a = this.isDown() ? 1.0f : 0.75f;
-		renderer.r2D.setColor(r, g, b, a);
-		
-		Game.resources.textures.bindTexture("toolboxbutton");
-		renderer.r2D.quad.render(this.width, this.height, flipHorizontal, flipVertical);
-		
-		Gdx.gl20.glDisable(GL20.GL_BLEND);
-	}
-
-	@Override
 	protected void onRelease() {
 		expanded = !expanded;
 		
 		// show and activate all buttons
 		if(expanded){
+			this.angle = -90.0f;
 			for(Button b : buttons){
 				b.show();
 				b.activate();
@@ -147,6 +128,7 @@ public class Toolbox extends RectangleButton {
 			
 		// hide and deactivate all buttons and move toolbox button back to its start
 		} else {
+			this.angle = 0.0f;
 			this.x = oldX;
 			for(Button b : buttons){
 				b.hide();

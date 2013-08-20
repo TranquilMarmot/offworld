@@ -13,15 +13,27 @@ public abstract class GUIObject {
     /** Middle of the object */
     public float x, y;
     
+    /** Rotation of object */
+    public float angle;
+    
     /**
-     * GUIObject constructor
      * @param x Initial X position
      * @param y Initial Y position
      */
     public GUIObject(float x, float y){
-        this.x = x;
-        this.y = y;
-        isVisible = true;
+        this(x, y, 0.0f);
+    }
+    
+    /**
+     * @param x Initial X position
+     * @param y Initial Y position
+     * @param angle Rotation of object
+     */
+    public GUIObject(float x, float y, float angle){
+    	this.x = x;
+    	this.y = y;
+    	this.angle = angle;
+    	isVisible = true;
     }
     
     /** Updates this object */
