@@ -43,10 +43,10 @@ public class Room1 extends Room {
 		//OffworldGame.players[2].controlledByMouse = false;
 		//OffworldGame.players[3].controlledByMouse = false;
 
-		this.addEntity(getDynamicEntity("cave-1-seg1", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
-		this.addEntity(getDynamicEntity("cave-1-seg2", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
-		this.addEntity(getDynamicEntity("cave-1-platform1", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
-		this.addEntity(getDynamicEntity("cave-1-platform2", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
+		this.addGeometry(getDynamicEntity("cave-1-seg1", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
+		this.addGeometry(getDynamicEntity("cave-1-seg2", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
+		this.addGeometry(getDynamicEntity("cave-1-platform1", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
+		this.addGeometry(getDynamicEntity("cave-1-platform2", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
 		/*
 		this.addEntity(getDynamicEntity("cave-1-seg3", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));
 		this.addEntity(getDynamicEntity("cave-1-seg4", 5, new float[]{ 1.0f, 1.0f, 1.0f, 1.0f}));

@@ -15,10 +15,14 @@ import com.bitwaffle.guts.entity.Entity;
  */
 public abstract class Room {
 	/** List of entities in this room */
-	private ArrayList<Entity> entities2D;
+	private ArrayList<Entity> entities;
 	
 	/** Used to avoid ConcurrentModificationException */
-	private Stack<Entity> entitiesToRemove2D, entitiesToAdd2D;
+	private Stack<Entity> entitiesToRemove, entitiesToAdd;
+	
+	private ArrayList<Entity> staticGeometry;
+	
+	private Stack<Entity> geometryToRemove, geometryToAdd;
 	
 	/** Whether or not this room object is the current room */
 	private boolean isCurrentRoom;
@@ -32,9 +36,13 @@ public abstract class Room {
 	 * @param roomHeight Height of room from center
 	 */
 	public Room(float roomX, float roomY, float roomWidth, float roomHeight){
-		entities2D = new ArrayList<Entity>();
-		entitiesToRemove2D = new Stack<Entity>();
-		entitiesToAdd2D = new Stack<Entity>();
+		entities = new ArrayList<Entity>();
+		entitiesToRemove = new Stack<Entity>();
+		entitiesToAdd = new Stack<Entity>();
+		
+		staticGeometry = new ArrayList<Entity>();
+		geometryToRemove = new Stack<Entity>();
+		geometryToAdd = new Stack<Entity>();
 	}
 	
 	/**
@@ -42,27 +50,39 @@ public abstract class Room {
 	 * @param timeStep Unused
 	 */
 	public void update(float timeStep){
-		while(!entitiesToRemove2D.isEmpty())
-			entities2D.remove(entitiesToRemove2D.pop());
-		while(!entitiesToAdd2D.isEmpty())
-			entities2D.add(entitiesToAdd2D.pop());
+		while(!entitiesToRemove.isEmpty())
+			entities.remove(entitiesToRemove.pop());
+		while(!entitiesToAdd.isEmpty())
+			entities.add(entitiesToAdd.pop());
+		while(!geometryToAdd.isEmpty())
+			staticGeometry.add(geometryToAdd.pop());
+		while(!geometryToRemove.isEmpty())
+			staticGeometry.remove(geometryToRemove.pop());
 	}
 	
 	/** Add an entity to this room */
-	protected void addEntity(Entity ent){ entitiesToAdd2D.push(ent); }
+	protected void addEntity(Entity ent){ entitiesToAdd.push(ent); }
 	
 	/** Remove an entity from this room */
-	protected void removeEntity(Entity ent){ entitiesToRemove2D.push(ent); }
+	protected void removeEntity(Entity ent){ entitiesToRemove.push(ent); }
+	
+	protected void addGeometry(Entity geom){ geometryToAdd.push(geom); }
+	
+	protected void removeGeometry(Entity geom){ geometryToRemove.push(geom); }
 	
 	/** Add this room to a world */
 	public void addToWorld(Physics physics){
 		// clear the toAdd/toRemove stacks
 		this.update(1.0f / 60.0f);
 		
-		Iterator<Entity> it2d = entities2D.iterator();
-		while(it2d.hasNext())
+		Iterator<Entity> it = entities.iterator();
+		while(it.hasNext())
 			// don't add entities to room since.. well, they're already in here
-			physics.addEntity(it2d.next(), false);
+			physics.addEntity(it.next(), false);
+		
+		Iterator<Entity> geom = staticGeometry.iterator();
+		while(geom.hasNext())
+			physics.addEntity(geom.next(), false);
 		
 		this.isCurrentRoom = true;
 		
@@ -74,9 +94,13 @@ public abstract class Room {
 		// clear the toAdd/toRemove stacks
 		this.update(1.0f / 60.0f);
 		
-		Iterator<Entity> it2d = entities2D.iterator();
+		Iterator<Entity> it2d = entities.iterator();
 		while(it2d.hasNext())
 			physics.removeEntity(it2d.next(), false);
+		
+		Iterator<Entity> geom = staticGeometry.iterator();
+		while(geom.hasNext())
+			physics.removeEntity(geom.next(), false);
 		
 		this.isCurrentRoom = false;
 		
@@ -103,5 +127,7 @@ public abstract class Room {
 	public abstract void onRemoveFromWorld(Physics physics);
 
 	/** @return Number of entities in this room*/
-	public int numEntities() { return entities2D.size(); }
+	public int numEntities() { return entities.size(); }
+	
+	public Iterator<Entity> getStaticGeometryIterator(){ return staticGeometry.iterator(); }
 }

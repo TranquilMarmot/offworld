@@ -17,6 +17,12 @@ import com.bitwaffle.offworld.entities.player.Player;
 public class Toolbox extends TransparentRectangleButton {
 	private static String LOGTAG = "Toolbox";
 	
+	private static float
+		/** How far from the top-left cornder of the player's screen the toolbox button is */
+		xOffset = 1.5f, yOffset = 1.5f,
+		/** How far apart each button is when the toolbox is expanded */
+		buttonSpacing = 3.0f;
+	
 	/** The player that this toolbox belongs to */
 	private Player player;
 	
@@ -66,27 +72,27 @@ public class Toolbox extends TransparentRectangleButton {
 		case FULL:
 		case TOP_HALF:
 		case TOP_LEFT_QUARTER:
-			this.x = this.width;
-			this.y = this.height;
+			this.x = this.width + xOffset;
+			this.y = this.height + yOffset;
 			break;
 		
 		// halfway down the screen on the left
 		case BOTTOM_HALF:
 		case BOTTOM_LEFT_QUARTER:
-			this.x = this.width;
-			this.y = (Game.windowHeight / 2.0f) + this.height;
+			this.x = this.width + xOffset;
+			this.y = (Game.windowHeight / 2.0f) + this.height + yOffset;
 			break;
 			
 		// halfway across the screen on the top
 		case TOP_RIGHT_QUARTER:
-			this.x = (Game.windowWidth / 2.0f) + this.width;
-			this.y = this.height;
+			this.x = (Game.windowWidth / 2.0f) + this.width + xOffset;
+			this.y = this.height + yOffset;
 			break;
 			
 		// halfway down the screen and halfway accross
 		case BOTTOM_RIGHT_QUARTER:
-			this.x = (Game.windowWidth / 2.0f) + this.width;
-			this.y = (Game.windowHeight / 2.0f) + this.height;
+			this.x = (Game.windowWidth / 2.0f) + this.width + xOffset;
+			this.y = (Game.windowHeight / 2.0f) + this.height + yOffset;
 			break;
 			
 		default:
@@ -103,11 +109,11 @@ public class Toolbox extends TransparentRectangleButton {
 			float prevX = this.x;
 			for(Button b : buttons){
 				b.x = prevX;
-				prevX += (b.getWidth() * 2.0f) + 4.0f;
+				prevX += (b.getWidth() * 2.0f) + buttonSpacing;
 				b.y = this.y;
 				
 				// move toolbox over
-				this.x += (b.getWidth() * 2.0f) + 4.0f;
+				this.x += (b.getWidth() * 2.0f) + buttonSpacing;
 			}
 		}
 		
@@ -120,7 +126,7 @@ public class Toolbox extends TransparentRectangleButton {
 		
 		// show and activate all buttons
 		if(expanded){
-			this.angle = -90.0f;
+			this.angle = 90.0f;
 			for(Button b : buttons){
 				b.show();
 				b.activate();
