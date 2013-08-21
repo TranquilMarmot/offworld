@@ -1,7 +1,9 @@
 package com.bitwaffle.offworld.gui.elements.toolbox;
 
 import com.badlogic.gdx.graphics.Color;
+import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.gui.elements.button.TransparentRectangleButton;
+import com.bitwaffle.offworld.gui.elements.map.Map;
 
 public class MapButton extends TransparentRectangleButton {
 
@@ -11,7 +13,7 @@ public class MapButton extends TransparentRectangleButton {
 
 	@Override
 	protected void onRelease() {
-		
+		Game.gui.addObject(new Map(0.0f, 100.0f));
 	}
 
 	@Override
