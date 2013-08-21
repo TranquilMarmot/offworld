@@ -5,17 +5,15 @@ import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.gui.elements.button.TextButton;
-import com.bitwaffle.offworld.OffworldGame;
-import com.bitwaffle.offworld.gui.states.GUIStates;
 import com.bitwaffle.offworld.gui.states.pause.PauseState;
 
-public class QuitButton extends TextButton {
+public class ContinueButton extends TextButton {
 	// offset of button from center
-	public static float xOffset = 200.0f, yOffset = -150.0f;
+	public static float xOffset = -200.0f, yOffset = -150.0f;
 
-	public QuitButton(PauseState state) {
+	public ContinueButton(PauseState state) {
 		super(
-				"Main Menu",
+				"Continue",
 				25.0f,
 				(Game.windowWidth / 2.0f) + xOffset,
 				(Game.windowHeight / 2.0f) + yOffset,
@@ -33,16 +31,7 @@ public class QuitButton extends TextButton {
 
 	@Override
 	protected void onRelease() {
-		Game.physics.clearWorld();
-		
-		for(int i = 0; i < OffworldGame.players.length; i++)
-			OffworldGame.players[i] = null;
-		
-		//CameraModes.follow.follow(null);
-		
-		Game.gui.setCurrentState(GUIStates.TITLESCREEN.state);
-		if(Game.isPaused())
-			Game.togglePause();
+		Game.togglePause();
 	}
 
 	@Override

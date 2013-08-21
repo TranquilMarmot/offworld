@@ -4,6 +4,7 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.elements.button.Button;
 import com.bitwaffle.guts.gui.states.GUIState;
+import com.bitwaffle.offworld.gui.states.pause.buttons.ContinueButton;
 import com.bitwaffle.offworld.gui.states.pause.buttons.LoadButton;
 import com.bitwaffle.offworld.gui.states.pause.buttons.QuitButton;
 import com.bitwaffle.offworld.gui.states.pause.buttons.SaveButton;
@@ -26,6 +27,8 @@ public class PauseState extends GUIState{
 	private QuitButton quitButton;
 	/** Button to save game */
 	private SaveButton saveButton;
+	/** Button to un-pause game */
+	private ContinueButton contButton;
 	
 	public int buttonCols(){ return buttonCols; }
 	public int buttonRows(){ return buttonRows; }
@@ -38,17 +41,24 @@ public class PauseState extends GUIState{
 		loadButton = new LoadButton(this);
 		saveButton = new SaveButton(this);
 		quitButton = new QuitButton(this);
+		contButton = new ContinueButton(this);
+		
+		contButton.toRight = quitButton;
+		contButton.toDown = saveButton;
 		
 		loadButton.toLeft = saveButton;
+		loadButton.toUp = quitButton;
 		
 		saveButton.toRight = loadButton;
-		saveButton.toUp = quitButton;
+		saveButton.toUp = contButton;
 		
-		quitButton.toDown = saveButton;
+		quitButton.toDown = loadButton;
+		quitButton.toLeft = contButton;
 		
 		this.addButton(loadButton);
 		this.addButton(saveButton);
 		this.addButton(quitButton);
+		this.addButton(contButton);
 		
 		// update to add buttons
 		this.update(1.0f/60.0f);
@@ -56,7 +66,7 @@ public class PauseState extends GUIState{
 
 	@Override
 	protected void onGainCurrentState() {
-		Game.gui.setSelectedButton(quitButton);
+		Game.gui.setSelectedButton(contButton);
 	}
 	
 	@Override
@@ -66,18 +76,18 @@ public class PauseState extends GUIState{
 	
 	@Override
 	public Button initialLeftButton() {
-		return quitButton;
+		return contButton;
 	}
 	@Override
 	public Button initialRightButton() {
-		return null;
-	}
-	@Override
-	public Button initialUpButton() {
 		return quitButton;
 	}
 	@Override
+	public Button initialUpButton() {
+		return contButton;
+	}
+	@Override
 	public Button initialDownButton() {
-		return loadButton;
+		return saveButton;
 	}
 }
