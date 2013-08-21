@@ -23,7 +23,10 @@ public class Map extends GUIObject {
 		Room room = Game.physics.currentRoom();
 		Iterator<Entity> geomIt = room.getStaticGeometryIterator();
 		
-		renderer.modelview.scale(0.1f, 0.1f, 1.0f);
+		renderer.modelview.scale(0.5f, 0.5f, 1.0f);
+		renderer.modelview.rotate(0.0f, 0.0f, 1.0f, 180.0f);
+		renderer.modelview.rotate(0.0f, 1.0f, 0.0f, 180.0f);
+		renderer.r2D.sendMatrixToShader();
 		while(geomIt.hasNext()){
 			Entity ent = geomIt.next();
 			ent.renderer.render(renderer, ent, true);
