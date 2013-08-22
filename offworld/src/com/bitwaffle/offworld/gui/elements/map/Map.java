@@ -31,7 +31,7 @@ public class Map extends GUIObject {
 		Gdx.gl.glViewport(0, Game.windowHeight, Game.windowWidth, Game.windowHeight);
 		MathHelper.orthoM(renderer.projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
 		
-		renderer.modelview.scale(10.0f, 10.0f, 1.0f);
+		renderer.modelview.scale(5.0f, 5.0f, 1.0f);
 		renderer.modelview.rotate(0.0f, 0.0f, 1.0f, 180.0f);
 		renderer.modelview.rotate(0.0f, 1.0f, 0.0f, 180.0f);
 		renderer.modelview.translate(-OffworldGame.players[0].getLocation().x, -OffworldGame.players[0].getLocation().y, 0.0f);
@@ -40,6 +40,10 @@ public class Map extends GUIObject {
 			Entity ent = geomIt.next();
 			ent.renderer.render(renderer, ent, true);
 		}
+		
+		renderer.modelview.translate(OffworldGame.players[0].getLocation().x, OffworldGame.players[0].getLocation().y, 0.0f);
+		renderer.r2D.setColor(1.0f, 0.0f, 0.0f, 0.5f);
+		renderer.r2D.quad.render(OffworldGame.players[0].getWidth(), OffworldGame.players[0].getHeight());
 		
 		Game.windowHeight *= 2;
 		Game.aspect = (float) Game.windowWidth / (float) Game.windowHeight;
