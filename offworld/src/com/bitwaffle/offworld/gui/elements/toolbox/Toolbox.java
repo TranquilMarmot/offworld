@@ -43,7 +43,7 @@ public class Toolbox extends TransparentRectangleButton {
 		expanded = false;
 		oldX = x;
 		
-		MapButton mapButt = new MapButton(32.0f, 32.0f, 32.0f, 32.0f);
+		MapButton mapButt = new MapButton(this, 32.0f, 32.0f, 32.0f, 32.0f);
 		mapButt.deactivate();
 		mapButt.hide();
 		this.addButton(mapButt);
@@ -64,6 +64,8 @@ public class Toolbox extends TransparentRectangleButton {
 	
 	public void addButton(Button button){ buttons.add(button); }
 	public void removeButton(Button button){ buttons.remove(button); }
+	
+	public Player getPlayer(){ return this.player; }
 	
 	@Override
 	public void update(float timeStep) {

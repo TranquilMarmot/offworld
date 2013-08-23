@@ -29,6 +29,60 @@ public class OffworldRenderer extends Renderer {
 	public void renderScene(){
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		
+		int oldWindowWidth = Game.windowWidth, oldWindowHeight = Game.windowHeight;
+		for(int i = 0; i < OffworldGame.players.length; i++){
+			Player player = OffworldGame.players[i];
+			if(player != null){
+				int xOffset = 0, yOffset = 0;
+				switch(player.controlInfo.screenSection){
+				case FULL:
+					break;
+				case TOP_HALF:
+					Game.windowHeight /= 2;
+					yOffset = Game.windowHeight;
+					break;
+				case BOTTOM_HALF:
+					Game.windowHeight /= 2;
+					break;
+				case TOP_LEFT_QUARTER:
+					Game.windowHeight /= 2;
+					Game.windowWidth /= 2;
+					yOffset = Game.windowHeight;
+					break;
+				case BOTTOM_LEFT_QUARTER:
+					Game.windowHeight /= 2;
+					Game.windowWidth /= 2;
+					break;
+				case BOTTOM_RIGHT_QUARTER:
+					Game.windowHeight /= 2;
+					Game.windowWidth /= 2;
+					xOffset = Game.windowWidth;
+					break;
+				case TOP_RIGHT_QUARTER:
+					Game.windowHeight /= 2;
+					Game.windowWidth /= 2;
+					xOffset = Game.windowWidth;
+					yOffset = Game.windowHeight;
+					break;
+				}
+				
+				Game.aspect = (float) Game.windowWidth / (float) Game.windowHeight;
+				Gdx.gl.glViewport(xOffset, yOffset, Game.windowWidth, Game.windowHeight);
+				this.camera = player.getCamera();
+				super.renderEntities();
+				
+				Game.windowWidth = oldWindowWidth;
+				Game.windowHeight = oldWindowHeight;
+			}
+		}
+		
+		Gdx.gl.glViewport(0, 0, Game.windowWidth, Game.windowHeight);
+		super.renderGUI();
+	}
+	
+	public void renderSceneOld(){
+		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+		
 		int numPlayers = 0;
 		for(int i = 0; i < OffworldGame.players.length; i++)
 			if(OffworldGame.players[i] != null)

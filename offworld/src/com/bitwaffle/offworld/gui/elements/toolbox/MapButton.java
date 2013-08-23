@@ -12,9 +12,9 @@ public class MapButton extends TransparentRectangleButton {
 	
 	private boolean mapInGui;
 
-	public MapButton(float x, float y, float width, float height) {
+	public MapButton(Toolbox toolbox, float x, float y, float width, float height) {
 		super(x, y, width, height, "mapbutton", new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f));
-		map = new Map(150.0f, 150.0f);
+		map = new Map(150.0f, 150.0f, toolbox);
 		mapInGui = false;
 	}
 

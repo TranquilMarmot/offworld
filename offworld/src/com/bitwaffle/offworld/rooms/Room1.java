@@ -35,11 +35,12 @@ public class Room1 extends Room {
 		
 		OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 24.6180f * 3.0f), 0, true);
 		OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 20.6180f * 3.0f), 1, false);
-		//OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 10.6180f * 3.0f), 2, false);
+		OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 10.6180f * 3.0f), 2, false);
 		//OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 4.6180f * 3.0f), 3, false);
 		OffworldGame.players[1].controlInfo.controlledByMouse = false;
 		OffworldGame.players[0].controlInfo.screenSection = SplitScreenSection.TOP_HALF;
-		OffworldGame.players[1].controlInfo.screenSection = SplitScreenSection.BOTTOM_HALF;
+		OffworldGame.players[1].controlInfo.screenSection = SplitScreenSection.BOTTOM_LEFT_QUARTER;
+		OffworldGame.players[2].controlInfo.screenSection = SplitScreenSection.BOTTOM_RIGHT_QUARTER;
 		//OffworldGame.players[2].controlledByMouse = false;
 		//OffworldGame.players[3].controlledByMouse = false;
 
