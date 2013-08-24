@@ -46,17 +46,24 @@ public class Map extends GUIObject {
 			break;
 		case TOP_LEFT_QUARTER:
 			Game.windowWidth /= 2;
-			yOffset = Game.windowWidth;
+			Game.windowHeight /= 2;
+			yOffset = Game.windowHeight;
 			break;
 		case BOTTOM_LEFT_QUARTER:
-			
+			Game.windowWidth /= 2;
+			Game.windowHeight /= 2;
 			break;
 		case BOTTOM_RIGHT_QUARTER:
-			
+			Game.windowWidth /= 2;
+			Game.windowHeight /= 2;
+			xOffset = Game.windowWidth;
 			break;
 			
 		case TOP_RIGHT_QUARTER:
-			
+			Game.windowWidth /= 2;
+			Game.windowHeight /= 2;
+			xOffset = Game.windowWidth;
+			yOffset = Game.windowHeight;
 			break;
 		}
 		
