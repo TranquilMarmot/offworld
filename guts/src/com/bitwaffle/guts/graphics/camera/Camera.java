@@ -117,15 +117,15 @@ public class Camera extends Entity {
 	/** @return Size of window in world coordinates */
 	public Vector2 getWorldWindowSize(){
 		projection.idt();
-		MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1);
+		MathHelper.orthoM(projection, 0, Game.renderAspect, 0, 1, -1, 1);
 		
 		view.idt();
 		view.scale(zoom, zoom, 1.0f);
 		
 		// don't ask, that's just how it works, okay?
 		Vector2 tempVec = new Vector2(), newWorldWindowSize = new Vector2();
-		MathHelper.toWorldSpace(newWorldWindowSize, projection, view, (Game.windowWidth / 2.0f), 0.0f);
-		MathHelper.toWorldSpace(tempVec, projection, view, 0.0f,  (Game.windowHeight / 2.0f));
+		MathHelper.toWorldSpace(newWorldWindowSize, projection, view, (Game.renderWidth / 2.0f), 0.0f);
+		MathHelper.toWorldSpace(tempVec, projection, view, 0.0f,  (Game.renderHeight / 2.0f));
 		newWorldWindowSize.sub(tempVec.x, tempVec.y);
 		
 		return newWorldWindowSize;

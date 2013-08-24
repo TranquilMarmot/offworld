@@ -30,11 +30,16 @@ public abstract class Game implements ApplicationListener {
 	/** Whether or not the game is paused (physics isn't stepped when this is true) */
 	private static boolean paused = false;
 	
-	/** These change whenever the screen size is changed. */
+	/** Size of entire window */
 	public static int windowWidth, windowHeight;
+	
+	/** Size of current rendering viewport */
+	public static int renderWidth, renderHeight;
 	
 	/** The aspect ratio of the window */
 	public static float aspect = (float) windowWidth / (float) windowHeight;
+	
+	public static float renderAspect;
 	
 	/** Random generator */
 	public static Random random;
@@ -163,11 +168,14 @@ public abstract class Game implements ApplicationListener {
     public void resize (int width, int height) {
     	Game.windowWidth = width;
     	Game.windowHeight = height;
+    	Game.renderWidth = width;
+    	Game.renderHeight = height;
     	Game.aspect = (float)width / (float) height;
+    	Game.renderAspect = (float)width / (float) height;
     	
     	// set viewport and projection matrix
-    	Gdx.gl20.glViewport(0, 0, Game.windowWidth, Game.windowHeight);
-    	MathHelper.orthoM(renderer.projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
+    	Gdx.gl20.glViewport(0, 0, Game.renderWidth, Game.renderHeight);
+    	MathHelper.orthoM(renderer.projection, 0, Game.renderWidth, Game.renderHeight, 0, -1, 1);
 
     	// setting the zoom resizes the camera's view of the world
     	if(renderer.camera != null)

@@ -86,7 +86,7 @@ public class Render2D {
 		program.use();
 		Gdx.gl20.glDisable(GL20.GL_DEPTH_TEST);
 		
-		MathHelper.orthoM(renderer.projection, 0, Game.aspect, 0, 1, -1, 1000);
+		MathHelper.orthoM(renderer.projection, 0, Game.renderAspect, 0, 1, -1, 1000);
 	}
 	
 	/** Change the projection matrix to render in screen coords (for GUI) */

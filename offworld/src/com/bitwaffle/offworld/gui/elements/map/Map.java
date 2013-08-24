@@ -15,6 +15,8 @@ import com.bitwaffle.offworld.gui.elements.toolbox.Toolbox;
 public class Map extends GUIObject {
 	
 	private Toolbox toolbox;
+	
+	private int xOffset = 10, yOffset = -10;
 
 	public Map(float x, float y, Toolbox toolbox) {
 		super(x, y);
@@ -30,46 +32,45 @@ public class Map extends GUIObject {
 		Room room = Game.physics.currentRoom();
 		Iterator<Entity> geomIt = room.getStaticGeometryIterator();
 		
-		int xOffset = 0, yOffset = 0;
-		int oldWindowWidth = Game.windowWidth, oldWindowHeight = Game.windowHeight;
+		int viewXOffset = 0, viewYOffset = 0;
 		
 		Player player = toolbox.getPlayer();
 		switch(player.controlInfo.screenSection){
 		case FULL:
 			break;
 		case TOP_HALF:
-			Game.windowHeight /= 2;
-			yOffset = Game.windowHeight;
+			Game.renderHeight = Game.windowHeight / 2;
+			viewYOffset = Game.renderHeight;
 			break;
 		case BOTTOM_HALF:
-			Game.windowHeight /= 2;
+			Game.renderHeight = Game.windowHeight / 2;
 			break;
 		case TOP_LEFT_QUARTER:
-			Game.windowWidth /= 2;
-			Game.windowHeight /= 2;
-			yOffset = Game.windowHeight;
+			Game.renderWidth = Game.windowWidth / 2;
+			Game.renderHeight = Game.windowHeight / 2;
+			viewYOffset = Game.renderHeight;
 			break;
 		case BOTTOM_LEFT_QUARTER:
-			Game.windowWidth /= 2;
-			Game.windowHeight /= 2;
+			Game.renderWidth = Game.windowWidth / 2;
+			Game.renderHeight = Game.windowHeight / 2;
 			break;
 		case BOTTOM_RIGHT_QUARTER:
-			Game.windowWidth /= 2;
-			Game.windowHeight /= 2;
-			xOffset = Game.windowWidth;
+			Game.renderWidth = Game.windowWidth / 2;
+			Game.renderHeight = Game.windowHeight / 2;
+			viewXOffset = Game.renderWidth;
 			break;
 			
 		case TOP_RIGHT_QUARTER:
-			Game.windowWidth /= 2;
-			Game.windowHeight /= 2;
-			xOffset = Game.windowWidth;
-			yOffset = Game.windowHeight;
+			Game.renderWidth = Game.windowWidth / 2;
+			Game.renderHeight = Game.windowHeight / 2;
+			viewXOffset = Game.renderWidth;
+			viewYOffset = Game.renderHeight;
 			break;
 		}
 		
-		Game.aspect = (float) Game.windowWidth / (float) Game.windowHeight;
-		Gdx.gl.glViewport(xOffset, yOffset, Game.windowWidth, Game.windowHeight);
-		MathHelper.orthoM(renderer.projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
+		Game.renderAspect = (float) Game.renderWidth / (float) Game.renderHeight;
+		Gdx.gl.glViewport(viewXOffset + xOffset, viewYOffset + yOffset, Game.renderWidth - xOffset, Game.renderHeight - yOffset);
+		MathHelper.orthoM(renderer.projection, 0, Game.renderWidth, Game.renderHeight, 0, -1, 1);
 		
 		renderer.modelview.scale(5.0f, 5.0f, 1.0f);
 		renderer.modelview.rotate(0.0f, 0.0f, 1.0f, 180.0f);
@@ -85,9 +86,6 @@ public class Map extends GUIObject {
 		renderer.r2D.setColor(1.0f, 0.0f, 0.0f, 0.5f);
 		renderer.r2D.quad.render(player.getWidth(), player.getHeight());
 		
-		Game.windowHeight = oldWindowHeight;
-		Game.windowWidth = oldWindowWidth;
-		Game.aspect = (float) Game.windowWidth / (float) Game.windowHeight;
 		Gdx.gl.glViewport(0, 0, Game.windowWidth, Game.windowHeight);
 		MathHelper.orthoM(renderer.projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
 	}

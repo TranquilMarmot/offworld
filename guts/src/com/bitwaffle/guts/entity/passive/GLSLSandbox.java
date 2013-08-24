@@ -90,7 +90,7 @@ public class GLSLSandbox extends Entity {
 			// use program and set uniforms
 			program.use();
 			program.setUniform("time", time);
-			program.setUniform("resolution", Game.windowWidth, Game.windowHeight);
+			program.setUniform("resolution", Game.renderWidth, Game.renderHeight);
 
 			// bind quad
 			Gdx.gl20.glEnableVertexAttribArray(positionHandle);

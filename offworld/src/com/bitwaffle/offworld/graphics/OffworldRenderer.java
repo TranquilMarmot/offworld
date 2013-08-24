@@ -28,7 +28,6 @@ public class OffworldRenderer extends Renderer {
 	public void renderScene(){
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		
-		int oldWindowWidth = Game.windowWidth, oldWindowHeight = Game.windowHeight;
 		for(int i = 0; i < OffworldGame.players.length; i++){
 			Player player = OffworldGame.players[i];
 			if(player != null){
@@ -37,42 +36,39 @@ public class OffworldRenderer extends Renderer {
 				case FULL:
 					break;
 				case TOP_HALF:
-					Game.windowHeight /= 2;
-					yOffset = Game.windowHeight;
+					Game.renderHeight = Game.windowHeight / 2;
+					yOffset = Game.renderHeight;
 					break;
 				case BOTTOM_HALF:
-					Game.windowHeight /= 2;
+					Game.renderHeight = Game.windowHeight / 2;
 					break;
 				case TOP_LEFT_QUARTER:
-					Game.windowHeight /= 2;
-					Game.windowWidth /= 2;
-					yOffset = Game.windowHeight;
+					Game.renderHeight = Game.windowHeight / 2;
+					Game.renderWidth = Game.windowWidth / 2;
+					yOffset = Game.renderHeight;
 					break;
 				case BOTTOM_LEFT_QUARTER:
-					Game.windowHeight /= 2;
-					Game.windowWidth /= 2;
+					Game.renderHeight = Game.windowHeight / 2;
+					Game.renderWidth = Game.windowWidth / 2;
 					break;
 				case BOTTOM_RIGHT_QUARTER:
-					Game.windowHeight /= 2;
-					Game.windowWidth /= 2;
-					xOffset = Game.windowWidth;
+					Game.renderHeight = Game.windowHeight / 2;
+					Game.renderWidth = Game.windowWidth / 2;
+					xOffset = Game.renderWidth;
 					break;
 				case TOP_RIGHT_QUARTER:
-					Game.windowHeight /= 2;
-					Game.windowWidth /= 2;
-					xOffset = Game.windowWidth;
-					yOffset = Game.windowHeight;
+					Game.renderHeight = Game.windowHeight / 2;
+					Game.renderWidth = Game.windowWidth / 2;
+					xOffset = Game.renderWidth;
+					yOffset = Game.renderHeight;
 					break;
 				}
 				
-				Game.aspect = (float) Game.windowWidth / (float) Game.windowHeight;
-				Gdx.gl.glViewport(xOffset, yOffset, Game.windowWidth, Game.windowHeight);
-				MathHelper.orthoM(projection, 0, Game.aspect, 0, 1, -1, 1000);
+				Game.renderAspect = (float) Game.renderWidth / (float) Game.renderHeight;
+				Gdx.gl.glViewport(xOffset, yOffset, Game.renderWidth, Game.renderHeight);
+				MathHelper.orthoM(projection, 0, Game.renderAspect, 0, 1, -1, 1000);
 				this.camera = player.getCamera();
 				super.renderEntities();
-				
-				Game.windowWidth = oldWindowWidth;
-				Game.windowHeight = oldWindowHeight;
 			}
 		}
 		

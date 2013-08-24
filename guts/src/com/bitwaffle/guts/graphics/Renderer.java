@@ -40,7 +40,7 @@ public class Renderer {
 	public static boolean renderDebug = false;
 	
 	public Renderer(){
-		Gdx.gl.glViewport(0, 0, Game.windowWidth, Game.windowHeight);
+		Gdx.gl.glViewport(0, 0, Game.renderWidth, Game.renderHeight);
 		Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		
 		modelview = new Matrix4();

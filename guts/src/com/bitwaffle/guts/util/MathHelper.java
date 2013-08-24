@@ -99,11 +99,11 @@ public class MathHelper {
 	 */
 	public static void toWorldSpace(Vector2 out, Matrix4 projection, Matrix4 view, float screenX, float screenY){
 		// compensate for Y 0 being on the bottom in OpenGL (touch point 0 is on the top)
-		float oglTouchY = (float)Game.windowHeight - screenY;
+		float oglTouchY = (float)Game.renderHeight - screenY;
 		
 		// create our normalized vector
-		normalizedInPoint[0] = ((screenX * 2.0f) / (float)Game.windowWidth) - 1.0f;
-		normalizedInPoint[1] = ((oglTouchY * 2.0f) / (float)Game.windowHeight) - 1.0f;
+		normalizedInPoint[0] = ((screenX * 2.0f) / (float)Game.renderWidth) - 1.0f;
+		normalizedInPoint[1] = ((oglTouchY * 2.0f) / (float)Game.renderHeight) - 1.0f;
 		normalizedInPoint[2] = 0.0f; // because everything is drawn at 0 (between -1 and 1)
 		normalizedInPoint[3] = 1.0f;
 		
@@ -160,7 +160,7 @@ public class MathHelper {
 	public static void toWorldSpace(Vector2 out, float screenX, float screenY, Camera camera){
 		// create the projection matrix (mimics Render2D's "setUpProjectionWorldCoords" method)
 		projection.idt();
-		orthoM(projection, 0, Game.aspect, 0, 1, -1, 1000);
+		orthoM(projection, 0, Game.renderAspect, 0, 1, -1, 1000);
 		
 		// create the view matrix
 		view.idt();

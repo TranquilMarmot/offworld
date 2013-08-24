@@ -14,7 +14,7 @@ import com.bitwaffle.guts.util.MathHelper;
  */
 public class Backdrop implements EntityRenderer2D{
 	/** Size of window (saved so that world size is only calculated when it changes) */
-	private float windowWidth = 0.0f, windowHeight = 0.0f;
+	private float renderWidth = 0.0f, renderHeight = 0.0f;
 	
 	/** How big the world is */
 	private Vector2 worldSize;
@@ -32,10 +32,10 @@ public class Backdrop implements EntityRenderer2D{
 	}
 	
 	public void render(Renderer renderer, Entity ent, boolean renderDebug){
-		if(windowWidth != Game.windowWidth || windowHeight != Game.windowHeight){
-			windowWidth = Game.windowWidth;
-			windowHeight = Game.windowHeight;
-			MathHelper.toWorldSpace(worldSize, windowWidth / 2, windowHeight / 2);
+		if(renderWidth != Game.renderWidth || renderHeight != Game.renderHeight){
+			renderWidth = Game.renderWidth;
+			renderHeight = Game.renderHeight;
+			MathHelper.toWorldSpace(worldSize, renderWidth / 2, renderHeight / 2);
 		}
 		
 		renderer.r2D.setColor(color);

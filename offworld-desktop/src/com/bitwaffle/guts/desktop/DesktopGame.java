@@ -25,6 +25,9 @@ public class DesktopGame extends OffworldGame {
 	public static void main(String[] args){
 		Game.windowWidth = defaultWindowWidth;
 		Game.windowHeight = defaultWindowHeight;
+		Game.renderWidth = defaultWindowWidth;
+		Game.renderHeight = defaultWindowHeight;
+		Game.renderAspect = (float)Game.renderWidth / (float) renderHeight;
 		//Keyboard.enableRepeatEvents(true);
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.resizable = true;

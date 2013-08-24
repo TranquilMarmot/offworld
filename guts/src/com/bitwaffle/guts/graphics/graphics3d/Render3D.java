@@ -110,7 +110,7 @@ public class Render3D {
 		sendLightsToShader();
 		
 		//MathHelper.perspective(projection, fov, aspect, 1.0f, drawDistance);
-		MathHelper.orthoM(renderer.projection, 0, Game.aspect, 0, 1, -1, drawDistance);
+		MathHelper.orthoM(renderer.projection, 0, Game.renderAspect, 0, 1, -1, drawDistance);
 		
 		Gdx.gl20.glEnable(GL20.GL_DEPTH_TEST);
 		Gdx.gl20.glDisable(GL20.GL_BLEND); 
