@@ -28,6 +28,8 @@ public class OffworldRenderer extends Renderer {
 	public void renderScene(){
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		
+		int oldRenderWidth = Game.renderWidth, oldRenderHeight = Game.renderHeight;
+		
 		for(int i = 0; i < OffworldGame.players.length; i++){
 			Player player = OffworldGame.players[i];
 			if(player != null){
@@ -71,6 +73,9 @@ public class OffworldRenderer extends Renderer {
 				super.renderEntities();
 			}
 		}
+		
+		Game.renderWidth = oldRenderWidth;
+		Game.renderHeight = oldRenderHeight;
 		
 		Gdx.gl.glViewport(0, 0, Game.windowWidth, Game.windowHeight);
 		super.renderGUI();
