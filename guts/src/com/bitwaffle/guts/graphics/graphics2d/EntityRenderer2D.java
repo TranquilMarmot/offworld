@@ -1,6 +1,5 @@
 package com.bitwaffle.guts.graphics.graphics2d;
 
-import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.graphics.Renderer;
 
 /**Interface for rendering entities */
@@ -12,5 +11,5 @@ public interface EntityRenderer2D {
 	 * rotated to the entity's angle (so you can just draw it)
 	 * @param renderDebug Whether or not to render debug info with the entity (hit boxes etc.)
 	 */
-	public void render(Renderer renderer, Entity ent, boolean renderDebug);
+	public void render(Renderer renderer, Object ent, boolean renderDebug);
 }

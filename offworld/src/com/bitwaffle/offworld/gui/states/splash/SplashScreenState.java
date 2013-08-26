@@ -58,7 +58,7 @@ public class SplashScreenState extends GUIState {
 		// create text object
 		EntityRenderer2D textRenderer = new EntityRenderer2D(){
 			@Override
-			public void render(Renderer renderer, Entity ent, boolean renderDebug){
+			public void render(Renderer renderer, Object ent, boolean renderDebug){
 				Gdx.gl20.glEnable(GL20.GL_BLEND);
 				Game.resources.textures.bindTexture("bitwaffle-text");
 				renderer.r2D.quad.render(1.0f * 30.0f, 0.125f * 30.0f, true, true);

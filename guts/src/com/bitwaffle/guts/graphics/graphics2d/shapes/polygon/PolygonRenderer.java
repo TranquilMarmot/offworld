@@ -5,7 +5,6 @@ import java.nio.Buffer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
 
@@ -43,7 +42,7 @@ public class PolygonRenderer implements EntityRenderer2D {
 	
 	
 	@Override
-	public void render(Renderer renderer, Entity ent, boolean renderDebug) {
+	public void render(Renderer renderer, Object ent, boolean renderDebug) {
 		int positionHandle = renderer.r2D.getVertexPositionHandle();
 		int texCoordHandle = renderer.r2D.getTexCoordHandle();
 		
@@ -86,7 +85,7 @@ public class PolygonRenderer implements EntityRenderer2D {
 		}
 	}
 	
-	private void renderDebug(Renderer renderer, Entity ent){
+	private void renderDebug(Renderer renderer, Object ent){
 		Buffer debugVertBuffer = poly.getDebugVertBuffer(), debugTexCoordBuffer = poly.getDebugTexCoordBuffer();
 		if(debugVertBuffer != null && debugTexCoordBuffer != null){
 			int positionHandle = renderer.r2D.getVertexPositionHandle();

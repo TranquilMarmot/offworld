@@ -3,7 +3,6 @@ package com.bitwaffle.guts.graphics.graphics2d.shapes.circle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.entity.dynamic.CircleEntity;
 import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
@@ -25,11 +24,10 @@ public class CircleRenderer implements EntityRenderer2D {
 		this.color = color;
 	}
 	
-	public void render(Renderer renderer, Entity ent, boolean renderDebug) {
+	public void render(Renderer renderer, Object ent, boolean renderDebug) {
 		CircleEntity circ = (CircleEntity) ent;
-		
 		if(renderDebug)
-			renderDebug(renderer, ent);
+			renderDebug(renderer, circ);
 		else{
 			renderer.r2D.setColor(color);
 			Game.resources.textures.bindTexture(textureName);
@@ -37,8 +35,7 @@ public class CircleRenderer implements EntityRenderer2D {
 		}
 	}
 
-	public void renderDebug(Renderer renderer, Entity ent) {
-		CircleEntity circ = (CircleEntity) ent;
+	public void renderDebug(Renderer renderer, CircleEntity circ) {
 		Game.resources.textures.bindTexture("blank");
 		
 		float[] col = new float[4];

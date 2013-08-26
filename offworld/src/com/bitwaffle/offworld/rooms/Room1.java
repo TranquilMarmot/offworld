@@ -34,16 +34,16 @@ public class Room1 extends Room {
 		//Gdx.gl20.glClearColor(0.40625f, 0.46875f, 0.78125f, 1.0f);
 		
 		OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 24.6180f * 3.0f), 0, true);
-		OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 20.6180f * 3.0f), 1, false);
+		//OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 20.6180f * 3.0f), 1, false);
 		OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 10.6180f * 3.0f), 2, false);
 		OffworldPhysics.initPlayer(Game.physics, new Vector2(86.1816f * 3.0f, 4.6180f * 3.0f), 3, false);
-		OffworldGame.players[1].controlInfo.controlledByMouse = false;
+		//OffworldGame.players[1].controlInfo.controlledByMouse = false;
 		OffworldGame.players[2].controlInfo.controlledByMouse = false;
 		OffworldGame.players[3].controlInfo.controlledByMouse = false;
 		
 		// 4 player
-		OffworldGame.players[0].controlInfo.screenSection = SplitScreenSection.TOP_LEFT_QUARTER;
-		OffworldGame.players[1].controlInfo.screenSection = SplitScreenSection.TOP_RIGHT_QUARTER;
+		OffworldGame.players[0].controlInfo.screenSection = SplitScreenSection.TOP_HALF;
+		//OffworldGame.players[1].controlInfo.screenSection = SplitScreenSection.TOP_RIGHT_QUARTER;
 		OffworldGame.players[2].controlInfo.screenSection = SplitScreenSection.BOTTOM_LEFT_QUARTER;
 		OffworldGame.players[3].controlInfo.screenSection = SplitScreenSection.BOTTOM_RIGHT_QUARTER;
 		

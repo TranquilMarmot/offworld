@@ -86,7 +86,7 @@ public class GLSLSandbox extends Entity {
 		}
 		
 		@Override
-		public void render(Renderer renderer, Entity ent, boolean renderDebug) {
+		public void render(Renderer renderer, Object ent, boolean renderDebug) {
 			// use program and set uniforms
 			program.use();
 			program.setUniform("time", time);

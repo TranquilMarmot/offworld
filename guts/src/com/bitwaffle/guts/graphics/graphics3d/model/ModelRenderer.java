@@ -41,7 +41,7 @@ public class ModelRenderer extends EntityRenderer3D {
 	}
 	
 	@Override
-	public void render(Renderer renderer, Entity ent, boolean renderDebug){
+	public void render(Renderer renderer, Object ent, boolean renderDebug){
 		// debug rendering data comes from model polygon
 		if(modelPoly != null && renderDebug){
 			renderDebug(renderer, ent);
@@ -78,11 +78,11 @@ public class ModelRenderer extends EntityRenderer3D {
 
 
 	/** Render debug data from polygon */
-	private void renderDebug(Renderer renderer, Entity ent){
+	private void renderDebug(Renderer renderer, Object ent){
 		Buffer debugVertBuffer = modelPoly.getDebugVertBuffer(), debugTexCoordBuffer = modelPoly.getDebugTexCoordBuffer();
 		if(debugVertBuffer != null && debugTexCoordBuffer != null){
 			renderer.r2D.switchTo2DWorldCoords();
-			renderer.r2D.prepareToRenderEntity(ent);
+			renderer.r2D.prepareToRenderEntity((Entity)ent);
 			int positionHandle = renderer.r2D.getVertexPositionHandle();
 			int texCoordHandle = renderer.r2D.getTexCoordHandle();
 			

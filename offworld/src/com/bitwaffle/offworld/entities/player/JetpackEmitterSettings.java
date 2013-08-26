@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.entity.dynamic.particles.EmitterSettings;
 import com.bitwaffle.guts.entity.dynamic.particles.Particle;
@@ -37,7 +36,7 @@ public class JetpackEmitterSettings extends EmitterSettings {
 			super.particleRenderer = new EntityRenderer2D(){
 
 				@Override
-				public void render(Renderer renderer, Entity ent, boolean renderDebug) {
+				public void render(Renderer renderer, Object ent, boolean renderDebug) {
 					Gdx.gl20.glEnable(GL20.GL_BLEND);
 					Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 					

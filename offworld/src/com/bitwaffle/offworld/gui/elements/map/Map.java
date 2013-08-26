@@ -17,10 +17,10 @@ public class Map extends GUIObject {
 	
 	private Toolbox toolbox;
 	
-	private int xOffset = 10, yOffset = -10;
+	private int xOffset = 0, yOffset = 0;
 	private int width = 100, height = 100;
 	
-	float mapZoom = 0.0155f;
+	float mapZoom = 0.0125f;
 
 	public Map(float x, float y, Toolbox toolbox) {
 		super(x, y);
@@ -98,6 +98,7 @@ public class Map extends GUIObject {
 		renderer.r2D.setColor(1.0f, 0.0f, 0.0f, 0.5f);
 		renderer.r2D.quad.render(player.getWidth(), player.getHeight());
 		
+		// set render size/zoom back to what it was
 		Game.renderWidth = oldRenderWidth;
 		Game.renderHeight = oldRenderHeight;
 		player.getCamera().zoom = oldZoom;

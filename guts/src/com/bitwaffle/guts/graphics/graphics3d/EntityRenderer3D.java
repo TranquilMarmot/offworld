@@ -1,7 +1,6 @@
 package com.bitwaffle.guts.graphics.graphics3d;
 
 import com.badlogic.gdx.math.Matrix4;
-import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
 
@@ -25,5 +24,5 @@ public abstract class EntityRenderer3D implements EntityRenderer2D {
 	}
 	
 	@Override
-	public abstract void render(Renderer render, Entity ent, boolean renderDebug);
+	public abstract void render(Renderer render, Object ent, boolean renderDebug);
 }
