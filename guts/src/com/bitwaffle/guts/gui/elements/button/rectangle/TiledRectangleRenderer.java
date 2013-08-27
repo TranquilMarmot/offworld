@@ -1,7 +1,6 @@
 package com.bitwaffle.guts.gui.elements.button.rectangle;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Color;
 import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.graphics.graphics2d.shapes.TiledBox;
 
@@ -21,8 +20,8 @@ public class TiledRectangleRenderer extends RectangleButtonRenderer {
 	/** Used to render button */
 	public TiledBox tiledBoxRenderer;
 	
-	public TiledRectangleRenderer(int columns, int rows, float columnWidth, float rowHeight){
-		super();
+	public TiledRectangleRenderer(Color activeColor, Color downColor, Color inactiveColor, Color selectedColor, int columns, int rows, float columnWidth, float rowHeight){
+		super(activeColor, downColor, inactiveColor, selectedColor);
 		this.rows = rows;
 		this.columns = columns;
 		this.columnWidth = columnWidth;
@@ -32,24 +31,8 @@ public class TiledRectangleRenderer extends RectangleButtonRenderer {
 	}
 	
 	@Override
-	public void render(Renderer renderer, Object obj){
-		RectangleButton rect = (RectangleButton) obj;
-		
-		Gdx.gl20.glEnable(GL20.GL_BLEND);
-		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_SRC_COLOR);
-		
-		if(rect.isActive()){
-			if(rect.isDown())
-				renderer.r2D.setColor(downColor.r, downColor.g, downColor.b, downColor.a);
-			else
-				renderer.r2D.setColor(activeColor.r, activeColor.g, activeColor.b, activeColor.a);
-		} else {
-			renderer.r2D.setColor(inactiveColor.r, inactiveColor.g, inactiveColor.b, inactiveColor.a);
-		}
-		
+	protected void renderRectangle(RectangleButton rec, Renderer renderer){
 		tiledBoxRenderer.render(renderer);
-		
-		Gdx.gl20.glDisable(GL20.GL_BLEND);
 	}
 	
 	public float getWidth(){

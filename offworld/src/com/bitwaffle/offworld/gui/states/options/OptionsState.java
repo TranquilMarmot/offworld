@@ -1,5 +1,6 @@
 package com.bitwaffle.offworld.gui.states.options;
 
+import com.badlogic.gdx.graphics.Color;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.passive.GLSLSandbox;
 import com.bitwaffle.guts.gui.GUI;
@@ -33,7 +34,17 @@ public class OptionsState extends GUIState {
 		float x = (columns * columnWidth) + 5.0f; 
 		float y = Game.windowHeight - ((rows * rowHeight) * 2);
 		
-		backButton = new RectangleButton(new TextButtonRenderer(text, textScale, rows, columns, columnWidth, rowHeight), x, y, columns * columnWidth, rows * rowHeight){
+		backButton = new RectangleButton(
+				new TextButtonRenderer(
+						new Color(0.5f, 0.5f, 0.5f, 0.75f), 
+						new Color(0.5f, 0.5f, 0.5f, 1.0f),
+						new Color(0.75f, 0.75f, 0.75f, 1.0f),
+						new Color(0.5f, 0.5f, 0.5f, 0.8f),
+						text, textScale,
+						rows, columns,
+						columnWidth, rowHeight), 
+				x, y, 
+				columns * columnWidth, rows * rowHeight){
 			@Override
 			protected void onRelease() {
 				Game.gui.setCurrentState(GUIStates.TITLESCREEN.state);

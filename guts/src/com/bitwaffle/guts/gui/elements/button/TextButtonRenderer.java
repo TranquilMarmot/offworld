@@ -1,6 +1,7 @@
 package com.bitwaffle.guts.gui.elements.button;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.graphics.graphics2d.font.BitmapFont;
@@ -22,8 +23,8 @@ public class TextButtonRenderer extends TiledRectangleRenderer {
 	/** Color to render text in (black by default) */
 	private float[] textColor = {0.0f, 0.0f, 0.0f, 1.0f};
 	
-	public TextButtonRenderer(String text, float textScale, int columns, int rows, float columnWidth, float rowHeight) {
-		super(columns, rows, columnWidth, rowHeight);
+	public TextButtonRenderer(Color activeColor, Color downColor, Color inactiveColor, Color selectedColor, String text, float textScale, int columns, int rows, float columnWidth, float rowHeight) {
+		super(activeColor, downColor, inactiveColor, selectedColor, columns, rows, columnWidth, rowHeight);
 		
 		this.text = text;
 		

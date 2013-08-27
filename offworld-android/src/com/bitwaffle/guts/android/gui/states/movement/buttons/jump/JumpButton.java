@@ -12,7 +12,15 @@ import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButtonRenderer;
  */
 public abstract class JumpButton extends MovementButton {
 	public JumpButton(float x, float y, float width, float height) {
-		super(new RectangleButtonRenderer("uparrow", true, new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f)), x, y, width, height);
+		super(
+			new RectangleButtonRenderer(
+				"uparrow", true,
+				new Color(0.5f, 0.5f, 0.5f, 0.75f),
+				new Color(0.5f, 0.5f, 0.5f, 1.0f),
+				new Color(0.75f, 0.75f, 0.75f, 1.0f),
+				new Color(0.5f, 0.5f, 0.5f, 0.8f)),
+			x, y,
+			width, height);
 	}
 
 	@Override

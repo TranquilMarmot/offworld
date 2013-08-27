@@ -10,11 +10,16 @@ import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButtonRenderer;
  */
 public class RightMoveRightButton extends MoveRightButton{
 	public RightMoveRightButton() {
-		super(  new RectangleButtonRenderer("leftarrow", true, new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f)),
-				Game.windowWidth - MovementGUIState.buttonWidth,
-				Game.windowHeight - MovementGUIState.buttonHeight, 
-				MovementGUIState.buttonWidth,
-				MovementGUIState.buttonHeight);
+		super( 
+			new RectangleButtonRenderer(
+				"leftarrow", true,
+				new Color(0.5f, 0.5f, 0.5f, 0.75f),
+				new Color(0.5f, 0.5f, 0.5f, 1.0f),
+				new Color(0.75f, 0.75f, 0.75f, 1.0f),
+				new Color(0.5f, 0.5f, 0.5f, 0.8f)),
+			Game.windowWidth - MovementGUIState.buttonWidth, Game.windowHeight - MovementGUIState.buttonHeight, 
+			MovementGUIState.buttonWidth, MovementGUIState.buttonHeight);
+		
 		((RectangleButtonRenderer)this.renderer).flipHorizontal = true;
 	}
 	

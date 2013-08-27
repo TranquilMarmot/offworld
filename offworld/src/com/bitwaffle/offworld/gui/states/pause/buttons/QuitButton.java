@@ -1,5 +1,6 @@
 package com.bitwaffle.offworld.gui.states.pause.buttons;
 
+import com.badlogic.gdx.graphics.Color;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.gui.elements.button.TextButtonRenderer;
 import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButton;
@@ -14,6 +15,10 @@ public class QuitButton extends RectangleButton {
 	public QuitButton(PauseState state) {
 		super(
 			new TextButtonRenderer(
+				new Color(0.5f, 0.5f, 0.5f, 0.75f), 
+				new Color(0.5f, 0.5f, 0.5f, 1.0f),
+				new Color(0.75f, 0.75f, 0.75f, 1.0f),
+				new Color(0.5f, 0.5f, 0.5f, 0.8f),
 				"Main Menu",
 				25.0f,
 				state.buttonRows(),

@@ -14,7 +14,18 @@ public class MapButton extends RectangleButton {
 	private boolean mapInGui;
 
 	public MapButton(Toolbox toolbox, float x, float y, float width, float height) {
-		super(new RectangleButtonRenderer("mapbutton", new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f)), x, y, width, height);
+		//super(new RectangleButtonRenderer("mapbutton", new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f)), x, y, width, height);
+		super(
+				new RectangleButtonRenderer(
+						"mapbutton", 
+						new Color(0.5f, 0.5f, 0.5f, 0.75f), 
+						new Color(0.5f, 0.5f, 0.5f, 1.0f),
+						new Color(0.75f, 0.75f, 0.75f, 1.0f),
+						new Color(0.5f, 0.5f, 0.5f, 0.8f)
+				), 
+				x, y, 
+				width, height
+		);
 		map = new Map(150.0f, 150.0f, toolbox);
 		mapInGui = false;
 	}

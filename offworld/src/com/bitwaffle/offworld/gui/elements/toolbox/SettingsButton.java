@@ -7,7 +7,18 @@ import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButtonRenderer;
 public class SettingsButton extends RectangleButton {
 
 	public SettingsButton(float x, float y, float width, float height) {
-		super(new RectangleButtonRenderer("settingsbutton", new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f)), x, y, width, height);
+		//super(new RectangleButtonRenderer("settingsbutton", new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f)), x, y, width, height);
+		super(
+				new RectangleButtonRenderer(
+						"settingsbutton", 
+						new Color(0.5f, 0.5f, 0.5f, 0.75f), 
+						new Color(0.5f, 0.5f, 0.5f, 1.0f),
+						new Color(0.75f, 0.75f, 0.75f, 1.0f),
+						new Color(0.5f, 0.5f, 0.5f, 0.8f)
+				), 
+				x, y, 
+				width, height
+		);
 
 	}
 

@@ -38,7 +38,18 @@ public class Toolbox extends RectangleButton {
 	
 	/** @param player Player this toolbox belongs to */
 	public Toolbox(Player player, float x, float y, float width, float height){
-		super(new RectangleButtonRenderer("toolboxbutton", new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f)), x, y, width, height);
+		//super(new RectangleButtonRenderer("toolboxbutton", new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f)), x, y, width, height);
+		super(
+				new RectangleButtonRenderer(
+						"toolboxbutton", 
+						new Color(0.5f, 0.5f, 0.5f, 0.75f), 
+						new Color(0.5f, 0.5f, 0.5f, 1.0f),
+						new Color(0.75f, 0.75f, 0.75f, 1.0f),
+						new Color(0.5f, 0.5f, 0.5f, 0.8f)
+				), 
+				x, y, 
+				width, height
+		);
 		this.player = player;
 		buttons = new ArrayList<Button>();
 		expanded = false;
