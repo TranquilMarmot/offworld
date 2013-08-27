@@ -1,6 +1,6 @@
-package com.bitwaffle.guts.gui.elements.button;
+package com.bitwaffle.guts.gui.elements.button.circle;
 
-import com.bitwaffle.guts.graphics.Renderer;
+import com.bitwaffle.guts.gui.elements.button.Button;
 
 /**
  * A circle-shaped button
@@ -11,13 +11,8 @@ public abstract class CircleButton extends Button{
 	/** Radius of circle button */
 	private float radius;
 	
-	// FIXME these are temporary
-	protected float[] active = { 0.0f, 1.0f, 0.0f, 1.0f };
-	protected float[] disabled = { 0.3f, 0.3f, 0.3f, 1.0f };
-	protected float[] down = { 0.0f, 0.0f, 1.0f, 1.0f };
-	
-	public CircleButton(float x, float y, float radius) {
-		super(x, y);
+	public CircleButton(CircleButtonRenderer renderer, float x, float y, float radius) {
+		super(renderer, x, y);
 		this.radius = radius;
 	}
 
@@ -39,18 +34,6 @@ public abstract class CircleButton extends Button{
 	
 	@Override
 	public float getHeight(){ return radius; }
-	
-	@Override
-	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical) {
-		if(this.isDown())
-			renderer.r2D.setColor(down);
-		else if(this.isActive())
-			renderer.r2D.setColor(active);
-		else
-			renderer.r2D.setColor(disabled);
-		
-		renderer.r2D.circle.render(this.radius, flipHorizontal, flipVertical);
-	}
 	
 	@Override
 	public void cleanup() { }

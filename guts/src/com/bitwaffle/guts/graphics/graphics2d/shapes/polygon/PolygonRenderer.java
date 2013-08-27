@@ -6,14 +6,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Renderer;
-import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
+import com.bitwaffle.guts.graphics.graphics2d.ObjectRenderer2D;
 
 /**
  * Renders a {@link Polygon}
  * 
  * @author TranquilMarmot
  */
-public class PolygonRenderer implements EntityRenderer2D {
+public class PolygonRenderer implements ObjectRenderer2D {
 	/** Polygon that this renderer is rendering */
 	private Polygon poly;
 	
@@ -42,11 +42,11 @@ public class PolygonRenderer implements EntityRenderer2D {
 	
 	
 	@Override
-	public void render(Renderer renderer, Object ent, boolean renderDebug) {
+	public void render(Renderer renderer, Object ent) {
 		int positionHandle = renderer.r2D.getVertexPositionHandle();
 		int texCoordHandle = renderer.r2D.getTexCoordHandle();
 		
-		if(renderDebug)
+		if(renderer.renderDebug)
 			renderDebug(renderer, ent);
 		else{
 			renderer.r2D.setColor(color);

@@ -1,6 +1,7 @@
 package com.bitwaffle.guts.gui.elements.button;
 
 import com.badlogic.gdx.math.Vector2;
+import com.bitwaffle.guts.graphics.graphics2d.ObjectRenderer2D;
 import com.bitwaffle.guts.gui.elements.GUIObject;
 
 /**
@@ -36,8 +37,8 @@ public abstract class Button extends GUIObject{
 	 * @param x X location of button
 	 * @param y Y location of button
 	 */
-	public Button(float x, float y) {
-		super(x, y);
+	public Button(ObjectRenderer2D renderer, float x, float y) {
+		super(renderer, x, y);
 		isActive = true;
 		isSelected = false;
 	}

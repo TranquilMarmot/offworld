@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.graphics3d.EntityRenderer3D;
+import com.bitwaffle.guts.graphics.graphics3d.ObjectRenderer3D;
 import com.bitwaffle.guts.graphics.graphics3d.model.ModelRenderer;
 import com.bitwaffle.offworld.entities.player.Inventory;
 import com.bitwaffle.offworld.interfaces.Money;
@@ -42,7 +42,7 @@ public class Diamond extends DynamicEntity implements Money {
 		Vector2 linVec = this.body.getLinearVelocity();
 		
 		// spin the diamond on the Y axis
-		((EntityRenderer3D)renderer).view.rotate(0.0f, 1.0f, 0.0f , (timeStep * (linVec.x + linVec.y)) * 10.0f);
+		((ObjectRenderer3D)renderer).view.rotate(0.0f, 1.0f, 0.0f , (timeStep * (linVec.x + linVec.y)) * 10.0f);
 	}
 	
 	@Override // from Item

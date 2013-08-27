@@ -2,10 +2,11 @@ package com.bitwaffle.offworld.gui.elements.toolbox;
 
 import com.badlogic.gdx.graphics.Color;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.gui.elements.button.TransparentRectangleButton;
+import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButton;
+import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButtonRenderer;
 import com.bitwaffle.offworld.gui.elements.map.Map;
 
-public class MapButton extends TransparentRectangleButton {
+public class MapButton extends RectangleButton {
 	
 	/** Actual map GUI object */
 	private Map map;
@@ -13,7 +14,7 @@ public class MapButton extends TransparentRectangleButton {
 	private boolean mapInGui;
 
 	public MapButton(Toolbox toolbox, float x, float y, float width, float height) {
-		super(x, y, width, height, "mapbutton", new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f));
+		super(new RectangleButtonRenderer("mapbutton", new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f)), x, y, width, height);
 		map = new Map(150.0f, 150.0f, toolbox);
 		mapInGui = false;
 	}
@@ -21,6 +22,7 @@ public class MapButton extends TransparentRectangleButton {
 	@Override
 	protected void onRelease() {
 		if(!mapInGui)
+			
 			Game.gui.addObject(map);
 		else
 			Game.gui.removeObject(map);

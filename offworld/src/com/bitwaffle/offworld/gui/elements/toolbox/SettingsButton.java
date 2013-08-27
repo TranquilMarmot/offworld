@@ -1,12 +1,13 @@
 package com.bitwaffle.offworld.gui.elements.toolbox;
 
 import com.badlogic.gdx.graphics.Color;
-import com.bitwaffle.guts.gui.elements.button.TransparentRectangleButton;
+import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButton;
+import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButtonRenderer;
 
-public class SettingsButton extends TransparentRectangleButton {
+public class SettingsButton extends RectangleButton {
 
 	public SettingsButton(float x, float y, float width, float height) {
-		super(x, y, width, height, "settingsbutton", new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f));
+		super(new RectangleButtonRenderer("settingsbutton", new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f)), x, y, width, height);
 
 	}
 

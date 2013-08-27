@@ -1,17 +1,16 @@
 package com.bitwaffle.guts.android.gui.states.movement.buttons.right;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Color;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.android.gui.states.movement.MovementGUIState;
-import com.bitwaffle.guts.graphics.Renderer;
+import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButtonRenderer;
 
 /**
  * Button to move right that stays on the left side of the screen
  */
 public class LeftMoveRightButton extends MoveRightButton{
 	public LeftMoveRightButton() {
-		super(
+		super(  new RectangleButtonRenderer("rightarrow", true, new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f)),
 				MovementGUIState.buttonWidth * 3.0f,
 				Game.windowHeight - MovementGUIState.buttonHeight,
 				MovementGUIState.buttonWidth,
@@ -25,6 +24,7 @@ public class LeftMoveRightButton extends MoveRightButton{
 		this.y = Game.windowHeight - MovementGUIState.buttonHeight;
 	}
 	
+	/*
 	@Override
 	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
 		renderer.r2D.program.setUniform("vColor", 1.0f, 1.0f, 1.0f, this.isDown() ? MovementGUIState.pressedAlpha : MovementGUIState.activeAlpha);
@@ -33,6 +33,7 @@ public class LeftMoveRightButton extends MoveRightButton{
 		Game.resources.textures.getSubImage("rightarrow").render(renderer, this.width, this.height);
 		Gdx.gl20.glDisable(GL20.GL_BLEND);
 	}
+	*/
 
 	@Override
 	protected void onSelect() {

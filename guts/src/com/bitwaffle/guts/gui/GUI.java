@@ -57,6 +57,7 @@ public abstract class GUI {
 		buttonsToAdd = new Stack<Button>();
 		
 		console = new Console();
+		this.addObject(console);
 		
 		stateStack = new Stack<GUIState>();
 	}
@@ -71,7 +72,6 @@ public abstract class GUI {
 		
 		updateButtons(timeStep);
 		updateObjects(timeStep);
-		console.update(timeStep);
 	}
 	
 	/**
@@ -159,7 +159,6 @@ public abstract class GUI {
 	public void render(Renderer renderer) {
 		renderObjects(getObjectIterator(), renderer);
 		renderObjects(getButtonIterator(), renderer);
-		console.render(renderer, false, false);
 	}
 	
 	/** Render all objects in an iterator */
@@ -180,8 +179,9 @@ public abstract class GUI {
 	public void renderObject(GUIObject obj, Renderer renderer){
 		renderer.modelview.idt();
 		renderer.modelview.translate(obj.x, obj.y, 0.0f);
+		renderer.modelview.rotate(0.0f, 0.0f, 1.0f, obj.angle);
 		renderer.r2D.sendMatrixToShader();
-		obj.render(renderer, false, false);
+		obj.renderer.render(renderer, obj);
 	}
 	
 	/**

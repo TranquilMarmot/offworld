@@ -7,7 +7,6 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.net.NetConsoleCommands;
 import com.bitwaffle.guts.physics.Entities.EntityHashMap;
-import com.bitwaffle.guts.graphics.Renderer;
 
 
 /**
@@ -345,11 +344,11 @@ class DebugCommand implements Command{
 
 	@Override
 	public void issue(StringTokenizer toker) {
-		Renderer.renderDebug = !Renderer.renderDebug;
+		Game.renderer.renderDebug = !Game.renderer.renderDebug;
 	}
 
 	@Override
 	public void help() {
-		Game.out.println("Debugging is " + (Renderer.renderDebug ? "enabled" : "disabled"));
+		Game.out.println("Debugging is " + (Game.renderer.renderDebug ? "enabled" : "disabled"));
 	}
 }

@@ -1,6 +1,7 @@
 package com.bitwaffle.guts.graphics.graphics2d;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
@@ -72,6 +73,9 @@ public class Render2D {
 	
 	/** @return Handle for vertex texture coordinate shader attribute */
 	public int getTexCoordHandle(){ return program.getAttribLocation(TEXCOORD_ATTRIB); }
+	
+	/** @param color Color to set renderer to draw in */
+	public void setColor(Color color){ setColor(color.r, color.g, color.b, color.a); };
 	
 	/** @param color Color to set renderer to draw in, must have four floats [r,g,b,a] */
 	public void setColor(float[] color){ setColor(color[0], color[1], color[2], color[3]); }

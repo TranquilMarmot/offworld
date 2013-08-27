@@ -8,7 +8,7 @@ import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
 import com.bitwaffle.guts.entity.dynamic.particles.EmitterSettings;
 import com.bitwaffle.guts.entity.dynamic.particles.Particle;
 import com.bitwaffle.guts.graphics.Renderer;
-import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
+import com.bitwaffle.guts.graphics.graphics2d.ObjectRenderer2D;
 
 public class JetpackEmitterSettings extends EmitterSettings {
 
@@ -33,16 +33,16 @@ public class JetpackEmitterSettings extends EmitterSettings {
 			
 			super.particleForce = new Vector2(0.5f, 0.5f);
 			
-			super.particleRenderer = new EntityRenderer2D(){
+			super.particleRenderer = new ObjectRenderer2D(){
 
 				@Override
-				public void render(Renderer renderer, Object ent, boolean renderDebug) {
+				public void render(Renderer renderer, Object ent) {
 					Gdx.gl20.glEnable(GL20.GL_BLEND);
 					Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 					
 					Particle p = (Particle)ent;
 					
-					if(renderDebug)
+					if(renderer.renderDebug)
 						renderDebug(renderer, p);
 					else{
 						

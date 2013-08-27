@@ -1,16 +1,15 @@
 package com.bitwaffle.offworld.gui.states.options.buttons;
 
-import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.gui.elements.button.BooleanButton;
-import com.bitwaffle.guts.gui.elements.button.CircleButton;
+import com.bitwaffle.guts.gui.elements.button.circle.CircleButton;
+import com.bitwaffle.guts.gui.elements.button.circle.CircleButtonRenderer;
 
 public class FullScreenButton extends CircleButton implements BooleanButton{
 	
 	boolean isFullScreen;
 
 	public FullScreenButton(float x, float y, float radius) {
-		super(x, y, radius);
+		super(new CircleButtonRenderer("circlebutton"), x, y, radius);
 		
 		
 	}
@@ -49,13 +48,4 @@ public class FullScreenButton extends CircleButton implements BooleanButton{
 	@Override
 	protected void onUnselect() {
 	}
-
-	@Override
-	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
-		renderer.r2D.setColor(0.3f, 1.0f, 0.3f, 0.5f);
-		Game.resources.textures.bindTexture("circlebutton");
-		renderer.r2D.circle.render(this.getRadius(), flipHorizontal, flipVertical);
-	}
-
-
 }

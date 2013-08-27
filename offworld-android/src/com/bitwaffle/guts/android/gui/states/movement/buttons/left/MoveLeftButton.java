@@ -4,13 +4,14 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.android.gui.states.movement.buttons.MovementButton;
+import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButtonRenderer;
 
 /**
  * Button to move left
  */
 public abstract class MoveLeftButton extends MovementButton {
-	public MoveLeftButton(float x, float y, float width, float height) {
-		super(x, y, width, height);
+	public MoveLeftButton(RectangleButtonRenderer renderer, float x, float y, float width, float height) {
+		super(renderer, x, y, width, height);
 	}
 
 	@Override

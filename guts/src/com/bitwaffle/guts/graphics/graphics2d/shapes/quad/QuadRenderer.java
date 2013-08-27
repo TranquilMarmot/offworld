@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Renderer;
-import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
+import com.bitwaffle.guts.graphics.graphics2d.ObjectRenderer2D;
 import com.bitwaffle.guts.resources.manager.TextureManager;
 
 /**
@@ -12,7 +12,7 @@ import com.bitwaffle.guts.resources.manager.TextureManager;
  * 
  * @author TranquilMarmot
  */
-public class QuadRenderer implements EntityRenderer2D {
+public class QuadRenderer implements ObjectRenderer2D {
 	/** Name of texture to use for this quad */
 	private String textureName;
 	
@@ -59,8 +59,8 @@ public class QuadRenderer implements EntityRenderer2D {
 	}
 
 	@Override
-	public void render(Renderer renderer, Object ent, boolean renderDebug) {
-		if(renderDebug){
+	public void render(Renderer renderer, Object ent) {
+		if(renderer.renderDebug){
 			// only render is told to render in debug mode
 			if(hasDebug)
 				renderDebug(renderer, ent);

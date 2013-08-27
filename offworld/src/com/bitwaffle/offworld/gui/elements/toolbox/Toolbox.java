@@ -6,7 +6,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.gui.elements.button.Button;
-import com.bitwaffle.guts.gui.elements.button.TransparentRectangleButton;
+import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButton;
+import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButtonRenderer;
 import com.bitwaffle.offworld.entities.player.Player;
 
 /**
@@ -14,7 +15,7 @@ import com.bitwaffle.offworld.entities.player.Player;
  * 
  * @author TranquilMarmot
  */
-public class Toolbox extends TransparentRectangleButton {
+public class Toolbox extends RectangleButton {
 	private static String LOGTAG = "Toolbox";
 	
 	private static float
@@ -37,7 +38,7 @@ public class Toolbox extends TransparentRectangleButton {
 	
 	/** @param player Player this toolbox belongs to */
 	public Toolbox(Player player, float x, float y, float width, float height){
-		super(x, y, width, height, "toolboxbutton", new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f));
+		super(new RectangleButtonRenderer("toolboxbutton", new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f)), x, y, width, height);
 		this.player = player;
 		buttons = new ArrayList<Button>();
 		expanded = false;

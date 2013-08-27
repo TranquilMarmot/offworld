@@ -1,14 +1,18 @@
 package com.bitwaffle.guts.gui.elements.button;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.graphics.graphics2d.font.BitmapFont;
+import com.bitwaffle.guts.gui.elements.GUIObject;
+import com.bitwaffle.guts.gui.elements.button.rectangle.TiledRectangleRenderer;
 
 /**
  * A button that displays text
  * 
  * @author TranquilMarmot
  */
-public abstract class TextButton extends TiledButton {
+public class TextButtonRenderer extends TiledRectangleRenderer {
 	/** Text being displayed on button */
 	private String text;
 	
@@ -18,12 +22,12 @@ public abstract class TextButton extends TiledButton {
 	/** Color to render text in (black by default) */
 	private float[] textColor = {0.0f, 0.0f, 0.0f, 1.0f};
 	
-	public TextButton(String text, float textScale, float x, float y, int rows, int columns, float rowWidth, float columnHeight) {
-		super(x, y, rows, columns, rowWidth, columnHeight);
+	public TextButtonRenderer(String text, float textScale, int columns, int rows, float columnWidth, float rowHeight) {
+		super(columns, rows, columnWidth, rowHeight);
 		
 		this.text = text;
 		
-		this.textScale = (width + height) / (10.0f * textScale);
+		this.textScale = (this.getWidth() + this.getHeight()) / (10.0f * textScale);
 	}
 	
 	public void setTextColor(float r, float g, float b, float a){
@@ -38,16 +42,20 @@ public abstract class TextButton extends TiledButton {
 	}
 	
 	@Override
-	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
-		renderBackground(renderer, flipHorizontal, flipVertical);
-		renderText(renderer, flipHorizontal, flipVertical);
+	public void render(Renderer renderer, Object ent){
+		Gdx.gl20.glEnable(GL20.GL_BLEND);
+		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_SRC_COLOR);
+		renderBackground(renderer, ent);
+		renderText(renderer, ent);
+		Gdx.gl20.glDisable(GL20.GL_BLEND);
 	}
 	
-	public void renderBackground(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
-		super.render(renderer, flipHorizontal, flipVertical);
+	public void renderBackground(Renderer renderer, Object ent){
+		super.render(renderer, ent);
 	}
 	
-	public void renderText(Renderer renderer, boolean flipHorizontal, boolean flipVertical){
+	public void renderText(Renderer renderer, Object ent){
+		GUIObject obj = (GUIObject) ent;
 		float stringWidth = renderer.r2D.font.stringWidth(text, textScale) - (BitmapFont.FONT_GLYPH_WIDTH * textScale);
 		float stringHeight = renderer.r2D.font.stringHeight(text, textScale);
 		
@@ -58,7 +66,7 @@ public abstract class TextButton extends TiledButton {
 			stringHeight -= ((BitmapFont.FONT_GLYPH_HEIGHT * textScale) * 2.0f);
 		
 		
-		renderer.r2D.font.drawString(text, renderer, x - (stringWidth / 2.0f), y - (stringHeight / 2.0f), textScale, textColor);
+		renderer.r2D.font.drawString(text, renderer, obj.x - (stringWidth / 2.0f), obj.y - (stringHeight / 2.0f), textScale, textColor);
 	}
 
 }

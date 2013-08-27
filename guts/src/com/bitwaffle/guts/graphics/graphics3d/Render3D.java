@@ -148,7 +148,7 @@ public class Render3D {
 		Vector2 entLoc = ent.getLocation();
 		float entAngle = ent.getAngle();
 		
-		EntityRenderer3D rend = (EntityRenderer3D) ent.renderer;
+		ObjectRenderer3D rend = (ObjectRenderer3D) ent.renderer;
 		
 		renderer.modelview.idt();
 		translateModelviewToCamera();

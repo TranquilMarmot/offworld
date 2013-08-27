@@ -1,6 +1,7 @@
 package com.bitwaffle.guts.android.gui.states.movement.buttons;
 
-import com.bitwaffle.guts.gui.elements.button.RectangleButton;
+import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButton;
+import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButtonRenderer;
 import com.bitwaffle.offworld.OffworldGame;
 
 /**
@@ -9,8 +10,8 @@ import com.bitwaffle.offworld.OffworldGame;
  * @author TranquilMarmot
  */
 public abstract class MovementButton extends RectangleButton {
-	public MovementButton(float x, float y, float width, float height) {
-		super(x, y, width, height);
+	public MovementButton(RectangleButtonRenderer renderer, float x, float y, float width, float height) {
+		super(renderer, x, y, width, height);
 	}
 	
 	@Override

@@ -6,10 +6,7 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
-import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.graphics.graphics2d.font.BitmapFont;
 import com.bitwaffle.guts.gui.elements.GUIObject;
 
@@ -45,11 +42,6 @@ public class Console extends GUIObject{
 	
 	/** Whether or not the console is currently on */
 	private boolean consoleOn = false;
-
-	/** Height and width of the console, in characters (multiply by character size to get total console size) */
-	private int numRows, numCols;
-	/** How big the console gets rendered (1.0 = normal size, 0.5 = half, 2.0 = twice, etc.) */
-	private float scale = 0.5f;
 	
 	/** The text currently being typed into the console */
 	private String input;
@@ -107,6 +99,12 @@ public class Console extends GUIObject{
 	/** Alpha of box behind input */
 	private float inputBoxAlpha = 0.4f;
 	
+	/** Height and width of the console, in characters (multiply by character size to get total console size) */
+	private int numRows, numCols;
+	
+	/** How big the console gets rendered (1.0 = normal size, 0.5 = half, 2.0 = twice, etc.) */
+	private float scale = 0.5f;
+	
 	/**
 	 * Default console constructor
 	 */
@@ -127,7 +125,7 @@ public class Console extends GUIObject{
 	 *            window height expanding up
 	 */
 	public Console(float x, float y, int numCols, int numRows) {
-		super(x, y);
+		super(new ConsoleRenderer(), x, y);
 		this.x = x;
 		this.y = y;
 		this.numCols = numCols;
@@ -150,6 +148,18 @@ public class Console extends GUIObject{
 		
 		out = new PrintStream(outputStream);
 	}
+	
+	public boolean consoleOn(){ return consoleOn; }
+	public float consoleAlpha(){ return consoleAlpha; }
+	public float textAlpha(){ return textAlpha; }
+	public ArrayList<String> text(){ return text; }
+	public int numRows(){ return numRows; }
+	public int numCols(){ return numCols; }
+	public int currentScroll(){ return scroll; }
+	public float scale(){ return scale; }
+	public String input(){ return input; }
+	public boolean blink(){ return blink; }
+	public float inputBoxAlpha(){ return inputBoxAlpha; }
 	
 	/** Update the console */
 	public void update(float timeStep) {
@@ -468,143 +478,6 @@ public class Console extends GUIObject{
 			if (blinkCount <= 0)
 				blink = true;
 		}
-	}
-
-	/**
-	 * Draws the console
-	 * 
-	 * @param renderer
-	 *             What to render the console with
-	 * @param flipHorizontal Inherited from GUIObject (ignored)
-	 * @param flipVertical Inherited from GUIObject (ignored)
-	 */
-	public void render(Renderer renderer, boolean flipHorizontal, boolean flipVertical) {
-		if(this.isVisible()){
-			// where to draw the console (x stays at its given location)
-			//float drawY = (Game.windowHeight) + y;
-			//float drawX = (BitmapFont.FONT_GLYPH_WIDTH  * scale) + x + 2.5f;
-
-			Gdx.gl20.glEnable(GL20.GL_BLEND);
-			
-			if(this.consoleAlpha > 0.0f)
-				drawBackgroundBox(renderer);
-			
-			if (consoleOn){
-				drawInputBox(renderer);
-				renderInput(renderer);
-			}
-			
-			if(this.textAlpha > 0.0f)
-				renderScrollback(renderer);
-			
-			Gdx.gl20.glDisable(GL20.GL_BLEND);	
-		}
-	}
-	
-	/**
-	 * Renders the scrollback text
-	 * @param renderer
-	 *             Renderer to use to render text
-	 * @param drawY
-	 *             Y location to draw everything at
-	 */
-	private void renderScrollback(Renderer renderer){
-		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-
-		// figure out how many lines to print out
-		int stringsToPrint = text.size() - (numRows + 1);
-		// avoid any possibility of out of bounds (the for loop is kind of
-		// weird. if stringsToPrint == -1, then it doesn't print out any
-		// lines)
-		if (stringsToPrint < 0)
-			stringsToPrint = -1;
-		
-		float[] textColor = new float[]{0.0f, 1.0f, 0.0f, this.textAlpha};
-
-		// print out however many strings, going backwards
-		// (we want the most recent strings to be printed first)
-		for (int i = (text.size() - 1) - scroll;
-		         i > stringsToPrint - scroll && i >= 0;
-		         i--){
-
-			// which line we're at in the console itself
-			int line = text.size() - (i + scroll);
-
-			// draw the string, going up on the y axis by how tall each line is
-			renderer.r2D.font.drawString(text.get(i), renderer, this.x, this.y - ((BitmapFont.FONT_GLYPH_HEIGHT * 2.0f) * scale * line), scale, textColor);
-		}
-	}
-	
-	/**
-	 * Renders the input text, adding a '>' and a '_' is blink is true
-	 * @param renderer
-	 *             Renderer to draw text with
-	 * @param drawX
-	 *             X location to draw text at
-	 * @param drawY
-	 *             Y location to draw text at
-	 */
-	private void renderInput(Renderer renderer){
-		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		// draw the blinking cursor
-		String toPrint = "> " + input;
-		if (blink)
-			toPrint += "_";
-		renderer.r2D.font.drawString(toPrint, renderer, this.x , this.y , scale, new float[]{0.0f, 1.0f, 0.0f, this.textAlpha});
-	}
-	
-	/**
-	 * Draws a box behind the input text
-	 * @param renderer
-	 *             Renderer to draw box with
-	 */
-	private void drawInputBox(Renderer renderer){
-		Game.resources.textures.bindTexture("blank");
-		
-		float[] color = { 0.0f, 0.0f, 0.0f, inputBoxAlpha };
-		renderer.r2D.setColor(color);
-		
-		float boxWidth = (numCols * BitmapFont.FONT_GLYPH_WIDTH * scale) * 2.0f;
-		float boxHeight = (BitmapFont.FONT_GLYPH_HEIGHT * scale) * 2.0f;
-		float boxX = this.x;
-		// add one height-sized row to location to offset for input row
-		float boxY = this.y - (boxHeight / 2.0f) /*(Game.windowHeight - (boxHeight * scale))*/;
-		
-		// translate and scale modelview to be behind text
-		renderer.modelview.idt();
-		renderer.modelview.translate(boxX, boxY, 0.0f);
-		renderer.modelview.scale(scale, scale, 1.0f);
-		renderer.r2D.sendMatrixToShader();
-		
-		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		renderer.r2D.quad.render(boxWidth, boxHeight);
-	}
-	
-	/**
-	 * Draws a box behind all the text
-	 * @param renderer
-	 *             Renderer to draw box with
-	 */
-	private void drawBackgroundBox(Renderer renderer){
-		Game.resources.textures.bindTexture("blank");
-		
-		float[] color = { 0.0f, 0.0f, 0.0f, consoleAlpha };
-		renderer.r2D.setColor(color);
-		
-		float boxWidth = (numCols * BitmapFont.FONT_GLYPH_WIDTH * scale) * 2.0f;
-		float boxHeight = (numRows * BitmapFont.FONT_GLYPH_HEIGHT * scale) * 2.0f;
-		float boxX = this.x;
-		// add one height-sized row to location to offset for input row
-		float boxY = this.y - (boxHeight / 2.0f) - ((BitmapFont.FONT_GLYPH_HEIGHT * scale) * 2);
-		
-		// translate and scale modelview to be behind text
-		renderer.modelview.idt();
-		renderer.modelview.translate(boxX, boxY, 0.0f);
-		renderer.modelview.scale(scale, scale, 1.0f);
-		renderer.r2D.sendMatrixToShader();
-		
-		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		renderer.r2D.quad.render(boxWidth, boxHeight);
 	}
 
 	@Override

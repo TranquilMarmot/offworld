@@ -4,7 +4,8 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.passive.GLSLSandbox;
 import com.bitwaffle.guts.gui.GUI;
 import com.bitwaffle.guts.gui.elements.button.Button;
-import com.bitwaffle.guts.gui.elements.button.TextButton;
+import com.bitwaffle.guts.gui.elements.button.TextButtonRenderer;
+import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButton;
 import com.bitwaffle.guts.gui.states.GUIState;
 import com.bitwaffle.offworld.gui.states.GUIStates;
 import com.bitwaffle.offworld.gui.states.options.buttons.FullScreenButton;
@@ -15,7 +16,7 @@ public class OptionsState extends GUIState {
 	
 	FullScreenButton fullscreenButton;
 	
-	TextButton backButton;
+	RectangleButton backButton;
 	
 	public OptionsState(GUI gui) {
 		super(gui);
@@ -25,14 +26,14 @@ public class OptionsState extends GUIState {
 		
 		String text = "Back";
 		float textScale  = 25.0f;
-		int rows = 3;
-		int columns = 2;
-		float rowWidth = 25.0f;
-		float columnHeight = 25.0f;
-		float x = (rows * rowWidth) + 5.0f; 
-		float y = Game.windowHeight - ((columns * columnHeight) * 2);
+		int columns = 3;
+		int rows = 2;
+		float columnWidth = 25.0f;
+		float rowHeight = 25.0f;
+		float x = (columns * columnWidth) + 5.0f; 
+		float y = Game.windowHeight - ((rows * rowHeight) * 2);
 		
-		backButton = new TextButton(text, textScale, x, y, rows, columns, rowWidth, columnHeight){
+		backButton = new RectangleButton(new TextButtonRenderer(text, textScale, rows, columns, columnWidth, rowHeight), x, y, columns * columnWidth, rows * rowHeight){
 			@Override
 			protected void onRelease() {
 				Game.gui.setCurrentState(GUIStates.TITLESCREEN.state);

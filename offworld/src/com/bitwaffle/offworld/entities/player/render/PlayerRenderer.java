@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.graphics.Renderer;
-import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
+import com.bitwaffle.guts.graphics.graphics2d.ObjectRenderer2D;
 import com.bitwaffle.offworld.entities.player.JumpSensor;
 import com.bitwaffle.offworld.entities.player.Player;
 
@@ -15,7 +15,7 @@ import com.bitwaffle.offworld.entities.player.Player;
  * 
  * @author TranquilMarmot
  */
-public class PlayerRenderer implements EntityRenderer2D {
+public class PlayerRenderer implements ObjectRenderer2D {
 	private static float[] color = new float[]{1.0f, 1.0f, 1.0f, 1.0f};
 	private static Matrix4 tempmat = new Matrix4();
 	
@@ -33,10 +33,11 @@ public class PlayerRenderer implements EntityRenderer2D {
 	}
 	
 	@Override
-	public void render(Renderer renderer, Object ent, boolean renderDebug){
+	public void render(Renderer renderer, Object ent){
 		Player player = (Player) ent;
+		jetpackBar.jetpack = player.jetpack;
 
-		if(renderDebug)
+		if(renderer.renderDebug)
 			renderDebug(renderer, ent);
 		else{
 			renderer.r2D.setColor(color);
@@ -98,12 +99,15 @@ public class PlayerRenderer implements EntityRenderer2D {
 			renderer.r2D.sendMatrixToShader();
 			healthBar.setPercent(player.currentHealth());
 			healthBar.update(1.0f / Game.currentFPS);
-			healthBar.render(renderer, false, false);
+			healthBar.renderer.render(renderer, healthBar);
 			renderer.modelview.set(tempmat);
 		}
 		
+		jetpackBar.update(1.0f / 60.0f);
 		renderer.modelview.set(tempmat);
-		jetpackBar.render(renderer, player.jetpack);
+		renderer.modelview.translate(0.0f, jetpackBar.yOffset, 0.0f);
+		renderer.modelview.scale(jetpackBar.scale, jetpackBar.scale, 1.0f);
+		jetpackBar.renderer.render(renderer, jetpackBar);
 	}
 	
 	public void renderDebug(Renderer renderer, Object ent){

@@ -5,14 +5,14 @@ import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.dynamic.CircleEntity;
 import com.bitwaffle.guts.graphics.Renderer;
-import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
+import com.bitwaffle.guts.graphics.graphics2d.ObjectRenderer2D;
 
 /**
  * Renders an {@link CircleEntity}
  * 
  * @author TranquilMarmot
  */
-public class CircleRenderer implements EntityRenderer2D {
+public class CircleRenderer implements ObjectRenderer2D {
 	/** Color to render at, rgba */
 	private float[] color;
 	
@@ -24,9 +24,9 @@ public class CircleRenderer implements EntityRenderer2D {
 		this.color = color;
 	}
 	
-	public void render(Renderer renderer, Object ent, boolean renderDebug) {
+	public void render(Renderer renderer, Object ent) {
 		CircleEntity circ = (CircleEntity) ent;
-		if(renderDebug)
+		if(renderer.renderDebug)
 			renderDebug(renderer, circ);
 		else{
 			renderer.r2D.setColor(color);

@@ -2,7 +2,7 @@ package com.bitwaffle.guts.entity.dynamic;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
+import com.bitwaffle.guts.graphics.graphics2d.ObjectRenderer2D;
 
 /**
  * A circle-shaped {@link DynamicEntity}
@@ -25,7 +25,7 @@ public class CircleEntity extends DynamicEntity {
 	/**
 	 * @param color Color to use when rendering entity, 4 floats, rgba
 	 */
-	public CircleEntity(EntityRenderer2D renderer, int layer, float radius, BodyDef bodyDef, float density, float[] color){
+	public CircleEntity(ObjectRenderer2D renderer, int layer, float radius, BodyDef bodyDef, float density, float[] color){
 		super(renderer, layer, bodyDef, getCircleShape(radius), density);
 		this.radius = radius;
 		this.color = color;

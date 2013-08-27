@@ -10,7 +10,7 @@ import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.graphics.camera.Camera;
 import com.bitwaffle.guts.graphics.graphics2d.Render2D;
-import com.bitwaffle.guts.graphics.graphics3d.EntityRenderer3D;
+import com.bitwaffle.guts.graphics.graphics3d.ObjectRenderer3D;
 import com.bitwaffle.guts.graphics.graphics3d.Render3D;
 
 /**
@@ -37,7 +37,7 @@ public class Renderer {
 	public Camera camera;
 	
 	/** Whether or not debug rendering mode is enabled */
-	public static boolean renderDebug = false;
+	public boolean renderDebug = false;
 	
 	public Renderer(){
 		Gdx.gl.glViewport(0, 0, Game.renderWidth, Game.renderHeight);
@@ -109,16 +109,16 @@ public class Renderer {
 				
 				if(ent != null && ent.renderer != null){
 					// 3D renderer
-					if(ent.renderer instanceof EntityRenderer3D){
+					if(ent.renderer instanceof ObjectRenderer3D){
 						switchMode(RenderMode.r3D);
 						r3D.prepareToRenderEntity(ent);
-						ent.renderer.render(this, ent, renderDebug);
+						ent.renderer.render(this, ent);
 						
 					// 2D renderer
 					} else {
 						switchMode(RenderMode.r2DWorld);
 						r2D.prepareToRenderEntity(ent);
-						ent.renderer.render(this, ent, renderDebug);
+						ent.renderer.render(this, ent);
 					}
 				}
 			} catch(ConcurrentModificationException e){

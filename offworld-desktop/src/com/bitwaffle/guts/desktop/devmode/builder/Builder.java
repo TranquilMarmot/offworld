@@ -13,7 +13,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.desktop.devmode.DevModeDisplay;
-import com.bitwaffle.guts.graphics.Renderer;
 
 public class Builder {
 	private static int[] koonami = new int[]{
@@ -77,7 +76,7 @@ public class Builder {
 		debugButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				Renderer.renderDebug = !Renderer.renderDebug;
+				Game.renderer.renderDebug = !Game.renderer.renderDebug;
 			}
 		});
 		leftTools.add(debugButton);

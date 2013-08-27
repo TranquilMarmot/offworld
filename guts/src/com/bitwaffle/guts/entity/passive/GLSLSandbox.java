@@ -12,7 +12,7 @@ import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.graphics.Renderer;
 import com.bitwaffle.guts.graphics.glsl.GLSLProgram;
 import com.bitwaffle.guts.graphics.glsl.GLSLShader;
-import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
+import com.bitwaffle.guts.graphics.graphics2d.ObjectRenderer2D;
 
 /**
  * This is a port of a Javascript/HTML5/WebGL sandbox that can be found
@@ -57,7 +57,7 @@ public class GLSLSandbox extends Entity {
 	@Override
 	public void cleanup() {}
 	
-	private class SandboxRenderer implements EntityRenderer2D{
+	private class SandboxRenderer implements ObjectRenderer2D{
 		/** Number of coordinates per vertex */
 		private static final int COORDS_PER_VERTEX = 3;
 		
@@ -86,7 +86,7 @@ public class GLSLSandbox extends Entity {
 		}
 		
 		@Override
-		public void render(Renderer renderer, Object ent, boolean renderDebug) {
+		public void render(Renderer renderer, Object ent) {
 			// use program and set uniforms
 			program.use();
 			program.setUniform("time", time);

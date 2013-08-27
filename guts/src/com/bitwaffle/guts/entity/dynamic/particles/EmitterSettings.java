@@ -2,7 +2,7 @@ package com.bitwaffle.guts.entity.dynamic.particles;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
+import com.bitwaffle.guts.graphics.graphics2d.ObjectRenderer2D;
 
 /**
  * Settings for a particle emitter
@@ -44,7 +44,7 @@ public abstract class EmitterSettings {
 	public Vector2 particleForce;
 	
 	/** Renderer to use for each particle */
-	public EntityRenderer2D particleRenderer;
+	public ObjectRenderer2D particleRenderer;
 	
 	/** Called by the emitter after every particle is made, to allow for changing settings */
 	protected abstract void onCreateParticle();

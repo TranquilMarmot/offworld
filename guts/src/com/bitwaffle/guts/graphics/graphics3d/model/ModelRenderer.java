@@ -9,14 +9,14 @@ import com.badlogic.gdx.graphics.GL20;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.graphics.Renderer;
-import com.bitwaffle.guts.graphics.graphics3d.EntityRenderer3D;
+import com.bitwaffle.guts.graphics.graphics3d.ObjectRenderer3D;
 
 /**
  * Renders a {@link Model}
  * 
  * @author TranquilMarmot
  */
-public class ModelRenderer extends EntityRenderer3D {
+public class ModelRenderer extends ObjectRenderer3D {
 	/** Info on coordinates */
 	private static final int COORDS_PER_VERTEX = 3, COORDS_PER_TEXCOORD = 2;
 	
@@ -41,9 +41,9 @@ public class ModelRenderer extends EntityRenderer3D {
 	}
 	
 	@Override
-	public void render(Renderer renderer, Object ent, boolean renderDebug){
+	public void render(Renderer renderer, Object ent){
 		// debug rendering data comes from model polygon
-		if(modelPoly != null && renderDebug){
+		if(modelPoly != null && renderer.renderDebug){
 			renderDebug(renderer, ent);
 		} else{
 			int positionHandle = renderer.r3D.getVertexPositionHandle();

@@ -2,7 +2,7 @@ package com.bitwaffle.guts.entity;
 
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.entity.dynamic.DynamicEntity;
-import com.bitwaffle.guts.graphics.graphics2d.EntityRenderer2D;
+import com.bitwaffle.guts.graphics.graphics2d.ObjectRenderer2D;
 import com.bitwaffle.guts.physics.Entities;
 
 /**
@@ -16,7 +16,7 @@ import com.bitwaffle.guts.physics.Entities;
  */
 public class Entity {
 	/** EntityRenderer used to draw this entity */
-	public EntityRenderer2D renderer;
+	public ObjectRenderer2D renderer;
 	
 	/** Current location of entity */
 	protected Vector2 location;
@@ -38,19 +38,19 @@ public class Entity {
 		angle = 0.0f;
 	}
 	
-	public Entity(EntityRenderer2D renderer, int layer){
+	public Entity(ObjectRenderer2D renderer, int layer){
 		this.renderer = renderer;
 		this.layer = layer;
 		location = new Vector2();
 		angle = 0.0f;
 	}
 	
-	public Entity(EntityRenderer2D renderer, int layer, Vector2 location){
+	public Entity(ObjectRenderer2D renderer, int layer, Vector2 location){
 		this(renderer, layer);
 		this.location = location;
 	}
 	
-	public Entity(EntityRenderer2D renderer, int layer, Vector2 location, float angle){
+	public Entity(ObjectRenderer2D renderer, int layer, Vector2 location, float angle){
 		this(renderer, layer, location);
 		this.angle = angle;
 	}
