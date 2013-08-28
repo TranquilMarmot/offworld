@@ -26,7 +26,7 @@ public class MapButton extends RectangleButton {
 				x, y, 
 				width, height
 		);
-		map = new Map(150.0f, 150.0f, toolbox);
+		map = new Map(toolbox);
 		mapInGui = false;
 	}
 

@@ -31,6 +31,9 @@ public class MainActivity extends AndroidApplication {
         Game.windowWidth = displayMetrics.widthPixels;
         Game.windowHeight = displayMetrics.heightPixels;
     	Game.aspect = (float)  Game.windowWidth /  (float) Game.windowHeight;
+    	Game.renderWidth = displayMetrics.widthPixels;
+    	Game.renderHeight = displayMetrics.heightPixels;
+    	Game.renderAspect = (float)  Game.renderWidth /  (float) Game.renderHeight;
     	
     	// set size of buttons FIXME this should totally be elsewhere
     	MovementGUIState.buttonWidth = 37.0f *  displayMetrics.scaledDensity;

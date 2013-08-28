@@ -16,7 +16,7 @@ import com.bitwaffle.guts.util.MathHelper;
  */
 public class Camera extends Entity {	
 	/** Initial values for camera */
-	private static final float DEFAULT_CAMX = 86.1816f * 3.0f, DEFAULT_CAMY = 24.6180f * 3.0f, DEFAULT_CAMZ = 0.03f;
+	private static final float DEFAULT_CAMX = 86.1816f * 3.0f, DEFAULT_CAMY = 24.6180f * 3.0f;
 	
 	/** Current camera mode */
 	private CameraMode currentMode = null;
@@ -50,7 +50,6 @@ public class Camera extends Entity {
 			public void update(float timeStep) {
 			}
 		};
-		this.setZoom(DEFAULT_CAMZ);
 	}
 	
 	@Override
