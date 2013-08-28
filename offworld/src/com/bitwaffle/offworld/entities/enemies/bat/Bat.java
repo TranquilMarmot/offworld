@@ -59,7 +59,7 @@ public class Bat extends DynamicEntity implements Health {
 	public void init(World world){
 		super.init(world);
 		
-		float radius = 15.0f;
+		float radius = 7.0f;
 		sleepState = new SleepAIState(this, radius);
 		ai.setState(sleepState);
 	}

@@ -3,6 +3,8 @@ package com.bitwaffle.offworld.gui.elements.map;
 import java.util.Iterator;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
@@ -14,6 +16,7 @@ import com.bitwaffle.offworld.entities.player.Player;
 
 public class MapRenderer implements ObjectRenderer2D{
 	
+	public Color backgroundColor = new Color(0.75f, 0.75f, 0.75f, 0.15f);
 	public int mapRenderWidth = Game.renderWidth, mapRenderHeight = Game.renderHeight;
 	public int viewXOffset = 0, viewYOffset = 0;
 	
@@ -27,6 +30,9 @@ public class MapRenderer implements ObjectRenderer2D{
 		Iterator<Entity> geomIt = room.getStaticGeometryIterator();
 		
 		int oldRenderWidth = Game.renderWidth, oldRenderHeight = Game.renderHeight;
+		
+		viewXOffset = 0;
+		viewYOffset = 0;
 		
 		Player player = map.toolbox.getPlayer();
 		switch(player.controlInfo.screenSection){
@@ -65,22 +71,27 @@ public class MapRenderer implements ObjectRenderer2D{
 		Game.renderWidth = Game.renderWidth - map.width;
 		Game.renderHeight = Game.renderHeight - map.height;
 		Game.renderAspect = (float) Game.renderWidth / (float) Game.renderHeight;
-		
-
-		//renderer.modelview.translate(0.0f , -(viewYOffset * 2.0f) + (mapRenderHeight * 2.0f) , 0.0f);
-		//renderer.modelview.translate(mapRenderWidth, mapRenderHeight, 0.0f);
-		renderer.modelview.translate(viewXOffset + map.xOffset + (map.width / 2) + (Game.renderWidth), viewYOffset + map.yOffset + (map.height / 2) - (Game.renderHeight / 2.0f), 0.0f);
-		//map.box.render(renderer);
-		
-		
-		Gdx.gl.glViewport(viewXOffset + map.xOffset + (map.width / 2), viewYOffset + map.yOffset + (map.height / 2), Game.renderWidth, Game.renderHeight);
-		MathHelper.orthoM(renderer.projection, 0, Game.renderAspect, 0, 1, -1, 1);
+		viewXOffset += map.width / 2;
+		viewYOffset += map.height / 2;
 		
 		float oldZoom = player.getCamera().currentMode().zoom;
 		player.getCamera().zoom = map.mapZoom;
 		Vector2 worldWindowSize = player.getCamera().getWorldWindowSize();
 		
+		
+		Gdx.gl.glViewport(viewXOffset, viewYOffset, Game.renderWidth, Game.renderHeight);
+		MathHelper.orthoM(renderer.projection, 0, Game.renderAspect, 0, 1, -1, 1);
+		
 		renderer.modelview.idt();
+		
+		Gdx.gl20.glEnable(GL20.GL_BLEND);
+		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_SRC_COLOR);
+		
+		// draw background box
+		renderer.r2D.setColor(backgroundColor);
+		Game.resources.textures.bindTexture("blank");
+		renderer.r2D.quad.render(worldWindowSize.x, worldWindowSize.y);
+		
 		renderer.modelview.scale(map.mapZoom, map.mapZoom, 1.0f);
 		renderer.modelview.translate(-player.getLocation().x + worldWindowSize.x, -player.getLocation().y + worldWindowSize.y, 0.0f);
 		renderer.r2D.sendMatrixToShader();

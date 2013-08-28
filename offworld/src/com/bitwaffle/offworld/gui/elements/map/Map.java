@@ -14,9 +14,8 @@ public class Map extends GUIObject {
 	public TiledBox box;
 	
 	public Toolbox toolbox;
-	
-	public int xOffset = 0, yOffset = 0;
-	public int width = 250, height = 250;
+
+	public int width = 100, height = 100;
 	public float mapZoom = 0.0125f;
 
 	public Map(Toolbox toolbox) {
@@ -30,7 +29,7 @@ public class Map extends GUIObject {
 	@Override
 	public void update(float timeStep) {
 		MapRenderer mapRend = (MapRenderer) this.renderer;
-		int numRows = 5, numCols = 5;
+		int numRows = 15, numCols = 15;
 		box.setRows(numRows);
 		box.setColumns(numCols);
 		box.setColumnWidth(mapRend.mapRenderWidth / (numRows * 2));

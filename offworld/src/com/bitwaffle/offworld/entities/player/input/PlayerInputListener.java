@@ -124,7 +124,7 @@ public class PlayerInputListener implements InputProcessor {
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
 		player.setTarget(MathHelper.toWorldSpace(screenX, screenY, player.getCamera()));
-		
+		System.out.println(MathHelper.toWorldSpace(screenX, screenY, player.getCamera()));
 		return false;
 	}
 

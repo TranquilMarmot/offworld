@@ -99,9 +99,9 @@ public class Room1 extends Room {
 		
 		
 		// bats
-		for(int i = 0; i < 15; i++){
-    		float batX = 20.0f + (Game.random.nextFloat() * 2.75f);
-    		float batY = -14.20f + (Game.random.nextFloat());
+		for(int i = 0; i < 5; i++){
+    		float batX = 275.0f + (Game.random.nextFloat() * 2.75f);
+    		float batY = -15.650296f + (Game.random.nextFloat());
     		//if(Game.random.nextBoolean()) batX = -batX;
     		//if(Game.random.nextBoolean()) batY = -batY;
     		
