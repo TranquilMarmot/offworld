@@ -32,11 +32,13 @@ public class MapButton extends RectangleButton {
 
 	@Override
 	protected void onRelease() {
-		if(!mapInGui)
-			
+		if(!mapInGui){
 			Game.gui.addObject(map);
-		else
+			Game.gui.addButton(map.zoomSlider);
+		} else {
 			Game.gui.removeObject(map);
+			Game.gui.removeButton(map.zoomSlider);
+		}
 		
 		mapInGui = !mapInGui;
 	}
