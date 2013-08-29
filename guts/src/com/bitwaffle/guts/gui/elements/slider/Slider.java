@@ -5,6 +5,12 @@ import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButton;
 /**
  * A button that can be slid between any two points.
  * 
+ * The "thumb" (the thing that slides) is a RectangleButton that the "Slider" object actually refers to.
+ * That is, slider.x, slider.y, slider.width, slider.height are all members of the RectangleButton class
+ * and represent the current location/size of the thumb.
+ * 
+ * The "track" is represented by centerX, centerY, trackWidth, trackHeight.
+ * 
  * @author TranquilMarmot
  */
 public class Slider extends RectangleButton {
@@ -14,9 +20,6 @@ public class Slider extends RectangleButton {
 	
 	/** How large the track is rendered*/
 	private float trackWidth, trackHeight;
-	
-	/** Minimum and maximum values that thumb can slide between */
-	private float minValue, maxValue;
 	
 	/** Different directions slider can move in */
 	public static enum SlideOrientation{
@@ -46,6 +49,7 @@ public class Slider extends RectangleButton {
 	public float centerY(){ return centerY; }
 	public void setCenterX(float newX){ this.centerX = newX;}
 	public void setCenterY(float newY){ this.centerY = newY; }
+	
 	public float trackWidth(){ return trackWidth; }
 	public float trackHeight(){ return trackHeight; }
 	public void setTrackWidth(float newWidth){ trackWidth = newWidth; }
@@ -106,7 +110,24 @@ public class Slider extends RectangleButton {
 		}
 	}
 	
+	/** @return Normalized position of thumb in track (between 0.0f and 1.0f) */
 	public float getValue(){
-		return minValue;
+		switch(orientation){
+		case HORIZONTAL:
+			return ((this.x - centerX) + (trackWidth - this.width)) / ((trackWidth - this.width) * 2.0f);
+		case VERTICAL:
+			return ((this.y - centerY) + (trackHeight - this.height)) / ((trackHeight - this.height) * 2.0f);
+		}
+		return 0.0f;
+	}
+	
+	/**
+	 * Returns the position of thumb as if it were between 'min' and 'max'
+	 * @param min Min position to clamp to
+	 * @param max Max position to clamp to
+	 * @return Position of thumb between min and max
+	 */
+	public float getValue(float min, float max){
+		return (this.getValue() * (max - min)) + min;
 	}
 }

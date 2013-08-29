@@ -20,7 +20,9 @@ public class Map extends GUIObject {
 	public Slider zoomSlider;
 
 	public int width = 150, height = 100;
+	
 	public float mapZoom = 0.0125f;
+	private float minMapZoom = 0.005f, maxMapZoom = 0.025f;
 
 	public Map(Toolbox toolbox) {
 		super(new MapRenderer(),0.0f, 0.0f);
@@ -35,7 +37,6 @@ public class Map extends GUIObject {
 	public void update(float timeStep) {
 		MapRenderer mapRend = (MapRenderer) this.renderer;
 		
-		
 		int numRows = 15, numCols = 15;
 		box.setRows(numRows);
 		box.setColumns(numCols);
@@ -46,6 +47,9 @@ public class Map extends GUIObject {
 		zoomSlider.setTrackHeight(mapRend.mapRenderHeight / 2.0f);
 		zoomSlider.setCenterX(mapRend.viewXOffset - zoomSlider.trackWidth());
 		zoomSlider.setCenterY(Game.windowHeight - mapRend.viewYOffset - zoomSlider.trackHeight());
+		
+		// set map zoom to slider's position
+		mapZoom = zoomSlider.getValue(maxMapZoom, minMapZoom);
 	}
 
 	@Override
