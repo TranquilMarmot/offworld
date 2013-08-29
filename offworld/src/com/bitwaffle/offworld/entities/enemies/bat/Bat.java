@@ -53,7 +53,6 @@ public class Bat extends DynamicEntity implements Health {
 		ai = new AI(this);
 		attackState = new AttackAIState(this, s, nodeThreshold, followSpeed);
 	}
-	
 
 	@Override
 	public void init(World world){

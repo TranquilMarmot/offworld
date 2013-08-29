@@ -99,8 +99,7 @@ public class PlayerInputListener implements InputProcessor {
 		while(pointers.size() < pointerID + 1)
 			pointers.add(new PlayerPointer(player));
 		
-		//if(Game.renderer.camera.currentMode() == CameraModes.follow)
-			pointers.get(pointerID).down(pointerID, pointerX, pointerY);
+		pointers.get(pointerID).down(pointerID, pointerX, pointerY);
 		
 		return false;
 	}
@@ -116,15 +115,13 @@ public class PlayerInputListener implements InputProcessor {
 
 	@Override
 	public boolean touchDragged(int pointerX, int pointerY, int pointerID) {
-		//if(camera.currentMode() == CameraModes.follow)
-			pointers.get(pointerID).move(pointerX, pointerY);
+		pointers.get(pointerID).move(pointerX, pointerY);
 		return false;
 	}
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
 		player.setTarget(MathHelper.toWorldSpace(screenX, screenY, player.getCamera()));
-		System.out.println(MathHelper.toWorldSpace(screenX, screenY, player.getCamera()));
 		return false;
 	}
 

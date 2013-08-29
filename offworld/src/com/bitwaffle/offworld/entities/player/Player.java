@@ -235,7 +235,7 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 		if(!Ouya.runningOnOuya && controlInfo.controlledByMouse){
 			Vector2 worldLoc = new Vector2();
 			MathHelper.toWorldSpace(worldLoc, Gdx.input.getX(), Gdx.input.getY(), this.camera);
-			//setTarget(worldLoc);
+			setTarget(worldLoc);
 		}
 		
 		// FIXME temp? (so the camera always looks near the player)
