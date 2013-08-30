@@ -5,6 +5,12 @@ import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButton;
 import com.bitwaffle.guts.gui.elements.slider.Slider;
 import com.bitwaffle.offworld.gui.elements.toolbox.Toolbox;
 
+/**
+ * A map that shows a larger portion of the map than what the player can see.
+ * Can be zoomed, panned, etc.
+ * 
+ * @author TranquilMarmot
+ */
 public class Map extends RectangleButton {
 	/** Toolbox this map belongs to */
 	public Toolbox toolbox;
@@ -12,18 +18,31 @@ public class Map extends RectangleButton {
 	/** Slider that controls map's zoom */
 	public Slider zoomSlider;
 
-	/** */
-	public int borderWidth = 150, borderHeight = 100;
+	/** How large of a transparent border is around the map */
+	public int borderWidth = 125, borderHeight = 75;
+	
+	/** Offset from center of screen that map is drawn at */
+	public int xOffset = -32, yOffset = -37;
 	
 	/** Zoom level that map is rendered at */
 	public float mapZoom = 0.0125f;
 	/** Minimum and maximum zoom levels for zoom slider */
-	private float minMapZoom = 0.005f, maxMapZoom = 0.025f;
+	public float minMapZoom = 0.005f, maxMapZoom = 0.025f;
+	
+	/** How scrolled the map is from the player */
+	public float scrollX = 0.0f, scrollY = 0.0f;
 
 	public Map(Toolbox toolbox) {
 		super(new MapRenderer(),0.0f, 0.0f, 10.0f, 10.0f);
 		this.toolbox = toolbox;
-		zoomSlider = new Slider(Slider.SlideOrientation.VERTICAL, 100.0f, 750.0f, 10.0f, 100.0f, 10.0f, 10.0f);
+		zoomSlider = new Slider(
+				Slider.SlideOrientation.VERTICAL,
+				// center of track (moves with map)
+				100.0f, 750.0f,
+				// width and height of track
+				15.0f, 100.0f,
+				// width and height of thumb
+				15.0f, 15.0f);
 	}
 
 	@Override
@@ -31,14 +50,15 @@ public class Map extends RectangleButton {
 		MapRenderer mapRend = (MapRenderer) this.renderer;
 		
 		// position zoom slider on the left of the map
-		zoomSlider.setTrackHeight(mapRend.mapRenderHeight / 2.0f);
-		zoomSlider.setCenterX(mapRend.viewXOffset - zoomSlider.trackWidth());
-		zoomSlider.setCenterY(Game.windowHeight - mapRend.viewYOffset - zoomSlider.trackHeight());
+		zoomSlider.setTrackHeight(mapRend.mapRenderHeight() / 2.0f);
+		zoomSlider.setCenterX(mapRend.viewXOffset() - zoomSlider.trackWidth());
+		zoomSlider.setCenterY(Game.windowHeight - mapRend.viewYOffset() - zoomSlider.trackHeight());
 		
-		this.x = mapRend.viewXOffset + (mapRend.mapRenderWidth / 2.0f);
-		this.y = (Game.windowHeight - mapRend.viewYOffset) - (mapRend.mapRenderHeight / 2.0f);
-		this.width = (mapRend.mapRenderWidth / 2.0f);
-		this.height = mapRend.mapRenderHeight / 2.0f;
+		// set button locations/dimensions so map can be clicked
+		this.x = mapRend.viewXOffset() + (mapRend.mapRenderWidth() / 2.0f);
+		this.y = (Game.windowHeight - mapRend.viewYOffset()) - (mapRend.mapRenderHeight() / 2.0f);
+		this.width = (mapRend.mapRenderWidth() / 2.0f);
+		this.height = mapRend.mapRenderHeight() / 2.0f;
 				
 		
 		// set map zoom to slider's position
@@ -58,7 +78,6 @@ public class Map extends RectangleButton {
 
 	@Override
 	protected void onPress() {	
-		System.out.println("iom the map");
 	}
 
 	@Override
@@ -71,5 +90,7 @@ public class Map extends RectangleButton {
 
 	@Override
 	protected void onDrag(float dx, float dy) {
+		scrollX += (dx / (mapZoom * 1000.0f));
+		scrollY -= (dy / (mapZoom * 1000.0f));
 	}
 }

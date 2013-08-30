@@ -14,11 +14,20 @@ import com.bitwaffle.guts.physics.Room;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.player.Player;
 
+/**
+ * Renders a {@link Map} and keeps track of some helpful info
+ * 
+ * @author TranquilMarmot
+ */
 public class MapRenderer extends RectangleButtonRenderer{
+	/** Color of the map's background  */
+	public Color backgroundColor = new Color(0.5f, 0.5f, 0.5f, 0.05f);
 	
-	public Color backgroundColor = new Color(0.75f, 0.75f, 0.75f, 0.15f);
-	public int mapRenderWidth = Game.renderWidth, mapRenderHeight = Game.renderHeight;
-	public int viewXOffset = 0, viewYOffset = 0;
+	/** How big the map is being rendered at */
+	private int mapRenderWidth = Game.renderWidth, mapRenderHeight = Game.renderHeight;
+	
+	/** Location of the map's viewport */
+	private int viewXOffset = 0, viewYOffset = 0;
 	
 	@Override
 	public void render(Renderer renderer, Object obj) {
@@ -71,8 +80,8 @@ public class MapRenderer extends RectangleButtonRenderer{
 		Game.renderWidth = Game.renderWidth - map.borderWidth;
 		Game.renderHeight = Game.renderHeight - map.borderHeight;
 		Game.renderAspect = (float) Game.renderWidth / (float) Game.renderHeight;
-		viewXOffset += map.borderWidth / 2;
-		viewYOffset += map.borderHeight / 2;
+		viewXOffset += (map.borderWidth / 2) + map.xOffset;
+		viewYOffset += (map.borderHeight / 2) + map.yOffset;
 		
 		float oldZoom = player.getCamera().currentMode().zoom;
 		player.getCamera().zoom = map.mapZoom;
@@ -93,7 +102,10 @@ public class MapRenderer extends RectangleButtonRenderer{
 		renderer.r2D.quad.render(worldWindowSize.x, worldWindowSize.y);
 		
 		renderer.modelview.scale(map.mapZoom, map.mapZoom, 1.0f);
-		renderer.modelview.translate(-player.getLocation().x + worldWindowSize.x, -player.getLocation().y + worldWindowSize.y, 0.0f);
+		renderer.modelview.translate(-player.getLocation().x + worldWindowSize.x + map.scrollX, -player.getLocation().y + worldWindowSize.y + map.scrollY, 0.0f);
+		
+		
+		
 		renderer.r2D.sendMatrixToShader();
 		renderer.renderDebug = true;
 		while(geomIt.hasNext()){
@@ -120,4 +132,10 @@ public class MapRenderer extends RectangleButtonRenderer{
 		Gdx.gl.glViewport(0, 0, Game.windowWidth, Game.windowHeight);
 		MathHelper.orthoM(renderer.projection, 0, Game.windowWidth, Game.windowHeight, 0, -1, 1);
 	}
+	
+	public float viewXOffset(){ return viewXOffset; }
+	public float viewYOffset(){ return viewYOffset; }
+	
+	public float mapRenderWidth(){ return mapRenderWidth; }
+	public float mapRenderHeight(){ return mapRenderHeight; }
 }
