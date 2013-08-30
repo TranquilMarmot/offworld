@@ -32,26 +32,36 @@ public class MapButton extends RectangleButton {
 	
 	/** @return Whether or not the map is being displayed */
 	public boolean mapInGui(){ return mapInGui; }
-
+	
 	@Override
-	protected void onRelease() {
-		// add map to GUI
+	public void update(float timeStep) {
+		if(Game.isPaused() && mapInGui)
+			removeMapFromGui();
+	}
+	
+	private void addMapToGui(){
 		if(!mapInGui){
 			Game.gui.addButton(map);
 			Game.gui.addButton(map.zoomSlider);
-
-		// remove map from GUI
-		} else {
-			Game.gui.removeButton(map);
-			Game.gui.removeButton(map.zoomSlider);
+			mapInGui = !mapInGui;
 		}
-		
-		mapInGui = !mapInGui;
 	}
 	
+	private void removeMapFromGui(){
+		if(mapInGui){
+			Game.gui.removeButton(map);
+			Game.gui.removeButton(map.zoomSlider);
+			mapInGui = !mapInGui;
+		}
+	}
 
 	@Override
-	public void update(float timeStep) {}
+	protected void onRelease() {
+		if(!mapInGui && !Game.isPaused())
+			addMapToGui();
+		else
+			removeMapFromGui();
+	}
 
 	@Override
 	protected void onSlideRelease() {}
