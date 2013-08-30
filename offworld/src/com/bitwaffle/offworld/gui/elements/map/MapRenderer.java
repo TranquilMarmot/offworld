@@ -9,12 +9,12 @@ import com.badlogic.gdx.math.Vector2;
 import com.bitwaffle.guts.Game;
 import com.bitwaffle.guts.entity.Entity;
 import com.bitwaffle.guts.graphics.Renderer;
-import com.bitwaffle.guts.graphics.graphics2d.ObjectRenderer2D;
+import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButtonRenderer;
 import com.bitwaffle.guts.physics.Room;
 import com.bitwaffle.guts.util.MathHelper;
 import com.bitwaffle.offworld.entities.player.Player;
 
-public class MapRenderer implements ObjectRenderer2D{
+public class MapRenderer extends RectangleButtonRenderer{
 	
 	public Color backgroundColor = new Color(0.75f, 0.75f, 0.75f, 0.15f);
 	public int mapRenderWidth = Game.renderWidth, mapRenderHeight = Game.renderHeight;
@@ -68,11 +68,11 @@ public class MapRenderer implements ObjectRenderer2D{
 			break;
 		}
 		
-		Game.renderWidth = Game.renderWidth - map.width;
-		Game.renderHeight = Game.renderHeight - map.height;
+		Game.renderWidth = Game.renderWidth - map.borderWidth;
+		Game.renderHeight = Game.renderHeight - map.borderHeight;
 		Game.renderAspect = (float) Game.renderWidth / (float) Game.renderHeight;
-		viewXOffset += map.width / 2;
-		viewYOffset += map.height / 2;
+		viewXOffset += map.borderWidth / 2;
+		viewYOffset += map.borderHeight / 2;
 		
 		float oldZoom = player.getCamera().currentMode().zoom;
 		player.getCamera().zoom = map.mapZoom;

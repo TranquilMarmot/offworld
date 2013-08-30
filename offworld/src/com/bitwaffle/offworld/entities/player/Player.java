@@ -48,7 +48,7 @@ public class Player extends DynamicEntity implements FirearmHolder, Health{
 	public ControlInfo controlInfo;
 	
 	/** Player's toolbox, for accessing menus etc. */
-	private Toolbox toolbox;
+	public Toolbox toolbox;
 	
 	/** The player's current firearm */
 	private Firearm firearm;

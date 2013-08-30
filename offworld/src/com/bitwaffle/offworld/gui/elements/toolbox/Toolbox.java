@@ -9,6 +9,7 @@ import com.bitwaffle.guts.gui.elements.button.Button;
 import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButton;
 import com.bitwaffle.guts.gui.elements.button.rectangle.RectangleButtonRenderer;
 import com.bitwaffle.offworld.entities.player.Player;
+import com.bitwaffle.offworld.gui.elements.map.MapButton;
 
 /**
  * An in-game menu for accessing maps, inventory, etc.
@@ -36,6 +37,10 @@ public class Toolbox extends RectangleButton {
 	/** Used for saving location of button before it expands */
 	private float oldX;
 	
+	public MapButton mapButt;
+	public InventoryButton invButt;
+	public SettingsButton setButt;
+	
 	/** @param player Player this toolbox belongs to */
 	public Toolbox(Player player, float x, float y, float width, float height){
 		//super(new RectangleButtonRenderer("toolboxbutton", new Color(0.5f, 0.5f, 0.5f, 0.75f), new Color(0.5f, 0.5f, 0.5f, 1.0f)), x, y, width, height);
@@ -55,13 +60,13 @@ public class Toolbox extends RectangleButton {
 		expanded = false;
 		oldX = x;
 		
-		MapButton mapButt = new MapButton(this, 32.0f, 32.0f, 32.0f, 32.0f);
+		mapButt = new MapButton(this, 32.0f, 32.0f, 32.0f, 32.0f);
 		mapButt.deactivate();
 		mapButt.hide();
 		this.addButton(mapButt);
 		Game.gui.addButton(mapButt);
 		
-		InventoryButton invButt = new InventoryButton(32.0f, 32.0f, 32.0f, 32.0f);
+		invButt = new InventoryButton(32.0f, 32.0f, 32.0f, 32.0f);
 		invButt.deactivate();
 		invButt.hide();
 		this.addButton(invButt);

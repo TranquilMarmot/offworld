@@ -29,13 +29,11 @@ public class Bar extends GUIObject {
 
 	@Override
 	public void update(float timeStep) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void cleanup() {
-		// TODO Auto-generated method stub
 		
 	}
 }

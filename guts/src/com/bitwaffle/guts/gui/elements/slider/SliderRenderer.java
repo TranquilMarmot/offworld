@@ -10,11 +10,14 @@ public class SliderRenderer extends RectangleButtonRenderer {
 	public void render(Renderer renderer, Object ent) {
 		Slider slider = (Slider) ent;
 		
-		renderer.modelview.translate(slider.centerX() - slider.x, slider.centerY() - slider.y, 0.0f);
+		float 
+			trackX = slider.centerX() - slider.x,
+			trackY = slider.centerY() - slider.y;
+		renderer.modelview.translate(trackX, trackY, 0.0f);
 		renderer.r2D.sendMatrixToShader();
 		Game.resources.textures.bindTexture("blank");
 		renderer.r2D.quad.render(slider.trackWidth(), slider.trackHeight());
-		renderer.modelview.translate(-(slider.centerX() - slider.x), -(slider.centerY() - slider.y), 0.0f);
+		renderer.modelview.translate(-trackX, -trackY, 0.0f);
 		renderer.r2D.sendMatrixToShader();
 		
 		super.render(renderer, ent);
