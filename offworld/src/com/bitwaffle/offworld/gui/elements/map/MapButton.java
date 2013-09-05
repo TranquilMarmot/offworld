@@ -39,6 +39,7 @@ public class MapButton extends RectangleButton {
 			removeMapFromGui();
 	}
 	
+	/** Adds the map to the GUI and sets mapInGui to true */
 	private void addMapToGui(){
 		if(!mapInGui){
 			Game.gui.addButton(map);
@@ -47,6 +48,7 @@ public class MapButton extends RectangleButton {
 		}
 	}
 	
+	/** Removes the map to the GUI and sets mapInGui to false */
 	private void removeMapFromGui(){
 		if(mapInGui){
 			Game.gui.removeButton(map);
