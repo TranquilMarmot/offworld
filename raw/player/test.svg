@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="34.576649"
+   height="140.84677"
+   id="svg25639"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="New document 130">
+  <defs
+     id="defs25641">
+    <inkscape:path-effect
+       effect="bend_path"
+       id="path-effect24740-2-8"
+       is_visible="true"
+       bendpath="m 386.29484,390.31804 c 0.8635,4.05995 0.898,6.22455 0.7956,10.78338 -0.052,5.74795 -3.9507,20.17528 -5.5755,24.58798"
+       prop_scale="1"
+       scale_y_rel="false"
+       vertical="false"
+       bendpath-nodetypes="ccc" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4213-1-4-2-5-2-8-3-2-0-4-8-6-8-8-8-5-0-8-7"
+       id="linearGradient10248-1-9-5-8-7-9-5-2-5"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-1.6511318,0,0,1.6511318,1203.5576,-790.68831)"
+       x1="250.87894"
+       y1="172.29468"
+       x2="245.549"
+       y2="170.23512" />
+    <linearGradient
+       id="linearGradient4213-1-4-2-5-2-8-3-2-0-4-8-6-8-8-8-5-0-8-7">
+      <stop
+         style="stop-color:#000000;stop-opacity:0.09821428;"
+         offset="0"
+         id="stop4215-4-5-3-5-1-5-2-2-9-0-2-0-6-0-6-3-6-8-8" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop4217-9-2-8-2-4-83-8-0-7-7-3-8-3-1-6-6-5-8-8" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4213-9-2-7-8-1-7-3-9-3-9-7-4-5-9-1-1-4-2"
+       id="linearGradient10244-8-2-9-7-9-3-5-7-4"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-1.6511318,0,0,1.6511318,1217.3344,-765.01381)"
+       x1="245.76289"
+       y1="167.60649"
+       x2="262.18665"
+       y2="159.42464" />
+    <linearGradient
+       id="linearGradient4213-9-2-7-8-1-7-3-9-3-9-7-4-5-9-1-1-4-2">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.1875;"
+         offset="0"
+         id="stop4215-8-8-2-2-6-3-0-0-1-5-4-5-0-2-5-8-0-3" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.09821428;"
+         offset="1"
+         id="stop4217-6-2-5-2-3-3-6-2-0-3-0-3-5-6-3-9-0-8" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4213-1-8-2-9-1-7-4-0-3-4-6-2-0-5-0-2-9-1"
+       id="linearGradient10239-0-7-8-9-6-4-6-5-4"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-1.6511318,0,0,1.6511318,1216.9072,-790.67091)"
+       x1="250.87894"
+       y1="172.29468"
+       x2="245.549"
+       y2="170.23512" />
+    <linearGradient
+       id="linearGradient4213-1-8-2-9-1-7-4-0-3-4-6-2-0-5-0-2-9-1">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.09821428;"
+         offset="0"
+         id="stop4215-4-3-0-0-2-1-9-8-1-0-0-3-9-8-3-2-9-3" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop4217-9-8-8-0-2-3-1-8-4-7-1-9-3-4-1-5-5-0" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="bend_path"
+       id="path-effect24740-2-5-4"
+       is_visible="true"
+       bendpath="m 370.07944,389.35951 c 0.8635,4.05997 1.0748,7.99233 0.9724,12.55116 -0.052,5.74795 -3.2436,17.70041 -4.8684,22.11311"
+       prop_scale="1"
+       scale_y_rel="false"
+       vertical="false"
+       bendpath-nodetypes="ccc" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="51.775817"
+     inkscape:cy="1.8078994"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1138"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata25644">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-359.8921,-339.09073)">
+    <path
+       style="fill:#ffe0c4;fill-opacity:1;stroke:none;display:inline"
+       d="m 372.69154,369.52792 3.3198,12.71285 4.3583,-0.43909 -0.2064,-8.08269 c -1.9319,-0.88381 -2.2512,-2.62434 -2.9252,-4.17643 z"
+       id="path11012-0-4-7-3-9-5-3-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;display:inline"
+       d="m 373.35184,371.51232 c 0.8517,2.13241 0.8998,3.30674 -0.4656,4.6573 m 7.2581,-2.87488 c -1.9692,-0.24107 -2.2674,-0.99683 -2.4814,-2.42679"
+       id="path10857-0-9-0-9-1-8-7-0-2-0-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:#ff081b;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="m 366.61984,391.24364 -1.2955,-4.51042 c -0.6077,-5.30929 6.4097,-4.45804 7.4233,-1.88388 l 1.562,5.11266"
+       id="path24746-0-9-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:#2450d1;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="m 367.18834,422.35778 -0.7071,56.92206 10.367,0.146 1.1287,-54.57224 8.0393,54.14544 7.9313,-0.03 -2.4801,-56.88291 z"
+       id="path25572"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccc" />
+    <path
+       style="fill:#ffe0c4;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="m 373.96057,390.38775 c 0.65815,3.90305 0.80986,7.79454 0.71464,11.58 -0.0295,2.0754 -0.29469,4.00878 -0.60261,5.7964 0,0 0,0 0,0 -0.36982,2.22053 -0.83147,4.39848 -1.33862,6.53818 0,0 0,0 0,0 -0.53334,2.27122 -1.11,4.57568 -1.79894,6.88543 -0.40743,1.36593 -1.18372,2.25488 -2.05783,2.70077 -0.87412,0.4459 -1.84521,0.45266 -2.69375,0.1352 -0.84855,-0.31746 -1.57721,-0.95174 -2.00133,-1.80003 -0.42413,-0.8483 -0.54652,-1.90815 -0.17338,-3.17104 0.61557,-2.08341 1.15071,-4.23213 1.67215,-6.4191 0.47979,-2.03162 0.9092,-4.04927 1.2419,-6.05727 0,0 0,0 0,0 0.27047,-1.69371 0.50329,-3.26919 0.50567,-4.7227 0.0687,-3.51397 -0.0469,-6.96224 -0.60642,-10.25035 -0.0851,-0.50042 0.28646,-0.95396 0.90042,-1.34336 0.61396,-0.3894 1.47082,-0.71188 2.35697,-0.90037 0.88615,-0.18849 1.80226,-0.23952 2.52589,-0.0845 0.72363,0.15499 1.2551,0.51887 1.35524,1.11277 z"
+       id="path24732-8-8-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:path-effect="#path-effect24740-2-5-4"
+       inkscape:original-d="m 352.88794,398.33097 34.5599,0 c 6.364,0 6.364,7.2478 -0.088,7.2478 l -34.4715,0 c -2.5961,0 -2.5961,-7.2478 -4e-4,-7.2478 z"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:#ff081b;fill-opacity:1;stroke:none;display:inline"
+       d="m 364.87524,421.96055 2.6138,2.6264 9.7631,-1.48686 c 1.751,-1.80719 4.5511,0.23228 6.8267,0.34853 l 9.6262,-0.95463 c -2.5705,-16.83167 1.2376,-29.80112 -7.0597,-45.01309 -2.9463,-2.71478 -4.2639,-3.28759 -7.7405,-3.57801 -1.643,0.27594 -4.2733,5.26494 -3.6003,10.19643 1.57,-3.47556 1.6981,-6.17591 -1.8774,-9.07537 -10.4174,2.56076 -3.9683,35.65913 -8.5519,46.9366 z"
+       id="path17994-8-3-5-9-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 372.74764,375.38594 c -8.8491,5.51393 -2.2456,7.99457 -7.7672,46.84353 2.5169,0.69007 0.867,1.61803 2.4557,2.26391 2.6407,-0.53734 8.0693,0.0775 10.7984,-2.36017 2.6338,0.78467 4.8532,2.12514 6.5184,1.56655 3.6566,-1.93042 4.735,0.2263 8.8594,-1.5318 -1.8874,-33.00357 -1.6995,-46.61024 -14.2436,-49.04671"
+       id="path8566-7-2-3-3-8-5-4-3-5-2-9-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:#ff081b;fill-opacity:1;stroke:none;display:inline"
+       d="m 376.86194,376.01164 7.2144,0.51483 c -0.4669,-1.80984 0.06,-2.37571 -3.1258,-2.8517 -2.3555,-0.19278 -4.0502,1.24864 -4.0886,2.33687 z"
+       id="path18129-1-9-6-5-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:#ff081b;fill-opacity:1;stroke:none;display:inline"
+       d="m 370.89994,374.50651 c -2.2527,0.59995 -2.9473,1.04252 -2.8746,3.6023 l 2.4233,-2.11183 2.6686,0.73685 c 5.7969,5.40275 2.0425,-0.58522 -0.2393,-1.75107 z"
+       id="path18014-5-1-7-1-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <g
+       style="display:inline"
+       id="g24982-1-2"
+       transform="matrix(0.97913703,-0.2032011,0.2032011,0.97913703,-697.61272,801.44097)"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000">
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path18286-7-9-3-5-1"
+         d="m 1136.6726,-195.60876 c -0.396,0.0283 -0.4885,0.33033 -0.4693,0.72387 0,0.49321 0.2278,0.63379 0.6235,0.62406 0.3292,0.0114 0.4486,-0.39699 0.4353,-0.67283 -0.016,-0.29652 -0.093,-0.69501 -0.5895,-0.6751 z"
+         style="fill:#a23f28;fill-opacity:1;stroke:#000000;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         transform="translate(205.69249,-998.09152)"
+         d="m 930.95703,803.16016 c 0,0.0755 -0.0603,0.13671 -0.13476,0.13671 -0.0744,0 -0.13477,-0.0612 -0.13477,-0.13671 0,-0.0755 0.0603,-0.13672 0.13477,-0.13672 0.0744,0 0.13476,0.0612 0.13476,0.13672 z"
+         sodipodi:ry="0.13671875"
+         sodipodi:rx="0.13476562"
+         sodipodi:cy="803.16016"
+         sodipodi:cx="930.82227"
+         id="path18290-0-2-0-1-5"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         sodipodi:type="arc" />
+      <path
+         transform="translate(206.08117,-998.11497)"
+         d="m 930.95703,803.16016 c 0,0.0755 -0.0603,0.13671 -0.13476,0.13671 -0.0744,0 -0.13477,-0.0612 -0.13477,-0.13671 0,-0.0755 0.0603,-0.13672 0.13477,-0.13672 0.0744,0 0.13476,0.0612 0.13476,0.13672 z"
+         sodipodi:ry="0.13671875"
+         sodipodi:rx="0.13476562"
+         sodipodi:cy="803.16016"
+         sodipodi:cx="930.82227"
+         id="path18290-3-4-6-9-0-5"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;display:inline"
+         sodipodi:type="arc" />
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.548199;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 376.50584,380.34766 -0.1467,-1.53175 c -1.2602,-5.37251 -8.2424,-2.70965 -8.306,-0.009 -0.043,-1.66336 0.1115,-3.80099 2.7579,-4.31589 1.3927,-0.26707 4.1886,0.55607 5.5067,4.14205"
+       id="path8566-7-2-3-3-8-5-3-7-2-2-1-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.548199;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 376.25054,378.4059 c 0.5738,-2.22064 1.1816,-4.66918 4.4995,-4.69744 2.763,0.15898 3.4442,1.26657 3.0508,2.51268 -3.7328,-3.34207 -7.6969,1.39232 -7.4626,2.53181"
+       id="path11025-9-9-5-6-6-8-1-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4568325;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 370.59374,376.03168 c 3.4212,0.1568 5.2759,3.35297 4.74,6.74374 l 2.2279,-0.0487 c -0.1638,-3.98576 -0.6442,-6.26962 5.1752,-7.31793"
+       id="path11063-9-0-2-3-1-1-3-7-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <g
+       transform="matrix(0.75330638,0,0,0.75330638,-222.41445,725.70467)"
+       style="display:inline"
+       id="g10793-2-3-5-6-7-0-2-2"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6427-9-2-4-1-0-6-3-8"
+         d="m 781.56092,-493.00415 3.7354,22.19623 18.185,-0.10159 4.5133,-21.69848 z"
+         style="fill:#ffe0c4;fill-opacity:1;stroke:none;display:inline"
+         sodipodi:nodetypes="ccccc" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccccc"
+         inkscape:connector-curvature="0"
+         id="path3893-5-45-2-2-7-8-9-6-1-2-3-8-2-1-1-4-3-4"
+         d="m 780.67952,-492.78091 -0.02,16.4399 c -0.074,4.16855 4.118,5.43491 7.4439,5.37856 l 2.9701,-0.028 m 6.4242,0.0736 c 9.2182,-0.0643 12.8113,-3.47052 11.2934,-18.84025"
+         style="fill:#ffe0c4;fill-opacity:1;stroke:#000000;stroke-width:1.54509497;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccscc"
+         inkscape:connector-curvature="0"
+         id="path3902-7-5-1-8-6-5-8-1-7-5-5-3-0-2"
+         d="m 780.81012,-490.11836 0.7589,4.50494 c 3.3099,1.50241 7.208,-0.0984 12.4043,-0.55771 6.8591,-0.34013 5.3446,3.42797 6.2014,6.92644 0.4398,1.79597 3.179,3.18906 7.461,2.31258 -0.9803,-4.38152 -6.5309,-9.28183 -7.1853,-14.08515"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.32967043px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path3866-7-9-5-1-7-2-7-4-4-1-7-82-5-6-2-7-2-7-4-7"
+         d="m 785.22442,-499.21742 0,-13.24136 5.2743,0 0,13.24136"
+         style="fill:#4296ff;fill-opacity:1;stroke:#000000;stroke-width:1.54509497;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path4211-8-9-7-8-6-6-2-7-9-1-4-6-4-2-0-8-5"
+         d="m 788.17842,-511.68626 c -1.4079,-0.42816 -6.238,12.55922 1.9003,9.36868 l -0.402,-9.37933 z"
+         style="fill:url(#linearGradient10248-1-9-5-8-7-9-5-2-5);fill-opacity:1;stroke:none;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path3090-6-4-1-2-5-2-4-5-6-7-8-9-5-4-8"
+         d="m 810.59442,-494.81707 c 0.9011,3.23222 4.1825,17.12279 -3.9803,17.9989 -7.407,0.59796 -6.2169,-4.34924 -6.792,-11.42142 -0.2286,-1.80216 -0.6725,-1.58189 -2.2419,-0.10874 -6.3237,-2.02626 -16.1733,-3.1281 -23.8783,-0.72362 l 5.9402,-3.61584 c 0.1868,-15.90401 27.2019,-17.41296 30.9523,-2.12921 z"
+         style="fill:#4296ff;fill-opacity:1;stroke:#000000;stroke-width:1.54509497;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path4211-7-8-9-8-0-2-4-8-6-7-2-5-0-2-3-4"
+         d="m 784.49452,-501.24362 c 13.1676,-3.29394 19.9151,-0.89098 26.5531,12.52309 -0.7746,-4.75496 -0.8917,-12.1749 -10.2759,-15.04935 -3.5033,-1.44396 -11.0134,-1.79103 -16.2772,2.52626 z"
+         style="fill:url(#linearGradient10244-8-2-9-7-9-3-5-7-4);fill-opacity:1;stroke:none;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path3866-7-9-7-6-8-1-8-5-5-4-8-6-7-2-6-5-0-9-0"
+         d="m 798.32472,-499.62675 0,-12.81725 5.4743,0.0666 0,12.81725"
+         style="fill:#4296ff;fill-opacity:1;stroke:#000000;stroke-width:1.54509497;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         transform="matrix(-1.4467658,0,0,1.2623801,907.09512,-1122.7135)"
+         d="m 71.196969,507.29968 c 0,1.00102 -0.675812,1.8125 -1.509469,1.8125 -0.833657,0 -1.509469,-0.81148 -1.509469,-1.8125 0,-1.00101 0.675812,-1.8125 1.509469,-1.8125 0.833657,0 1.509469,0.81149 1.509469,1.8125 z"
+         sodipodi:ry="1.8125"
+         sodipodi:rx="1.509469"
+         sodipodi:cy="507.29968"
+         sodipodi:cx="69.6875"
+         id="path3860-1-1-4-2-6-3-66-4-1-2-8-9-0-4-1-7-2-9"
+         style="opacity:0.9792;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path4211-8-7-0-5-0-6-0-7-8-6-1-9-8-5-4-4"
+         d="m 798.99032,-511.68159 c 4.626,0.0129 1.3568,9.09529 4.0605,12.13023 l -0.024,-12.12829 z"
+         style="fill:url(#linearGradient10239-0-7-8-9-6-4-6-5-4);fill-opacity:1;stroke:none;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path4427-9-5-7-7-3-2-9-4-1-8-3-6-9-4"
+         d="m 780.96202,-492.46677 c 4.6446,-0.53476 12.0223,0.12143 16.7172,1.92934 -2.9963,-2.39885 -12.1035,-3.5934 -16.7172,-1.92934 z"
+         style="fill:#ffffff;fill-opacity:0.09523812;stroke:none;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccccc"
+         inkscape:connector-curvature="0"
+         id="path4429-5-1-2-9-7-5-8-1-7-4-6-1-0-3"
+         d="m 811.21252,-484.45816 -0.2431,2.16893 c -0.2078,1.61236 -1.1803,3.23257 -2.2316,3.96209 -1.6167,1.18568 -5.4605,0.93965 -6.4027,-0.0716 4.8094,0.80759 7.8146,-0.62706 8.8774,-6.05952 z"
+         style="fill:#ffffff;fill-opacity:0.09523812;stroke:none;display:inline" />
+      <g
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         transform="matrix(1.4207561,0.13176843,-0.13176843,1.4207561,150.45514,-819.03561)"
+         id="g5870-8-7-9-5-3-8-8-5-5"
+         style="display:inline">
+        <path
+           style="fill:#ffffff;fill-opacity:0.47115383;stroke:none;display:inline"
+           d="m 464.0586,195.41788 c 0.7016,0.18792 1.0783,-2.01008 0.48661,-1.11495 -0.57817,0.22482 -1.03208,1.68579 -0.48661,1.11495 z"
+           id="path4942-2-0-9-3-4-0-2-9-2-8-1-7-8"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccc" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.82436872px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;display:inline"
+           d="m 464.40243,194.10229 c -1.14976,1.03802 -0.16731,1.98763 0.49436,2.10868"
+           id="path4267-5-7-3-9-7-7-6-1-5-6-8-4-4"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc"
+           inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+           inkscape:export-xdpi="1000"
+           inkscape:export-ydpi="1000" />
+      </g>
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4200-5-2-4-5-3-9-3-8-3-1-5-7-1"
+         d="m 785.28412,-474.56171 c 0,0 5.1254,-0.0212 7.5729,-0.22607"
+         style="fill:none;stroke:#000000;stroke-width:1.15329862px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccccc"
+         inkscape:connector-curvature="0"
+         id="path4942-2-0-97-9-1-1-1-8-6-6-6-0"
+         d="m 807.56162,-477.04146 c 8e-4,3.01762 -1.5162,4.10229 -4.8575,4.72368 -2.9702,0.8984 -4.6434,0.58992 -8.7515,0.61026 -2.3057,0.0356 -7.605,0.11728 -9.2554,-0.59049 5.2847,0.17544 13.2685,-0.10617 16.1932,-0.7709 3.9207,-1.10818 4.6993,-2.12804 6.6712,-3.97255 z"
+         style="fill:#000000;fill-opacity:0.12328766;stroke:none;display:inline" />
+    </g>
+    <g
+       style="display:inline"
+       id="g24982-3"
+       transform="translate(-760.28542,576.50677)"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000">
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path18286-7-9-3-3"
+         d="m 1136.6726,-195.60876 c -0.396,0.0283 -0.4885,0.33033 -0.4693,0.72387 0,0.49321 0.2278,0.63379 0.6235,0.62406 0.3292,0.0114 0.4486,-0.39699 0.4353,-0.67283 -0.016,-0.29652 -0.093,-0.69501 -0.5895,-0.6751 z"
+         style="fill:#a23f28;fill-opacity:1;stroke:#000000;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         transform="translate(205.69249,-998.09152)"
+         d="m 930.95703,803.16016 c 0,0.0755 -0.0603,0.13671 -0.13476,0.13671 -0.0744,0 -0.13477,-0.0612 -0.13477,-0.13671 0,-0.0755 0.0603,-0.13672 0.13477,-0.13672 0.0744,0 0.13476,0.0612 0.13476,0.13672 z"
+         sodipodi:ry="0.13671875"
+         sodipodi:rx="0.13476562"
+         sodipodi:cy="803.16016"
+         sodipodi:cx="930.82227"
+         id="path18290-0-2-0-4"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         sodipodi:type="arc" />
+      <path
+         transform="translate(206.08117,-998.11497)"
+         d="m 930.95703,803.16016 c 0,0.0755 -0.0603,0.13671 -0.13476,0.13671 -0.0744,0 -0.13477,-0.0612 -0.13477,-0.13671 0,-0.0755 0.0603,-0.13672 0.13477,-0.13672 0.0744,0 0.13476,0.0612 0.13476,0.13672 z"
+         sodipodi:ry="0.13671875"
+         sodipodi:rx="0.13476562"
+         sodipodi:cy="803.16016"
+         sodipodi:cx="930.82227"
+         id="path18290-3-4-6-9-06"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;display:inline"
+         sodipodi:type="arc" />
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 376.83554,379.52287 0.337,0.0387"
+       id="path18355-9-5-0-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:#ffe0c4;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="m 390.17677,391.42085 c 0.52092,3.31311 0.61579,6.58199 0.53704,9.73765 -0.0363,2.26684 -0.3689,4.34199 -0.72053,6.22625 0,0 0,0 0,0 -0.44728,2.49972 -0.99225,4.95289 -1.57923,7.36653 -0.57274,2.35889 -1.1937,4.70905 -1.86774,7.04693 -0.0896,0.31231 -0.18035,0.62706 -0.27307,0.944 -0.4004,1.36877 -1.17572,2.30061 -2.05479,2.77401 -0.87908,0.4734 -1.85498,0.49069 -2.70349,0.17313 -0.84851,-0.31756 -1.57509,-0.95488 -2.00274,-1.80787 -0.42766,-0.853 -0.56296,-1.92451 -0.17508,-3.24916 0.0815,-0.27845 0.16305,-0.55921 0.24507,-0.84208 0.6441,-2.23373 1.23872,-4.48466 1.78872,-6.74926 0,0 0,0 0,0 0.56335,-2.32347 1.07772,-4.63125 1.48743,-6.93039 0.31536,-1.8507 0.61069,-3.53919 0.60871,-5.06625 0.0581,-2.93728 -0.003,-5.78764 -0.43481,-8.48211 -0.0806,-0.50232 0.29222,-0.95236 0.9063,-1.34154 0.61407,-0.38919 1.47013,-0.71415 2.35628,-0.90265 0.88615,-0.1885 1.80317,-0.23594 2.52778,-0.0684 0.7246,0.16757 1.25705,0.55365 1.35415,1.17118 z"
+       id="path24732-8-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:path-effect="#path-effect24740-2-8"
+       inkscape:original-d="m 368.92654,397.52172 34.5599,0 c 6.364,0 6.364,7.2478 -0.088,7.2478 l -34.4715,0 c -2.5961,0 -2.5961,-7.2478 -4e-4,-7.2478 z"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="m 383.02274,392.03389 -1.6598,-6.1099 c -1.6702,-5.99679 6.4097,-6.64554 7.2358,-2.38388 l 1.5383,7.57329"
+       id="path24746-0-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+  </g>
+</svg>

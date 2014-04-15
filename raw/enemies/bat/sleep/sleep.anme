@@ -1,0 +1,1530 @@
+application/x-vnd.lm_mohodoc
+version 37
+### Created in Moho version 9.0, © 1999-2012 Smith Micro Software, Inc.
+### Created: Sun Apr 14 14:01:05 2013
+
+### static values
+dimensions 872 486
+frame_range 1 57
+fps 24
+back_color 234 234 234 255
+noise_grain 0
+allow_3d true
+depth_sort false
+distance_sort false
+depth_of_field false 2 1 0.05
+global_render_style 0 0 0 true
+stereo_mode 0
+stereo_separation -1
+extra_swf_frame false
+color_palette ""
+soundtrack ""
+
+### styles
+
+### layer comps
+
+### animated values
+camera_track
+[
+	keys 1
+		0 1 0.1 0.5 1 0 0 0 0 1.7321
+]
+camera_zoom
+[
+	keys 1
+		0 1 0.1 0.5 1 0 0 1
+]
+camera_roll
+[
+	keys 1
+		0 1 0.1 0.5 1 0 0 0
+]
+camera_pan_tilt
+[
+	keys 1
+		0 1 0.1 0.5 1 0 0 0 0
+]
+
+### layers
+layer_type 1
+{
+	### generic layer values
+	name "u"
+	uuid "70d9c2b2-6bf7-4b47-b7cb-26b1992805d4"
+	quality_flags 2044
+	animated_layer_effects false
+	origin 0 0
+	parent_bone -1
+	visible true
+	render_only false
+	edit_only true
+	scale_compensation true
+	rotate_to_follow false
+	face_camera false
+	masking 0
+	mask_expansion false
+	blend_mode 0
+	camera_immune false
+	dof_immune false
+	metadata
+		"label_col"	"0"
+		"LM_Message_end"	"TRUE"
+	timing_offset 0
+	follow_layer -1
+	follow_curve -1
+	follow_bending false
+	random_num 18288
+
+	### transforms
+	translation
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0 0 0
+	]
+	scale
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 1 1 1
+	]
+	rotation_x
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0
+	]
+	rotation_y
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0
+	]
+	rotation_z
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0
+	]
+	flip_h
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 false
+	]
+	flip_v
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 false
+	]
+	shear
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0 0 0
+	]
+	following
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0
+	]
+	physics_nudge
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0 0
+	]
+
+	### layer effects
+
+	### physics
+	physics_enabled true
+	physics_static false
+	physics_sleeping false
+	physics_respawn 0
+	physics_velocity 0 0
+	physics_density 1
+	physics_friction 0.3
+	physics_restitution 0.5
+	physics_pivot false
+	physics_enable_motor false
+	physics_motor_speed 
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 3.141593
+	]
+	physics_motor_torque 10000
+	physics_force_field false
+	physics_force_field_vector 
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0 1
+	]
+
+	### mesh layer values
+	noisy_shapes false
+	noisy_lines false
+	animated_noise false
+	extra_sketchy false
+	noise_amp 0.012346
+	noise_scale 0.098765
+	noise_interval 1
+	extra_lines 0
+	gap_filling false
+	exclude_lines_from_mask false
+	fill_texture ""
+	line_texture ""
+	3d_mode 0
+	3d_options 
+	[
+		3d_shading_mode 1
+		3d_shading_density 50
+		3d_shading_color 64 64 64 255
+		3d_silhouette_edges true
+		3d_material_edges true
+		3d_crease_edges true
+		3d_crease_angle 1.047198
+		3d_edge_extension 0
+		3d_backface_removal false
+		3d_reset_z false
+	]
+	mesh
+	[
+		curve_interpretation 1
+		points 4
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -1.514813 0.952286
+			]
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -1
+			]
+			-2
+			false
+			1
+				0 0 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1.664083 0.952286
+			]
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -1
+			]
+			-2
+			false
+			1
+				0 1 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1.664083 0.178295
+			]
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -1
+			]
+			-2
+			false
+			1
+				0 2 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -1.514813 0.178295
+			]
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -1
+			]
+			-2
+			false
+			1
+				0 3 
+		curves 1
+			4 true
+			-1 -1 16
+				0 true
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.001
+				]
+				1 true
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.001
+				]
+				2 true
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.001
+				]
+				3 true
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.001
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 -0.1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1.1
+				]
+		shapes 1
+			"" false true true true 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1
+			]
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0
+			]
+			[
+				keys 1
+					0 0 0.1 0.5 0 0 0 0.125
+			]
+				4
+					0 0 0
+					0 1 0
+					0 2 0
+					0 3 0
+				""
+					false
+					[
+						keys 1
+							0 0 0.1 0.5 0 0 0 1 1 1 1
+					]
+					false 0.00823
+					false
+					[
+						keys 1
+							0 0 0.1 0.5 0 0 0 0 0 0 1
+					]
+					1
+					""
+					false
+					6.283185
+					0.25
+					true
+					true
+					-1
+					-1
+					-1
+				""
+				""
+
+		groups 0
+	]
+}
+layer_type 3
+{
+	### generic layer values
+	name "bat"
+	uuid "8d8d8e70-c252-42f7-8210-83f3ec1b3f54"
+	quality_flags 2046
+	animated_layer_effects false
+	origin 0 0
+	parent_bone -2
+	visible true
+	render_only false
+	edit_only false
+	scale_compensation true
+	rotate_to_follow false
+	face_camera false
+	masking 0
+	mask_expansion false
+	blend_mode 0
+	camera_immune false
+	dof_immune false
+	timing_offset 0
+	follow_layer -1
+	follow_curve -1
+	follow_bending false
+	random_num 16081
+
+	### transforms
+	translation
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0.589789 0.03286 0
+	]
+	scale
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0.217726 0.217726 0.217726
+	]
+	rotation_x
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0
+	]
+	rotation_y
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0
+	]
+	rotation_z
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0
+	]
+	flip_h
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 false
+	]
+	flip_v
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 false
+	]
+	shear
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0 0 0
+	]
+	following
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0
+	]
+	physics_nudge
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0 0
+	]
+
+	### layer effects
+
+	### physics
+	physics_enabled true
+	physics_static false
+	physics_sleeping false
+	physics_respawn 0
+	physics_velocity 0 0
+	physics_density 1
+	physics_friction 0.3
+	physics_restitution 0.5
+	physics_pivot false
+	physics_enable_motor false
+	physics_motor_speed 
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 3.141593
+	]
+	physics_motor_torque 10000
+	physics_force_field false
+	physics_force_field_vector 
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0 1
+	]
+
+	### group layer values
+	expanded true
+	group_mask 0
+	depth_sort false
+	distance_sort false
+	layer_ordering
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 ""
+	]
+	enable_physics 
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 false
+	]
+	gravity 0 -10
+	use_baked_physics false
+
+	### sub-layers
+	layer_type 2
+	{
+		### generic layer values
+		name "r_leg"
+		uuid "f758d436-937a-4ec0-9579-5ccf74be2d68"
+		quality_flags 2046
+		animated_layer_effects false
+		origin 0 0
+		parent_bone -3
+		visible true
+		render_only false
+		edit_only false
+		scale_compensation true
+		rotate_to_follow false
+		face_camera false
+		masking 0
+		mask_expansion false
+		blend_mode 0
+		camera_immune false
+		dof_immune false
+		metadata
+			"label_col"	"0"
+			"LM_Message_end"	"TRUE"
+		timing_offset 0
+		follow_layer -1
+		follow_curve -1
+		follow_bending false
+		random_num 29760
+
+		### transforms
+		translation
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 -1.107372 0.436268 0
+		]
+		scale
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 1 1 1
+		]
+		rotation_x
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		rotation_y
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		rotation_z
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 3.141593
+		]
+		flip_h
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 false
+		]
+		flip_v
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 false
+		]
+		shear
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 0 0
+		]
+		following
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		physics_nudge
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 0
+		]
+
+		### layer effects
+
+		### physics
+		physics_enabled true
+		physics_static false
+		physics_sleeping false
+		physics_respawn 0
+		physics_velocity 0 0
+		physics_density 1
+		physics_friction 0.3
+		physics_restitution 0.5
+		physics_pivot false
+		physics_enable_motor false
+		physics_motor_speed 
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 3.141593
+		]
+		physics_motor_torque 10000
+		physics_force_field false
+		physics_force_field_vector 
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 1
+		]
+
+		### image layer values
+		image "bat_leg.png"
+		interpreted_fps -1
+		avi_alpha false
+		movie_looping false
+		reverse_movie false
+		persist_first_frame false
+		persist_last_frame false
+		toon_effect false
+		toon_min_edge_threshold 216
+		toon_max_edge_threshold 220
+		toon_gray_threshold 96
+		toon_black_threshold 32
+		toon_saturation 60
+		toon_lightness 0
+		toon_quantize 6
+		sampling_mode 1
+		premultiplied_movie false
+		psd_layer_bounds 0 0 0 0
+		shape 0.156379 0.62963
+		### audio layer values
+		audio_file ""
+		spatial_positioning false
+		audio_level
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 1
+		]
+		audio_jump
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+	}
+	layer_type 2
+	{
+		### generic layer values
+		name "l_leg"
+		uuid "9c98f55e-04d4-4831-b30e-1941942d62e2"
+		quality_flags 2046
+		animated_layer_effects false
+		origin 0 0
+		parent_bone -3
+		visible true
+		render_only false
+		edit_only false
+		scale_compensation true
+		rotate_to_follow false
+		face_camera false
+		masking 0
+		mask_expansion false
+		blend_mode 0
+		camera_immune false
+		dof_immune false
+		timing_offset 0
+		follow_layer -1
+		follow_curve -1
+		follow_bending false
+		random_num 29760
+
+		### transforms
+		translation
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 -1.498685 0.418875 0
+		]
+		scale
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 1 1 1
+		]
+		rotation_x
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		rotation_y
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		rotation_z
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 3.141593
+		]
+		flip_h
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 false
+		]
+		flip_v
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 false
+		]
+		shear
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 0 0
+		]
+		following
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		physics_nudge
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 0
+		]
+
+		### layer effects
+
+		### physics
+		physics_enabled true
+		physics_static false
+		physics_sleeping false
+		physics_respawn 0
+		physics_velocity 0 0
+		physics_density 1
+		physics_friction 0.3
+		physics_restitution 0.5
+		physics_pivot false
+		physics_enable_motor false
+		physics_motor_speed 
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 3.141593
+		]
+		physics_motor_torque 10000
+		physics_force_field false
+		physics_force_field_vector 
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 1
+		]
+
+		### image layer values
+		image "bat_leg.png"
+		interpreted_fps -1
+		avi_alpha false
+		movie_looping false
+		reverse_movie false
+		persist_first_frame false
+		persist_last_frame false
+		toon_effect false
+		toon_min_edge_threshold 216
+		toon_max_edge_threshold 220
+		toon_gray_threshold 96
+		toon_black_threshold 32
+		toon_saturation 60
+		toon_lightness 0
+		toon_quantize 6
+		sampling_mode 1
+		premultiplied_movie false
+		psd_layer_bounds 0 0 0 0
+		shape 0.156379 0.62963
+		### audio layer values
+		audio_file ""
+		spatial_positioning false
+		audio_level
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 1
+		]
+		audio_jump
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+	}
+	layer_type 4
+	{
+		### generic layer values
+		name "head"
+		uuid "56d03ec6-a807-4215-b8ce-567c764b7f03"
+		quality_flags 2046
+		animated_layer_effects false
+		origin -1.220699 -1.241693
+		parent_bone -2
+		visible true
+		render_only false
+		edit_only false
+		scale_compensation true
+		rotate_to_follow false
+		face_camera false
+		masking 0
+		mask_expansion false
+		blend_mode 0
+		camera_immune false
+		dof_immune false
+		timing_offset 0
+		follow_layer -1
+		follow_curve -1
+		follow_bending false
+		random_num 31842
+
+		### transforms
+		translation
+		[
+			keys 6
+				0 1 0.1 0.5 1 0 0 -0.011626 -0.005813 0
+				15 1 0.1 0.5 1 0 0 0.159754 0.036999 0
+				30 1 0.1 0.5 1 0 0 -0.011626 0.003628 0
+				45 1 0.1 0.5 1 0 0 -0.181694 0.01744 0
+				57 1 0.1 0.5 1 0 0 -0.029313 -0.003546 0
+				60 1 0.1 0.5 1 0 0 -0.011626 -0.005813 0
+		]
+		scale
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 1 1 1
+		]
+		rotation_x
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		rotation_y
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		rotation_z
+		[
+			keys 5
+				0 1 0.1 0.5 1 0 0 0
+				15 1 0.1 0.5 1 0 0 0.177532
+				30 1 0.1 0.5 1 0 0 0
+				45 1 0.1 0.5 1 0 0 -0.215702
+				60 1 0.1 0.5 1 0 0 0
+		]
+		flip_h
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 false
+		]
+		flip_v
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 false
+		]
+		shear
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 0 0
+		]
+		following
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		physics_nudge
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 0
+		]
+
+		### layer effects
+
+		### physics
+		physics_enabled true
+		physics_static false
+		physics_sleeping false
+		physics_respawn 0
+		physics_velocity 0 0
+		physics_density 1
+		physics_friction 0.3
+		physics_restitution 0.5
+		physics_pivot false
+		physics_enable_motor false
+		physics_motor_speed 
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 3.141593
+		]
+		physics_motor_torque 10000
+		physics_force_field false
+		physics_force_field_vector 
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 1
+		]
+
+		### bone layer values
+		expanded true
+		group_mask 0
+		depth_sort false
+		distance_sort false
+		layer_ordering
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 ""
+		]
+		skeleton
+		[
+			binding_mode 1
+			bones 5
+				"B1" -1 -1 1 -1 1 1 -1 1 false 0.438381 2.430817 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 -1.245064 -0.805434
+				]
+				[
+					keys 3
+						0 1 0.1 0.5 1 0 0 4.791104
+						30 1 0.1 0.5 1 0 0 4.791104
+						60 1 0.1 0.5 1 0 0 4.791104
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B2" 0 -1 1 -1 1 1 -1 1 false 0.355318 0.386792 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.438372 -0.000099
+				]
+				[
+					keys 3
+						0 1 0.1 0.5 1 0 0 5.497541
+						30 1 0.1 0.5 1 0 0 5.497541
+						60 1 0.1 0.5 1 0 0 5.497541
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B3" 1 -1 1 -1 1 1 -1 1 false 0.590414 1.007861 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.358981 0.003119
+				]
+				[
+					keys 5
+						0 1 0.1 0.5 1 0 0 0.514345
+						15 1 0.1 0.5 1 0 0 0.817039
+						30 1 0.1 0.5 1 0 0 0.514345
+						45 1 0.1 0.5 1 0 0 0.362179
+						60 1 0.1 0.5 1 0 0 0.514345
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B4" 0 -1 1 -1 1 1 -1 1 false 0.395454 0.683964 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.443653 0.00441
+				]
+				[
+					keys 3
+						0 1 0.1 0.5 1 0 0 1.055959
+						30 1 0.1 0.5 1 0 0 1.055959
+						60 1 0.1 0.5 1 0 0 1.055959
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B5" 3 -1 1 -1 1 1 -1 1 true 0.655865 0.646226 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.395429 0.000097
+				]
+				[
+					keys 5
+						0 1 0.1 0.5 1 0 0 5.34456
+						15 1 0.1 0.5 1 0 0 5.588428
+						30 1 0.1 0.5 1 0 0 5.34456
+						45 1 0.1 0.5 1 0 0 5.175246
+						60 1 0.1 0.5 1 0 0 5.34456
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+		]
+
+		### sub-layers
+		layer_type 2
+		{
+			### generic layer values
+			name "head"
+			uuid "3e805420-1520-436d-8af3-4a3d7671e0d4"
+			quality_flags 2046
+			animated_layer_effects false
+			origin 0 0
+			parent_bone -3
+			visible true
+			render_only false
+			edit_only false
+			scale_compensation true
+			rotate_to_follow false
+			face_camera false
+			masking 0
+			mask_expansion false
+			blend_mode 0
+			camera_immune false
+			dof_immune false
+			metadata
+				"label_col"	"0"
+				"LM_Message_end"	"TRUE"
+			timing_offset 0
+			follow_layer -1
+			follow_curve -1
+			follow_bending false
+			random_num 22082
+
+			### transforms
+			translation
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -1.159668 -1.439955 0
+			]
+			scale
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1 1 1
+			]
+			rotation_x
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_y
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_z
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -0.042876
+			]
+			flip_h
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			flip_v
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			shear
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0 0
+			]
+			following
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			physics_nudge
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0
+			]
+
+			### layer effects
+
+			### physics
+			physics_enabled true
+			physics_static false
+			physics_sleeping false
+			physics_respawn 0
+			physics_velocity 0 0
+			physics_density 1
+			physics_friction 0.3
+			physics_restitution 0.5
+			physics_pivot false
+			physics_enable_motor false
+			physics_motor_speed 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 3.141593
+			]
+			physics_motor_torque 10000
+			physics_force_field false
+			physics_force_field_vector 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 1
+			]
+
+			### image layer values
+			image "bat_head_sleep.png"
+			interpreted_fps -1
+			avi_alpha false
+			movie_looping false
+			reverse_movie false
+			persist_first_frame false
+			persist_last_frame false
+			toon_effect false
+			toon_min_edge_threshold 216
+			toon_max_edge_threshold 220
+			toon_gray_threshold 96
+			toon_black_threshold 32
+			toon_saturation 60
+			toon_lightness 0
+			toon_quantize 6
+			sampling_mode 1
+			premultiplied_movie false
+			psd_layer_bounds 0 0 0 0
+			shape 1.08642 1.333333
+			### audio layer values
+			audio_file ""
+			spatial_positioning false
+			audio_level
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1
+			]
+			audio_jump
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+		}
+	}
+	layer_type 4
+	{
+		### generic layer values
+		name "body"
+		uuid "685ad761-8e28-4387-b829-45eb1ae594dd"
+		quality_flags 2046
+		animated_layer_effects false
+		origin -1.288862 -0.386022
+		parent_bone -2
+		visible true
+		render_only false
+		edit_only false
+		scale_compensation true
+		rotate_to_follow false
+		face_camera false
+		masking 0
+		mask_expansion false
+		blend_mode 0
+		camera_immune false
+		dof_immune false
+		timing_offset 0
+		follow_layer -1
+		follow_curve -1
+		follow_bending false
+		random_num 3735
+
+		### transforms
+		translation
+		[
+			keys 5
+				0 1 0.1 0.5 1 0 0 0 0 0
+				15 1 0.1 0.5 1 0 0 -0.019363 0.005708 0
+				30 1 0.1 0.5 1 0 0 -0.005708 0 0
+				45 1 0.1 0.5 1 0 0 0.064591 0.013173 0
+				60 1 0.1 0.5 1 0 0 0 0 0
+		]
+		scale
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 1 1 1
+		]
+		rotation_x
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		rotation_y
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		rotation_z
+		[
+			keys 5
+				0 1 0.1 0.5 1 0 0 0
+				15 1 0.1 0.5 1 0 0 -0.03406
+				30 1 0.1 0.5 1 0 0 0.014772
+				45 1 0.1 0.5 1 0 0 0.124727
+				60 1 0.1 0.5 1 0 0 0
+		]
+		flip_h
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 false
+		]
+		flip_v
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 false
+		]
+		shear
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 0 0
+		]
+		following
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		physics_nudge
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 0
+		]
+
+		### layer effects
+
+		### physics
+		physics_enabled true
+		physics_static false
+		physics_sleeping false
+		physics_respawn 0
+		physics_velocity 0 0
+		physics_density 1
+		physics_friction 0.3
+		physics_restitution 0.5
+		physics_pivot false
+		physics_enable_motor false
+		physics_motor_speed 
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 3.141593
+		]
+		physics_motor_torque 10000
+		physics_force_field false
+		physics_force_field_vector 
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 1
+		]
+
+		### bone layer values
+		expanded true
+		group_mask 0
+		depth_sort false
+		distance_sort false
+		layer_ordering
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 ""
+		]
+		skeleton
+		[
+			binding_mode 1
+			bones 2
+				"B1" -1 -1 1 -1 1 1 -1 1 false 0.476741 0.69221 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 -1.296072 0.146954
+				]
+				[
+					keys 5
+						0 1 0.1 0.5 1 0 0 4.736401
+						15 1 0.1 0.5 1 0 0 4.767724
+						30 1 0.1 0.5 1 0 0 4.736401
+						45 1 0.1 0.5 1 0 0 4.597724
+						60 1 0.1 0.5 1 0 0 4.736401
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B2" 0 -1 1 -1 1 1 -1 1 true 0.539146 1.025125 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.476739 -0.000099
+				]
+				[
+					keys 5
+						0 1 0.1 0.5 1 0 0 6.269703
+						15 1 0.1 0.5 1 0 0 6.438198
+						30 1 0.1 0.5 1 0 0 6.269703
+						45 1 0.1 0.5 1 0 0 6.121963
+						60 1 0.1 0.5 1 0 0 6.269703
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+		]
+
+		### sub-layers
+		layer_type 2
+		{
+			### generic layer values
+			name "body"
+			uuid "5754ee71-b564-4c77-8e43-585102e8b449"
+			quality_flags 2046
+			animated_layer_effects false
+			origin 0 0
+			parent_bone -3
+			visible true
+			render_only false
+			edit_only false
+			scale_compensation true
+			rotate_to_follow false
+			face_camera false
+			masking 0
+			mask_expansion false
+			blend_mode 0
+			camera_immune false
+			dof_immune false
+			metadata
+				"label_col"	"0"
+				"LM_Message_end"	"TRUE"
+			timing_offset 0
+			follow_layer -1
+			follow_curve -1
+			follow_bending false
+			random_num 22099
+
+			### transforms
+			translation
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -1.256551 -0.369574 0
+			]
+			scale
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1 1 1
+			]
+			rotation_x
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_y
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_z
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			flip_h
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			flip_v
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			shear
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0 0
+			]
+			following
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			physics_nudge
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0
+			]
+
+			### layer effects
+
+			### physics
+			physics_enabled true
+			physics_static false
+			physics_sleeping false
+			physics_respawn 0
+			physics_velocity 0 0
+			physics_density 1
+			physics_friction 0.3
+			physics_restitution 0.5
+			physics_pivot false
+			physics_enable_motor false
+			physics_motor_speed 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 3.141593
+			]
+			physics_motor_torque 10000
+			physics_force_field false
+			physics_force_field_vector 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 1
+			]
+
+			### image layer values
+			image "bat_body_sleep.png"
+			interpreted_fps -1
+			avi_alpha false
+			movie_looping false
+			reverse_movie false
+			persist_first_frame false
+			persist_last_frame false
+			toon_effect false
+			toon_min_edge_threshold 216
+			toon_max_edge_threshold 220
+			toon_gray_threshold 96
+			toon_black_threshold 32
+			toon_saturation 60
+			toon_lightness 0
+			toon_quantize 6
+			sampling_mode 1
+			premultiplied_movie false
+			psd_layer_bounds 0 0 0 0
+			shape 0.975309 1.102881
+			### audio layer values
+			audio_file ""
+			spatial_positioning false
+			audio_level
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1
+			]
+			audio_jump
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+		}
+	}
+}

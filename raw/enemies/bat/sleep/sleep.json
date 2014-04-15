@@ -1,0 +1,252 @@
+{"frames": [
+
+{
+	"filename": "sleep_0000_sleep_00001.png.png",
+	"frame": {"x":2,"y":2,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0001_sleep_00002.png.png",
+	"frame": {"x":98,"y":2,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0002_sleep_00003.png.png",
+	"frame": {"x":194,"y":2,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0003_sleep_00004.png.png",
+	"frame": {"x":290,"y":2,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0004_sleep_00005.png.png",
+	"frame": {"x":386,"y":2,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0005_sleep_00006.png.png",
+	"frame": {"x":2,"y":157,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0006_sleep_00007.png.png",
+	"frame": {"x":98,"y":157,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0007_sleep_00008.png.png",
+	"frame": {"x":194,"y":157,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0008_sleep_00009.png.png",
+	"frame": {"x":290,"y":157,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0009_sleep_00010.png.png",
+	"frame": {"x":386,"y":157,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0010_sleep_00011.png.png",
+	"frame": {"x":2,"y":312,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0011_sleep_00012.png.png",
+	"frame": {"x":98,"y":312,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0012_sleep_00013.png.png",
+	"frame": {"x":194,"y":312,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0013_sleep_00014.png.png",
+	"frame": {"x":290,"y":312,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0014_sleep_00015.png.png",
+	"frame": {"x":386,"y":312,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0015_sleep_00016.png.png",
+	"frame": {"x":2,"y":467,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0016_sleep_00017.png.png",
+	"frame": {"x":98,"y":467,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0017_sleep_00018.png.png",
+	"frame": {"x":194,"y":467,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0018_sleep_00019.png.png",
+	"frame": {"x":290,"y":467,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0019_sleep_00020.png.png",
+	"frame": {"x":386,"y":467,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0020_sleep_00021.png.png",
+	"frame": {"x":2,"y":622,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0021_sleep_00022.png.png",
+	"frame": {"x":98,"y":622,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0022_sleep_00023.png.png",
+	"frame": {"x":194,"y":622,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0023_sleep_00024.png.png",
+	"frame": {"x":290,"y":622,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0024_sleep_00025.png.png",
+	"frame": {"x":386,"y":622,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0025_sleep_00026.png.png",
+	"frame": {"x":2,"y":777,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0026_sleep_00027.png.png",
+	"frame": {"x":98,"y":777,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0027_sleep_00028.png.png",
+	"frame": {"x":194,"y":777,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0028_sleep_00029.png.png",
+	"frame": {"x":290,"y":777,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+},
+{
+	"filename": "sleep_0029_sleep_00030.png.png",
+	"frame": {"x":386,"y":777,"w":94,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":153},
+	"sourceSize": {"w":94,"h":153}
+}],
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "sleep.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":1024},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:328a01414644b385d2120043a1d53165$"
+}
+}

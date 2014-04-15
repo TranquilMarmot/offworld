@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="64px"
+   height="64px"
+   id="svg5685"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld\offworld-android\assets\rooms\cave-1\tile-1.png"
+   inkscape:export-xdpi="2880"
+   inkscape:export-ydpi="2880"
+   sodipodi:docname="New document 14">
+  <defs
+     id="defs5687" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="11"
+     inkscape:cx="36.243284"
+     inkscape:cy="27.101723"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:document-units="px"
+     inkscape:grid-bbox="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1138"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5690">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <rect
+       style="fill:#b85420;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       id="rect5693"
+       width="64"
+       height="64"
+       x="0"
+       y="0" />
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none;display:inline"
+       d="m 23.211511,46.364935 1.398793,-0.684509 0.535704,0.833323 0.357144,1.071411 -1.666651,0.208331 -0.952369,-0.684509 z"
+       id="path7568"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#ff8740;fill-opacity:1;stroke:none;display:inline"
+       d="m 40.732105,59.09479 0.374958,-0.11537 0.389384,0.43264 -0.01442,0.31728 -0.504754,0.0721 -0.259583,-0.274 z"
+       id="path7570"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#ffa773;fill-opacity:1;stroke:none;display:inline"
+       d="m 48.342809,34.42436 0.822022,-0.0144 0.158637,0.34611 -0.158637,0.50475 -0.562438,-0.11537 -0.346116,-0.43264 z"
+       id="path7572"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none;display:inline"
+       d="m 4.5459633,4.685645 0.937391,-0.37496 0.519172,0.69223 -0.331692,0.41823 -0.735494,-0.0144 z"
+       id="path7594"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#ff8740;fill-opacity:1;stroke:none;display:inline"
+       d="m 58.480376,44.319203 -0.475906,0.24516 0.0721,0.47591 0.403802,0.17306 0.447067,-0.0865 0.08653,-0.38938 -0.259583,-0.37496 z"
+       id="path7596"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#ff8740;fill-opacity:1;stroke:none;display:inline"
+       d="m 9.2432308,56.900715 0.245164,-0.41822 0.475911,0.17305 0.4038012,0.47591 -0.100952,0.44707 -0.5624382,-0.21632 z"
+       id="path7600"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none;display:inline"
+       d="m 53.942139,17.806127 -0.432644,0.24516 0.115376,0.47591 0.562433,0.30285 0.648965,-0.2019 -0.144213,-0.86529 z"
+       id="path7602"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#ff8740;fill-opacity:1;stroke:none;display:inline"
+       d="m 9.4058098,27.964394 -0.216322,0.34612 0.05768,0.38938 0.144213,0.30285 0.6922322,0.15864 -0.04327,-0.90856 z"
+       id="path7604"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#ff8740;fill-opacity:1;stroke:none;display:inline"
+       d="m 24.578967,31.273016 -0.305937,-0.27017 -0.393567,-0.007 -0.322405,0.0926 -0.270055,0.65683 0.903341,0.10637 z"
+       id="path7604-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#ffa773;fill-opacity:1;stroke:none;display:inline"
+       d="m 50.179196,52.868741 0.712524,-0.20097 0.548095,0.20097 -0.09135,0.32886 -0.803873,0 z"
+       id="path7739"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#ff8740;fill-opacity:1;stroke:none;display:inline"
+       d="m 42.420405,14.627894 0.384909,-0.28604 -0.133081,-0.41014 -0.382125,-0.0941 -0.382541,0.14163 -0.01974,0.35676 0.284078,0.29359 z"
+       id="path7596-4-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#ffa773;fill-opacity:1;stroke:none;display:inline"
+       d="m 0.6865952,63.186845 -0.148567,0.239 0.226079,0.20024 0.238996,-0.0904 0.03876,-0.16794 -0.09043,-0.25191 z"
+       id="path7314-9-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#ffa773;fill-opacity:1;stroke:none;display:inline"
+       d="m 20.429441,8.8374511 -0.724458,0.13253 -0.190653,-0.2828 0.06666,-0.46925 0.513934,0.02 0.368967,0.33196 z"
+       id="path7572-5-0-7-8"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none;display:inline"
+       d="m 62.51141,62.56977 -0.773889,0.46801 -0.559755,-0.53618 0.232228,-0.41799 0.652179,-0.0944 z"
+       id="path7594-7-5-0-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none;display:inline"
+       d="m 48.547331,2.58533 -0.480793,0.7317472 0.425195,0.7785565 0.972645,0.081416 L 50.01084,3.5469887 49.65426,2.668712 z"
+       id="path7741-95-7-7-7"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none;display:inline"
+       d="m 14.133825,37.759863 -0.466802,0.0768 -0.187496,-0.37672 0.113514,-0.3367 0.482218,0.17 z"
+       id="path7562-54-7-7"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#ffa773;fill-opacity:1;stroke:none;display:inline"
+       d="m 34.273986,3.0047217 -0.705409,0.22466 -0.554505,-0.18254 0.08031,-0.33172 0.803424,-0.0269 z"
+       id="path7739-2-53-3"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#ffa773;fill-opacity:1;stroke:none;display:inline"
+       d="m 12.770504,46.224083 0.48255,-0.21112 0.39207,0.45239 0,0.51271 -0.87462,-0.45239 z"
+       id="path7731-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none;display:inline"
+       d="m 40.681671,39.314377 0.42115,-0.66419 -0.39319,-0.69303 -0.87472,-0.0589 -0.48162,0.57381 0.33303,0.7836 z"
+       id="path7741-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none;display:inline"
+       d="m 4.7067857,15.574603 -0.90918,0.64701 -0.47588,-0.52672 -0.37739,-0.71588 1.15405,-0.34156 0.75313,0.37294 z"
+       id="path7568-9-5-6"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#ffa773;fill-opacity:1;stroke:none;display:inline"
+       d="m 39.211792,24.281841 -0.97824,1.6304 0.97824,1.10868 1.6304,-0.13043 0.3913,-1.10868 -1.04346,-1.10867 z"
+       id="path7727-4-9-7"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#a63e00;fill-opacity:1;stroke:none;display:inline"
+       d="m 34.236822,50.358792 1.03146,-0.40723 0.652,0.79373 -0.76437,0.70758 -0.86749,-0.49524 z"
+       id="path7729-3-7-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+    <path
+       style="fill:#ff8740;fill-opacity:1;stroke:none;display:inline"
+       d="m 29.384253,17.130365 -0.78034,0.952675 -1.289199,-0.78423 0.0096,-0.817309 0.970419,-0.758149 z"
+       id="path7336-5-4"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\environments\intro\intro-full.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
+  </g>
+</svg>

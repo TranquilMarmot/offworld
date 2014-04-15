@@ -1,0 +1,4860 @@
+application/x-vnd.lm_mohodoc
+version 37
+### Created in Moho version 9.0, © 1999-2012 Smith Micro Software, Inc.
+### Created: Tue Mar 05 13:41:26 2013
+
+### static values
+dimensions 1024 768
+frame_range 1 32
+fps 30
+back_color 234 234 234 255
+noise_grain 0
+allow_3d true
+depth_sort false
+distance_sort false
+depth_of_field false 2 1 0.03125
+global_render_style 0 0 0 true
+stereo_mode 0
+stereo_separation -1
+extra_swf_frame false
+color_palette ""
+soundtrack ""
+
+### styles
+
+### layer comps
+
+### animated values
+camera_track
+[
+	keys 1
+		0 1 0.1 0.5 1 0 0 0 0 1.7321
+]
+camera_zoom
+[
+	keys 1
+		0 1 0.1 0.5 1 0 0 1
+]
+camera_roll
+[
+	keys 1
+		0 1 0.1 0.5 1 0 0 0
+]
+camera_pan_tilt
+[
+	keys 1
+		0 1 0.1 0.5 1 0 0 0 0
+]
+
+### layers
+layer_type 1
+{
+	### generic layer values
+	name "ground"
+	uuid "fd7029d2-974f-43c3-be6a-f027665210fa"
+	quality_flags 2044
+	animated_layer_effects false
+	origin 0 0
+	parent_bone -1
+	visible true
+	render_only false
+	edit_only true
+	scale_compensation true
+	rotate_to_follow false
+	face_camera false
+	masking 0
+	mask_expansion false
+	blend_mode 0
+	camera_immune false
+	dof_immune false
+	metadata
+		"label_col"	"0"
+		"LM_Message_end"	"TRUE"
+	timing_offset 0
+	follow_layer -1
+	follow_curve -1
+	follow_bending false
+	random_num 29406
+
+	### transforms
+	translation
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0.026165 -0.150199 0
+	]
+	scale
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 1 0.889539 1
+	]
+	rotation_x
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0
+	]
+	rotation_y
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0
+	]
+	rotation_z
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0
+	]
+	flip_h
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 false
+	]
+	flip_v
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 false
+	]
+	shear
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0 0 0
+	]
+	following
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0
+	]
+	physics_nudge
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0 0
+	]
+
+	### layer effects
+
+	### physics
+	physics_enabled true
+	physics_static false
+	physics_sleeping false
+	physics_respawn 0
+	physics_velocity 0 0
+	physics_density 1
+	physics_friction 0.3
+	physics_restitution 0.5
+	physics_pivot false
+	physics_enable_motor false
+	physics_motor_speed 
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 3.141593
+	]
+	physics_motor_torque 10000
+	physics_force_field false
+	physics_force_field_vector 
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0 1
+	]
+
+	### mesh layer values
+	noisy_shapes false
+	noisy_lines false
+	animated_noise false
+	extra_sketchy false
+	noise_amp 0.012346
+	noise_scale 0.098765
+	noise_interval 1
+	extra_lines 0
+	gap_filling false
+	exclude_lines_from_mask false
+	fill_texture ""
+	line_texture ""
+	3d_mode 0
+	3d_options 
+	[
+		3d_shading_mode 1
+		3d_shading_density 50
+		3d_shading_color 64 64 64 255
+		3d_silhouette_edges true
+		3d_material_edges true
+		3d_crease_edges true
+		3d_crease_angle 1.047198
+		3d_edge_extension 0
+		3d_backface_removal false
+		3d_reset_z false
+	]
+	mesh
+	[
+		curve_interpretation 1
+		points 4
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -1.782095 -0.689685
+			]
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -1
+			]
+			-2
+			true
+			1
+				0 0 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0.491168 -0.689685
+			]
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -1
+			]
+			-2
+			true
+			1
+				0 1 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0.491168 -1.00346
+			]
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -1
+			]
+			-2
+			true
+			1
+				0 2 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -1.782095 -1.00346
+			]
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -1
+			]
+			-2
+			true
+			1
+				0 3 
+		curves 1
+			4 true
+			-1 -1 16
+				0 true
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.001
+				]
+				1 true
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.001
+				]
+				2 true
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.001
+				]
+				3 true
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.001
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 -0.1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1.1
+				]
+		shapes 1
+			"" false true true true 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1
+			]
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0
+			]
+			[
+				keys 1
+					0 0 0.1 0.5 0 0 0 0.125
+			]
+				4
+					0 0 0
+					0 1 0
+					0 2 0
+					0 3 0
+				""
+					false
+					[
+						keys 1
+							0 0 0.1 0.5 0 0 0 1 1 1 1
+					]
+					false 0.00823
+					false
+					[
+						keys 1
+							0 0 0.1 0.5 0 0 0 0 0 0 1
+					]
+					1
+					""
+					false
+					6.283185
+					0.25
+					true
+					true
+					-1
+					-1
+					-1
+				""
+				""
+
+		groups 0
+	]
+}
+layer_type 3
+{
+	### generic layer values
+	name "player"
+	uuid "22393999-3d01-425c-9b57-699ff391afcd"
+	quality_flags 2046
+	animated_layer_effects false
+	origin 0 0
+	parent_bone -2
+	visible true
+	render_only false
+	edit_only false
+	scale_compensation true
+	rotate_to_follow false
+	face_camera false
+	masking 0
+	mask_expansion false
+	blend_mode 0
+	camera_immune false
+	dof_immune false
+	timing_offset 0
+	follow_layer -1
+	follow_curve -1
+	follow_bending false
+	random_num 24970
+
+	### transforms
+	translation
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0 0 0
+	]
+	scale
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 1 1 1
+	]
+	rotation_x
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0
+	]
+	rotation_y
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0
+	]
+	rotation_z
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0
+	]
+	flip_h
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 false
+	]
+	flip_v
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 false
+	]
+	shear
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0 0 0
+	]
+	following
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0
+	]
+	physics_nudge
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0 0
+	]
+
+	### layer effects
+
+	### physics
+	physics_enabled true
+	physics_static false
+	physics_sleeping false
+	physics_respawn 0
+	physics_velocity 0 0
+	physics_density 1
+	physics_friction 0.3
+	physics_restitution 0.5
+	physics_pivot false
+	physics_enable_motor false
+	physics_motor_speed 
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 3.141593
+	]
+	physics_motor_torque 10000
+	physics_force_field false
+	physics_force_field_vector 
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 0 1
+	]
+
+	### group layer values
+	expanded true
+	group_mask 0
+	depth_sort false
+	distance_sort false
+	layer_ordering
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 ""
+	]
+	enable_physics 
+	[
+		keys 1
+			0 1 0.1 0.5 1 0 0 false
+	]
+	gravity 0 -10
+	use_baked_physics false
+
+	### sub-layers
+	layer_type 4
+	{
+		### generic layer values
+		name "l-leg"
+		uuid "95ae570d-8c08-469b-8176-5a727204a83f"
+		quality_flags 2046
+		animated_layer_effects false
+		origin 0 0
+		parent_bone -2
+		visible true
+		render_only false
+		edit_only false
+		scale_compensation true
+		rotate_to_follow false
+		face_camera false
+		masking 0
+		mask_expansion false
+		blend_mode 0
+		camera_immune false
+		dof_immune false
+		timing_offset 0
+		follow_layer -1
+		follow_curve -1
+		follow_bending false
+		random_num 9197
+
+		### transforms
+		translation
+		[
+			keys 12
+				0 1 0.1 0.5 1 0 0 0.06634 0.014706 0
+				1 1 0.1 0.5 1 0 0 0.001078 0.018379 0
+				5 1 0.1 0.5 1 0 0 0.024653 0.011711 0
+				13 1 0.1 0.5 1 0 0 0.039737 0.032451 0
+				17 1 0.1 0.5 1 0 0 0.033814 -0.000291 0
+				21 1 0.1 0.5 1 0 0 0.041265 -0.016813 0
+				23 1 0.1 0.5 1 0 0 0.051498 0.005642 0
+				25 1 0.1 0.5 1 0 0 0.059844 0.016139 0
+				27 1 0.1 0.5 1 0 0 0.05556 0.022979 0
+				29 1 0.1 0.5 1 0 0 0.041115 0.019761 0
+				32 1 0.1 0.5 1 0 0 0.005631 0.018451 0
+				33 1 0.1 0.5 1 0 0 0.001078 0.018379 0
+		]
+		scale
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 1 1 1
+		]
+		rotation_x
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		rotation_y
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		rotation_z
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		flip_h
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 false
+		]
+		flip_v
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 false
+		]
+		shear
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 0 0
+		]
+		following
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		physics_nudge
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 0
+		]
+
+		### layer effects
+
+		### physics
+		physics_enabled true
+		physics_static false
+		physics_sleeping false
+		physics_respawn 0
+		physics_velocity 0 0
+		physics_density 1
+		physics_friction 0.3
+		physics_restitution 0.5
+		physics_pivot false
+		physics_enable_motor false
+		physics_motor_speed 
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 3.141593
+		]
+		physics_motor_torque 10000
+		physics_force_field false
+		physics_force_field_vector 
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 1
+		]
+
+		### bone layer values
+		expanded false
+		group_mask 0
+		depth_sort false
+		distance_sort false
+		layer_ordering
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 ""
+		]
+		skeleton
+		[
+			binding_mode 1
+			bones 9
+				"B1" -1 -1 1 -1 1 1 -1 1 false 0.095993 0.438311 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 -0.712999 -0.150686
+				]
+				[
+					keys 10
+						0 1 0.1 0.5 1 0 0 4.71343
+						1 1 0.1 0.5 1 0 0 4.559826
+						5 1 0.1 0.5 1 0 0 4.517194
+						9 1 0.1 0.5 1 0 0 4.908338
+						13 1 0.1 0.5 1 0 0 5.073073
+						17 1 0.1 0.5 1 0 0 5.234179
+						21 1 0.1 0.5 1 0 0 5.215607
+						25 1 0.1 0.5 1 0 0 4.703016
+						29 1 0.1 0.5 1 0 0 4.714417
+						33 1 0.1 0.5 1 0 0 4.559826
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B2" 0 -1 1 -1 1 1 -1 1 false 0.067728 0.448052 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.099758 0.000876
+				]
+				[
+					keys 10
+						0 1 0.1 0.5 1 0 0 6.282146
+						1 1 0.1 0.5 1 0 0 6.202013
+						5 1 0.1 0.5 1 0 0 6.231248
+						9 1 0.1 0.5 1 0 0 6.230748
+						13 1 0.1 0.5 1 0 0 6.355683
+						17 1 0.1 0.5 1 0 0 6.261136
+						21 1 0.1 0.5 1 0 0 6.304655
+						25 1 0.1 0.5 1 0 0 6.262829
+						29 1 0.1 0.5 1 0 0 6.051624
+						33 1 0.1 0.5 1 0 0 6.202013
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B3" 1 -1 1 -1 1 1 -1 1 false 0.070143 0.448052 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.067628 0
+				]
+				[
+					keys 10
+						0 1 0.1 0.5 1 0 0 6.283182
+						1 1 0.1 0.5 1 0 0 6.200315
+						5 1 0.1 0.5 1 0 0 6.07127
+						9 1 0.1 0.5 1 0 0 6.24523
+						13 1 0.1 0.5 1 0 0 6.181952
+						17 1 0.1 0.5 1 0 0 6.214661
+						21 1 0.1 0.5 1 0 0 6.126195
+						25 1 0.1 0.5 1 0 0 6.290015
+						29 1 0.1 0.5 1 0 0 6.2464
+						33 1 0.1 0.5 1 0 0 6.200315
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B4" 2 -1 1 -1 1 1 -1 1 false 0.058066 0.48052 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.070043 0
+				]
+				[
+					keys 10
+						0 1 0.1 0.5 1 0 0 0.000001
+						1 1 0.1 0.5 1 0 0 -0.075575
+						5 1 0.1 0.5 1 0 0 -0.076104
+						9 1 0.1 0.5 1 0 0 -0.115225
+						13 1 0.1 0.5 1 0 0 0.054956
+						17 1 0.1 0.5 1 0 0 -0.026346
+						21 1 0.1 0.5 1 0 0 -0.010833
+						25 1 0.1 0.5 1 0 0 -0.034496
+						29 1 0.1 0.5 1 0 0 -0.065679
+						33 1 0.1 0.5 1 0 0 -0.075575
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B5" 3 -1 1 -1 1 1 -1 1 false 0.065317 0.448052 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.057966 0
+				]
+				[
+					keys 10
+						0 1 0.1 0.5 1 0 0 6.270858
+						1 1 0.1 0.5 1 0 0 6.146372
+						5 1 0.1 0.5 1 0 0 6.096172
+						9 1 0.1 0.5 1 0 0 5.843191
+						13 1 0.1 0.5 1 0 0 6.01404
+						17 1 0.1 0.5 1 0 0 6.22486
+						21 1 0.1 0.5 1 0 0 6.122947
+						25 1 0.1 0.5 1 0 0 6.255404
+						29 1 0.1 0.5 1 0 0 6.311192
+						33 1 0.1 0.5 1 0 0 6.146372
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B6" 4 -1 1 -1 1 1 -1 1 false 0.061287 0.48052 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.065217 -0.000001
+				]
+				[
+					keys 10
+						0 1 0.1 0.5 1 0 0 0.012306
+						1 1 0.1 0.5 1 0 0 -0.010441
+						5 1 0.1 0.5 1 0 0 -0.094471
+						9 1 0.1 0.5 1 0 0 -0.251606
+						13 1 0.1 0.5 1 0 0 -0.221598
+						17 1 0.1 0.5 1 0 0 -0.009743
+						21 1 0.1 0.5 1 0 0 -0.138363
+						25 1 0.1 0.5 1 0 0 0.004482
+						29 1 0.1 0.5 1 0 0 -0.085068
+						33 1 0.1 0.5 1 0 0 -0.010441
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B7" 5 -1 1 -1 1 1 -1 1 false 0.057261 0.415585 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.061187 0.000001
+				]
+				[
+					keys 10
+						0 1 0.1 0.5 1 0 0 0.000022
+						1 1 0.1 0.5 1 0 0 -0.235273
+						5 1 0.1 0.5 1 0 0 -0.232939
+						9 1 0.1 0.5 1 0 0 -0.261141
+						13 1 0.1 0.5 1 0 0 -0.253137
+						17 1 0.1 0.5 1 0 0 0.015197
+						21 1 0.1 0.5 1 0 0 0.005976
+						25 1 0.1 0.5 1 0 0 -0.016081
+						29 1 0.1 0.5 1 0 0 -0.05184
+						33 1 0.1 0.5 1 0 0 -0.235273
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B8" 6 -1 1 -1 1 1 -1 1 true 0.069338 0.415585 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.057161 0
+				]
+				[
+					keys 10
+						0 1 0.1 0.5 1 0 0 6.283185
+						1 1 0.1 0.5 1 0 0 6.19532
+						5 1 0.1 0.5 1 0 0 6.225325
+						9 1 0.1 0.5 1 0 0 6.226049
+						13 1 0.1 0.5 1 0 0 6.170393
+						17 1 0.1 0.5 1 0 0 6.215065
+						21 1 0.1 0.5 1 0 0 6.20515
+						25 1 0.1 0.5 1 0 0 6.248934
+						29 1 0.1 0.5 1 0 0 6.253733
+						33 1 0.1 0.5 1 0 0 6.19532
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B9" 7 -1 1 -1 1 1 -1 1 false 0.151292 0.074675 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.071653 0
+				]
+				[
+					keys 9
+						0 1 0.1 0.5 1 0 0 1.228223
+						1 1 0.1 0.5 1 0 0 1.474928
+						5 1 0.1 0.5 1 0 0 1.31213
+						9 1 0.1 0.5 1 0 0 1.487561
+						13 1 0.1 0.5 1 0 0 1.363314
+						21 1 0.1 0.5 1 0 0 1.283437
+						25 1 0.1 0.5 1 0 0 1.360579
+						29 1 0.1 0.5 1 0 0 1.455094
+						33 1 0.1 0.5 1 0 0 1.474928
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+		]
+
+		### sub-layers
+		layer_type 2
+		{
+			### generic layer values
+			name "leg.png"
+			uuid "bb1d17c0-2023-4347-bdc8-0133deadcf8e"
+			quality_flags 2046
+			animated_layer_effects false
+			origin 0 0
+			parent_bone -3
+			visible true
+			render_only false
+			edit_only false
+			scale_compensation true
+			rotate_to_follow false
+			face_camera false
+			masking 0
+			mask_expansion false
+			blend_mode 0
+			camera_immune false
+			dof_immune false
+			timing_offset 0
+			follow_layer -1
+			follow_curve -1
+			follow_bending false
+			random_num 1522
+
+			### transforms
+			translation
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -0.668552 -0.497352 0
+			]
+			scale
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0.2 0.2 1
+			]
+			rotation_x
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_y
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_z
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			flip_h
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			flip_v
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			shear
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0 0
+			]
+			following
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			physics_nudge
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0
+			]
+
+			### layer effects
+
+			### physics
+			physics_enabled true
+			physics_static false
+			physics_sleeping false
+			physics_respawn 0
+			physics_velocity 0 0
+			physics_density 1
+			physics_friction 0.3
+			physics_restitution 0.5
+			physics_pivot false
+			physics_enable_motor false
+			physics_motor_speed 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 3.141593
+			]
+			physics_motor_torque 10000
+			physics_force_field false
+			physics_force_field_vector 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 1
+			]
+
+			### image layer values
+			image "leg.png"
+			interpreted_fps -1
+			avi_alpha false
+			movie_looping false
+			reverse_movie false
+			persist_first_frame false
+			persist_last_frame false
+			toon_effect false
+			toon_min_edge_threshold 216
+			toon_max_edge_threshold 220
+			toon_gray_threshold 96
+			toon_black_threshold 32
+			toon_saturation 60
+			toon_lightness 0
+			toon_quantize 6
+			sampling_mode 1
+			premultiplied_movie false
+			psd_layer_bounds 0 0 0 0
+			shape 1.012346 2.790123
+			### audio layer values
+			audio_file ""
+			spatial_positioning false
+			audio_level
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1
+			]
+			audio_jump
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+		}
+	}
+	layer_type 4
+	{
+		### generic layer values
+		name "r-leg"
+		uuid "c3dc1fa8-ad38-46d1-9a91-41c1f1d441c9"
+		quality_flags 2046
+		animated_layer_effects false
+		origin 0 0
+		parent_bone -2
+		visible true
+		render_only false
+		edit_only false
+		scale_compensation true
+		rotate_to_follow false
+		face_camera false
+		masking 0
+		mask_expansion false
+		blend_mode 0
+		camera_immune false
+		dof_immune false
+		timing_offset 0
+		follow_layer -1
+		follow_curve -1
+		follow_bending false
+		random_num 9197
+
+		### transforms
+		translation
+		[
+			keys 12
+				0 1 0.1 0.5 1 0 0 0 0 0
+				1 1 0.1 0.5 1 0 0 0.029842 -0.00127 0
+				5 1 0.1 0.5 1 0 0 0.031533 -0.012726 0
+				6 1 0.1 0.5 1 0 0 0.028651 -0.009024 0
+				9 1 0.1 0.5 1 0 0 0.013849 0.000921 0
+				11 1 0.1 0.5 1 0 0 -0.000654 0.029699 0
+				13 1 0.1 0.5 1 0 0 -0.001281 0.033018 0
+				17 1 0.1 0.5 1 0 0 0.002511 0.021558 0
+				21 1 0.1 0.5 1 0 0 0.003247 0.01334 0
+				25 1 0.1 0.5 1 0 0 0.004054 0.011509 0
+				29 1 0.1 0.5 1 0 0 0.019633 0.006236 0
+				33 1 0.1 0.5 1 0 0 0.029842 -0.00127 0
+		]
+		scale
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 1 1 1
+		]
+		rotation_x
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		rotation_y
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		rotation_z
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		flip_h
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 false
+		]
+		flip_v
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 false
+		]
+		shear
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 0 0
+		]
+		following
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		physics_nudge
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 0
+		]
+
+		### layer effects
+
+		### physics
+		physics_enabled true
+		physics_static false
+		physics_sleeping false
+		physics_respawn 0
+		physics_velocity 0 0
+		physics_density 1
+		physics_friction 0.3
+		physics_restitution 0.5
+		physics_pivot false
+		physics_enable_motor false
+		physics_motor_speed 
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 3.141593
+		]
+		physics_motor_torque 10000
+		physics_force_field false
+		physics_force_field_vector 
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 1
+		]
+
+		### bone layer values
+		expanded false
+		group_mask 0
+		depth_sort false
+		distance_sort false
+		layer_ordering
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 ""
+		]
+		skeleton
+		[
+			binding_mode 1
+			bones 9
+				"B1" -1 -1 1 -1 1 1 -1 1 false 0.095993 0.438311 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 -0.712999 -0.150686
+				]
+				[
+					keys 10
+						0 1 0.1 0.5 1 0 0 4.71343
+						1 1 0.1 0.5 1 0 0 5.288326
+						5 1 0.1 0.5 1 0 0 5.196703
+						9 1 0.1 0.5 1 0 0 4.948075
+						13 1 0.1 0.5 1 0 0 4.609075
+						17 1 0.1 0.5 1 0 0 4.571426
+						21 1 0.1 0.5 1 0 0 4.571598
+						25 1 0.1 0.5 1 0 0 5.012977
+						29 1 0.1 0.5 1 0 0 5.326966
+						33 1 0.1 0.5 1 0 0 5.288326
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B2" 0 -1 1 -1 1 1 -1 1 false 0.067728 0.448052 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.099758 0.000876
+				]
+				[
+					keys 10
+						0 1 0.1 0.5 1 0 0 6.282146
+						1 1 0.1 0.5 1 0 0 6.237162
+						5 1 0.1 0.5 1 0 0 6.305463
+						9 1 0.1 0.5 1 0 0 6.341063
+						13 1 0.1 0.5 1 0 0 6.313322
+						17 1 0.1 0.5 1 0 0 6.282719
+						21 1 0.1 0.5 1 0 0 6.248089
+						25 1 0.1 0.5 1 0 0 6.238993
+						29 1 0.1 0.5 1 0 0 6.336779
+						33 1 0.1 0.5 1 0 0 6.237162
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B3" 1 -1 1 -1 1 1 -1 1 false 0.070143 0.448052 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.067628 0
+				]
+				[
+					keys 10
+						0 1 0.1 0.5 1 0 0 6.283182
+						1 1 0.1 0.5 1 0 0 6.239749
+						5 1 0.1 0.5 1 0 0 6.263832
+						9 1 0.1 0.5 1 0 0 6.289822
+						13 1 0.1 0.5 1 0 0 6.1922
+						17 1 0.1 0.5 1 0 0 6.162673
+						21 1 0.1 0.5 1 0 0 6.208722
+						25 1 0.1 0.5 1 0 0 6.20398
+						29 1 0.1 0.5 1 0 0 6.238565
+						33 1 0.1 0.5 1 0 0 6.239749
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B4" 2 -1 1 -1 1 1 -1 1 false 0.058066 0.48052 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.070043 0
+				]
+				[
+					keys 10
+						0 1 0.1 0.5 1 0 0 0.000001
+						1 1 0.1 0.5 1 0 0 -0.013493
+						5 1 0.1 0.5 1 0 0 -0.149055
+						9 1 0.1 0.5 1 0 0 -0.100864
+						13 1 0.1 0.5 1 0 0 -0.059124
+						17 1 0.1 0.5 1 0 0 -0.111425
+						21 1 0.1 0.5 1 0 0 -0.138263
+						25 1 0.1 0.5 1 0 0 -0.198166
+						29 1 0.1 0.5 1 0 0 -0.222966
+						33 1 0.1 0.5 1 0 0 -0.013493
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B5" 3 -1 1 -1 1 1 -1 1 false 0.065317 0.448052 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.057966 0
+				]
+				[
+					keys 10
+						0 1 0.1 0.5 1 0 0 6.270858
+						1 1 0.1 0.5 1 0 0 6.238815
+						5 1 0.1 0.5 1 0 0 6.271398
+						9 1 0.1 0.5 1 0 0 6.238877
+						13 1 0.1 0.5 1 0 0 6.224271
+						17 1 0.1 0.5 1 0 0 6.214417
+						21 1 0.1 0.5 1 0 0 6.142157
+						25 1 0.1 0.5 1 0 0 5.915319
+						29 1 0.1 0.5 1 0 0 6.07884
+						33 1 0.1 0.5 1 0 0 6.238815
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B6" 4 -1 1 -1 1 1 -1 1 false 0.061287 0.48052 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.065217 -0.000001
+				]
+				[
+					keys 10
+						0 1 0.1 0.5 1 0 0 0.012306
+						1 1 0.1 0.5 1 0 0 -0.049814
+						5 1 0.1 0.5 1 0 0 -0.113797
+						9 1 0.1 0.5 1 0 0 -0.067931
+						13 1 0.1 0.5 1 0 0 -0.059932
+						17 1 0.1 0.5 1 0 0 -0.10349
+						21 1 0.1 0.5 1 0 0 -0.160596
+						25 1 0.1 0.5 1 0 0 -0.165387
+						29 1 0.1 0.5 1 0 0 -0.077198
+						33 1 0.1 0.5 1 0 0 -0.049814
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B7" 5 -1 1 -1 1 1 -1 1 false 0.057261 0.415585 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.061187 0.000001
+				]
+				[
+					keys 10
+						0 1 0.1 0.5 1 0 0 0.000022
+						1 1 0.1 0.5 1 0 0 -0.00683
+						5 1 0.1 0.5 1 0 0 -0.129734
+						9 1 0.1 0.5 1 0 0 -0.134378
+						13 1 0.1 0.5 1 0 0 -0.18324
+						17 1 0.1 0.5 1 0 0 -0.138906
+						21 1 0.1 0.5 1 0 0 -0.243433
+						25 1 0.1 0.5 1 0 0 -0.178103
+						29 1 0.1 0.5 1 0 0 -0.145298
+						33 1 0.1 0.5 1 0 0 -0.00683
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B8" 6 -1 1 -1 1 1 -1 1 false 0.069338 0.415585 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.057161 0
+				]
+				[
+					keys 9
+						0 1 0.1 0.5 1 0 0 6.283185
+						1 1 0.1 0.5 1 0 0 6.317747
+						5 1 0.1 0.5 1 0 0 6.248143
+						9 1 0.1 0.5 1 0 0 6.244328
+						13 1 0.1 0.5 1 0 0 6.185191
+						21 1 0.1 0.5 1 0 0 6.121826
+						25 1 0.1 0.5 1 0 0 6.202126
+						29 1 0.1 0.5 1 0 0 6.158975
+						33 1 0.1 0.5 1 0 0 6.317747
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				"B9" 7 -1 1 -1 1 1 -1 1 true 0.151292 0.074675 -1 false 				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+10 false 0 0
+				false -1.221731 1.221731
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				2 2 1
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.071653 0
+				]
+				[
+					keys 10
+						0 1 0.1 0.5 1 0 0 1.228223
+						1 1 0.1 0.5 1 0 0 1.24996
+						5 1 0.1 0.5 1 0 0 1.258744
+						9 1 0.1 0.5 1 0 0 1.242926
+						13 1 0.1 0.5 1 0 0 1.475527
+						17 1 0.1 0.5 1 0 0 1.462952
+						21 1 0.1 0.5 1 0 0 1.501179
+						25 1 0.1 0.5 1 0 0 1.456913
+						29 1 0.1 0.5 1 0 0 1.304299
+						33 1 0.1 0.5 1 0 0 1.24996
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+		]
+
+		### sub-layers
+		layer_type 2
+		{
+			### generic layer values
+			name "leg.png"
+			uuid "bb1d17c0-2023-4347-bdc8-0133deadcf8e"
+			quality_flags 2046
+			animated_layer_effects false
+			origin 0 0
+			parent_bone -3
+			visible true
+			render_only false
+			edit_only false
+			scale_compensation true
+			rotate_to_follow false
+			face_camera false
+			masking 0
+			mask_expansion false
+			blend_mode 0
+			camera_immune false
+			dof_immune false
+			timing_offset 0
+			follow_layer -1
+			follow_curve -1
+			follow_bending false
+			random_num 1522
+
+			### transforms
+			translation
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -0.668552 -0.497352 0
+			]
+			scale
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0.2 0.2 1
+			]
+			rotation_x
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_y
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_z
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			flip_h
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			flip_v
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			shear
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0 0
+			]
+			following
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			physics_nudge
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0
+			]
+
+			### layer effects
+
+			### physics
+			physics_enabled true
+			physics_static false
+			physics_sleeping false
+			physics_respawn 0
+			physics_velocity 0 0
+			physics_density 1
+			physics_friction 0.3
+			physics_restitution 0.5
+			physics_pivot false
+			physics_enable_motor false
+			physics_motor_speed 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 3.141593
+			]
+			physics_motor_torque 10000
+			physics_force_field false
+			physics_force_field_vector 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 1
+			]
+
+			### image layer values
+			image "leg.png"
+			interpreted_fps -1
+			avi_alpha false
+			movie_looping false
+			reverse_movie false
+			persist_first_frame false
+			persist_last_frame false
+			toon_effect false
+			toon_min_edge_threshold 216
+			toon_max_edge_threshold 220
+			toon_gray_threshold 96
+			toon_black_threshold 32
+			toon_saturation 60
+			toon_lightness 0
+			toon_quantize 6
+			sampling_mode 1
+			premultiplied_movie false
+			psd_layer_bounds 0 0 0 0
+			shape 1.012346 2.790123
+			### audio layer values
+			audio_file ""
+			spatial_positioning false
+			audio_level
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1
+			]
+			audio_jump
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+		}
+	}
+	layer_type 3
+	{
+		### generic layer values
+		name "torso"
+		uuid "bf5a8c1f-f3e4-4e27-89f2-aa43f355e9ba"
+		quality_flags 2046
+		animated_layer_effects false
+		origin 0 0
+		parent_bone -2
+		visible true
+		render_only false
+		edit_only false
+		scale_compensation true
+		rotate_to_follow false
+		face_camera false
+		masking 0
+		mask_expansion false
+		blend_mode 0
+		camera_immune false
+		dof_immune false
+		timing_offset 0
+		follow_layer -1
+		follow_curve -1
+		follow_bending false
+		random_num 31850
+
+		### transforms
+		translation
+		[
+			keys 11
+				0 1 0.1 0.5 1 0 0 -0.005621 0.001405 0
+				1 1 0.1 0.5 1 0 0 -0.011743 0.000549 0
+				4 1 0.1 0.5 1 0 0 -0.009361 -0.006074 0
+				5 1 0.1 0.5 1 0 0 -0.009795 -0.006942 0
+				9 1 0.1 0.5 1 0 0 0.004597 0.002053 0
+				13 1 0.1 0.5 1 0 0 -0.009795 0.009249 0
+				17 1 0.1 0.5 1 0 0 -0.004033 -0.001933 0
+				21 1 0.1 0.5 1 0 0 -0.002558 -0.011834 0
+				25 1 0.1 0.5 1 0 0 0.004609 0.01213 0
+				29 1 0.1 0.5 1 0 0 0.010439 0.01213 0
+				33 1 0.1 0.5 1 0 0 -0.011743 0.000549 0
+		]
+		scale
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 1 1 1
+		]
+		rotation_x
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		rotation_y
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		rotation_z
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		flip_h
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 false
+		]
+		flip_v
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 false
+		]
+		shear
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 0 0
+		]
+		following
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0
+		]
+		physics_nudge
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 0
+		]
+
+		### layer effects
+
+		### physics
+		physics_enabled true
+		physics_static false
+		physics_sleeping false
+		physics_respawn 0
+		physics_velocity 0 0
+		physics_density 1
+		physics_friction 0.3
+		physics_restitution 0.5
+		physics_pivot false
+		physics_enable_motor false
+		physics_motor_speed 
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 3.141593
+		]
+		physics_motor_torque 10000
+		physics_force_field false
+		physics_force_field_vector 
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 0 1
+		]
+
+		### group layer values
+		expanded true
+		group_mask 0
+		depth_sort false
+		distance_sort false
+		layer_ordering
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 ""
+		]
+		enable_physics 
+		[
+			keys 1
+				0 1 0.1 0.5 1 0 0 false
+		]
+		gravity 0 -10
+		use_baked_physics false
+
+		### sub-layers
+		layer_type 4
+		{
+			### generic layer values
+			name "l-arm-straight"
+			uuid "83166134-9de4-44ef-b954-265cfdf2e9bb"
+			quality_flags 2046
+			animated_layer_effects false
+			origin 0 0
+			parent_bone -2
+			visible false
+			render_only false
+			edit_only false
+			scale_compensation true
+			rotate_to_follow false
+			face_camera false
+			masking 0
+			mask_expansion false
+			blend_mode 0
+			camera_immune false
+			dof_immune false
+			metadata
+				"label_col"	"0"
+				"LM_Message_end"	"TRUE"
+			timing_offset 0
+			follow_layer -1
+			follow_curve -1
+			follow_bending false
+			random_num 8201
+
+			### transforms
+			translation
+			[
+				keys 2
+					0 1 0.1 0.5 1 0 0 -0.696767 0.050085 0
+					33 1 0.1 0.5 1 0 0 -0.696767 0.050085 0
+			]
+			scale
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1 1 1
+			]
+			rotation_x
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_y
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_z
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			flip_h
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			flip_v
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			shear
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0 0
+			]
+			following
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			physics_nudge
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0
+			]
+
+			### layer effects
+
+			### physics
+			physics_enabled true
+			physics_static false
+			physics_sleeping false
+			physics_respawn 0
+			physics_velocity 0 0
+			physics_density 1
+			physics_friction 0.3
+			physics_restitution 0.5
+			physics_pivot false
+			physics_enable_motor false
+			physics_motor_speed 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 3.141593
+			]
+			physics_motor_torque 10000
+			physics_force_field false
+			physics_force_field_vector 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 1
+			]
+
+			### bone layer values
+			expanded false
+			group_mask 0
+			depth_sort false
+			distance_sort false
+			layer_ordering
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 ""
+			]
+			skeleton
+			[
+				binding_mode 1
+				bones 6
+					"B1" -1 -1 1 -1 1 1 -1 1 true 0.087652 0.288945 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.074081 0.125729
+					]
+					[
+						keys 10
+							0 1 0.1 0.5 1 0 0 4.725434
+							1 1 0.1 0.5 1 0 0 4.92444
+							5 1 0.1 0.5 1 0 0 4.825325
+							9 1 0.1 0.5 1 0 0 4.691564
+							13 1 0.1 0.5 1 0 0 4.568802
+							17 1 0.1 0.5 1 0 0 4.499312
+							21 1 0.1 0.5 1 0 0 4.499312
+							25 1 0.1 0.5 1 0 0 4.611168
+							29 1 0.1 0.5 1 0 0 4.86395
+							33 1 0.1 0.5 1 0 0 4.9515
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B2" 0 -1 1 -1 1 1 -1 1 false 0.073145 0.226131 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.087651 -0.0001
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 6.255893
+							33 1 0.1 0.5 1 0 0 6.255893
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B3" 1 -1 1 -1 1 1 -1 1 false 0.063755 0.283919 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.073045 -0.000003
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 6.281044
+							33 1 0.1 0.5 1 0 0 6.281044
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B4" 2 -1 1 -1 1 1 -1 1 false 0.065834 0.277638 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.063655 0
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 0.016364
+							33 1 0.1 0.5 1 0 0 0.016364
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B5" 3 -1 1 -1 1 1 -1 1 false 0.059573 0.290201 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.065734 0.000002
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 0.000024
+							33 1 0.1 0.5 1 0 0 0.000024
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B6" 4 -1 1 -1 1 1 -1 1 false 0.059573 0.183417 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.059473 0
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 0
+							33 1 0.1 0.5 1 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+			]
+
+			### sub-layers
+			layer_type 2
+			{
+				### generic layer values
+				name "arm.png"
+				uuid "6fd9c33b-b585-4141-9ce2-718721d8a708"
+				quality_flags 2046
+				animated_layer_effects false
+				origin 0 0
+				parent_bone -3
+				visible true
+				render_only false
+				edit_only false
+				scale_compensation true
+				rotate_to_follow false
+				face_camera false
+				masking 0
+				mask_expansion false
+				blend_mode 0
+				camera_immune false
+				dof_immune false
+				timing_offset 0
+				follow_layer -1
+				follow_curve -1
+				follow_bending false
+				random_num 11823
+
+				### transforms
+				translation
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.074864 -0.074864 0
+				]
+				scale
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.2 0.2 1
+				]
+				rotation_x
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				rotation_y
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				rotation_z
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				flip_h
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				flip_v
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				shear
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0 0
+				]
+				following
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				physics_nudge
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+
+				### layer effects
+
+				### physics
+				physics_enabled true
+				physics_static false
+				physics_sleeping false
+				physics_respawn 0
+				physics_velocity 0 0
+				physics_density 1
+				physics_friction 0.3
+				physics_restitution 0.5
+				physics_pivot false
+				physics_enable_motor false
+				physics_motor_speed 
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 3.141593
+				]
+				physics_motor_torque 10000
+				physics_force_field false
+				physics_force_field_vector 
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 1
+				]
+
+				### image layer values
+				image "arm.png"
+				interpreted_fps -1
+				avi_alpha false
+				movie_looping false
+				reverse_movie false
+				persist_first_frame false
+				persist_last_frame false
+				toon_effect false
+				toon_min_edge_threshold 216
+				toon_max_edge_threshold 220
+				toon_gray_threshold 96
+				toon_black_threshold 32
+				toon_saturation 60
+				toon_lightness 0
+				toon_quantize 6
+				sampling_mode 1
+				premultiplied_movie false
+				psd_layer_bounds 0 0 0 0
+				shape 0.399177 2.106996
+				### audio layer values
+				audio_file ""
+				spatial_positioning false
+				audio_level
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				audio_jump
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+			}
+		}
+		layer_type 2
+		{
+			### generic layer values
+			name "jetpack.png"
+			uuid "b14b6286-038e-4149-88c1-22bfd61890cf"
+			quality_flags 2046
+			animated_layer_effects false
+			origin 0 0
+			parent_bone -3
+			visible true
+			render_only false
+			edit_only false
+			scale_compensation true
+			rotate_to_follow false
+			face_camera false
+			masking 0
+			mask_expansion false
+			blend_mode 0
+			camera_immune false
+			dof_immune false
+			timing_offset 0
+			follow_layer -1
+			follow_curve -1
+			follow_bending false
+			random_num 22943
+
+			### transforms
+			translation
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 -0.724272 0.135034 0
+			]
+			scale
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0.2 0.2 1
+			]
+			rotation_x
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_y
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_z
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			flip_h
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			flip_v
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			shear
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0 0
+			]
+			following
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			physics_nudge
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0
+			]
+
+			### layer effects
+
+			### physics
+			physics_enabled true
+			physics_static false
+			physics_sleeping false
+			physics_respawn 0
+			physics_velocity 0 0
+			physics_density 1
+			physics_friction 0.3
+			physics_restitution 0.5
+			physics_pivot false
+			physics_enable_motor false
+			physics_motor_speed 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 3.141593
+			]
+			physics_motor_torque 10000
+			physics_force_field false
+			physics_force_field_vector 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 1
+			]
+
+			### image layer values
+			image "jetpack.png"
+			interpreted_fps -1
+			avi_alpha false
+			movie_looping false
+			reverse_movie false
+			persist_first_frame false
+			persist_last_frame false
+			toon_effect false
+			toon_min_edge_threshold 216
+			toon_max_edge_threshold 220
+			toon_gray_threshold 96
+			toon_black_threshold 32
+			toon_saturation 60
+			toon_lightness 0
+			toon_quantize 6
+			sampling_mode 1
+			premultiplied_movie false
+			psd_layer_bounds 0 0 0 0
+			shape 1.341667 1.5375
+			### audio layer values
+			audio_file ""
+			spatial_positioning false
+			audio_level
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1
+			]
+			audio_jump
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+		}
+		layer_type 4
+		{
+			### generic layer values
+			name "l-arm-bend"
+			uuid "d62ff755-e6ec-4c91-8b9a-bdc26b669971"
+			quality_flags 2046
+			animated_layer_effects false
+			origin 0.07483 0.111871
+			parent_bone -2
+			visible true
+			render_only false
+			edit_only false
+			scale_compensation true
+			rotate_to_follow false
+			face_camera false
+			masking 0
+			mask_expansion false
+			blend_mode 0
+			camera_immune false
+			dof_immune false
+			metadata
+				"label_col"	"0"
+				"LM_Message_end"	"TRUE"
+			timing_offset 0
+			follow_layer -1
+			follow_curve -1
+			follow_bending false
+			random_num 8201
+
+			### transforms
+			translation
+			[
+				keys 2
+					0 1 0.1 0.5 1 0 0 -0.8074 0.063516 0
+					1 1 0.1 0.5 1 0 0 -0.747305 0.088745 0
+			]
+			scale
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1 1 1
+			]
+			rotation_x
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_y
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_z
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			flip_h
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			flip_v
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			shear
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0 0
+			]
+			following
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			physics_nudge
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0
+			]
+
+			### layer effects
+
+			### physics
+			physics_enabled true
+			physics_static false
+			physics_sleeping false
+			physics_respawn 0
+			physics_velocity 0 0
+			physics_density 1
+			physics_friction 0.3
+			physics_restitution 0.5
+			physics_pivot false
+			physics_enable_motor false
+			physics_motor_speed 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 3.141593
+			]
+			physics_motor_torque 10000
+			physics_force_field false
+			physics_force_field_vector 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 1
+			]
+
+			### bone layer values
+			expanded false
+			group_mask 0
+			depth_sort false
+			distance_sort false
+			layer_ordering
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 ""
+			]
+			skeleton
+			[
+				binding_mode 1
+				bones 11
+					"B1" -1 -1 1 -1 1 1 -1 1 false 0.090701 0.353015 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.069975 0.126705
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 4.746159
+							1 1 0.1 0.5 1 0 0 4.683768
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B2" 0 -1 1 -1 1 1 -1 1 false 0.029131 0.258794 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.090697 -0.0001
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 6.24953
+							1 1 0.1 0.5 1 0 0 6.419448
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B3" 1 -1 1 -1 1 1 -1 1 false 0.037426 0.252513 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.029031 -0.000003
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 6.283072
+							1 1 0.1 0.5 1 0 0 6.343637
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B4" 2 -1 1 -1 1 1 -1 1 false 0.032099 0.252513 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.037326 0
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 0.018454
+							1 1 0.1 0.5 1 0 0 0.190375
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B5" 3 -1 1 -1 1 1 -1 1 false 0.033279 0.246231 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.031999 0.000002
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 6.264785
+							1 1 0.1 0.5 1 0 0 6.592736
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B6" 4 -1 1 -1 1 1 -1 1 false 0.031501 0.277638 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.033179 -0.000002
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 6.283134
+							1 1 0.1 0.5 1 0 0 6.447069
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B7" 5 -1 1 -1 1 1 -1 1 false 0.030909 0.315326 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.031401 0
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 6.283183
+							1 1 0.1 0.5 1 0 0 6.410758
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B8" 6 -1 1 -1 1 1 -1 1 false 0.035061 0.263819 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.030809 0
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 0.0169
+							1 1 0.1 0.5 1 0 0 0.265688
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B9" 7 -1 1 -1 1 1 -1 1 false 0.033284 0.265075 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.034961 0.000002
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 0.000952
+							1 1 0.1 0.5 1 0 0 0.100936
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B10" 8 -1 1 -1 1 1 -1 1 true 0.029729 0.265075 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.033184 0
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 0.002136
+							1 1 0.1 0.5 1 0 0 0.093952
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B11" 9 -1 1 -1 1 1 -1 1 false 0.023214 0.164573 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.02963 0
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 0.005626
+							1 1 0.1 0.5 1 0 0 0.023693
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+			]
+
+			### sub-layers
+			layer_type 2
+			{
+				### generic layer values
+				name "arm.png"
+				uuid "6fd9c33b-b585-4141-9ce2-718721d8a708"
+				quality_flags 2046
+				animated_layer_effects false
+				origin 0 0
+				parent_bone -3
+				visible true
+				render_only false
+				edit_only false
+				scale_compensation true
+				rotate_to_follow false
+				face_camera false
+				masking 0
+				mask_expansion false
+				blend_mode 0
+				camera_immune false
+				dof_immune false
+				timing_offset 0
+				follow_layer -1
+				follow_curve -1
+				follow_bending false
+				random_num 11823
+
+				### transforms
+				translation
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.074864 -0.074864 0
+				]
+				scale
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.2 0.2 1
+				]
+				rotation_x
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				rotation_y
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				rotation_z
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				flip_h
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				flip_v
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				shear
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0 0
+				]
+				following
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				physics_nudge
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+
+				### layer effects
+
+				### physics
+				physics_enabled true
+				physics_static false
+				physics_sleeping false
+				physics_respawn 0
+				physics_velocity 0 0
+				physics_density 1
+				physics_friction 0.3
+				physics_restitution 0.5
+				physics_pivot false
+				physics_enable_motor false
+				physics_motor_speed 
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 3.141593
+				]
+				physics_motor_torque 10000
+				physics_force_field false
+				physics_force_field_vector 
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 1
+				]
+
+				### image layer values
+				image "arm.png"
+				interpreted_fps -1
+				avi_alpha false
+				movie_looping false
+				reverse_movie false
+				persist_first_frame false
+				persist_last_frame false
+				toon_effect false
+				toon_min_edge_threshold 216
+				toon_max_edge_threshold 220
+				toon_gray_threshold 96
+				toon_black_threshold 32
+				toon_saturation 60
+				toon_lightness 0
+				toon_quantize 6
+				sampling_mode 1
+				premultiplied_movie false
+				psd_layer_bounds 0 0 0 0
+				shape 0.399177 2.106996
+				### audio layer values
+				audio_file ""
+				spatial_positioning false
+				audio_level
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				audio_jump
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+			}
+		}
+		layer_type 4
+		{
+			### generic layer values
+			name "torso"
+			uuid "2cd62cef-33f8-43e8-9a5f-89114f928712"
+			quality_flags 2046
+			animated_layer_effects false
+			origin 0 0
+			parent_bone -2
+			visible true
+			render_only false
+			edit_only false
+			scale_compensation true
+			rotate_to_follow false
+			face_camera false
+			masking 0
+			mask_expansion false
+			blend_mode 0
+			camera_immune false
+			dof_immune false
+			metadata
+				"label_col"	"0"
+				"LM_Message_end"	"TRUE"
+			timing_offset 0
+			follow_layer -1
+			follow_curve -1
+			follow_bending false
+			random_num 6844
+
+			### transforms
+			translation
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0.003917 0 0
+			]
+			scale
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1 1 1
+			]
+			rotation_x
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_y
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_z
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			flip_h
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			flip_v
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			shear
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0 0
+			]
+			following
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			physics_nudge
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0
+			]
+
+			### layer effects
+
+			### physics
+			physics_enabled true
+			physics_static false
+			physics_sleeping false
+			physics_respawn 0
+			physics_velocity 0 0
+			physics_density 1
+			physics_friction 0.3
+			physics_restitution 0.5
+			physics_pivot false
+			physics_enable_motor false
+			physics_motor_speed 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 3.141593
+			]
+			physics_motor_torque 10000
+			physics_force_field false
+			physics_force_field_vector 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 1
+			]
+
+			### bone layer values
+			expanded true
+			group_mask 0
+			depth_sort false
+			distance_sort false
+			layer_ordering
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 ""
+			]
+			skeleton
+			[
+				binding_mode 1
+				bones 3
+					"B1" -1 -1 1 -1 1 1 -1 1 false 0.462804 0.535176 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 -0.664689 -0.240699
+					]
+					[
+						keys 5
+							0 1 0.1 0.5 1 0 0 1.57058
+							1 1 0.1 0.5 1 0 0 1.57058
+							10 1 0.1 0.5 1 0 0 1.57058
+							18 1 0.1 0.5 1 0 0 1.57058
+							26 1 0.1 0.5 1 0 0 1.57058
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B2" 0 -1 1 -1 1 1 -1 1 false 0.042011 0.472361 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.462803 0.0001
+					]
+					[
+						keys 6
+							0 1 0.1 0.5 1 0 0 6.07986
+							1 1 0.1 0.5 1 0 0 6.046759
+							10 1 0.1 0.5 1 0 0 6.07986
+							18 1 0.1 0.5 1 0 0 6.046759
+							26 1 0.1 0.5 1 0 0 6.07986
+							33 1 0.1 0.5 1 0 0 6.046759
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B3" 1 -1 1 -1 1 1 -1 1 true 0.232211 0.572864 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.041913 -0.00002
+					]
+					[
+						keys 6
+							0 1 0.1 0.5 1 0 0 0.197357
+							1 1 0.1 0.5 1 0 0 0.226517
+							10 1 0.1 0.5 1 0 0 0.2038
+							18 1 0.1 0.5 1 0 0 0.226517
+							26 1 0.1 0.5 1 0 0 0.203174
+							33 1 0.1 0.5 1 0 0 0.226517
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+			]
+
+			### sub-layers
+			layer_type 2
+			{
+				### generic layer values
+				name "torso.png"
+				uuid "d0895f21-f56b-434b-ab7a-1a48ff6be5b5"
+				quality_flags 2046
+				animated_layer_effects false
+				origin 0 0
+				parent_bone -3
+				visible true
+				render_only false
+				edit_only false
+				scale_compensation true
+				rotate_to_follow false
+				face_camera false
+				masking 0
+				mask_expansion false
+				blend_mode 0
+				camera_immune false
+				dof_immune false
+				timing_offset 0
+				follow_layer -1
+				follow_curve -1
+				follow_bending false
+				random_num 20112
+
+				### transforms
+				translation
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 -0.644998 0.149196 0
+				]
+				scale
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.2 0.2 1
+				]
+				rotation_x
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				rotation_y
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				rotation_z
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				flip_h
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				flip_v
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				shear
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0 0
+				]
+				following
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				physics_nudge
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+
+				### layer effects
+
+				### physics
+				physics_enabled true
+				physics_static false
+				physics_sleeping false
+				physics_respawn 0
+				physics_velocity 0 0
+				physics_density 1
+				physics_friction 0.3
+				physics_restitution 0.5
+				physics_pivot false
+				physics_enable_motor false
+				physics_motor_speed 
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 3.141593
+				]
+				physics_motor_torque 10000
+				physics_force_field false
+				physics_force_field_vector 
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 1
+				]
+
+				### image layer values
+				image "torso.png"
+				interpreted_fps -1
+				avi_alpha false
+				movie_looping false
+				reverse_movie false
+				persist_first_frame false
+				persist_last_frame false
+				toon_effect false
+				toon_min_edge_threshold 216
+				toon_max_edge_threshold 220
+				toon_gray_threshold 96
+				toon_black_threshold 32
+				toon_saturation 60
+				toon_lightness 0
+				toon_quantize 6
+				sampling_mode 1
+				premultiplied_movie false
+				psd_layer_bounds 0 0 0 0
+				shape 1.415638 4.049383
+				### audio layer values
+				audio_file ""
+				spatial_positioning false
+				audio_level
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				audio_jump
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+			}
+		}
+		layer_type 4
+		{
+			### generic layer values
+			name "r-arm-straight"
+			uuid "360098f1-a703-47c2-8f0f-f3c890451719"
+			quality_flags 2046
+			animated_layer_effects false
+			origin 0 0
+			parent_bone -2
+			visible false
+			render_only false
+			edit_only false
+			scale_compensation true
+			rotate_to_follow false
+			face_camera false
+			masking 0
+			mask_expansion false
+			blend_mode 0
+			camera_immune false
+			dof_immune false
+			metadata
+				"label_col"	"0"
+				"LM_Message_end"	"TRUE"
+			timing_offset 0
+			follow_layer -1
+			follow_curve -1
+			follow_bending false
+			random_num 8201
+
+			### transforms
+			translation
+			[
+				keys 3
+					0 1 0.1 0.5 1 0 0 -0.800762 0.0519 0
+					17 1 0.1 0.5 1 0 0 -0.814366 0.0519 0
+					33 1 0.1 0.5 1 0 0 -0.800762 0.0519 0
+			]
+			scale
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1 1 1
+			]
+			rotation_x
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_y
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_z
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			flip_h
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			flip_v
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			shear
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0 0
+			]
+			following
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			physics_nudge
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0
+			]
+
+			### layer effects
+
+			### physics
+			physics_enabled true
+			physics_static false
+			physics_sleeping false
+			physics_respawn 0
+			physics_velocity 0 0
+			physics_density 1
+			physics_friction 0.3
+			physics_restitution 0.5
+			physics_pivot false
+			physics_enable_motor false
+			physics_motor_speed 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 3.141593
+			]
+			physics_motor_torque 10000
+			physics_force_field false
+			physics_force_field_vector 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 1
+			]
+
+			### bone layer values
+			expanded false
+			group_mask 0
+			depth_sort false
+			distance_sort false
+			layer_ordering
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 ""
+			]
+			skeleton
+			[
+				binding_mode 1
+				bones 6
+					"B1" -1 -1 1 -1 1 1 -1 1 true 0.087652 0.288945 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.074081 0.125729
+					]
+					[
+						keys 10
+							0 1 0.1 0.5 1 0 0 4.725434
+							1 1 0.1 0.5 1 0 0 4.566157
+							5 1 0.1 0.5 1 0 0 4.50313
+							9 1 0.1 0.5 1 0 0 4.830476
+							13 1 0.1 0.5 1 0 0 5.089342
+							17 1 0.1 0.5 1 0 0 5.198747
+							21 1 0.1 0.5 1 0 0 4.920685
+							25 1 0.1 0.5 1 0 0 4.809289
+							29 1 0.1 0.5 1 0 0 4.685795
+							33 1 0.1 0.5 1 0 0 4.566157
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B2" 0 -1 1 -1 1 1 -1 1 false 0.073145 0.226131 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.087651 -0.0001
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 6.255893
+							33 1 0.1 0.5 1 0 0 6.255893
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B3" 1 -1 1 -1 1 1 -1 1 false 0.063755 0.283919 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.073045 -0.000003
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 6.281044
+							33 1 0.1 0.5 1 0 0 6.281044
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B4" 2 -1 1 -1 1 1 -1 1 false 0.065834 0.277638 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.063655 0
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 0.016364
+							33 1 0.1 0.5 1 0 0 0.016364
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B5" 3 -1 1 -1 1 1 -1 1 false 0.059573 0.290201 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.065734 0.000002
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 0.000024
+							33 1 0.1 0.5 1 0 0 0.000024
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B6" 4 -1 1 -1 1 1 -1 1 false 0.059573 0.183417 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.059473 0
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 0
+							33 1 0.1 0.5 1 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+			]
+
+			### sub-layers
+			layer_type 2
+			{
+				### generic layer values
+				name "arm.png"
+				uuid "6fd9c33b-b585-4141-9ce2-718721d8a708"
+				quality_flags 2046
+				animated_layer_effects false
+				origin 0 0
+				parent_bone -3
+				visible true
+				render_only false
+				edit_only false
+				scale_compensation true
+				rotate_to_follow false
+				face_camera false
+				masking 0
+				mask_expansion false
+				blend_mode 0
+				camera_immune false
+				dof_immune false
+				timing_offset 0
+				follow_layer -1
+				follow_curve -1
+				follow_bending false
+				random_num 11823
+
+				### transforms
+				translation
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.074864 -0.074864 0
+				]
+				scale
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.2 0.2 1
+				]
+				rotation_x
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				rotation_y
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				rotation_z
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				flip_h
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				flip_v
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				shear
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0 0
+				]
+				following
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				physics_nudge
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+
+				### layer effects
+
+				### physics
+				physics_enabled true
+				physics_static false
+				physics_sleeping false
+				physics_respawn 0
+				physics_velocity 0 0
+				physics_density 1
+				physics_friction 0.3
+				physics_restitution 0.5
+				physics_pivot false
+				physics_enable_motor false
+				physics_motor_speed 
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 3.141593
+				]
+				physics_motor_torque 10000
+				physics_force_field false
+				physics_force_field_vector 
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 1
+				]
+
+				### image layer values
+				image "arm.png"
+				interpreted_fps -1
+				avi_alpha false
+				movie_looping false
+				reverse_movie false
+				persist_first_frame false
+				persist_last_frame false
+				toon_effect false
+				toon_min_edge_threshold 216
+				toon_max_edge_threshold 220
+				toon_gray_threshold 96
+				toon_black_threshold 32
+				toon_saturation 60
+				toon_lightness 0
+				toon_quantize 6
+				sampling_mode 1
+				premultiplied_movie false
+				psd_layer_bounds 0 0 0 0
+				shape 0.399177 2.106996
+				### audio layer values
+				audio_file ""
+				spatial_positioning false
+				audio_level
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				audio_jump
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+			}
+		}
+		layer_type 2
+		{
+			### generic layer values
+			name "pistol.png"
+			uuid "e9a1e405-2dbe-4aa2-a963-5485588d3bf5"
+			quality_flags 2046
+			animated_layer_effects false
+			origin 0 0
+			parent_bone -3
+			visible true
+			render_only false
+			edit_only false
+			scale_compensation true
+			rotate_to_follow false
+			face_camera false
+			masking 0
+			mask_expansion false
+			blend_mode 0
+			camera_immune false
+			dof_immune false
+			timing_offset 0
+			follow_layer -1
+			follow_curve -1
+			follow_bending false
+			random_num 30933
+
+			### transforms
+			translation
+			[
+				keys 2
+					0 1 0.1 0.5 1 0 0 -0.45513 -0.021357 0
+					1 1 0.1 0.5 1 0 0 -0.45513 -0.021357 0
+			]
+			scale
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0.2 0.2 1
+			]
+			rotation_x
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_y
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_z
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			flip_h
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			flip_v
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			shear
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0 0
+			]
+			following
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			physics_nudge
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0
+			]
+
+			### layer effects
+
+			### physics
+			physics_enabled true
+			physics_static false
+			physics_sleeping false
+			physics_respawn 0
+			physics_velocity 0 0
+			physics_density 1
+			physics_friction 0.3
+			physics_restitution 0.5
+			physics_pivot false
+			physics_enable_motor false
+			physics_motor_speed 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 3.141593
+			]
+			physics_motor_torque 10000
+			physics_force_field false
+			physics_force_field_vector 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 1
+			]
+
+			### image layer values
+			image "pistol.png"
+			interpreted_fps -1
+			avi_alpha false
+			movie_looping false
+			reverse_movie false
+			persist_first_frame false
+			persist_last_frame false
+			toon_effect false
+			toon_min_edge_threshold 216
+			toon_max_edge_threshold 220
+			toon_gray_threshold 96
+			toon_black_threshold 32
+			toon_saturation 60
+			toon_lightness 0
+			toon_quantize 6
+			sampling_mode 1
+			premultiplied_movie false
+			psd_layer_bounds 0 0 0 0
+			shape 0.991667 0.683333
+			### audio layer values
+			audio_file ""
+			spatial_positioning false
+			audio_level
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1
+			]
+			audio_jump
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+		}
+		layer_type 4
+		{
+			### generic layer values
+			name "r-arm-bend"
+			uuid "6a0a0ca1-583c-4d90-92ae-6f60c57529b6"
+			quality_flags 2046
+			animated_layer_effects false
+			origin 0.07483 0.111871
+			parent_bone -2
+			visible true
+			render_only false
+			edit_only false
+			scale_compensation true
+			rotate_to_follow false
+			face_camera false
+			masking 0
+			mask_expansion false
+			blend_mode 0
+			camera_immune false
+			dof_immune false
+			timing_offset 0
+			follow_layer -1
+			follow_curve -1
+			follow_bending false
+			random_num 8201
+
+			### transforms
+			translation
+			[
+				keys 2
+					0 1 0.1 0.5 1 0 0 -0.8074 0.063516 0
+					33 1 0.1 0.5 1 0 0 -0.8074 0.063516 0
+			]
+			scale
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 1 1 1
+			]
+			rotation_x
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_y
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			rotation_z
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			flip_h
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			flip_v
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 false
+			]
+			shear
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0 0
+			]
+			following
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0
+			]
+			physics_nudge
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 0
+			]
+
+			### layer effects
+
+			### physics
+			physics_enabled true
+			physics_static false
+			physics_sleeping false
+			physics_respawn 0
+			physics_velocity 0 0
+			physics_density 1
+			physics_friction 0.3
+			physics_restitution 0.5
+			physics_pivot false
+			physics_enable_motor false
+			physics_motor_speed 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 3.141593
+			]
+			physics_motor_torque 10000
+			physics_force_field false
+			physics_force_field_vector 
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 0 1
+			]
+
+			### bone layer values
+			expanded false
+			group_mask 0
+			depth_sort false
+			distance_sort false
+			layer_ordering
+			[
+				keys 1
+					0 1 0.1 0.5 1 0 0 ""
+			]
+			skeleton
+			[
+				binding_mode 1
+				bones 11
+					"B1" -1 -1 1 -1 1 1 -1 1 false 0.090701 0.353015 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.069975 0.126705
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 4.746159
+							1 1 0.1 0.5 1 0 0 4.919398
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B2" 0 -1 1 -1 1 1 -1 1 false 0.029131 0.258794 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.090697 -0.0001
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 6.24953
+							1 1 0.1 0.5 1 0 0 6.359324
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B3" 1 -1 1 -1 1 1 -1 1 false 0.037426 0.252513 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.029031 -0.000003
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 6.283072
+							1 1 0.1 0.5 1 0 0 6.438407
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B4" 2 -1 1 -1 1 1 -1 1 false 0.032099 0.252513 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.037326 0
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 0.018454
+							1 1 0.1 0.5 1 0 0 0.183742
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B5" 3 -1 1 -1 1 1 -1 1 false 0.033279 0.246231 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.031999 0.000002
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 6.264785
+							1 1 0.1 0.5 1 0 0 6.474792
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B6" 4 -1 1 -1 1 1 -1 1 false 0.031501 0.277638 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.033179 -0.000002
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 6.283134
+							1 1 0.1 0.5 1 0 0 6.516775
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B7" 5 -1 1 -1 1 1 -1 1 false 0.030909 0.315326 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.031401 0
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 6.283183
+							1 1 0.1 0.5 1 0 0 6.513516
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B8" 6 -1 1 -1 1 1 -1 1 false 0.035061 0.263819 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.030809 0
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 0.0169
+							1 1 0.1 0.5 1 0 0 0.16536
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B9" 7 -1 1 -1 1 1 -1 1 true 0.033284 0.265075 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.034961 0.000002
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 0.000952
+							1 1 0.1 0.5 1 0 0 -0.036147
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B10" 8 -1 1 -1 1 1 -1 1 false 0.029729 0.265075 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.033184 0
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 0.002136
+							1 1 0.1 0.5 1 0 0 0.100538
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+					"B11" 9 -1 1 -1 1 1 -1 1 false 0.023214 0.164573 -1 false 					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+10 false 0 0
+					false -1.221731 1.221731
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					2 2 1
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0.02963 0
+					]
+					[
+						keys 2
+							0 1 0.1 0.5 1 0 0 0.005626
+							1 1 0.1 0.5 1 0 0 -0.037211
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 1
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 false
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0 0
+					]
+					[
+						keys 1
+							0 1 0.1 0.5 1 0 0 0
+					]
+			]
+
+			### sub-layers
+			layer_type 2
+			{
+				### generic layer values
+				name "arm.png"
+				uuid "6fd9c33b-b585-4141-9ce2-718721d8a708"
+				quality_flags 2046
+				animated_layer_effects false
+				origin 0 0
+				parent_bone -3
+				visible true
+				render_only false
+				edit_only false
+				scale_compensation true
+				rotate_to_follow false
+				face_camera false
+				masking 0
+				mask_expansion false
+				blend_mode 0
+				camera_immune false
+				dof_immune false
+				timing_offset 0
+				follow_layer -1
+				follow_curve -1
+				follow_bending false
+				random_num 11823
+
+				### transforms
+				translation
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.074864 -0.074864 0
+				]
+				scale
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0.2 0.2 1
+				]
+				rotation_x
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				rotation_y
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				rotation_z
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				flip_h
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				flip_v
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 false
+				]
+				shear
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0 0
+				]
+				following
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+				physics_nudge
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 0
+				]
+
+				### layer effects
+
+				### physics
+				physics_enabled true
+				physics_static false
+				physics_sleeping false
+				physics_respawn 0
+				physics_velocity 0 0
+				physics_density 1
+				physics_friction 0.3
+				physics_restitution 0.5
+				physics_pivot false
+				physics_enable_motor false
+				physics_motor_speed 
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 3.141593
+				]
+				physics_motor_torque 10000
+				physics_force_field false
+				physics_force_field_vector 
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0 1
+				]
+
+				### image layer values
+				image "arm.png"
+				interpreted_fps -1
+				avi_alpha false
+				movie_looping false
+				reverse_movie false
+				persist_first_frame false
+				persist_last_frame false
+				toon_effect false
+				toon_min_edge_threshold 216
+				toon_max_edge_threshold 220
+				toon_gray_threshold 96
+				toon_black_threshold 32
+				toon_saturation 60
+				toon_lightness 0
+				toon_quantize 6
+				sampling_mode 1
+				premultiplied_movie false
+				psd_layer_bounds 0 0 0 0
+				shape 0.399177 2.106996
+				### audio layer values
+				audio_file ""
+				spatial_positioning false
+				audio_level
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 1
+				]
+				audio_jump
+				[
+					keys 1
+						0 1 0.1 0.5 1 0 0 0
+				]
+			}
+		}
+	}
+}

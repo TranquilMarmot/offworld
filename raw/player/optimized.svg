@@ -1,0 +1,2525 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="178.00926"
+   height="112.87293"
+   id="svg3781"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="optimized.svg">
+  <defs
+     id="defs3783">
+    <inkscape:path-effect
+       effect="skeletal"
+       id="path-effect4159"
+       is_visible="true"
+       pattern="M 0,0 0,10 10,5 z"
+       copytype="single_stretched"
+       prop_scale="1.07"
+       scale_y_rel="false"
+       spacing="0"
+       normal_offset="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       fuse_tolerance="0" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect4157"
+       is_visible="true" />
+    <linearGradient
+       id="linearGradient4213-1-4-2-5-2-8-3-2-0-4-8-6-8-8-8-5-0-8-7-8-0">
+      <stop
+         style="stop-color:#000000;stop-opacity:0.09821428;"
+         offset="0"
+         id="stop4215-4-5-3-5-1-5-2-2-9-0-2-0-6-0-6-3-6-8-8-7-9" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop4217-9-2-8-2-4-83-8-0-7-7-3-8-3-1-6-6-5-8-8-8-4" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4213-9-2-7-8-1-7-3-9-3-9-7-4-5-9-1-1-4-2-7-8">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.1875;"
+         offset="0"
+         id="stop4215-8-8-2-2-6-3-0-0-1-5-4-5-0-2-5-8-0-3-7-2" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.09821428;"
+         offset="1"
+         id="stop4217-6-2-5-2-3-3-6-2-0-3-0-3-5-6-3-9-0-8-1-4" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4213-1-8-2-9-1-7-4-0-3-4-6-2-0-5-0-2-9-1-5-5">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.09821428;"
+         offset="0"
+         id="stop4215-4-3-0-0-2-1-9-8-1-0-0-3-9-8-3-2-9-3-0-1" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop4217-9-8-8-0-2-3-1-8-4-7-1-9-3-4-1-5-5-0-1-7" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4213-1-4-2-5-2-8-3-2-0-4-8-6-8-8-8-5-0-8-7-8-0-7">
+      <stop
+         style="stop-color:#000000;stop-opacity:0.09821428;"
+         offset="0"
+         id="stop4215-4-5-3-5-1-5-2-2-9-0-2-0-6-0-6-3-6-8-8-7-9-4" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop4217-9-2-8-2-4-83-8-0-7-7-3-8-3-1-6-6-5-8-8-8-4-0" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4213-9-2-7-8-1-7-3-9-3-9-7-4-5-9-1-1-4-2-7-8-4">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.1875;"
+         offset="0"
+         id="stop4215-8-8-2-2-6-3-0-0-1-5-4-5-0-2-5-8-0-3-7-2-8" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.09821428;"
+         offset="1"
+         id="stop4217-6-2-5-2-3-3-6-2-0-3-0-3-5-6-3-9-0-8-1-4-8" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4213-1-8-2-9-1-7-4-0-3-4-6-2-0-5-0-2-9-1-5-5-4">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.09821428;"
+         offset="0"
+         id="stop4215-4-3-0-0-2-1-9-8-1-0-0-3-9-8-3-2-9-3-0-1-5" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop4217-9-8-8-0-2-3-1-8-4-7-1-9-3-4-1-5-5-0-1-7-5" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4213-1-4-2-5-2-8-3-2-0-4-8-6-8-8-8-5-0-8-7-8-0-7"
+       id="linearGradient3926"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-1.2438081,0,0,1.2438081,555.10165,107.30024)"
+       x1="250.87894"
+       y1="172.29468"
+       x2="245.549"
+       y2="170.23512" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4213-9-2-7-8-1-7-3-9-3-9-7-4-5-9-1-1-4-2-7-8-4"
+       id="linearGradient3928"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-1.2438081,0,0,1.2438081,565.47985,126.64101)"
+       x1="245.76289"
+       y1="167.60649"
+       x2="262.18665"
+       y2="159.42464" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4213-1-8-2-9-1-7-4-0-3-4-6-2-0-5-0-2-9-1-5-5-4"
+       id="linearGradient3930"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-1.2438081,0,0,1.2438081,565.15805,107.31335)"
+       x1="250.87894"
+       y1="172.29468"
+       x2="245.549"
+       y2="170.23512" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6568542"
+     inkscape:cx="34.202847"
+     inkscape:cy="27.360204"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1138"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:snap-nodes="true" />
+  <metadata
+     id="metadata3786">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-188.13823,-373.06858)">
+    <path
+       style="fill:#b7b6b6;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="m 336.40266,409.6191 18.6189,-1.47855 3.5337,23.63109 -20.9828,1.63052 z"
+       id="path25328-5-1-5"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\jetpack.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:none;display:inline"
+       d="m 355.02806,434.40267 -0.5222,1.96598 4.2726,0.25778 5.8562,-2.09126 -0.9464,-1.60244 z"
+       id="path5806-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\jetpack.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <g
+       style="display:inline"
+       id="g25228-6-4-0"
+       transform="matrix(0.98592677,-0.1671778,0.1671778,0.98592677,-828.80051,807.1139)"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\jetpack.png">
+      <path
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         id="path25014-3-3-2-1"
+         d="m 1237.3788,-171.17842 0,-25.5001 c 0,-3.7123 -7.3221,-3.7123 -7.3221,0 l 0,25.5001 -1.7236,2.6773 c 3.7629,-0.52816 7.0879,-0.30533 10.9832,0 z"
+         style="fill:#97888f;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path25068-0-8-3-4"
+         d="m 1227.565,-168.34085 c 2.529,2.18278 10.6215,1.49033 12.4759,0.008"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path25094-2-1-2-6"
+         d="m 1230.4766,-186.11606 c 1.3698,1.55073 5.8263,1.31485 6.7579,-0.0431 l 0.048,3.13668 c -1.6979,1.74795 -6.527,0.59126 -6.8722,-0.0442 z"
+         style="fill:#b7b6b6;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path25094-6-2-5-0-2-0"
+         d="m 1230.13,-175.59623 c 2.9428,1.66658 5.967,1.20547 7.1485,0.0663 l -0.015,2.13668 c -1.9495,1.60732 -6.6989,0.54438 -7.2316,-0.18483 z"
+         style="fill:#b7b6b6;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path25094-6-2-5-7-1-6-1-7"
+         d="m 1230.1762,-194.86613 c 2.6874,1.1773 5.8123,0.97914 7.0155,1e-5 l 0.1339,1.31234 c -1.9807,1.68545 -6.8708,0.59126 -7.216,-0.0442 z"
+         style="fill:#b7b6b6;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+    </g>
+    <g
+       style="display:inline"
+       id="g25228-6-4-0-1"
+       transform="matrix(0.98592677,-0.1671778,0.1671778,0.98592677,-849.82941,808.7033)"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\jetpack.png">
+      <path
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         id="path25014-3-3-2-1-0"
+         d="m 1237.3788,-171.17842 0,-25.5001 c 0,-3.7123 -7.3221,-3.7123 -7.3221,0 l 0,25.5001 -1.7236,2.6773 c 3.7629,-0.52816 7.0879,-0.30533 10.9832,0 z"
+         style="fill:#97888f;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path25068-0-8-3-4-7"
+         d="m 1227.565,-168.34085 c 2.529,2.18278 10.6215,1.49033 12.4759,0.008"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path25094-2-1-2-6-3"
+         d="m 1230.4766,-186.11606 c 1.3698,1.55073 5.8263,1.31485 6.7579,-0.0431 l 0.048,3.13668 c -1.6979,1.74795 -6.527,0.59126 -6.8722,-0.0442 z"
+         style="fill:#b7b6b6;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path25094-6-2-5-0-2-0-4"
+         d="m 1230.13,-175.59623 c 2.9428,1.66658 5.967,1.20547 7.1485,0.0663 l -0.015,2.13668 c -1.9495,1.60732 -6.6989,0.54438 -7.2316,-0.18483 z"
+         style="fill:#b7b6b6;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path25094-6-2-5-7-1-6-1-7-9"
+         d="m 1230.1762,-194.86613 c 2.6874,1.1773 5.8123,0.97914 7.0155,1e-5 l 0.1339,1.31234 c -1.9807,1.68545 -6.8708,0.59126 -7.216,-0.0442 z"
+         style="fill:#b7b6b6;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+    </g>
+    <path
+       style="fill:#b7331c;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="m 316.53126,465.87485 c -0.8456,3.34275 7.5941,6.20198 12.4029,7.25888 l 1.274,2.94714 c -5.0407,-3.61514 -16.3407,-3.86706 -15.9347,-9.78293 1.8566,-9.87635 -0.2835,-9.57607 8.394,-16.03612 l 2.1561,1.59727 c -10.5249,4.46971 -5.9327,7.19975 -8.2923,14.01576 z"
+       id="path25330-72-3-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\strap.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:#501804;fill-opacity:1;stroke:#000000;stroke-width:1.01668406px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;display:inline"
+       d="m 255.69095,450.1155 c -11.20341,0.96122 -9.80526,6.71516 -9.75396,7.62694 9.42661,0.92496 16.54757,0.50737 20.97637,0.27177 l 0.0223,-11.71827 -8.09111,-2.80897 z"
+       id="path3040-5-1-3-6-1-4-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:#323bff;fill-opacity:1;stroke:#000000;stroke-width:1.01668406px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline"
+       d="m 255.68096,402.27359 0.1201,47.82783 c 1.4012,-0.33795 2.2799,0.36611 5.1383,0.35305 2.9686,-0.0313 3.3435,0.62704 5.974,0.3504 l 0,-48.53128"
+       id="path3928-9-8-5-4-6-1-2-2-1-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <g
+       style="display:inline"
+       id="g5277"
+       transform="translate(-1237.359,440.55595)"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\arm.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000">
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path24746-0-0-0-4"
+         d="m 1524.1855,-20.162586 0,-8.243498 c 0,-4.545687 7.5762,-4.545687 7.5425,-0.04733 l 0.031,8.317953"
+         style="fill:#ff081b;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path24732-8-6-6-4"
+         d="m 1531.759,9.0326944 c 0,5.6449736 -7.5762,5.6449736 -7.5762,0 l 0,-29.1225364 c 0,-2.129058 7.5773,-2.129058 7.5773,-0.04562 z"
+         style="fill:#ffe0c4;fill-opacity:1;stroke:#000000;stroke-width:0.94042408px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+    </g>
+    <g
+       id="g5008"
+       transform="translate(-42.289635,56.941004)"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\torso.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6427-9-2-4-1-0-6-3-8-2-8-7"
+         d="m 236.21235,331.27527 0.86936,15.39474 3.28233,1.65134 3.98944,-0.20482 -1.27074,5.0835 8.11643,-1.83414 -2.86572,-3.44129 4.69785,0.0741 3.7413,-2.30021 -2.06176,-14.56675 z"
+         style="fill:#ffe0c4;fill-opacity:1;stroke:none;display:inline"
+         sodipodi:nodetypes="ccccccccccc" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path3893-5-45-2-2-7-8-9-6-1-2-3-8-2-1-1-4-3-4-6-5-1"
+         d="m 236.54495,331.71579 -0.015,12.38428 c 0.13234,3.39002 2.32259,4.34955 5.25881,4.22525 3.41519,-0.0852 2.55564,1.17921 2.23212,4.49985"
+         style="fill:none;stroke:#000000;stroke-width:1.16392994;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccscc"
+         inkscape:connector-curvature="0"
+         id="path3902-7-5-1-8-6-5-8-1-7-5-5-3-0-2-0-7-1"
+         d="m 236.64335,333.7215 0.5716,3.3936 c 2.4934,1.13178 5.4299,-0.0741 9.3443,-0.42012 5.167,-0.25623 4.0261,2.58231 4.6715,5.21773 0.3313,1.35291 2.3948,2.40234 5.6205,1.74208 -0.7385,-3.30063 -4.9198,-6.99206 -5.4128,-10.61043"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.00164926px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\g25228.png"
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path10857-0-9-0-9-1-8-7-0-2-0-1-9-1-2"
+         d="m 251.08431,350.83153 c -1.91045,-0.15458 -3.32944,-2.94527 -1.8267,-2.93292 7.07762,-0.15868 9.60754,-2.3269 8.46404,-13.90502"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path3866-7-9-5-1-7-2-7-4-4-1-7-82-5-6-2-7-2-7-4-7-5-6-5"
+         d="m 239.96865,326.86712 0,-9.9748 3.9731,0 0,9.9748"
+         style="fill:#4296ff;fill-opacity:1;stroke:#000000;stroke-width:1.16392994;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path4211-8-9-7-8-6-6-2-7-9-1-4-6-4-2-0-8-5-7-1-2"
+         d="m 242.19385,317.47427 c -1.0605,-0.32254 -4.6991,9.46094 1.4316,7.05748 l -0.3029,-7.06551 z"
+         style="fill:url(#linearGradient3926);fill-opacity:1;stroke:none;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path3090-6-4-1-2-5-2-4-5-6-7-8-9-5-4-8-4-8-7"
+         d="m 259.08005,330.18193 c 0.6788,2.43486 3.1507,12.89871 -2.9984,13.55869 -5.5798,0.45045 -4.6833,-3.27631 -5.1165,-8.60383 -0.1722,-1.35758 -0.5066,-1.19165 -1.6888,-0.0819 -4.7637,-1.5264 -12.1835,-2.35642 -17.9877,-0.54511 l 4.4748,-2.72384 c 0.1407,-11.98059 20.4914,-13.11729 23.3166,-1.60394 z"
+         style="fill:#4296ff;fill-opacity:1;stroke:#000000;stroke-width:1.16392994;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path4211-7-8-9-8-0-2-4-8-6-7-2-5-0-2-3-4-4-9-6"
+         d="m 239.41875,325.34077 c 9.9193,-2.48134 15.0022,-0.67118 20.0027,9.43373 -0.5836,-3.58194 -0.6718,-9.17143 -7.7409,-11.33677 -2.6391,-1.08775 -8.2965,-1.3492 -12.2618,1.90304 z"
+         style="fill:url(#linearGradient3928);fill-opacity:1;stroke:none;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path3866-7-9-7-6-8-1-8-5-5-4-8-6-7-2-6-5-0-9-0-9-2-1"
+         d="m 249.83715,326.55877 0,-9.65531 4.1238,0.0502 0,9.65531"
+         style="fill:#4296ff;fill-opacity:1;stroke:#000000;stroke-width:1.16392994;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         transform="matrix(-1.0898579,0,0,0.95095898,331.77465,-142.81645)"
+         d="m 71.196969,507.29968 c 0,1.00102 -0.675812,1.8125 -1.509469,1.8125 -0.833657,0 -1.509469,-0.81148 -1.509469,-1.8125 0,-1.00101 0.675812,-1.8125 1.509469,-1.8125 0.833657,0 1.509469,0.81149 1.509469,1.8125 z"
+         sodipodi:ry="1.8125"
+         sodipodi:rx="1.509469"
+         sodipodi:cy="507.29968"
+         sodipodi:cx="69.6875"
+         id="path3860-1-1-4-2-6-3-66-4-1-2-8-9-0-4-1-7-2-9-0-7-4"
+         style="opacity:0.9792;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path4211-8-7-0-5-0-6-0-7-8-6-1-9-8-5-4-4-6-9-2"
+         d="m 250.33855,317.47778 c 3.4848,0.01 1.0221,6.85154 3.0588,9.13778 l -0.018,-9.13631 z"
+         style="fill:url(#linearGradient3930);fill-opacity:1;stroke:none;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path4427-9-5-7-7-3-2-9-4-1-8-3-6-9-4-1-5-3"
+         d="m 236.75775,331.95243 c 3.4988,-0.40284 9.0565,0.0915 12.5932,1.45338 -2.2572,-1.80706 -9.1177,-2.70693 -12.5932,-1.45338 z"
+         style="fill:#ffffff;fill-opacity:0.09523812;stroke:none;display:inline" />
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cccccc"
+         inkscape:connector-curvature="0"
+         id="path4429-5-1-2-9-7-5-8-1-7-4-6-1-0-3-1-4-2"
+         d="m 259.54565,337.98537 -0.1832,1.63387 c -0.1565,1.2146 -0.8891,2.43511 -1.681,2.98466 -1.2179,0.89318 -4.1135,0.70785 -4.8232,-0.0539 3.6229,0.60836 5.8868,-0.47237 6.6874,-4.56468 z"
+         style="fill:#ffffff;fill-opacity:0.09523812;stroke:none;display:inline" />
+      <g
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         transform="matrix(1.0702646,0.099262,-0.099262,1.0702646,-238.20712,85.94604)"
+         id="g5870-8-7-9-5-3-8-8-5-5-9-3-2"
+         style="display:inline">
+        <path
+           style="fill:#ffffff;fill-opacity:0.47115383;stroke:none;display:inline"
+           d="m 464.0586,195.41788 c 0.7016,0.18792 1.0783,-2.01008 0.48661,-1.11495 -0.57817,0.22482 -1.03208,1.68579 -0.48661,1.11495 z"
+           id="path4942-2-0-9-3-4-0-2-9-2-8-1-7-8-0-1-1"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccc" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.82436872px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;display:inline"
+           d="m 464.40243,194.10229 c -1.14976,1.03802 -0.16731,1.98763 0.49436,2.10868"
+           id="path4267-5-7-3-9-7-7-6-1-5-6-8-4-4-4-2-6"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc"
+           inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+           inkscape:export-xdpi="1000"
+           inkscape:export-ydpi="1000" />
+      </g>
+      <path
+         inkscape:export-ydpi="1000"
+         inkscape:export-xdpi="1000"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4200-5-2-4-5-3-9-3-8-3-1-5-7-1-2-3-8"
+         d="m 240.01355,345.44043 c 0,0 3.861,-0.016 5.7048,-0.1703"
+         style="fill:none;stroke:#000000;stroke-width:0.86878723px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;display:inline" />
+      <path
+         style="fill:#000000;fill-opacity:0.12328766;stroke:none;display:inline"
+         d="m 256.38835,344.57243 c -1.7651,0.78883 -2.2884,1.81716 -4.10289,2.04433 -1.05503,0.2146 -5.48421,-0.26164 -4.97617,1.97378 1.10189,4.93788 4.42692,3.01822 3.18362,2.48509 -2.6669,-3.21779 -1.8793,-3.21304 0.3239,-3.40126 3.3598,1.25894 6.11734,-2.44682 5.57154,-3.10194 z"
+         id="path4942-2-0-97-9-1-1-1-8-6-6-6-0-2-6-1"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cccccc"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\heads.png"
+         inkscape:export-xdpi="1000"
+         inkscape:export-ydpi="1000" />
+    </g>
+    <g
+       style="display:inline"
+       id="g26573-9-4"
+       transform="translate(-972.81261,506.6782)"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\torso.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000">
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path26484-7-1"
+         d="m 1174.5313,-98.85657 c 2.114,0.482202 4.2829,0.47745 5.7031,-0.25 l 1.7344,11.1875 -9.1875,-0.1875 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.75;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path26486-0-1"
+         d="m 1174.445,-97.541817 c 0.8762,0.187482 4.7576,0.322342 6.2414,0.0029"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         sodipodi:nodetypes="cc" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path26486-6-93-3"
+         d="m 1175.1214,-98.68404 -0.1821,1.384402"
+         style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path26486-6-4-3-8"
+         d="m 1175.6432,-98.773236 -0.146,1.5677"
+         style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path26486-6-5-3-7"
+         d="m 1176.2371,-98.772463 -0.1616,1.566154"
+         style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path26486-6-2-1-4"
+         d="m 1176.7637,-98.805539 -0.1212,1.569806"
+         style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path26486-6-9-3-2"
+         d="m 1177.3352,-98.784104 -0.045,1.57381"
+         style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path26486-6-1-5-7"
+         d="m 1178.0013,-98.784412 0.013,1.574424"
+         style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path26486-6-24-6-7"
+         d="m 1178.6398,-98.861907 0.064,1.573166"
+         style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path26486-6-99-9-9"
+         d="m 1179.2946,-98.830598 0.067,1.573048"
+         style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path26486-6-3-5-3"
+         d="m 1179.9226,-98.937602 0.1392,1.568306"
+         style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+    </g>
+    <path
+       style="fill:#ff081b;fill-opacity:1;stroke:none;display:inline"
+       d="m 193.2468,459.50557 2.6138,2.6264 9.7631,-1.48687 c 1.751,-1.80718 4.5511,0.23228 6.8267,0.34854 l 9.6262,-0.95463 c -2.5705,-16.83168 1.2376,-33.05113 -7.0597,-48.26308 -2.9463,-2.71479 -4.2639,-3.2876 -7.7405,-3.57801 -1.643,0.27594 -4.1171,5.38993 -3.4441,10.32143 1.57,-3.47556 1.2294,-5.42592 -2.3461,-8.32537 -9.97546,1.45591 -3.6558,38.03411 -8.2394,49.31159 z"
+       id="path17994-8-3-5-9-0-3-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\torso.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 201.1192,409.68097 c -8.8491,5.51393 -2.2456,11.24455 -7.7672,50.09352 2.5169,0.69007 0.867,1.61802 2.4557,2.26391 2.6407,-0.53735 8.0693,0.0775 10.7984,-2.36017 2.6338,0.78466 4.8532,2.12513 6.5184,1.56654 3.6566,-1.93041 4.735,0.22631 8.8594,-1.53179 -1.8874,-33.00358 -1.6995,-49.86023 -14.2436,-52.2967"
+       id="path8566-7-2-3-3-8-5-4-3-5-2-9-5-6-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\torso.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:#000000;fill-opacity:0.39153436;stroke:none"
+       d="m 211.08259,409.01148 c 10.7399,7.86088 7.79102,49.40352 10.60822,50.9879 l 0.56532,-0.044 c -3.00002,-16.94207 0.8709,-38.31673 -9.26561,-50.21392 z"
+       id="path3100"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\torso.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:#ff081b;fill-opacity:1;stroke:none;display:inline"
+       d="m 205.2335,410.30666 7.01127,0.31171 c -0.4669,-1.80984 0.26313,-2.17259 -2.92267,-2.64857 -2.3555,-0.19279 -4.0502,1.24863 -4.0886,2.33686 z"
+       id="path18129-1-9-6-5-1-2-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\torso.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:#ff081b;fill-opacity:1;stroke:none;display:inline"
+       d="m 199.2715,408.80153 c -2.2527,0.59996 -2.9473,1.04253 -2.8746,3.60231 l 2.4233,-2.11183 2.6686,0.73685 c 5.7969,5.40274 2.2612,-0.64772 -0.021,-1.81358 z"
+       id="path18014-5-1-7-1-2-8-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\torso.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <g
+       style="display:inline"
+       id="g24982-1-2-8-8"
+       transform="matrix(0.97913703,-0.2032011,0.2032011,0.97913703,-869.24111,835.73599)"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\torso.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000">
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path18286-7-9-3-5-1-1-6"
+         d="m 1136.6726,-195.60876 c -0.396,0.0283 -0.4885,0.33033 -0.4693,0.72387 0,0.49321 0.2278,0.63379 0.6235,0.62406 0.3292,0.0114 0.4486,-0.39699 0.4353,-0.67283 -0.016,-0.29652 -0.093,-0.69501 -0.5895,-0.6751 z"
+         style="fill:#a23f28;fill-opacity:1;stroke:#000000;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         transform="translate(205.69249,-998.09152)"
+         d="m 930.95703,803.16016 c 0,0.0755 -0.0603,0.13671 -0.13476,0.13671 -0.0744,0 -0.13477,-0.0612 -0.13477,-0.13671 0,-0.0755 0.0603,-0.13672 0.13477,-0.13672 0.0744,0 0.13476,0.0612 0.13476,0.13672 z"
+         sodipodi:ry="0.13671875"
+         sodipodi:rx="0.13476562"
+         sodipodi:cy="803.16016"
+         sodipodi:cx="930.82227"
+         id="path18290-0-2-0-1-5-9-5"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         sodipodi:type="arc" />
+      <path
+         transform="translate(206.08117,-998.11497)"
+         d="m 930.95703,803.16016 c 0,0.0755 -0.0603,0.13671 -0.13476,0.13671 -0.0744,0 -0.13477,-0.0612 -0.13477,-0.13671 0,-0.0755 0.0603,-0.13672 0.13477,-0.13672 0.0744,0 0.13476,0.0612 0.13476,0.13672 z"
+         sodipodi:ry="0.13671875"
+         sodipodi:rx="0.13476562"
+         sodipodi:cy="803.16016"
+         sodipodi:cx="930.82227"
+         id="path18290-3-4-6-9-0-5-8-0"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;display:inline"
+         sodipodi:type="arc" />
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.548199;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 204.8774,414.64269 -0.1467,-1.53175 c -1.2602,-5.37252 -8.2424,-2.70965 -8.306,-0.009 -0.043,-1.66336 0.1115,-3.80099 2.7579,-4.3159 1.3927,-0.26707 4.1886,0.55608 5.5067,4.14205"
+       id="path8566-7-2-3-3-8-5-3-7-2-2-1-3-1-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\torso.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.548199;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 204.6221,412.70092 c 0.5738,-2.22064 1.1816,-4.66918 4.4995,-4.69744 2.763,0.15898 3.4442,1.26658 3.0508,2.51268 -3.7328,-3.34206 -7.6969,1.39233 -7.4626,2.53181"
+       id="path11025-9-9-5-6-6-8-1-8-3-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\torso.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.4568325;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 198.9653,410.3267 c 3.4212,0.15681 5.2759,3.35298 4.74,6.74374 l 2.2279,-0.0487 c -0.1638,-3.98575 -0.6442,-6.26961 5.1752,-7.31792"
+       id="path11063-9-0-2-3-1-1-3-7-9-3-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\torso.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <g
+       style="display:inline"
+       id="g24982-3-4-6"
+       transform="translate(-931.91381,610.80179)"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\torso.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000">
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path18286-7-9-3-3-3-1"
+         d="m 1136.6726,-195.60876 c -0.396,0.0283 -0.4885,0.33033 -0.4693,0.72387 0,0.49321 0.2278,0.63379 0.6235,0.62406 0.3292,0.0114 0.4486,-0.39699 0.4353,-0.67283 -0.016,-0.29652 -0.093,-0.69501 -0.5895,-0.6751 z"
+         style="fill:#a23f28;fill-opacity:1;stroke:#000000;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         transform="translate(205.69249,-998.09152)"
+         d="m 930.95703,803.16016 c 0,0.0755 -0.0603,0.13671 -0.13476,0.13671 -0.0744,0 -0.13477,-0.0612 -0.13477,-0.13671 0,-0.0755 0.0603,-0.13672 0.13477,-0.13672 0.0744,0 0.13476,0.0612 0.13476,0.13672 z"
+         sodipodi:ry="0.13671875"
+         sodipodi:rx="0.13476562"
+         sodipodi:cy="803.16016"
+         sodipodi:cx="930.82227"
+         id="path18290-0-2-0-4-9-3"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         sodipodi:type="arc" />
+      <path
+         transform="translate(206.08117,-998.11497)"
+         d="m 930.95703,803.16016 c 0,0.0755 -0.0603,0.13671 -0.13476,0.13671 -0.0744,0 -0.13477,-0.0612 -0.13477,-0.13671 0,-0.0755 0.0603,-0.13672 0.13477,-0.13672 0.0744,0 0.13476,0.0612 0.13476,0.13672 z"
+         sodipodi:ry="0.13671875"
+         sodipodi:rx="0.13476562"
+         sodipodi:cy="803.16016"
+         sodipodi:cx="930.82227"
+         id="path18290-3-4-6-9-06-2-8"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;display:inline"
+         sodipodi:type="arc" />
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 205.2071,413.8179 0.337,0.0387"
+       id="path18355-9-5-0-5-7-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\torso.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:#000000;fill-opacity:0.34391533;stroke:#000000;stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       d="m 245.95073,457.64464 -0.0157,-1.15625 c 2.00868,0.33166 13.80604,1.30028 20.90625,0.15625 l 0.0625,1.26562"
+       id="path5800"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44444442;stroke-dasharray:none"
+       d="m 249.23702,451.41405 c 0.65901,0.40374 1.20575,0.44136 1.375,1.90625"
+       id="path5802"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44444442;stroke-dasharray:none"
+       d="m 250.11752,451.05579 c 0.65901,0.40374 1.26714,0.57362 1.43639,2.03851"
+       id="path5802-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44444442;stroke-dasharray:none"
+       d="m 251.07235,450.76159 c 0.65901,0.40374 1.35821,0.64984 1.52746,2.11473"
+       id="path5802-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44444442;stroke-dasharray:none"
+       d="m 252.11589,450.42968 c 0.62776,0.26772 1.2995,0.88042 1.46875,2.3125"
+       id="path5802-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:#000000;fill-opacity:0.34391533;stroke:none"
+       d="m 262.73198,456.47276 c 3.01961,-1.51267 3.09976,-3.34003 3.75,-5.75 l 0.28125,5.78125 z"
+       id="path5836"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44973545;stroke-dasharray:none"
+       d="m 251.28288,456.68237 -0.10938,1.46875"
+       id="path3085-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44973545;stroke-dasharray:none"
+       d="m 253.69515,456.69151 -0.10938,1.46875"
+       id="path3085-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44973545;stroke-dasharray:none"
+       d="m 255.50543,456.72277 -0.10938,1.46875"
+       id="path3085-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44973545;stroke-dasharray:none"
+       d="m 257.71982,456.78528 -0.10938,1.46875"
+       id="path3085-1-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44973545;stroke-dasharray:none"
+       d="m 259.53278,456.80089 -0.10938,1.46875"
+       id="path3085-4-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44973545;stroke-dasharray:none"
+       d="m 261.45687,456.75402 -0.10938,1.46875"
+       id="path3085-9-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44973545;stroke-dasharray:none"
+       d="m 263.03277,456.61339 -0.10938,1.46875"
+       id="path3085-1-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44973545;stroke-dasharray:none"
+       d="m 264.56403,456.55088 -0.10938,1.46875"
+       id="path3085-4-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44973545;stroke-dasharray:none"
+       d="m 266.01715,456.50401 -0.10938,1.46875"
+       id="path3085-9-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44973545;stroke-dasharray:none"
+       d="m 246.43902,456.32433 -0.10938,1.46875"
+       id="path3085-7-23"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44973545;stroke-dasharray:none"
+       d="m 247.12651,456.38682 -0.10938,1.46875"
+       id="path3085-4-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44973545;stroke-dasharray:none"
+       d="m 248.93993,456.41808 -0.10938,1.46875"
+       id="path3085-9-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:#ffffff;fill-opacity:0.15873018;stroke:none"
+       d="m 60.265626,79.725835 c -0.483887,0.275814 -1.844024,1.44504 -2.015625,3.233035 0.191629,0.0959 3.222732,0.341334 3.370166,0.331753 0.139184,-1.331912 -0.0156,-3.190766 -1.354541,-3.564788 z"
+       id="path3984"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000"
+       transform="translate(188.13823,373.06858)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.44444442;stroke-dasharray:none"
+       d="m 253.41866,450.30546 c 0.65901,0.40374 0.90887,0.83198 1.07812,2.29687"
+       id="path5802-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.69999999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:0.44313725;stroke-dasharray:none"
+       d="m 254.86545,450.72571 c 0.18258,1.62208 0.82143,1.72612 1.52418,1.61985 1.47655,-0.3224 0.53107,-2.19089 -0.98561,-2.21919"
+       id="path4013"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.04395,402.42814 0.003,0.51025"
+       id="path4175"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.05079,403.13951 0.003,0.18994"
+       id="path4175-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.05519,403.54554 0.003,0.51025"
+       id="path4175-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.06203,404.25691 0.003,0.18994"
+       id="path4175-6-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.05518,404.62758 0.003,0.51025"
+       id="path4175-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.06202,405.33895 0.003,0.18994"
+       id="path4175-6-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.05128,405.72133 0.003,0.51025"
+       id="path4175-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.05812,406.4327 0.003,0.18994"
+       id="path4175-6-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.05128,406.79555 0.003,0.51025"
+       id="path4175-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.05812,407.50692 0.003,0.18994"
+       id="path4175-6-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.05519,407.86586 0.003,0.51025"
+       id="path4175-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.06203,408.57723 0.003,0.18994"
+       id="path4175-6-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.05909,408.98695 0.003,0.51025"
+       id="path4175-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.06593,409.69832 0.003,0.18994"
+       id="path4175-6-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.05128,410.06508 0.003,0.51025"
+       id="path4175-34"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.05812,410.77645 0.003,0.18994"
+       id="path4175-6-11"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.04347,411.13929 0.003,0.51025"
+       id="path4175-38"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.05031,411.85066 0.003,0.18994"
+       id="path4175-6-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.05909,412.22523 0.003,0.51025"
+       id="path4175-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.06593,412.9366 0.003,0.18994"
+       id="path4175-6-27"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.05519,413.34242 0.003,0.51025"
+       id="path4175-79"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.06203,414.05379 0.003,0.18994"
+       id="path4175-6-31"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.063,414.42054 0.003,0.51025"
+       id="path4175-98"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.06984,415.13191 0.003,0.18994"
+       id="path4175-6-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.0591,415.53383 0.003,0.51025"
+       id="path4175-50"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.06594,416.2452 0.003,0.18994"
+       id="path4175-6-28"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.05909,416.60023 0.003,0.51025"
+       id="path4175-60"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.06593,417.3116 0.003,0.18994"
+       id="path4175-6-24"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.06609,417.70411 0.003,0.51025"
+       id="path4175-91"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.07293,418.41548 0.003,0.18994"
+       id="path4175-6-35"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.07733,418.82151 0.003,0.51025"
+       id="path4175-1-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08417,419.53288 0.003,0.18994"
+       id="path4175-6-8-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.07732,419.90355 0.003,0.51025"
+       id="path4175-9-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08416,420.61492 0.003,0.18994"
+       id="path4175-6-2-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.07342,420.9973 0.003,0.51025"
+       id="path4175-7-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08026,421.70867 0.003,0.18994"
+       id="path4175-6-9-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.07342,422.07152 0.003,0.51025"
+       id="path4175-5-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08026,422.78289 0.003,0.18994"
+       id="path4175-6-4-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.07733,423.14183 0.003,0.51025"
+       id="path4175-3-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08417,423.8532 0.003,0.18994"
+       id="path4175-6-1-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08123,424.26292 0.003,0.51025"
+       id="path4175-2-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08807,424.97429 0.003,0.18994"
+       id="path4175-6-3-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.07342,425.34105 0.003,0.51025"
+       id="path4175-34-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08026,426.05242 0.003,0.18994"
+       id="path4175-6-11-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.06561,426.41526 0.003,0.51025"
+       id="path4175-38-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.07245,427.12663 0.003,0.18994"
+       id="path4175-6-7-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08123,427.5012 0.003,0.51025"
+       id="path4175-4-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08807,428.21257 0.003,0.18994"
+       id="path4175-6-27-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.07733,428.61839 0.003,0.51025"
+       id="path4175-79-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08417,429.32976 0.003,0.18994"
+       id="path4175-6-31-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08514,429.69651 0.003,0.51025"
+       id="path4175-98-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.09198,430.40788 0.003,0.18994"
+       id="path4175-6-6-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08124,430.8098 0.003,0.51025"
+       id="path4175-50-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08808,431.52117 0.003,0.18994"
+       id="path4175-6-28-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08123,431.8762 0.003,0.51025"
+       id="path4175-60-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08807,432.58757 0.003,0.18994"
+       id="path4175-6-24-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.08818,431.8573 0.003,0.51025"
+       id="path4175-12"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.09502,432.56867 0.003,0.18994"
+       id="path4175-6-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.09942,432.9747 0.003,0.51025"
+       id="path4175-1-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.10626,433.68607 0.003,0.18994"
+       id="path4175-6-8-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.09941,434.05674 0.003,0.51025"
+       id="path4175-9-46"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.10625,434.76811 0.003,0.18994"
+       id="path4175-6-2-07"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.09551,435.15049 0.003,0.51025"
+       id="path4175-7-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.10235,435.86186 0.003,0.18994"
+       id="path4175-6-9-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.09551,436.22471 0.003,0.51025"
+       id="path4175-5-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.10235,436.93608 0.003,0.18994"
+       id="path4175-6-4-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.09942,437.29502 0.003,0.51025"
+       id="path4175-3-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.10626,438.00639 0.003,0.18994"
+       id="path4175-6-1-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.10332,438.41611 0.003,0.51025"
+       id="path4175-2-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.11016,439.12748 0.003,0.18994"
+       id="path4175-6-3-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.09551,439.49424 0.003,0.51025"
+       id="path4175-34-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.10235,440.20561 0.003,0.18994"
+       id="path4175-6-11-98"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.0877,440.56845 0.003,0.51025"
+       id="path4175-38-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.09454,441.27982 0.003,0.18994"
+       id="path4175-6-7-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.10332,441.65439 0.003,0.51025"
+       id="path4175-4-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.11016,442.36576 0.003,0.18994"
+       id="path4175-6-27-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.09942,442.77158 0.003,0.51025"
+       id="path4175-79-60"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.10626,443.48295 0.003,0.18994"
+       id="path4175-6-31-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.10723,443.8497 0.003,0.51025"
+       id="path4175-98-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.11407,444.56107 0.003,0.18994"
+       id="path4175-6-6-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.10333,444.96299 0.003,0.51025"
+       id="path4175-50-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.11017,445.67436 0.003,0.18994"
+       id="path4175-6-28-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.10332,446.02939 0.003,0.51025"
+       id="path4175-60-50"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.11016,446.74076 0.003,0.18994"
+       id="path4175-6-24-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.1046,447.0924 0.003,0.51025"
+       id="path4175-79-60-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.11144,447.80377 0.003,0.18994"
+       id="path4175-6-31-3-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.11241,448.17052 0.003,0.51025"
+       id="path4175-98-8-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.11925,448.88189 0.003,0.18994"
+       id="path4175-6-6-0-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.10851,449.28381 0.003,0.51025"
+       id="path4175-50-1-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.11535,449.99518 0.003,0.18994"
+       id="path4175-6-28-2-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.92124,402.43979 0.003,0.18994"
+       id="path4175-6-8-18"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.91439,402.81046 0.003,0.51025"
+       id="path4175-9-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.92123,403.52183 0.003,0.18994"
+       id="path4175-6-2-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.91049,403.90421 0.003,0.51025"
+       id="path4175-7-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.91733,404.61558 0.003,0.18994"
+       id="path4175-6-9-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.91049,404.97843 0.003,0.51025"
+       id="path4175-5-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.91733,405.6898 0.003,0.18994"
+       id="path4175-6-4-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.9144,406.04874 0.003,0.51025"
+       id="path4175-3-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.92124,406.76011 0.003,0.18994"
+       id="path4175-6-1-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.9183,407.16983 0.003,0.51025"
+       id="path4175-2-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.92514,407.8812 0.003,0.18994"
+       id="path4175-6-3-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.91049,408.24796 0.003,0.51025"
+       id="path4175-34-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.91733,408.95933 0.003,0.18994"
+       id="path4175-6-11-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.90268,409.32217 0.003,0.51025"
+       id="path4175-38-78"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.90952,410.03354 0.003,0.18994"
+       id="path4175-6-7-38"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.9183,410.40811 0.003,0.51025"
+       id="path4175-4-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.92514,411.11948 0.003,0.18994"
+       id="path4175-6-27-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.9144,411.5253 0.003,0.51025"
+       id="path4175-79-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.92124,412.23667 0.003,0.18994"
+       id="path4175-6-31-07"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.92221,412.60342 0.003,0.51025"
+       id="path4175-98-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.92905,413.31479 0.003,0.18994"
+       id="path4175-6-6-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.91831,413.71671 0.003,0.51025"
+       id="path4175-50-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.92515,414.42808 0.003,0.18994"
+       id="path4175-6-28-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.9183,414.78311 0.003,0.51025"
+       id="path4175-60-51"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.92514,415.49448 0.003,0.18994"
+       id="path4175-6-24-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.9253,415.88699 0.003,0.51025"
+       id="path4175-91-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.93214,416.59836 0.003,0.18994"
+       id="path4175-6-35-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.93654,417.00439 0.003,0.51025"
+       id="path4175-1-9-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.94338,417.71576 0.003,0.18994"
+       id="path4175-6-8-8-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.93653,418.08643 0.003,0.51025"
+       id="path4175-9-4-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.94337,418.7978 0.003,0.18994"
+       id="path4175-6-2-0-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.93263,419.18018 0.003,0.51025"
+       id="path4175-7-7-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.93947,419.89155 0.003,0.18994"
+       id="path4175-6-9-6-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.93263,420.2544 0.003,0.51025"
+       id="path4175-5-3-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.93947,420.96577 0.003,0.18994"
+       id="path4175-6-4-6-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.93654,421.32471 0.003,0.51025"
+       id="path4175-3-1-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.94338,422.03608 0.003,0.18994"
+       id="path4175-6-1-5-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.94044,422.4458 0.003,0.51025"
+       id="path4175-2-4-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.94728,423.15717 0.003,0.18994"
+       id="path4175-6-3-2-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.93263,423.52393 0.003,0.51025"
+       id="path4175-34-0-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.93947,424.2353 0.003,0.18994"
+       id="path4175-6-11-9-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.92482,424.59814 0.003,0.51025"
+       id="path4175-38-7-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.93166,425.30951 0.003,0.18994"
+       id="path4175-6-7-3-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.94044,425.68408 0.003,0.51025"
+       id="path4175-4-7-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.94728,426.39545 0.003,0.18994"
+       id="path4175-6-27-2-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.93654,426.80127 0.003,0.51025"
+       id="path4175-79-6-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.94338,427.51264 0.003,0.18994"
+       id="path4175-6-31-0-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.94435,427.87939 0.003,0.51025"
+       id="path4175-98-1-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.95119,428.59076 0.003,0.18994"
+       id="path4175-6-6-6-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.94045,428.99268 0.003,0.51025"
+       id="path4175-50-5-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.94729,429.70405 0.003,0.18994"
+       id="path4175-6-28-7-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.94044,430.05908 0.003,0.51025"
+       id="path4175-60-5-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.94728,430.77045 0.003,0.18994"
+       id="path4175-6-24-4-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.94739,430.04018 0.003,0.51025"
+       id="path4175-12-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.95423,430.75155 0.003,0.18994"
+       id="path4175-6-0-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.95863,431.15758 0.003,0.51025"
+       id="path4175-1-0-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96547,431.86895 0.003,0.18994"
+       id="path4175-6-8-1-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.95862,432.23962 0.003,0.51025"
+       id="path4175-9-46-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96546,432.95099 0.003,0.18994"
+       id="path4175-6-2-07-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.95472,433.33337 0.003,0.51025"
+       id="path4175-7-1-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96156,434.04474 0.003,0.18994"
+       id="path4175-6-9-7-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.95472,434.40759 0.003,0.51025"
+       id="path4175-5-7-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96156,435.11896 0.003,0.18994"
+       id="path4175-6-4-7-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.95863,435.4779 0.003,0.51025"
+       id="path4175-3-7-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96547,436.18927 0.003,0.18994"
+       id="path4175-6-1-3-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96253,436.59899 0.003,0.51025"
+       id="path4175-2-3-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96937,437.31036 0.003,0.18994"
+       id="path4175-6-3-5-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.95472,437.67712 0.003,0.51025"
+       id="path4175-34-9-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96156,438.38849 0.003,0.18994"
+       id="path4175-6-11-98-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.94691,438.75133 0.003,0.51025"
+       id="path4175-38-1-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.95375,439.4627 0.003,0.18994"
+       id="path4175-6-7-8-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96253,439.83727 0.003,0.51025"
+       id="path4175-4-2-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96937,440.54864 0.003,0.18994"
+       id="path4175-6-27-6-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.95863,440.95446 0.003,0.51025"
+       id="path4175-79-60-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96547,441.66583 0.003,0.18994"
+       id="path4175-6-31-3-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96644,442.03258 0.003,0.51025"
+       id="path4175-98-8-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.97328,442.74395 0.003,0.18994"
+       id="path4175-6-6-0-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96254,443.14587 0.003,0.51025"
+       id="path4175-50-1-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96938,443.85724 0.003,0.18994"
+       id="path4175-6-28-2-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96253,444.21227 0.003,0.51025"
+       id="path4175-60-50-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96937,444.92364 0.003,0.18994"
+       id="path4175-6-24-9-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96381,445.27528 0.003,0.51025"
+       id="path4175-79-60-4-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.97065,445.98665 0.003,0.18994"
+       id="path4175-6-31-3-7-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.97162,446.3534 0.003,0.51025"
+       id="path4175-98-8-8-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.97846,447.06477 0.003,0.18994"
+       id="path4175-6-6-0-3-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.96772,447.46669 0.003,0.51025"
+       id="path4175-50-1-5-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.97456,448.17806 0.003,0.18994"
+       id="path4175-6-28-2-1-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.9681,448.52939 0.003,0.51025"
+       id="path4175-16"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.97494,449.24076 0.003,0.18994"
+       id="path4175-6-40"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+    <path
+       style="fill:none;stroke:#745200;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 265.97934,449.64679 0.003,0.51025"
+       id="path4175-1-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-raw\player\bits\leg.png"
+       inkscape:export-xdpi="1000"
+       inkscape:export-ydpi="1000" />
+  </g>
+</svg>

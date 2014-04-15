@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="64px"
+   height="64px"
+   id="svg3774"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="rocks2.svg"
+   inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-desktop\assets\entities\rocks\rocks.png"
+   inkscape:export-xdpi="720"
+   inkscape:export-ydpi="720">
+  <defs
+     id="defs3776" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.0484756"
+     inkscape:cx="55.415277"
+     inkscape:cy="25.557762"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:document-units="px"
+     inkscape:grid-bbox="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1138"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:snap-nodes="false">
+    <sodipodi:guide
+       orientation="0,1"
+       position="-17.087738,32"
+       id="guide6106" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="32,65.549683"
+       id="guide6108" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata3779">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <g
+       id="g6081"
+       transform="matrix(1.3881891,0,0,1.3881891,-6.4035111,-2.9840856)">
+      <g
+         id="g6101"
+         transform="translate(-0.20179301,-0.9407068)">
+        <path
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.15000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 18.861228,3.4324475 6.614998,10.4737465 0,8.268745 -7.993123,2.756249 L 7.836233,21.348064 5.6312336,14.733068 8.6631074,9.7718216 11.143731,5.6374468 z"
+           id="path5786-3"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccccccccc" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.23932968px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.48677248"
+           d="m 8.9043829,18.701324 8.5560361,3.739527 5.68408,-2.2138"
+           id="path4003"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccc" />
+        <path
+           style="fill:#000000;fill-opacity:0.42857145;stroke:none"
+           d="m 7.9322138,21.258517 -0.2191423,-0.651666 9.8005455,3.616013 7.863703,-2.6011 -0.01819,0.473521 -7.835249,2.723153 z"
+           id="path4144"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccccccc" />
+      </g>
+    </g>
+    <g
+       id="g6086"
+       transform="matrix(1.376575,0,0,1.1952677,-15.720253,-3.6835623)">
+      <path
+         sodipodi:nodetypes="ccccccccc"
+         inkscape:connector-curvature="0"
+         id="path5786-3-7"
+         d="M 57.663784,14.614127 54.556961,22.58853 46.179792,27.396641 37.947176,19.99815 37.504205,9.6980371 42.96567,3.8760915 l 6.621345,0.2129762 5.614162,4.9713582 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.15000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path4003-6"
+         d="M 54.169077,10.360298 51.499638,7.7374523 48.524281,5.7835559 44.845153,5.6328045"
+         style="fill:none;stroke:#000000;stroke-width:0.27090099px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.48677248" />
+      <path
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         id="path4144-9"
+         d="m 46.102981,27.415419 -0.636812,-0.704925 8.438278,-4.678122 3.316852,-8.385296 0.445204,0.980271 -3.075271,7.842564 z"
+         style="fill:#000000;fill-opacity:0.42857145;stroke:none" />
+    </g>
+    <g
+       id="g6096"
+       transform="matrix(1.2776203,0,0,1.2877739,-6.63647,-11.907765)">
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="ccccccccc"
+         inkscape:connector-curvature="0"
+         id="path5927-5"
+         d="m 10.353862,35.956861 -4.536534,12.881684 2.9076969,3.903268 6.9541371,3.163426 6.623602,-1.492693 7.000122,-2.652644 0.07662,-9.693456 -4.364635,-5.467168 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.15000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="cccc"
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         inkscape:connector-curvature="0"
+         id="path4001"
+         d="m 8.5896012,46.158268 1.0045497,-5.238886 1.7616511,-3.791922 7.077903,0.230298"
+         style="fill:none;stroke:#000000;stroke-width:0.27000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.43915345;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="370.55069"
+         inkscape:export-xdpi="370.55069"
+         inkscape:export-filename="C:\Users\Nate\Documents\Java\workspace\offworld-android\raw\tut-progress\path3973.png"
+         sodipodi:nodetypes="ccccccccc"
+         inkscape:connector-curvature="0"
+         id="path4928"
+         d="m 8.7973125,52.678317 6.9840965,1.879398 6.159608,-1.152166 5.984271,-2.482111 1.323895,-8.809882 -0.05591,9.580279 -6.867849,2.628725 -6.627038,1.485208 z"
+         style="fill:#000000;fill-opacity:0.50264551;stroke:none" />
+    </g>
+    <g
+       id="g6091"
+       transform="matrix(1.2900061,0,0,1.271167,-12.464026,-11.618659)">
+      <path
+         sodipodi:nodetypes="ccccccccc"
+         inkscape:connector-curvature="0"
+         id="path5786-3-1"
+         d="m 56.909541,48.051351 -1.373745,6.271101 -12.420581,2.91201 -5.555924,-6.373276 -0.301403,-10.2864 6.074372,-4.398969 7.107928,0.619982 5.191934,3.00227 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.15000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path4003-7"
+         d="m 39.597777,43.592216 0.261104,6.312842 4.539691,5.497542"
+         style="fill:none;stroke:#000000;stroke-width:0.23932968px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.48677248" />
+      <path
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path4144-4"
+         d="m 55.50457,39.826589 0.103857,0.0986 -5.442636,-2.117692 -6.820939,-0.565429 -6.021617,3.429557 6.046825,-4.403108 7.052061,0.438348 z"
+         style="fill:#000000;fill-opacity:0.42857145;stroke:none" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,196 @@
+{"frames": [
+
+{
+	"filename": "sleep_0000_fly_00001.png.png",
+	"frame": {"x":2,"y":2,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0001_fly_00002.png.png",
+	"frame": {"x":307,"y":2,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0002_fly_00003.png.png",
+	"frame": {"x":612,"y":2,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0003_fly_00004.png.png",
+	"frame": {"x":2,"y":180,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0004_fly_00005.png.png",
+	"frame": {"x":307,"y":180,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0005_fly_00006.png.png",
+	"frame": {"x":612,"y":180,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0006_fly_00007.png.png",
+	"frame": {"x":2,"y":358,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0007_fly_00008.png.png",
+	"frame": {"x":307,"y":358,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0008_fly_00009.png.png",
+	"frame": {"x":612,"y":358,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0009_fly_00010.png.png",
+	"frame": {"x":2,"y":536,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0010_fly_00011.png.png",
+	"frame": {"x":307,"y":536,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0011_fly_00012.png.png",
+	"frame": {"x":612,"y":536,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0012_fly_00013.png.png",
+	"frame": {"x":2,"y":714,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0013_fly_00014.png.png",
+	"frame": {"x":307,"y":714,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0014_fly_00015.png.png",
+	"frame": {"x":612,"y":714,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0015_fly_00016.png.png",
+	"frame": {"x":2,"y":892,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0016_fly_00017.png.png",
+	"frame": {"x":307,"y":892,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0017_fly_00018.png.png",
+	"frame": {"x":612,"y":892,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0018_fly_00019.png.png",
+	"frame": {"x":2,"y":1070,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0019_fly_00020.png.png",
+	"frame": {"x":307,"y":1070,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0020_fly_00021.png.png",
+	"frame": {"x":612,"y":1070,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0021_fly_00022.png.png",
+	"frame": {"x":2,"y":1248,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+},
+{
+	"filename": "sleep_0022_fly_00023.png.png",
+	"frame": {"x":307,"y":1248,"w":303,"h":176},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":303,"h":176},
+	"sourceSize": {"w":303,"h":176}
+}],
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "fly.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":2048},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:dea5f565a71ceb831aa00ffd6eae389b$"
+}
+}
